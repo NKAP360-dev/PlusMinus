@@ -1,8 +1,6 @@
 Test Document
 Hello World
 Third Line
-<<<<<<< HEAD
 4th Line by Mario
-=======
 Eugene was here :)
->>>>>>> d25075982c59cb3ceefbd7a7acd2237630be219d
+Testing conflict <- added by mk
