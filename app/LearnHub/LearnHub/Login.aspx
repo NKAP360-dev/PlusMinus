@@ -8,32 +8,49 @@
     <link href="/bootstrap/css/bootstrap.css" rel="stylesheet" />
 </head>
 <body>
-    <form id="login" runat="server">
-        <div class="container text-center">
 
-            <asp:Label ID="lblLogin" runat="server" CssClass="h2" Text="Login"></asp:Label>
-            <div class="well offset4 span4">
-                <div>
-                    <asp:Label ID="lblUsername" CssClass="h3" runat="server" Text="Username: "></asp:Label>
-                    <asp:TextBox ID="txtUsername" CssClass="input-group" runat="server"></asp:TextBox>
-                </div>
-                <div>
-                    <asp:Label ID="lblPassword" CssClass="h3" runat="server" Text="Password: "></asp:Label>
-                    <asp:TextBox ID="txtPassword" CssClass="input-group" runat="server" TextMode="Password"></asp:TextBox>
-                </div>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-4 col-lg-offset-4 ">
+        <div class="well">
+          <form class="form-horizontal">
+            <fieldset>
                 <br />
+              <h2 class="text-center login-title"> <span class="glyphicon glyphicon-send"></span>&nbsp;&nbsp;LearnHub</h2>
+            <br/>
+            <div class="form-group">
+              <div class="input-group">
+                <input type="text" class="form-control" id="txtUsername" placeholder="Username"/>
+                <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
+              </div>
+              
+              <br/>
 
-                <asp:Button ID="btnLogin" CssClass="btn btn-success" runat="server" Text="Login" OnClick="btnLogin_Click" />
+              <div class="input-group">
+                <input type="password" class="form-control" id="txtPassword" placeholder="Password"/>
+                <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
+              </div>
+              <br />
 
-                <br />
-
-                <div class="alert alert-dismissible alert-danger">
-                    <button type="button" class="close" data-dismiss="alert">&times;</button>
-                    <asp:Label ID="lblErrorMsg" runat="server" CssClass="h3" ForeColor="#990000"></asp:Label>
-                </div>
+              <div class="form-group text-center">
+                <button type="submit" class="btn btn-primary">Submit</button>
+                <p><br></br><a href="#">Forgot your password?</a></p>
+              </div>
+            
+          
             </div>
-        </div>
+                </fieldset>
     </form>
+      </div>
+    </div>
+
+
+    
+  </div>
+
+
+
 </body>
 <script src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'></script>
 <script src='/bootstrap/js/bootstrap.js'></script>
