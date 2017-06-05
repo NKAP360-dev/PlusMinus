@@ -13,15 +13,16 @@ namespace LearnHub
         {
 
         }
-
         protected void btnLogin_Click(object sender, EventArgs e)
         {
             if (txtUsername.Text == "")
             {
+                panelAlert.Visible = true;
                 lblErrorMsg.Text = "Please enter your username";
             }
             if(txtPassword.Text == "")
             {
+                panelAlert.Visible = true;
                 lblErrorMsg.Text = "Please enter your password";
             }
         }
