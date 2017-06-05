@@ -17,13 +17,13 @@ namespace LearnHub
         {
             if (txtUsername.Text == "")
             {
-                panelAlert.Visible = true;
-                lblErrorMsg.Text = "Please enter your username";
+                lblErrorMsgUse.Visible = true;
+                lblErrorMsgUse.Text = "Please enter your username";
             }
-            if(txtPassword.Text == "")
+            if (txtPassword.Text == "")
             {
-                panelAlert.Visible = true;
-                lblErrorMsg.Text = "Please enter your password";
+                lblErrorMsgPass.Visible = true;
+                lblErrorMsgPass.Text = "Please enter your password";
             }
         }
     }
