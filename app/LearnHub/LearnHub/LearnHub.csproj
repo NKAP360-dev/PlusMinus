@@ -152,6 +152,25 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AppCode\dao\DeptDAO.cs" />
+    <Compile Include="AppCode\dao\CourseDAO.cs" />
+    <Compile Include="AppCode\dao\UserDAO.cs" />
+    <Compile Include="AppCode\dao\WorkflowApproverDAO.cs" />
+    <Compile Include="AppCode\dao\WorkflowSubDAO.cs" />
+    <Compile Include="AppCode\dao\WorkflowDAO.cs" />
+    <Compile Include="AppCode\entity\Bonds.cs" />
+    <Compile Include="AppCode\entity\Course.cs" />
+    <Compile Include="AppCode\entity\Department.cs" />
+    <Compile Include="AppCode\entity\Lesson.cs" />
+    <Compile Include="AppCode\entity\Notification.cs" />
+    <Compile Include="AppCode\entity\Quiz.cs" />
+    <Compile Include="AppCode\entity\QuizContent.cs" />
+    <Compile Include="AppCode\entity\TNF.cs" />
+    <Compile Include="AppCode\entity\User.cs" />
+    <Compile Include="AppCode\entity\Workflow.cs" />
+    <Compile Include="AppCode\entity\WorkflowApprover.cs" />
+    <Compile Include="AppCode\entity\WorkflowSub.cs" />
+    <Compile Include="AppCode\workflow\Workflow_Route.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
@@ -167,6 +186,13 @@
       <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="WebForm1.aspx.cs">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebForm1.aspx.designer.cs">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
@@ -181,6 +207,7 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="WebForm1.aspx" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
