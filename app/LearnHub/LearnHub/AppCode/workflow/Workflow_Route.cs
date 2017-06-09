@@ -18,10 +18,10 @@ namespace LearnHub.AppCode.workflow
             Workflow currentWorkflow = wfDAO.getCurrentActiveWorkflow();
             List<User> users = new List<User>();
             string tnfType = "";
-            Boolean gotBudget = false;
+            Boolean gotBudget = true;
             
             //getting the type if it's individual or group
-            if (tnf.getType().Equals("Individual"))
+            if (tnf.getType().Equals("individual"))
             {
                 currentUser = tnf.getUser();
                 tnfType = "Individual";
@@ -32,7 +32,7 @@ namespace LearnHub.AppCode.workflow
             }
 
             // check if not group then check individual duration, else check each individual in the group
-            int probationPeriod = currentWorkflow.getProbationPeriod();
+            double probationPeriod = currentWorkflow.getProbationPeriod();
             if (!users.Any())
             {
                 if (currentUser.getLengthOfSevice() < probationPeriod)
@@ -77,13 +77,13 @@ namespace LearnHub.AppCode.workflow
             List<WorkflowSub> workflowSubs = wfsDAO.getSortedWorflowSubByWorkflow(currentWorkflow.getWorkflowID());
             float tnfTotalCost = 0.0F; //to get from tnfDAO and to confirm if gst is included in the fee of consideration
 
-            if (currentStatusOfTNF.Equals("Pending"))
+            if (currentStatusOfTNF.Equals("pending"))
             {
                 for (int i = 0; i < numOfCriteria; i++)
                 {
                     WorkflowSub currentWFS = workflowSubs[i];
-                    float low_limit = currentWFS.getAmount_low();
-                    float high_limit = currentWFS.getAmount_high();
+                    double low_limit = currentWFS.getAmount_low();
+                    double high_limit = currentWFS.getAmount_high();
                     List<WorkflowApprover> approvers = wfaDAO.getSortedWorkflowApprovers(currentWorkflow.getWorkflowID(), currentWFS.getWorkflowSubID());
                     if (tnfTotalCost >= low_limit && tnfTotalCost <= high_limit)
                     {
@@ -92,7 +92,7 @@ namespace LearnHub.AppCode.workflow
                         //to check if applicant's level is higher than approver's level (need to write another function to check)
                         if (currentUser != approver)
                         {
-                            //sendApprovalNotification(tnf, approver);
+                            sendApprovalNotification(tnf, approver);
                             return true;
                         } else
                         {
@@ -102,7 +102,7 @@ namespace LearnHub.AppCode.workflow
                 }
 
                 //check bond criteria
-                float bondCriteria = currentWorkflow.getBondCriteria();
+                double bondCriteria = currentWorkflow.getBondCriteria();
                 if (tnfTotalCost >= bondCriteria)
                 {
                     //create new bond object
@@ -130,6 +130,10 @@ namespace LearnHub.AppCode.workflow
              * }
              */
             return false;
+        }
+        public static void sendApprovalNotification(TNF tnf, User approver)
+        {
+
         }
     }
 }

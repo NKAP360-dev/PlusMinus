@@ -19,7 +19,7 @@
                 <asp:Label ID="lblName" runat="server"></asp:Label>
                 <br />
                 <br />
-                <asp:Label ID="Label2" runat="server" Text="Lenth of Service: "></asp:Label>
+                <asp:Label ID="Label2" runat="server" Text="Length of Service: "></asp:Label>
                 <asp:Label ID="lblLOS" runat="server"></asp:Label>
                 <br />
                 <br />

@@ -9,7 +9,7 @@ namespace LearnHub.AppCode.entity
     {
         private string uid;
         private string name;
-        private float length_of_service;
+        private double length_of_service;
         private string jobTitle;
         private string supervisor;
         private string role;
@@ -18,7 +18,7 @@ namespace LearnHub.AppCode.entity
         {
 
         }
-        public User(string uid, string name, float length_of_service, string jobTitle, string supervisor, string role)
+        public User(string uid, string name, double length_of_service, string jobTitle, string supervisor, string role)
         {
             this.uid = uid;
             this.name = name;
@@ -43,11 +43,11 @@ namespace LearnHub.AppCode.entity
         {
             this.name = name;
         }
-        public float getLengthOfSevice()
+        public double getLengthOfSevice()
         {
             return length_of_service;
         }
-        public void setLengthOfService(float length_of_service)
+        public void setLengthOfService(double length_of_service)
         {
             this.length_of_service = length_of_service;
         }

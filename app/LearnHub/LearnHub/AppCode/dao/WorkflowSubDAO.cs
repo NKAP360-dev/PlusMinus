@@ -33,8 +33,8 @@ namespace LearnHub.AppCode.dao
                     wfs = new WorkflowSub();
                     wfs.setMainWF(wfDAO.getWorkflowByID(workflowID));
                     wfs.setWfSubName((string)dr["wf_sub_name"]);
-                    wfs.setAmount_low(Convert.ToSingle(dr["criteria_lower_limit"]));
-                    wfs.setAmount_high(Convert.ToSingle(dr["criteria_upper_limit"]));
+                    wfs.setAmount_low((double)(dr["criteria_lower_limit"]));
+                    wfs.setAmount_high((double)(dr["criteria_upper_limit"]));
 
                     toReturn.Add(wfs);
                 }
@@ -72,8 +72,8 @@ namespace LearnHub.AppCode.dao
                     toReturn.setMainWF(wf);
 
                     toReturn.setWfSubName(((string)dr["wf_sub_name"]));
-                    toReturn.setAmount_low(Convert.ToSingle(dr["criteria_lower_limit"]));
-                    toReturn.setAmount_high(Convert.ToSingle(dr["criteria_upper_limit"]));
+                    toReturn.setAmount_low((double)(dr["criteria_lower_limit"]));
+                    toReturn.setAmount_high((double)(dr["criteria_upper_limit"]));
                     toReturn.setWorkflowSubID((string)dr["wf_sub_id"]);
                 }
                 dr.Close();

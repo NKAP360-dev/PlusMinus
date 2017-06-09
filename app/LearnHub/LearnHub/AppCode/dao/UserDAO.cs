@@ -30,7 +30,7 @@ namespace LearnHub.AppCode.dao
                     toReturn = new User();
                     toReturn.setUserID((string)dr["userID"]);
                     toReturn.setName((string)dr["name"]);
-                    toReturn.setLengthOfService(Convert.ToSingle(dr["lengthOfService"]));
+                    toReturn.setLengthOfService((double)(dr["lengthOfService"]));
                     toReturn.setJobTitle((string)dr["job_title"]);
                     if (!dr.IsDBNull(5))
                     {
@@ -72,7 +72,7 @@ namespace LearnHub.AppCode.dao
                     u = new User();
                     u.setUserID((string)dr["userID"]);
                     u.setName((string)dr["name"]);
-                    u.setLengthOfService(Convert.ToSingle(dr["lengthOfService"]));
+                    u.setLengthOfService((double)(dr["lengthOfService"]));
                     u.setJobTitle((string)dr["job_title"]);
                     if (!dr.IsDBNull(5))
                     {

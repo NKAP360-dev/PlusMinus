@@ -154,6 +154,7 @@
   <ItemGroup>
     <Compile Include="AppCode\dao\DeptDAO.cs" />
     <Compile Include="AppCode\dao\CourseDAO.cs" />
+    <Compile Include="AppCode\dao\NotificationDAO.cs" />
     <Compile Include="AppCode\dao\UserDAO.cs" />
     <Compile Include="AppCode\dao\WorkflowApproverDAO.cs" />
     <Compile Include="AppCode\dao\WorkflowSubDAO.cs" />
@@ -186,6 +187,13 @@
       <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="testIndividualRouting.aspx.cs">
+      <DependentUpon>testIndividualRouting.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="testIndividualRouting.aspx.designer.cs">
+      <DependentUpon>testIndividualRouting.aspx</DependentUpon>
+    </Compile>
     <Compile Include="WebForm1.aspx.cs">
       <DependentUpon>WebForm1.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -207,6 +215,7 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="testIndividualRouting.aspx" />
     <Content Include="WebForm1.aspx" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />

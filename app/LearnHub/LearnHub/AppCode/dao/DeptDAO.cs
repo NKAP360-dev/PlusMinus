@@ -30,8 +30,8 @@ namespace LearnHub.AppCode.dao
                 {
                     toReturn = new Department();
                     toReturn.setDeptName((string)dr["dept_name"]);
-                    toReturn.setProjectedBudget(Convert.ToSingle(dr["projected_budget"]));
-                    toReturn.setActualBudget(Convert.ToSingle(dr["actual_budget"]));
+                    toReturn.setProjectedBudget((double)(dr["projected_budget"]));
+                    toReturn.setActualBudget((double)(dr["actual_budget"]));
                     string dept_headID = (string)dr["dept_headID"];
                     toReturn.setDeptHead(userDAO.getUserByID(dept_headID));
                 }
@@ -67,8 +67,8 @@ namespace LearnHub.AppCode.dao
                 {
                     d = new Department();
                     d.setDeptName((string)dr["dept_name"]);
-                    d.setProjectedBudget(Convert.ToSingle(dr["projected_budget"]));
-                    d.setActualBudget(Convert.ToSingle(dr["actual_budget"]));
+                    d.setProjectedBudget((double)(dr["projected_budget"]));
+                    d.setActualBudget((double)(dr["actual_budget"]));
                     string dept_headID = (string)dr["dept_headID"];
                     d.setDeptHead(userDAO.getUserByID(dept_headID));
 

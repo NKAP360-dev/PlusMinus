@@ -9,7 +9,7 @@ namespace LearnHub.AppCode.entity
     {
         private string courseID;
         private string courseName;
-        private float price;
+        private double price;
         private string vendor;
         private string vendor_details;
 
@@ -17,7 +17,7 @@ namespace LearnHub.AppCode.entity
         {
 
         }
-        public Course (string courseID, string courseName, float price, string vendor, string vendor_details)
+        public Course (string courseID, string courseName, double price, string vendor, string vendor_details)
         {
             this.courseID = courseID;
             this.courseName = courseName;
@@ -41,11 +41,11 @@ namespace LearnHub.AppCode.entity
         {
             this.courseName = courseName;
         }
-        public float getPrice()
+        public double getPrice()
         {
             return price;
         }
-        public void setPrice(float price)
+        public void setPrice(double price)
         {
             this.price = price;
         }

@@ -10,13 +10,13 @@ namespace LearnHub.AppCode.entity
     {
         private string wid;
         private string wf_name;
-        private int probationPeriod;
-        private float bondCriteria;
+        private double probationPeriod;
+        private double bondCriteria;
         private User userCreated;
         private WorkflowSubDAO wf_subDAO = new WorkflowSubDAO();
 
         public Workflow() { }
-        public Workflow (string wid, string wf_name, int probationPeriod, float bondCriteria, User userCreated)
+        public Workflow (string wid, string wf_name, double probationPeriod, double bondCriteria, User userCreated)
         {
             this.wid = wid;
             this.wf_name = wf_name;
@@ -40,19 +40,19 @@ namespace LearnHub.AppCode.entity
         {
             this.wf_name = wf_name;
         }
-        public int getProbationPeriod()
+        public double getProbationPeriod()
         {
             return probationPeriod;
         }
-        public void setProbationPeriod(int probationPeriod)
+        public void setProbationPeriod(double probationPeriod)
         {
             this.probationPeriod = probationPeriod;
         }
-        public float getBondCriteria()
+        public double getBondCriteria()
         {
             return bondCriteria;
         }
-        public void setBondCriteria(float bondCriteria)
+        public void setBondCriteria(double bondCriteria)
         {
             this.bondCriteria = bondCriteria;
         }

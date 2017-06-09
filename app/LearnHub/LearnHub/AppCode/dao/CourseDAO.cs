@@ -30,7 +30,7 @@ namespace LearnHub.AppCode.dao
                     toReturn = new Course();
                     toReturn.setCourseID((string)dr["courseID"]);
                     toReturn.setCourseName((string)dr["courseName"]);
-                    toReturn.setPrice(Convert.ToSingle(dr["price"]));
+                    toReturn.setPrice((double)(dr["price"]));
                     toReturn.setVendor((string)dr["vendor"]);
                     toReturn.setVendorDetails((string)dr["details"]);
                 }
@@ -67,7 +67,7 @@ namespace LearnHub.AppCode.dao
                     c = new Course();
                     c.setCourseID((string)dr["courseID"]);
                     c.setCourseName((string)dr["courseName"]);
-                    c.setPrice(Convert.ToSingle(dr["price"]));
+                    c.setPrice((double)(dr["price"]));
                     c.setVendor((string)dr["vendor"]);
                     c.setVendorDetails((string)dr["details"]);
 

@@ -9,12 +9,12 @@ namespace LearnHub.AppCode.entity
     {
         private Workflow mainWF;
         private string wf_sub_name;
-        private float amount_low;
-        private float amount_high;
+        private double amount_low;
+        private double amount_high;
         private string wf_sub_id;
 
         public WorkflowSub() { }
-        public WorkflowSub (Workflow mainWF, string wf_sub_name, float amount_low, float amount_high, string wf_sub_id)
+        public WorkflowSub (Workflow mainWF, string wf_sub_name, double amount_low, double amount_high, string wf_sub_id)
         {
             this.mainWF = mainWF;
             this.wf_sub_name = wf_sub_name;
@@ -40,19 +40,19 @@ namespace LearnHub.AppCode.entity
         {
             this.wf_sub_name = wf_sub_name;
         }
-        public float getAmount_low()
+        public double getAmount_low()
         {
             return amount_low;
         }
-        public void setAmount_low(float amountLow)
+        public void setAmount_low(double amountLow)
         {
             amount_low = amountLow;
         }
-        public float getAmount_high()
+        public double getAmount_high()
         {
             return amount_high;
         }
-        public void setAmount_high(float amountHigh)
+        public void setAmount_high(double amountHigh)
         {
             amount_high = amountHigh;
         }
