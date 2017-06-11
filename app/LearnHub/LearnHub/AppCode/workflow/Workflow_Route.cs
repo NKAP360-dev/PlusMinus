@@ -15,7 +15,7 @@ namespace LearnHub.AppCode.workflow
         public static Boolean routeForApproval(TNF tnf)
         {
             User currentUser = null;
-            Workflow currentWorkflow = wfDAO.getCurrentActiveWorkflow();
+            Workflow currentWorkflow = wfDAO.getCurrentActiveWorkflow(tnf.getType());
             List<User> users = new List<User>();
             string tnfType = "";
             Boolean gotBudget = true;
@@ -71,7 +71,7 @@ namespace LearnHub.AppCode.workflow
         {
             User currentUser = tnf.getUser();
             UserDAO userDAO = new UserDAO();
-            Workflow currentWorkflow = wfDAO.getCurrentActiveWorkflow();
+            Workflow currentWorkflow = wfDAO.getCurrentActiveWorkflow("individual");
             int numOfCriteria = wfDAO.getNumberOfCriteriaByWorkflow(currentWorkflow.getWorkflowID());
             string currentStatusOfTNF = tnf.getStatus();
             List<WorkflowSub> workflowSubs = wfsDAO.getSortedWorflowSubByWorkflow(currentWorkflow.getWorkflowID());
@@ -88,11 +88,12 @@ namespace LearnHub.AppCode.workflow
                     if (tnfTotalCost >= low_limit && tnfTotalCost <= high_limit)
                     {
                         WorkflowApprover currentWFApprover = approvers[tnf.getWFStatus()];
-                        User approver = currentWFApprover.getApprover();
+                        string approver_job_category = currentWFApprover.getJobCategory();
                         //to check if applicant's level is higher than approver's level (need to write another function to check)
-                        if (currentUser != approver)
+                        Boolean checkJobCategoryLevel = checkJobLevelHigher(currentUser.getJobCategory(), approver_job_category);
+                        if (!checkJobCategoryLevel)
                         {
-                            sendApprovalNotification(tnf, approver);
+                            sendApprovalNotification(tnf, currentWFApprover);
                             return true;
                         } else
                         {
@@ -134,6 +135,101 @@ namespace LearnHub.AppCode.workflow
         public static void sendApprovalNotification(TNF tnf, User approver)
         {
 
+        }
+
+        public static Boolean checkJobLevelHigher(string checkFrom, string checkTo)
+        {
+            if (checkFrom.Equals("ceo") || checkFrom.Equals("admin"))
+            {
+                return true;
+            }
+            else if (checkFrom.Equals("director") || checkFrom.Equals("hr director"))
+            {
+                if (checkTo.Equals("CEO")) {
+                    return false;
+                }
+                else
+                {
+                    return true;
+                }
+            }
+            else if (checkFrom.Equals("hod"))
+            {
+                if (checkTo.Equals("ceo") || checkTo.Equals("director"))
+                {
+                    return false;
+                } else
+                {
+                    return true;
+                }
+            }
+            else if (checkFrom.Equals("hr"))
+            {
+                if (checkTo.Equals("hr director") || checkTo.Equals("ceo"))
+                {
+                    return false;
+                } else
+                {
+                    return true;
+                }
+            }
+            else
+            {
+                return false;
+            }
+        }
+        public static void sendApprovalNotification(TNF tnf, WorkflowApprover wfa)
+        {
+            User currentUser = tnf.getUser();
+            UserDAO userDAO = new UserDAO();
+            NotificationDAO notiDAO = new NotificationDAO();
+            User approver = new User();
+            List<User> hrApprovers = new List<User>();
+            if (tnf.getStatus().Equals("pending"))
+            {
+                int current_wf_status = tnf.getWFStatus();
+                if (wfa.getLevel() == current_wf_status)
+                {
+                    //get out who to send next
+                    string approverJobCat = wfa.getJobCategory();
+
+                    if (approverJobCat.ToLower().Equals("ceo"))
+                    {
+                        approver = userDAO.getCEO();
+                    }
+                    else if (approverJobCat.ToLower().Equals("director"))
+                    {
+                        approver = userDAO.getDirectorbyDepartment(currentUser.getDepartment());
+                    }
+                    else if (approverJobCat.ToLower().Equals("hod"))
+                    {
+                        approver = userDAO.getHODbyDepartment(currentUser.getDepartment());
+                    }
+                    else if (approverJobCat.ToLower().Equals("hr director"))
+                    {
+                        approver = userDAO.getHRDirector();
+                    }
+                    else if (approverJobCat.ToLower().Equals("hr"))
+                    {
+                        hrApprovers = userDAO.getAllHR();
+                    }
+
+                    //insert notification
+                    if (!hrApprovers.Any())
+                    {
+                        Notification newNotification = new Notification(currentUser.getUserID(), approver.getUserID(), tnf.getTNFID(), "pending");
+                        notiDAO.createNotification(newNotification);
+                    } else
+                    {
+                        foreach (User hrUser in hrApprovers)
+                        {
+                            Notification newNotification = new Notification(currentUser.getUserID(), hrUser.getUserID(), tnf.getTNFID(), "pending");
+                            notiDAO.createNotification(newNotification);
+                        }
+                    }
+
+                }
+            }
         }
     }
 }

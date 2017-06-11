@@ -9,10 +9,10 @@ namespace LearnHub.AppCode.entity
     {
         private string uid_from;
         private string uid_to;
-        private string tnfID;
+        private int tnfID;
         private string status;
         public Notification() { }
-        public Notification (string uid_from, string uid_to, string tnfID, string status)
+        public Notification (string uid_from, string uid_to, int tnfID, string status)
         {
             this.uid_from = uid_from;
             this.uid_to = uid_to;
@@ -35,11 +35,11 @@ namespace LearnHub.AppCode.entity
         {
             this.uid_to = uid_to;
         }
-        public string getTNFID()
+        public int getTNFID()
         {
             return tnfID;
         }
-        public void setTNFID(string tnfID)
+        public void setTNFID(int tnfID)
         {
             this.tnfID = tnfID;
         }

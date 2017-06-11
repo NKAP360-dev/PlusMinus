@@ -11,7 +11,7 @@ namespace LearnHub.AppCode.dao
     public class WorkflowDAO
     {
         private UserDAO userDAO = new UserDAO();
-        public Workflow getCurrentActiveWorkflow()
+        public Workflow getCurrentActiveWorkflow(string category)
         {
             SqlConnection conn = new SqlConnection();
             Workflow toReturn = null;
@@ -23,8 +23,9 @@ namespace LearnHub.AppCode.dao
                 conn.Open();
                 SqlCommand comm = new SqlCommand();
                 comm.Connection = conn;
-                comm.CommandText = "select * from [Workflow] where status=@status";
+                comm.CommandText = "select * from [Workflow] where status=@status and category=@category";
                 comm.Parameters.AddWithValue("@status", "active");
+                comm.Parameters.AddWithValue("@category", category);
                 SqlDataReader dr = comm.ExecuteReader();
                 while (dr.Read())
                 {

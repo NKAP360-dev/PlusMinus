@@ -9,15 +9,15 @@ namespace LearnHub.AppCode.entity
     {
         private Workflow mainWF;
         private WorkflowSub mainWFS;
-        private User approver;
+        private string job_category;
         private int level;//this is to identify which level of approver routing it is
 
         public WorkflowApprover() { }
-        public WorkflowApprover (Workflow mainWF, WorkflowSub mainWFS, User approver, int level)
+        public WorkflowApprover (Workflow mainWF, WorkflowSub mainWFS, string job_category, int level)
         {
             this.mainWF = mainWF;
             this.mainWFS = mainWFS;
-            this.approver = approver;
+            this.job_category = job_category;
             this.level = level;
         }
         public Workflow getMainWF()
@@ -36,13 +36,13 @@ namespace LearnHub.AppCode.entity
         {
             this.mainWFS = mainWFS;
         }
-        public User getApprover()
+        public string getJobCategory()
         {
-            return approver;
+            return job_category;
         }
-        public void setApprover(User approver)
+        public void setJobCategory(string job_category)
         {
-            this.approver = approver;
+            this.job_category = job_category;
         }
         public int getLevel()
         {

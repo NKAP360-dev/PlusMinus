@@ -44,9 +44,7 @@ namespace LearnHub.AppCode.dao
                     WorkflowSub wfs = wfsDAO.getWorkflowSubByID(wfsid);
                     approver.setMainWFS(wfs);
 
-                    string userID = (string)dr["userID"];
-                    User user = userDAO.getUserByID(userID);
-                    approver.setApprover(user);
+                    approver.setJobCategory((string)dr["job_category"]);
                     approver.setLevel((int)dr["levels"]);
 
                     toReturn.Add(approver);

@@ -8,12 +8,21 @@ namespace LearnHub.AppCode.entity
     public class TNF
     {
         //to add in when confirmed fields
+        private int tnfid;
         private User user;
         private List<User> users;
         private string type;
         private string status;
         private int wf_status;
 
+        public int getTNFID()
+        {
+            return tnfid;
+        }
+        public void setTNFID(int tnfid)
+        {
+            this.tnfid = tnfid;
+        }
         public string getType()
         {
             return type;

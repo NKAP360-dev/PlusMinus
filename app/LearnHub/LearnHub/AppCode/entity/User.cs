@@ -11,21 +11,25 @@ namespace LearnHub.AppCode.entity
         private string name;
         private double length_of_service;
         private string jobTitle;
+        private string jobCategory;
         private string supervisor;
         private string role;
+        private string department;
 
         public User()
         {
 
         }
-        public User(string uid, string name, double length_of_service, string jobTitle, string supervisor, string role)
+        public User(string uid, string name, double length_of_service, string jobTitle, string jobCategory, string supervisor, string role, string department)
         {
             this.uid = uid;
             this.name = name;
             this.length_of_service = length_of_service;
             this.jobTitle = jobTitle;
+            this.jobCategory = jobCategory;
             this.supervisor = supervisor;
             this.role = role;
+            this.department = department;
         }
         public string getUserID()
         {
@@ -59,6 +63,14 @@ namespace LearnHub.AppCode.entity
         {
             this.jobTitle = jobTitle;
         }
+        public string getJobCategory()
+        {
+            return jobCategory;
+        }
+        public void setJobCategory(string jobCategory)
+        {
+            this.jobCategory = jobCategory;
+        }
         public string getSupervisor()
         {
             return supervisor;
@@ -74,6 +86,14 @@ namespace LearnHub.AppCode.entity
         public void setRole(string role)
         {
             this.role = role;
+        }
+        public string getDepartment()
+        {
+            return department;
+        }
+        public void setDepartment(string department)
+        {
+            this.department = department;
         }
     }
 }

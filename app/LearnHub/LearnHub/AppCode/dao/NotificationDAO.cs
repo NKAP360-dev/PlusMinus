@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LearnHub.AppCode.entity;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data.SqlClient;
@@ -9,11 +10,9 @@ namespace LearnHub.AppCode.dao
 {
     public class NotificationDAO
     {
-        /*public static void createNotification(Resume r) // Insert.
+        public void createNotification(Notification n) // Insert.
         {
             SqlConnection conn = null;
-            int newResumeID = 0;
-
             try
             {
                 conn = new SqlConnection();
@@ -21,17 +20,12 @@ namespace LearnHub.AppCode.dao
                 conn.Open();
                 SqlCommand comm = new SqlCommand();
                 comm.Connection = conn;
-                comm.CommandText = "Insert into Resume (DateOfCreation, LastUpdated, AdditionalInfo, JobSeekerID) VALUES (@DateOfCreation, @LastUpdated, @AdditionalInfo, @JobSeekerID)";
-                comm.Parameters.AddWithValue("@DateOfCreation", r.DateOfCreation);
-                comm.Parameters.AddWithValue("@LastUpdated", r.LastUpdated);
-                comm.Parameters.AddWithValue("@AdditionalInfo", r.AdditionalInfo);
-                comm.Parameters.AddWithValue("@JobSeekerID", r.JobSeekerID);
-                int rowsAffected = comm.ExecuteNonQuery();
-                comm.CommandText = "select @@IDENTITY as newResumeID";
-                SqlDataReader dr = comm.ExecuteReader();
-                dr.Read();
-                newResumeID = int.Parse(dr["NewResumeID"].ToString());
-                dr.Close();
+                comm.CommandText = "Insert into [Notifications] (userID_from, userID_to, tnfid, status) VALUES (@userID_from, @userID_to, @tnfid, @status)";
+                comm.Parameters.AddWithValue("@userID_from", n.getUserIDFrom());
+                comm.Parameters.AddWithValue("@userID_to", n.getUserIDTo());
+                comm.Parameters.AddWithValue("@tnfid", n.getTNFID());
+                comm.Parameters.AddWithValue("@status", n.getStatus());
+                
             }
             catch (SqlException ex)
             {
@@ -41,7 +35,6 @@ namespace LearnHub.AppCode.dao
             {
                 conn.Close();
             }
-            return newResumeID;
-        }*/
+        }
     }
 }
