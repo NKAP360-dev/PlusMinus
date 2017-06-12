@@ -1,0 +1,143 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Masterpage.master.cs" Inherits="LearnHub.Masterpage" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <style>
+        html {
+            position: relative;
+            min-height: 100%;
+        }
+
+        #content {
+            padding-top: 121px;
+            width: 100%;
+            background-color: green;
+            display: inline-block;
+        }
+
+        .clear {
+            clear: both;
+            height: 170px;
+        }
+
+        footer {
+            background-color: #F8F8F8;
+            border-top: 1px solid #E7E7E7;
+            text-align: center;
+            padding: 10px;
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            height: 150px;
+            width: 100%;
+            display: inline-block
+        }
+    </style>
+    <title></title>
+    <link href="/bootstrap/css/bootstrap.css" rel="stylesheet" />
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <img src="img/LearnHub2.png" alt="LHLogo" style="width: 59px; height: 59px;" />
+                <asp:HyperLink ID="HyperLink7" runat="server" CssClass="navbar-brand" NavigateUrl="~/Home.aspx">LearnHub</asp:HyperLink>
+            </div>
+
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">News <span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li>
+                                <asp:HyperLink ID="HyperLink1" runat="server">LearnHub Annoucement</asp:HyperLink></li>
+                            <li>
+                                <asp:HyperLink ID="HyperLink2" runat="server">Course Updates</asp:HyperLink></li>
+                        </ul>
+                    </li>
+                </ul>
+
+                <ul class="nav navbar-nav">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Courses <span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li>
+                                <asp:HyperLink ID="HyperLink3" runat="server">Create Courses</asp:HyperLink></li>
+                            <li>
+                                <asp:HyperLink ID="HyperLink4" runat="server">Course Listing</asp:HyperLink></li>
+                            <li class="divider"></li>
+                            <li>
+                                <asp:HyperLink ID="HyperLink5" runat="server" NavigateUrl="~/applyCourse.aspx">Apply for Courses</asp:HyperLink></li>
+                            <li class="divider"></li>
+                            <li>
+                                <asp:HyperLink ID="HyperLink6" runat="server">My Enrolled Courses</asp:HyperLink></li>
+                        </ul>
+                    </li>
+                </ul>
+
+                <%-- If user is logged in, show username that is clickable--%>
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <asp:HyperLink ID="profile" runat="server">Username</asp:HyperLink></li>
+
+                </ul>
+                <form class="navbar-form navbar-right">
+                    <%--Show login button only if user is not logged in--%>
+                    <a href="Login.aspx" class="btn btn-success"><span class="glyphicon glyphicon-user"></span>&nbsp;Login</a>
+                    <a href="#" class="btn btn-danger"><span class="glyphicon glyphicon-log-out"></span>&nbsp;Logout</a>
+                    <%-- 
+                    <asp:LinkButton ID="loginBtn" CssClass="btn btn-success" runat="server" OnClick="btnLogin_Click"><span class="glyphicon glyphicon-user"></span>&nbsp;Login</asp:LinkButton>
+                    <asp:LinkButton ID="logoutBtn" CssClass="btn btn-danger" runat="server"><span class="glyphicon glyphicon-log-out"></span>&nbsp;Logout</asp:LinkButton>
+                    --%>
+                </form>
+
+                <%--Make notification appear only if user is logged in--%>
+                <form class="navbar-form navbar-right">
+                    <ul class="nav nav-pills">
+                        <li><a href="#"><span class="glyphicon glyphicon-bell"></span>&nbsp;Notification <span class="badge">3</span></a></li>
+                    </ul>
+                </form>
+
+
+
+            </div>
+        </div>
+    </nav>
+    <div>
+        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+        </asp:ContentPlaceHolder>
+        <asp:ContentPlaceHolder ID="ContentPlaceHolder2" runat="server">
+        </asp:ContentPlaceHolder>
+    </div>
+    <div class="clear">
+        <footer>
+
+            <img src="img/amkthk.png" alt="LHLogo" style="width: 165px; height: 117px;" />
+            &nbsp;
+         <img src="img/line.png" alt="line" style="width: 1px; height: 77.5px;" />
+            &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+        <img src="img/smu.png" alt="smuLogo" style="width: 148px; height: 58.5px;" />
+            &nbsp;
+       <br />
+            <a href="#">About Us</a> &nbsp;&nbsp;|&nbsp;&nbsp; 
+            <a href="#">Terms and Condition</a> &nbsp;&nbsp;|&nbsp;&nbsp;  
+            <a href="#">Sitemap</a>
+
+
+        </footer>
+    </div>
+</body>
+<script src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'></script>
+<script src='/bootstrap/js/bootstrap.js'></script>
+f
+</html>
