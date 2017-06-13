@@ -11,8 +11,17 @@ namespace LearnHub.AppCode.entity
         private string uid_to;
         private int tnfID;
         private string status;
+        private int notif_ID;
         public Notification() { }
-        public Notification (string uid_from, string uid_to, int tnfID, string status)
+        public Notification (string uid_from, string uid_to, int tnfID, string status, int notif_ID)
+        {
+            this.uid_from = uid_from;
+            this.uid_to = uid_to;
+            this.tnfID = tnfID;
+            this.status = status;
+            this.notif_ID = notif_ID;
+        }
+        public Notification(string uid_from, string uid_to, int tnfID, string status)
         {
             this.uid_from = uid_from;
             this.uid_to = uid_to;
@@ -50,6 +59,14 @@ namespace LearnHub.AppCode.entity
         public void setStatus(string status)
         {
             this.status = status;
+        }
+        public int getNotificationID()
+        {
+            return notif_ID;
+        }
+        public void setNotificationID(int notif_ID)
+        {
+            this.notif_ID = notif_ID;
         }
     }
 }

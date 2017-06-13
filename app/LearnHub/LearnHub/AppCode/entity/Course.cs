@@ -7,7 +7,7 @@ namespace LearnHub.AppCode.entity
 {
     public class Course
     {
-        private string courseID;
+        private int courseID;
         private string courseName;
         private double price;
         private string vendor;
@@ -17,7 +17,7 @@ namespace LearnHub.AppCode.entity
         {
 
         }
-        public Course (string courseID, string courseName, double price, string vendor, string vendor_details)
+        public Course (int courseID, string courseName, double price, string vendor, string vendor_details)
         {
             this.courseID = courseID;
             this.courseName = courseName;
@@ -25,11 +25,11 @@ namespace LearnHub.AppCode.entity
             this.vendor = vendor;
             this.vendor_details = vendor_details;
         }
-        public string getCourseID()
+        public int getCourseID()
         {
             return courseID;
         }
-        public void setCourseID(string courseID)
+        public void setCourseID(int courseID)
         {
             this.courseID = courseID;
         }

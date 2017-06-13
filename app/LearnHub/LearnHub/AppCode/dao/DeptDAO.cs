@@ -86,5 +86,43 @@ namespace LearnHub.AppCode.dao
             }
             return toReturn;
         }
+        public Boolean checkDeptBudget(string deptName, double amountToCompare)
+        {
+            SqlConnection conn = new SqlConnection();
+            double toReturn = 0.0;
+            try
+            {
+                conn = new SqlConnection();
+                string connstr = ConfigurationManager.ConnectionStrings["DBConnectionString"].ToString();
+                conn.ConnectionString = connstr;
+                conn.Open();
+                SqlCommand comm = new SqlCommand();
+                comm.Connection = conn;
+                comm.CommandText = "select actual_budget from [Department] where dept_name=@dept_name";
+                comm.Parameters.AddWithValue("@dept_name", deptName);
+                SqlDataReader dr = comm.ExecuteReader();
+                while (dr.Read())
+                {
+                    toReturn = (double)(dr["actual_budget"]);
+                }
+                dr.Close();
+                if (toReturn >= amountToCompare)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
     }
 }

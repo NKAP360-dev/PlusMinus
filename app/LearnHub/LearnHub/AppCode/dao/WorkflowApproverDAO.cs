@@ -15,7 +15,7 @@ namespace LearnHub.AppCode.dao
 
         //TO EDIT
         
-        public List<WorkflowApprover> getSortedWorkflowApprovers(string workflowID, string workflow_subID)
+        public List<WorkflowApprover> getSortedWorkflowApprovers(int workflowID, int workflow_subID)
         {
             List<WorkflowApprover> toReturn = new List<WorkflowApprover>();
             SqlConnection conn = new SqlConnection();
@@ -29,18 +29,18 @@ namespace LearnHub.AppCode.dao
                 conn.Open();
                 SqlCommand comm = new SqlCommand();
                 comm.Connection = conn;
-                comm.CommandText = "select * from [Workflow_approvers] where wfid=@wfid and wfsid=@wfsid order by level asc";
+                comm.CommandText = "select * from [Workflow_approvers] where wfid=@wfid and wf_sub_id=@wfsid order by levels asc";
                 comm.Parameters.AddWithValue("@wfid", workflowID);
                 comm.Parameters.AddWithValue("@wfsid", workflow_subID);
                 SqlDataReader dr = comm.ExecuteReader();
                 while (dr.Read())
                 {
                     approver = new WorkflowApprover();
-                    string wfid = (string)dr["wfid"];
+                    int wfid = (int)dr["wfid"];
                     Workflow wf = wfDAO.getWorkflowByID(wfid);
                     approver.setMainWF(wf);
 
-                    string wfsid = (string)dr["wf_sub_id"];
+                    int wfsid = (int)dr["wf_sub_id"];
                     WorkflowSub wfs = wfsDAO.getWorkflowSubByID(wfsid);
                     approver.setMainWFS(wfs);
 
@@ -48,6 +48,48 @@ namespace LearnHub.AppCode.dao
                     approver.setLevel((int)dr["levels"]);
 
                     toReturn.Add(approver);
+                }
+                dr.Close();
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                conn.Close();
+            }
+            return toReturn;
+        }
+        public WorkflowApprover getLastApproverInChain(int workflowID, int workflow_subID)
+        {
+            WorkflowApprover toReturn = new WorkflowApprover();
+            SqlConnection conn = new SqlConnection();
+            UserDAO userDAO = new UserDAO();
+            try
+            {
+                conn = new SqlConnection();
+                string connstr = ConfigurationManager.ConnectionStrings["DBConnectionString"].ToString();
+                conn.ConnectionString = connstr;
+                conn.Open();
+                SqlCommand comm = new SqlCommand();
+                comm.Connection = conn;
+                comm.CommandText = "select top 1 * from [Workflow_approvers] where wfid=@wfid and wf_sub_id=@wfsid order by levels desc";
+                comm.Parameters.AddWithValue("@wfid", workflowID);
+                comm.Parameters.AddWithValue("@wfsid", workflow_subID);
+                SqlDataReader dr = comm.ExecuteReader();
+                while (dr.Read())
+                {
+                    int wfid = (int)dr["wfid"];
+                    Workflow wf = wfDAO.getWorkflowByID(wfid);
+                    toReturn.setMainWF(wf);
+
+                    int wfsid = (int)dr["wf_sub_id"];
+                    WorkflowSub wfs = wfsDAO.getWorkflowSubByID(wfsid);
+                    toReturn.setMainWFS(wfs);
+
+                    toReturn.setJobCategory((string)dr["job_category"]);
+                    toReturn.setLevel((int)dr["levels"]);
                 }
                 dr.Close();
             }

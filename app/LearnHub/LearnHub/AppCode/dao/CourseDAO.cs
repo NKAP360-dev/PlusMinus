@@ -28,7 +28,7 @@ namespace LearnHub.AppCode.dao
                 while (dr.Read())
                 {
                     toReturn = new Course();
-                    toReturn.setCourseID((string)dr["courseID"]);
+                    toReturn.setCourseID((int)dr["courseID"]);
                     toReturn.setCourseName((string)dr["courseName"]);
                     toReturn.setPrice((double)(dr["price"]));
                     toReturn.setVendor((string)dr["vendor"]);
@@ -65,7 +65,7 @@ namespace LearnHub.AppCode.dao
                 while (dr.Read())
                 {
                     c = new Course();
-                    c.setCourseID((string)dr["courseID"]);
+                    c.setCourseID((int)dr["courseID"]);
                     c.setCourseName((string)dr["courseName"]);
                     c.setPrice((double)(dr["price"]));
                     c.setVendor((string)dr["vendor"]);

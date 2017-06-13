@@ -33,7 +33,7 @@ namespace LearnHub.AppCode.dao
                     toReturn.setLengthOfService((double)(dr["lengthOfService"]));
                     toReturn.setJobTitle((string)dr["job_title"]);
                     toReturn.setJobCategory((string)dr["job_category"]);
-                    if (!dr.IsDBNull(5))
+                    if (!dr.IsDBNull(6))
                     {
                         toReturn.setSupervisor((string)dr["supervisor"]);
                     } else
@@ -41,7 +41,13 @@ namespace LearnHub.AppCode.dao
                         toReturn.setSupervisor("NA");
                     }
                     toReturn.setRole((string)dr["role"]);
-                    toReturn.setDepartment((string)dr["dept_name"]);
+                    if (!dr.IsDBNull(8))
+                    {
+                        toReturn.setDepartment((string)dr["dept_name"]);
+                    } else
+                    {
+                        toReturn.setDepartment("NA");
+                    }
                 }
                 dr.Close();
             }
@@ -79,6 +85,7 @@ namespace LearnHub.AppCode.dao
                     u.setName((string)dr["name"]);
                     u.setLengthOfService((double)(dr["lengthOfService"]));
                     u.setJobTitle((string)dr["job_title"]);
+                    u.setJobCategory((string)dr["job_category"]);
                     if (!dr.IsDBNull(5))
                     {
                         u.setSupervisor((string)dr["supervisor"]);
@@ -210,7 +217,7 @@ namespace LearnHub.AppCode.dao
                     toReturn.setLengthOfService((double)(dr["lengthOfService"]));
                     toReturn.setJobTitle((string)dr["job_title"]);
                     toReturn.setJobCategory((string)dr["job_category"]);
-                    if (!dr.IsDBNull(5))
+                    if (!dr.IsDBNull(6))
                     {
                         toReturn.setSupervisor((string)dr["supervisor"]);
                     }
@@ -219,7 +226,7 @@ namespace LearnHub.AppCode.dao
                         toReturn.setSupervisor("NA");
                     }
                     toReturn.setRole((string)dr["role"]);
-                    toReturn.setDepartment((string)dr["dept_name"]);
+                    toReturn.setDepartment("CEO");
                 }
                 dr.Close();
             }
@@ -303,6 +310,7 @@ namespace LearnHub.AppCode.dao
                     u.setName((string)dr["name"]);
                     u.setLengthOfService((double)(dr["lengthOfService"]));
                     u.setJobTitle((string)dr["job_title"]);
+                    u.setJobCategory((string)dr["job_category"]);
                     if (!dr.IsDBNull(5))
                     {
                         u.setSupervisor((string)dr["supervisor"]);

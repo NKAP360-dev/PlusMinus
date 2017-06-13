@@ -30,7 +30,7 @@ namespace LearnHub.AppCode.dao
                 while (dr.Read())
                 {
                     toReturn = new Workflow();
-                    toReturn.setWorkflowID((string)dr["wfid"]);
+                    toReturn.setWorkflowID((int)dr["wfid"]);
                     toReturn.setProbationPeriod((double)(dr["probation_period"]));
                     toReturn.setBondCriteria((double)(dr["bond_criteria"]));
                     string userCreatedID = (string)dr["userID"];
@@ -49,7 +49,7 @@ namespace LearnHub.AppCode.dao
             return toReturn;
         }
 
-        public Workflow getWorkflowByID(string workflowID)
+        public Workflow getWorkflowByID(int workflowID)
         {
             SqlConnection conn = new SqlConnection();
             Workflow toReturn = null;
@@ -67,7 +67,7 @@ namespace LearnHub.AppCode.dao
                 while (dr.Read())
                 {
                     toReturn = new Workflow();
-                    toReturn.setWorkflowID((string)dr["wfid"]);
+                    toReturn.setWorkflowID((int)dr["wfid"]);
                     toReturn.setProbationPeriod((double)(dr["probation_period"]));
                     toReturn.setBondCriteria((double)(dr["bond_criteria"]));
                     string userCreatedID = (string)dr["userID"];
@@ -86,7 +86,7 @@ namespace LearnHub.AppCode.dao
             return toReturn;
         }
 
-        public int getNumberOfCriteriaByWorkflow(string workflowID)
+        public int getNumberOfCriteriaByWorkflow(int workflowID)
         {
             SqlConnection conn = new SqlConnection();
             Int32 toReturn;

@@ -12,13 +12,14 @@ namespace LearnHub.AppCode.workflow
         private static WorkflowDAO wfDAO = new WorkflowDAO();
         private static WorkflowSubDAO wfsDAO = new WorkflowSubDAO();
         private static WorkflowApproverDAO wfaDAO = new WorkflowApproverDAO();
+        private static TNFDAO tnfDAO = new TNFDAO();
+        private static DeptDAO deptDAO = new DeptDAO();
         public static Boolean routeForApproval(TNF tnf)
         {
             User currentUser = null;
             Workflow currentWorkflow = wfDAO.getCurrentActiveWorkflow(tnf.getType());
             List<User> users = new List<User>();
             string tnfType = "";
-            Boolean gotBudget = true;
             
             //getting the type if it's individual or group
             if (tnf.getType().Equals("individual"))
@@ -49,6 +50,10 @@ namespace LearnHub.AppCode.workflow
             }
 
             //To check budget, variable checking is gotBudget
+            Department currentDept = deptDAO.getDeptByName(tnf.getUser().getDepartment());
+            Course currentCourse = tnfDAO.getCourseFromTNF(tnf.getTNFID());
+            double courseCost = currentCourse.getPrice();
+            Boolean gotBudget = deptDAO.checkDeptBudget(currentDept.getDeptName(), currentCourse.getPrice());
             if (gotBudget)
             {
                 if (tnfType.Equals("Individual")) {
@@ -61,8 +66,7 @@ namespace LearnHub.AppCode.workflow
             }
             else
             {
-                //updateTNFStatus("Rejected.Department no budget");
-                //to use tnfDAO to update status
+                tnfDAO.updateTNFStatus(tnf.getTNFID(), "Rejected. Department no budget.");
                 return false;
             }
         }
@@ -75,7 +79,7 @@ namespace LearnHub.AppCode.workflow
             int numOfCriteria = wfDAO.getNumberOfCriteriaByWorkflow(currentWorkflow.getWorkflowID());
             string currentStatusOfTNF = tnf.getStatus();
             List<WorkflowSub> workflowSubs = wfsDAO.getSortedWorflowSubByWorkflow(currentWorkflow.getWorkflowID());
-            float tnfTotalCost = 0.0F; //to get from tnfDAO and to confirm if gst is included in the fee of consideration
+            double tnfTotalCost = tnfDAO.getCourseFromTNF(tnf.getTNFID()).getPrice(); //to get from tnfDAO and to confirm if gst is included in the fee of consideration
 
             if (currentStatusOfTNF.Equals("pending"))
             {
@@ -132,10 +136,6 @@ namespace LearnHub.AppCode.workflow
              */
             return false;
         }
-        public static void sendApprovalNotification(TNF tnf, User approver)
-        {
-
-        }
 
         public static Boolean checkJobLevelHigher(string checkFrom, string checkTo)
         {
@@ -188,6 +188,7 @@ namespace LearnHub.AppCode.workflow
             if (tnf.getStatus().Equals("pending"))
             {
                 int current_wf_status = tnf.getWFStatus();
+                int wfaLevel = wfa.getLevel();
                 if (wfa.getLevel() == current_wf_status)
                 {
                     //get out who to send next

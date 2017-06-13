@@ -8,7 +8,7 @@ namespace LearnHub.AppCode.entity
 {
     public class Workflow
     {
-        private string wid;
+        private int wid;
         private string wf_name;
         private double probationPeriod;
         private double bondCriteria;
@@ -16,7 +16,7 @@ namespace LearnHub.AppCode.entity
         private WorkflowSubDAO wf_subDAO = new WorkflowSubDAO();
 
         public Workflow() { }
-        public Workflow (string wid, string wf_name, double probationPeriod, double bondCriteria, User userCreated)
+        public Workflow (int wid, string wf_name, double probationPeriod, double bondCriteria, User userCreated)
         {
             this.wid = wid;
             this.wf_name = wf_name;
@@ -24,11 +24,11 @@ namespace LearnHub.AppCode.entity
             this.bondCriteria = bondCriteria;
             this.userCreated = userCreated;
         }
-        public string getWorkflowID()
+        public int getWorkflowID()
         {
             return wid;
         }
-        public void setWorkflowID(string wid)
+        public void setWorkflowID(int wid)
         {
             this.wid = wid;
         }

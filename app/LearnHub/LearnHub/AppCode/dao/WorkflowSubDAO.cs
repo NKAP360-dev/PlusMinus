@@ -12,7 +12,7 @@ namespace LearnHub.AppCode.dao
     {
         private WorkflowDAO wfDAO = new WorkflowDAO();
         
-        public List<WorkflowSub> getSortedWorflowSubByWorkflow(string workflowID)
+        public List<WorkflowSub> getSortedWorflowSubByWorkflow(int workflowID)
         {
             List<WorkflowSub> toReturn = new List<WorkflowSub>();
             SqlConnection conn = new SqlConnection();
@@ -32,10 +32,9 @@ namespace LearnHub.AppCode.dao
                 {
                     wfs = new WorkflowSub();
                     wfs.setMainWF(wfDAO.getWorkflowByID(workflowID));
-                    wfs.setWfSubName((string)dr["wf_sub_name"]);
                     wfs.setAmount_low((double)(dr["criteria_lower_limit"]));
                     wfs.setAmount_high((double)(dr["criteria_upper_limit"]));
-
+                    wfs.setWorkflowSubID((int)dr["wf_sub_id"]);
                     toReturn.Add(wfs);
                 }
                 dr.Close();
@@ -50,7 +49,7 @@ namespace LearnHub.AppCode.dao
             }
             return toReturn;
         }
-        public WorkflowSub getWorkflowSubByID(string wf_sub_ID)
+        public WorkflowSub getWorkflowSubByID(int wf_sub_ID)
         {
             SqlConnection conn = new SqlConnection();
             WorkflowSub toReturn = null;
@@ -68,13 +67,11 @@ namespace LearnHub.AppCode.dao
                 while (dr.Read())
                 {
                     toReturn = new WorkflowSub();
-                    Workflow wf = wfDAO.getWorkflowByID((string)dr["wfid"]);
+                    Workflow wf = wfDAO.getWorkflowByID((int)dr["wfid"]);
                     toReturn.setMainWF(wf);
-
-                    toReturn.setWfSubName(((string)dr["wf_sub_name"]));
                     toReturn.setAmount_low((double)(dr["criteria_lower_limit"]));
                     toReturn.setAmount_high((double)(dr["criteria_upper_limit"]));
-                    toReturn.setWorkflowSubID((string)dr["wf_sub_id"]);
+                    toReturn.setWorkflowSubID((int)dr["wf_sub_id"]);
                 }
                 dr.Close();
             }
