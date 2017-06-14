@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Apply For Courses" Language="C#" MasterPageFile="~/Masterpage.Master" AutoEventWireup="true" CodeBehind="applyCourse.aspx.cs" Inherits="LearnHub.applyCourse" %>
+﻿<%@ Page Title="Apply For Courses - LearnHub" Language="C#" MasterPageFile="~/Masterpage.Master" AutoEventWireup="true" CodeBehind="applyCourse.aspx.cs" Inherits="LearnHub.applyCourse" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">

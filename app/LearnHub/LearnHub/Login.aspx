@@ -24,7 +24,7 @@
         }
 
     </style>
-    <title>Login</title>
+    <title>Login - LearnHub</title>
     <link href="/bootstrap/css/bootstrap.css" rel="stylesheet" />
 </head>
 <body>
