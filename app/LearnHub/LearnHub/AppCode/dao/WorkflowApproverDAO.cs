@@ -103,5 +103,80 @@ namespace LearnHub.AppCode.dao
             }
             return toReturn;
         }
+        public WorkflowApprover getWorkflowApproverByJobCategory(string jobCategory)
+        {
+            WorkflowApprover toReturn = new WorkflowApprover();
+            SqlConnection conn = new SqlConnection();
+            UserDAO userDAO = new UserDAO();
+            try
+            {
+                conn = new SqlConnection();
+                string connstr = ConfigurationManager.ConnectionStrings["DBConnectionString"].ToString();
+                conn.ConnectionString = connstr;
+                conn.Open();
+                SqlCommand comm = new SqlCommand();
+                comm.Connection = conn;
+                comm.CommandText = "select * from [Workflow_approvers] where job_category=@job_category";
+                comm.Parameters.AddWithValue("@job_category", jobCategory);
+                SqlDataReader dr = comm.ExecuteReader();
+                while (dr.Read())
+                {
+                    int wfid = (int)dr["wfid"];
+                    Workflow wf = wfDAO.getWorkflowByID(wfid);
+                    toReturn.setMainWF(wf);
+
+                    int wfsid = (int)dr["wf_sub_id"];
+                    WorkflowSub wfs = wfsDAO.getWorkflowSubByID(wfsid);
+                    toReturn.setMainWFS(wfs);
+
+                    toReturn.setJobCategory((string)dr["job_category"]);
+                    toReturn.setLevel((int)dr["levels"]);
+                }
+                dr.Close();
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                conn.Close();
+            }
+            return toReturn;
+        }
+        public int getLevelByJobCategory(string jobCategory, int wfid, int wfsid)
+        {
+            int toReturn = -1;
+            SqlConnection conn = new SqlConnection();
+            UserDAO userDAO = new UserDAO();
+            try
+            {
+                conn = new SqlConnection();
+                string connstr = ConfigurationManager.ConnectionStrings["DBConnectionString"].ToString();
+                conn.ConnectionString = connstr;
+                conn.Open();
+                SqlCommand comm = new SqlCommand();
+                comm.Connection = conn;
+                comm.CommandText = "select levels from [Workflow_approvers] where job_category=@job_category and wfid=@wfid and wf_sub_id=@wfsid";
+                comm.Parameters.AddWithValue("@job_category", jobCategory);
+                comm.Parameters.AddWithValue("@wfid", wfid);
+                comm.Parameters.AddWithValue("@wfsid", wfsid);
+                SqlDataReader dr = comm.ExecuteReader();
+                while (dr.Read())
+                {
+                    toReturn = (int)dr["levels"];
+                }
+                dr.Close();
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                conn.Close();
+            }
+            return toReturn;
+        }
     }
 }

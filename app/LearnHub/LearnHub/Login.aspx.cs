@@ -1,4 +1,6 @@
-﻿using System;
+﻿using LearnHub.AppCode.dao;
+using LearnHub.AppCode.entity;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -24,6 +26,22 @@ namespace LearnHub
             {
                 lblErrorMsgPass.Visible = true;
                 lblErrorMsgPass.Text = "Please enter your password";
+            }
+
+            if (txtUsername.Text != "" && txtPassword.Text != "")
+            {
+                LoginDAO loginDAO = new LoginDAO();
+                User currentUser = loginDAO.login(txtUsername.Text, txtPassword.Text);
+                if (currentUser.getUserID() == null)
+                {
+                    lblErrorMsgUse.Visible = true;
+                    lblErrorMsgUse.Text = "Invalid username/password.";
+                } else
+                {
+                    Session["currentUser"] = currentUser;
+                    //to redirect
+                    Response.Redirect("Home.aspx");
+                }
             }
         }
     }

@@ -122,7 +122,7 @@ namespace LearnHub.AppCode.dao
             }
             return toReturn;
         }
-        public void updateTNFWFStatus(int tnfid) // Update.
+        public void updateTNFWFStatus(int tnfid, int wf_status) // Update.
         {
             SqlConnection conn = new SqlConnection();
 
@@ -136,7 +136,7 @@ namespace LearnHub.AppCode.dao
                 comm.Connection = conn;
                 comm.CommandText =
                     "Update [TNF] SET wf_status=@wf_status WHERE tnfid=@tnfid";
-                comm.Parameters.AddWithValue("@wf_status", getWFStatus(tnfid)+1);
+                comm.Parameters.AddWithValue("@wf_status", wf_status);
                 comm.Parameters.AddWithValue("@tnfid", tnfid);
                 int rowsAffected = comm.ExecuteNonQuery();
             }

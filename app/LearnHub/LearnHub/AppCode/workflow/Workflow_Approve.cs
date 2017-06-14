@@ -30,6 +30,7 @@ namespace LearnHub.AppCode.workflow
             Course currentCourse = tnfDAO.getCourseFromTNF(tnf.getTNFID());
             double courseCost = currentCourse.getPrice();
             Boolean gotBudget = deptDAO.checkDeptBudget(currentDept.getDeptName(), currentCourse.getPrice());
+            int nextWFLevel = 0;
 
             if (!gotBudget)
             {
@@ -55,7 +56,10 @@ namespace LearnHub.AppCode.workflow
                         isLastApprover = true;
                     } else
                     {
-                        nextApprover = approvers[tnf.getWFStatus() + 1];
+                        int levelOfUser = wfaDAO.getLevelByJobCategory(user.getJobCategory(), currentWorkflow.getWorkflowID(), currentWFS.getWorkflowSubID());
+                        nextApprover = approvers[levelOfUser + 1];
+                        nextWFLevel = levelOfUser + 1;
+                        //nextApprover = approvers[tnf.getWFStatus() + 1];
                     }
                 }
             }
@@ -78,7 +82,7 @@ namespace LearnHub.AppCode.workflow
                 else
                 {
                     notificationDAO.updateNotificationStatus(noti.getNotificationID(), "approved");
-                    tnfDAO.updateTNFWFStatus(tnf.getTNFID());
+                    tnfDAO.updateTNFWFStatus(tnf.getTNFID(), nextWFLevel);
                     tnf = tnfDAO.getIndividualTNFByID(tnf.getUser().getUserID(), tnf.getTNFID());
                     Workflow_Route.sendApprovalNotification(tnf, nextApprover);
                 }
@@ -98,7 +102,7 @@ namespace LearnHub.AppCode.workflow
                     {
                         notificationDAO.updateNotificationStatus(hrNoti.getNotificationID(), "approved");
                     }
-                    tnfDAO.updateTNFWFStatus(tnf.getTNFID());
+                    tnfDAO.updateTNFWFStatus(tnf.getTNFID(), nextWFLevel);
                     tnf = tnfDAO.getIndividualTNFByID(tnf.getUser().getUserID(), tnf.getTNFID());
                     Workflow_Route.sendApprovalNotification(tnf, nextApprover);
                 }

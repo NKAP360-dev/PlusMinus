@@ -92,16 +92,34 @@ namespace LearnHub.AppCode.workflow
                     if (tnfTotalCost >= low_limit && tnfTotalCost <= high_limit)
                     {
                         WorkflowApprover currentWFApprover = approvers[tnf.getWFStatus()];
-                        string approver_job_category = currentWFApprover.getJobCategory();
+                        string currentUser_job_category = currentUser.getJobCategory();
+                        WorkflowApprover checkApprover = wfaDAO.getWorkflowApproverByJobCategory(currentUser_job_category);
                         //to check if applicant's level is higher than approver's level (need to write another function to check)
-                        Boolean checkJobCategoryLevel = checkJobLevelHigher(currentUser.getJobCategory(), approver_job_category);
-                        if (!checkJobCategoryLevel)
+                        //Boolean checkJobCategoryLevel = checkJobLevelHigher(currentUser.getJobCategory(), approver_job_category);
+                        //if (!checkJobCategoryLevel)
+                        if (checkApprover.getJobCategory() == null)
                         {
                             sendApprovalNotification(tnf, currentWFApprover);
                             return true;
                         } else
                         {
-                            //do something if applicant is approver
+                            if (!currentUser.getJobCategory().Equals("ceo"))
+                            {
+                                WorkflowApprover lastWFApprover = wfaDAO.getLastApproverInChain(currentWorkflow.getWorkflowID(), currentWFS.getWorkflowSubID());
+                                int levelOfUser = wfaDAO.getLevelByJobCategory(currentUser.getJobCategory(), currentWorkflow.getWorkflowID(), currentWFS.getWorkflowSubID());
+                                if (levelOfUser < lastWFApprover.getLevel())
+                                {
+                                    WorkflowApprover nextWFApprover = approvers[levelOfUser + 1];
+                                    sendApprovalNotification(tnf, nextWFApprover);
+                                    return true;
+                                } else
+                                {
+                                    //handle last person in chain
+                                }
+                            } else
+                            {
+                                //handle ceo
+                            }
                         }
                     }
                 }
@@ -155,7 +173,7 @@ namespace LearnHub.AppCode.workflow
             }
             else if (checkFrom.Equals("hod"))
             {
-                if (checkTo.Equals("ceo") || checkTo.Equals("director"))
+                if (checkTo.Equals("ceo") || checkTo.Equals("director") || checkTo.Equals("hr"))
                 {
                     return false;
                 } else
@@ -189,8 +207,8 @@ namespace LearnHub.AppCode.workflow
             {
                 int current_wf_status = tnf.getWFStatus();
                 int wfaLevel = wfa.getLevel();
-                if (wfa.getLevel() == current_wf_status)
-                {
+                //if (wfa.getLevel() == current_wf_status)
+                //{
                     //get out who to send next
                     string approverJobCat = wfa.getJobCategory();
 
@@ -229,7 +247,7 @@ namespace LearnHub.AppCode.workflow
                         }
                     }
 
-                }
+                //}
             }
         }
     }
