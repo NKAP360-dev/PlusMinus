@@ -12,18 +12,20 @@ namespace LearnHub.AppCode.entity
         private double price;
         private string vendor;
         private string vendor_details;
+        private string overseas;
 
         public Course()
         {
 
         }
-        public Course (int courseID, string courseName, double price, string vendor, string vendor_details)
+        public Course (int courseID, string courseName, double price, string vendor, string vendor_details, string overseas)
         {
             this.courseID = courseID;
             this.courseName = courseName;
             this.price = price;
             this.vendor = vendor;
             this.vendor_details = vendor_details;
+            this.overseas = overseas;
         }
         public int getCourseID()
         {
@@ -64,6 +66,14 @@ namespace LearnHub.AppCode.entity
         public void setVendorDetails(string vendor_details)
         {
             this.vendor_details = vendor_details;
+        }
+        public string getOverseas()
+        {
+            return overseas;
+        }
+        public void setOverseas(string overseas)
+        {
+            this.overseas = overseas;
         }
     }
 }

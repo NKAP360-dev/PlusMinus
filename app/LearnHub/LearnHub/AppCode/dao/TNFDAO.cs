@@ -91,7 +91,7 @@ namespace LearnHub.AppCode.dao
                 conn.Open();
                 SqlCommand comm = new SqlCommand();
                 comm.Connection = conn;
-                comm.CommandText = "select c.courseID, c.courseName, c.price, c.vendor, c.details from [Course] c inner join [TNF_data] td on c.courseID = td.courseID inner join [TNF] t on td.tnfid = t.tnfid where t.tnfid=@tnfid";
+                comm.CommandText = "select c.courseID, c.courseName, c.price, c.vendor, c.details, c.overseas from [Course] c inner join [TNF_data] td on c.courseID = td.courseID inner join [TNF] t on td.tnfid = t.tnfid where t.tnfid=@tnfid";
                 comm.Parameters.AddWithValue("@tnfid", tnfID);
                 SqlDataReader dr = comm.ExecuteReader();
                 while (dr.Read())
@@ -100,6 +100,7 @@ namespace LearnHub.AppCode.dao
                     toReturn.setCourseID((int)dr["courseID"]);
                     toReturn.setCourseName((string)dr["courseName"]);
                     toReturn.setPrice((double)(dr["price"]));
+                    toReturn.setOverseas((string)dr["overseas"]);
                     if (!dr.IsDBNull(4))
                     {
                         toReturn.setVendor((string)dr["vendor"]);

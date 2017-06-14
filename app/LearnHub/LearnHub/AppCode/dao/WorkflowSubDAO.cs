@@ -12,7 +12,7 @@ namespace LearnHub.AppCode.dao
     {
         private WorkflowDAO wfDAO = new WorkflowDAO();
         
-        public List<WorkflowSub> getSortedWorflowSubByWorkflow(int workflowID)
+        public List<WorkflowSub> getSortedWorflowSubByWorkflowIDandType(int workflowID, string type)
         {
             List<WorkflowSub> toReturn = new List<WorkflowSub>();
             SqlConnection conn = new SqlConnection();
@@ -25,8 +25,9 @@ namespace LearnHub.AppCode.dao
                 conn.Open();
                 SqlCommand comm = new SqlCommand();
                 comm.Connection = conn;
-                comm.CommandText = "select * from [Workflow_Sub] where wfid=@wfid order by criteria_lower_limit asc";
+                comm.CommandText = "select * from [Workflow_Sub] where wfid=@wfid and type=@type order by criteria_lower_limit asc";
                 comm.Parameters.AddWithValue("@wfid", workflowID);
+                comm.Parameters.AddWithValue("@type", type);
                 SqlDataReader dr = comm.ExecuteReader();
                 while (dr.Read())
                 {

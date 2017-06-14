@@ -64,9 +64,9 @@ namespace LearnHub.AppCode.entity
         {
             this.userCreated = userCreated;
         }
-        public List<WorkflowSub> getWorkflowSub()
+        public List<WorkflowSub> getWorkflowSub(string type)
         {
-            return wf_subDAO.getSortedWorflowSubByWorkflow(wid);
+            return wf_subDAO.getSortedWorflowSubByWorkflowIDandType(wid, type);
         }
         
     }

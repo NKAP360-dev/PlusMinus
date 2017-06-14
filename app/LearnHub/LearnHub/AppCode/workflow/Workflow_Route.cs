@@ -32,13 +32,14 @@ namespace LearnHub.AppCode.workflow
                 tnfType = "Group";
             }
 
-            // check if not group then check individual duration, else check each individual in the group
+            /* check if not group then check individual duration, else check each individual in the group
             double probationPeriod = currentWorkflow.getProbationPeriod();
             if (!users.Any())
             {
                 if (currentUser.getLengthOfSevice() < probationPeriod)
                 {
                     // to do logic for > probationPeriod
+                    //to route to CEO
                 }
             }
             else
@@ -47,9 +48,9 @@ namespace LearnHub.AppCode.workflow
                     // check duration for each user
                     // to do logic if user’s duration is < probationPeriod
                 }
-            }
+            }*/
 
-            //To check budget, variable checking is gotBudget
+            //To check budget
             Department currentDept = deptDAO.getDeptByName(tnf.getUser().getDepartment());
             Course currentCourse = tnfDAO.getCourseFromTNF(tnf.getTNFID());
             double courseCost = currentCourse.getPrice();
@@ -78,7 +79,23 @@ namespace LearnHub.AppCode.workflow
             Workflow currentWorkflow = wfDAO.getCurrentActiveWorkflow("individual");
             int numOfCriteria = wfDAO.getNumberOfCriteriaByWorkflow(currentWorkflow.getWorkflowID());
             string currentStatusOfTNF = tnf.getStatus();
-            List<WorkflowSub> workflowSubs = wfsDAO.getSortedWorflowSubByWorkflow(currentWorkflow.getWorkflowID());
+            double probationPeriod = currentWorkflow.getProbationPeriod();
+            Course currentCourse = tnfDAO.getCourseFromTNF(tnf.getTNFID());
+
+            List<WorkflowSub> workflowSubs;
+            if (currentUser.getLengthOfSevice() < probationPeriod) 
+            {
+                workflowSubs = wfsDAO.getSortedWorflowSubByWorkflowIDandType(currentWorkflow.getWorkflowID(), "ceo");
+            }
+            else if (currentCourse.getOverseas().Equals("y"))
+            {
+                workflowSubs = wfsDAO.getSortedWorflowSubByWorkflowIDandType(currentWorkflow.getWorkflowID(), "ceo");
+            }
+            else
+            {
+                workflowSubs = wfsDAO.getSortedWorflowSubByWorkflowIDandType(currentWorkflow.getWorkflowID(), "normal");
+            }
+            
             double tnfTotalCost = tnfDAO.getCourseFromTNF(tnf.getTNFID()).getPrice(); //to get from tnfDAO and to confirm if gst is included in the fee of consideration
 
             if (currentStatusOfTNF.Equals("pending"))
@@ -118,7 +135,7 @@ namespace LearnHub.AppCode.workflow
                                 }
                             } else
                             {
-                                //handle ceo
+                                //no need handle CEO
                             }
                         }
                     }
@@ -129,6 +146,7 @@ namespace LearnHub.AppCode.workflow
                 if (tnfTotalCost >= bondCriteria)
                 {
                     //create new bond object
+                    Bonds newBond = new Bonds();
                     return true;
                 }
             }

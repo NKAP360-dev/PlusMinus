@@ -42,7 +42,19 @@ namespace LearnHub.AppCode.workflow
             Workflow currentWorkflow = tnf.getWorkflow();
             WorkflowApprover nextApprover = new WorkflowApprover();
             string currentStatusOfTNF = tnf.getStatus();
-            List<WorkflowSub> workflowSubs = wfsDAO.getSortedWorflowSubByWorkflow(currentWorkflow.getWorkflowID());
+            List<WorkflowSub> workflowSubs;
+            if (tnf.getUser().getLengthOfSevice() < currentWorkflow.getProbationPeriod())
+            {
+                workflowSubs = wfsDAO.getSortedWorflowSubByWorkflowIDandType(currentWorkflow.getWorkflowID(), "ceo");
+            }
+            else if (currentCourse.getOverseas().Equals("y"))
+            {
+                workflowSubs = wfsDAO.getSortedWorflowSubByWorkflowIDandType(currentWorkflow.getWorkflowID(), "ceo");
+            }
+            else
+            {
+                workflowSubs = wfsDAO.getSortedWorflowSubByWorkflowIDandType(currentWorkflow.getWorkflowID(), "normal");
+            }
             foreach (WorkflowSub currentWFS in workflowSubs)
             {
                 double low_limit = currentWFS.getAmount_low();

@@ -33,6 +33,7 @@ namespace LearnHub.AppCode.dao
                     toReturn.setPrice((double)(dr["price"]));
                     toReturn.setVendor((string)dr["vendor"]);
                     toReturn.setVendorDetails((string)dr["details"]);
+                    toReturn.setOverseas((string)dr["overseas"]);
                 }
                 dr.Close();
             }
@@ -70,6 +71,7 @@ namespace LearnHub.AppCode.dao
                     c.setPrice((double)(dr["price"]));
                     c.setVendor((string)dr["vendor"]);
                     c.setVendorDetails((string)dr["details"]);
+                    c.setOverseas((string)dr["overseas"]);
 
                     toReturn.Add(c);
                 }
