@@ -211,6 +211,13 @@
     <Compile Include="Masterpage.Master.designer.cs">
       <DependentUpon>Masterpage.Master</DependentUpon>
     </Compile>
+    <Compile Include="pendingApproval.aspx.cs">
+      <DependentUpon>pendingApproval.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pendingApproval.aspx.designer.cs">
+      <DependentUpon>pendingApproval.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TestCipher.aspx.cs">
       <DependentUpon>TestCipher.aspx</DependentUpon>
@@ -257,6 +264,7 @@
     <Content Include="img\line.png" />
     <Content Include="img\smu.png" />
     <Content Include="Login.aspx" />
+    <Content Include="pendingApproval.aspx" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">

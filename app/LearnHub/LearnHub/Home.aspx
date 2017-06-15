@@ -24,8 +24,7 @@
                 <div class="item active">  
                       <a href="#">
                     <img src="img/learnhubbanner.png" alt="Los Angeles" style="width: 100%;">
-                          </a> 
-                    
+                          </a>            
                 </div>
 
                 <div class="item">

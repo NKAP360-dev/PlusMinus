@@ -34,7 +34,85 @@
             width: 100%;
             display: inline-block
         }
+
+        #notification_li {
+            position: relative
+        }
+
+        #notificationContainer {
+            background-color: #fff;
+            border: 1px solid rgba(100, 100, 100, .4);
+            -webkit-box-shadow: 0 3px 8px rgba(0, 0, 0, .25);
+            overflow: visible;
+            position: absolute;
+            top: 30px;
+            margin-left: -160px;
+            width: 400px;
+            z-index: 2;
+            display: none;
+            padding: 30px;
+            
+        }
+
+        #notificationContainer:before {
+            content: '';
+            display: block;
+            position: absolute;
+            width: 0;
+            height: 0;
+            color: transparent;
+            border: 10px solid black;
+            border-color: transparent transparent white;
+            margin-top: -20px;
+            margin-left: 188px;
+        }
+
+        #notificationTitle {
+            font-weight: bold;
+            padding: 5px;
+            font-size: 16px;
+            background-color: #ffffff;
+            position: static;
+            z-index: 1000;
+            width: 340px;
+            border-bottom: 1px solid #dddddd;
+        }
+
+        #notificationsBody {
+            padding: 33px 0px 0px 0px !important;
+            min-height: 300px;
+        }
+
+        #notificationFooter {           
+            text-align: center;
+            font-weight: bold;
+            padding: 5px;
+            font-size: 16px;
+            border-top: 1px solid #dddddd;
+            z-index: 3;
+        }
     </style>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#notificationLink").click(function () {
+            $("#notificationContainer").fadeToggle(300);
+            $("#notification_count").fadeOut("slow");
+            return false;
+        });
+
+        //Document Click hiding the popup 
+        $(document).click(function () {
+            $("#notificationContainer").hide();
+        });
+
+        //Popup on click
+        $("#notificationContainer").click(function () {
+            e.stopPropagation();
+        });
+
+    });
+</script>
     <title></title>
     <link href="/bootstrap/css/bootstrap.css" rel="stylesheet" />
     <asp:ContentPlaceHolder ID="head" runat="server">
@@ -104,7 +182,21 @@
                 <%--Make notification appear only if user is logged in--%>
                 <form class="navbar-form navbar-right">
                     <ul class="nav nav-pills">
-                        <li><a href="#"><span class="glyphicon glyphicon-bell"></span>&nbsp;Notification <span class="badge">3</span></a></li>
+                        <li id="notification_li">
+                            <a href="#" id="notificationLink">Pending &nbsp;<span class="label label-danger">3</span></a>
+                            <div id="notificationContainer" style="display: none;">
+                                <div id="notificationTitle">Training Request Forms Pending Approvals</div>
+                                <div id="notificationsBody" class="notifications">
+                                    I did it
+                                    <br />
+                                    Hooray!
+                                    <br />
+                                    This is the greatest achievement of my life
+                                </div>
+                                <div id="notificationFooter"><a href="../pendingApproval.aspx">See All</a></div>
+                            </div>
+
+                        </li>
                     </ul>
                 </form>
 
@@ -139,5 +231,4 @@
 </body>
 <script src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'></script>
 <script src='/bootstrap/js/bootstrap.js'></script>
-f
 </html>
