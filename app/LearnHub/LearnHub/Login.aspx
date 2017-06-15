@@ -40,43 +40,20 @@
                                 <img src="img/LearnHub2.png" alt="LHLogo" style="width: 65px; height: 65px;" />&nbsp;&nbsp;LearnHub</h2>
                             <br />
                             <div class="form-group">
-                                <%if (lblErrorMsgUse.Text == "")
-                                    {%>
                                 <div class="input-group">
-                                    <asp:TextBox ID="txtUsername" runat="server" CssClass="form-control" placeholder="Username"></asp:TextBox>
+                                    <asp:RequiredFieldValidator ID="rfv_username" runat="server" ErrorMessage="Please enter a username" ControlToValidate="txtUsername" CssClass="garbage" ></asp:RequiredFieldValidator>
+                                    
+                                    <asp:TextBox ID="TextBox3" runat="server" CssClass="form-control" placeholder="Username"></asp:TextBox>
+
                                     <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
                                 </div>
-                                <%}
-                                    else
-                                    {%>
-                                <div class="form-group has-error">
-                                    <div class="input-group">
-                                        <asp:TextBox ID="TextBox2" runat="server" CssClass="form-control" placeholder="Username"></asp:TextBox>
-                                        <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
-                                    </div>
-
-                                </div>
-                                <%}%>
                                 <br />
-                                <%if (lblErrorMsgPass.Text == "")
-                                    {%>
                                 <div class="input-group">
+                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="Please enter a password" ControlToValidate="txtPassword" CssClass="garbage" ></asp:RequiredFieldValidator>
                                     <asp:TextBox ID="txtPassword" runat="server" CssClass="form-control" placeholder="Password" TextMode="Password"></asp:TextBox>
                                     <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
                                 </div>
                                 <br />
-                                <%}
-                                    else
-                                    {%>
-
-                                <div class="form-group has-error">
-                                    <div class="input-group">
-                                        <asp:TextBox ID="TextBox1" runat="server" CssClass="form-control" placeholder="Password" TextMode="Password"></asp:TextBox>
-                                        <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
-                                    </div>
-
-                                </div>
-                                <%}%>
                                 <div class="form-group text-center">
                                     <asp:Button ID="btnLogin" runat="server" Text="Submit" CssClass="btn btn-primary" OnClick="btnLogin_Click" />
                                     
@@ -86,18 +63,12 @@
                                     <p>
                                         <br/>
                                     </p>
-
+                                    <asp:RequiredFieldValidator ID="rfv_NoUseError" runat="server" ErrorMessage="Please Enter Your Username" ControlToValidate="txtUsername" CssClass="text-danger"></asp:RequiredFieldValidator>
+                                    <br />
+                                    <asp:RequiredFieldValidator ID="rfv_NoPassError" runat="server" ErrorMessage="Please Enter Your Password" ControlToValidate="txtPassword" CssClass="text-danger"></asp:RequiredFieldValidator>
                                     <asp:Label ID="lblErrorMsgUse" runat="server" CssClass="text-danger" Visible="false"></asp:Label><br />
                                     <asp:Label ID="lblErrorMsgPass" runat="server" CssClass="text-danger" Visible="false"></asp:Label>
-                                    <%-- 
-                                    <asp:Panel ID="panelAlert" CssClass="alert alert-dismissible alert-danger" runat="server" Visible="False">
-                                        <asp:Label ID="lblErrorMsgUser" runat="server"></asp:Label>
-                                    </asp:Panel>
-                                    --%>
-                                    
                                 </div>
-
-
                             </div>
                         </fieldset>
                     </form>

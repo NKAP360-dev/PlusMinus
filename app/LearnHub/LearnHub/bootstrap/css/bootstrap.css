@@ -2904,6 +2904,15 @@ select[multiple].input-lg {
 .has-error .form-control-feedback {
   color: #ffffff;
 }
+.garbage {
+    display: none;
+}
+.garbage[style*=visible] + input,
+.garbage[style*=visible] + select,
+.garbage[style*=visible] + textarea {
+    background-color: #ffcccc;
+    border: 1px solid #ff0000;
+}
 .has-feedback label ~ .form-control-feedback {
   top: 26px;
 }
