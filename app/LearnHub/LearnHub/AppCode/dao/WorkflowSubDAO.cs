@@ -86,5 +86,36 @@ namespace LearnHub.AppCode.dao
             }
             return toReturn;
         }
+        public string getWorkflowSubType(int wf_sub_ID)
+        {
+            SqlConnection conn = new SqlConnection();
+            string toReturn = "";
+            try
+            {
+                conn = new SqlConnection();
+                string connstr = ConfigurationManager.ConnectionStrings["DBConnectionString"].ToString();
+                conn.ConnectionString = connstr;
+                conn.Open();
+                SqlCommand comm = new SqlCommand();
+                comm.Connection = conn;
+                comm.CommandText = "select type from [Workflow_sub] where wf_sub_id=@wf_sub_id";
+                comm.Parameters.AddWithValue("@wf_sub_id", wf_sub_ID);
+                SqlDataReader dr = comm.ExecuteReader();
+                while (dr.Read())
+                {
+                    toReturn = (string)dr["type"];
+                }
+                dr.Close();
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                conn.Close();
+            }
+            return toReturn;
+        }
     }
 }

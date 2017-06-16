@@ -103,7 +103,7 @@ namespace LearnHub.AppCode.dao
             }
             return toReturn;
         }
-        public WorkflowApprover getWorkflowApproverByJobCategory(string jobCategory)
+        public WorkflowApprover getWorkflowApproverByJobCategory(string jobCategory, int wfid, int wf_sub_id)
         {
             WorkflowApprover toReturn = new WorkflowApprover();
             SqlConnection conn = new SqlConnection();
@@ -116,13 +116,15 @@ namespace LearnHub.AppCode.dao
                 conn.Open();
                 SqlCommand comm = new SqlCommand();
                 comm.Connection = conn;
-                comm.CommandText = "select * from [Workflow_approvers] where job_category=@job_category";
+                comm.CommandText = "select * from [Workflow_approvers] where job_category=@job_category and wfid=@wfid and wf_sub_id=@wf_sub_id";
                 comm.Parameters.AddWithValue("@job_category", jobCategory);
+                comm.Parameters.AddWithValue("@wfid", wfid);
+                comm.Parameters.AddWithValue("@wf_sub_id", wf_sub_id);
                 SqlDataReader dr = comm.ExecuteReader();
                 while (dr.Read())
                 {
-                    int wfid = (int)dr["wfid"];
-                    Workflow wf = wfDAO.getWorkflowByID(wfid);
+                    int wf_id = (int)dr["wfid"];
+                    Workflow wf = wfDAO.getWorkflowByID(wf_id);
                     toReturn.setMainWF(wf);
 
                     int wfsid = (int)dr["wf_sub_id"];

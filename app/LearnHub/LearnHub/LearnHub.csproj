@@ -152,6 +152,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AppCode\dao\BondDAO.cs" />
     <Compile Include="AppCode\dao\DeptDAO.cs" />
     <Compile Include="AppCode\dao\CourseDAO.cs" />
     <Compile Include="AppCode\dao\LoginDAO.cs" />

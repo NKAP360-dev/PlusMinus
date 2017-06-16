@@ -31,13 +31,13 @@ namespace LearnHub {
         protected global::System.Web.UI.WebControls.RequiredFieldValidator rfv_username;
         
         /// <summary>
-        /// TextBox3 control.
+        /// txtUsername control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox3;
+        protected global::System.Web.UI.WebControls.TextBox txtUsername;
         
         /// <summary>
         /// RequiredFieldValidator1 control.

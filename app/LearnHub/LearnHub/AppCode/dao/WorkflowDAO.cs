@@ -86,7 +86,7 @@ namespace LearnHub.AppCode.dao
             return toReturn;
         }
 
-        public int getNumberOfCriteriaByWorkflow(int workflowID)
+        public int getNumberOfCriteriaByWorkflow(int workflowID, string type)
         {
             SqlConnection conn = new SqlConnection();
             Int32 toReturn;
@@ -98,8 +98,9 @@ namespace LearnHub.AppCode.dao
                 conn.Open();
                 SqlCommand comm = new SqlCommand();
                 comm.Connection = conn;
-                comm.CommandText = "select count(*) from [Workflow_sub] where wfid=@wfid";
+                comm.CommandText = "select count(*) from [Workflow_sub] where wfid=@wfid and type=@type";
                 comm.Parameters.AddWithValue("@wfid", workflowID);
+                comm.Parameters.AddWithValue("@type", type);
                 toReturn = Convert.ToInt32(comm.ExecuteScalar());
             }
             catch (SqlException ex)

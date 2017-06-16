@@ -15,10 +15,11 @@ namespace LearnHub.AppCode.entity
         private string status;
         private int wf_status;
         private Workflow wf;
+        private WorkflowSub wfs;
 
         public TNF() { }
 
-        public TNF(int tnfid, User user, string type, string status, int wf_status, Workflow wf)
+        public TNF(int tnfid, User user, string type, string status, int wf_status, Workflow wf, WorkflowSub wfs)
         {
             this.tnfid = tnfid;
             this.user = user;
@@ -26,8 +27,9 @@ namespace LearnHub.AppCode.entity
             this.status = status;
             this.wf_status = wf_status;
             this.wf = wf;
+            this.wfs = wfs;
         }
-        public TNF(int tnfid, List<User> users, string type, string status, int wf_status, Workflow wf)
+        public TNF(int tnfid, List<User> users, string type, string status, int wf_status, Workflow wf, WorkflowSub wfs)
         {
             this.tnfid = tnfid;
             this.users = users;
@@ -35,6 +37,7 @@ namespace LearnHub.AppCode.entity
             this.status = status;
             this.wf_status = wf_status;
             this.wf = wf;
+            this.wfs = wfs;
         }
         public int getTNFID()
         {
@@ -91,6 +94,14 @@ namespace LearnHub.AppCode.entity
         public void setWorkflow(Workflow wf)
         {
             this.wf = wf;
+        }
+        public WorkflowSub getWorkflowSub()
+        {
+            return wfs;
+        }
+        public void setWorkflowSub(WorkflowSub wfs)
+        {
+            this.wfs = wfs;
         }
     }
 }

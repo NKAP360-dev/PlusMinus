@@ -32,6 +32,7 @@ namespace LearnHub.AppCode.dao
                     toReturn = new TNF();
                     UserDAO userDAO = new UserDAO();
                     WorkflowDAO wfDAO = new WorkflowDAO();
+                    WorkflowSubDAO wfsDAO = new WorkflowSubDAO();
                     User user = userDAO.getUserByID((string)dr["userID"]);
                     toReturn.setUser(user);
                     toReturn.setTNFID((int)dr["tnfid"]);
@@ -39,6 +40,10 @@ namespace LearnHub.AppCode.dao
                     toReturn.setStatus((string)(dr["status"]));
                     toReturn.setWFStatus((int)dr["wf_status"]);
                     toReturn.setWorkflow(wfDAO.getWorkflowByID((int)dr["wfid"]));
+                    if (!dr.IsDBNull(6))
+                    {
+                        toReturn.setWorkflowSub(wfsDAO.getWorkflowSubByID((int)dr["wf_sub_id"]));
+                    }
                 }
                 dr.Close();
             }
@@ -180,6 +185,33 @@ namespace LearnHub.AppCode.dao
                 conn.Close();
             }
             return toReturn;
+        }
+        public void updateTNFWFSub(int tnfid, int wfsID) // Update.
+        {
+            SqlConnection conn = new SqlConnection();
+
+            try
+            {
+                conn = new SqlConnection();
+                string connstr = ConfigurationManager.ConnectionStrings["DBConnectionString"].ToString();
+                conn.ConnectionString = connstr;
+                conn.Open();
+                SqlCommand comm = new SqlCommand();
+                comm.Connection = conn;
+                comm.CommandText =
+                    "Update [TNF] SET wf_sub_id=@wf_sub_id WHERE tnfid=@tnfid";
+                comm.Parameters.AddWithValue("@wf_sub_id", wfsID);
+                comm.Parameters.AddWithValue("@tnfid", tnfid);
+                int rowsAffected = comm.ExecuteNonQuery();
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                conn.Close();
+            }
         }
     }
 }

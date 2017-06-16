@@ -43,7 +43,7 @@
                                 <div class="input-group">
                                     <asp:RequiredFieldValidator ID="rfv_username" runat="server" ErrorMessage="Please enter a username" ControlToValidate="txtUsername" CssClass="garbage" ></asp:RequiredFieldValidator>
                                     
-                                    <asp:TextBox ID="TextBox3" runat="server" CssClass="form-control" placeholder="Username"></asp:TextBox>
+                                    <asp:TextBox ID="txtUsername" runat="server" CssClass="form-control" placeholder="Username"></asp:TextBox>
 
                                     <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
                                 </div>

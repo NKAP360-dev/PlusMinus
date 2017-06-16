@@ -7,40 +7,76 @@ namespace LearnHub.AppCode.entity
 {
     public class Bonds
     {
-        private string bondName;
-        private string category;
-        private double criteria;
+        private int bondID;
+        private string userID;
+        private int tnfid;
+        private DateTime startDate;
+        private DateTime endDate;
+        private string status;
 
         public Bonds() { }
-        public Bonds (string bondName, string category, double criteria)
+        public Bonds (int bondID, string userID, int tnfid, DateTime startDate, DateTime endDate, string status)
         {
-            this.bondName = bondName;
-            this.category = category;
-            this.criteria = criteria;
+            this.bondID = bondID;
+            this.userID = userID;
+            this.tnfid = tnfid;
+            this.startDate = startDate;
+            this.endDate = endDate;
+            this.status = status;
         }
-        public string getBondName()
+        public Bonds(string userID, int tnfid, string status)
         {
-            return bondName;
+            this.userID = userID;
+            this.tnfid = tnfid;
+            this.status = status;
         }
-        public void setBondName(string bondName)
+        public int getBondID()
         {
-            this.bondName = bondName;
+            return bondID;
         }
-        public string getCategory()
+        public void setBondID(int bondID)
         {
-            return category;
+            this.bondID = bondID;
         }
-        public void setCategory(string category)
+        public string getUserID()
         {
-            this.category = category;
+            return userID;
         }
-        public double getCriteria()
+        public void setUserID(string userID)
         {
-            return criteria;
+            this.userID = userID;
         }
-        public void setCriteria(double criteria)
+        public int getTNFID()
         {
-            this.criteria = criteria;
+            return tnfid;
+        }
+        public void setTNFID(int tnfid)
+        {
+            this.tnfid = tnfid;
+        }
+        public DateTime getStartDate()
+        {
+            return startDate;
+        }
+        public void setStartDate(DateTime startDate)
+        {
+            this.startDate = startDate;
+        }
+        public DateTime getEndDate()
+        {
+            return endDate;
+        }
+        public void setEndDate(DateTime endDate)
+        {
+            this.endDate = endDate;
+        }
+        public string getStatus()
+        {
+            return status;
+        }
+        public void setStatus(string status)
+        {
+            this.status = status;
         }
     }
 }
