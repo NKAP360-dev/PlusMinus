@@ -65,5 +65,36 @@ namespace LearnHub.AppCode.dao
             }
             return toReturn;
         }
+        public string getSalt(string userID)
+        {
+            SqlConnection conn = new SqlConnection();
+            string toReturn = "";
+            try
+            {
+                conn = new SqlConnection();
+                string connstr = ConfigurationManager.ConnectionStrings["DBConnectionString"].ToString();
+                conn.ConnectionString = connstr;
+                conn.Open();
+                SqlCommand comm = new SqlCommand();
+                comm.Connection = conn;
+                comm.CommandText = "select salt from [User] where userID=@userID";
+                comm.Parameters.AddWithValue("@userID", userID);
+                SqlDataReader dr = comm.ExecuteReader();
+                while (dr.Read())
+                {
+                    toReturn = (string)dr["salt"];
+                }
+                dr.Close();
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                conn.Close();
+            }
+            return toReturn;
+        }
     }
 }

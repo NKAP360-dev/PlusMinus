@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Helpers;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -13,7 +14,10 @@ namespace LearnHub
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (Session["currentUser"] != null)
+            {
+                Session["currentUser"] = null;
+            }
         }
         protected void btnLogin_Click(object sender, EventArgs e)
         {
@@ -31,7 +35,9 @@ namespace LearnHub
             if (txtUsername.Text != "" && txtPassword.Text != "")
             {
                 LoginDAO loginDAO = new LoginDAO();
-                User currentUser = loginDAO.login(txtUsername.Text, txtPassword.Text);
+                var userSalt = loginDAO.getSalt(txtUsername.Text);
+                var hashedPasword = Crypto.SHA256(userSalt + txtPassword.Text);
+                User currentUser = loginDAO.login(txtUsername.Text, hashedPasword);
                 if (currentUser.getUserID() == null)
                 {
                     lblErrorMsgUse.Visible = true;
