@@ -193,13 +193,22 @@ namespace LearnHub {
         protected global::System.Web.UI.WebControls.Label dateLabel;
         
         /// <summary>
-        /// dateInput control.
+        /// fromDateInput control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox dateInput;
+        protected global::System.Web.UI.WebControls.TextBox fromDateInput;
+        
+        /// <summary>
+        /// toDateInput control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox toDateInput;
         
         /// <summary>
         /// objectiveLabel control.
@@ -272,5 +281,23 @@ namespace LearnHub {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox completeDateInput;
+        
+        /// <summary>
+        /// submitBtn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button submitBtn;
+        
+        /// <summary>
+        /// resetBtn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button resetBtn;
     }
 }

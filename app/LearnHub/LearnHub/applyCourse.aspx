@@ -1,26 +1,37 @@
 ﻿<%@ Page Title="Apply For Courses - LearnHub" Language="C#" MasterPageFile="~/Masterpage.Master" AutoEventWireup="true" CodeBehind="applyCourse.aspx.cs" Inherits="LearnHub.applyCourse" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css" />
+    <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/css/datepicker.css" rel="stylesheet" type="text/css" />
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/js/bootstrap-datepicker.js"></script>
     <script type="text/javascript">
         $(window).load(function () {
             $('#myModal').modal('show');
         });
 
-        $(document).ready(function () {
-            var date_input = $('input[name="date"]'); //our date input has the name "date"
-            var container = $('.bootstrap-iso form').length > 0 ? $('.bootstrap-iso form').parent() : "body";
-            var options = {
-                format: 'mm/dd/yyyy',
-                container: container,
+        $(function () {
+            $('.input-daterange').datepicker({
+                autoclose: true
+            });
+        });
+
+        $(function () {
+            $('.input-group.date').datepicker({
+                calendarWeeks: true,
                 todayHighlight: true,
-                autoclose: true,
-            };
-            date_input.datepicker(options);
-        })
+                autoclose: true
+            });
+        });
     </script>
+
+    <style>
+        .modal-body {
+    max-height: calc(100vh - 210px);
+    overflow-y: auto;
+}
+    </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="container">
@@ -155,14 +166,26 @@
                         <asp:TextBox ID="courseFeeInput" runat="server" CssClass="form-control" placeholder="Course Fees with GST (where applicable)"></asp:TextBox>
                     </div>
                 </div>
+
                 <div class="form-group">
                     <strong>
                         <asp:Label ID="dateLabel" runat="server" CssClass="col-lg-2 control-label" Text="Date"></asp:Label></strong>
+                    <%--<div class="col-lg-15">
+                        <div id="datepicker" class="input-group date" data-date-format="dd-mm-yyyy">
+                            <asp:TextBox ID="dateStart" runat="server" CssClass="form-control" placeholder="Date"></asp:TextBox>
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>                                             
+                        </div>      --%>
                     <div class="col-lg-5">
-                        <asp:TextBox ID="dateInput" runat="server" CssClass="form-control" placeholder="TRYING TO PUT DATEPICKER"></asp:TextBox>
+                        <div class="input-daterange input-group" id="datepicker">
+                            <asp:TextBox ID="fromDateInput" runat="server" CssClass="form-control" placeholder="Start Date"></asp:TextBox>
+                            <span class="input-group-addon">to</span>
+                            <asp:TextBox ID="toDateInput" runat="server" CssClass="form-control" placeholder="End Date"></asp:TextBox>
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                        </div>
                     </div>
                 </div>
-                <BR />
+
+                <br />
                 <h4>Section C - Pre Training Assessment</h4>
                 <div class="form-group">
                     <strong>
@@ -179,16 +202,18 @@
                         </div>
                     </div>
                     <asp:Label ID="Label1" runat="server" CssClass="col-lg-2 control-label" Text=""></asp:Label>
-                    <div class="col-lg-5">                 
+                    <div class="col-lg-5">
                         <asp:TextBox ID="TextBox1" TextMode="multiline" Columns="50" Rows="5" runat="server" CssClass="form-control" placeholder="Please elaborate on your choice"></asp:TextBox>
                     </div>
 
                 </div>
-                 <div class="form-group">
+                <div class="form-group">
                     <strong>
                         <asp:Label ID="completionDateLabel" runat="server" CssClass="col-lg-2 control-label" Text="Target Completion Date"></asp:Label></strong>
                     <div class="col-lg-5">
-                        <asp:TextBox ID="completeDateInput" runat="server" CssClass="form-control" placeholder="TRYING TO PUT DATEPICKER"></asp:TextBox>
+                        <div class="input-group date">
+                        <asp:TextBox ID="completeDateInput" runat="server" CssClass="form-control" placeholder="Target Completion Date"></asp:TextBox><span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                        </div>
                     </div>
                 </div>
 
@@ -199,8 +224,8 @@
 
                 <div class="form-group">
                     <div class="col-lg-10 col-lg-offset-2">
-                        <button type="reset" class="btn btn-default">Cancel</button>
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <asp:Button ID="submitBtn" CssClass="btn btn-primary" runat="server" Text="Submit" />
+                         <asp:Button ID="resetBtn" CssClass="btn btn-default" runat="server" Text="Cancel" />
                     </div>
                 </div>
             </fieldset>
