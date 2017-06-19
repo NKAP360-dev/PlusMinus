@@ -1,10 +1,10 @@
 ﻿<%@ Page Title="Apply For Courses - LearnHub" Language="C#" MasterPageFile="~/Masterpage.Master" AutoEventWireup="true" CodeBehind="applyCourse.aspx.cs" Inherits="LearnHub.applyCourse" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/css/datepicker.css" rel="stylesheet" type="text/css" />
 
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/js/bootstrap-datepicker.js"></script>
     <script type="text/javascript">
         $(window).load(function () {
@@ -35,14 +35,15 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="container">
+        <!-- Modal-->
         <div id="myModal" class="modal fade" role="dialog">
-            <div class="modal-dialog">
-                <!-- Modal content-->
+            <div class="modal-dialog">               
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
                         <h4 class="modal-title"><span class="glyphicon glyphicon-info-sign"></span>&nbsp;<b>Please read before you proceed</b></h4>
                     </div>
+                    <%--Modal Content--%>
                     <div class="modal-body">
                         <p><b>Important Notes:</b></p>
                         <b>1.</b>&nbsp; This form is not applicable for: 
@@ -96,6 +97,7 @@
             <fieldset>
                 <legend>Training Request Form<a class="btn" data-toggle="modal" href="#myModal"><span class="glyphicon glyphicon-info-sign"></span></a></legend>
 
+                <%-- Section A--%>
                 <h4>Section A - Staff Particulars</h4>
                 <h6>Not applicable for group training. For group training, omit this section and complete the attached Annex A</h6>
                 <div class="form-group">
@@ -134,85 +136,135 @@
                     </div>
                 </div>
                 <br />
+
+                 <%-- Section B--%>
                 <h4>Section B - Course Details</h4>
                 <div class="form-group">
                     <strong>
                         <asp:Label ID="courseLabel" runat="server" CssClass="col-lg-2 control-label" Text="Course Title"></asp:Label></strong>
                     <div class="col-lg-5">
-                        <asp:TextBox ID="courseInput" runat="server" CssClass="form-control" placeholder="Course Title"></asp:TextBox>
+                        <asp:DropDownList ID="courseInput" runat="server" CssClass="form-control" placeholder="Course Title"></asp:DropDownList>
                     </div>
                 </div>
                 <div class="form-group">
                     <strong>
-                        <asp:Label ID="courseProviderLabel" runat="server" CssClass="col-lg-2 control-label" Text="Course Provider"></asp:Label></strong>
+                        <asp:Label ID="courseProviderLabel" disabled="" runat="server" CssClass="col-lg-2 control-label" Text="Course Provider"></asp:Label></strong>
                     <div class="col-lg-10">
                         <div class="radio">
                             <label>
-                                <asp:RadioButton ID="inhouse" GroupName="courseProvider" runat="server" Text="Inhouse" />
+                                <asp:RadioButton ID="inhouse" GroupName="courseProvider" runat="server" Text="Inhouse" Checked="True" />
                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 <asp:RadioButton ID="external" GroupName="courseProvider" runat="server" Text="External" />
                             </label>
                         </div>
                     </div>
-                    <asp:Label ID="empty" runat="server" CssClass="col-lg-2 control-label" Text=""></asp:Label>
+                    <asp:Label ID="empty1" runat="server" CssClass="col-lg-2 control-label" Text=""></asp:Label>
                     <div class="col-lg-5">
-                        <asp:TextBox ID="externalCourseProvider" runat="server" CssClass="form-control" placeholder="If external, please specify"></asp:TextBox>
+                        <asp:TextBox ID="externalCourseProvider" disabled="" runat="server" CssClass="form-control" placeholder="If external, please specify"></asp:TextBox>
                     </div>
                 </div>
                 <div class="form-group">
                     <strong>
-                        <asp:Label ID="courseFeeLabel" runat="server" CssClass="col-lg-2 control-label" Text="Course Fees with GST"></asp:Label></strong>
+                        <asp:Label ID="courseFeeLabel" disabled="" runat="server" CssClass="col-lg-2 control-label" Text="Course Fees with GST"></asp:Label></strong>
                     <div class="col-lg-5">
-                        <asp:TextBox ID="courseFeeInput" runat="server" CssClass="form-control" placeholder="Course Fees with GST (where applicable)"></asp:TextBox>
+                        <asp:TextBox ID="courseFeeInput" disabled="" runat="server" CssClass="form-control" placeholder="Course Fees with GST (where applicable)"></asp:TextBox>
                     </div>
                 </div>
-
                 <div class="form-group">
                     <strong>
                         <asp:Label ID="dateLabel" runat="server" CssClass="col-lg-2 control-label" Text="Date"></asp:Label></strong>
-                    <%--<div class="col-lg-15">
-                        <div id="datepicker" class="input-group date" data-date-format="dd-mm-yyyy">
-                            <asp:TextBox ID="dateStart" runat="server" CssClass="form-control" placeholder="Date"></asp:TextBox>
-                            <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>                                             
-                        </div>      --%>
+
                     <div class="col-lg-5">
                         <div class="input-daterange input-group" id="datepicker">
-                            <asp:TextBox ID="fromDateInput" runat="server" CssClass="form-control" placeholder="Start Date"></asp:TextBox>
+                            <asp:TextBox ID="fromDateInput" disabled="" runat="server" CssClass="form-control" placeholder="Start Date"></asp:TextBox>
                             <span class="input-group-addon">to</span>
-                            <asp:TextBox ID="toDateInput" runat="server" CssClass="form-control" placeholder="End Date"></asp:TextBox>
+                            <asp:TextBox ID="toDateInput" disabled="" runat="server" CssClass="form-control" placeholder="End Date"></asp:TextBox>
                             <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
                         </div>
                     </div>
                 </div>
 
                 <br />
+
+                 <%-- Section C--%>
                 <h4>Section C - Pre Training Assessment</h4>
                 <div class="form-group">
                     <strong>
-                        <asp:Label ID="objectiveLabel" runat="server" CssClass="col-lg-2 control-label" Text="Objective attending the course (please tick)"></asp:Label></strong>
+                        <asp:Label ID="objectiveLabel" runat="server" CssClass="col-lg-2 control-label" Text="Objective(s) attending the course (please tick)"></asp:Label></strong>
+                    <%--First checkbox--%>
                     <div class="col-lg-10">
-                        <div class="radio">
+                        <div class="checkbox">
                             <label>
-                                <asp:RadioButton ID="RadioButton1" GroupName="objective" runat="server" Text="To prepare for new job role/task" />
-                                <br />
-                                <asp:RadioButton ID="RadioButton2" GroupName="objective" runat="server" Text="Share the knowledge and skills with fellow colleagues" />
-                                <br />
-                                <asp:RadioButton ID="RadioButton3" GroupName="objective" runat="server" Text="Others" />
+                                <asp:CheckBox ID="objectiveInput1" runat="server" Text="To prepare for new job role/task" />
                             </label>
                         </div>
                     </div>
-                    <asp:Label ID="Label1" runat="server" CssClass="col-lg-2 control-label" Text=""></asp:Label>
-                    <div class="col-lg-5">
-                        <asp:TextBox ID="TextBox1" TextMode="multiline" Columns="50" Rows="5" runat="server" CssClass="form-control" placeholder="Please elaborate on your choice"></asp:TextBox>
-                    </div>
 
+                    <div class="col-lg-5">
+                        <asp:TextBox ID="objectiveElaborate1" TextMode="multiline" Columns="50" Rows="5" runat="server" CssClass="form-control" placeholder="Please elaborate on your choice"></asp:TextBox>
+                    </div>
                 </div>
+
                 <div class="form-group">
-                    <strong>
-                        <asp:Label ID="completionDateLabel" runat="server" CssClass="col-lg-2 control-label" Text="Target Completion Date"></asp:Label></strong>
+
+                    <asp:Label ID="completionDateLabel1" runat="server" CssClass="col-lg-2 control-label" Text="Target Completion Date"></asp:Label>
                     <div class="col-lg-5">
                         <div class="input-group date">
-                        <asp:TextBox ID="completeDateInput" runat="server" CssClass="form-control" placeholder="Target Completion Date"></asp:TextBox><span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                            <asp:TextBox ID="completeDateInput1" runat="server" CssClass="form-control" placeholder="Target Completion Date"></asp:TextBox><span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                        </div>
+                    </div>
+                </div>
+
+                 <%--Second checkbox--%>
+                <div class="form-group">
+                    <%--Empty label for formatting purposes--%>
+                    <asp:Label ID="empty2" runat="server" CssClass="col-lg-2 control-label" Text=""></asp:Label>
+                    <div class="col-lg-10">
+                        <div class="checkbox">
+                            <label>
+                                <asp:CheckBox ID="objectiveInput2" runat="server" Text="Share the knowledge and skills with fellow colleagues" />
+                            </label>
+                        </div>
+                    </div>
+                    <%--Empty label for formatting purposes--%>
+                    <asp:Label ID="empty3" runat="server" CssClass="col-lg-2 control-label" Text=""></asp:Label>
+                    <div class="col-lg-5">
+                        <asp:TextBox ID="objectiveElaborate2" TextMode="multiline" Columns="50" Rows="5" runat="server" CssClass="form-control" placeholder="Please elaborate on your choice"></asp:TextBox>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <asp:Label ID="completionDateLabel2" runat="server" CssClass="col-lg-2 control-label" Text="Target Completion Date"></asp:Label>
+                    <div class="col-lg-5">
+                        <div class="input-group date">
+                            <asp:TextBox ID="completeDateInput2" runat="server" CssClass="form-control" placeholder="Target Completion Date"></asp:TextBox><span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                        </div>
+                    </div>
+                </div>
+
+                <%--Third checkbox--%>
+                <div class="form-group">
+                    <%--Empty label for formatting purposes--%>
+                    <asp:Label ID="empty4" runat="server" CssClass="col-lg-2 control-label" Text=""></asp:Label>
+                    <div class="col-lg-10">
+                        <div class="checkbox">
+                            <label>
+                                <asp:CheckBox ID="objectiveInput3" runat="server" Text="Others" />
+                            </label>
+                        </div>
+                    </div>
+                    <%--Empty label for formatting purposes--%>
+                    <asp:Label ID="empty5" runat="server" CssClass="col-lg-2 control-label" Text=""></asp:Label>
+                    <div class="col-lg-5">
+                        <asp:TextBox ID="objectiveElaborate3" TextMode="multiline" Columns="50" Rows="5" runat="server" CssClass="form-control" placeholder="Please elaborate on your choice"></asp:TextBox>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <asp:Label ID="completionDateLabel3" runat="server" CssClass="col-lg-2 control-label" Text="Target Completion Date"></asp:Label>
+                    <div class="col-lg-5">
+                        <div class="input-group date">
+                            <asp:TextBox ID="completionDateInput3" runat="server" CssClass="form-control" placeholder="Target Completion Date"></asp:TextBox><span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
                         </div>
                     </div>
                 </div>

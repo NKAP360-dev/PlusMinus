@@ -51,25 +51,24 @@
             z-index: 2;
             display: none;
             padding: 30px;
-            
         }
 
-        #notificationContainer:before {
-            content: '';
-            display: block;
-            position: absolute;
-            width: 0;
-            height: 0;
-            color: transparent;
-            border: 10px solid black;
-            border-color: transparent transparent white;
-            margin-top: -20px;
-            margin-left: 188px;
-        }
+            #notificationContainer:before {
+                content: '';
+                display: block;
+                position: absolute;
+                width: 0;
+                height: 0;
+                color: transparent;
+                border: 10px solid black;
+                border-color: transparent transparent white;
+                margin-top: -20px;
+                margin-left: 188px;
+            }
 
         #notificationTitle {
             font-weight: bold;
-            padding: 5px;
+            padding: 0px;
             font-size: 16px;
             background-color: #ffffff;
             position: static;
@@ -79,40 +78,54 @@
         }
 
         #notificationsBody {
-            padding: 33px 0px 0px 0px !important;
+            padding: 15px 0px 0px 0px !important;
             min-height: 300px;
+            max-height: 300px;
+            overflow-y: auto;
+            overflow-x: hidden;
         }
 
-        #notificationFooter {           
+        #notificationFooter {
             text-align: center;
             font-weight: bold;
-            padding: 5px;
+            padding: 10px;
             font-size: 16px;
             border-top: 1px solid #dddddd;
             z-index: 3;
         }
+
+        .verticalLine {
+            width: 100%;
+            height: 1px;
+            padding: 10px;
+            border-bottom: 1px solid #dddddd;
+        }
+
+        .wrapper {
+            text-align: center;
+        }
     </style>
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-<script type="text/javascript">
-    $(document).ready(function () {
-        $("#notificationLink").click(function () {
-            $("#notificationContainer").fadeToggle(300);
-            $("#notification_count").fadeOut("slow");
-            return false;
-        });
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#notificationLink").click(function () {
+                $("#notificationContainer").fadeToggle(300);
+                $("#notification_count").fadeOut("slow");
+                return false;
+            });
 
-        //Document Click hiding the popup 
-        $(document).click(function () {
-            $("#notificationContainer").hide();
-        });
+            //Document Click hiding the popup 
+            $(document).click(function () {
+                $("#notificationContainer").hide();
+            });
 
-        //Popup on click
-        $("#notificationContainer").click(function () {
-            e.stopPropagation();
-        });
+            //Popup on click
+            $("#notificationContainer").click(function () {
+                e.stopPropagation();
+            });
 
-    });
-</script>
+        });
+    </script>
     <title></title>
     <link href="/bootstrap/css/bootstrap.css" rel="stylesheet" />
     <asp:ContentPlaceHolder ID="head" runat="server">
@@ -133,6 +146,8 @@
             </div>
 
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+                <%--News--%>
                 <ul class="nav navbar-nav">
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">News <span class="caret"></span></a>
@@ -145,6 +160,7 @@
                     </li>
                 </ul>
 
+                <%--Courses--%>
                 <ul class="nav navbar-nav">
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Courses <span class="caret"></span></a>
@@ -155,7 +171,7 @@
                                 <asp:HyperLink ID="HyperLink4" runat="server">Course Listing</asp:HyperLink></li>
                             <li class="divider"></li>
                             <li>
-                                <asp:HyperLink ID="HyperLink5" runat="server" NavigateUrl="~/applyCourse.aspx">Apply for Courses</asp:HyperLink></li>
+                                <asp:HyperLink ID="HyperLink5" runat="server" data-toggle="modal" href="#formModal">Apply for Courses</asp:HyperLink></li>
                             <li class="divider"></li>
                             <li>
                                 <asp:HyperLink ID="HyperLink6" runat="server">My Enrolled Courses</asp:HyperLink></li>
@@ -163,23 +179,56 @@
                     </li>
                 </ul>
 
-                <%-- If user is logged in, show username that is clickable--%>
+                <%--Workflow--%>
+                <ul class="nav navbar-nav">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Workflow <span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li>
+                                <asp:HyperLink ID="HyperLink8" runat="server">Create Workflow</asp:HyperLink></li>
+                            <li>
+                                <asp:HyperLink ID="HyperLink9" runat="server">Approve Workflow</asp:HyperLink></li>
+                        </ul>
+                    </li>
+                </ul>
+
+                <%--Reports--%>
+                <ul class="nav navbar-nav">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Reports <span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li>
+                                <asp:HyperLink ID="HyperLink10" runat="server">View Reports</asp:HyperLink></li>
+                            <li>
+                                <asp:HyperLink ID="HyperLink11" runat="server">Generate Reports</asp:HyperLink></li>
+                            <li class="divider"></li>
+                            <li>
+                                <asp:HyperLink ID="HyperLink12" runat="server">Dashboard</asp:HyperLink></li>
+                        </ul>
+                    </li>
+                </ul>
+
+                <%--Settings--%>
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <asp:HyperLink ID="HyperLink13" runat="server"><span class="glyphicon glyphicon-cog"></span></asp:HyperLink></li>
+
+                </ul>
+
+                <%-- If user is logged in, show username that will be linked to user dashboard, else don't show username--%>
                 <ul class="nav navbar-nav navbar-right">
                     <li>
                         <asp:HyperLink ID="profile" runat="server">Username</asp:HyperLink></li>
-
                 </ul>
+
+                <%--Show login button only if user is not logged in--%>
+                <%--Show logout button only if user is logged in--%>
                 <form class="navbar-form navbar-right">
-                    <%--Show login button only if user is not logged in--%>
                     <a href="Login.aspx" class="btn btn-success"><span class="glyphicon glyphicon-user"></span>&nbsp;Login</a>
                     <a href="#" class="btn btn-danger"><span class="glyphicon glyphicon-log-out"></span>&nbsp;Logout</a>
-                    <%-- 
-                    <asp:LinkButton ID="loginBtn" CssClass="btn btn-success" runat="server" OnClick="btnLogin_Click"><span class="glyphicon glyphicon-user"></span>&nbsp;Login</asp:LinkButton>
-                    <asp:LinkButton ID="logoutBtn" CssClass="btn btn-danger" runat="server"><span class="glyphicon glyphicon-log-out"></span>&nbsp;Logout</asp:LinkButton>
-                    --%>
                 </form>
 
-                <%--Make notification appear only if user is logged in--%>
+                <%--Make notification appear only if user is logged in and if user is approver--%>
                 <form class="navbar-form navbar-right">
                     <ul class="nav nav-pills">
                         <li id="notification_li">
@@ -187,11 +236,13 @@
                             <div id="notificationContainer" style="display: none;">
                                 <div id="notificationTitle">Training Request Forms Pending Approvals</div>
                                 <div id="notificationsBody" class="notifications">
-                                    I did it
+                                    <a href="#">You have a form pending approval from Tan Ming Kwang</a>
+                                    <div class="verticalLine"></div>
                                     <br />
-                                    Hooray!
+                                    <a href="#">You have a form pending approval from Rafid</a>
+                                    <div class="verticalLine"></div>
                                     <br />
-                                    This is the greatest achievement of my life
+                                    You have a form pending approval from (name)
                                 </div>
                                 <div id="notificationFooter"><a href="../pendingApproval.aspx">See All</a></div>
                             </div>
@@ -199,12 +250,35 @@
                         </li>
                     </ul>
                 </form>
-
-
-
             </div>
         </div>
     </nav>
+
+    <%--TRF Modal--%>
+    <div id="formModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Choose Type of Training Request Form</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="wrapper">
+                        <a href="applyCourse.aspx" class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-file"></span>
+                            <br />
+                            <strong>Individual Training</strong></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <a href="#" class="btn btn-success btn-lg"><span class="glyphicon glyphicon-duplicate"></span>
+            <br />
+           <strong>&nbsp;&nbsp;&nbsp;Group Training &nbsp;</strong></a>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <%--Do not touch contentplaceholders--%>
     <div>
         <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
         </asp:ContentPlaceHolder>

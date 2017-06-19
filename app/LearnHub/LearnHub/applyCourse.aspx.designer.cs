@@ -118,7 +118,7 @@ namespace LearnHub {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox courseInput;
+        protected global::System.Web.UI.WebControls.DropDownList courseInput;
         
         /// <summary>
         /// courseProviderLabel control.
@@ -148,13 +148,13 @@ namespace LearnHub {
         protected global::System.Web.UI.WebControls.RadioButton external;
         
         /// <summary>
-        /// empty control.
+        /// empty1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label empty;
+        protected global::System.Web.UI.WebControls.Label empty1;
         
         /// <summary>
         /// externalCourseProvider control.
@@ -220,67 +220,148 @@ namespace LearnHub {
         protected global::System.Web.UI.WebControls.Label objectiveLabel;
         
         /// <summary>
-        /// RadioButton1 control.
+        /// objectiveInput1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButton RadioButton1;
+        protected global::System.Web.UI.WebControls.CheckBox objectiveInput1;
         
         /// <summary>
-        /// RadioButton2 control.
+        /// objectiveElaborate1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButton RadioButton2;
+        protected global::System.Web.UI.WebControls.TextBox objectiveElaborate1;
         
         /// <summary>
-        /// RadioButton3 control.
+        /// completionDateLabel1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButton RadioButton3;
+        protected global::System.Web.UI.WebControls.Label completionDateLabel1;
         
         /// <summary>
-        /// Label1 control.
+        /// completeDateInput1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label1;
+        protected global::System.Web.UI.WebControls.TextBox completeDateInput1;
         
         /// <summary>
-        /// TextBox1 control.
+        /// empty2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox1;
+        protected global::System.Web.UI.WebControls.Label empty2;
         
         /// <summary>
-        /// completionDateLabel control.
+        /// objectiveInput2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label completionDateLabel;
+        protected global::System.Web.UI.WebControls.CheckBox objectiveInput2;
         
         /// <summary>
-        /// completeDateInput control.
+        /// empty3 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox completeDateInput;
+        protected global::System.Web.UI.WebControls.Label empty3;
+        
+        /// <summary>
+        /// objectiveElaborate2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox objectiveElaborate2;
+        
+        /// <summary>
+        /// completionDateLabel2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label completionDateLabel2;
+        
+        /// <summary>
+        /// completeDateInput2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox completeDateInput2;
+        
+        /// <summary>
+        /// empty4 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label empty4;
+        
+        /// <summary>
+        /// objectiveInput3 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox objectiveInput3;
+        
+        /// <summary>
+        /// empty5 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label empty5;
+        
+        /// <summary>
+        /// objectiveElaborate3 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox objectiveElaborate3;
+        
+        /// <summary>
+        /// completionDateLabel3 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label completionDateLabel3;
+        
+        /// <summary>
+        /// completionDateInput3 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox completionDateInput3;
         
         /// <summary>
         /// submitBtn control.
