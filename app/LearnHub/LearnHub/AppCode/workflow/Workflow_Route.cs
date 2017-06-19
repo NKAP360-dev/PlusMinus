@@ -33,24 +33,6 @@ namespace LearnHub.AppCode.workflow
                 tnfType = "Group";
             }
 
-            /* check if not group then check individual duration, else check each individual in the group
-            double probationPeriod = currentWorkflow.getProbationPeriod();
-            if (!users.Any())
-            {
-                if (currentUser.getLengthOfSevice() < probationPeriod)
-                {
-                    // to do logic for > probationPeriod
-                    //to route to CEO
-                }
-            }
-            else
-            {
-                foreach (User user in users) {
-                    // check duration for each user
-                    // to do logic if user’s duration is < probationPeriod
-                }
-            }*/
-
             //To check budget
             Department currentDept = deptDAO.getDeptByName(tnf.getUser().getDepartment());
             Course currentCourse = tnfDAO.getCourseFromTNF(tnf.getTNFID());
@@ -81,11 +63,12 @@ namespace LearnHub.AppCode.workflow
             Workflow currentWorkflow = wfDAO.getCurrentActiveWorkflow("individual");
             //int numOfCriteria = wfDAO.getNumberOfCriteriaByWorkflow(currentWorkflow.getWorkflowID());
             string currentStatusOfTNF = tnf.getStatus();
-            double probationPeriod = currentWorkflow.getProbationPeriod();
+            int probationPeriod = currentWorkflow.getProbationPeriod();
+            TimeSpan ts = DateTime.Now.Subtract(currentUser.getStartDate());
             Course currentCourse = tnfDAO.getCourseFromTNF(tnf.getTNFID());
 
             List<WorkflowSub> workflowSubs;
-            if (currentUser.getLengthOfSevice() < probationPeriod)
+            if (ts.TotalDays < probationPeriod)
             {
                 workflowSubs = wfsDAO.getSortedWorflowSubByWorkflowIDandType(currentWorkflow.getWorkflowID(), "ceo");
             }

@@ -224,7 +224,7 @@
 
                 <div class="form-group">
                     <div class="col-lg-10 col-lg-offset-2">
-                        <asp:Button ID="submitBtn" CssClass="btn btn-primary" runat="server" Text="Submit" />
+                        <asp:Button ID="submitBtn" CssClass="btn btn-primary" runat="server" Text="Submit" OnClick="submitBtn_Click" />
                          <asp:Button ID="resetBtn" CssClass="btn btn-default" runat="server" Text="Cancel" />
                     </div>
                 </div>

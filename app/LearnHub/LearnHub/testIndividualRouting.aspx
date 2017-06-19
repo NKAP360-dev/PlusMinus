@@ -43,7 +43,9 @@
                 <asp:BoundField DataField="userID_To" HeaderText="userID_To" SortExpression="userID_To" />
                 <asp:BoundField DataField="tnfid" HeaderText="tnfid" SortExpression="tnfid" />
                 <asp:BoundField DataField="status" HeaderText="status" SortExpression="status" />
-                <asp:BoundField DataField="notif_ID" HeaderText="notif_ID" ReadOnly="True" SortExpression="notif_ID" />
+                <asp:BoundField DataField="dateApproved" HeaderText="dateApproved" SortExpression="dateApproved" />
+                <asp:BoundField DataField="remarks" HeaderText="remarks" SortExpression="remarks" />
+                <asp:BoundField DataField="notif_ID" HeaderText="notif_ID" InsertVisible="False" ReadOnly="True" SortExpression="notif_ID" />
             </Columns>
             <SelectedRowStyle BackColor="Silver" />
         </asp:GridView>

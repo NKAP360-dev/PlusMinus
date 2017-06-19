@@ -30,7 +30,6 @@ namespace LearnHub.AppCode.dao
                     toReturn = new User();
                     toReturn.setUserID((string)dr["userID"]);
                     toReturn.setName((string)dr["name"]);
-                    toReturn.setLengthOfService((double)(dr["lengthOfService"]));
                     toReturn.setJobTitle((string)dr["job_title"]);
                     toReturn.setJobCategory((string)dr["job_category"]);
                     if (!dr.IsDBNull(6))
@@ -48,6 +47,8 @@ namespace LearnHub.AppCode.dao
                     {
                         toReturn.setDepartment("NA");
                     }
+                    toReturn.setEmail((string)dr["email"]);
+                    toReturn.setStartDate(dr.GetDateTime(3));
                 }
                 dr.Close();
             }
@@ -83,7 +84,6 @@ namespace LearnHub.AppCode.dao
                     u = new User();
                     u.setUserID((string)dr["userID"]);
                     u.setName((string)dr["name"]);
-                    u.setLengthOfService((double)(dr["lengthOfService"]));
                     u.setJobTitle((string)dr["job_title"]);
                     u.setJobCategory((string)dr["job_category"]);
                     if (!dr.IsDBNull(5))
@@ -95,6 +95,8 @@ namespace LearnHub.AppCode.dao
                     }
                     u.setRole((string)dr["role"]);
                     u.setDepartment((string)dr["dept_name"]);
+                    u.setEmail((string)dr["email"]);
+                    u.setStartDate(dr.GetDateTime(3));
 
                     toReturn.Add(u);
                 }
@@ -131,7 +133,6 @@ namespace LearnHub.AppCode.dao
                     toReturn = new User();
                     toReturn.setUserID((string)dr["userID"]);
                     toReturn.setName((string)dr["name"]);
-                    toReturn.setLengthOfService((double)(dr["lengthOfService"]));
                     toReturn.setJobTitle((string)dr["job_title"]);
                     toReturn.setJobCategory((string)dr["job_category"]);
                     if (!dr.IsDBNull(5))
@@ -143,6 +144,8 @@ namespace LearnHub.AppCode.dao
                     }
                     toReturn.setRole((string)dr["role"]);
                     toReturn.setDepartment((string)dr["dept_name"]);
+                    toReturn.setEmail((string)dr["email"]);
+                    toReturn.setStartDate(dr.GetDateTime(3));
                 }
                 dr.Close();
             }
@@ -214,7 +217,6 @@ namespace LearnHub.AppCode.dao
                     toReturn = new User();
                     toReturn.setUserID((string)dr["userID"]);
                     toReturn.setName((string)dr["name"]);
-                    toReturn.setLengthOfService((double)(dr["lengthOfService"]));
                     toReturn.setJobTitle((string)dr["job_title"]);
                     toReturn.setJobCategory((string)dr["job_category"]);
                     if (!dr.IsDBNull(6))
@@ -226,7 +228,9 @@ namespace LearnHub.AppCode.dao
                         toReturn.setSupervisor("NA");
                     }
                     toReturn.setRole((string)dr["role"]);
-                    toReturn.setDepartment("CEO");
+                    toReturn.setDepartment((string)dr["dept_name"]);
+                    toReturn.setEmail((string)dr["email"]);
+                    toReturn.setStartDate(dr.GetDateTime(3));
                 }
                 dr.Close();
             }
@@ -260,7 +264,6 @@ namespace LearnHub.AppCode.dao
                     toReturn = new User();
                     toReturn.setUserID((string)dr["userID"]);
                     toReturn.setName((string)dr["name"]);
-                    toReturn.setLengthOfService((double)(dr["lengthOfService"]));
                     toReturn.setJobTitle((string)dr["job_title"]);
                     toReturn.setJobCategory((string)dr["job_category"]);
                     if (!dr.IsDBNull(5))
@@ -273,6 +276,8 @@ namespace LearnHub.AppCode.dao
                     }
                     toReturn.setRole((string)dr["role"]);
                     toReturn.setDepartment((string)dr["dept_name"]);
+                    toReturn.setEmail((string)dr["email"]);
+                    toReturn.setStartDate(dr.GetDateTime(3));
                 }
                 dr.Close();
             }
@@ -308,7 +313,6 @@ namespace LearnHub.AppCode.dao
                     u = new User();
                     u.setUserID((string)dr["userID"]);
                     u.setName((string)dr["name"]);
-                    u.setLengthOfService((double)(dr["lengthOfService"]));
                     u.setJobTitle((string)dr["job_title"]);
                     u.setJobCategory((string)dr["job_category"]);
                     if (!dr.IsDBNull(5))
@@ -321,6 +325,8 @@ namespace LearnHub.AppCode.dao
                     }
                     u.setRole((string)dr["role"]);
                     u.setDepartment((string)dr["dept_name"]);
+                    u.setEmail((string)dr["email"]);
+                    u.setStartDate(dr.GetDateTime(3));
 
                     toReturn.Add(u);
                 }

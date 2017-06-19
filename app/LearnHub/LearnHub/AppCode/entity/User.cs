@@ -9,27 +9,29 @@ namespace LearnHub.AppCode.entity
     {
         private string uid;
         private string name;
-        private double length_of_service;
         private string jobTitle;
         private string jobCategory;
         private string supervisor;
         private string role;
         private string department;
+        private string email;
+        private DateTime start_Date;
 
         public User()
         {
 
         }
-        public User(string uid, string name, double length_of_service, string jobTitle, string jobCategory, string supervisor, string role, string department)
+        public User(string uid, string name, string jobTitle, string jobCategory, string supervisor, string role, string department, string email, DateTime start_Date)
         {
             this.uid = uid;
             this.name = name;
-            this.length_of_service = length_of_service;
             this.jobTitle = jobTitle;
             this.jobCategory = jobCategory;
             this.supervisor = supervisor;
             this.role = role;
             this.department = department;
+            this.email = email;
+            this.start_Date = start_Date;
         }
         public string getUserID()
         {
@@ -46,14 +48,6 @@ namespace LearnHub.AppCode.entity
         public void setName(string name)
         {
             this.name = name;
-        }
-        public double getLengthOfSevice()
-        {
-            return length_of_service;
-        }
-        public void setLengthOfService(double length_of_service)
-        {
-            this.length_of_service = length_of_service;
         }
         public string getJobTitle()
         {
@@ -94,6 +88,22 @@ namespace LearnHub.AppCode.entity
         public void setDepartment(string department)
         {
             this.department = department;
+        }
+        public string getEmail()
+        {
+            return email;
+        }
+        public void setEmail(string email)
+        {
+            this.email = email;
+        }
+        public DateTime getStartDate()
+        {
+            return start_Date;
+        }
+        public void setStartDate(DateTime start_Date)
+        {
+            this.start_Date = start_Date;
         }
     }
 }

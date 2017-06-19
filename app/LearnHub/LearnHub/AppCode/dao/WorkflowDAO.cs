@@ -31,7 +31,7 @@ namespace LearnHub.AppCode.dao
                 {
                     toReturn = new Workflow();
                     toReturn.setWorkflowID((int)dr["wfid"]);
-                    toReturn.setProbationPeriod((double)(dr["probation_period"]));
+                    toReturn.setProbationPeriod((int)(dr["probation_period"]));
                     toReturn.setBondCriteria((double)(dr["bond_criteria"]));
                     string userCreatedID = (string)dr["userID"];
                     toReturn.setUserCreated(userDAO.getUserByID(userCreatedID));
@@ -68,7 +68,7 @@ namespace LearnHub.AppCode.dao
                 {
                     toReturn = new Workflow();
                     toReturn.setWorkflowID((int)dr["wfid"]);
-                    toReturn.setProbationPeriod((double)(dr["probation_period"]));
+                    toReturn.setProbationPeriod((int)(dr["probation_period"]));
                     toReturn.setBondCriteria((double)(dr["bond_criteria"]));
                     string userCreatedID = (string)dr["userID"];
                     toReturn.setUserCreated(userDAO.getUserByID(userCreatedID));

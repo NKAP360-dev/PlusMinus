@@ -26,7 +26,6 @@ namespace LearnHub
             {
                 Panel1.Visible = true;
                 lblName.Text = searchUser.getName();
-                lblLOS.Text = searchUser.getLengthOfSevice().ToString();
                 lblJobTitle.Text = searchUser.getJobTitle();
             } else
             {

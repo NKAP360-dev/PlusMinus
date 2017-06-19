@@ -46,7 +46,7 @@ namespace LearnHub.AppCode.workflow
 
             WorkflowApprover lastApprover = wfaDAO.getLastApproverInChain(currentWorkflow.getWorkflowID(), currentWFS.getWorkflowSubID());
             List<WorkflowApprover> approvers = wfaDAO.getSortedWorkflowApprovers(currentWorkflow.getWorkflowID(), currentWFS.getWorkflowSubID());
-            if (user.getJobCategory().Equals(lastApprover.getJobCategory()))
+            if (user.getJobCategory().Contains(lastApprover.getJobCategory()))
             {
                 isLastApprover = true;
             } else if (lastApprover.getJobCategory().Equals("supervisor")) {
@@ -83,6 +83,7 @@ namespace LearnHub.AppCode.workflow
                 if (isLastApprover)
                 {
                     notificationDAO.updateNotificationStatus(noti.getNotificationID(), "approved");
+                    notificationDAO.updateNotificationApprovedDate(noti.getNotificationID());
                     tnfDAO.updateTNFStatus(tnf.getTNFID(), "approved");
                     double bondCriteria = currentWorkflow.getBondCriteria();
                     if (currentCourse.getPrice() >= bondCriteria)
@@ -94,6 +95,7 @@ namespace LearnHub.AppCode.workflow
                 else
                 {
                     notificationDAO.updateNotificationStatus(noti.getNotificationID(), "approved");
+                    notificationDAO.updateNotificationApprovedDate(noti.getNotificationID());
                     tnfDAO.updateTNFWFStatus(tnf.getTNFID(), nextWFLevel);
                     tnf = tnfDAO.getIndividualTNFByID(tnf.getUser().getUserID(), tnf.getTNFID());
                     Workflow_Route.sendApprovalNotification(tnf, nextApprover);
@@ -105,6 +107,7 @@ namespace LearnHub.AppCode.workflow
                     foreach (Notification hrNoti in allHRNotification)
                     {
                         notificationDAO.updateNotificationStatus(hrNoti.getNotificationID(), "approved");
+                        notificationDAO.updateNotificationApprovedDate(hrNoti.getNotificationID());
                     }
                     tnfDAO.updateTNFStatus(tnf.getTNFID(), "approved");
                     double bondCriteria = currentWorkflow.getBondCriteria();
@@ -119,6 +122,7 @@ namespace LearnHub.AppCode.workflow
                     foreach (Notification hrNoti in allHRNotification)
                     {
                         notificationDAO.updateNotificationStatus(hrNoti.getNotificationID(), "approved");
+                        notificationDAO.updateNotificationApprovedDate(hrNoti.getNotificationID());
                     }
                     tnfDAO.updateTNFWFStatus(tnf.getTNFID(), nextWFLevel);
                     tnf = tnfDAO.getIndividualTNFByID(tnf.getUser().getUserID(), tnf.getTNFID());

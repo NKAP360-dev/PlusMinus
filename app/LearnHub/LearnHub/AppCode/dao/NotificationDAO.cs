@@ -63,7 +63,34 @@ namespace LearnHub.AppCode.dao
                 conn.Close();
             }
         }
-        public Notification getNotificationByID(int notif_ID)
+        public void updateNotificationApprovedDate(int notif_ID) // Update.
+        {
+            SqlConnection conn = new SqlConnection();
+
+            try
+            {
+                conn = new SqlConnection();
+                string connstr = ConfigurationManager.ConnectionStrings["DBConnectionString"].ToString();
+                conn.ConnectionString = connstr;
+                conn.Open();
+                SqlCommand comm = new SqlCommand();
+                comm.Connection = conn;
+                comm.CommandText =
+                    "Update [Notifications] SET dateApproved=@dateApproved WHERE notif_ID=@notif_ID";
+                comm.Parameters.AddWithValue("@dateApproved", DateTime.Now);
+                comm.Parameters.AddWithValue("@notif_ID", notif_ID);
+                int rowsAffected = comm.ExecuteNonQuery();
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+            public Notification getNotificationByID(int notif_ID)
         {
             SqlConnection conn = new SqlConnection();
             Notification toReturn = null;
@@ -136,6 +163,33 @@ namespace LearnHub.AppCode.dao
                 conn.Close();
             }
             return toReturn;
+        }
+        public void updateNotificationRemarks(int notif_ID, string remarks) // Update.
+        {
+            SqlConnection conn = new SqlConnection();
+
+            try
+            {
+                conn = new SqlConnection();
+                string connstr = ConfigurationManager.ConnectionStrings["DBConnectionString"].ToString();
+                conn.ConnectionString = connstr;
+                conn.Open();
+                SqlCommand comm = new SqlCommand();
+                comm.Connection = conn;
+                comm.CommandText =
+                    "Update [Notifications] SET remarks=@remarks WHERE notif_ID=@notif_ID";
+                comm.Parameters.AddWithValue("@remarks", remarks);
+                comm.Parameters.AddWithValue("@notif_ID", notif_ID);
+                int rowsAffected = comm.ExecuteNonQuery();
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                conn.Close();
+            }
         }
     }
 }

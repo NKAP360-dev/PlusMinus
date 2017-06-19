@@ -32,9 +32,10 @@ namespace LearnHub.AppCode.dao
                     toReturn = new User();
                     toReturn.setUserID((string)dr["userID"]);
                     toReturn.setName((string)dr["name"]);
-                    toReturn.setLengthOfService((double)(dr["lengthOfService"]));
                     toReturn.setJobTitle((string)dr["job_title"]);
                     toReturn.setJobCategory((string)dr["job_category"]);
+                    toReturn.setEmail((string)dr["email"]);
+                    toReturn.setStartDate(dr.GetDateTime(3));
                     if (!dr.IsDBNull(6))
                     {
                         toReturn.setSupervisor((string)dr["supervisor"]);

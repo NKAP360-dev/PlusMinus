@@ -213,5 +213,32 @@ namespace LearnHub.AppCode.dao
                 conn.Close();
             }
         }
+        public void updateTNFIsProbation(int tnfid, string isProbation) // Update.
+        {
+            SqlConnection conn = new SqlConnection();
+
+            try
+            {
+                conn = new SqlConnection();
+                string connstr = ConfigurationManager.ConnectionStrings["DBConnectionString"].ToString();
+                conn.ConnectionString = connstr;
+                conn.Open();
+                SqlCommand comm = new SqlCommand();
+                comm.Connection = conn;
+                comm.CommandText =
+                    "Update [TNF_data] SET isProbation=@probation WHERE tnfid=@tnfid";
+                comm.Parameters.AddWithValue("@probation",isProbation);
+                comm.Parameters.AddWithValue("@tnfid", tnfid);
+                int rowsAffected = comm.ExecuteNonQuery();
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
     }
 }
