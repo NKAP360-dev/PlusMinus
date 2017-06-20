@@ -66,8 +66,8 @@
                                     <asp:RequiredFieldValidator ID="rfv_NoUseError" runat="server" ErrorMessage="Please Enter Your Username" ControlToValidate="txtUsername" CssClass="text-danger"></asp:RequiredFieldValidator>
                                     <br />
                                     <asp:RequiredFieldValidator ID="rfv_NoPassError" runat="server" ErrorMessage="Please Enter Your Password" ControlToValidate="txtPassword" CssClass="text-danger"></asp:RequiredFieldValidator>
-                                    <asp:Label ID="lblErrorMsgUse" runat="server" CssClass="text-danger" Visible="false"></asp:Label><br />
-                                    <asp:Label ID="lblErrorMsgPass" runat="server" CssClass="text-danger" Visible="false"></asp:Label>
+                                    <br />
+                                    <asp:Label ID="lblErrorMsgUse" runat="server" CssClass="text-danger" Visible="false"></asp:Label>
                                 </div>
                             </div>
                         </fieldset>

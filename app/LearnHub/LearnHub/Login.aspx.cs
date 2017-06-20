@@ -21,17 +21,8 @@ namespace LearnHub
         }
         protected void btnLogin_Click(object sender, EventArgs e)
         {
-            if (txtUsername.Text == "")
-            {
-                lblErrorMsgUse.Visible = true;
-                lblErrorMsgUse.Text = "Please enter your username";
-            }
-            if (txtPassword.Text == "")
-            {
-                lblErrorMsgPass.Visible = true;
-                lblErrorMsgPass.Text = "Please enter your password";
-            }
-
+            
+           
             if (txtUsername.Text != "" && txtPassword.Text != "")
             {
                 LoginDAO loginDAO = new LoginDAO();
@@ -40,6 +31,8 @@ namespace LearnHub
                 User currentUser = loginDAO.login(txtUsername.Text, hashedPasword);
                 if (currentUser.getUserID() == null)
                 {
+                    rfv_NoUseError.Visible = false;
+                    rfv_NoPassError.Visible = false;
                     lblErrorMsgUse.Visible = true;
                     lblErrorMsgUse.Text = "Invalid username/password.";
                 } else
