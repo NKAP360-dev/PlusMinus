@@ -10,7 +10,7 @@ namespace LearnHub.AppCode.dao
 {
     public class CourseDAO
     {
-        public Course getCourseByID(string courseID)
+        public Course getCourseByID(int courseID)
         {
             SqlConnection conn = new SqlConnection();
             Course toReturn = null;
@@ -31,8 +31,14 @@ namespace LearnHub.AppCode.dao
                     toReturn.setCourseID((int)dr["courseID"]);
                     toReturn.setCourseName((string)dr["courseName"]);
                     toReturn.setPrice((double)(dr["price"]));
-                    toReturn.setVendor((string)dr["vendor"]);
-                    toReturn.setVendorDetails((string)dr["details"]);
+                    toReturn.setInternalOrExternal((string)dr["internalOrExternal"]);
+                    if (!dr.IsDBNull(4))
+                    {
+                        toReturn.setCourseProvider((string)dr["courseProvider"]);
+                    }
+                    toReturn.setStartDate(dr.GetDateTime(5));
+                    toReturn.setEndDate(dr.GetDateTime(6));
+                    toReturn.setStatus((string)dr["status"]);
                     toReturn.setOverseas((string)dr["overseas"]);
                 }
                 dr.Close();
@@ -66,11 +72,18 @@ namespace LearnHub.AppCode.dao
                 while (dr.Read())
                 {
                     c = new Course();
+                    c = new Course();
                     c.setCourseID((int)dr["courseID"]);
                     c.setCourseName((string)dr["courseName"]);
                     c.setPrice((double)(dr["price"]));
-                    c.setVendor((string)dr["vendor"]);
-                    c.setVendorDetails((string)dr["details"]);
+                    c.setInternalOrExternal((string)dr["internalOrExternal"]);
+                    if (!dr.IsDBNull(4))
+                    {
+                        c.setCourseProvider((string)dr["courseProvider"]);
+                    }
+                    c.setStartDate(dr.GetDateTime(5));
+                    c.setEndDate(dr.GetDateTime(6));
+                    c.setStatus((string)dr["status"]);
                     c.setOverseas((string)dr["overseas"]);
 
                     toReturn.Add(c);

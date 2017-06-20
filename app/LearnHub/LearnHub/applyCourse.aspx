@@ -138,12 +138,23 @@
                 <br />
 
                  <%-- Section B--%>
+                <asp:ScriptManager ID="ScriptManagerCourse" runat="server" />
+                
                 <h4>Section B - Course Details</h4>
+                <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+                <ContentTemplate>
                 <div class="form-group">
                     <strong>
                         <asp:Label ID="courseLabel" runat="server" CssClass="col-lg-2 control-label" Text="Course Title"></asp:Label></strong>
                     <div class="col-lg-5">
-                        <asp:DropDownList ID="courseInput" runat="server" CssClass="form-control" placeholder="Course Title"></asp:DropDownList>
+                        <asp:DropDownList ID="courseInput" runat="server" CssClass="form-control" placeholder="Course Title" DataSourceID="SqlDataSourceCourse" DataTextField="courseName" DataValueField="courseID" OnSelectedIndexChanged="courseInput_SelectedIndexChanged" AutoPostBack="True" AppendDataBoundItems="true">
+                            <asp:ListItem Selected="True" Value="-1" Text="Please select a course"></asp:ListItem>
+                        </asp:DropDownList>
+                        <asp:SqlDataSource ID="SqlDataSourceCourse" runat="server" ConnectionString="<%$ ConnectionStrings:DBConnectionString %>" SelectCommand="SELECT [courseID], [courseName] FROM [Course] WHERE ([status] = @status) ORDER BY [courseName]">
+                            <SelectParameters>
+                                <asp:Parameter DefaultValue="open" Name="status" Type="String" />
+                            </SelectParameters>
+                        </asp:SqlDataSource>
                     </div>
                 </div>
                 <div class="form-group">
@@ -152,9 +163,13 @@
                     <div class="col-lg-10">
                         <div class="radio">
                             <label>
-                                <asp:RadioButton ID="inhouse" GroupName="courseProvider" runat="server" Text="Inhouse" Checked="True" />
+                                <!--<asp:RadioButton ID="inhouse" GroupName="courseProvider" runat="server" Text="Inhouse" Checked="True" />
                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                <asp:RadioButton ID="external" GroupName="courseProvider" runat="server" Text="External" />
+                                <asp:RadioButton ID="external" GroupName="courseProvider" runat="server" Text="External" />-->
+                                <asp:radiobuttonlist id="courseProvider" runat="server" Enabled="False">
+                                    <asp:listitem id="in" runat="server" value="inhouse" Text="In house"/>
+                                    <asp:listitem id="ex" runat="server" value="external" Text="External" />
+                                </asp:radiobuttonlist> 
                             </label>
                         </div>
                     </div>
@@ -179,11 +194,16 @@
                             <asp:TextBox ID="fromDateInput" disabled="" runat="server" CssClass="form-control" placeholder="Start Date"></asp:TextBox>
                             <span class="input-group-addon">to</span>
                             <asp:TextBox ID="toDateInput" disabled="" runat="server" CssClass="form-control" placeholder="End Date"></asp:TextBox>
-                            <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i>
+                            </span>
                         </div>
                     </div>
                 </div>
-
+                    </ContentTemplate>
+                    <Triggers>
+                        <asp:AsyncPostBackTrigger ControlID="courseInput" EventName="SelectedIndexChanged" />
+                    </Triggers>
+                </asp:UpdatePanel>
                 <br />
 
                  <%-- Section C--%>

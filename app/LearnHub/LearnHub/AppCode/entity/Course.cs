@@ -10,21 +10,38 @@ namespace LearnHub.AppCode.entity
         private int courseID;
         private string courseName;
         private double price;
-        private string vendor;
-        private string vendor_details;
+        private string internalOrExternal;
+        private string courseProvider;
+        private DateTime startDate;
+        private DateTime endDate;
+        private string status;
         private string overseas;
 
         public Course()
         {
 
         }
-        public Course (int courseID, string courseName, double price, string vendor, string vendor_details, string overseas)
+        public Course (int courseID, string courseName, double price, string internalOrExternal, DateTime startDate, DateTime endDate, string status, string overseas)
         {
             this.courseID = courseID;
             this.courseName = courseName;
             this.price = price;
-            this.vendor = vendor;
-            this.vendor_details = vendor_details;
+            this.internalOrExternal = internalOrExternal;
+            this.startDate = startDate;
+            this.endDate = endDate;
+            this.status = status;
+            this.overseas = overseas;
+        }
+        public Course(int courseID, string courseName, double price, string internalOrExternal, string courseProvider, DateTime startDate, DateTime endDate, string status, string overseas)
+        {
+            this.courseID = courseID;
+            this.courseName = courseName;
+            this.price = price;
+            this.internalOrExternal = internalOrExternal;
+            this.courseProvider = courseProvider;
+            this.startDate = startDate;
+            this.endDate = endDate;
+            this.status = status;
             this.overseas = overseas;
         }
         public int getCourseID()
@@ -51,21 +68,45 @@ namespace LearnHub.AppCode.entity
         {
             this.price = price;
         }
-        public string getVendor()
+        public string getInternalOrExternal()
         {
-            return vendor;
+            return internalOrExternal;
         }
-        public void setVendor(string vendor)
+        public void setInternalOrExternal(string internalOrExternal)
         {
-            this.vendor = vendor;
+            this.internalOrExternal = internalOrExternal;
         }
-        public string getVendorDetails()
+        public string getCourseProvider()
         {
-            return vendor_details;
+            return courseProvider;
         }
-        public void setVendorDetails(string vendor_details)
+        public void setCourseProvider(string courseProvider)
         {
-            this.vendor_details = vendor_details;
+            this.courseProvider = courseProvider;
+        }
+        public DateTime getStartDate()
+        {
+            return startDate;
+        }
+        public void setStartDate(DateTime startDate)
+        {
+            this.startDate = startDate;
+        }
+        public DateTime getEndDate()
+        {
+            return endDate;
+        }
+        public void setEndDate(DateTime endDate)
+        {
+            this.endDate = endDate;
+        }
+        public string getStatus()
+        {
+            return status;
+        }
+        public void setStatus(string status)
+        {
+            this.status = status;
         }
         public string getOverseas()
         {

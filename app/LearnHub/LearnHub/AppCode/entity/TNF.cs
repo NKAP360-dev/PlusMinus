@@ -19,25 +19,21 @@ namespace LearnHub.AppCode.entity
 
         public TNF() { }
 
-        public TNF(int tnfid, User user, string type, string status, int wf_status, Workflow wf, WorkflowSub wfs)
+        public TNF(User user, string type, string status, int wf_status, Workflow wf)
         {
-            this.tnfid = tnfid;
             this.user = user;
             this.type = type;
             this.status = status;
             this.wf_status = wf_status;
             this.wf = wf;
-            this.wfs = wfs;
         }
-        public TNF(int tnfid, List<User> users, string type, string status, int wf_status, Workflow wf, WorkflowSub wfs)
+        public TNF(List<User> users, string type, string status, int wf_status, Workflow wf)
         {
-            this.tnfid = tnfid;
             this.users = users;
             this.type = type;
             this.status = status;
             this.wf_status = wf_status;
             this.wf = wf;
-            this.wfs = wfs;
         }
         public int getTNFID()
         {
