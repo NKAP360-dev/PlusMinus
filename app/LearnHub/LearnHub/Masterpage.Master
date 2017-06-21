@@ -1,9 +1,12 @@
 ﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Masterpage.master.cs" Inherits="LearnHub.Masterpage" %>
 
 <!DOCTYPE html>
+<%@ Import Namespace="LearnHub.AppCode.entity"%>
+<%@ Import Namespace="LearnHub.AppCode.dao"%>
 
 <html>
 <head runat="server">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
         html {
             position: relative;
@@ -216,33 +219,77 @@
                 </ul>
 
                 <%-- If user is logged in, show username that will be linked to user dashboard, else don't show username--%>
+                <%
+                    if (Session["currentUser"] != null)
+                    {
+                        
+                %>
                 <ul class="nav navbar-nav navbar-right">
                     <li>
-                        <asp:HyperLink ID="profile" runat="server">Username</asp:HyperLink></li>
+                        <asp:HyperLink ID="profile" runat="server">
+                            <%
+                                User currentUser = (User)Session["currentUser"];
+                                string username = currentUser.getName();
+                                Response.Write(username);
+                            %>
+                        </asp:HyperLink>
+                    </li>
                 </ul>
+                <%
+                    }
+                %>
 
                 <%--Show login button only if user is not logged in--%>
                 <%--Show logout button only if user is logged in--%>
                 <form class="navbar-form navbar-right">
+                    <%
+    if (Session["currentUser"] == null)
+    {
+                    %>
                     <a href="Login.aspx" class="btn btn-success"><span class="glyphicon glyphicon-user"></span>&nbsp;Login</a>
-                    <a href="#" class="btn btn-danger"><span class="glyphicon glyphicon-log-out"></span>&nbsp;Logout</a>
+                    <% }
+    else
+    { %>
+                    <a href="Logout.aspx" class="btn btn-danger"><span class="glyphicon glyphicon-log-out"></span>&nbsp;Logout</a>
+                    <% } %>
                 </form>
 
                 <%--Make notification appear only if user is logged in and if user is approver--%>
+
+                <%
+                    if (Session["currentUser"] != null)
+                    {
+                        User currentUser = (User)Session["currentUser"];
+                        NotificationDAO notificationDAO = new NotificationDAO();
+                        UserDAO userDAO = new UserDAO();
+                        List<Notification> allPendingNotifications = notificationDAO.getPendingNotificationByUserID(currentUser.getUserID());
+                        if (allPendingNotifications.Count > 0)
+                        {
+                %>
                 <form class="navbar-form navbar-right">
                     <ul class="nav nav-pills">
                         <li id="notification_li">
-                            <a href="#" id="notificationLink">Pending &nbsp;<span class="label label-danger">3</span></a>
+                            <a href="#" id="notificationLink">Pending &nbsp;
+                                <span class="label label-danger">
+                                    <% Response.Write(allPendingNotifications.Count); %>
+                                </span>
+                            </a>
                             <div id="notificationContainer" style="display: none;">
                                 <div id="notificationTitle">Training Request Forms Pending Approvals</div>
                                 <div id="notificationsBody" class="notifications">
-                                    <a href="#">You have a form pending approval from Tan Ming Kwang</a>
-                                    <div class="verticalLine"></div>
-                                    <br />
-                                    <a href="#">You have a form pending approval from Rafid</a>
-                                    <div class="verticalLine"></div>
-                                    <br />
-                                    You have a form pending approval from (name)
+                                    <%
+                                        for (int i = 0; i < allPendingNotifications.Count; i++)
+                                        {
+                                            Notification n = allPendingNotifications[i];
+                                            User sender = userDAO.getUserByID(n.getUserIDFrom());
+                                            Response.Write("<a href=\"#\">You have a form pending approval from " + sender.getName() + "</a>");
+                                            if (i != allPendingNotifications.Count - 1)
+                                            {
+                                                Response.Write("<div class=\"verticalLine\"></div>");
+                                                Response.Write("<br />");
+                                            }
+                                        }
+                                    %>
                                 </div>
                                 <div id="notificationFooter"><a href="../pendingApproval.aspx">See All</a></div>
                             </div>
@@ -250,6 +297,10 @@
                         </li>
                     </ul>
                 </form>
+                <%
+                        }
+                    }
+                %>
             </div>
         </div>
     </nav>
