@@ -180,5 +180,38 @@ namespace LearnHub.AppCode.dao
             }
             return toReturn;
         }
+        public string getJobCategory(int workflowID, int workflow_subID, int levels)
+        {
+            string toReturn = null;
+            SqlConnection conn = new SqlConnection();
+            try
+            {
+                conn = new SqlConnection();
+                string connstr = ConfigurationManager.ConnectionStrings["DBConnectionString"].ToString();
+                conn.ConnectionString = connstr;
+                conn.Open();
+                SqlCommand comm = new SqlCommand();
+                comm.Connection = conn;
+                comm.CommandText = "select job_category from [Workflow_approvers] where wfid=@wfid and wf_sub_id=@wfsid and levels=@levels";
+                comm.Parameters.AddWithValue("@wfid", workflowID);
+                comm.Parameters.AddWithValue("@wfsid", workflow_subID);
+                comm.Parameters.AddWithValue("@levels", levels);
+                SqlDataReader dr = comm.ExecuteReader();
+                while (dr.Read())
+                {
+                    toReturn = (string)dr["job_category"];
+                }
+                dr.Close();
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                conn.Close();
+            }
+            return toReturn;
+        }
     }
 }

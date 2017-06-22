@@ -16,24 +16,27 @@ namespace LearnHub.AppCode.entity
         private int wf_status;
         private Workflow wf;
         private WorkflowSub wfs;
+        private DateTime applicationDate;
 
         public TNF() { }
 
-        public TNF(User user, string type, string status, int wf_status, Workflow wf)
+        public TNF(User user, string type, string status, int wf_status, Workflow wf, DateTime applicationDate)
         {
             this.user = user;
             this.type = type;
             this.status = status;
             this.wf_status = wf_status;
             this.wf = wf;
+            this.applicationDate = applicationDate;
         }
-        public TNF(List<User> users, string type, string status, int wf_status, Workflow wf)
+        public TNF(List<User> users, string type, string status, int wf_status, Workflow wf, DateTime applicationDate)
         {
             this.users = users;
             this.type = type;
             this.status = status;
             this.wf_status = wf_status;
             this.wf = wf;
+            this.applicationDate = applicationDate;
         }
         public int getTNFID()
         {
@@ -98,6 +101,14 @@ namespace LearnHub.AppCode.entity
         public void setWorkflowSub(WorkflowSub wfs)
         {
             this.wfs = wfs;
+        }
+        public DateTime getApplicationDate()
+        {
+            return applicationDate;
+        }
+        public void setApplicationDate(DateTime applicationDate)
+        {
+            this.applicationDate = applicationDate;
         }
     }
 }

@@ -49,7 +49,7 @@ namespace LearnHub.AppCode.workflow
             if (user.getJobCategory().Contains(lastApprover.getJobCategory()))
             {
                 isLastApprover = true;
-            } else if (lastApprover.getJobCategory().Equals("supervisor")) {
+            } else if (lastApprover.getJobCategory().Equals("superior")) {
                 User currentTNFUser = tnf.getUser();
                 if (currentTNFUser.getSupervisor().Equals(user.getUserID())) {
                     isLastApprover = true;

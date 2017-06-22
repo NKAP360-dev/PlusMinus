@@ -26,6 +26,12 @@ namespace LearnHub
                 emailInput.Text = currentUser.getEmail();
                 designationInput.Text = currentUser.getJobTitle();
                 departmentInput.Text = currentUser.getDepartment();
+
+                externalCourseProvider.Text = "";
+                courseProvider.SelectedIndex = 0;
+                fromDateInput.Text = "";
+                toDateInput.Text = "";
+                courseFeeInput.Text = "";
             }
         }
 
@@ -48,6 +54,7 @@ namespace LearnHub
             string otherObjectives = null;
             string otherObjectivesText = null;
             DateTime? otherObjectivesCompletedDate = null;
+            DateTime applicationDate = DateTime.Now.Date;
 
 
             if (objectiveInput1.Checked)
@@ -81,16 +88,30 @@ namespace LearnHub
 
             //creation of TNF object
             Workflow currentWF = wfDAO.getCurrentActiveWorkflow("individual");
-            TNF newTNF = new TNF(currentUser, "individual", "pending", 0, currentWF);
+            TNF newTNF = new TNF(currentUser, "individual", "pending", 0, currentWF, applicationDate);
             int tnfid = tnfDAO.createTNF(newTNF);
             newTNF.setTNFID(tnfid);
             tnfDAO.createTNF_Data(tnfid, courseID, prepareForNewJobRole, prepareForNewJobRoleText, prepareForNewJobRoleCompletedDate, shareKnowledge, shareKnowledgeText, shareKnowledgeCompletedDate, otherObjectives, otherObjectivesText, otherObjectivesCompletedDate);
 
             //start routing
-            Workflow_Route.routeForApproval(newTNF);
+
+            Boolean successOrNot = Workflow_Route.routeForApproval(newTNF);
+            if (successOrNot)
+            {
+                Response.Redirect("~/submitTRF.aspx");
+            }
+            else
+            {
+                //do somethinwww
+            }
         }
 
-        protected void courseInput_SelectedIndexChanged(object sender, EventArgs e)
+        protected void cfmCancel_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("applyCourse.aspx");
+        }
+
+            protected void courseInput_SelectedIndexChanged(object sender, EventArgs e)
         {
             int courseID = Convert.ToInt32(courseInput.SelectedValue);
             if (courseID == -1)

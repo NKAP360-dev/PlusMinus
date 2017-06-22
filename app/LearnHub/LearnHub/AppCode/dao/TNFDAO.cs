@@ -44,6 +44,7 @@ namespace LearnHub.AppCode.dao
                     {
                         toReturn.setWorkflowSub(wfsDAO.getWorkflowSubByID((int)dr["wf_sub_id"]));
                     }
+                    toReturn.setApplicationDate(dr.GetDateTime(7));
                 }
                 dr.Close();
             }
@@ -250,12 +251,13 @@ namespace LearnHub.AppCode.dao
                 conn.Open();
                 SqlCommand comm = new SqlCommand();
                 comm.Connection = conn;
-                comm.CommandText = "Insert into [TNF] (userID, status, wf_status, wfid, type) OUTPUT INSERTED.tnfid VALUES (@userID, @status, @wf_status, @wfid, @type)";
+                comm.CommandText = "Insert into [TNF] (userID, status, wf_status, wfid, type, applicationDate) OUTPUT INSERTED.tnfid VALUES (@userID, @status, @wf_status, @wfid, @type, @applicationDate)";
                 comm.Parameters.AddWithValue("@userID", tnf.getUser().getUserID());
                 comm.Parameters.AddWithValue("@status", tnf.getStatus());
                 comm.Parameters.AddWithValue("@wf_status", 0);
                 comm.Parameters.AddWithValue("@wfid", tnf.getWorkflow().getWorkflowID());
                 comm.Parameters.AddWithValue("@type", tnf.getType());
+                comm.Parameters.AddWithValue("applicationDate", tnf.getApplicationDate());
                 toReturn = (Int32)comm.ExecuteScalar();
             }
             catch (SqlException ex)
@@ -353,6 +355,54 @@ namespace LearnHub.AppCode.dao
             {
                 conn.Close();
             }
+        }
+        public List<TNF> getAllTNFByUserID(string userID)
+        {
+            SqlConnection conn = new SqlConnection();
+            List<TNF> toReturn = new List<TNF>();
+            try
+            {
+                conn = new SqlConnection();
+                string connstr = ConfigurationManager.ConnectionStrings["DBConnectionString"].ToString();
+                conn.ConnectionString = connstr;
+                conn.Open();
+                SqlCommand comm = new SqlCommand();
+                comm.Connection = conn;
+                comm.CommandText = "select * from [TNF] where userID=@userID";
+                comm.Parameters.AddWithValue("@userID", userID);
+                SqlDataReader dr = comm.ExecuteReader();
+                while (dr.Read())
+                {
+                    TNF t = new TNF();
+                    UserDAO userDAO = new UserDAO();
+                    WorkflowDAO wfDAO = new WorkflowDAO();
+                    WorkflowSubDAO wfsDAO = new WorkflowSubDAO();
+                    User user = userDAO.getUserByID((string)dr["userID"]);
+                    t.setUser(user);
+                    t.setTNFID((int)dr["tnfid"]);
+                    t.setType((string)dr["type"]);
+                    t.setStatus((string)(dr["status"]));
+                    t.setWFStatus((int)dr["wf_status"]);
+                    t.setWorkflow(wfDAO.getWorkflowByID((int)dr["wfid"]));
+                    if (!dr.IsDBNull(6))
+                    {
+                        t.setWorkflowSub(wfsDAO.getWorkflowSubByID((int)dr["wf_sub_id"]));
+                    }
+                    t.setApplicationDate(dr.GetDateTime(7));
+
+                    toReturn.Add(t);
+                }
+                dr.Close();
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                conn.Close();
+            }
+            return toReturn;
         }
     }
 }

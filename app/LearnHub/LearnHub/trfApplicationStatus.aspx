@@ -1,4 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Masterpage.Master" AutoEventWireup="true" CodeBehind="trfApplicationStatus.aspx.cs" Inherits="LearnHub.trfApplicationStatus" %>
+<%@ Import Namespace="LearnHub.AppCode.entity"%>
+<%@ Import Namespace="LearnHub.AppCode.dao"%>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -9,35 +12,100 @@
         <table class="table table-striped table-hover ">
             <thead>
                 <tr>
-                    <th>#</th>
+                    <th>Application ID</th>
                     <th>Course Applied</th>
                     <th>Application Date</th>
-                    <th>Course Type</th>
+                    <th>Application Type</th>
                     <%--Individual or Group--%>
                     <th>Status</th>
                     <%-- Approved/Pending--%>
-                    <th>View Form</th>
+                    <th>Approver</th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
-                <tr class="success">
-                    <%--Approved --%>
-                    <td>1</td>
-                    <td>Column content</td>
-                    <td>Column content</td>
-                    <td>Individual</td>
-                    <td>Approved</td>
-                    <td><a href="#">View</a></td>
-                </tr>
-                <tr>
-                    <%--Pending--%>
-                    <td>2</td>
-                    <td>Column content</td>
-                    <td>Column content</td>
-                    <td>Group</td>
-                    <td>Pending</td>
-                    <td><a href="#">View</a></td>
-                </tr>
+                <%
+                    if (Session["currentUser"] != null) {
+                        User currentUser = (User)Session["currentUser"];
+                        UserDAO userDAO = new UserDAO();
+                        TNFDAO tnfDAO = new TNFDAO();
+                        WorkflowApproverDAO wfaDAO = new WorkflowApproverDAO();
+
+                        List<TNF> allTNF = tnfDAO.getAllTNFByUserID(currentUser.getUserID());
+                        foreach (TNF tnf in allTNF)
+                        {
+                            string approverName = "-";
+                            User nextApprover = null;
+                            int tnfid = tnf.getTNFID();
+                            string courseName = tnfDAO.getCourseFromTNF(tnfid).getCourseName();
+                            string application_type = tnf.getType();
+                            string status = tnf.getStatus();
+
+                            if (tnf.getStatus().Equals("pending"))
+                            {
+                                string approverCategory = wfaDAO.getJobCategory(tnf.getWorkflow().getWorkflowID(), tnf.getWorkflowSub().getWorkflowSubID(), tnf.getWFStatus());
+
+                                if (approverCategory.ToLower().Equals("supervisor"))
+                                {
+                                    nextApprover = userDAO.getSupervisorbyDepartment(currentUser.getDepartment());
+                                    approverName = nextApprover.getName();
+                                }
+                                else if (approverCategory.ToLower().Equals("hod"))
+                                {
+                                    nextApprover = userDAO.getHODbyDepartment(currentUser.getDepartment());
+                                    approverName = nextApprover.getName();
+                                }
+                                else if (approverCategory.ToLower().Equals("ceo"))
+                                {
+                                    nextApprover = userDAO.getCEO();
+                                    approverName = nextApprover.getName();
+                                }
+                                else if (approverCategory.ToLower().Equals("supervisor"))
+                                {
+                                    string supervisorID = userDAO.getSupervisorIDOfUser(currentUser.getUserID());
+                                    nextApprover = userDAO.getUserByID(supervisorID);
+                                    approverName = nextApprover.getName();
+                                }
+                                else if (approverCategory.ToLower().Equals("hr hod"))
+                                {
+                                    nextApprover = userDAO.getHRHOD();
+                                    approverName = nextApprover.getName();
+                                }
+                                else
+                                {
+                                    nextApprover = null;
+                                    approverName = "HR";
+                                }
+                            }
+
+                            //print out the table
+                            if (status.Equals("approved")) {
+                                Response.Write("<tr class=\"success\">");
+                            } else
+                            {
+                                Response.Write("<tr>");
+                            }
+                            Response.Write("<td>" + tnf.getTNFID() + "</td>");
+                            Response.Write("<td>" + courseName + "</td>");
+                            Response.Write("<td>" + tnf.getApplicationDate().ToString("dd-MM-yyyy")+ "</td>");
+                            Response.Write("<td>" + application_type + "</td>");
+                            Response.Write("<td>" + status + "</td>");
+                            if (nextApprover != null && !approverName.Equals(""))
+                            {
+                                Response.Write("<td>" + approverName + " (" + nextApprover.getJobTitle() + ")" + "</td>");
+                            } else if (nextApprover == null && !approverName.Equals(""))
+                            {
+                                Response.Write("<td>" + approverName + "</td>");
+                            } else
+                            {
+                                Response.Write("<td>" + "-" + "</td>");
+                            }
+
+                            Response.Write("<td><a href=\"#\" class=\"btn btn-info\"><span class=\"glyphicon glyphicon-menu-right\"></span>&nbsp;View</a></td>");
+
+                        }
+                    }
+                %>
             </tbody>
         </table>
     </div>

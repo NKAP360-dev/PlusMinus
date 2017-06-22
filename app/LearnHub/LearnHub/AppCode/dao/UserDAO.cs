@@ -112,7 +112,7 @@ namespace LearnHub.AppCode.dao
             }
             return toReturn;
         }
-        public User getHODbyDepartment(string dept_name)
+        public User getSupervisorbyDepartment(string dept_name)
         {
             SqlConnection conn = new SqlConnection();
             User toReturn = null;
@@ -126,7 +126,7 @@ namespace LearnHub.AppCode.dao
                 comm.Connection = conn;
                 comm.CommandText = "select * from [User] where dept_name=@dept_name and job_category=@job_category";
                 comm.Parameters.AddWithValue("@dept_name", dept_name);
-                comm.Parameters.AddWithValue("@job_category", "hod");
+                comm.Parameters.AddWithValue("@job_category", "supervisor");
                 SqlDataReader dr = comm.ExecuteReader();
                 while (dr.Read())
                 {
@@ -159,10 +159,10 @@ namespace LearnHub.AppCode.dao
             }
             return toReturn;
         }
-        public User getDirectorbyDepartment(string dept_name)
+        public User getHODbyDepartment(string dept_name)
         {
             SqlConnection conn = new SqlConnection();
-            User hod = getHODbyDepartment(dept_name);
+            User hod = getSupervisorbyDepartment(dept_name);
             string supervisorID = getSupervisorIDOfUser(hod.getUserID());
             return getUserByID(supervisorID);
         }
@@ -244,7 +244,7 @@ namespace LearnHub.AppCode.dao
             }
             return toReturn;
         }
-        public User getHRDirector()
+        public User getHRHOD()
         {
             SqlConnection conn = new SqlConnection();
             User toReturn = null;
@@ -257,7 +257,7 @@ namespace LearnHub.AppCode.dao
                 SqlCommand comm = new SqlCommand();
                 comm.Connection = conn;
                 comm.CommandText = "select * from [User] where job_category=@job_category";
-                comm.Parameters.AddWithValue("@job_category", "hr director");
+                comm.Parameters.AddWithValue("@job_category", "hr hod");
                 SqlDataReader dr = comm.ExecuteReader();
                 while (dr.Read())
                 {

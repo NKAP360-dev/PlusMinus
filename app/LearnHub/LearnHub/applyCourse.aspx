@@ -301,7 +301,7 @@
                     <div class="modal-body">
                         <div class="wrapper">                            
                             <h4>Are you sure you want to submit?</h4><br />
-                            <asp:Button ID="cfmSubmit" CssClass="btn btn-primary" runat="server" Text="Submit" OnClick="submitBtn_Click" PostBackUrl="~/submitTRF.aspx" />
+                            <asp:Button ID="cfmSubmit" CssClass="btn btn-primary" runat="server" Text="Submit" OnClick="submitBtn_Click" />
                         </div>                       
                     </div>                  
                 </div>
@@ -320,7 +320,7 @@
                     <div class="modal-body">
                         <div class="wrapper">                            
                             <h4>Are you sure you want to cancel?<br /> This will clear all fields previously entered!</h4><br />
-                            <asp:Button ID="cfmCancel" CssClass="btn btn-primary" runat="server" Text="Cancel"/>
+                            <asp:Button ID="cfmCancel" CssClass="btn btn-primary" runat="server" Text="Clear" OnClick="cfmCancel_Click"/>
                         </div>                       
                     </div>                  
                 </div>
@@ -334,7 +334,7 @@
                 <div class="form-group">
                     <div class="col-lg-10 col-lg-offset-2">
                         <asp:Button ID="submitBtn" CssClass="btn btn-primary" runat="server" Text="Submit" data-toggle="modal" href="#submitModal"/>
-                        <asp:Button ID="resetBtn" CssClass="btn btn-default" runat="server" Text="Cancel" data-toggle="modal" href="#cancelModal"/>
+                        <asp:Button ID="resetBtn" CssClass="btn btn-default" runat="server" Text="Clear" data-toggle="modal" href="#cancelModal"/>
                     </div>
                 </div>
             </fieldset>

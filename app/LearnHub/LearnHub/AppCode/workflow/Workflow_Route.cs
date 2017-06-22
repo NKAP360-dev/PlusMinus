@@ -20,6 +20,7 @@ namespace LearnHub.AppCode.workflow
             Workflow currentWorkflow = wfDAO.getCurrentActiveWorkflow(tnf.getType());
             List<User> users = new List<User>();
             string tnfType = "";
+            Boolean gotBudget = false;
 
             //getting the type if it's individual or group
             if (tnf.getType().Equals("individual"))
@@ -34,10 +35,17 @@ namespace LearnHub.AppCode.workflow
             }
 
             //To check budget
-            Department currentDept = deptDAO.getDeptByName(tnf.getUser().getDepartment());
-            Course currentCourse = tnfDAO.getCourseFromTNF(tnf.getTNFID());
-            double courseCost = currentCourse.getPrice();
-            Boolean gotBudget = deptDAO.checkDeptBudget(currentDept.getDeptName(), currentCourse.getPrice());
+            if (tnfType.Equals("Individual"))
+            {
+                Department currentDept = deptDAO.getDeptByName(tnf.getUser().getDepartment());
+                Course currentCourse = tnfDAO.getCourseFromTNF(tnf.getTNFID());
+                double courseCost = currentCourse.getPrice();
+                gotBudget = deptDAO.checkDeptBudget(currentDept.getDeptName(), currentCourse.getPrice());
+            }
+            else
+            {
+                //check budget for each member of group
+            }
             if (gotBudget)
             {
                 if (tnfType.Equals("Individual"))
@@ -99,7 +107,7 @@ namespace LearnHub.AppCode.workflow
 
                 for (int i = 0; i < workflowSubs.Count; i++)
                 {
-                    if (wfsDAO.getWorkflowSubType(workflowSubs[i].getWorkflowSubID()).Equals("supervisor"))
+                    if (wfsDAO.getWorkflowSubType(workflowSubs[i].getWorkflowSubID()).Equals("superior"))
                     {
                         i = 0;
                     }
@@ -140,13 +148,14 @@ namespace LearnHub.AppCode.workflow
                                 {
                                     WorkflowApprover nextWFApprover = approvers[levelOfUser + 1];
                                     tnfDAO.updateTNFWFSub(tnf.getTNFID(), currentWFS.getWorkflowSubID());
+                                    tnfDAO.updateTNFWFStatus(tnf.getTNFID(), levelOfUser + 1);
                                     sendApprovalNotification(tnf, nextWFApprover);
                                     return true;
                                 }
                                 else
                                 {
                                     //handle last person in chain
-                                    workflowSubs = wfsDAO.getSortedWorflowSubByWorkflowIDandType(currentWorkflow.getWorkflowID(), "supervisor");
+                                    workflowSubs = wfsDAO.getSortedWorflowSubByWorkflowIDandType(currentWorkflow.getWorkflowID(), "superior");
 
                                 }
                             }
@@ -188,7 +197,7 @@ namespace LearnHub.AppCode.workflow
             {
                 return true;
             }
-            else if (checkFrom.Equals("director"))
+            else if (checkFrom.Equals("hod"))
             {
                 if (checkTo.Equals("CEO") || checkTo.Equals("hr"))
                 {
@@ -199,7 +208,7 @@ namespace LearnHub.AppCode.workflow
                     return true;
                 }
             }
-            else if (checkFrom.Equals("hr director"))
+            else if (checkFrom.Equals("hr hod"))
             {
                 if (checkTo.Equals("CEO"))
                 {
@@ -210,9 +219,9 @@ namespace LearnHub.AppCode.workflow
                     return true;
                 }
             }
-            else if (checkFrom.Equals("hod"))
+            else if (checkFrom.Equals("supervisor"))
             {
-                if (checkTo.Equals("ceo") || checkTo.Equals("director") || checkTo.Equals("hr"))
+                if (checkTo.Equals("ceo") || checkTo.Equals("hod") || checkTo.Equals("hr"))
                 {
                     return false;
                 }
@@ -259,7 +268,7 @@ namespace LearnHub.AppCode.workflow
                 }
                 else if (approverJobCat.ToLower().Equals("director"))
                 {
-                    approver = userDAO.getDirectorbyDepartment(currentUser.getDepartment());
+                    approver = userDAO.getHODbyDepartment(currentUser.getDepartment());
                 }
                 else if (approverJobCat.ToLower().Equals("hod"))
                 {
@@ -267,7 +276,7 @@ namespace LearnHub.AppCode.workflow
                 }
                 else if (approverJobCat.ToLower().Equals("hr director"))
                 {
-                    approver = userDAO.getHRDirector();
+                    approver = userDAO.getHRHOD();
                 }
                 else if (approverJobCat.ToLower().Equals("hr"))
                 {
