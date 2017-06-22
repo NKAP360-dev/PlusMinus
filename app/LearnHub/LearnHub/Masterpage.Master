@@ -107,6 +107,14 @@
         .wrapper {
             text-align: center;
         }
+
+         .right {
+            position: absolute;
+            width: 300px;
+            right: 0px;
+            padding: 10px;
+        }
+
     </style>
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script type="text/javascript">
@@ -175,6 +183,9 @@
                             <li class="divider"></li>
                             <li>
                                 <asp:HyperLink ID="HyperLink5" runat="server" data-toggle="modal" href="#formModal">Apply for Courses</asp:HyperLink></li>
+                                                        <li>
+                                <asp:HyperLink ID="HyperLink14" runat="server" NavigateUrl="~/trfApplicationStatus.aspx">Application Status</asp:HyperLink></li>
+                            
                             <li class="divider"></li>
                             <li>
                                 <asp:HyperLink ID="HyperLink6" runat="server">My Enrolled Courses</asp:HyperLink></li>

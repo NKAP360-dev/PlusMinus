@@ -289,15 +289,52 @@
                     </div>
                 </div>
 
+                <%--Modal for Submission Confirmation--%>
+                <div id="submitModal" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title"><b>Submit Training Request Form</b></h4>
+                    </div>
+                    <%--Modal Content--%>
+                    <div class="modal-body">
+                        <div class="wrapper">                            
+                            <h4>Are you sure you want to submit?</h4><br />
+                            <asp:Button ID="cfmSubmit" CssClass="btn btn-primary" runat="server" Text="Submit" OnClick="submitBtn_Click" PostBackUrl="~/submitTRF.aspx" />
+                        </div>                       
+                    </div>                  
+                </div>
 
+            </div>
+        </div>
+                <%--Modal for Cancel Confirmation--%>
+                <div id="cancelModal" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title"><b>Clear all contents</b></h4>
+                    </div>
+                    <%--Modal Content--%>
+                    <div class="modal-body">
+                        <div class="wrapper">                            
+                            <h4>Are you sure you want to cancel?<br /> This will clear all fields previously entered!</h4><br />
+                            <asp:Button ID="cfmCancel" CssClass="btn btn-primary" runat="server" Text="Cancel"/>
+                        </div>                       
+                    </div>                  
+                </div>
+
+            </div>
+        </div>
 
 
 
 
                 <div class="form-group">
                     <div class="col-lg-10 col-lg-offset-2">
-                        <asp:Button ID="submitBtn" CssClass="btn btn-primary" runat="server" Text="Submit" OnClick="submitBtn_Click" />
-                         <asp:Button ID="resetBtn" CssClass="btn btn-default" runat="server" Text="Cancel" />
+                        <asp:Button ID="submitBtn" CssClass="btn btn-primary" runat="server" Text="Submit" data-toggle="modal" href="#submitModal"/>
+                        <asp:Button ID="resetBtn" CssClass="btn btn-default" runat="server" Text="Cancel" data-toggle="modal" href="#cancelModal"/>
                     </div>
                 </div>
             </fieldset>
