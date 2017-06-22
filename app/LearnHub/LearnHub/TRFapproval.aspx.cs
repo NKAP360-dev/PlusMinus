@@ -1,4 +1,6 @@
 ﻿using System;
+using LearnHub.AppCode.dao;
+using LearnHub.AppCode.entity;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -17,8 +19,24 @@ namespace LearnHub
             }
             else
             {
-                string tnfid = Request.QueryString["tnfid"];
-                nameOfStaffInput.Text = tnfid;
+                //string tnfid = Request.QueryString["tnfid"];
+                //nameOfStaffOutput.Text = tnfid;
+
+                User currentUser = (User)Session["currentUser"];
+
+                //all HR will view HR approval section
+                if (currentUser.getDepartment().Equals("hr"))
+                {
+                    hrApprovalView.Visible = true;
+
+                    //if HR and also an approver, both section will be seen
+                    if (!currentUser.getJobCategory().Equals("hr")) {
+                        normalApprovalView.Visible = true;
+                    }             
+                }else{
+                    normalApprovalView.Visible = true;
+                }
+
             }
         }
     }

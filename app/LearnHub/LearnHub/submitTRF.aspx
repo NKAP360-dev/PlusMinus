@@ -6,11 +6,11 @@
         <h1>Submission Confirmation</h1>
         <h3>Thank you for your submission</h3>
         You will receive an email once your application is approved.
-        <div class="right">
+        <br /><br />
             <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/trfApplicationStatus.aspx"><span class="glyphicon glyphicon-menu-right"></span>&nbsp; View Application Status</asp:HyperLink>
             <br /><asp:HyperLink ID="HyperLink2" runat="server"><span class="glyphicon glyphicon-menu-right"></span>&nbsp; View Course Listing</asp:HyperLink>
 
-        </div>
+        
         </div>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder2" runat="server">

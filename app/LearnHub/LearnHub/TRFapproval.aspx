@@ -1,5 +1,10 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Masterpage.Master" AutoEventWireup="true" CodeBehind="TRFapproval.aspx.cs" Inherits="LearnHub.TRFapproval" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+
+    <%@ Import Namespace="LearnHub.AppCode.entity" %>
+    <%@ Import Namespace="LearnHub.AppCode.dao" %>
+
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/css/datepicker.css" rel="stylesheet" type="text/css" />
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -41,9 +46,11 @@
                 content: "\e114";
             }
 
-        .buttonAdjust {
-            width: 100%;
-        }
+          .form-horizontal .control-label-left {
+    text-align: left;
+    margin-bottom: 0;
+    padding-top: 11px;
+  }
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -53,384 +60,416 @@
             <div class="verticalLine"></div>
             <br />
 
-            <%--panel-collapse collapse in = open auto when page is loaded
-                panel-collapse collapse    = closed when page is loaded --%>
             <div class="row">
-                Please review the form below and approve accordingly
-                <br />
-                <br />
+                
 
-                <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-                    <div class="panel panel-default">
-                        <div class="panel-heading" role="tab" id="headingOne">
-                            <h4 class="panel-title">
-                                <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">Supervisor Approval
-                    </a>
-                            </h4>
-                        </div>
-                        <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
-                            <div class="panel-body">
+                
+                    <%-- Section A--%>
+                    <h4>Section A - Staff Particulars</h4>
 
-                                <asp:Label ID="supRemarks" runat="server" Text="Remarks (if any)"></asp:Label>
-                                <asp:TextBox ID="supRemarksInput" TextMode="multiline" Columns="50" Rows="5" runat="server" CssClass="form-control" placeholder="Remarks (if any)"></asp:TextBox>
-                                <br />
-                                <asp:LinkButton ID="supApprove" runat="server" CssClass="btn btn-success"><span class="glyphicon glyphicon-ok"></span> &nbsp;Approve</asp:LinkButton>
-
-
-                            </div>
-                        </div>
-                    </div>
-                    <div class="panel panel-default">
-                        <div class="panel-heading" role="tab" id="headingTwo">
-                            <h4 class="panel-title">
-                                <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">HOD Approval
-                    </a>
-                            </h4>
-                        </div>
-                        <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
-                            <div class="panel-body">
-                                <asp:Label ID="hodRemarks" runat="server" Text="Remarks (if any)"></asp:Label>
-                                <asp:TextBox ID="hodRemarksInput" TextMode="multiline" Columns="50" Rows="5" runat="server" CssClass="form-control" placeholder="Remarks (if any)"></asp:TextBox>
-                                <br />
-                                <asp:LinkButton ID="hodApprove" runat="server" CssClass="btn btn-success"><span class="glyphicon glyphicon-ok"></span> &nbsp;Approve</asp:LinkButton>
-
-                            </div>
-                        </div>
-                    </div>
-                    <div class="panel panel-default">
-                        <div class="panel-heading" role="tab" id="headingThree">
-                            <h4 class="panel-title">
-                                <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">For Official Use (HR Department)
-                    </a>
-                            </h4>
-                        </div>
-                        <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
-                            <div class="panel-body">
-                                <div class="form-group">
-                                    <table>
-                                        <tr>
-                                            <td>&nbsp;1.  For staff who are on probation, please specify confirmation date</td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <div class="col-lg-10">
-                                                    <div class="input-group date">
-                                                        <asp:TextBox ID="probationInput" runat="server" CssClass="form-control" placeholder="Target Completion Date"></asp:TextBox><span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                        </tr>
-
-                                        <tr>
-                                            <td>&nbsp;2. Total Training Costs (inclusive of absentee payroll and allowances)
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <div class="col-lg-10">
-                                                    <div class="input-group">
-                                                        <span class="input-group-addon">$</span>
-                                                        <asp:TextBox ID="trainingCost" runat="server" CssClass="form-control" placeholder="Total Training Costs"></asp:TextBox>
-                                                    </div>
-                                                </div>
-
-                                            </td>
-                                        </tr>
-
-                                        <tr>
-                                            <td>&nbsp;3. Balance Training Budget
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <div class="col-lg-10">
-                                                    <div class="input-group">
-                                                        <span class="input-group-addon">$</span>
-                                                        <asp:TextBox ID="trainingBudget" runat="server" CssClass="form-control" placeholder="Balance Training Cost"></asp:TextBox>
-                                                        <span class="input-group-addon">as at </span>
-                                                        <div class="input-group date">
-                                                            <asp:TextBox ID="TextBox1" runat="server" CssClass="form-control" placeholder="dd/mm/yyyy"></asp:TextBox><span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
-                                                        </div>
-
-                                                    </div>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>&nbsp;4. MSP/Bond Applicable
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                
-                                                    <div class="checkbox">
-                                                        <label>
-                                                            <asp:CheckBox ID="CheckBox1" runat="server" Text="MSP" />
-
-                                                        </label>
-                                                    </div>
-                                                
-                                            </td>
-                                            <td>
-                                                <div class="checkbox">
-                                                    <label>
-                                                        <asp:CheckBox ID="CheckBox2" runat="server" Text="Bond" />
-
-                                                    </label>
-                                                </div>
-                                                </td>
-                                            <td>
-                                                <div class="checkbox">
-                                                    <label>
-                                                        <asp:CheckBox ID="CheckBox3" runat="server" Text="Not Applicable" />
-
-                                                    </label>
-                                                </div>
-
-                                            </td>  
-                                </tr>
-                                    </table>
-
-
-
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="panel panel-default">
-                    <div class="panel-heading" role="tab" id="headingFour">
-                        <h4 class="panel-title">
-                            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="false" aria-controls="collapseFour">HR Director Approval
-                    </a>
-                        </h4>
-                    </div>
-                    <div id="collapseFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFour">
-                        <div class="panel-body">
-                            <asp:Label ID="hrdRemarks" runat="server" Text="Remarks (if any)"></asp:Label>
-                            <asp:TextBox ID="hrdRemarksInput" TextMode="multiline" Columns="50" Rows="5" runat="server" CssClass="form-control" placeholder="Remarks (if any)"></asp:TextBox>
-                            <br />
-                            <asp:LinkButton ID="hrdApprove" runat="server" CssClass="btn btn-success"><span class="glyphicon glyphicon-ok"></span> &nbsp;Approve</asp:LinkButton>
-
-                        </div>
-                    </div>
-                </div>
-                <div class="panel panel-default">
-                    <div class="panel-heading" role="tab" id="headingFive">
-                        <h4 class="panel-title">
-                            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFive" aria-expanded="false" aria-controls="collapseFive">CEO Approval
-                    </a>
-                        </h4>
-                    </div>
-                    <div id="collapseFive" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFive">
-                        <div class="panel-body">
-                            <asp:Label ID="ceoRemarks" runat="server" Text="Remarks (if any)"></asp:Label>
-                            <asp:TextBox ID="ceoRemarksInput" TextMode="multiline" Columns="50" Rows="5" runat="server" CssClass="form-control" placeholder="Remarks (if any)"></asp:TextBox>
-                            <br />
-                            <asp:LinkButton ID="ceoApprove" runat="server" CssClass="btn btn-success"><span class="glyphicon glyphicon-ok"></span> &nbsp;Approve</asp:LinkButton>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="verticalLine"></div>
-        <br />
-        <br />
-
-        <div class="row">
-            <fieldset>
-
-
-                <%-- Section A--%>
-                <h4>Section A - Staff Particulars</h4>
-                <h6>Not applicable for group training. For group training, omit this section and complete the attached Annex A</h6>
-                <div class="form-group">
-                    <strong>
-                        <asp:Label ID="nameOfStaffLabel" runat="server" CssClass="col-lg-2 control-label" Text="Name Of Staff"></asp:Label></strong>
-                    <div class="col-lg-5">
-                        <asp:TextBox ID="nameOfStaffInput" disabled="" runat="server" CssClass="form-control" placeholder="Name Of Staff"></asp:TextBox>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <strong>
-                        <asp:Label ID="employeeNoLabel" runat="server" CssClass="col-lg-2 control-label" Text="Employee No"></asp:Label></strong>
-                    <div class="col-lg-5">
-                        <asp:TextBox ID="employeeNoInput" disabled="" runat="server" CssClass="form-control" placeholder="Employee Number"></asp:TextBox>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <strong>
-                        <asp:Label ID="emailLabel" runat="server" CssClass="col-lg-2 control-label" Text="Email Address"></asp:Label></strong>
-                    <div class="col-lg-5">
-                        <asp:TextBox ID="emailInput" disabled="" runat="server" CssClass="form-control" placeholder="Email Address"></asp:TextBox>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <strong>
-                        <asp:Label ID="designationLabel" runat="server" CssClass="col-lg-2 control-label" Text="Desgination"></asp:Label></strong>
-                    <div class="col-lg-5">
-                        <asp:TextBox ID="designationInput" disabled="" runat="server" CssClass="form-control" placeholder="Designation"></asp:TextBox>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <strong>
-                        <asp:Label ID="departmentLabel" runat="server" CssClass="col-lg-2 control-label" Text="Department"></asp:Label></strong>
-                    <div class="col-lg-5">
-                        <asp:TextBox ID="departmentInput" disabled="" runat="server" CssClass="form-control" placeholder="Department"></asp:TextBox>
-                    </div>
-                </div>
-                <br />
-
-                <%-- Section B--%>
-                <h4>Section B - Course Details</h4>
-                <div class="form-group">
-                    <strong>
-                        <asp:Label ID="courseLabel" runat="server" CssClass="col-lg-2 control-label" Text="Course Title"></asp:Label></strong>
-                    <div class="col-lg-5">
-                        <asp:DropDownList ID="courseInput" runat="server" CssClass="form-control" placeholder="Course Title"></asp:DropDownList>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <strong>
-                        <asp:Label ID="sessionLabel" runat="server" CssClass="col-lg-2 control-label" Text="Session"></asp:Label></strong>
-                    <div class="col-lg-5">
-                        <asp:DropDownList ID="courseSession" runat="server" CssClass="form-control" placeholder="lessonID + startDate - endDate"></asp:DropDownList>
+                    <div class="form-group">
+                                <strong>
+                            <asp:Label ID="nameOfStaffLabel" runat="server" CssClass="col-lg-2 control-label" Text="Name Of Staff"></asp:Label></strong>
+                                 
+                                  <asp:Label ID="nameOfStaffOutput" runat="server" CssClass="col-lg-2 control-label-left" Text="Name Of Staff"></asp:Label>    
+                                 
+                                </div>
+                    <div class="form-group">
                         <strong>
-                            <asp:Label ID="Label1" runat="server" CssClass="col-lg-2 control-label" Text="Venue:"></asp:Label></strong>
-                        <asp:Label ID="Label2" runat="server" CssClass="col-lg-2 control-label" Text="generated"></asp:Label>&nbsp;&nbsp;
+                            <asp:Label ID="employeeNoLabel" runat="server" CssClass="col-lg-2 control-label" Text="Employee No"></asp:Label></strong>
+                        
+                            <asp:Label ID="employeeNumberOutput" runat="server" CssClass="col-lg-2 control-label-left" Text="Employee Number"></asp:Label>
+                        
+                    </div>
+                    <div class="form-group">
+                        <strong>
+                            <asp:Label ID="emailLabel" runat="server" CssClass="col-lg-2 control-label" Text="Email Address"></asp:Label></strong>
+                        
+                            <asp:Label ID="emailOutput" runat="server" CssClass="col-lg-2 control-label-left" Text="Email Address"></asp:Label>
+                        
+                    </div>
+                    <div class="form-group">
+                        <strong>
+                            <asp:Label ID="designationLabel" runat="server" CssClass="col-lg-2 control-label" Text="Desgination"></asp:Label></strong>
+                        
+                            <asp:Label ID="designationOutput" runat="server" CssClass="col-lg-2 control-label-left" Text="Designation"></asp:Label>
+                        
+                    </div>
+                    <div class="form-group">
+                        <strong>
+                            <asp:Label ID="departmentLabel" runat="server" CssClass="col-lg-2 control-label" Text="Department"></asp:Label></strong>
+                        
+                            <asp:Label ID="departmentOutput" runat="server" CssClass="col-lg-2 control-label-left" Text="Department"></asp:Label>
+                        
+                    </div>
+                    <br />
+
+                    <%-- Section B--%>
+                    <h4>Section B - Course Details</h4>
+                    <div class="form-group">
+                        <strong>
+                            <asp:Label ID="courseLabel" runat="server" CssClass="col-lg-2 control-label" Text="Course Title"></asp:Label></strong>
+                        
+                            <asp:Label ID="courseOutput" runat="server" CssClass="col-lg-2 control-label-left" Text="Course Title"></asp:Label>
+                       
+                    </div>
+                    <div class="form-group">
+                        <strong>
+                            <asp:Label ID="sessionLabel" runat="server" CssClass="col-lg-2 control-label" Text="Session"></asp:Label></strong>
+                        <div class="col-lg-5">
+                            <asp:DropDownList ID="courseSession" runat="server" CssClass="form-control" placeholder="lessonID + startDate - endDate"></asp:DropDownList>
+                            <strong>
+                                <asp:Label ID="Label1" runat="server" CssClass="col-lg-2 control-label" Text="Venue:"></asp:Label></strong>
+                            <asp:Label ID="Label2" runat="server" CssClass="col-lg-2 control-label" Text="generated"></asp:Label>&nbsp;&nbsp;
                         <strong>
                             <asp:Label ID="venue" runat="server" CssClass="col-lg-2 control-label" Text="Time:"></asp:Label></strong>
-                        <asp:Label ID="time" runat="server" CssClass="col-lg-2 control-label" Text="generated"></asp:Label>
+                            <asp:Label ID="time" runat="server" CssClass="col-lg-2 control-label" Text="generated"></asp:Label>
 
+                        </div>
                     </div>
-                </div>
-
-
-                <div class="form-group">
-                    <strong>
-                        <asp:Label ID="courseProviderLabel" disabled="" runat="server" CssClass="col-lg-2 control-label" Text="Course Provider"></asp:Label></strong>
-                    <div class="col-lg-10">
-                        <div class="radio">
-                            <label>
-                                <asp:RadioButton ID="inhouse" GroupName="courseProvider" runat="server" Text="Inhouse" Checked="True" />
-                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <div class="form-group">
+                        <strong>
+                            <asp:Label ID="courseProviderLabel" disabled="" runat="server" CssClass="col-lg-2 control-label" Text="Course Provider"></asp:Label></strong>
+                        <div class="col-lg-10">
+                            <div class="radio">
+                                <label>
+                                    <asp:RadioButton ID="inhouse" GroupName="courseProvider" runat="server" Text="Inhouse" Checked="True" />
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 <asp:RadioButton ID="external" GroupName="courseProvider" runat="server" Text="External" />
-                            </label>
+                                </label>
+                            </div>
+                        </div>
+                        <asp:Label ID="empty1" runat="server" CssClass="col-lg-2 control-label" Text=""></asp:Label>
+                        
+                            <asp:Label ID="externalCourseProviderOutput" runat="server" CssClass="col-lg-2 control-label-left" Text="External, if any"></asp:Label>
+                        
+                    </div>
+                    <div class="form-group">
+                        <strong>
+                            <asp:Label ID="courseFeeLabel" disabled="" runat="server" CssClass="col-lg-2 control-label" Text="Course Fees with GST"></asp:Label></strong>
+                       
+                            <asp:Label ID="courseFeeOutput" runat="server" CssClass="col-lg-2 control-label-left" Text="Course Fees with GST (where applicable)"></asp:Label>
+                        
+                    </div>
+                    <div class="form-group">
+                        <strong>
+                            <asp:Label ID="dateLabel" runat="server" CssClass="col-lg-2 control-label" Text="Date"></asp:Label></strong>
+
+                              <asp:Label ID="startDate" runat="server" CssClass="col-lg-2 control-label-left" Text="Start Date"></asp:Label>  
+                        <asp:Label ID="to" runat="server" CssClass="col-lg-1 control-label-left" Text="to"></asp:Label> 
+                              <asp:Label ID="endDate" runat="server" CssClass="col-lg-2 control-label-left" Text="End Date"></asp:Label>
+
                         </div>
                     </div>
-                    <asp:Label ID="empty1" runat="server" CssClass="col-lg-2 control-label" Text=""></asp:Label>
-                    <div class="col-lg-5">
-                        <asp:TextBox ID="externalCourseProvider" disabled="" runat="server" CssClass="form-control" placeholder="If external, please specify"></asp:TextBox>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <strong>
-                        <asp:Label ID="courseFeeLabel" disabled="" runat="server" CssClass="col-lg-2 control-label" Text="Course Fees with GST"></asp:Label></strong>
-                    <div class="col-lg-5">
-                        <asp:TextBox ID="courseFeeInput" disabled="" runat="server" CssClass="form-control" placeholder="Course Fees with GST (where applicable)"></asp:TextBox>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <strong>
-                        <asp:Label ID="dateLabel" runat="server" CssClass="col-lg-2 control-label" Text="Date"></asp:Label></strong>
+                    <br />
 
-                    <div class="col-lg-5">
-                        <div class="input-daterange input-group" id="datepicker">
-                            <asp:TextBox ID="fromDateInput" disabled="" runat="server" CssClass="form-control" placeholder="Start Date"></asp:TextBox>
-                            <span class="input-group-addon">to</span>
-                            <asp:TextBox ID="toDateInput" disabled="" runat="server" CssClass="form-control" placeholder="End Date"></asp:TextBox>
-                            <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                    <%-- Section C--%>
+                    <h4>Section C - Pre Training Assessment</h4>
+                    <div class="form-group">
+                        <strong>
+                            <asp:Label ID="objectiveLabel" runat="server" CssClass="col-lg-2 control-label" Text="Objective(s) attending the course (please tick)"></asp:Label></strong>
+                        <%--First checkbox--%>
+                        <div class="col-lg-10">
+                            <div class="checkbox">
+                                <label>
+                                    <asp:CheckBox ID="objectiveInput1" runat="server" Text="To prepare for new job role/task" />
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-5">
+                            <asp:TextBox ID="objectiveElaborate1" disabled="" TextMode="multiline" Columns="50" Rows="5" runat="server" CssClass="form-control" placeholder="Please elaborate on your choice"></asp:TextBox>
                         </div>
                     </div>
-                </div>
+                    <div class="form-group">
 
+                        <asp:Label ID="completionDateLabel1" runat="server" CssClass="col-lg-2 control-label" Text="Target Completion Date"></asp:Label>
+
+                                <asp:Label ID="completeDateOutput1" runat="server" CssClass="col-lg-2 control-label-left" Text="Target Completion Date"></asp:Label>
+                            
+                    </div>
+
+                    <%--Second checkbox--%>
+                    <div class="form-group">
+                        <%--Empty label for formatting purposes--%>
+                        <asp:Label ID="empty2" runat="server" CssClass="col-lg-2 control-label" Text=""></asp:Label>
+                        <div class="col-lg-10">
+                            <div class="checkbox">
+                                <label>
+                                    <asp:CheckBox ID="objectiveInput2" runat="server" Text="Share the knowledge and skills with fellow colleagues" />
+                                </label>
+                            </div>
+                        </div>
+                        <%--Empty label for formatting purposes--%>
+                        <asp:Label ID="empty3" runat="server" CssClass="col-lg-2 control-label" Text=""></asp:Label>
+                        <div class="col-lg-5">
+                            <asp:TextBox ID="objectiveElaborate2" disabled="" TextMode="multiline" Columns="50" Rows="5" runat="server" CssClass="form-control" placeholder="Please elaborate on your choice"></asp:TextBox>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <asp:Label ID="completionDateLabel2" runat="server" CssClass="col-lg-2 control-label" Text="Target Completion Date"></asp:Label>
+                                <asp:Label ID="completeDateOutput2" runat="server" CssClass="col-lg-2 control-label-left" Text="Target Completion Date"></asp:Label>
+                            
+                    </div>
+
+                    <%--Third checkbox--%>
+                    <div class="form-group">
+                        <%--Empty label for formatting purposes--%>
+                        <asp:Label ID="empty4" runat="server" CssClass="col-lg-2 control-label" Text=""></asp:Label>
+                        <div class="col-lg-10">
+                            <div class="checkbox">
+                                <label>
+                                    <asp:CheckBox ID="objectiveInput3" runat="server" Text="Others" />
+                                </label>
+                            </div>
+                        </div>
+                        <%--Empty label for formatting purposes--%>
+                        <asp:Label ID="empty5" runat="server" CssClass="col-lg-2 control-label" Text=""></asp:Label>
+                        <div class="col-lg-5">
+                            <asp:TextBox ID="objectiveElaborate3" disabled="" TextMode="multiline" Columns="50" Rows="5" runat="server" CssClass="form-control" placeholder="Please elaborate on your choice"></asp:TextBox>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <asp:Label ID="completionDateLabel3" runat="server" CssClass="col-lg-2 control-label" Text="Target Completion Date"></asp:Label>
+
+                                <asp:Label ID="completionDateOutput3" runat="server" CssClass="col-lg-2 control-label-left" Text="Target Completion Date"></asp:Label>
+
+                    </div>
+            
+                
+
+            </div>
+            <br />
+        <div class="container">
+            <div class="verticalLine"></div>
+            <br />
+            <div class="row">
+                <table>
+                    <tr>
+                        <td>
+                            <h3><strong>For Official Use:</strong></h3>
+                        </td>
+                        <td>&nbsp;&nbsp;</td>
+                        <td>
+                            <asp:Button ID="viewComments" runat="server" Text="View More Info" CssClass="btn btn-primary" data-toggle="modal" href="#infoModal" />
+                        </td>
+                    </tr>
+                </table>
+                <h4><%
+                        User currentUser = (User)Session["currentUser"];
+                        string category = currentUser.getJobCategory();
+
+                        if (category.Equals("hod") || category.Equals("director"))
+                        {
+                            Response.Write("HOD Approval");
+                        }
+                        else if (category.Equals("ceo"))
+                        {
+                            Response.Write("CEO Approval");
+                        }
+                        else if (category.Equals("hr director"))
+                        {
+                            Response.Write("HR Director Approval");
+                        }
+                %></h4>
+
+                <asp:Panel ID="normalApprovalView" runat="server" Visible="false">
+                    Remarks (if any):
+               <asp:TextBox ID="remarksInput" TextMode="multiline" Columns="50" Rows="5" runat="server" CssClass="form-control" placeholder="Remarks (if any)"></asp:TextBox>                  
+                    <p class="text-danger"><span class="label label-danger">!</span> This course "is an oversea course"/"exceeds $10,000"/"requires a bond"/etc!</p>
+                    <br /><br />
+                    <asp:LinkButton ID="approvalBtn" runat="server" CssClass="btn btn-success"  data-toggle="modal" href="#approveModal"><span class="glyphicon glyphicon-ok"></span> &nbsp;Approve</asp:LinkButton>
+                    <asp:LinkButton ID="rejectBtn" runat="server" CssClass="btn btn-danger" data-toggle="modal" href="#rejectModal"><span class="glyphicon glyphicon-remove"></span> &nbsp;Reject</asp:LinkButton>
+
+                </asp:Panel>
                 <br />
+                <asp:Panel ID="hrApprovalView" runat="server" Visible="false">
+                    <h4>HR Department</h4>
+                    <fieldset>
+                        <table>
+                            <tr>
+                                <td>1.  For staff who are on probation, please specify confirmation date</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="form-group">
+                                        <div class="col-lg-10">
+                                            <div class="input-group date">
+                                                <asp:TextBox ID="probationDate" runat="server" CssClass="form-control" placeholder="MM/DD/YYYY"></asp:TextBox><span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>2. Total Training Costs (inclusive of absentee payroll and allowances)</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="form-group">
+                                        <div class="col-lg-10">
+                                            <div class="input-group">
+                                                <span class="input-group-addon">$</span>
+                                                <asp:TextBox ID="trainingCost" runat="server" CssClass="form-control" placeholder="Total Training Costs"></asp:TextBox>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>3. Balance Training Budget</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="form-group">
+                                        <div class="col-lg-10">
+                                            <div class="input-group">
+                                                <span class="input-group-addon">$</span>
+                                                <asp:TextBox ID="trainingBudgetBal" runat="server" CssClass="form-control" placeholder="Balance Training Cost"></asp:TextBox>
+                                                <span class="input-group-addon">as at </span>
+                                                <div class="input-group date">
+                                                    <asp:TextBox ID="trainingBudgetDate" runat="server" CssClass="form-control" placeholder="MM/DD/YYYY"></asp:TextBox><span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>4. MSP/Bond Applicable</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="form-group">
+                                        <div class="col-lg-10">
+                                        <div class="checkbox">
+                                            <label>
+                                                <asp:CheckBox ID="mspCheck" runat="server" Text="MSP" />
+                                                
+                                            </label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                            <label>
+                                                <asp:CheckBox ID="bondCheck" runat="server" Text="Bond" />
+                                            </label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                            <label>
+                                                <asp:CheckBox ID="nilCheck" runat="server" Text="Not Applicable" />
+                                            </label>
+                                        </div>
+                                    </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr><td>
+                                <div class="form-group">
+                                        <div class="col-lg-10">
+                                            <div class="input-group">                                          
+                                                <asp:TextBox ID="mspBondDuration" runat="server" CssClass="form-control" placeholder="Duration"></asp:TextBox>
+                                                <span class="input-group-addon">months</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td></tr>
+                            <tr><td>
+                                5.  If this course is eligible for funding, please specify
+                                </td></tr>
+                            <tr><td>
+                                <div class="form-group">
+                                        <div class="col-lg-10">
+                                            <div class="input-group">                                          
+                                                <asp:TextBox ID="fundingEligible" runat="server" CssClass="form-control" placeholder="Yes/No"></asp:TextBox>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td></tr>
+                            <tr><td>
+                                6. Funding Application Date
+                                </td></tr>
+                            <tr><td>
+                                     <div class="form-group">
+                                        <div class="col-lg-10">
+                                            <div class="input-group date">
+                                                <asp:TextBox ID="fundingDate" runat="server" CssClass="form-control" placeholder="MM/DD/YYYY"></asp:TextBox><span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                                            </div>
+                                        </div>
+                                    </div>
 
-                <%-- Section C--%>
-                <h4>Section C - Pre Training Assessment</h4>
-                <div class="form-group">
-                    <strong>
-                        <asp:Label ID="objectiveLabel" runat="server" CssClass="col-lg-2 control-label" Text="Objective(s) attending the course (please tick)"></asp:Label></strong>
-                    <%--First checkbox--%>
-                    <div class="col-lg-10">
-                        <div class="checkbox">
-                            <label>
-                                <asp:CheckBox ID="objectiveInput1" runat="server" Text="To prepare for new job role/task" />
-                            </label>
+                                </td></tr>
+                            <tr><td>
+                                7. Cost Centre (for charging to department)
+                                </td></tr>
+                            <tr><td>
+                                  <div class="form-group">
+                                        <div class="col-lg-10">
+                                            <div class="input-group">                                          
+                                                <asp:TextBox ID="costcentre" runat="server" CssClass="form-control" placeholder="Cost Centre"></asp:TextBox>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </td></tr>
+                        </table>
+
+                    </fieldset>
+                    <asp:LinkButton ID="hrApprove" runat="server" CssClass="btn btn-success"><span class="glyphicon glyphicon-floppy-disk"></span> &nbsp;Save</asp:LinkButton>
+                </asp:Panel>
+            </div>
+
+            <!-- Modal for approval info-->
+            <div id="infoModal" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title">&nbsp;<b>Approvals</b></h4>
+                        </div>
+                        <%--Modal Content--%>
+                        <div class="modal-body">
+                            Harlow
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                         </div>
                     </div>
 
-                    <div class="col-lg-5">
-                        <asp:TextBox ID="objectiveElaborate1" TextMode="multiline" Columns="50" Rows="5" runat="server" CssClass="form-control" placeholder="Please elaborate on your choice"></asp:TextBox>
+                </div>
+            </div>
+            <%--Modal for Approval Confirmation--%>
+                <div id="approveModal" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title"><b>Approve Training Request Form</b></h4>
                     </div>
+                    <%--Modal Content--%>
+                    <div class="modal-body">
+                        <div class="wrapper">                            
+                            <h4>Are you sure you want to approve this form?</h4><br />
+                                <asp:LinkButton ID="cfmApproveBtn" runat="server" CssClass="btn btn-success"><span class="glyphicon glyphicon-ok"></span> &nbsp;Approve</asp:LinkButton>
+                        </div>                       
+                    </div>                  
                 </div>
 
-                <div class="form-group">
-
-                    <asp:Label ID="completionDateLabel1" runat="server" CssClass="col-lg-2 control-label" Text="Target Completion Date"></asp:Label>
-                    <div class="col-lg-5">
-                        <div class="input-group date">
-                            <asp:TextBox ID="completeDateInput1" runat="server" CssClass="form-control" placeholder="Target Completion Date"></asp:TextBox><span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
-                        </div>
+            </div>
+        </div>
+            <%--Modal for Approval Confirmation--%>
+                <div id="rejectModal" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title"><b>Reject Training Request Form</b></h4>
                     </div>
+                    <%--Modal Content--%>
+                    <div class="modal-body">
+                        <div class="wrapper">                            
+                            <h4>Are you sure you want to reject this form?</h4><br />
+                                <asp:LinkButton ID="cfmRejectBtn" runat="server" CssClass="btn btn-danger"><span class="glyphicon glyphicon-remove"></span> &nbsp;Reject</asp:LinkButton>
+                        </div>                       
+                    </div>                  
                 </div>
 
-                <%--Second checkbox--%>
-                <div class="form-group">
-                    <%--Empty label for formatting purposes--%>
-                    <asp:Label ID="empty2" runat="server" CssClass="col-lg-2 control-label" Text=""></asp:Label>
-                    <div class="col-lg-10">
-                        <div class="checkbox">
-                            <label>
-                                <asp:CheckBox ID="objectiveInput2" runat="server" Text="Share the knowledge and skills with fellow colleagues" />
-                            </label>
-                        </div>
-                    </div>
-                    <%--Empty label for formatting purposes--%>
-                    <asp:Label ID="empty3" runat="server" CssClass="col-lg-2 control-label" Text=""></asp:Label>
-                    <div class="col-lg-5">
-                        <asp:TextBox ID="objectiveElaborate2" TextMode="multiline" Columns="50" Rows="5" runat="server" CssClass="form-control" placeholder="Please elaborate on your choice"></asp:TextBox>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <asp:Label ID="completionDateLabel2" runat="server" CssClass="col-lg-2 control-label" Text="Target Completion Date"></asp:Label>
-                    <div class="col-lg-5">
-                        <div class="input-group date">
-                            <asp:TextBox ID="completeDateInput2" runat="server" CssClass="form-control" placeholder="Target Completion Date"></asp:TextBox><span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
-                        </div>
-                    </div>
-                </div>
-
-                <%--Third checkbox--%>
-                <div class="form-group">
-                    <%--Empty label for formatting purposes--%>
-                    <asp:Label ID="empty4" runat="server" CssClass="col-lg-2 control-label" Text=""></asp:Label>
-                    <div class="col-lg-10">
-                        <div class="checkbox">
-                            <label>
-                                <asp:CheckBox ID="objectiveInput3" runat="server" Text="Others" />
-                            </label>
-                        </div>
-                    </div>
-                    <%--Empty label for formatting purposes--%>
-                    <asp:Label ID="empty5" runat="server" CssClass="col-lg-2 control-label" Text=""></asp:Label>
-                    <div class="col-lg-5">
-                        <asp:TextBox ID="objectiveElaborate3" TextMode="multiline" Columns="50" Rows="5" runat="server" CssClass="form-control" placeholder="Please elaborate on your choice"></asp:TextBox>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <asp:Label ID="completionDateLabel3" runat="server" CssClass="col-lg-2 control-label" Text="Target Completion Date"></asp:Label>
-                    <div class="col-lg-5">
-                        <div class="input-group date">
-                            <asp:TextBox ID="completionDateInput3" runat="server" CssClass="form-control" placeholder="Target Completion Date"></asp:TextBox><span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
-                        </div>
-                    </div>
-                </div>
-
-            </fieldset>
-
+            </div>
         </div>
         </div>
 

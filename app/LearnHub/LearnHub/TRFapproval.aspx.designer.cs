@@ -13,177 +13,6 @@ namespace LearnHub {
     public partial class TRFapproval {
         
         /// <summary>
-        /// supRemarks control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label supRemarks;
-        
-        /// <summary>
-        /// supRemarksInput control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox supRemarksInput;
-        
-        /// <summary>
-        /// supApprove control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton supApprove;
-        
-        /// <summary>
-        /// hodRemarks control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label hodRemarks;
-        
-        /// <summary>
-        /// hodRemarksInput control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox hodRemarksInput;
-        
-        /// <summary>
-        /// hodApprove control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton hodApprove;
-        
-        /// <summary>
-        /// probationInput control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox probationInput;
-        
-        /// <summary>
-        /// trainingCost control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox trainingCost;
-        
-        /// <summary>
-        /// trainingBudget control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox trainingBudget;
-        
-        /// <summary>
-        /// TextBox1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox1;
-        
-        /// <summary>
-        /// CheckBox1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox CheckBox1;
-        
-        /// <summary>
-        /// CheckBox2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox CheckBox2;
-        
-        /// <summary>
-        /// CheckBox3 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox CheckBox3;
-        
-        /// <summary>
-        /// hrdRemarks control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label hrdRemarks;
-        
-        /// <summary>
-        /// hrdRemarksInput control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox hrdRemarksInput;
-        
-        /// <summary>
-        /// hrdApprove control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton hrdApprove;
-        
-        /// <summary>
-        /// ceoRemarks control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label ceoRemarks;
-        
-        /// <summary>
-        /// ceoRemarksInput control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox ceoRemarksInput;
-        
-        /// <summary>
-        /// ceoApprove control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton ceoApprove;
-        
-        /// <summary>
         /// nameOfStaffLabel control.
         /// </summary>
         /// <remarks>
@@ -193,13 +22,13 @@ namespace LearnHub {
         protected global::System.Web.UI.WebControls.Label nameOfStaffLabel;
         
         /// <summary>
-        /// nameOfStaffInput control.
+        /// nameOfStaffOutput control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox nameOfStaffInput;
+        protected global::System.Web.UI.WebControls.Label nameOfStaffOutput;
         
         /// <summary>
         /// employeeNoLabel control.
@@ -211,13 +40,13 @@ namespace LearnHub {
         protected global::System.Web.UI.WebControls.Label employeeNoLabel;
         
         /// <summary>
-        /// employeeNoInput control.
+        /// employeeNumberOutput control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox employeeNoInput;
+        protected global::System.Web.UI.WebControls.Label employeeNumberOutput;
         
         /// <summary>
         /// emailLabel control.
@@ -229,13 +58,13 @@ namespace LearnHub {
         protected global::System.Web.UI.WebControls.Label emailLabel;
         
         /// <summary>
-        /// emailInput control.
+        /// emailOutput control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox emailInput;
+        protected global::System.Web.UI.WebControls.Label emailOutput;
         
         /// <summary>
         /// designationLabel control.
@@ -247,13 +76,13 @@ namespace LearnHub {
         protected global::System.Web.UI.WebControls.Label designationLabel;
         
         /// <summary>
-        /// designationInput control.
+        /// designationOutput control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox designationInput;
+        protected global::System.Web.UI.WebControls.Label designationOutput;
         
         /// <summary>
         /// departmentLabel control.
@@ -265,13 +94,13 @@ namespace LearnHub {
         protected global::System.Web.UI.WebControls.Label departmentLabel;
         
         /// <summary>
-        /// departmentInput control.
+        /// departmentOutput control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox departmentInput;
+        protected global::System.Web.UI.WebControls.Label departmentOutput;
         
         /// <summary>
         /// courseLabel control.
@@ -283,13 +112,13 @@ namespace LearnHub {
         protected global::System.Web.UI.WebControls.Label courseLabel;
         
         /// <summary>
-        /// courseInput control.
+        /// courseOutput control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList courseInput;
+        protected global::System.Web.UI.WebControls.Label courseOutput;
         
         /// <summary>
         /// sessionLabel control.
@@ -382,13 +211,13 @@ namespace LearnHub {
         protected global::System.Web.UI.WebControls.Label empty1;
         
         /// <summary>
-        /// externalCourseProvider control.
+        /// externalCourseProviderOutput control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox externalCourseProvider;
+        protected global::System.Web.UI.WebControls.Label externalCourseProviderOutput;
         
         /// <summary>
         /// courseFeeLabel control.
@@ -400,13 +229,13 @@ namespace LearnHub {
         protected global::System.Web.UI.WebControls.Label courseFeeLabel;
         
         /// <summary>
-        /// courseFeeInput control.
+        /// courseFeeOutput control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox courseFeeInput;
+        protected global::System.Web.UI.WebControls.Label courseFeeOutput;
         
         /// <summary>
         /// dateLabel control.
@@ -418,22 +247,31 @@ namespace LearnHub {
         protected global::System.Web.UI.WebControls.Label dateLabel;
         
         /// <summary>
-        /// fromDateInput control.
+        /// startDate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox fromDateInput;
+        protected global::System.Web.UI.WebControls.Label startDate;
         
         /// <summary>
-        /// toDateInput control.
+        /// to control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox toDateInput;
+        protected global::System.Web.UI.WebControls.Label to;
+        
+        /// <summary>
+        /// endDate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label endDate;
         
         /// <summary>
         /// objectiveLabel control.
@@ -472,13 +310,13 @@ namespace LearnHub {
         protected global::System.Web.UI.WebControls.Label completionDateLabel1;
         
         /// <summary>
-        /// completeDateInput1 control.
+        /// completeDateOutput1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox completeDateInput1;
+        protected global::System.Web.UI.WebControls.Label completeDateOutput1;
         
         /// <summary>
         /// empty2 control.
@@ -526,13 +364,13 @@ namespace LearnHub {
         protected global::System.Web.UI.WebControls.Label completionDateLabel2;
         
         /// <summary>
-        /// completeDateInput2 control.
+        /// completeDateOutput2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox completeDateInput2;
+        protected global::System.Web.UI.WebControls.Label completeDateOutput2;
         
         /// <summary>
         /// empty4 control.
@@ -580,12 +418,192 @@ namespace LearnHub {
         protected global::System.Web.UI.WebControls.Label completionDateLabel3;
         
         /// <summary>
-        /// completionDateInput3 control.
+        /// completionDateOutput3 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox completionDateInput3;
+        protected global::System.Web.UI.WebControls.Label completionDateOutput3;
+        
+        /// <summary>
+        /// viewComments control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button viewComments;
+        
+        /// <summary>
+        /// normalApprovalView control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel normalApprovalView;
+        
+        /// <summary>
+        /// remarksInput control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox remarksInput;
+        
+        /// <summary>
+        /// approvalBtn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton approvalBtn;
+        
+        /// <summary>
+        /// rejectBtn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton rejectBtn;
+        
+        /// <summary>
+        /// hrApprovalView control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel hrApprovalView;
+        
+        /// <summary>
+        /// probationDate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox probationDate;
+        
+        /// <summary>
+        /// trainingCost control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox trainingCost;
+        
+        /// <summary>
+        /// trainingBudgetBal control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox trainingBudgetBal;
+        
+        /// <summary>
+        /// trainingBudgetDate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox trainingBudgetDate;
+        
+        /// <summary>
+        /// mspCheck control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox mspCheck;
+        
+        /// <summary>
+        /// bondCheck control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox bondCheck;
+        
+        /// <summary>
+        /// nilCheck control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox nilCheck;
+        
+        /// <summary>
+        /// mspBondDuration control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox mspBondDuration;
+        
+        /// <summary>
+        /// fundingEligible control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox fundingEligible;
+        
+        /// <summary>
+        /// fundingDate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox fundingDate;
+        
+        /// <summary>
+        /// costcentre control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox costcentre;
+        
+        /// <summary>
+        /// hrApprove control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton hrApprove;
+        
+        /// <summary>
+        /// cfmApproveBtn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton cfmApproveBtn;
+        
+        /// <summary>
+        /// cfmRejectBtn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton cfmRejectBtn;
     }
 }

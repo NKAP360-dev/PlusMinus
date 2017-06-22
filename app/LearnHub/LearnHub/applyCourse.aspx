@@ -191,9 +191,9 @@
 
                     <div class="col-lg-5">
                         <div class="input-daterange input-group" id="datepicker">
-                            <asp:TextBox ID="fromDateInput" disabled="" runat="server" CssClass="form-control" placeholder="Start Date"></asp:TextBox>
+                            <asp:TextBox ID="fromDateInput" disabled="" runat="server" CssClass="form-control" placeholder="MM/DD/YYYY"></asp:TextBox>
                             <span class="input-group-addon">to</span>
-                            <asp:TextBox ID="toDateInput" disabled="" runat="server" CssClass="form-control" placeholder="End Date"></asp:TextBox>
+                            <asp:TextBox ID="toDateInput" disabled="" runat="server" CssClass="form-control" placeholder="MM/DD/YYYY"></asp:TextBox>
                             <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i>
                             </span>
                         </div>
@@ -230,7 +230,7 @@
                     <asp:Label ID="completionDateLabel1" runat="server" CssClass="col-lg-2 control-label" Text="Target Completion Date"></asp:Label>
                     <div class="col-lg-5">
                         <div class="input-group date">
-                            <asp:TextBox ID="completeDateInput1" runat="server" CssClass="form-control" placeholder="Target Completion Date"></asp:TextBox><span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                            <asp:TextBox ID="completeDateInput1" runat="server" CssClass="form-control" placeholder="MM/DD/YYYY"></asp:TextBox><span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
                         </div>
                     </div>
                 </div>
@@ -257,7 +257,7 @@
                     <asp:Label ID="completionDateLabel2" runat="server" CssClass="col-lg-2 control-label" Text="Target Completion Date"></asp:Label>
                     <div class="col-lg-5">
                         <div class="input-group date">
-                            <asp:TextBox ID="completeDateInput2" runat="server" CssClass="form-control" placeholder="Target Completion Date"></asp:TextBox><span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                            <asp:TextBox ID="completeDateInput2" runat="server" CssClass="form-control" placeholder="MM/DD/YYYY"></asp:TextBox><span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
                         </div>
                     </div>
                 </div>
@@ -284,7 +284,7 @@
                     <asp:Label ID="completionDateLabel3" runat="server" CssClass="col-lg-2 control-label" Text="Target Completion Date"></asp:Label>
                     <div class="col-lg-5">
                         <div class="input-group date">
-                            <asp:TextBox ID="completionDateInput3" runat="server" CssClass="form-control" placeholder="Target Completion Date"></asp:TextBox><span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                            <asp:TextBox ID="completionDateInput3" runat="server" CssClass="form-control" placeholder="MM/DD/YYYY"></asp:TextBox><span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
                         </div>
                     </div>
                 </div>
@@ -327,7 +327,25 @@
 
             </div>
         </div>
+                <%--Modal for REJECTION--%>
+                <div id="rejectionModal" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title"><b>Unsucessful</b></h4>
+                    </div>
+                    <%--Modal Content--%>
+                    <div class="modal-body">
+                        <div class="wrapper">                            
+                            <h4>Your application is unable to proceed due to the following reason(s):<br /> reasonreasonreason</h4><br />
+                            <asp:Button ID="Button1" CssClass="btn btn-primary" runat="server" Text="Go Back"/>
+                        </div>                       
+                    </div>                  
+                </div>
 
+            </div>
+        </div>
 
 
 
