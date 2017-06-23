@@ -30,11 +30,120 @@
         function SelectRadiobutton(radio) {
             var rdBtn = document.getElementById(radio.id);
             var rdBtnList = document.getElementsByTagName("input");
-            for (i = 0l i < rdBtnList.length; i++) {
+            for (i = 0; i < rdBtnList.length; i++) {
                 if (rdBtnList.type == "radio" && rdBtnList[i].id != rdBtn.id) {
                     rdBtnList[i].checked = false;
                 }
             }
+        }
+    </script>
+
+    <script type="text/javascript">
+        function forObjective1Clicked(validationGroupName1, isEnable) {
+            if (document.getElementById('<%=objectiveInput1.ClientID%>').checked == true) {
+                objective1text.style.display = 'block';
+                objective1date.style.display = 'block';
+                console.log("FOROBJECTIVE1CLICKED");
+                if (!document.getElementById('<%= objectiveInput2.ClientID %>').checked) {
+                    console.log("0");
+                    document.getElementById('<%=rfv_objective2text.ClientID%>').enabled = false;
+                    console.log("1");
+                    document.getElementById('<%=rfv_objective2date.ClientID%>').enabled = false;
+                    console.log("2");
+                }
+                if (!document.getElementById('<%= objectiveInput3.ClientID %>').checked) {
+                    document.getElementById('<%=rfv_objective3text.ClientID%>').enabled = false;
+                    console.log("3");
+                    document.getElementById('<%=rfv_objective3date.ClientID%>').enabled = false;
+                    console.log("4");
+                }
+            }
+            else {
+                objective1text.style.display = 'none';
+                objective1date.style.display = 'none';
+                document.getElementById('<%=rfv_objective1text.ClientID%>').enabled = false;
+                console.log("Exited");
+                document.getElementById('<%=rfv_objective1date.ClientID%>').enabled = false;
+            }
+        }
+
+        function forObjective2Clicked(validationGroupName1, isEnable) {
+            if (document.getElementById('<%=objectiveInput2.ClientID%>').checked == true) {
+                objective2text.style.display = 'block';
+                objective2date.style.display = 'block';
+                if (!document.getElementById('<%= objectiveInput1.ClientID %>').checked) {
+                    console.log("0");
+                    document.getElementById('<%=rfv_objective1text.ClientID%>').enabled = false;
+                    console.log("1");
+                    document.getElementById('<%=rfv_objective1date.ClientID%>').enabled = false;
+                    console.log("2");
+                }
+                if (!document.getElementById('<%= objectiveInput3.ClientID %>').checked) {
+                    document.getElementById('<%=rfv_objective3text.ClientID%>').enabled = false;
+                    console.log("3");
+                    document.getElementById('<%=rfv_objective3date.ClientID%>').enabled = false;
+                    console.log("4");
+                }
+            }
+            else {
+                objective2text.style.display = 'none';
+                objective2date.style.display = 'none';
+                document.getElementById('<%=rfv_objective2text.ClientID%>').enabled = false;
+                console.log("Exited");
+                document.getElementById('<%=rfv_objective2date.ClientID%>').enabled = false;
+            }
+        }
+
+        function forObjective3Clicked(validationGroupName1, isEnable) {
+            if (document.getElementById('<%=objectiveInput3.ClientID%>').checked == true) {
+                objective3text.style.display = 'block';
+                objective3date.style.display = 'block';
+                if (!document.getElementById('<%= objectiveInput1.ClientID %>').checked) {
+                    console.log("0");
+                    document.getElementById('<%=rfv_objective1text.ClientID%>').enabled = false;
+                    console.log("1");
+                    document.getElementById('<%=rfv_objective1date.ClientID%>').enabled = false;
+                    console.log("2");
+                }
+                if (!document.getElementById('<%= objectiveInput2.ClientID %>').checked) {
+                    document.getElementById('<%=rfv_objective2text.ClientID%>').enabled = false;
+                    console.log("3");
+                    document.getElementById('<%=rfv_objective2date.ClientID%>').enabled = false;
+                    console.log("4");
+                }
+            }
+            else {
+                objective3text.style.display = 'none';
+                objective3date.style.display = 'none';
+                document.getElementById('<%=rfv_objective3text.ClientID%>').enabled = false;
+                console.log("Exited");
+                document.getElementById('<%=rfv_objective3date.ClientID%>').enabled = false;
+            }
+        }
+
+        function ValidateCheckBoxes(source, args) {
+            var checker = 0;
+            if (document.getElementById('<%= objectiveInput1.ClientID %>').checked) {
+                checker = checker + 1;
+            }
+            if (document.getElementById('<%= objectiveInput2.ClientID %>').checked) {
+                checker = checker + 1;
+            }
+            if (document.getElementById('<%= objectiveInput3.ClientID %>').checked) {
+                checker = checker + 1;
+            }
+            console.log(checker);
+            if (checker > 0) {
+                args.IsValid = true;
+                console.log("valid");
+
+            }
+            else {
+                args.IsValid = false;
+                console.log("notvalid");
+            }
+
+
         }
     </script>
 
@@ -168,6 +277,7 @@
                                 <asp:Parameter DefaultValue="open" Name="status" Type="String" />
                             </SelectParameters>
                         </asp:SqlDataSource>
+                        <asp:RequiredFieldValidator ID="rfv_courseInput" runat="server" ControlToValidate="courseInput" ErrorMessage="Please Select a Course" InitialValue="-1" ForeColor="Red"></asp:RequiredFieldValidator>
                     </div>
                 </div>
     
@@ -216,6 +326,7 @@
                             </label>
                         </div>
                     </div>
+                    <asp:RequiredFieldValidator ID="rfv_courseProvider" runat="server" ErrorMessage="Please Select a Course Provider" ControlToValidate="courseProvider" ForeColor="Red"></asp:RequiredFieldValidator>
                     <asp:Label ID="empty1" runat="server" CssClass="col-lg-2 control-label" Text=""></asp:Label>
                     <div class="col-lg-5">
                         <asp:TextBox ID="externalCourseProvider" disabled="" runat="server" CssClass="form-control" placeholder="If external, please specify"></asp:TextBox>
@@ -258,22 +369,27 @@
                     <div class="col-lg-10">
                         <div class="checkbox">
                             <label>
-                                <asp:CheckBox ID="objectiveInput1" runat="server" Text="To prepare for new job role/task" />
+                                <asp:CheckBox ID="objectiveInput1" runat="server" Text="To prepare for new job role/task" onClick="forObjective1Clicked('Group1', true)" class="objectiveValidation"/>
                             </label>
                         </div>
                     </div>
 
-                    <div class="col-lg-5">
-                        <asp:TextBox ID="objectiveElaborate1" TextMode="multiline" Columns="50" Rows="5" runat="server" CssClass="form-control" placeholder="Please elaborate on your choice"></asp:TextBox>
+                    <div id="objective1text"  style="display: none;">
+                        <div class="col-lg-5">
+                            <asp:TextBox ID="objectiveElaborate1" TextMode="multiline" Columns="50" Rows="5" runat="server" CssClass="form-control" placeholder="Please elaborate on your choice"></asp:TextBox>
+                            <asp:RequiredFieldValidator ID="rfv_objective1text" ControlToValidate="objectiveElaborate1" runat="server" ErrorMessage="*Required" ForeColor="Red" />
+                        </div>
                     </div>
                 </div>
 
-                <div class="form-group">
-
-                    <asp:Label ID="completionDateLabel1" runat="server" CssClass="col-lg-2 control-label" Text="Target Completion Date"></asp:Label>
-                    <div class="col-lg-5">
-                        <div class="input-group date">
-                            <asp:TextBox ID="completeDateInput1" runat="server" CssClass="form-control" placeholder="MM/DD/YYYY"></asp:TextBox><span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                <div id="objective1date" style="display: none;">
+                    <div class="form-group">
+                        <asp:Label ID="completionDateLabel1" runat="server" CssClass="col-lg-2 control-label" Text="Target Completion Date"></asp:Label>
+                        <div class="col-lg-5">
+                            <div class="input-group date">
+                                <asp:TextBox ID="completeDateInput1" runat="server" CssClass="form-control" placeholder="Target Completion Date"></asp:TextBox><span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                                <asp:RequiredFieldValidator ID="rfv_objective1date" ControlToValidate="completeDateInput1" runat="server" ErrorMessage="*Required" ForeColor="Red" />
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -285,22 +401,28 @@
                     <div class="col-lg-10">
                         <div class="checkbox">
                             <label>
-                                <asp:CheckBox ID="objectiveInput2" runat="server" Text="Share the knowledge and skills with fellow colleagues" />
+                                <asp:CheckBox ID="objectiveInput2" runat="server" Text="Share the knowledge and skills with fellow colleagues"  onClick="forObjective2Clicked('Group2', true)"  class="objectiveValidation"/>
                             </label>
                         </div>
                     </div>
                     <%--Empty label for formatting purposes--%>
                     <asp:Label ID="empty3" runat="server" CssClass="col-lg-2 control-label" Text=""></asp:Label>
-                    <div class="col-lg-5">
-                        <asp:TextBox ID="objectiveElaborate2" TextMode="multiline" Columns="50" Rows="5" runat="server" CssClass="form-control" placeholder="Please elaborate on your choice"></asp:TextBox>
+                    <div id="objective2text" style="display: none;">
+                        <div class="col-lg-5">
+                            <asp:TextBox ID="objectiveElaborate2" TextMode="multiline" Columns="50" Rows="5" runat="server" CssClass="form-control" placeholder="Please elaborate on your choice"></asp:TextBox>
+                            <asp:RequiredFieldValidator ID="rfv_objective2text" ControlToValidate="objectiveElaborate2" runat="server" ErrorMessage="*Required" ForeColor="Red"/>
+                        </div>
                     </div>
                 </div>
 
-                <div class="form-group">
-                    <asp:Label ID="completionDateLabel2" runat="server" CssClass="col-lg-2 control-label" Text="Target Completion Date"></asp:Label>
-                    <div class="col-lg-5">
-                        <div class="input-group date">
-                            <asp:TextBox ID="completeDateInput2" runat="server" CssClass="form-control" placeholder="MM/DD/YYYY"></asp:TextBox><span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                <div id="objective2date" style="display: none;">
+                    <div class="form-group">
+                        <asp:Label ID="completionDateLabel2" runat="server" CssClass="col-lg-2 control-label" Text="Target Completion Date"></asp:Label>
+                        <div class="col-lg-5">
+                            <div class="input-group date">
+                                <asp:TextBox ID="completeDateInput2" runat="server" CssClass="form-control" placeholder="Target Completion Date"></asp:TextBox><span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                                <asp:RequiredFieldValidator ID="rfv_objective2date" ControlToValidate="completeDateInput2" runat="server" ErrorMessage="*Required" ForeColor="Red" />
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -312,22 +434,28 @@
                     <div class="col-lg-10">
                         <div class="checkbox">
                             <label>
-                                <asp:CheckBox ID="objectiveInput3" runat="server" Text="Others" />
+                                <asp:CheckBox ID="objectiveInput3" runat="server" Text="Others"   onClick="forObjective3Clicked('Group3', true)"  class="objectiveValidation"/>
                             </label>
                         </div>
                     </div>
                     <%--Empty label for formatting purposes--%>
                     <asp:Label ID="empty5" runat="server" CssClass="col-lg-2 control-label" Text=""></asp:Label>
-                    <div class="col-lg-5">
-                        <asp:TextBox ID="objectiveElaborate3" TextMode="multiline" Columns="50" Rows="5" runat="server" CssClass="form-control" placeholder="Please elaborate on your choice"></asp:TextBox>
+                    <div id="objective3text" style="display: none;">
+                        <div class="col-lg-5">
+                            <asp:TextBox ID="objectiveElaborate3" TextMode="multiline" Columns="50" Rows="5" runat="server" CssClass="form-control" placeholder="Please elaborate on your choice"></asp:TextBox>
+                            <asp:RequiredFieldValidator ID="rfv_objective3text" ControlToValidate="objectiveElaborate3" runat="server" ErrorMessage="*Required" ForeColor="Red" />
+                        </div>
                     </div>
                 </div>
 
-                <div class="form-group">
-                    <asp:Label ID="completionDateLabel3" runat="server" CssClass="col-lg-2 control-label" Text="Target Completion Date"></asp:Label>
-                    <div class="col-lg-5">
-                        <div class="input-group date">
-                            <asp:TextBox ID="completionDateInput3" runat="server" CssClass="form-control" placeholder="MM/DD/YYYY"></asp:TextBox><span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                <div id="objective3date" style="display: none;">
+                    <div class="form-group">
+                        <asp:Label ID="completionDateLabel3" runat="server" CssClass="col-lg-2 control-label" Text="Target Completion Date"></asp:Label>
+                        <div class="col-lg-5">
+                            <div class="input-group date">
+                                <asp:TextBox ID="completeDateInput3" runat="server" CssClass="form-control" placeholder="Target Completion Date"></asp:TextBox><span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                                <asp:RequiredFieldValidator ID="rfv_objective3date" ControlToValidate="completeDateInput3" runat="server" ErrorMessage="*Required" ForeColor="Red"/>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -389,7 +517,17 @@
 
             </div>
         </div>
-
+        <div class="form-group">
+                    <%--Empty label for formatting purposes--%>
+                    <asp:Label ID="Label1" runat="server" CssClass="col-lg-2 control-label" Text=""></asp:Label>
+                    <div id="forObjectiveValidator" style="color: red">
+                        <asp:CustomValidator ID="cv1_objective1" runat="server" 
+                            EnableClientScript="true"
+                            ErrorMessage="Please select at least one objective"
+                            ClientValidationFunction="ValidateCheckBoxes">
+                        </asp:CustomValidator>
+                    </div>
+                </div>
 
 
                 <div class="form-group">

@@ -31,8 +31,7 @@ namespace LearnHub
                 User currentUser = loginDAO.login(txtUsername.Text, hashedPasword);
                 if (currentUser.getUserID() == null)
                 {
-                    rfv_NoUseError.Visible = false;
-                    rfv_NoPassError.Visible = false;
+                    //Response.Redirect("Login.aspx");
                     lblErrorMsgUse.Visible = true;
                     lblErrorMsgUse.Text = "Invalid username/password.";
                 } else
@@ -41,6 +40,18 @@ namespace LearnHub
                     //to redirect
                     Response.Redirect("Home.aspx");
                 }
+            }
+            else if(txtUsername.Text != "" || txtPassword.Text != "")
+            {
+                //Response.Redirect("google.com");
+                lblErrorMsgUse.Visible = true;
+                lblErrorMsgUse.Text = "Invalid username/password.";
+            }
+            else
+            {
+                ///Response.Redirect("yahoo.com");
+                lblErrorMsgUse.Visible = true;
+                lblErrorMsgUse.Text = "Invalid username/password.";
             }
         }
     }

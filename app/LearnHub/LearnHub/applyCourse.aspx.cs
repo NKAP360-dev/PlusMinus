@@ -80,7 +80,7 @@ namespace LearnHub
             {
                 otherObjectives = "y";
                 otherObjectivesText = objectiveElaborate3.Text;
-                otherObjectivesCompletedDate = DateTime.ParseExact(completionDateInput3.Text, "MM/dd/yyyy", CultureInfo.InvariantCulture);
+                otherObjectivesCompletedDate = DateTime.ParseExact(completeDateInput3.Text, "MM/dd/yyyy", CultureInfo.InvariantCulture);
             } else
             {
                 otherObjectives = "n";
