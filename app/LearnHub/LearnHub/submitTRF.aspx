@@ -4,6 +4,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="container">
         <h1>Submission Confirmation</h1>
+        <div class="verticalLine"></div>
         <h3>Thank you for your submission</h3>
         You will receive an email once your application is approved.
         <br /><br />

@@ -7,6 +7,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="container">
         <h1>Application Status</h1>
+        <div class="verticalLine"></div>
         <h3>Training Request Form</h3>
 
         <table class="table table-striped table-hover ">

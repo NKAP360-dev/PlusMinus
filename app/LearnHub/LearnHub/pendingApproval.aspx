@@ -8,6 +8,7 @@
 
  <div class="container">
         <h1>View Notifications</h1>
+         <div class="verticalLine"></div>
         <table class="table table-striped table-hover ">
             <thead>
                 <tr>

@@ -115,17 +115,35 @@
                     </div>
                     <div class="form-group">
                         <strong>
-                            <asp:Label ID="sessionLabel" runat="server" CssClass="col-lg-2 control-label" Text="Session"></asp:Label></strong>
-                        <div class="col-lg-5">
-                            <asp:DropDownList ID="courseSession" runat="server" CssClass="form-control" placeholder="lessonID + startDate - endDate"></asp:DropDownList>
-                            <strong>
-                                <asp:Label ID="Label1" runat="server" CssClass="col-lg-2 control-label" Text="Venue:"></asp:Label></strong>
-                            <asp:Label ID="Label2" runat="server" CssClass="col-lg-2 control-label" Text="generated"></asp:Label>&nbsp;&nbsp;
-                        <strong>
-                            <asp:Label ID="venue" runat="server" CssClass="col-lg-2 control-label" Text="Time:"></asp:Label></strong>
-                            <asp:Label ID="time" runat="server" CssClass="col-lg-2 control-label" Text="generated"></asp:Label>
+                            <asp:Label ID="dateLabel" runat="server" CssClass="col-lg-2 control-label" Text="Date"></asp:Label></strong>
+
+                              <asp:Label ID="startDate" runat="server" CssClass="col-lg-1 control-label-left" Text="Start Date"></asp:Label>  
+                        <asp:Label ID="toDate" runat="server" CssClass="col-lg-1 control-label-left" Text="to"></asp:Label> 
+                              <asp:Label ID="endDate" runat="server" CssClass="col-lg-1 control-label-left" Text="End Date"></asp:Label>
 
                         </div>
+                    <div class="form-group">
+                        <strong>
+                            <asp:Label ID="timeLabel" runat="server" CssClass="col-lg-2 control-label" Text="Time"></asp:Label></strong>
+
+                              <asp:Label ID="startTime" runat="server" CssClass="col-lg-1 control-label-left" Text="Start Time"></asp:Label>  
+                        <asp:Label ID="toTime" runat="server" CssClass="col-lg-1 control-label-left" Text="to"></asp:Label> 
+                              <asp:Label ID="endTime" runat="server" CssClass="col-lg-1 control-label-left" Text="End Time"></asp:Label>
+
+                        </div>
+                    <div class="form-group">
+                        <strong>
+                            <asp:Label ID="venueLabel" runat="server" CssClass="col-lg-2 control-label" Text="Venue"></asp:Label></strong>
+                        
+                            <asp:Label ID="venueOutput" runat="server" CssClass="col-lg-2 control-label-left" Text="Venue"></asp:Label>
+                       
+                    </div>
+                    <div class="form-group">
+                        <strong>
+                            <asp:Label ID="instructorLabel" runat="server" CssClass="col-lg-2 control-label" Text="Instructor"></asp:Label></strong>
+                        
+                            <asp:Label ID="instructorOutput" runat="server" CssClass="col-lg-2 control-label-left" Text="Instructor"></asp:Label>
+                       
                     </div>
                     <div class="form-group">
                         <strong>
@@ -151,15 +169,6 @@
                             <asp:Label ID="courseFeeOutput" runat="server" CssClass="col-lg-2 control-label-left" Text="Course Fees with GST (where applicable)"></asp:Label>
                         
                     </div>
-                    <div class="form-group">
-                        <strong>
-                            <asp:Label ID="dateLabel" runat="server" CssClass="col-lg-2 control-label" Text="Date"></asp:Label></strong>
-
-                              <asp:Label ID="startDate" runat="server" CssClass="col-lg-2 control-label-left" Text="Start Date"></asp:Label>  
-                        <asp:Label ID="to" runat="server" CssClass="col-lg-1 control-label-left" Text="to"></asp:Label> 
-                              <asp:Label ID="endDate" runat="server" CssClass="col-lg-2 control-label-left" Text="End Date"></asp:Label>
-
-                        </div>
                     </div>
                     <br />
 
@@ -423,7 +432,11 @@
                         </div>
                         <%--Modal Content--%>
                         <div class="modal-body">
-                            Harlow
+                            <strong>Remarks by _____: </strong>
+                           <asp:TextBox ID="TextBox1" disabled="" TextMode="multiline" Columns="50" Rows="5" runat="server" CssClass="form-control" placeholder="Remarks"></asp:TextBox>
+                            <div class="verticalLine"></div>
+                            <strong>Remarks by _____: </strong>
+                           <asp:TextBox ID="TextBox2" disabled="" TextMode="multiline" Columns="50" Rows="5" runat="server" CssClass="form-control" placeholder="Remarks"></asp:TextBox>
 
                         </div>
                         <div class="modal-footer">

@@ -93,6 +93,7 @@
 
     <div class="container">
         <h1>Apply For Courses</h1>
+        <div class="verticalLine"></div>
         <form class="form-horizontal" runat="server">
             <fieldset>
                 <legend>Training Request Form<a class="btn" data-toggle="modal" href="#myModal"><span class="glyphicon glyphicon-info-sign"></span></a></legend>
@@ -157,6 +158,54 @@
                         </asp:SqlDataSource>
                     </div>
                 </div>
+    
+                <%-- Make table dynamically appear only after course is selected from DDL--%>
+                        <div class="form-group">
+                            <strong>
+                                <asp:Label ID="lessonSelection" runat="server" CssClass="col-lg-2 control-label" Text="Lesson Selection"></asp:Label></strong>
+                            <div class="col-lg-10">
+                                <table class="table table-striped table-hover ">
+                                    <thead>
+                                        <tr>
+                                            <th>Select</th>
+                                            <th>Start Date</th>
+                                            <th>End Date</th>
+                                            <th>Start Time</th>
+                                            <th>End Time</th>
+                                            <th>Venue</th>
+                                            <th>Instructor</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <asp:RadioButton ID="RadioButton1" runat="server" GroupName="lesson" /></td>
+                                            <td>MM/DD/YYYY</td>
+                                            <td>MM/DD/YYYY</td>
+                                            <td>Time</td>
+                                            <td>Time</td>
+                                            <td>Venue</td>
+                                            <td>Instructor</td>
+                                        </tr>
+                                        <tr>
+                                        <tr>
+                                            <td>
+                                                <asp:RadioButton ID="RadioButton2" runat="server" GroupName="lesson" /></td>
+                                            <td>MM/DD/YYYY</td>
+                                            <td>MM/DD/YYYY</td>
+                                            <td>Time</td>
+                                            <td>Time</td>
+                                            <td>Venue</td>
+                                            <td>Instructor</td>
+                                        </tr>
+                                        <tr>
+                                    </tbody>
+
+
+                                </table>
+                            </div>
+                        </div>
+
                 <div class="form-group">
                     <strong>
                         <asp:Label ID="courseProviderLabel" disabled="" runat="server" CssClass="col-lg-2 control-label" Text="Course Provider"></asp:Label></strong>
