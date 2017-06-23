@@ -1,4 +1,6 @@
 ﻿<%@ Page Title="Apply For Courses - LearnHub" Language="C#" MasterPageFile="~/Masterpage.Master" AutoEventWireup="true" CodeBehind="applyCourse.aspx.cs" Inherits="LearnHub.applyCourse" %>
+<%@ Import Namespace="LearnHub.AppCode.entity"%>
+<%@ Import Namespace="LearnHub.AppCode.dao"%>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     
@@ -24,6 +26,16 @@
                 autoclose: true
             });
         });
+
+        function SelectRadiobutton(radio) {
+            var rdBtn = document.getElementById(radio.id);
+            var rdBtnList = document.getElementsByTagName("input");
+            for (i = 0l i < rdBtnList.length; i++) {
+                if (rdBtnList.type == "radio" && rdBtnList[i].id != rdBtn.id) {
+                    rdBtnList[i].checked = false;
+                }
+            }
+        }
     </script>
 
     <style>
@@ -164,45 +176,27 @@
                             <strong>
                                 <asp:Label ID="lessonSelection" runat="server" CssClass="col-lg-2 control-label" Text="Lesson Selection"></asp:Label></strong>
                             <div class="col-lg-10">
-                                <table class="table table-striped table-hover ">
-                                    <thead>
-                                        <tr>
-                                            <th>Select</th>
-                                            <th>Start Date</th>
-                                            <th>End Date</th>
-                                            <th>Start Time</th>
-                                            <th>End Time</th>
-                                            <th>Venue</th>
-                                            <th>Instructor</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>
-                                                <asp:RadioButton ID="RadioButton1" runat="server" GroupName="lesson" /></td>
-                                            <td>MM/DD/YYYY</td>
-                                            <td>MM/DD/YYYY</td>
-                                            <td>Time</td>
-                                            <td>Time</td>
-                                            <td>Venue</td>
-                                            <td>Instructor</td>
-                                        </tr>
-                                        <tr>
-                                        <tr>
-                                            <td>
-                                                <asp:RadioButton ID="RadioButton2" runat="server" GroupName="lesson" /></td>
-                                            <td>MM/DD/YYYY</td>
-                                            <td>MM/DD/YYYY</td>
-                                            <td>Time</td>
-                                            <td>Time</td>
-                                            <td>Venue</td>
-                                            <td>Instructor</td>
-                                        </tr>
-                                        <tr>
-                                    </tbody>
-
-
-                                </table>
+                               
+                                <asp:GridView ID="gvLesson" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSourceLesson" CssClass="table table-striped table-hover" GridLines="None" EmptyDataText="Please select a course first">
+                                    <Columns>
+                                        <asp:TemplateField>
+                                            <ItemTemplate>
+                                                <input name="rbnLessonID" type="radio" onclick="javascript.SelectRadiobutton(this)" value='<%# Eval("lessonID") %>' />
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+                                        <asp:BoundField DataField="lesson_start_date" dataformatstring="{0:MMMM d, yyyy}" HeaderText="Start Date" SortExpression="lesson_start_date" />
+                                        <asp:BoundField DataField="lesson_end_date" dataformatstring="{0:MMMM d, yyyy}" HeaderText="End Date" SortExpression="lesson_end_date" />
+                                        <asp:BoundField DataField="lesson_start_timing"  HeaderText="Start Time" SortExpression="lesson_start_timing" />
+                                        <asp:BoundField DataField="lesson_end_timing" HeaderText="End Time" SortExpression="lesson_end_timing" />
+                                        <asp:BoundField DataField="instructor" HeaderText="Instructor" SortExpression="instructor" />
+                                        <asp:BoundField DataField="venue" HeaderText="Venue" SortExpression="venue" />
+                                    </Columns>
+                                </asp:GridView>
+                                <asp:SqlDataSource ID="SqlDataSourceLesson" runat="server" ConnectionString="<%$ ConnectionStrings:DBConnectionString %>" SelectCommand="SELECT * FROM [Lesson] WHERE ([courseID] = @courseID)">
+                                    <SelectParameters>
+                                        <asp:SessionParameter Name="courseID" SessionField="selectedCourse" Type="Int32" />
+                                    </SelectParameters>
+                                </asp:SqlDataSource>
                             </div>
                         </div>
 

@@ -157,22 +157,22 @@ namespace LearnHub {
         protected global::System.Web.UI.WebControls.Label lessonSelection;
         
         /// <summary>
-        /// RadioButton1 control.
+        /// gvLesson control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButton RadioButton1;
+        protected global::System.Web.UI.WebControls.GridView gvLesson;
         
         /// <summary>
-        /// RadioButton2 control.
+        /// SqlDataSourceLesson control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButton RadioButton2;
+        protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSourceLesson;
         
         /// <summary>
         /// courseProviderLabel control.

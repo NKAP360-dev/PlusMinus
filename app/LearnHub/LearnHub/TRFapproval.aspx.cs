@@ -19,7 +19,8 @@ namespace LearnHub
             }
             else
             {
-                string tnfid = Request.QueryString["tnfid"];
+                //string tnfid = Request.QueryString["tnfid"];
+                string tnfid = Request["tnfID"];
                 nameOfStaffOutput.Text = tnfid;
 
                 User currentUser = (User)Session["currentUser"];

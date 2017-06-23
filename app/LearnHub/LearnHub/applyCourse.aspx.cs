@@ -45,6 +45,7 @@ namespace LearnHub
             TNFDAO tnfDAO = new TNFDAO();
             User currentUser = (User)Session["currentUser"];
             int courseID = Convert.ToInt32(courseInput.SelectedValue);
+            int lessonID = Convert.ToInt32(Request.Form["rbnLessonID"]);
             string prepareForNewJobRole = null;
             string prepareForNewJobRoleText = null;
             DateTime? prepareForNewJobRoleCompletedDate = null;
@@ -91,18 +92,19 @@ namespace LearnHub
             TNF newTNF = new TNF(currentUser, "individual", "pending", 0, currentWF, applicationDate);
             int tnfid = tnfDAO.createTNF(newTNF);
             newTNF.setTNFID(tnfid);
-            tnfDAO.createTNF_Data(tnfid, courseID, prepareForNewJobRole, prepareForNewJobRoleText, prepareForNewJobRoleCompletedDate, shareKnowledge, shareKnowledgeText, shareKnowledgeCompletedDate, otherObjectives, otherObjectivesText, otherObjectivesCompletedDate);
+            tnfDAO.createTNF_Data(tnfid, courseID, prepareForNewJobRole, prepareForNewJobRoleText, prepareForNewJobRoleCompletedDate, shareKnowledge, shareKnowledgeText, shareKnowledgeCompletedDate, otherObjectives, otherObjectivesText, otherObjectivesCompletedDate, lessonID);
 
             //start routing
 
             Boolean successOrNot = Workflow_Route.routeForApproval(newTNF);
             if (successOrNot)
             {
+                //to create lesson info
                 Response.Redirect("~/submitTRF.aspx");
             }
             else
             {
-                //do somethinwww
+                //do something
             }
         }
 
@@ -114,6 +116,7 @@ namespace LearnHub
             protected void courseInput_SelectedIndexChanged(object sender, EventArgs e)
         {
             int courseID = Convert.ToInt32(courseInput.SelectedValue);
+            Session["selectedCourse"] = courseID;
             if (courseID == -1)
             {
                 courseFeeInput.Text = "";
@@ -123,6 +126,7 @@ namespace LearnHub
             }
             else
             {
+                gvLesson.DataBind();
                 CourseDAO courseDAO = new CourseDAO();
                 Course selectedCourse = courseDAO.getCourseByID(courseID);
 

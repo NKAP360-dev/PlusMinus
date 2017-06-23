@@ -88,7 +88,7 @@
                             }
                             Response.Write("<td>" + tnf.getTNFID() + "</td>");
                             Response.Write("<td>" + courseName + "</td>");
-                            Response.Write("<td>" + tnf.getApplicationDate().ToString("dd-MM-yyyy")+ "</td>");
+                            Response.Write("<td>" + tnf.getApplicationDate().ToString("MM-dd-yyyy")+ "</td>");
                             Response.Write("<td>" + application_type + "</td>");
                             Response.Write("<td>" + status + "</td>");
                             if (nextApprover != null && !approverName.Equals(""))

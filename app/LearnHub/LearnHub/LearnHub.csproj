@@ -155,6 +155,7 @@
     <Compile Include="AppCode\dao\BondDAO.cs" />
     <Compile Include="AppCode\dao\DeptDAO.cs" />
     <Compile Include="AppCode\dao\CourseDAO.cs" />
+    <Compile Include="AppCode\dao\LessonDAO.cs" />
     <Compile Include="AppCode\dao\LoginDAO.cs" />
     <Compile Include="AppCode\dao\NotificationDAO.cs" />
     <Compile Include="AppCode\dao\StringCipher.cs" />

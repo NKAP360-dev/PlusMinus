@@ -1,4 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Masterpage.Master" AutoEventWireup="true" CodeBehind="TRFapproval.aspx.cs" Inherits="LearnHub.TRFapproval" %>
+<%@ PreviousPageType VirtualPath="~/pendingApproval.aspx" %> 
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 

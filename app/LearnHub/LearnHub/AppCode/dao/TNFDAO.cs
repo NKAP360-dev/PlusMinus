@@ -272,7 +272,7 @@ namespace LearnHub.AppCode.dao
         }
         public void createTNF_Data(int tnfid, int courseID, string prepareForNewJobRole, string prepareForNewJobRoleText, 
             DateTime? prepareForNewJobRoleCompletionDate, string shareKnowledge, string shareKnowledgeText, DateTime? shareKnowledgeCompletionDate, 
-            string otherObjectives, string otherObjectivesText, DateTime? otherObjectivesCompletionDate) // Insert.
+            string otherObjectives, string otherObjectivesText, DateTime? otherObjectivesCompletionDate, int lessonID) // Insert.
         {
             SqlConnection conn = null;
             try
@@ -284,11 +284,12 @@ namespace LearnHub.AppCode.dao
                 comm.Connection = conn;
                 comm.CommandText = "Insert into [TNF_data] (tnfid, courseID, prepareForNewJobRole, prepareForNewJobRoleText, " +
                     "prepareForNewJobRoleCompletionDate, shareKnowledge, shareKnowledgeText, shareKnowledgeCompletionDate, otherObjectives, " +
-                    "otherObjectivesText, otherObjectivesCompletionDate) VALUES (@tnfid, @courseID, @prepareForNewJobRole, @prepareForNewJobRoleText, " +
+                    "otherObjectivesText, otherObjectivesCompletionDate, lessonID) VALUES (@tnfid, @courseID, @prepareForNewJobRole, @prepareForNewJobRoleText, " +
                     "@prepareForNewJobRoleCompletionDate, @shareKnowledge, @shareKnowledgeText, @shareKnowledgeCompletionDate, @otherObjectives, " +
-                    "@otherObjectivesText, @otherObjectivesCompletionDate)";
+                    "@otherObjectivesText, @otherObjectivesCompletionDate, @lessonID)";
                 comm.Parameters.AddWithValue("@tnfid", tnfid);
                 comm.Parameters.AddWithValue("@courseID", courseID);
+                comm.Parameters.AddWithValue("@lessonID", lessonID);
                 comm.Parameters.AddWithValue("@prepareForNewJobRole", prepareForNewJobRole);
                 if (!string.IsNullOrEmpty(prepareForNewJobRoleText))
                 {

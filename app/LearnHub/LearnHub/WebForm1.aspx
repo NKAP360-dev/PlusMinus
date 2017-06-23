@@ -27,6 +27,23 @@
                 <asp:Label ID="lblJobTitle" runat="server"></asp:Label>
             </asp:Panel>
         </div>
+        <p>
+            &nbsp;</p>
+        <p>
+            &nbsp;</p>
+        <asp:GridView ID="GridView1" runat="server" CssClass="table table-striped table-hover" AutoGenerateColumns="False" DataKeyNames="lessonID" DataSourceID="SqlDataSource1">
+            <Columns>
+                <asp:BoundField DataField="lessonID" HeaderText="lessonID" InsertVisible="False" ReadOnly="True" SortExpression="lessonID" />
+                <asp:BoundField DataField="courseID" HeaderText="courseID" SortExpression="courseID" />
+                <asp:BoundField DataField="lesson_start_timing" HeaderText="lesson_start_timing" SortExpression="lesson_start_timing" />
+                <asp:BoundField DataField="lesson_end_timing" HeaderText="lesson_end_timing" SortExpression="lesson_end_timing" />
+                <asp:BoundField DataField="lesson_start_date" HeaderText="lesson_start_date" SortExpression="lesson_start_date" />
+                <asp:BoundField DataField="lesson_end_date" HeaderText="lesson_end_date" SortExpression="lesson_end_date" />
+                <asp:BoundField DataField="instructor" HeaderText="instructor" SortExpression="instructor" />
+                <asp:BoundField DataField="venue" HeaderText="venue" SortExpression="venue" />
+            </Columns>
+        </asp:GridView>
+        <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:DBConnectionString %>" SelectCommand="SELECT * FROM [Lesson]"></asp:SqlDataSource>
     </form>
 </body>
 </html>

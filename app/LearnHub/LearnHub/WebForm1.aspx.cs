@@ -33,5 +33,10 @@ namespace LearnHub
                 lblError.Text = "Unable to find user";
             }
         }
+
+        protected void LinkButton1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

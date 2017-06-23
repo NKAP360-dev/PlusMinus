@@ -9,6 +9,7 @@
  <div class="container">
         <h1>View Notifications</h1>
          <div class="verticalLine"></div>
+     <form method="post" action="/TRFapproval.aspx" id="formSubmit" name="formSubmit">
         <table class="table table-striped table-hover ">
             <thead>
                 <tr>
@@ -42,19 +43,21 @@
 
                             Response.Write("<tr>");
                             Response.Write("<td>" + userDAO.getUserByID(n.getUserIDFrom()).getName() + "</td>");
-                            Response.Write("<td>" + currentUser.getDepartment() + "</td>");
-                            Response.Write("<td>" + currentUser.getJobTitle() + "</td>");
+                            Response.Write("<td>" + userDAO.getUserByID(n.getUserIDFrom()).getDepartment() + "</td>");
+                            Response.Write("<td>" + userDAO.getUserByID(n.getUserIDFrom()).getJobTitle() + "</td>");
                             Response.Write("<td>" + currentCourse.getCourseName() + "</td>");
                             Response.Write("<td> $" + currentCourse.getPrice() + "</td>");
                             Response.Write("<td> $" + currentDept.getActualBudget() + "</td>");
                             Response.Write("<td> $" + (currentDept.getActualBudget() - currentCourse.getPrice()) + "</td>");
-                            Response.Write("<td>" + "<a href=\"/TRFapproval.aspx?tnfid=" + currentTNF.getTNFID() + "\"><span class=\"glyphicon glyphicon-menu-right\"></span>&nbsp;More Info</a>" + "</td>");
+                            //Response.Write("<td>" + "<input type=\"hidden\" name=\"tnfID\" id=\"tnfID\" value=\"" + currentTNF.getTNFID() + "\" />" + "<a href=\"/TRFapproval.aspx\"><span class=\"glyphicon glyphicon-menu-right\"></span>&nbsp;More Info</a>" + "</td>");
+                            Response.Write("<td>" + "<input type=\"hidden\" name=\"tnfID\" id=\"tnfID\" value=\"" + currentTNF.getTNFID() + "\" />" + "<input type=\"submit\" value=\"more info\" class=\"btn btn-info\" />" + "</td>");
                             Response.Write("</tr>");
                         }
                     }
                 %>
             </tbody>
         </table>
+         </form>
     </div>
 
 </asp:Content>

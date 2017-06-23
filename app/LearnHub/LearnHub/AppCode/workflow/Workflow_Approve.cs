@@ -85,6 +85,7 @@ namespace LearnHub.AppCode.workflow
                     notificationDAO.updateNotificationStatus(noti.getNotificationID(), "approved");
                     notificationDAO.updateNotificationApprovedDate(noti.getNotificationID());
                     tnfDAO.updateTNFStatus(tnf.getTNFID(), "approved");
+                    deptDAO.updateDeptBudget(currentDept.getDeptName(), (currentDept.getActualBudget() - currentCourse.getPrice()));
                     double bondCriteria = currentWorkflow.getBondCriteria();
                     if (currentCourse.getPrice() >= bondCriteria)
                     {
@@ -110,6 +111,7 @@ namespace LearnHub.AppCode.workflow
                         notificationDAO.updateNotificationApprovedDate(hrNoti.getNotificationID());
                     }
                     tnfDAO.updateTNFStatus(tnf.getTNFID(), "approved");
+                    deptDAO.updateDeptBudget(currentDept.getDeptName(), (currentDept.getActualBudget() - currentCourse.getPrice()));
                     double bondCriteria = currentWorkflow.getBondCriteria();
                     if (currentCourse.getPrice() >= bondCriteria)
                     {

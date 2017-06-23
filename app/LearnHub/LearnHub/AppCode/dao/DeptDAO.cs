@@ -124,5 +124,32 @@ namespace LearnHub.AppCode.dao
                 conn.Close();
             }
         }
+        public void updateDeptBudget(string dept_name , double newBudget) // Update.
+        {
+            SqlConnection conn = new SqlConnection();
+
+            try
+            {
+                conn = new SqlConnection();
+                string connstr = ConfigurationManager.ConnectionStrings["DBConnectionString"].ToString();
+                conn.ConnectionString = connstr;
+                conn.Open();
+                SqlCommand comm = new SqlCommand();
+                comm.Connection = conn;
+                comm.CommandText =
+                    "Update [Department] SET actual_budget=@newBudget WHERE dept_name=@dept_name";
+                comm.Parameters.AddWithValue("@dept_name", dept_name);
+                comm.Parameters.AddWithValue("@newBudget", newBudget);
+                int rowsAffected = comm.ExecuteNonQuery();
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
     }
 }
