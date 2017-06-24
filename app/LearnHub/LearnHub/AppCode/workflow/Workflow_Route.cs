@@ -266,15 +266,15 @@ namespace LearnHub.AppCode.workflow
                 {
                     approver = userDAO.getCEO();
                 }
-                else if (approverJobCat.ToLower().Equals("director"))
-                {
-                    approver = userDAO.getHODbyDepartment(currentUser.getDepartment());
-                }
                 else if (approverJobCat.ToLower().Equals("hod"))
                 {
                     approver = userDAO.getHODbyDepartment(currentUser.getDepartment());
                 }
-                else if (approverJobCat.ToLower().Equals("hr director"))
+                else if (approverJobCat.ToLower().Equals("supervisor"))
+                {
+                    approver = userDAO.getSupervisorbyDepartment(currentUser.getDepartment());
+                }
+                else if (approverJobCat.ToLower().Equals("hr hod"))
                 {
                     approver = userDAO.getHRHOD();
                 }
@@ -282,7 +282,7 @@ namespace LearnHub.AppCode.workflow
                 {
                     hrApprovers = userDAO.getAllHR();
                 }
-                else if (approverJobCat.ToLower().Equals("supervisor"))
+                else if (approverJobCat.ToLower().Equals("superior"))
                 {
                     string supervisorID = userDAO.getSupervisorIDOfUser(currentUser.getUserID());
                     approver = userDAO.getUserByID(supervisorID);

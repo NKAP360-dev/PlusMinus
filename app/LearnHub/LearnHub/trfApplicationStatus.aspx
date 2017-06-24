@@ -61,7 +61,7 @@
                                     nextApprover = userDAO.getCEO();
                                     approverName = nextApprover.getName();
                                 }
-                                else if (approverCategory.ToLower().Equals("supervisor"))
+                                else if (approverCategory.ToLower().Equals("superior"))
                                 {
                                     string supervisorID = userDAO.getSupervisorIDOfUser(currentUser.getUserID());
                                     nextApprover = userDAO.getUserByID(supervisorID);
