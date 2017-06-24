@@ -18,7 +18,7 @@ namespace LearnHub.AppCode.workflow
         private static WorkflowApproverDAO wfaDAO = new WorkflowApproverDAO();
         private static NotificationDAO notificationDAO = new NotificationDAO();
 
-        public static Boolean makeApproval(TNF tnf, User user, Notification noti)
+        public static Boolean makeApproval(TNF tnf, User user, Notification noti, string remarks)
         {
             //check TNF status
             if (!tnf.getStatus().ToLower().Equals("pending"))
@@ -84,6 +84,10 @@ namespace LearnHub.AppCode.workflow
                 {
                     notificationDAO.updateNotificationStatus(noti.getNotificationID(), "approved");
                     notificationDAO.updateNotificationApprovedDate(noti.getNotificationID());
+                    if (remarks != null)
+                    {
+                        notificationDAO.updateNotificationRemarks(noti.getNotificationID(), remarks);
+                    }
                     tnfDAO.updateTNFStatus(tnf.getTNFID(), "approved");
                     deptDAO.updateDeptBudget(currentDept.getDeptName(), (currentDept.getActualBudget() - currentCourse.getPrice()));
                     double bondCriteria = currentWorkflow.getBondCriteria();
@@ -97,6 +101,10 @@ namespace LearnHub.AppCode.workflow
                 {
                     notificationDAO.updateNotificationStatus(noti.getNotificationID(), "approved");
                     notificationDAO.updateNotificationApprovedDate(noti.getNotificationID());
+                    if(remarks != null)
+                    {
+                        notificationDAO.updateNotificationRemarks(noti.getNotificationID(), remarks);
+                    }
                     tnfDAO.updateTNFWFStatus(tnf.getTNFID(), nextWFLevel);
                     tnf = tnfDAO.getIndividualTNFByID(tnf.getUser().getUserID(), tnf.getTNFID());
                     Workflow_Route.sendApprovalNotification(tnf, nextApprover);
@@ -109,6 +117,10 @@ namespace LearnHub.AppCode.workflow
                     {
                         notificationDAO.updateNotificationStatus(hrNoti.getNotificationID(), "approved");
                         notificationDAO.updateNotificationApprovedDate(hrNoti.getNotificationID());
+                        if (remarks != null)
+                        {
+                            notificationDAO.updateNotificationRemarks(hrNoti.getNotificationID(), remarks);
+                        }
                     }
                     tnfDAO.updateTNFStatus(tnf.getTNFID(), "approved");
                     deptDAO.updateDeptBudget(currentDept.getDeptName(), (currentDept.getActualBudget() - currentCourse.getPrice()));
@@ -125,6 +137,10 @@ namespace LearnHub.AppCode.workflow
                     {
                         notificationDAO.updateNotificationStatus(hrNoti.getNotificationID(), "approved");
                         notificationDAO.updateNotificationApprovedDate(hrNoti.getNotificationID());
+                        if (remarks != null)
+                        {
+                            notificationDAO.updateNotificationRemarks(hrNoti.getNotificationID(), remarks);
+                        }
                     }
                     tnfDAO.updateTNFWFStatus(tnf.getTNFID(), nextWFLevel);
                     tnf = tnfDAO.getIndividualTNFByID(tnf.getUser().getUserID(), tnf.getTNFID());

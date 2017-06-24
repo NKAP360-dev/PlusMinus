@@ -41,9 +41,10 @@
 
                         foreach (Notification n in allPendingNotifications)
                         {
-                            TNF currentTNF = tnfDAO.getIndividualTNFByID(n.getUserIDFrom(), n.getTNFID());
+                            User applicant = userDAO.getUserByID(n.getUserIDFrom());
+                            TNF currentTNF = tnfDAO.getIndividualTNFByID(applicant.getUserID(), n.getTNFID());
                             Course currentCourse = tnfDAO.getCourseFromTNF(currentTNF.getTNFID());
-                            Department currentDept = deptDAO.getDeptByName(currentUser.getDepartment());
+                            Department currentDept = deptDAO.getDeptByName(applicant.getDepartment());
 
                             Response.Write("<tr>");
                             Response.Write("<td>" + userDAO.getUserByID(n.getUserIDFrom()).getName() + "</td>");
@@ -56,7 +57,7 @@
                             //Response.Write("<td>" + "<input type=\"hidden\" name=\"tnfID\" id=\"tnfID\" value=\"" + currentTNF.getTNFID() + "\" />" + "<a href=\"/TRFapproval.aspx\"><span class=\"glyphicon glyphicon-menu-right\"></span>&nbsp;More Info</a>" + "</td>");
                             Response.Write("<td>");
                             Response.Write("<input type=\"hidden\" name=\"tnfID\" id=\"tnfID\" value=\"" + currentTNF.getTNFID() + "\" runat=\"server\" />");
-                            Response.Write("<input type=\"hidden\" name=\"userID\" id=\"userID\" value=\"" + n.getUserIDFrom() + "\" runat=\"server\" />");
+                            Response.Write("<input type=\"hidden\" name=\"notificationID\" id=\"notificationID\" value=\"" + n.getNotificationID() + "\" runat=\"server\" />");
                             Response.Write("<input type=\"submit\" value=\"more info\" class=\"btn btn-info\" />" + "</td>");
                             Response.Write("</tr>");
                         }

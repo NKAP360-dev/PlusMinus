@@ -501,5 +501,78 @@ namespace LearnHub.AppCode.dao
             }
             return toReturn;
         }
+        public Boolean checkIsCourseAppliedOverseas(int tnfID)
+        {
+            SqlConnection conn = new SqlConnection();
+            string overseas = "";
+            Boolean toReturn = false;
+            try
+            {
+                conn = new SqlConnection();
+                string connstr = ConfigurationManager.ConnectionStrings["DBConnectionString"].ToString();
+                conn.ConnectionString = connstr;
+                conn.Open();
+                SqlCommand comm = new SqlCommand();
+                comm.Connection = conn;
+                comm.CommandText = "select c.overseas from [Course] c inner join [TNF_data] td on c.courseID = td.courseID inner join [TNF] t on td.tnfid = t.tnfid where t.tnfid=@tnfid";
+                comm.Parameters.AddWithValue("@tnfid", tnfID);
+                SqlDataReader dr = comm.ExecuteReader();
+                while (dr.Read())
+                {
+                    overseas = (string)dr["overseas"];
+                }
+                dr.Close();
+
+                if (overseas.ToLower().Equals("y")) {
+                    toReturn = true;
+                }
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                conn.Close();
+            }
+            return toReturn;
+        }
+        public Boolean checkIsCourseAppliedOver10000(int tnfID)
+        {
+            SqlConnection conn = new SqlConnection();
+            double coursePrice = 0.0;
+            Boolean toReturn = false;
+            try
+            {
+                conn = new SqlConnection();
+                string connstr = ConfigurationManager.ConnectionStrings["DBConnectionString"].ToString();
+                conn.ConnectionString = connstr;
+                conn.Open();
+                SqlCommand comm = new SqlCommand();
+                comm.Connection = conn;
+                comm.CommandText = "select c.price from [Course] c inner join [TNF_data] td on c.courseID = td.courseID inner join [TNF] t on td.tnfid = t.tnfid where t.tnfid=@tnfid";
+                comm.Parameters.AddWithValue("@tnfid", tnfID);
+                SqlDataReader dr = comm.ExecuteReader();
+                while (dr.Read())
+                {
+                    coursePrice = (double)dr["overseas"];
+                }
+                dr.Close();
+
+                if (coursePrice > 10000)
+                {
+                    toReturn = true;
+                }
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                conn.Close();
+            }
+            return toReturn;
+        }
     }
 }

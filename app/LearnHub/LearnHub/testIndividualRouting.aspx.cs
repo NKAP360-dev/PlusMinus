@@ -51,7 +51,7 @@ namespace LearnHub
             User currentUser = userDAO.getUserByID(GridView1.SelectedRow.Cells[2].Text);
             Notification selectedNotification = notificationDAO.getNotificationByID(int.Parse(GridView1.SelectedRow.Cells[7].Text));
 
-            Workflow_Approve.makeApproval(tnf, currentUser, selectedNotification);
+            Workflow_Approve.makeApproval(tnf, currentUser, selectedNotification, "");
             Response.Redirect("testIndividualRouting.aspx");
         }
     }

@@ -178,6 +178,7 @@
     <Compile Include="AppCode\entity\WorkflowApprover.cs" />
     <Compile Include="AppCode\entity\WorkflowSub.cs" />
     <Compile Include="AppCode\workflow\Workflow_Approve.cs" />
+    <Compile Include="AppCode\workflow\Workflow_Reject.cs" />
     <Compile Include="AppCode\workflow\Workflow_Route.cs" />
     <Compile Include="applyCourse.aspx.cs">
       <DependentUpon>applyCourse.aspx</DependentUpon>

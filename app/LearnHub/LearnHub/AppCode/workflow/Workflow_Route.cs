@@ -133,11 +133,29 @@ namespace LearnHub.AppCode.workflow
                                 return true;
                             } else
                             {
-                                WorkflowApprover nextWFApprover = approvers[i + 1];
-                                tnfDAO.updateTNFWFStatus(tnf.getTNFID(), i + 1);
-                                tnfDAO.updateTNFWFSub(tnf.getTNFID(), currentWFS.getWorkflowSubID());
-                                sendApprovalNotification(tnf, nextWFApprover);
-                                return true;
+                                Boolean checkIfLevelHigherThanLastApprover = checkJobLevelHigher(currentUser_job_category, lastWFApprover.getJobCategory());
+                                if (!checkIfLevelHigherThanLastApprover)
+                                {
+                                    for(int j = 0; i < approvers.Count; j++)
+                                    {
+                                        Boolean checkLevelWithCurrentApprover = checkJobLevelHigher(currentUser_job_category, approvers[j].getJobCategory());
+                                        if (checkLevelWithCurrentApprover)
+                                        {
+                                            continue;
+                                        }
+                                        else
+                                        {
+                                            WorkflowApprover nextWFApprover = approvers[j];
+                                            tnfDAO.updateTNFWFStatus(tnf.getTNFID(), j);
+                                            tnfDAO.updateTNFWFSub(tnf.getTNFID(), currentWFS.getWorkflowSubID());
+                                            sendApprovalNotification(tnf, nextWFApprover);
+                                            return true;
+                                        }
+                                    }
+                                } else
+                                {
+                                    workflowSubs = wfsDAO.getSortedWorflowSubByWorkflowIDandType(currentWorkflow.getWorkflowID(), "superior");
+                                }
                             }
                         }
                         else
@@ -199,7 +217,7 @@ namespace LearnHub.AppCode.workflow
             }
             else if (checkFrom.Equals("hod"))
             {
-                if (checkTo.Equals("CEO") || checkTo.Equals("hr"))
+                if (checkTo.Equals("ceo") || checkTo.Equals("hr") || checkTo.Equals("superior"))
                 {
                     return false;
                 }
@@ -210,7 +228,7 @@ namespace LearnHub.AppCode.workflow
             }
             else if (checkFrom.Equals("hr hod"))
             {
-                if (checkTo.Equals("CEO"))
+                if (checkTo.Equals("ceo") || checkTo.Equals("superior"))
                 {
                     return false;
                 }
@@ -221,7 +239,7 @@ namespace LearnHub.AppCode.workflow
             }
             else if (checkFrom.Equals("supervisor"))
             {
-                if (checkTo.Equals("ceo") || checkTo.Equals("hod") || checkTo.Equals("hr"))
+                if (checkTo.Equals("ceo") || checkTo.Equals("hod") || checkTo.Equals("hr") || checkTo.Equals("superior"))
                 {
                     return false;
                 }
@@ -232,7 +250,7 @@ namespace LearnHub.AppCode.workflow
             }
             else if (checkFrom.Equals("hr"))
             {
-                if (checkTo.Equals("hr director") || checkTo.Equals("ceo"))
+                if (checkTo.Equals("hr director") || checkTo.Equals("ceo") || checkTo.Equals("superior"))
                 {
                     return false;
                 }

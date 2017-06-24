@@ -13,6 +13,24 @@ namespace LearnHub {
     public partial class TRFapproval {
         
         /// <summary>
+        /// lblHiddenNotificationID control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblHiddenNotificationID;
+        
+        /// <summary>
+        /// lblHiddenTNFID control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblHiddenTNFID;
+        
+        /// <summary>
         /// nameOfStaffLabel control.
         /// </summary>
         /// <remarks>
@@ -454,42 +472,6 @@ namespace LearnHub {
         protected global::System.Web.UI.WebControls.Button viewComments;
         
         /// <summary>
-        /// normalApprovalView control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel normalApprovalView;
-        
-        /// <summary>
-        /// remarksInput control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox remarksInput;
-        
-        /// <summary>
-        /// approvalBtn control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton approvalBtn;
-        
-        /// <summary>
-        /// rejectBtn control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton rejectBtn;
-        
-        /// <summary>
         /// hrApprovalView control.
         /// </summary>
         /// <remarks>
@@ -605,6 +587,96 @@ namespace LearnHub {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton hrApprove;
+        
+        /// <summary>
+        /// normalApprovalView control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel normalApprovalView;
+        
+        /// <summary>
+        /// remarksInput control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox remarksInput;
+        
+        /// <summary>
+        /// warningPanelPrice control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel warningPanelPrice;
+        
+        /// <summary>
+        /// lblWarningPrice control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblWarningPrice;
+        
+        /// <summary>
+        /// warningPanelOverseas control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel warningPanelOverseas;
+        
+        /// <summary>
+        /// lblWarningOverseas control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblWarningOverseas;
+        
+        /// <summary>
+        /// warningPanelProbation control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel warningPanelProbation;
+        
+        /// <summary>
+        /// lblWarningProbation control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblWarningProbation;
+        
+        /// <summary>
+        /// approvalBtn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton approvalBtn;
+        
+        /// <summary>
+        /// rejectBtn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton rejectBtn;
         
         /// <summary>
         /// TextBox1 control.

@@ -59,6 +59,8 @@
         <div class="container">
             <h1>Approve Training Request Form</h1>
             <div class="verticalLine"></div>
+            <asp:Label ID="lblHiddenNotificationID" runat="server" Visible="False"></asp:Label>
+            <asp:Label ID="lblHiddenTNFID" runat="server" Visible="False"></asp:Label>
             <br />
 
             <div class="row">
@@ -281,18 +283,7 @@
                         {
                             Response.Write("HR Director Approval");
                         }
-                %></h4>
-
-                <asp:Panel ID="normalApprovalView" runat="server" Visible="false">
-                    Remarks (if any):
-               <asp:TextBox ID="remarksInput" TextMode="multiline" Columns="50" Rows="5" runat="server" CssClass="form-control" placeholder="Remarks (if any)"></asp:TextBox>                  
-                    <p class="text-danger"><span class="label label-danger">!</span> This course "is an oversea course"/"exceeds $10,000"/"requires a bond"/etc!</p>
-                    <br /><br />
-                    <asp:LinkButton ID="approvalBtn" runat="server" CssClass="btn btn-success"  data-toggle="modal" href="#approveModal"><span class="glyphicon glyphicon-ok"></span> &nbsp;Approve</asp:LinkButton>
-                    <asp:LinkButton ID="rejectBtn" runat="server" CssClass="btn btn-danger" data-toggle="modal" href="#rejectModal"><span class="glyphicon glyphicon-remove"></span> &nbsp;Reject</asp:LinkButton>
-
-                </asp:Panel>
-                <br />
+                %>
                 <asp:Panel ID="hrApprovalView" runat="server" Visible="false">
                     <h4>HR Department</h4>
                     <fieldset>
@@ -421,6 +412,35 @@
                     </fieldset>
                     <asp:LinkButton ID="hrApprove" runat="server" CssClass="btn btn-success"><span class="glyphicon glyphicon-floppy-disk"></span> &nbsp;Save</asp:LinkButton>
                 </asp:Panel>
+                </h4>
+                
+                <asp:Panel ID="normalApprovalView" runat="server">
+                    Remarks (if any):
+               <asp:TextBox ID="remarksInput" TextMode="multiline" Columns="50" Rows="5" runat="server" CssClass="form-control" placeholder="Remarks (if any)"></asp:TextBox>    
+                    <asp:Panel ID="warningPanelPrice" runat="server" Visible="false">
+                        <p class="text-danger">
+                            <span class="label label-danger">!</span>
+                            <asp:Label ID="lblWarningPrice" runat="server" Text="" Visible="false"></asp:Label> <br />
+                        </p>
+                     </asp:Panel>
+                    <asp:Panel ID="warningPanelOverseas" runat="server" Visible="false">
+                        <p class="text-danger">
+                            <span class="label label-danger">!</span>
+                            <asp:Label ID="lblWarningOverseas" runat="server" Text="" Visible="false"></asp:Label> <br />
+                        </p>
+                    </asp:Panel>
+                    <asp:Panel ID="warningPanelProbation" runat="server" Visible="false">
+                        <p class="text-danger">
+                            <span class="label label-danger">!</span>
+                            <asp:Label ID="lblWarningProbation" runat="server" Text="" Visible="false"></asp:Label>
+                        </p>
+                    </asp:Panel>
+                    <br /><br />
+                    <asp:LinkButton ID="approvalBtn" runat="server" CssClass="btn btn-success"  data-toggle="modal" href="#approveModal"><span class="glyphicon glyphicon-ok"></span> &nbsp;Approve</asp:LinkButton>
+                    <asp:LinkButton ID="rejectBtn" runat="server" CssClass="btn btn-danger" data-toggle="modal" href="#rejectModal"><span class="glyphicon glyphicon-remove"></span> &nbsp;Reject</asp:LinkButton>
+
+                </asp:Panel>
+                <br />
             </div>
 
             <!-- Modal for approval info-->
@@ -459,14 +479,14 @@
                     <div class="modal-body">
                         <div class="wrapper">                            
                             <h4>Are you sure you want to approve this form?</h4><br />
-                                <asp:LinkButton ID="cfmApproveBtn" runat="server" CssClass="btn btn-success"><span class="glyphicon glyphicon-ok"></span> &nbsp;Approve</asp:LinkButton>
+                                <asp:LinkButton ID="cfmApproveBtn" runat="server" CssClass="btn btn-success" onclick="cfmApproveBtn_Click"><span class="glyphicon glyphicon-ok"></span> &nbsp;Approve</asp:LinkButton>
                         </div>                       
                     </div>                  
                 </div>
 
             </div>
         </div>
-            <%--Modal for Approval Confirmation--%>
+            <%--Modal for Rejection Confirmation--%>
                 <div id="rejectModal" class="modal fade" role="dialog">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -478,7 +498,7 @@
                     <div class="modal-body">
                         <div class="wrapper">                            
                             <h4>Are you sure you want to reject this form?</h4><br />
-                                <asp:LinkButton ID="cfmRejectBtn" runat="server" CssClass="btn btn-danger"><span class="glyphicon glyphicon-remove"></span> &nbsp;Reject</asp:LinkButton>
+                                <asp:LinkButton ID="cfmRejectBtn" runat="server" CssClass="btn btn-danger" OnClick="cfmRejectBtn_Click"><span class="glyphicon glyphicon-remove"></span> &nbsp;Reject</asp:LinkButton>
                         </div>                       
                     </div>                  
                 </div>
