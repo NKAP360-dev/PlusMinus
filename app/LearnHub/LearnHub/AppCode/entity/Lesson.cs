@@ -79,7 +79,7 @@ namespace LearnHub.AppCode.entity
         {
             return venue;
         }
-        public void setVenue(string timing)
+        public void setVenue(string venue)
         {
             this.venue = venue;
         }

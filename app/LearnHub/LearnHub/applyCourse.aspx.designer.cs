@@ -148,6 +148,15 @@ namespace LearnHub {
         protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSourceCourse;
         
         /// <summary>
+        /// rfv_courseInput control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfv_courseInput;
+        
+        /// <summary>
         /// lessonSelection control.
         /// </summary>
         /// <remarks>
@@ -227,6 +236,15 @@ namespace LearnHub {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.ListItem ex;
+        
+        /// <summary>
+        /// rfv_courseProvider control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfv_courseProvider;
         
         /// <summary>
         /// empty1 control.
@@ -319,6 +337,15 @@ namespace LearnHub {
         protected global::System.Web.UI.WebControls.TextBox objectiveElaborate1;
         
         /// <summary>
+        /// rfv_objective1text control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfv_objective1text;
+        
+        /// <summary>
         /// completionDateLabel1 control.
         /// </summary>
         /// <remarks>
@@ -335,6 +362,15 @@ namespace LearnHub {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox completeDateInput1;
+        
+        /// <summary>
+        /// rfv_objective1date control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfv_objective1date;
         
         /// <summary>
         /// empty2 control.
@@ -373,6 +409,15 @@ namespace LearnHub {
         protected global::System.Web.UI.WebControls.TextBox objectiveElaborate2;
         
         /// <summary>
+        /// rfv_objective2text control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfv_objective2text;
+        
+        /// <summary>
         /// completionDateLabel2 control.
         /// </summary>
         /// <remarks>
@@ -389,6 +434,15 @@ namespace LearnHub {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox completeDateInput2;
+        
+        /// <summary>
+        /// rfv_objective2date control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfv_objective2date;
         
         /// <summary>
         /// empty4 control.
@@ -427,6 +481,15 @@ namespace LearnHub {
         protected global::System.Web.UI.WebControls.TextBox objectiveElaborate3;
         
         /// <summary>
+        /// rfv_objective3text control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfv_objective3text;
+        
+        /// <summary>
         /// completionDateLabel3 control.
         /// </summary>
         /// <remarks>
@@ -436,13 +499,22 @@ namespace LearnHub {
         protected global::System.Web.UI.WebControls.Label completionDateLabel3;
         
         /// <summary>
-        /// completionDateInput3 control.
+        /// completeDateInput3 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox completionDateInput3;
+        protected global::System.Web.UI.WebControls.TextBox completeDateInput3;
+        
+        /// <summary>
+        /// rfv_objective3date control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfv_objective3date;
         
         /// <summary>
         /// cfmSubmit control.
@@ -470,6 +542,24 @@ namespace LearnHub {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button Button1;
+        
+        /// <summary>
+        /// Label1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label1;
+        
+        /// <summary>
+        /// cv1_objective1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CustomValidator cv1_objective1;
         
         /// <summary>
         /// submitBtn control.

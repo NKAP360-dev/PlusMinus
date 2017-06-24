@@ -32,6 +32,7 @@ namespace LearnHub
                 fromDateInput.Text = "";
                 toDateInput.Text = "";
                 courseFeeInput.Text = "";
+                Session["selectedCourse"] = null;
             }
         }
 

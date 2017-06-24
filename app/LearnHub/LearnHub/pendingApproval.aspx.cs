@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LearnHub.AppCode.entity;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -15,7 +16,16 @@ namespace LearnHub
             {
                 Response.Redirect("Login.aspx");
                 
+            } else
+            {
+                
             }
+        }
+        protected void lbtnMoreInfo_Click(object sender, EventArgs e)
+        {
+            //Session["selectedTNFFromNoti"] = tnfID.Value;
+            //Session["selectedUserFromNoti"] = userID.Value;
+            //Response.Redirect("/TRFApproval.aspx");
         }
     }
 }

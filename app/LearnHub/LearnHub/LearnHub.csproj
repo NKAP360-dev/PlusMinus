@@ -172,6 +172,7 @@
     <Compile Include="AppCode\entity\Quiz.cs" />
     <Compile Include="AppCode\entity\QuizContent.cs" />
     <Compile Include="AppCode\entity\TNF.cs" />
+    <Compile Include="AppCode\entity\TNFData.cs" />
     <Compile Include="AppCode\entity\User.cs" />
     <Compile Include="AppCode\entity\Workflow.cs" />
     <Compile Include="AppCode\entity\WorkflowApprover.cs" />

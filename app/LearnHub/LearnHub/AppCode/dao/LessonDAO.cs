@@ -28,7 +28,7 @@ namespace LearnHub.AppCode.dao
                 while (dr.Read())
                 {
                     Lesson l = new Lesson();
-
+                    l.setLessonID((int)dr["lessonID"]);
                     l.setCourseID((int)dr["courseID"]);
                     l.setStartTime((TimeSpan)dr["lesson_start_timing"]);
                     l.setEndTime((TimeSpan)dr["lesson_end_timing"]);
@@ -38,6 +38,45 @@ namespace LearnHub.AppCode.dao
                     l.setVenue((string)dr["venue"]);
 
                     toReturn.Add(l);
+                }
+                dr.Close();
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                conn.Close();
+            }
+            return toReturn;
+        }
+        public Lesson getLessonByID(int lessonID)
+        {
+            SqlConnection conn = new SqlConnection();
+            Lesson toReturn = null;
+            try
+            {
+                conn = new SqlConnection();
+                string connstr = ConfigurationManager.ConnectionStrings["DBConnectionString"].ToString();
+                conn.ConnectionString = connstr;
+                conn.Open();
+                SqlCommand comm = new SqlCommand();
+                comm.Connection = conn;
+                comm.CommandText = "select * from [Lesson] where lessonID=@lessonID";
+                comm.Parameters.AddWithValue("@lessonID", lessonID);
+                SqlDataReader dr = comm.ExecuteReader();
+                while (dr.Read())
+                {
+                    toReturn = new Lesson();
+                    toReturn.setLessonID((int)dr["lessonID"]);
+                    toReturn.setCourseID((int)dr["courseID"]);
+                    toReturn.setStartTime((TimeSpan)dr["lesson_start_timing"]);
+                    toReturn.setEndTime((TimeSpan)dr["lesson_end_timing"]);
+                    toReturn.setStartDate(dr.GetDateTime(4));
+                    toReturn.setEndDate(dr.GetDateTime(5));
+                    toReturn.setInstructor((string)dr["instructor"]);
+                    toReturn.setVenue((string)dr["venue"]);
                 }
                 dr.Close();
             }

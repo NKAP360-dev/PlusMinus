@@ -405,5 +405,101 @@ namespace LearnHub.AppCode.dao
             }
             return toReturn;
         }
+        public Lesson getLessonFromTNF(int tnfID)
+        {
+            SqlConnection conn = new SqlConnection();
+            Lesson toReturn = null;
+            try
+            {
+                conn = new SqlConnection();
+                string connstr = ConfigurationManager.ConnectionStrings["DBConnectionString"].ToString();
+                conn.ConnectionString = connstr;
+                conn.Open();
+                SqlCommand comm = new SqlCommand();
+                comm.Connection = conn;
+                comm.CommandText = "select l.lessonID, l.courseID, l.lesson_start_timing, l.lesson_end_timing, l.lesson_start_date, l.lesson_end_date, l.instructor, l.venue from [Lesson] l inner join [TNF_data] td on l.lessonID = td.lessonID inner join [TNF] t on td.tnfid = t.tnfid where t.tnfid=@tnfid";
+                comm.Parameters.AddWithValue("@tnfid", tnfID);
+                SqlDataReader dr = comm.ExecuteReader();
+                while (dr.Read())
+                {
+                    toReturn = new Lesson();
+                    toReturn.setLessonID((int)dr["lessonID"]);
+                    toReturn.setCourseID((int)dr["courseID"]);
+                    toReturn.setStartTime((TimeSpan)dr["lesson_start_timing"]);
+                    toReturn.setEndTime((TimeSpan)dr["lesson_end_timing"]);
+                    toReturn.setStartDate(dr.GetDateTime(4));
+                    toReturn.setEndDate(dr.GetDateTime(5));
+                    toReturn.setInstructor((string)dr["instructor"]);
+                    toReturn.setVenue((string)dr["venue"]);
+                }
+                dr.Close();
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                conn.Close();
+            }
+            return toReturn;
+        }
+        public TNFData getIndividualTNFDataByID(int tnfID)
+        {
+            SqlConnection conn = new SqlConnection();
+            TNFData toReturn = null;
+            try
+            {
+                conn = new SqlConnection();
+                string connstr = ConfigurationManager.ConnectionStrings["DBConnectionString"].ToString();
+                conn.ConnectionString = connstr;
+                conn.Open();
+                SqlCommand comm = new SqlCommand();
+                comm.Connection = conn;
+                comm.CommandText = "select * from [TNF_data] where tnfid=@tnfid";
+                comm.Parameters.AddWithValue("@tnfid", tnfID);
+                SqlDataReader dr = comm.ExecuteReader();
+                while (dr.Read())
+                {
+                    toReturn = new TNFData();
+                    
+                    toReturn.setTNFID((int)dr["tnfid"]);
+
+                    string prepareForNewJobRole = (string)dr["prepareForNewJobRole"];
+                    toReturn.setPrepareForNewJobRole(prepareForNewJobRole);
+                    if (prepareForNewJobRole.Equals("y"))
+                    {
+                        toReturn.setPrepareForNewJobRoleText((string)dr["prepareForNewJobRoleText"]);
+                        toReturn.setPrepareForNewJobRoleCompletionDate(dr.GetDateTime(4));
+                    }
+
+                    string shareKnowledge = (string)dr["shareKnowledge"];
+                    toReturn.setShareKnowledge(shareKnowledge);
+                    if (shareKnowledge.Equals("y"))
+                    {
+                        toReturn.setShareKnowledgeText((string)dr["shareKnowledgeText"]);
+                        toReturn.setShareKnowledgeCompletionDate(dr.GetDateTime(7));
+                    }
+
+                    string otherObjectives = (string)dr["otherObjectives"];
+                    toReturn.setOtherObjectives(otherObjectives);
+                    if (otherObjectives.Equals("y"))
+                    {
+                        toReturn.setOtherObjectivesText((string)dr["otherObjectivesText"]);
+                        toReturn.setOtherObjectivesCompletionDate(dr.GetDateTime(10));
+                    }
+                }
+                dr.Close();
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                conn.Close();
+            }
+            return toReturn;
+        }
     }
 }

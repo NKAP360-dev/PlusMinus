@@ -72,35 +72,35 @@
                                 <strong>
                             <asp:Label ID="nameOfStaffLabel" runat="server" CssClass="col-lg-2 control-label" Text="Name Of Staff"></asp:Label></strong>
                                  
-                                  <asp:Label ID="nameOfStaffOutput" runat="server" CssClass="col-lg-2 control-label-left" Text="Name Of Staff"></asp:Label>    
+                                  <asp:Label ID="nameOfStaffOutput" runat="server" CssClass="col-lg-2 control-label-left"></asp:Label>    
                                  
                                 </div>
                     <div class="form-group">
                         <strong>
                             <asp:Label ID="employeeNoLabel" runat="server" CssClass="col-lg-2 control-label" Text="Employee No"></asp:Label></strong>
                         
-                            <asp:Label ID="employeeNumberOutput" runat="server" CssClass="col-lg-2 control-label-left" Text="Employee Number"></asp:Label>
+                            <asp:Label ID="employeeNumberOutput" runat="server" CssClass="col-lg-2 control-label-left"></asp:Label>
                         
                     </div>
                     <div class="form-group">
                         <strong>
                             <asp:Label ID="emailLabel" runat="server" CssClass="col-lg-2 control-label" Text="Email Address"></asp:Label></strong>
                         
-                            <asp:Label ID="emailOutput" runat="server" CssClass="col-lg-2 control-label-left" Text="Email Address"></asp:Label>
+                            <asp:Label ID="emailOutput" runat="server" CssClass="col-lg-2 control-label-left"></asp:Label>
                         
                     </div>
                     <div class="form-group">
                         <strong>
                             <asp:Label ID="designationLabel" runat="server" CssClass="col-lg-2 control-label" Text="Desgination"></asp:Label></strong>
                         
-                            <asp:Label ID="designationOutput" runat="server" CssClass="col-lg-2 control-label-left" Text="Designation"></asp:Label>
+                            <asp:Label ID="designationOutput" runat="server" CssClass="col-lg-2 control-label-left"></asp:Label>
                         
                     </div>
                     <div class="form-group">
                         <strong>
                             <asp:Label ID="departmentLabel" runat="server" CssClass="col-lg-2 control-label" Text="Department"></asp:Label></strong>
                         
-                            <asp:Label ID="departmentOutput" runat="server" CssClass="col-lg-2 control-label-left" Text="Department"></asp:Label>
+                            <asp:Label ID="departmentOutput" runat="server" CssClass="col-lg-2 control-label-left"></asp:Label>
                         
                     </div>
                     <br />
@@ -111,39 +111,39 @@
                         <strong>
                             <asp:Label ID="courseLabel" runat="server" CssClass="col-lg-2 control-label" Text="Course Title"></asp:Label></strong>
                         
-                            <asp:Label ID="courseOutput" runat="server" CssClass="col-lg-2 control-label-left" Text="Course Title"></asp:Label>
+                            <asp:Label ID="courseOutput" runat="server" CssClass="col-lg-2 control-label-left"></asp:Label>
                        
                     </div>
                     <div class="form-group">
                         <strong>
                             <asp:Label ID="dateLabel" runat="server" CssClass="col-lg-2 control-label" Text="Date"></asp:Label></strong>
 
-                              <asp:Label ID="startDate" runat="server" CssClass="col-lg-1 control-label-left" Text="Start Date"></asp:Label>  
+                              <asp:Label ID="startDate" runat="server" CssClass="col-lg-1 control-label-left"></asp:Label>  
                         <asp:Label ID="toDate" runat="server" CssClass="col-lg-1 control-label-left" Text="to"></asp:Label> 
-                              <asp:Label ID="endDate" runat="server" CssClass="col-lg-1 control-label-left" Text="End Date"></asp:Label>
+                              <asp:Label ID="endDate" runat="server" CssClass="col-lg-1 control-label-left"></asp:Label>
 
                         </div>
                     <div class="form-group">
                         <strong>
                             <asp:Label ID="timeLabel" runat="server" CssClass="col-lg-2 control-label" Text="Time"></asp:Label></strong>
 
-                              <asp:Label ID="startTime" runat="server" CssClass="col-lg-1 control-label-left" Text="Start Time"></asp:Label>  
+                              <asp:Label ID="startTime" runat="server" CssClass="col-lg-1 control-label-left"></asp:Label>  
                         <asp:Label ID="toTime" runat="server" CssClass="col-lg-1 control-label-left" Text="to"></asp:Label> 
-                              <asp:Label ID="endTime" runat="server" CssClass="col-lg-1 control-label-left" Text="End Time"></asp:Label>
+                              <asp:Label ID="endTime" runat="server" CssClass="col-lg-1 control-label-left"></asp:Label>
 
                         </div>
                     <div class="form-group">
                         <strong>
                             <asp:Label ID="venueLabel" runat="server" CssClass="col-lg-2 control-label" Text="Venue"></asp:Label></strong>
                         
-                            <asp:Label ID="venueOutput" runat="server" CssClass="col-lg-2 control-label-left" Text="Venue"></asp:Label>
+                            <asp:Label ID="venueOutput" runat="server" CssClass="col-lg-2 control-label-left"></asp:Label>
                        
                     </div>
                     <div class="form-group">
                         <strong>
                             <asp:Label ID="instructorLabel" runat="server" CssClass="col-lg-2 control-label" Text="Instructor"></asp:Label></strong>
                         
-                            <asp:Label ID="instructorOutput" runat="server" CssClass="col-lg-2 control-label-left" Text="Instructor"></asp:Label>
+                            <asp:Label ID="instructorOutput" runat="server" CssClass="col-lg-2 control-label-left"></asp:Label>
                        
                     </div>
                     <div class="form-group">
@@ -152,22 +152,22 @@
                         <div class="col-lg-10">
                             <div class="radio">
                                 <label>
-                                    <asp:RadioButton ID="inhouse" GroupName="courseProvider" runat="server" Text="Inhouse" Checked="True" />
+                                    <asp:RadioButton ID="inhouse" GroupName="courseProvider" runat="server" Text="Inhouse" Checked="True" Enabled="False" />
                                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                <asp:RadioButton ID="external" GroupName="courseProvider" runat="server" Text="External" />
+                                <asp:RadioButton ID="external" GroupName="courseProvider" runat="server" Text="External" Enabled="False" />
                                 </label>
                             </div>
                         </div>
-                        <asp:Label ID="empty1" runat="server" CssClass="col-lg-2 control-label" Text=""></asp:Label>
+                        <asp:Label ID="lblExternal" runat="server" CssClass="col-lg-2 control-label" Text="External vendor, if any: "></asp:Label>
                         
-                            <asp:Label ID="externalCourseProviderOutput" runat="server" CssClass="col-lg-2 control-label-left" Text="External, if any"></asp:Label>
+                            <asp:Label ID="externalCourseProviderOutput" runat="server" CssClass="col-lg-2 control-label-left"></asp:Label>
                         
                     </div>
                     <div class="form-group">
                         <strong>
                             <asp:Label ID="courseFeeLabel" disabled="" runat="server" CssClass="col-lg-2 control-label" Text="Course Fees with GST"></asp:Label></strong>
                        
-                            <asp:Label ID="courseFeeOutput" runat="server" CssClass="col-lg-2 control-label-left" Text="Course Fees with GST (where applicable)"></asp:Label>
+                            <asp:Label ID="courseFeeOutput" runat="server" CssClass="col-lg-2 control-label-left"></asp:Label>
                         
                     </div>
                     </div>
@@ -182,7 +182,7 @@
                         <div class="col-lg-10">
                             <div class="checkbox">
                                 <label>
-                                    <asp:CheckBox ID="objectiveInput1" runat="server" Text="To prepare for new job role/task" />
+                                    <asp:CheckBox ID="objectiveInput1" runat="server" Text="To prepare for new job role/task" Enabled="False" />
                                 </label>
                             </div>
                         </div>
@@ -206,7 +206,7 @@
                         <div class="col-lg-10">
                             <div class="checkbox">
                                 <label>
-                                    <asp:CheckBox ID="objectiveInput2" runat="server" Text="Share the knowledge and skills with fellow colleagues" />
+                                    <asp:CheckBox ID="objectiveInput2" runat="server" Text="Share the knowledge and skills with fellow colleagues" Enabled="False" />
                                 </label>
                             </div>
                         </div>
@@ -229,7 +229,7 @@
                         <div class="col-lg-10">
                             <div class="checkbox">
                                 <label>
-                                    <asp:CheckBox ID="objectiveInput3" runat="server" Text="Others" />
+                                    <asp:CheckBox ID="objectiveInput3" runat="server" Text="Others" Enabled="False" />
                                 </label>
                             </div>
                         </div>

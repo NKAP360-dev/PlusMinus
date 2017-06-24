@@ -38,5 +38,10 @@ namespace LearnHub
         {
 
         }
+
+        protected void LinkButton1_Click1(object sender, EventArgs e)
+        {
+
+        }
     }
 }
