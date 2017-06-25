@@ -265,7 +265,7 @@
                         </td>
                     </tr>
                 </table>
-                <h4><%
+                <%
                         User currentUser = (User)Session["currentUser"];
                         string category = currentUser.getJobCategory();
 
@@ -371,8 +371,8 @@
                                                 <asp:UpdatePanel ID="fundingPanel" runat="server">
                                                     <ContentTemplate>
                                                         <asp:RadioButtonList ID="rbnlFunding" runat="server" AutoPostBack="True" OnSelectedIndexChanged="rbnlFunding_SelectedIndexChanged">
-                                                            <asp:ListItem Value="y">Yes</asp:ListItem>
-                                                            <asp:ListItem Value="n" Selected="True">No</asp:ListItem>
+                                                            <asp:ListItem Value="y" Selected="True"> &nbsp; Yes</asp:ListItem>
+                                                            <asp:ListItem Value="n" >&nbsp; No</asp:ListItem>
                                                         </asp:RadioButtonList>
                                                         <asp:TextBox ID="txtSourceOfFunding" runat="server" CssClass="form-control" placeholder="Source of Funding" Enabled="false"></asp:TextBox>
                                                         <div class="input-group date">
@@ -422,7 +422,7 @@
 
                     </fieldset>
                 </asp:Panel>
-                </h4>
+                
                 
                 <asp:Panel ID="normalApprovalView" runat="server">
                     Remarks (if any):
