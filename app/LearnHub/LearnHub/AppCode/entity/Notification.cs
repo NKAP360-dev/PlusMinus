@@ -11,6 +11,8 @@ namespace LearnHub.AppCode.entity
         private string uid_to;
         private int tnfID;
         private string status;
+        private DateTime dateApproved;
+        private string remarks;
         private int notif_ID;
         public Notification() { }
         public Notification (string uid_from, string uid_to, int tnfID, string status, int notif_ID)
@@ -67,6 +69,32 @@ namespace LearnHub.AppCode.entity
         public void setNotificationID(int notif_ID)
         {
             this.notif_ID = notif_ID;
+        }
+
+        public DateTime getDateApproved()
+        {
+            return dateApproved;
+        }
+
+        public void setDateApproved(DateTime dateApproved)
+        {
+            if (dateApproved != null)
+            {
+                this.dateApproved = dateApproved;
+            }
+        }
+
+        public string getRemarks()
+        {
+            return remarks;
+        }
+
+        public void setRemarks(string remarks)
+        {
+            if (remarks != null)
+            {
+                this.remarks = remarks;
+            }
         }
     }
 }

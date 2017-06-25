@@ -230,5 +230,47 @@ namespace LearnHub.AppCode.dao
             }
             return toReturn;
         }
+
+        public List<Notification> getApprovedNotificationByTnfID(int tnfID)
+        {
+            SqlConnection conn = new SqlConnection();
+            List<Notification> toReturn = new List<Notification>();
+            try
+            {
+                conn = new SqlConnection();
+                string connstr = ConfigurationManager.ConnectionStrings["DBConnectionString"].ToString();
+                conn.ConnectionString = connstr;
+                conn.Open();
+                SqlCommand comm = new SqlCommand();
+                comm.Connection = conn;
+                comm.CommandText = "select * from [Notifications] where tnfID=@tnfID and status=@status";
+                comm.Parameters.AddWithValue("@tnfID", tnfID);
+                comm.Parameters.AddWithValue("@status", "approved");
+                SqlDataReader dr = comm.ExecuteReader();
+                while (dr.Read())
+                {
+                    Notification n = new Notification();
+                    n.setUserIDFrom((string)dr["userID_from"]);
+                    n.setUserIDTo((string)dr["userID_to"]);
+                    n.setTNFID((int)dr["tnfid"]);
+                    n.setStatus((string)dr["status"]);
+                    n.setDateApproved((DateTime)dr["dateApproved"]);
+                    n.setRemarks((string)dr["remarks"]);
+                    n.setNotificationID((int)dr["notif_ID"]);
+
+                    toReturn.Add(n);
+                }
+                dr.Close();
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                conn.Close();
+            }
+            return toReturn;
+        }
     }
 }

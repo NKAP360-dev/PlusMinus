@@ -1,8 +1,8 @@
 ﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Masterpage.master.cs" Inherits="LearnHub.Masterpage" %>
 
 <!DOCTYPE html>
-<%@ Import Namespace="LearnHub.AppCode.entity"%>
-<%@ Import Namespace="LearnHub.AppCode.dao"%>
+<%@ Import Namespace="LearnHub.AppCode.entity" %>
+<%@ Import Namespace="LearnHub.AppCode.dao" %>
 
 <html>
 <head runat="server">
@@ -108,13 +108,12 @@
             text-align: center;
         }
 
-         .right {
+        .right {
             position: absolute;
             width: 300px;
             right: 0px;
             padding: 10px;
         }
-
     </style>
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script type="text/javascript">
@@ -183,9 +182,9 @@
                             <li class="divider"></li>
                             <li>
                                 <asp:HyperLink ID="HyperLink5" runat="server" data-toggle="modal" href="#formModal">Apply for Courses</asp:HyperLink></li>
-                                                        <li>
+                            <li>
                                 <asp:HyperLink ID="HyperLink14" runat="server" NavigateUrl="~/trfApplicationStatus.aspx">Application Status</asp:HyperLink></li>
-                            
+
                             <li class="divider"></li>
                             <li>
                                 <asp:HyperLink ID="HyperLink6" runat="server">My Enrolled Courses</asp:HyperLink></li>
@@ -222,6 +221,21 @@
                     </li>
                 </ul>
 
+                <%--Show login button only if user is not logged in--%>
+                <%--Show logout button only if user is logged in--%>
+                <form class="navbar-form navbar-right">
+                    <%
+                        if (Session["currentUser"] == null)
+                        {
+                    %>
+                    <a href="Login.aspx" class="btn btn-success"><span class="glyphicon glyphicon-user"></span>&nbsp;Login</a>
+                    <% }
+                    else
+                    { %>
+                    <a href="Logout.aspx" class="btn btn-danger"><span class="glyphicon glyphicon-log-out"></span>&nbsp;Logout</a>
+                    <% } %>
+                </form>
+
                 <%--Settings--%>
                 <ul class="nav navbar-nav navbar-right">
                     <li>
@@ -233,7 +247,7 @@
                 <%
                     if (Session["currentUser"] != null)
                     {
-                        
+
                 %>
                 <ul class="nav navbar-nav navbar-right">
                     <li>
@@ -249,21 +263,6 @@
                 <%
                     }
                 %>
-
-                <%--Show login button only if user is not logged in--%>
-                <%--Show logout button only if user is logged in--%>
-                <form class="navbar-form navbar-right">
-                    <%
-    if (Session["currentUser"] == null)
-    {
-                    %>
-                    <a href="Login.aspx" class="btn btn-success"><span class="glyphicon glyphicon-user"></span>&nbsp;Login</a>
-                    <% }
-    else
-    { %>
-                    <a href="Logout.aspx" class="btn btn-danger"><span class="glyphicon glyphicon-log-out"></span>&nbsp;Logout</a>
-                    <% } %>
-                </form>
 
                 <%--Make notification appear only if user is logged in and if user is approver--%>
 
@@ -331,7 +330,7 @@
                             <strong>Individual Training</strong></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <a href="#" class="btn btn-success btn-lg"><span class="glyphicon glyphicon-duplicate"></span>
             <br />
-           <strong>&nbsp;&nbsp;&nbsp;Group Training &nbsp;</strong></a>
+            <strong>&nbsp;&nbsp;&nbsp;Group Training &nbsp;</strong></a>
                     </div>
                 </div>
                 <div class="modal-footer">

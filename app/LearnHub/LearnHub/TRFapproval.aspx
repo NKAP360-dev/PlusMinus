@@ -463,11 +463,22 @@
                         </div>
                         <%--Modal Content--%>
                         <div class="modal-body">
-                            <strong>Remarks by _____: </strong>
-                           <asp:TextBox ID="TextBox1" disabled="" TextMode="multiline" Columns="50" Rows="5" runat="server" CssClass="form-control" placeholder="Remarks"></asp:TextBox>
-                            <div class="verticalLine"></div>
-                            <strong>Remarks by _____: </strong>
-                           <asp:TextBox ID="TextBox2" disabled="" TextMode="multiline" Columns="50" Rows="5" runat="server" CssClass="form-control" placeholder="Remarks"></asp:TextBox>
+                           <%  NotificationDAO notificationDAO = new NotificationDAO();
+                                UserDAO userDAO = new UserDAO();
+                                List<Notification> notificationList = new List<Notification>();
+                                notificationList = notificationDAO.getApprovedNotificationByTnfID(getTNFid());
+
+                                for (int i=0;i<notificationList.Count();i++) {
+                                    Notification n = notificationList[i];
+                                    User u = userDAO.getUserByID(n.getUserIDTo());
+                                    Response.Write("<h4>Remarks by " + u.getName() +", "+u.getJobCategory().ToUpper() +"</h4>");
+                                    Response.Write("<textarea class=\"form-control\" rows=\"3\" id=\"textArea\" disabled=\"\">" + n.getRemarks() + "</textarea>");
+
+                                    if (notificationList.Count()>1&&i!=notificationList.Count()-1) {
+                                        Response.Write(" <div class=\"verticalLine\"></div>");
+                                    }
+                                }
+                                %>
 
                         </div>
                         <div class="modal-footer">

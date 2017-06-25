@@ -270,5 +270,17 @@ namespace LearnHub
                 txtFundingDate.Text = string.Empty;
             }
         }
+
+        protected int getTNFid()
+        {
+            TNFDAO tnfDAO = new TNFDAO();           
+            NotificationDAO notificationDAO = new NotificationDAO();
+
+            int notificationID = Convert.ToInt32(Request.QueryString["n"]);
+            Notification currentNotification = notificationDAO.getNotificationByID(notificationID);
+            TNF currentTNF = tnfDAO.getIndividualTNFByID(currentNotification.getUserIDFrom(), currentNotification.getTNFID());
+
+            return currentTNF.getTNFID();
+        }
     }
 }
