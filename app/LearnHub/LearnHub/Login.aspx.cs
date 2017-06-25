@@ -21,17 +21,17 @@ namespace LearnHub
         }
         protected void btnLogin_Click(object sender, EventArgs e)
         {
-            
-           
+
+            System.Diagnostics.Debug.WriteLine("A");
             if (txtUsername.Text != "" && txtPassword.Text != "")
             {
+                System.Diagnostics.Debug.WriteLine("B");
                 LoginDAO loginDAO = new LoginDAO();
                 var userSalt = loginDAO.getSalt(txtUsername.Text);
                 var hashedPasword = Crypto.SHA256(userSalt + txtPassword.Text);
                 User currentUser = loginDAO.login(txtUsername.Text, hashedPasword);
                 if (currentUser.getUserID() == null)
                 {
-                    //Response.Redirect("Login.aspx");
                     lblErrorMsgUse.Visible = true;
                     lblErrorMsgUse.Text = "Invalid username/password.";
                 } else
@@ -41,17 +41,42 @@ namespace LearnHub
                     Response.Redirect("Home.aspx");
                 }
             }
-            else if(txtUsername.Text != "" || txtPassword.Text != "")
+            else if (txtUsernameVal.Text != "" && txtPasswordVal.Text != "")
             {
-                //Response.Redirect("google.com");
+                System.Diagnostics.Debug.WriteLine("F");
+                LoginDAO loginDAO = new LoginDAO();
+                var userSalt = loginDAO.getSalt(txtUsernameVal.Text);
+                var hashedPasword = Crypto.SHA256(userSalt + txtPasswordVal.Text);
+                User currentUser = loginDAO.login(txtUsernameVal.Text, hashedPasword);
+                if (currentUser.getUserID() == null)
+                {
+                    lblErrorMsgUse.Visible = true;
+                    lblErrorMsgUse.Text = "Invalid username/password.";
+                }
+                else
+                {
+                    Session["currentUser"] = currentUser;
+                    //to redirect
+                    Response.Redirect("Home.aspx");
+                }
+            }
+            else if (txtUsername.Text != "")
+            {
+                System.Diagnostics.Debug.WriteLine("C");
+                Response.Redirect("google.com");
+                lblErrorMsgUse.Visible = true;
+                lblErrorMsgUse.Text = "Invalid username/password.";
+            }
+            else if (txtPassword.Text != "")
+            {
+                System.Diagnostics.Debug.WriteLine("D");
+                Response.Redirect("yahoo.com");
                 lblErrorMsgUse.Visible = true;
                 lblErrorMsgUse.Text = "Invalid username/password.";
             }
             else
             {
-                ///Response.Redirect("yahoo.com");
-                lblErrorMsgUse.Visible = true;
-                lblErrorMsgUse.Text = "Invalid username/password.";
+                System.Diagnostics.Debug.WriteLine("E" + txtUsername.Text + " " + txtUsername.Text);
             }
         }
     }

@@ -9,10 +9,12 @@
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/js/bootstrap-datepicker.js"></script>
     <script type="text/javascript">
+        
         $(window).load(function () {
             $('#myModal').modal('show');
-        });
 
+            
+        });
         $(function () {
             $('.input-daterange').datepicker({
                 autoclose: true
@@ -39,6 +41,17 @@
     </script>
 
     <script type="text/javascript">
+        <%--
+        window.onload = function () {
+            console.log("modal1");
+            if (Page_ClientValidate("ValidateForm")) { 
+                console.log("modal2");
+                $('#myModal').modal('show');
+            }
+        }
+        --%>
+
+
         function forObjective1Clicked(validationGroupName1, isEnable) {
             if (document.getElementById('<%=objectiveInput1.ClientID%>').checked == true) {
                 objective1text.style.display = 'block';
@@ -145,6 +158,23 @@
 
 
         }
+
+        function ValidateRadioButton(sender, args) {
+            var gv = document.getElementById("<%= gvLesson.ClientID %>");
+            var items = gv.getElementsByTagName('input');
+            for (var i = 0; i < items.length; i++) {
+                if (items[i].type == "radio") {
+                    if (items[i].checked) {
+                        args.IsValid = true;
+                        return;
+                    }
+                    else {
+                        args.IsValid = false;
+                    }
+                }
+            }
+        }
+
     </script>
 
     <style>
@@ -277,7 +307,8 @@
                                 <asp:Parameter DefaultValue="open" Name="status" Type="String" />
                             </SelectParameters>
                         </asp:SqlDataSource>
-                        <asp:RequiredFieldValidator ID="rfv_courseInput" runat="server" ControlToValidate="courseInput" ErrorMessage="Please Select a Course" InitialValue="-1" ForeColor="Red"></asp:RequiredFieldValidator>
+                        <asp:RequiredFieldValidator ID="rfv_courseInput" runat="server" ControlToValidate="courseInput" ErrorMessage="Please Select a Course" InitialValue="-1" ForeColor="Red" ValidationGroup="ValidateForm"></asp:RequiredFieldValidator>
+                        <asp:RequiredFieldValidator ID="rfv_courseInputSummary" runat="server" ControlToValidate="courseInput" ErrorMessage="Please Select a Course" InitialValue="-1" ForeColor="Red" ValidationGroup="summaryGroup" Visible="False"></asp:RequiredFieldValidator>
                     </div>
                 </div>
     
@@ -307,7 +338,10 @@
                                         <asp:SessionParameter Name="courseID" SessionField="selectedCourse" Type="Int32" />
                                     </SelectParameters>
                                 </asp:SqlDataSource>
+                                <asp:CustomValidator ID="cv_Lessons" runat="server" EnableClientScript="true" ErrorMessage="Please select a lesson slot" ClientValidationFunction="ValidateRadioButton" ForeColor="Red" ValidationGroup="ValidateForm"></asp:CustomValidator>
+                                <asp:CustomValidator ID="cv_LessonsSummary" runat="server" EnableClientScript="true" ErrorMessage="Please select a lesson slot" ClientValidationFunction="ValidateRadioButton" ForeColor="Red" ValidationGroup="summaryGroup" Visible="False"></asp:CustomValidator>
                             </div>
+                            
                         </div>
 
                 <div class="form-group">
@@ -326,7 +360,8 @@
                             </label>
                         </div>
                     </div>
-                    <asp:RequiredFieldValidator ID="rfv_courseProvider" runat="server" ErrorMessage="Please Select a Course Provider" ControlToValidate="courseProvider" ForeColor="Red"></asp:RequiredFieldValidator>
+                    <asp:RequiredFieldValidator ID="rfv_courseProvider" runat="server" ErrorMessage="Please Select a Course Provider" ControlToValidate="courseProvider" ForeColor="Red" ValidationGroup="ValidateForm"></asp:RequiredFieldValidator>
+                    <asp:RequiredFieldValidator ID="rfv_courseProviderSummary" runat="server" ErrorMessage="Please Selected a Course Provider" ControlToValidate="courseProvider" ForeColor="Red" ValidationGroup="summaryGroup" Visible="False"></asp:RequiredFieldValidator>
                     <asp:Label ID="empty1" runat="server" CssClass="col-lg-2 control-label" Text=""></asp:Label>
                     <div class="col-lg-5">
                         <asp:TextBox ID="externalCourseProvider" disabled="" runat="server" CssClass="form-control" placeholder="If external, please specify"></asp:TextBox>
@@ -377,7 +412,8 @@
                     <div id="objective1text"  style="display: none;">
                         <div class="col-lg-5">
                             <asp:TextBox ID="objectiveElaborate1" TextMode="multiline" Columns="50" Rows="5" runat="server" CssClass="form-control" placeholder="Please elaborate on your choice"></asp:TextBox>
-                            <asp:RequiredFieldValidator ID="rfv_objective1text" ControlToValidate="objectiveElaborate1" runat="server" ErrorMessage="*Required" ForeColor="Red" />
+                            <asp:RequiredFieldValidator ID="rfv_objective1text" ControlToValidate="objectiveElaborate1" runat="server" ErrorMessage="*Required" ForeColor="Red" ValidationGroup="ValidateForm" />
+                            <asp:RequiredFieldValidator ID="rfv_objective1textSummary" ControlToValidate="objectiveElaborate1" runat="server" ErrorMessage="Please do not leave the objective blank" ForeColor="Red" ValidationGroup="summaryGroup" Visible="False"/>
                         </div>
                     </div>
                 </div>
@@ -388,7 +424,8 @@
                         <div class="col-lg-5">
                             <div class="input-group date">
                                 <asp:TextBox ID="completeDateInput1" runat="server" CssClass="form-control" placeholder="Target Completion Date"></asp:TextBox><span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
-                                <asp:RequiredFieldValidator ID="rfv_objective1date" ControlToValidate="completeDateInput1" runat="server" ErrorMessage="*Required" ForeColor="Red" />
+                                <asp:RequiredFieldValidator ID="rfv_objective1date" ControlToValidate="completeDateInput1" runat="server" ErrorMessage="*Required" ForeColor="Red" ValidationGroup="ValidateForm" />
+                                <asp:RequiredFieldValidator ID="rfv_objective1dateSummary" ControlToValidate="completeDateInput1" runat="server" ErrorMessage="Please fill in the date" ForeColor="Red" ValidationGroup="summaryGroup" Visible="False"/>
                             </div>
                         </div>
                     </div>
@@ -410,7 +447,8 @@
                     <div id="objective2text" style="display: none;">
                         <div class="col-lg-5">
                             <asp:TextBox ID="objectiveElaborate2" TextMode="multiline" Columns="50" Rows="5" runat="server" CssClass="form-control" placeholder="Please elaborate on your choice"></asp:TextBox>
-                            <asp:RequiredFieldValidator ID="rfv_objective2text" ControlToValidate="objectiveElaborate2" runat="server" ErrorMessage="*Required" ForeColor="Red"/>
+                            <asp:RequiredFieldValidator ID="rfv_objective2text" ControlToValidate="objectiveElaborate2" runat="server" ErrorMessage="*Required" ForeColor="Red" ValidationGroup="ValidateForm"/>
+                            <asp:RequiredFieldValidator ID="rfv_objective2textSummary" ControlToValidate="objectiveElaborate2" runat="server" ErrorMessage="Please do not leave the objective blank" ForeColor="Red" ValidationGroup="summaryGroup" Visible="False"/>
                         </div>
                     </div>
                 </div>
@@ -421,7 +459,8 @@
                         <div class="col-lg-5">
                             <div class="input-group date">
                                 <asp:TextBox ID="completeDateInput2" runat="server" CssClass="form-control" placeholder="Target Completion Date"></asp:TextBox><span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
-                                <asp:RequiredFieldValidator ID="rfv_objective2date" ControlToValidate="completeDateInput2" runat="server" ErrorMessage="*Required" ForeColor="Red" />
+                                <asp:RequiredFieldValidator ID="rfv_objective2date" ControlToValidate="completeDateInput2" runat="server" ErrorMessage="*Required" ForeColor="Red" ValidationGroup="ValidateForm"/>
+                                <asp:RequiredFieldValidator ID="rfv_objective2dateSummary" ControlToValidate="completeDateInput2" runat="server" ErrorMessage="Please fill in the date" ForeColor="Red" ValidationGroup="summaryGroup" Visible="False"/>
                             </div>
                         </div>
                     </div>
@@ -443,7 +482,8 @@
                     <div id="objective3text" style="display: none;">
                         <div class="col-lg-5">
                             <asp:TextBox ID="objectiveElaborate3" TextMode="multiline" Columns="50" Rows="5" runat="server" CssClass="form-control" placeholder="Please elaborate on your choice"></asp:TextBox>
-                            <asp:RequiredFieldValidator ID="rfv_objective3text" ControlToValidate="objectiveElaborate3" runat="server" ErrorMessage="*Required" ForeColor="Red" />
+                            <asp:RequiredFieldValidator ID="rfv_objective3text" ControlToValidate="objectiveElaborate3" runat="server" ErrorMessage="*Required" ForeColor="Red" ValidationGroup="ValidateForm" />
+                            <asp:RequiredFieldValidator ID="rfv_objective3textSummary" ControlToValidate="objectiveElaborate3" runat="server" ErrorMessage="Please do not leave the objective blank" ForeColor="Red" ValidationGroup="summaryGroup" Visible="False"/>
                         </div>
                     </div>
                 </div>
@@ -454,7 +494,8 @@
                         <div class="col-lg-5">
                             <div class="input-group date">
                                 <asp:TextBox ID="completeDateInput3" runat="server" CssClass="form-control" placeholder="Target Completion Date"></asp:TextBox><span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
-                                <asp:RequiredFieldValidator ID="rfv_objective3date" ControlToValidate="completeDateInput3" runat="server" ErrorMessage="*Required" ForeColor="Red"/>
+                                <asp:RequiredFieldValidator ID="rfv_objective3date" ControlToValidate="completeDateInput3" runat="server" ErrorMessage="*Required" ForeColor="Red" ValidationGroup="ValidateForm"/>
+                                <asp:RequiredFieldValidator ID="rfv_objectibe3dateSummary" ControlToValidate="completeDateInput3" runat="server" ErrorMessage="Please fill in the date" ForeColor="Red" ValidationGroup="summaryGroup" Visible="False"/>
                             </div>
                         </div>
                     </div>
@@ -473,6 +514,9 @@
                         <div class="wrapper">                            
                             <h4>Are you sure you want to submit?</h4><br />
                             <asp:Button ID="cfmSubmit" CssClass="btn btn-primary" runat="server" Text="Submit" OnClick="submitBtn_Click" />
+                            <br />
+                            <asp:Label ID="lblErrorMsgFinal" runat="server" CssClass="text-danger" Visible="True"></asp:Label>
+                            <%-- <asp:ValidationSummary ID="ValidationSummary1" runat="server" ValidationGroup="summaryGroup" /> --%>
                         </div>                       
                     </div>                  
                 </div>
@@ -524,7 +568,14 @@
                         <asp:CustomValidator ID="cv1_objective1" runat="server" 
                             EnableClientScript="true"
                             ErrorMessage="Please select at least one objective"
-                            ClientValidationFunction="ValidateCheckBoxes">
+                            ClientValidationFunction="ValidateCheckBoxes"
+                            ValidationGroup="ValidateForm">
+                        </asp:CustomValidator>
+                        <asp:CustomValidator ID="cv1_objective1Summary" runat="server" 
+                            EnableClientScript="true"
+                            ErrorMessage="Please select at least one objective"
+                            ClientValidationFunction="ValidateCheckBoxes"
+                            ValidationGroup="summaryGroup" Visible="False">
                         </asp:CustomValidator>
                     </div>
                 </div>
@@ -532,14 +583,32 @@
 
                 <div class="form-group">
                     <div class="col-lg-10 col-lg-offset-2">
-                        <asp:Button ID="submitBtn" CssClass="btn btn-primary" runat="server" Text="Submit" data-toggle="modal" href="#submitModal"/>
+                        <asp:Button ID="submitBtn" CssClass="btn btn-primary" runat="server" Text="Submit" data-toggle="modal" onClientClick ="checkForm_Clicked()" href="#submitModal"/>
                         <asp:Button ID="resetBtn" CssClass="btn btn-default" runat="server" Text="Clear" data-toggle="modal" href="#cancelModal"/>
                     </div>
                 </div>
             </fieldset>
         </form>
     </div>
+    <script type="text/javascript">
 
+        function checkForm_Clicked(source, args) {
+            
+            Page_ClientValidate('ValidateForm');
+            //Page_ClientValidate();
+            
+            if (!Page_IsValid) {
+                document.getElementById('<%= lblErrorMsgFinal.ClientID %>').style.display = 'inherit';
+                document.getElementById('<%= lblErrorMsgFinal.ClientID %>').innerHTML = "You have not filled up all of the required fields";
+                //Page_ClientValidate('summaryGroup');
+                console.log("The end");
+            }
+            else {
+                document.getElementById('<%= lblErrorMsgFinal.ClientID %>').innerHTML = " ";
+            }
+            
+        }
+</script>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder2" runat="server">
 </asp:Content>

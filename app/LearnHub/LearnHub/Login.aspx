@@ -53,7 +53,7 @@
                                     {%>
                                 <div class="form-group has-error">
                                     <div class="input-group">
-                                        <asp:TextBox ID="TextBox2" runat="server" CssClass="form-control" placeholder="Username"></asp:TextBox>
+                                        <asp:TextBox ID="txtUsernameVal" runat="server" CssClass="form-control" placeholder="Username"></asp:TextBox>
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
                                     </div>
 
@@ -72,7 +72,7 @@
 
                                 <div class="form-group has-error">
                                     <div class="input-group">
-                                        <asp:TextBox ID="TextBox1" runat="server" CssClass="form-control" placeholder="Password" TextMode="Password"></asp:TextBox>
+                                        <asp:TextBox ID="txtPasswordVal" runat="server" CssClass="form-control" placeholder="Password" TextMode="Password"></asp:TextBox>
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
                                     </div>
 
