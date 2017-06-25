@@ -101,8 +101,10 @@ namespace LearnHub.AppCode.workflow
                     BondDAO bondDAO = new BondDAO();
                     Bonds newBond = new Bonds(currentUser.getUserID(), tnf.getTNFID(), "pending");
                     int bondID = bondDAO.createBond(newBond);
-                    //bondDAO.updateBondStartDate(bondID, *TO GET LESSON FOR END DATE*);
-                    //TO UPDATE BOND END DATE BASED ON DURATION GIVEN BY CHERYL
+                    DateTime bondStartDate = currentCourse.getEndDate();
+                    bondStartDate = bondStartDate.AddDays(1);
+                    bondDAO.updateBondStartDate(bondID, bondStartDate);
+                    
                 }
 
                 for (int i = 0; i < workflowSubs.Count; i++)

@@ -13,24 +13,6 @@ namespace LearnHub {
     public partial class TRFapproval {
         
         /// <summary>
-        /// lblHiddenNotificationID control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblHiddenNotificationID;
-        
-        /// <summary>
-        /// lblHiddenTNFID control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblHiddenTNFID;
-        
-        /// <summary>
         /// nameOfStaffLabel control.
         /// </summary>
         /// <remarks>
@@ -517,31 +499,40 @@ namespace LearnHub {
         protected global::System.Web.UI.WebControls.TextBox trainingBudgetDate;
         
         /// <summary>
-        /// mspCheck control.
+        /// ScriptManager1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox mspCheck;
+        protected global::System.Web.UI.ScriptManager ScriptManager1;
         
         /// <summary>
-        /// bondCheck control.
+        /// rbtnMSP control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox bondCheck;
+        protected global::System.Web.UI.WebControls.RadioButton rbtnMSP;
         
         /// <summary>
-        /// nilCheck control.
+        /// rbtnBond control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox nilCheck;
+        protected global::System.Web.UI.WebControls.RadioButton rbtnBond;
+        
+        /// <summary>
+        /// rbtnNA control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RadioButton rbtnNA;
         
         /// <summary>
         /// mspBondDuration control.
@@ -553,13 +544,40 @@ namespace LearnHub {
         protected global::System.Web.UI.WebControls.TextBox mspBondDuration;
         
         /// <summary>
-        /// fundingEligible control.
+        /// fundingPanel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox fundingEligible;
+        protected global::System.Web.UI.UpdatePanel fundingPanel;
+        
+        /// <summary>
+        /// rbnlFunding control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RadioButtonList rbnlFunding;
+        
+        /// <summary>
+        /// txtSourceOfFunding control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtSourceOfFunding;
+        
+        /// <summary>
+        /// txtFundingDate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtFundingDate;
         
         /// <summary>
         /// fundingDate control.
@@ -578,15 +596,6 @@ namespace LearnHub {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox costcentre;
-        
-        /// <summary>
-        /// hrApprove control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton hrApprove;
         
         /// <summary>
         /// normalApprovalView control.

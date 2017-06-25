@@ -293,7 +293,7 @@
                                         {
                                             Notification n = allPendingNotifications[i];
                                             User sender = userDAO.getUserByID(n.getUserIDFrom());
-                                            Response.Write("<a href=\"#\">You have a form pending approval from " + sender.getName() + "</a>");
+                                            Response.Write("<a href=\"/TRFapproval.aspx?n=" + n.getNotificationID() + "\">You have a form pending approval from " + sender.getName() + "</a>");
                                             if (i != allPendingNotifications.Count - 1)
                                             {
                                                 Response.Write("<div class=\"verticalLine\"></div>");

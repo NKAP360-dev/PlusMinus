@@ -48,10 +48,10 @@
             }
 
           .form-horizontal .control-label-left {
-    text-align: left;
-    margin-bottom: 0;
-    padding-top: 11px;
-  }
+                text-align: left;
+                margin-bottom: 0;
+                padding-top: 11px;
+            }
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -59,8 +59,6 @@
         <div class="container">
             <h1>Approve Training Request Form</h1>
             <div class="verticalLine"></div>
-            <asp:Label ID="lblHiddenNotificationID" runat="server" Visible="False"></asp:Label>
-            <asp:Label ID="lblHiddenTNFID" runat="server" Visible="False"></asp:Label>
             <br />
 
             <div class="row">
@@ -296,7 +294,7 @@
                                     <div class="form-group">
                                         <div class="col-lg-10">
                                             <div class="input-group date">
-                                                <asp:TextBox ID="probationDate" runat="server" CssClass="form-control" placeholder="MM/DD/YYYY"></asp:TextBox><span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                                                <asp:TextBox ID="probationDate" runat="server" CssClass="form-control" placeholder="MM/DD/YYYY" Enabled="False"></asp:TextBox><span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
                                             </div>
                                         </div>
                                     </div>
@@ -311,7 +309,7 @@
                                         <div class="col-lg-10">
                                             <div class="input-group">
                                                 <span class="input-group-addon">$</span>
-                                                <asp:TextBox ID="trainingCost" runat="server" CssClass="form-control" placeholder="Total Training Costs"></asp:TextBox>
+                                                <asp:TextBox ID="trainingCost" runat="server" CssClass="form-control" placeholder="Total Training Costs" TextMode="Number"></asp:TextBox>
                                             </div>
                                         </div>
                                     </div>
@@ -326,10 +324,10 @@
                                         <div class="col-lg-10">
                                             <div class="input-group">
                                                 <span class="input-group-addon">$</span>
-                                                <asp:TextBox ID="trainingBudgetBal" runat="server" CssClass="form-control" placeholder="Balance Training Cost"></asp:TextBox>
+                                                <asp:TextBox ID="trainingBudgetBal" runat="server" CssClass="form-control" placeholder="Balance Training Cost" Enabled="false"></asp:TextBox>
                                                 <span class="input-group-addon">as at </span>
                                                 <div class="input-group date">
-                                                    <asp:TextBox ID="trainingBudgetDate" runat="server" CssClass="form-control" placeholder="MM/DD/YYYY"></asp:TextBox><span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                                                    <asp:TextBox ID="trainingBudgetDate" runat="server" CssClass="form-control" placeholder="MM/DD/YYYY" Enabled="false"></asp:TextBox><span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
                                                 </div>
                                             </div>
                                         </div>
@@ -339,31 +337,25 @@
                             <tr>
                                 <td>4. MSP/Bond Applicable</td>
                             </tr>
+                            <asp:ScriptManager ID="ScriptManager1" runat="server" />
                             <tr>
                                 <td>
                                     <div class="form-group">
                                         <div class="col-lg-10">
                                         <div class="checkbox">
-                                            <label>
-                                                <asp:CheckBox ID="mspCheck" runat="server" Text="MSP" />
-                                                
-                                            </label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                            <label>
-                                                <asp:CheckBox ID="bondCheck" runat="server" Text="Bond" />
-                                            </label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                            <label>
-                                                <asp:CheckBox ID="nilCheck" runat="server" Text="Not Applicable" />
-                                            </label>
+                                            <asp:RadioButton ID="rbtnMSP" runat="server" Text="MSP" GroupName="BondMSP"></asp:RadioButton>
+                                            <asp:RadioButton ID="rbtnBond" runat="server" Text="Bond" GroupName="BondMSP"></asp:RadioButton>      
+                                            <asp:RadioButton ID="rbtnNA" runat="server" Text="Not Applicable" GroupName="BondMSP"></asp:RadioButton>      
                                         </div>
                                     </div>
                                     </div>
                                 </td>
-                            </tr>
+                            </tr>  
                             <tr><td>
                                 <div class="form-group">
                                         <div class="col-lg-10">
                                             <div class="input-group">                                          
-                                                <asp:TextBox ID="mspBondDuration" runat="server" CssClass="form-control" placeholder="Duration"></asp:TextBox>
+                                                <asp:TextBox ID="mspBondDuration" runat="server" CssClass="form-control" placeholder="Duration" TextMode="Number"></asp:TextBox>
                                                 <span class="input-group-addon">months</span>
                                             </div>
                                         </div>
@@ -375,12 +367,27 @@
                             <tr><td>
                                 <div class="form-group">
                                         <div class="col-lg-10">
-                                            <div class="input-group">                                          
-                                                <asp:TextBox ID="fundingEligible" runat="server" CssClass="form-control" placeholder="Yes/No"></asp:TextBox>
+                                            <div class="input-group">      
+                                                <asp:UpdatePanel ID="fundingPanel" runat="server">
+                                                    <ContentTemplate>
+                                                        <asp:RadioButtonList ID="rbnlFunding" runat="server" AutoPostBack="True" OnSelectedIndexChanged="rbnlFunding_SelectedIndexChanged">
+                                                            <asp:ListItem Value="y">Yes</asp:ListItem>
+                                                            <asp:ListItem Value="n" Selected="True">No</asp:ListItem>
+                                                        </asp:RadioButtonList>
+                                                        <asp:TextBox ID="txtSourceOfFunding" runat="server" CssClass="form-control" placeholder="Source of Funding" Enabled="false"></asp:TextBox>
+                                                        <div class="input-group date">
+                                                        <asp:TextBox ID="txtFundingDate" runat="server" CssClass="form-control" placeholder="Funding Date (MM/DD/YYYY)" Enabled="false"></asp:TextBox><span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                                                        </div>
+                                                    </ContentTemplate>
+                                                    <Triggers>
+                                                        <asp:AsyncPostBackTrigger ControlID="rbnlFunding" EventName="SelectedIndexChanged" />
+                                                    </Triggers>
+                                                </asp:UpdatePanel>
                                             </div>
                                         </div>
                                     </div>
                                 </td></tr>
+                            <!--
                             <tr><td>
                                 6. Funding Application Date
                                 </td></tr>
@@ -392,16 +399,20 @@
                                             </div>
                                         </div>
                                     </div>
-
-                                </td></tr>
+                                </ContentTemplate>
+                                <Triggers>
+                                    <asp:AsyncPostBackTrigger ControlID="rbnlFunding" EventName="SelectedIndexChanged" />
+                                </Triggers>
+                                </asp:UpdatePanel>
+                                </td></tr>-->
                             <tr><td>
-                                7. Cost Centre (for charging to department)
+                                6. Cost Centre (for charging to department)
                                 </td></tr>
                             <tr><td>
                                   <div class="form-group">
                                         <div class="col-lg-10">
                                             <div class="input-group">                                          
-                                                <asp:TextBox ID="costcentre" runat="server" CssClass="form-control" placeholder="Cost Centre"></asp:TextBox>
+                                                <asp:TextBox ID="costcentre" runat="server" CssClass="form-control" placeholder="Cost Centre" Enabled="False"></asp:TextBox>
                                             </div>
                                         </div>
                                     </div>
@@ -410,7 +421,6 @@
                         </table>
 
                     </fieldset>
-                    <asp:LinkButton ID="hrApprove" runat="server" CssClass="btn btn-success"><span class="glyphicon glyphicon-floppy-disk"></span> &nbsp;Save</asp:LinkButton>
                 </asp:Panel>
                 </h4>
                 

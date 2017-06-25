@@ -213,7 +213,7 @@ namespace LearnHub.AppCode.dao
                 conn.Close();
             }
         }
-        public void updateTNFIsProbation(int tnfid, string isProbation) // Update.
+        public void updateTNFDataHRFields(int tnfid, string isProbation, double totalTrainingCost, string isFunding, string sourceOfFunding, DateTime? fundingApplicationDate, string isMSP, string mspMonths) // Update.
         {
             SqlConnection conn = new SqlConnection();
 
@@ -226,8 +226,34 @@ namespace LearnHub.AppCode.dao
                 SqlCommand comm = new SqlCommand();
                 comm.Connection = conn;
                 comm.CommandText =
-                    "Update [TNF_data] SET isProbation=@probation WHERE tnfid=@tnfid";
-                comm.Parameters.AddWithValue("@probation",isProbation);
+                    "Update [TNF_data] SET isProbation=@isProbation, totalTrainingCost=@totalTrainingCost, isFunding=@isFunding, sourceOfFunding=@sourceOfFunding, funding_application_date=@fundingApplicationDate WHERE tnfid=@tnfid";
+                comm.Parameters.AddWithValue("@isProbation",isProbation);
+                comm.Parameters.AddWithValue("@totalTrainingCost", totalTrainingCost);
+                comm.Parameters.AddWithValue("@isFunding", isFunding);
+                if (!string.IsNullOrEmpty(sourceOfFunding))
+                {
+                    comm.Parameters.AddWithValue("@sourceOfFunding", sourceOfFunding);
+                } else
+                {
+                    comm.Parameters.AddWithValue("@sourceOfFunding", DBNull.Value);
+                }
+                if (fundingApplicationDate != null)
+                {
+                    comm.Parameters.AddWithValue("@fundingApplicationDate", fundingApplicationDate);
+                } else
+                {
+                    comm.Parameters.AddWithValue("@fundingApplicationDate", DBNull.Value);
+                }
+                comm.Parameters.AddWithValue("@isMSP", isMSP);
+                if (!string.IsNullOrEmpty(mspMonths))
+                {
+                    int duration = Convert.ToInt32(mspMonths);
+                    comm.Parameters.AddWithValue("@mspMonths", duration);
+                }
+                else
+                {
+                    comm.Parameters.AddWithValue("@mspMonths", DBNull.Value);
+                }
                 comm.Parameters.AddWithValue("@tnfid", tnfid);
                 int rowsAffected = comm.ExecuteNonQuery();
             }

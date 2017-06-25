@@ -54,11 +54,7 @@
                             Response.Write("<td> $" + currentCourse.getPrice() + "</td>");
                             Response.Write("<td> $" + currentDept.getActualBudget() + "</td>");
                             Response.Write("<td> $" + (currentDept.getActualBudget() - currentCourse.getPrice()) + "</td>");
-                            //Response.Write("<td>" + "<input type=\"hidden\" name=\"tnfID\" id=\"tnfID\" value=\"" + currentTNF.getTNFID() + "\" />" + "<a href=\"/TRFapproval.aspx\"><span class=\"glyphicon glyphicon-menu-right\"></span>&nbsp;More Info</a>" + "</td>");
-                            Response.Write("<td>");
-                            Response.Write("<input type=\"hidden\" name=\"tnfID\" id=\"tnfID\" value=\"" + currentTNF.getTNFID() + "\" runat=\"server\" />");
-                            Response.Write("<input type=\"hidden\" name=\"notificationID\" id=\"notificationID\" value=\"" + n.getNotificationID() + "\" runat=\"server\" />");
-                            Response.Write("<input type=\"submit\" value=\"more info\" class=\"btn btn-info\" />" + "</td>");
+                            Response.Write("<td>" + "<a href=\"/TRFapproval.aspx?n=" + n.getNotificationID() + "\"><span class=\"glyphicon glyphicon-menu-right\"></span>&nbsp;More Info</a>" + "</td>");
                             Response.Write("</tr>");
                         }
                     }

@@ -34,6 +34,7 @@ namespace LearnHub.AppCode.dao
                     toReturn.setActualBudget((double)(dr["actual_budget"]));
                     string dept_headID = (string)dr["dept_headID"];
                     toReturn.setDeptHead(userDAO.getUserByID(dept_headID));
+                    toReturn.setCostCentre((int)dr["cost_centre"]);
                 }
                 dr.Close();
             }
@@ -71,6 +72,7 @@ namespace LearnHub.AppCode.dao
                     d.setActualBudget((double)(dr["actual_budget"]));
                     string dept_headID = (string)dr["dept_headID"];
                     d.setDeptHead(userDAO.getUserByID(dept_headID));
+                    d.setCostCentre((int)dr["cost_centre"]);
 
                     toReturn.Add(d);
                 }
