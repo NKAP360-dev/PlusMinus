@@ -159,9 +159,8 @@ namespace LearnHub
                         externalCourseProvider.Text = "";
                         courseProvider.SelectedIndex = 0;
                     }
-
-					fromDateInput.Text = selectedCourse.getStartDate().ToString("MM-dd-yyyy");
-                    toDateInput.Text = selectedCourse.getEndDate().ToString("MM-dd-yyyy");
+                    fromDateInput.Text = selectedCourse.getStartDate().ToShortDateString();
+                    toDateInput.Text = selectedCourse.getEndDate().ToShortDateString();
                 }
             }
         }
