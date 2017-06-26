@@ -56,6 +56,10 @@
             if (document.getElementById('<%=objectiveInput1.ClientID%>').checked == true) {
                 objective1text.style.display = 'block';
                 objective1date.style.display = 'block';
+                document.getElementById('<%=rfv_objective1text.ClientID%>').enabled = true;
+                document.getElementById('<%=rfv_objective1date.ClientID%>').enabled = true;
+                document.getElementById('<%=cv_objective1date.ClientID%>').enabled = true;
+                
                 console.log("FOROBJECTIVE1CLICKED");
                 if (!document.getElementById('<%= objectiveInput2.ClientID %>').checked) {
                     console.log("0");
@@ -63,20 +67,27 @@
                     console.log("1");
                     document.getElementById('<%=rfv_objective2date.ClientID%>').enabled = false;
                     console.log("2");
+                    document.getElementById('<%=cv_objective2date.ClientID%>').enabled = false;
                 }
                 if (!document.getElementById('<%= objectiveInput3.ClientID %>').checked) {
                     document.getElementById('<%=rfv_objective3text.ClientID%>').enabled = false;
                     console.log("3");
                     document.getElementById('<%=rfv_objective3date.ClientID%>').enabled = false;
                     console.log("4");
+                    document.getElementById('<%=cv_objective3date.ClientID%>').enabled = false;
                 }
             }
             else {
                 objective1text.style.display = 'none';
                 objective1date.style.display = 'none';
-                document.getElementById('<%=rfv_objective1text.ClientID%>').enabled = false;
+                console.log("FOROBJECTIVE1UNCLICKED");
+                //document.getElementById('<%=rfv_objective1text.ClientID%>').enabled = false;
+                ValidatorEnable(document.getElementById("<%=rfv_objective1text.ClientID %>"), false);
                 console.log("Exited");
-                document.getElementById('<%=rfv_objective1date.ClientID%>').enabled = false;
+                //document.getElementById('<%=rfv_objective1date.ClientID%>').enabled = false;
+                ValidatorEnable(document.getElementById("<%=rfv_objective1text.ClientID %>"), false);
+                ValidatorEnable(document.getElementById("<%=rfv_objective1date.ClientID %>"), false);
+                ValidatorEnable(document.getElementById('<%=cv_objective1date.ClientID%>'), false);
             }
         }
 
@@ -84,26 +95,33 @@
             if (document.getElementById('<%=objectiveInput2.ClientID%>').checked == true) {
                 objective2text.style.display = 'block';
                 objective2date.style.display = 'block';
+                console.log("FOROBJECTIVE2CLICKED");
+                document.getElementById('<%=rfv_objective2text.ClientID%>').enabled = true;
+                document.getElementById('<%=rfv_objective2date.ClientID%>').enabled = true;
+                document.getElementById('<%=cv_objective2date.ClientID%>').enabled = true;
                 if (!document.getElementById('<%= objectiveInput1.ClientID %>').checked) {
                     console.log("0");
                     document.getElementById('<%=rfv_objective1text.ClientID%>').enabled = false;
                     console.log("1");
                     document.getElementById('<%=rfv_objective1date.ClientID%>').enabled = false;
                     console.log("2");
+                    document.getElementById('<%=cv_objective1date.ClientID%>').enabled = false;
                 }
                 if (!document.getElementById('<%= objectiveInput3.ClientID %>').checked) {
                     document.getElementById('<%=rfv_objective3text.ClientID%>').enabled = false;
                     console.log("3");
                     document.getElementById('<%=rfv_objective3date.ClientID%>').enabled = false;
                     console.log("4");
+                    document.getElementById('<%=cv_objective3date.ClientID%>').enabled = false;
                 }
             }
             else {
                 objective2text.style.display = 'none';
                 objective2date.style.display = 'none';
-                document.getElementById('<%=rfv_objective2text.ClientID%>').enabled = false;
-                console.log("Exited");
-                document.getElementById('<%=rfv_objective2date.ClientID%>').enabled = false;
+                console.log("FOROBJECTIVE2UNCLICKED");
+                ValidatorEnable(document.getElementById("<%=rfv_objective2text.ClientID %>"), false);
+                ValidatorEnable(document.getElementById("<%=rfv_objective2date.ClientID %>"), false);
+                ValidatorEnable(document.getElementById('<%=cv_objective2date.ClientID%>'), false);
             }
         }
 
@@ -111,26 +129,33 @@
             if (document.getElementById('<%=objectiveInput3.ClientID%>').checked == true) {
                 objective3text.style.display = 'block';
                 objective3date.style.display = 'block';
+                console.log("FOROBJECTIVE3CLICKED");
+                document.getElementById('<%=rfv_objective3text.ClientID%>').enabled = true;
+                document.getElementById('<%=rfv_objective3date.ClientID%>').enabled = true;
+                document.getElementById('<%=cv_objective3date.ClientID%>').enabled = true;
                 if (!document.getElementById('<%= objectiveInput1.ClientID %>').checked) {
                     console.log("0");
                     document.getElementById('<%=rfv_objective1text.ClientID%>').enabled = false;
                     console.log("1");
                     document.getElementById('<%=rfv_objective1date.ClientID%>').enabled = false;
                     console.log("2");
+                    document.getElementById('<%=cv_objective1date.ClientID%>').enabled = false;
                 }
                 if (!document.getElementById('<%= objectiveInput2.ClientID %>').checked) {
                     document.getElementById('<%=rfv_objective2text.ClientID%>').enabled = false;
                     console.log("3");
                     document.getElementById('<%=rfv_objective2date.ClientID%>').enabled = false;
                     console.log("4");
+                    document.getElementById('<%=cv_objective2date.ClientID%>').enabled = false;
                 }
             }
             else {
                 objective3text.style.display = 'none';
                 objective3date.style.display = 'none';
-                document.getElementById('<%=rfv_objective3text.ClientID%>').enabled = false;
-                console.log("Exited");
-                document.getElementById('<%=rfv_objective3date.ClientID%>').enabled = false;
+                console.log("FOROBJECTIVE3UNCLICKED");
+                ValidatorEnable(document.getElementById("<%=rfv_objective3text.ClientID %>"), false);
+                ValidatorEnable(document.getElementById("<%=rfv_objective3date.ClientID %>"), false);
+                ValidatorEnable(document.getElementById('<%=cv_objective3date.ClientID%>'), false);
             }
         }
 
@@ -138,22 +163,31 @@
             var checker = 0;
             if (document.getElementById('<%= objectiveInput1.ClientID %>').checked) {
                 checker = checker + 1;
+                if (!document.getElementById('<%= objectiveInput1.ClientID %>').checked) {
+                    checker = checker - 1;
+                }
             }
             if (document.getElementById('<%= objectiveInput2.ClientID %>').checked) {
                 checker = checker + 1;
+                if (!document.getElementById('<%= objectiveInput2.ClientID %>').checked) {
+                    checker = checker - 1;
+                }
             }
             if (document.getElementById('<%= objectiveInput3.ClientID %>').checked) {
                 checker = checker + 1;
+                if (!document.getElementById('<%= objectiveInput3.ClientID %>').checked) {
+                    checker = checker - 1;
+                }
             }
             console.log(checker);
             if (checker > 0) {
                 args.IsValid = true;
-                console.log("valid");
+                console.log("checkboxes valid");
 
             }
             else {
                 args.IsValid = false;
-                console.log("notvalid");
+                console.log("checkboxes notvalid");
             }
 
 
@@ -175,6 +209,137 @@
             }
         }
 
+        function compareDates1(source, args) {
+            var inputtedDate = document.getElementById("<%=completeDateInput1.ClientID%>").value;
+            var dateToCompare = document.getElementById("<%=toDateInput.ClientID%>").value;
+            var compare = dateToCompare.split("/");
+            var cmonth = compare[1];
+            if (cmonth.length == 1) {
+                cmonth = "0" + cmonth;
+            }
+            var cday = compare[0];
+            if (cday.length == 1) {
+                cday = "0" + cday;
+            }
+            var cyear = compare[2];
+            var finCompare = new Date();
+            finCompare.setYear(cyear);
+            finCompare.setMonth(cmonth);
+            finCompare.setDate(cday);
+            console.log(finCompare);
+
+            var input = inputtedDate.split("/");
+            var month = input[0];
+            if (month.length == 1) {
+                month = "0" + month;
+            }
+            var day = input[1];
+            if (day.length == 1) {
+                day = "0" + day;
+            }
+            var year = input[2];
+            var finDateToCheck = new Date();
+            finDateToCheck.setYear(year);
+            finDateToCheck.setMonth(month);
+            finDateToCheck.setDate(day);
+            console.log(finDateToCheck);
+            if (finDateToCheck <= finCompare) {
+                args.IsValid = false;
+                return false;
+            }
+            else {
+                args.IsValid = true;
+                return true;
+            }
+        }
+
+        function compareDates2(source, args) {
+            var inputtedDate = document.getElementById("<%=completeDateInput2.ClientID%>").value;
+            var dateToCompare = document.getElementById("<%=toDateInput.ClientID%>").value;
+            var compare = dateToCompare.split("/");
+            var cmonth = compare[1];
+            if (cmonth.length == 1) {
+                cmonth = "0" + cmonth;
+            }
+            var cday = compare[0];
+            if (cday.length == 1) {
+                cday = "0" + cday;
+            }
+            var cyear = compare[2];
+            var finCompare = new Date();
+            finCompare.setYear(cyear);
+            finCompare.setMonth(cmonth);
+            finCompare.setDate(cday);
+            console.log(finCompare);
+
+            var input = inputtedDate.split("/");
+            var month = input[0];
+            if (month.length == 1) {
+                month = "0" + month;
+            }
+            var day = input[1];
+            if (day.length == 1) {
+                day = "0" + day;
+            }
+            var year = input[2];
+            var finDateToCheck = new Date();
+            finDateToCheck.setYear(year);
+            finDateToCheck.setMonth(month);
+            finDateToCheck.setDate(day);
+            console.log(finDateToCheck);
+            if (finDateToCheck <= finCompare) {
+                args.IsValid = false;
+                return false;
+            }
+            else {
+                args.IsValid = true;
+                return true;
+            }
+        }
+
+        function compareDates3(source, args) {
+            var inputtedDate = document.getElementById("<%=completeDateInput3.ClientID%>").value;
+            var dateToCompare = document.getElementById("<%=toDateInput.ClientID%>").value;
+            var compare = dateToCompare.split("/");
+            var cmonth = compare[1];
+            if (cmonth.length == 1) {
+                cmonth = "0" + cmonth;
+            }
+            var cday = compare[0];
+            if (cday.length == 1) {
+                cday = "0" + cday;
+            }
+            var cyear = compare[2];
+            var finCompare = new Date();
+            finCompare.setYear(cyear);
+            finCompare.setMonth(cmonth);
+            finCompare.setDate(cday);
+            console.log(finCompare);
+
+            var input = inputtedDate.split("/");
+            var month = input[0];
+            if (month.length == 1) {
+                month = "0" + month;
+            }
+            var day = input[1];
+            if (day.length == 1) {
+                day = "0" + day;
+            }
+            var year = input[2];
+            var finDateToCheck = new Date();
+            finDateToCheck.setYear(year);
+            finDateToCheck.setMonth(month);
+            finDateToCheck.setDate(day);
+            console.log(finDateToCheck);
+            if (finDateToCheck <= finCompare) {
+                args.IsValid = false;
+                return false;
+            }
+            else {
+                args.IsValid = true;
+                return true;
+            }
+        }
     </script>
 
     <style>
@@ -427,6 +592,7 @@
                                 <asp:RequiredFieldValidator ID="rfv_objective1date" ControlToValidate="completeDateInput1" runat="server" ErrorMessage="*Required" ForeColor="Red" ValidationGroup="ValidateForm" />
                                 <asp:RequiredFieldValidator ID="rfv_objective1dateSummary" ControlToValidate="completeDateInput1" runat="server" ErrorMessage="Please fill in the date" ForeColor="Red" ValidationGroup="summaryGroup" Visible="False"/>
                             </div>
+                            <asp:CustomValidator ID="cv_objective1date"  runat="server" 	ControlToValidate="completeDateInput1" ClientValidationFunction="compareDates1" ErrorMessage="Please enter a date that is after the course end date." ForeColor="Red" ValidationGroup="ValidateForm"></asp:CustomValidator>
                         </div>
                     </div>
                 </div>
@@ -462,6 +628,7 @@
                                 <asp:RequiredFieldValidator ID="rfv_objective2date" ControlToValidate="completeDateInput2" runat="server" ErrorMessage="*Required" ForeColor="Red" ValidationGroup="ValidateForm"/>
                                 <asp:RequiredFieldValidator ID="rfv_objective2dateSummary" ControlToValidate="completeDateInput2" runat="server" ErrorMessage="Please fill in the date" ForeColor="Red" ValidationGroup="summaryGroup" Visible="False"/>
                             </div>
+                            <asp:CustomValidator ID="cv_objective2date"  runat="server" 	ControlToValidate="completeDateInput2" ClientValidationFunction="compareDates2" ErrorMessage="Please enter a date that is after the course end date." ForeColor="Red" ValidationGroup="ValidateForm"></asp:CustomValidator>
                         </div>
                     </div>
                 </div>
@@ -497,6 +664,7 @@
                                 <asp:RequiredFieldValidator ID="rfv_objective3date" ControlToValidate="completeDateInput3" runat="server" ErrorMessage="*Required" ForeColor="Red" ValidationGroup="ValidateForm"/>
                                 <asp:RequiredFieldValidator ID="rfv_objectibe3dateSummary" ControlToValidate="completeDateInput3" runat="server" ErrorMessage="Please fill in the date" ForeColor="Red" ValidationGroup="summaryGroup" Visible="False"/>
                             </div>
+                            <asp:CustomValidator ID="cv_objective3date"  runat="server" 	ControlToValidate="completeDateInput3" ClientValidationFunction="compareDates3" ErrorMessage="Please enter a date that is after the course end date." ForeColor="Red" ValidationGroup="ValidateForm"></asp:CustomValidator>
                         </div>
                     </div>
                 </div>

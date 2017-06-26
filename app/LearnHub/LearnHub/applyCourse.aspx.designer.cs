@@ -427,6 +427,15 @@ namespace LearnHub {
         protected global::System.Web.UI.WebControls.RequiredFieldValidator rfv_objective1dateSummary;
         
         /// <summary>
+        /// cv_objective1date control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CustomValidator cv_objective1date;
+        
+        /// <summary>
         /// empty2 control.
         /// </summary>
         /// <remarks>
@@ -517,6 +526,15 @@ namespace LearnHub {
         protected global::System.Web.UI.WebControls.RequiredFieldValidator rfv_objective2dateSummary;
         
         /// <summary>
+        /// cv_objective2date control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CustomValidator cv_objective2date;
+        
+        /// <summary>
         /// empty4 control.
         /// </summary>
         /// <remarks>
@@ -605,6 +623,15 @@ namespace LearnHub {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator rfv_objectibe3dateSummary;
+        
+        /// <summary>
+        /// cv_objective3date control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CustomValidator cv_objective3date;
         
         /// <summary>
         /// cfmSubmit control.

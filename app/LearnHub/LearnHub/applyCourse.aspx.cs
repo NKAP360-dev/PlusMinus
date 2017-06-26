@@ -40,7 +40,7 @@ namespace LearnHub
         {
             //To do validations here
             
-            System.Diagnostics.Debug.WriteLine("V2");
+            
             //Assume all fields entered correctly
             //declaration of variables
             WorkflowDAO wfDAO = new WorkflowDAO();
