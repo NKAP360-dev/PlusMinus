@@ -34,14 +34,17 @@ namespace LearnHub
             }
         }
 
-        protected void LinkButton1_Click(object sender, EventArgs e)
+        protected void btnCheck_Click(object sender, EventArgs e)
         {
-
-        }
-
-        protected void LinkButton1_Click1(object sender, EventArgs e)
-        {
-
+            TNFDAO tnfDAO = new TNFDAO();
+            Boolean check = tnfDAO.checkIfUserAppliedCourse(txtUserID.Text, Convert.ToInt32(txtCourseID.Text));
+            if (check)
+            {
+                lblCheck.Text = "Exist";
+            } else
+            {
+                lblCheck.Text = "Not exist";
+            }
         }
     }
 }

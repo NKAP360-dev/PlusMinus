@@ -600,5 +600,37 @@ namespace LearnHub.AppCode.dao
             }
             return toReturn;
         }
+        public Boolean checkIfUserAppliedCourse(string userID, int courseID)
+        {
+            SqlConnection conn = new SqlConnection();
+            Boolean toReturn = false;
+            try
+            {
+                conn = new SqlConnection();
+                string connstr = ConfigurationManager.ConnectionStrings["DBConnectionString"].ToString();
+                conn.ConnectionString = connstr;
+                conn.Open();
+                SqlCommand comm = new SqlCommand();
+                comm.Connection = conn;
+                comm.CommandText = "select count(*) from [TNF] t inner join [TNF_data] td on t.tnfid = td.tnfid inner join [Course] c on td.courseID = c.courseID where t.userID=@userID and c.courseID=@courseID and t.status<>@status";
+                comm.Parameters.AddWithValue("@userID", userID);
+                comm.Parameters.AddWithValue("@courseID", courseID);
+                comm.Parameters.AddWithValue("@status", "rejected");
+                int count = (Int32)comm.ExecuteScalar();
+                if (count > 0)
+                {
+                    toReturn = true;
+                }
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                conn.Close();
+            }
+            return toReturn;
+        }
     }
 }

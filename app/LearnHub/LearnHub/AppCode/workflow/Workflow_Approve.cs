@@ -119,7 +119,7 @@ namespace LearnHub.AppCode.workflow
                         notificationDAO.updateNotificationApprovedDate(hrNoti.getNotificationID());
                         if (remarks != null)
                         {
-                            notificationDAO.updateNotificationRemarks(hrNoti.getNotificationID(), remarks);
+                            notificationDAO.updateNotificationRemarks(noti.getNotificationID(), remarks);
                         }
                     }
                     tnfDAO.updateTNFStatus(tnf.getTNFID(), "approved");
@@ -139,7 +139,7 @@ namespace LearnHub.AppCode.workflow
                         notificationDAO.updateNotificationApprovedDate(hrNoti.getNotificationID());
                         if (remarks != null)
                         {
-                            notificationDAO.updateNotificationRemarks(hrNoti.getNotificationID(), remarks);
+                            notificationDAO.updateNotificationRemarks(noti.getNotificationID(), remarks);
                         }
                     }
                     tnfDAO.updateTNFWFStatus(tnf.getTNFID(), nextWFLevel);

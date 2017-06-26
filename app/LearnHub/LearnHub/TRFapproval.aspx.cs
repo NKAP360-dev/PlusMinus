@@ -13,7 +13,6 @@ namespace LearnHub
 {
     public partial class TRFapproval : System.Web.UI.Page
     {
-        Boolean isProbation;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (Session["currentUser"] == null)
@@ -68,7 +67,6 @@ namespace LearnHub
                         lblWarningProbation.Visible = true;
                         probationDate.Enabled = true;
                         lblWarningProbation.Text = "Applicant is under probation";
-                        isProbation = true;
                     }
 
                     //setting user information
@@ -204,8 +202,11 @@ namespace LearnHub
                 string duration = "";
                 string sourceOfFunding = txtSourceOfFunding.Text;
                 DateTime? fundingApplicationDate = null;
+                Workflow currentWorkflow = currentTNF.getWorkflow();
+                int probationPeriod = currentWorkflow.getProbationPeriod();
+                TimeSpan ts = currentTNF.getApplicationDate().Subtract(applicant.getStartDate());
 
-                if (isProbation)
+                if (ts.TotalDays < probationPeriod)
                 {
                     probationText = "y";
                 }

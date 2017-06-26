@@ -255,7 +255,10 @@ namespace LearnHub.AppCode.dao
                     n.setTNFID((int)dr["tnfid"]);
                     n.setStatus((string)dr["status"]);
                     n.setDateApproved((DateTime)dr["dateApproved"]);
-                    n.setRemarks((string)dr["remarks"]);
+                    if (!dr.IsDBNull(5))
+                    {
+                        n.setRemarks((string)dr["remarks"]);
+                    }
                     n.setNotificationID((int)dr["notif_ID"]);
 
                     toReturn.Add(n);

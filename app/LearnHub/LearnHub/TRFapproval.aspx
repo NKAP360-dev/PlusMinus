@@ -475,20 +475,24 @@
                         <%--Modal Content--%>
                         <div class="modal-body">
                            <%  NotificationDAO notificationDAO = new NotificationDAO();
-                                UserDAO userDAO = new UserDAO();
-                                List<Notification> notificationList = new List<Notification>();
-                                notificationList = notificationDAO.getApprovedNotificationByTnfID(getTNFid());
+                               UserDAO userDAO = new UserDAO();
+                               List<Notification> notificationList = new List<Notification>();
+                               notificationList = notificationDAO.getApprovedNotificationByTnfID(getTNFid());
 
-                                for (int i=0;i<notificationList.Count();i++) {
-                                    Notification n = notificationList[i];
-                                    User u = userDAO.getUserByID(n.getUserIDTo());
-                                    Response.Write("<h4>Remarks by " + u.getName() +", "+u.getJobCategory().ToUpper() +"</h4>");
-                                    Response.Write("<textarea class=\"form-control\" rows=\"3\" id=\"textArea\" disabled=\"\">" + n.getRemarks() + "</textarea>");
+                               for (int i=0;i<notificationList.Count();i++) {
+                                   Notification n = notificationList[i];
+                                   if (n.getRemarks() != null)
+                                   {
+                                       User u = userDAO.getUserByID(n.getUserIDTo());
+                                       Response.Write("<h4>Remarks by " + u.getName() + ", " + u.getJobCategory().ToUpper() + "</h4>");
+                                       Response.Write("<textarea class=\"form-control\" rows=\"3\" id=\"textArea\" disabled=\"\">" + n.getRemarks() + "</textarea>");
 
-                                    if (notificationList.Count()>1&&i!=notificationList.Count()-1) {
-                                        Response.Write(" <div class=\"verticalLine\"></div>");
-                                    }
-                                }
+                                       if (notificationList.Count() > 1 && i != notificationList.Count() - 1)
+                                       {
+                                           Response.Write(" <div class=\"verticalLine\"></div>");
+                                       }
+                                   }
+                               }
                                 %>
 
                         </div>
