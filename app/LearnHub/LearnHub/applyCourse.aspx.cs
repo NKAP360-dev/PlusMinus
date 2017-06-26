@@ -40,88 +40,78 @@ namespace LearnHub
         {
             //To do validations here
             
-            System.Diagnostics.Debug.WriteLine("V1");
-            Page.Validate("ValidateForm");
-            if (Page.IsValid)
+            System.Diagnostics.Debug.WriteLine("V2");
+            //Assume all fields entered correctly
+            //declaration of variables
+            WorkflowDAO wfDAO = new WorkflowDAO();
+            TNFDAO tnfDAO = new TNFDAO();
+            User currentUser = (User)Session["currentUser"];
+            int courseID = Convert.ToInt32(courseInput.SelectedValue);
+            int lessonID = Convert.ToInt32(Request.Form["rbnLessonID"]);
+            string prepareForNewJobRole = null;
+            string prepareForNewJobRoleText = null;
+            DateTime? prepareForNewJobRoleCompletedDate = null;
+            string shareKnowledge = null;
+            string shareKnowledgeText = null;
+            DateTime? shareKnowledgeCompletedDate = null;
+            string otherObjectives = null;
+            string otherObjectivesText = null;
+            DateTime? otherObjectivesCompletedDate = null;
+            DateTime applicationDate = DateTime.Now.Date;
+
+
+            if (objectiveInput1.Checked)
             {
-            
-                System.Diagnostics.Debug.WriteLine("V2");
-                //Assume all fields entered correctly
-                //declaration of variables
-                WorkflowDAO wfDAO = new WorkflowDAO();
-                TNFDAO tnfDAO = new TNFDAO();
-                User currentUser = (User)Session["currentUser"];
-                int courseID = Convert.ToInt32(courseInput.SelectedValue);
-                int lessonID = Convert.ToInt32(Request.Form["rbnLessonID"]);
-                string prepareForNewJobRole = null;
-                string prepareForNewJobRoleText = null;
-                DateTime? prepareForNewJobRoleCompletedDate = null;
-                string shareKnowledge = null;
-                string shareKnowledgeText = null;
-                DateTime? shareKnowledgeCompletedDate = null;
-                string otherObjectives = null;
-                string otherObjectivesText = null;
-                DateTime? otherObjectivesCompletedDate = null;
-                DateTime applicationDate = DateTime.Now.Date;
-
-
-                if (objectiveInput1.Checked)
-                {
-                    prepareForNewJobRole = "y";
-                    prepareForNewJobRoleText = objectiveElaborate1.Text;
-                    prepareForNewJobRoleCompletedDate = DateTime.ParseExact(completeDateInput1.Text, "MM/dd/yyyy", CultureInfo.InvariantCulture);
-                }
-                else
-                {
-                    prepareForNewJobRole = "n";
-                }
-                if (objectiveInput2.Checked)
-                {
-                    shareKnowledge = "y";
-                    shareKnowledgeText = objectiveElaborate2.Text;
-                    shareKnowledgeCompletedDate = DateTime.ParseExact(completeDateInput2.Text, "MM/dd/yyyy", CultureInfo.InvariantCulture);
-                }
-                else
-                {
-                    shareKnowledge = "n";
-                }
-                if (objectiveInput3.Checked)
-                {
-                    otherObjectives = "y";
-                    otherObjectivesText = objectiveElaborate3.Text;
-                    otherObjectivesCompletedDate = DateTime.ParseExact(completeDateInput3.Text, "MM/dd/yyyy", CultureInfo.InvariantCulture);
-                }
-                else
-                {
-                    otherObjectives = "n";
-                }
-
-
-                //creation of TNF object
-                Workflow currentWF = wfDAO.getCurrentActiveWorkflow("individual");
-                TNF newTNF = new TNF(currentUser, "individual", "pending", 0, currentWF, applicationDate);
-                int tnfid = tnfDAO.createTNF(newTNF);
-                newTNF.setTNFID(tnfid);
-                tnfDAO.createTNF_Data(tnfid, courseID, prepareForNewJobRole, prepareForNewJobRoleText, prepareForNewJobRoleCompletedDate, shareKnowledge, shareKnowledgeText, shareKnowledgeCompletedDate, otherObjectives, otherObjectivesText, otherObjectivesCompletedDate, lessonID);
-
-                //start routing
-
-                Boolean successOrNot = Workflow_Route.routeForApproval(newTNF);
-                if (successOrNot)
-                {
-                    //to create lesson info
-                    Response.Redirect("~/submitTRF.aspx");
-                }
-                else
-                {
-                    //do something
-                }
-                
+                prepareForNewJobRole = "y";
+                prepareForNewJobRoleText = objectiveElaborate1.Text;
+                prepareForNewJobRoleCompletedDate = DateTime.ParseExact(completeDateInput1.Text, "MM/dd/yyyy", CultureInfo.InvariantCulture);
             }
             else
             {
-                System.Diagnostics.Debug.WriteLine("V3");
+                prepareForNewJobRole = "n";
             }
+            if (objectiveInput2.Checked)
+            {
+                shareKnowledge = "y";
+                shareKnowledgeText = objectiveElaborate2.Text;
+                shareKnowledgeCompletedDate = DateTime.ParseExact(completeDateInput2.Text, "MM/dd/yyyy", CultureInfo.InvariantCulture);
+            }
+            else
+            {
+                shareKnowledge = "n";
+            }
+            if (objectiveInput3.Checked)
+            {
+                otherObjectives = "y";
+                otherObjectivesText = objectiveElaborate3.Text;
+                otherObjectivesCompletedDate = DateTime.ParseExact(completeDateInput3.Text, "MM/dd/yyyy", CultureInfo.InvariantCulture);
+            }
+            else
+            {
+                otherObjectives = "n";
+            }
+
+
+            //creation of TNF object
+            Workflow currentWF = wfDAO.getCurrentActiveWorkflow("individual");
+            TNF newTNF = new TNF(currentUser, "individual", "pending", 0, currentWF, applicationDate);
+            int tnfid = tnfDAO.createTNF(newTNF);
+            newTNF.setTNFID(tnfid);
+            tnfDAO.createTNF_Data(tnfid, courseID, prepareForNewJobRole, prepareForNewJobRoleText, prepareForNewJobRoleCompletedDate, shareKnowledge, shareKnowledgeText, shareKnowledgeCompletedDate, otherObjectives, otherObjectivesText, otherObjectivesCompletedDate, lessonID);
+
+            //start routing
+
+            Boolean successOrNot = Workflow_Route.routeForApproval(newTNF);
+            if (successOrNot)
+            {
+                //to create lesson info
+                Response.Redirect("~/submitTRF.aspx");
+            }
+            else
+            {
+                //do something
+            }
+
             
         }
 

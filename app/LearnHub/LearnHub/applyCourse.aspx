@@ -601,10 +601,12 @@
                 document.getElementById('<%= lblErrorMsgFinal.ClientID %>').style.display = 'inherit';
                 document.getElementById('<%= lblErrorMsgFinal.ClientID %>').innerHTML = "You have not filled up all of the required fields";
                 //Page_ClientValidate('summaryGroup');
+                document.getElementById('<%= cfmSubmit.ClientID %>').disabled = true; 
                 console.log("The end");
             }
             else {
                 document.getElementById('<%= lblErrorMsgFinal.ClientID %>').innerHTML = " ";
+                document.getElementById('<%= cfmSubmit.ClientID %>').disabled = false; 
             }
             
         }
