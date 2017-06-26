@@ -22,6 +22,17 @@
             });
         });
 
+        $(document).ready(function () {
+            Sys.WebForms.PageRequestManager.getInstance().add_endRequest(EndRequestHandler);
+            function EndRequestHandler(sender, args) {
+                $('.input-group.date').datepicker({
+                    calendarWeeks: true,
+                    todayHighlight: true,
+                    autoclose: true
+                });
+            }
+        });
+
     </script>
     <style>
         #accordion .panel-heading {
@@ -371,8 +382,8 @@
                                                 <asp:UpdatePanel ID="fundingPanel" runat="server">
                                                     <ContentTemplate>
                                                         <asp:RadioButtonList ID="rbnlFunding" runat="server" AutoPostBack="True" OnSelectedIndexChanged="rbnlFunding_SelectedIndexChanged">
-                                                            <asp:ListItem Value="y" Selected="True"> &nbsp; Yes</asp:ListItem>
-                                                            <asp:ListItem Value="n" >&nbsp; No</asp:ListItem>
+                                                            <asp:ListItem Value="y" > &nbsp; Yes</asp:ListItem>
+                                                            <asp:ListItem Value="n" Selected="True">&nbsp; No</asp:ListItem>
                                                         </asp:RadioButtonList>
                                                         <asp:TextBox ID="txtSourceOfFunding" runat="server" CssClass="form-control" placeholder="Source of Funding" Enabled="false"></asp:TextBox>
                                                         <div class="input-group date">
