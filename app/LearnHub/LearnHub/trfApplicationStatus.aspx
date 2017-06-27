@@ -1,6 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Masterpage.Master" AutoEventWireup="true" CodeBehind="trfApplicationStatus.aspx.cs" Inherits="LearnHub.trfApplicationStatus" %>
 <%@ Import Namespace="LearnHub.AppCode.entity"%>
 <%@ Import Namespace="LearnHub.AppCode.dao"%>
+<%@ Import Namespace="System.Globalization"%>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
@@ -31,6 +32,7 @@
                         UserDAO userDAO = new UserDAO();
                         TNFDAO tnfDAO = new TNFDAO();
                         WorkflowApproverDAO wfaDAO = new WorkflowApproverDAO();
+                        TextInfo textInfo = new CultureInfo("en-US", false).TextInfo;
 
                         List<TNF> allTNF = tnfDAO.getAllTNFByUserID(currentUser.getUserID());
                         foreach (TNF tnf in allTNF)
@@ -39,11 +41,14 @@
                             User nextApprover = null;
                             int tnfid = tnf.getTNFID();
                             string courseName = tnfDAO.getCourseFromTNF(tnfid).getCourseName();
+                            courseName = textInfo.ToTitleCase(courseName);
                             string application_type = tnf.getType();
+                            application_type = textInfo.ToTitleCase(application_type);
                             string status = tnf.getStatus();
+                            status = textInfo.ToTitleCase(status);
 
-                            if (tnf.getStatus().Equals("pending"))
-                            {
+                            //if (tnf.getStatus().Equals("pending"))
+                            //{
                                 string approverCategory = wfaDAO.getJobCategory(tnf.getWorkflow().getWorkflowID(), tnf.getWorkflowSub().getWorkflowSubID(), tnf.getWFStatus());
 
                                 if (approverCategory.ToLower().Equals("supervisor"))
@@ -77,7 +82,7 @@
                                     nextApprover = null;
                                     approverName = "HR";
                                 }
-                            }
+                            //}
 
                             //print out the table
                             if (status.Equals("approved")) {
