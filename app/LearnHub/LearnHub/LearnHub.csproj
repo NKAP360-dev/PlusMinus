@@ -187,10 +187,31 @@
     <Compile Include="applyCourse.aspx.designer.cs">
       <DependentUpon>applyCourse.aspx</DependentUpon>
     </Compile>
+    <Compile Include="approvalConfirmation.aspx.cs">
+      <DependentUpon>approvalConfirmation.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="approvalConfirmation.aspx.designer.cs">
+      <DependentUpon>approvalConfirmation.aspx</DependentUpon>
+    </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="errorPage.aspx.cs">
+      <DependentUpon>errorPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="errorPage.aspx.designer.cs">
+      <DependentUpon>errorPage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="filledTRF.aspx.cs">
+      <DependentUpon>filledTRF.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="filledTRF.aspx.designer.cs">
+      <DependentUpon>filledTRF.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -282,6 +303,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="applyCourse.aspx" />
+    <Content Include="approvalConfirmation.aspx" />
     <Content Include="bootstrap\css\bootstrap-responsive.css" />
     <Content Include="bootstrap\css\bootstrap-responsive.min.css" />
     <Content Include="bootstrap\css\bootstrap.css" />
@@ -293,7 +315,9 @@
     <Content Include="bootstrap\js\bootstrap.min.js" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="errorPage.aspx" />
     <Content Include="favicon.ico" />
+    <Content Include="filledTRF.aspx" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />

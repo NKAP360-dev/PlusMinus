@@ -273,7 +273,7 @@
                         NotificationDAO notificationDAO = new NotificationDAO();
                         UserDAO userDAO = new UserDAO();
                         List<Notification> allPendingNotifications = notificationDAO.getPendingNotificationByUserID(currentUser.getUserID());
-                        if (allPendingNotifications.Count > 0)
+                        if (!currentUser.getJobCategory().Equals("staff"))
                         {
                 %>
                 <form class="navbar-form navbar-right">

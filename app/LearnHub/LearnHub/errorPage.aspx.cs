@@ -7,19 +7,11 @@ using System.Web.UI.WebControls;
 
 namespace LearnHub
 {
-    public partial class submitTRF : System.Web.UI.Page
+    public partial class errorPage : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["currentUser"] == null)
-            {
-                Response.Redirect("Login.aspx");
 
-            }
-            else
-            {
-
-            }
         }
     }
 }

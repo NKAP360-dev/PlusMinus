@@ -35,7 +35,7 @@ namespace LearnHub
 
                     if (currentNotification == null || !currentNotification.getUserIDTo().Equals(currentUser.getUserID()))
                     {
-                        Response.Redirect("/pendingApproval.aspx");
+                        Response.Redirect("/errorPage.aspx");
                     }
 
                     TNF currentTNF = tnfDAO.getIndividualTNFByID(currentNotification.getUserIDFrom(), currentNotification.getTNFID());
@@ -239,7 +239,7 @@ namespace LearnHub
 
             }
             Workflow_Approve.makeApproval(currentTNF, approver, currentNotification, remarksInput.Text);
-            Response.Redirect("/pendingApproval.aspx");
+            Response.Redirect("/approvalConfirmation.aspx");
         }
         protected void cfmRejectBtn_Click(object sender, EventArgs e)
         {

@@ -107,7 +107,7 @@
                                 Response.Write("<td>" + "-" + "</td>");
                             }
 
-                            Response.Write("<td><a href=\"#\" class=\"btn btn-info\"><span class=\"glyphicon glyphicon-menu-right\"></span>&nbsp;View</a></td>");
+                            Response.Write("<td>" + "<a href=\"/filledTRF.aspx?tnfid=" + tnf.getTNFID() + "\"><span class=\"glyphicon glyphicon-menu-right\"></span>&nbsp;View Form</a>" + "</td>");
 
                         }
                     }
