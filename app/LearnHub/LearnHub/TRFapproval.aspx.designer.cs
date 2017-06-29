@@ -481,6 +481,24 @@ namespace LearnHub {
         protected global::System.Web.UI.WebControls.TextBox trainingCost;
         
         /// <summary>
+        /// rfv_trainingCost control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfv_trainingCost;
+        
+        /// <summary>
+        /// compv_trainingCost control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CompareValidator compv_trainingCost;
+        
+        /// <summary>
         /// trainingBudgetBal control.
         /// </summary>
         /// <remarks>
@@ -544,6 +562,15 @@ namespace LearnHub {
         protected global::System.Web.UI.WebControls.TextBox mspBondDuration;
         
         /// <summary>
+        /// rfv_mspBondDuration control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfv_mspBondDuration;
+        
+        /// <summary>
         /// fundingPanel control.
         /// </summary>
         /// <remarks>
@@ -578,6 +605,24 @@ namespace LearnHub {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtFundingDate;
+        
+        /// <summary>
+        /// rfv_sourceOfFunding control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfv_sourceOfFunding;
+        
+        /// <summary>
+        /// rfv_fundingDate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfv_fundingDate;
         
         /// <summary>
         /// fundingDate control.
@@ -697,6 +742,15 @@ namespace LearnHub {
         protected global::System.Web.UI.WebControls.LinkButton cfmApproveBtn;
         
         /// <summary>
+        /// lblErrorMsgFinal control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblErrorMsgFinal;
+        
+        /// <summary>
         /// cfmRejectBtn control.
         /// </summary>
         /// <remarks>
@@ -704,6 +758,15 @@ namespace LearnHub {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton cfmRejectBtn;
+        
+        /// <summary>
+        /// lbl_HR control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_HR;
         
         /// <summary>
         /// PreviousPage property.

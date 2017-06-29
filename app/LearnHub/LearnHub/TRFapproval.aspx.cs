@@ -154,6 +154,9 @@ namespace LearnHub
                         DeptDAO deptDAO = new DeptDAO();
                         Bonds checkBond = bondDAO.getBondByTNFIDandUserID(currentTNF.getTNFID(), applicant.getUserID());
                         Department currentDept = deptDAO.getDeptByName(applicant.getDepartment());
+                        lbl_HR.Text = "Is HR";
+                        rfv_trainingCost.Enabled = true;
+                        rfv_mspBondDuration.Enabled = true;
 
                         if (checkBond != null)
                         {
@@ -173,6 +176,12 @@ namespace LearnHub
                         double balance = currentDept.getActualBudget() - courseApplied.getPrice();
                         trainingBudgetBal.Text = balance.ToString();
                         trainingBudgetDate.Text = DateTime.Now.ToString("MM/dd/yyyy");
+                    }
+                    else
+                    {
+                        lbl_HR.Text = "Is not HR";
+                        rfv_trainingCost.Enabled = false;
+                        rfv_mspBondDuration.Enabled = false;
                     }
                 }
             }
@@ -263,12 +272,18 @@ namespace LearnHub
             {
                 txtSourceOfFunding.Enabled = true;
                 txtFundingDate.Enabled = true;
+                rfv_sourceOfFunding.Enabled = true;
+                rfv_fundingDate.Enabled = true;
+                System.Diagnostics.Debug.WriteLine("selected");
             } else
             {
                 txtSourceOfFunding.Enabled = false;
                 txtSourceOfFunding.Text = string.Empty;
                 txtFundingDate.Enabled = false;
                 txtFundingDate.Text = string.Empty;
+                rfv_sourceOfFunding.Enabled = false;
+                rfv_fundingDate.Enabled = false;
+                System.Diagnostics.Debug.WriteLine("Not selected");
             }
         }
 

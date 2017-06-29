@@ -33,6 +33,14 @@
             }
         });
 
+        function activateDuration(sender, args) {
+            document.getElementById("<%= mspBondDuration.ClientID %>").disabled = false;
+            document.getElementById("<%= rfv_mspBondDuration.ClientID %>").disabled = false;
+        }
+        function deactivateDuration(sender, args) {
+            document.getElementById("<%= mspBondDuration.ClientID %>").disabled = true;
+            document.getElementById("<%= rfv_mspBondDuration.ClientID %>").disabled = true;
+        }
     </script>
     <style>
           .form-horizontal .control-label-left {
@@ -299,6 +307,9 @@
                                                 <span class="input-group-addon">$</span>
                                                 <asp:TextBox ID="trainingCost" runat="server" CssClass="form-control" placeholder="Total Training Costs" TextMode="Number"></asp:TextBox>
                                             </div>
+                                            <asp:RequiredFieldValidator ID="rfv_trainingCost" runat="server" ErrorMessage="Please enter an amount" ControlToValidate="trainingCost" ForeColor="red" ValidationGroup="ValidateApproval"></asp:RequiredFieldValidator>
+                                            <br />
+                                            <asp:CompareValidator ID="compv_trainingCost" runat="server" ErrorMessage="Invalid amount. Please enter an amount inclusive of course fee" Operator="GreaterThan" ForeColor="red" ControlToValidate="trainingCost" ValueToCompare="courseFeeOutput" ValidationGroup="ValidateApproval"></asp:CompareValidator>
                                         </div>
                                     </div>
                                 </td>
@@ -332,8 +343,8 @@
                                         <div class="col-lg-10">
                                         <div class="checkbox">
                                             <asp:RadioButton ID="rbtnMSP" runat="server" Text="MSP" GroupName="BondMSP"></asp:RadioButton>
-                                            <asp:RadioButton ID="rbtnBond" runat="server" Text="Bond" GroupName="BondMSP"></asp:RadioButton>      
-                                            <asp:RadioButton ID="rbtnNA" runat="server" Text="Not Applicable" GroupName="BondMSP"></asp:RadioButton>      
+                                            <asp:RadioButton ID="rbtnBond" runat="server" Text="Bond" onClick="activateDuration" GroupName="BondMSP"></asp:RadioButton>      
+                                            <asp:RadioButton ID="rbtnNA" runat="server" Text="Not Applicable" onClick="deactivateDuration" GroupName="BondMSP"></asp:RadioButton>      
                                         </div>
                                     </div>
                                     </div>
@@ -346,6 +357,7 @@
                                                 <asp:TextBox ID="mspBondDuration" runat="server" CssClass="form-control" placeholder="Duration" TextMode="Number"></asp:TextBox>
                                                 <span class="input-group-addon">months</span>
                                             </div>
+                                            <asp:RequiredFieldValidator ID="rfv_mspBondDuration" runat="server" ErrorMessage="Please enter a duration" ForeColor="red" ControlToValidate="mspBondDuration" ValidationGroup="ValidateApproval"></asp:RequiredFieldValidator>
                                         </div>
                                     </div>
                                 </td></tr>
@@ -366,6 +378,9 @@
                                                         <div class="input-group date">
                                                         <asp:TextBox ID="txtFundingDate" runat="server" CssClass="form-control" placeholder="Funding Date (MM/DD/YYYY)" Enabled="false"></asp:TextBox><span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
                                                         </div>
+                                                        <asp:RequiredFieldValidator ID="rfv_sourceOfFunding" runat="server" ErrorMessage="Please specify a source of funding" ControlToValidate="txtSourceOfFunding" ForeColor="red" Enabled="false" ValidationGroup="ValidateApproval"></asp:RequiredFieldValidator>
+                                                        <br />
+                                                        <asp:RequiredFieldValidator ID="rfv_fundingDate" runat="server" ErrorMessage="Please specify a funding date" ControlToValidate="txtFundingDate" ForeColor="red" Enabled="false" ValidationGroup="ValidateApproval"></asp:RequiredFieldValidator>
                                                     </ContentTemplate>
                                                     <Triggers>
                                                         <asp:AsyncPostBackTrigger ControlID="rbnlFunding" EventName="SelectedIndexChanged" />
@@ -434,7 +449,7 @@
                         </p>
                     </asp:Panel>
                     <br /><br />
-                    <asp:LinkButton ID="approvalBtn" runat="server" CssClass="btn btn-success"  data-toggle="modal" href="#approveModal"><span class="glyphicon glyphicon-ok"></span> &nbsp;Approve</asp:LinkButton>
+                    <asp:LinkButton ID="approvalBtn" runat="server" CssClass="btn btn-success"  data-toggle="modal" onClientClick ="checkFormApproval_Clicked()" href="#approveModal"><span class="glyphicon glyphicon-ok"></span> &nbsp;Approve</asp:LinkButton>
                     <asp:LinkButton ID="rejectBtn" runat="server" CssClass="btn btn-danger" data-toggle="modal" href="#rejectModal"><span class="glyphicon glyphicon-remove"></span> &nbsp;Reject</asp:LinkButton>
 
                 </asp:Panel>
@@ -493,6 +508,8 @@
                         <div class="wrapper">                            
                             <h4>Are you sure you want to approve this form?</h4><br />
                                 <asp:LinkButton ID="cfmApproveBtn" runat="server" CssClass="btn btn-success" onclick="cfmApproveBtn_Click"><span class="glyphicon glyphicon-ok"></span> &nbsp;Approve</asp:LinkButton>
+                            <br />
+                            <asp:Label ID="lblErrorMsgFinal" runat="server" CssClass="text-danger" Visible="True"></asp:Label>
                         </div>                       
                     </div>                  
                 </div>
@@ -521,6 +538,33 @@
         </div>
 
     </form>
+    <asp:label id="lbl_HR" runat="server" hidden="hidden"></asp:label>
+    <script type="text/javascript">
+
+        function checkFormApproval_Clicked(source, args) {
+            if (document.getElementById('<%= lbl_HR.ClientID %>').Text = "Is HR") {
+                Page_ClientValidate('ValidateApproval');
+                //Page_ClientValidate();
+                console.log("HR");
+
+                if (!Page_IsValid) {
+                    document.getElementById('<%= lblErrorMsgFinal.ClientID %>').style.display = 'inherit';
+                    document.getElementById('<%= lblErrorMsgFinal.ClientID %>').innerHTML = "You have not filled up all of the required fields";
+                    //Page_ClientValidate('summaryGroup');
+                    document.getElementById('<%= cfmApproveBtn.ClientID %>').disabled = true;
+                    //document.getElementById('<%= cfmApproveBtn.ClientID %>').onclick = returnFalse;
+                    console.log("The end");
+                }
+                else {
+                    document.getElementById('<%= lblErrorMsgFinal.ClientID %>').innerHTML = " ";
+                    document.getElementById('<%= cfmApproveBtn.ClientID %>').disabled = false;
+                }
+                
+            }
+
+
+        }
+</script>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder2" runat="server">
 </asp:Content>
