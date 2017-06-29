@@ -8,7 +8,10 @@
         <h3>Thank you for approving the Training Request Form</h3>      
         <br /><br />
             <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/pendingApproval.aspx"><span class="glyphicon glyphicon-menu-right"></span>&nbsp; View All Pending Training Request Form</asp:HyperLink>
-    </div>
+            <br />
+            <asp:HyperLink ID="HyperLink2" runat="server" NavigateUrl="~/approvedTRF.aspx"><span class="glyphicon glyphicon-menu-right"></span>&nbsp; View All Approved TRF</asp:HyperLink>
+
+        </div>
 
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder2" runat="server">

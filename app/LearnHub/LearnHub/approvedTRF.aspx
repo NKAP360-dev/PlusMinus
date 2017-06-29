@@ -1,15 +1,13 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Masterpage.Master" AutoEventWireup="true" CodeBehind="pendingApproval.aspx.cs" Inherits="LearnHub.pendingApproval" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Masterpage.Master" AutoEventWireup="true" CodeBehind="approvedTRF.aspx.cs" Inherits="LearnHub.approvedTRF" %>
 <%@ Import Namespace="LearnHub.AppCode.entity"%>
 <%@ Import Namespace="LearnHub.AppCode.dao"%>
-
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-
     <form id="form1" runat="server" action="/TRFapproval.aspx" method="post">
 
  <div class="container">
-        <h1>View Notifications</h1>
+        <h1>View Approved TRFs</h1>
          <div class="verticalLine">
              
         </div>
@@ -22,8 +20,8 @@
                     <th>Job Title</th>
                     <th>Course Name</th>
                     <th>Course Price</th>
-                    <th>Department's Budget</th>
-                    <th>Project Budget after Deduction</th>
+                    <th>Date Approved By Me</th>
+                    <th>Current TRF Status</th>
                     <th></th>
                 </tr>
             </thead>
@@ -35,16 +33,16 @@
                     TNFDAO tnfDAO = new TNFDAO();
 
                     User currentUser = (User)Session["currentUser"];
-                    List<Notification> allPendingNotifications = notificationDAO.getPendingNotificationByUserID(currentUser.getUserID());
-                    if (allPendingNotifications.Count > 0)
+                    List<Notification> allApprovedTRF = notificationDAO.getApprovedNotificationByUserID(currentUser.getUserID());
+                    if (allApprovedTRF.Count > 0)
                     {
 
-                        foreach (Notification n in allPendingNotifications)
+                        foreach (Notification n in allApprovedTRF)
                         {
-                            User applicant = userDAO.getUserByID(n.getUserIDFrom());
-                            TNF currentTNF = tnfDAO.getIndividualTNFByID(applicant.getUserID(), n.getTNFID());
+                            User approver = userDAO.getUserByID(n.getUserIDFrom());
+                            TNF currentTNF = tnfDAO.getIndividualTNFByID(approver.getUserID(), n.getTNFID());
                             Course currentCourse = tnfDAO.getCourseFromTNF(currentTNF.getTNFID());
-                            Department currentDept = deptDAO.getDeptByName(applicant.getDepartment());
+                            Department currentDept = deptDAO.getDeptByName(approver.getDepartment());
 
                             Response.Write("<tr>");
                             Response.Write("<td>" + userDAO.getUserByID(n.getUserIDFrom()).getName() + "</td>");
@@ -52,9 +50,9 @@
                             Response.Write("<td>" + userDAO.getUserByID(n.getUserIDFrom()).getJobTitle() + "</td>");
                             Response.Write("<td>" + currentCourse.getCourseName() + "</td>");
                             Response.Write("<td> $" + currentCourse.getPrice() + "</td>");
-                            Response.Write("<td> $" + currentDept.getActualBudget() + "</td>");
-                            Response.Write("<td> $" + (currentDept.getActualBudget() - currentCourse.getPrice()) + "</td>");
-                            Response.Write("<td>" + "<a href=\"/TRFapproval.aspx?n=" + n.getNotificationID() + "\"><span class=\"glyphicon glyphicon-menu-right\"></span>&nbsp;More Info</a>" + "</td>");
+                            Response.Write("<td>"+ n.getDateApproved() + "</td>");
+                            Response.Write("<td>" + tnfDAO.getIndividualTNFByID(approver.getUserID(), n.getTNFID()).getStatus());
+                            Response.Write("<td>" + "<a href=\"/viewApprovedTRF.aspx?tnfid=" + currentTNF.getTNFID() +"&applicant="+currentTNF.getUser().getUserID()+"\"><span class=\"glyphicon glyphicon-menu-right\"></span>&nbsp;View Form</a>" + "</td>");
                             Response.Write("</tr>");
                         }
                     }
@@ -64,10 +62,6 @@
     </div>
 
     </form>
-    <div class="right">
-                <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/approvedTRF.aspx"><span class="glyphicon glyphicon-menu-right"></span>&nbsp; View Approved TRF</asp:HyperLink>
-    </div>
-
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder2" runat="server">
 </asp:Content>

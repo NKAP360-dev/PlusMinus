@@ -275,5 +275,94 @@ namespace LearnHub.AppCode.dao
             }
             return toReturn;
         }
+
+        public List<Notification> getNotificationsByTnfID(int tnfID)
+        {
+            SqlConnection conn = new SqlConnection();
+            List<Notification> toReturn = new List<Notification>();
+            try
+            {
+                conn = new SqlConnection();
+                string connstr = ConfigurationManager.ConnectionStrings["DBConnectionString"].ToString();
+                conn.ConnectionString = connstr;
+                conn.Open();
+                SqlCommand comm = new SqlCommand();
+                comm.Connection = conn;
+                comm.CommandText = "select * from [Notifications] where tnfid=@tnfID";
+                comm.Parameters.AddWithValue("@tnfid", tnfID);
+                SqlDataReader dr = comm.ExecuteReader();
+                while (dr.Read())
+                {
+                    Notification n = new Notification();
+                    n.setUserIDFrom((string)dr["userID_from"]);
+                    n.setUserIDTo((string)dr["userID_to"]);
+                    n.setTNFID((int)dr["tnfid"]);
+                    n.setStatus((string)dr["status"]);
+                    n.setNotificationID((int)dr["notif_ID"]);
+                    if (!dr.IsDBNull(4))
+                    {
+                        n.setDateApproved(dr.GetDateTime(4));
+                    }
+                    if (!dr.IsDBNull(5))
+                    {
+                        n.setRemarks((string)dr["remarks"]);
+
+                    }
+                    toReturn.Add(n);
+                }
+                dr.Close();
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                conn.Close();
+            }
+            return toReturn;
+        }
+
+        public List<Notification> getApprovedNotificationByUserID(string userID)
+        {
+            SqlConnection conn = new SqlConnection();
+            List<Notification> toReturn = new List<Notification>();
+            try
+            {
+                conn = new SqlConnection();
+                string connstr = ConfigurationManager.ConnectionStrings["DBConnectionString"].ToString();
+                conn.ConnectionString = connstr;
+                conn.Open();
+                SqlCommand comm = new SqlCommand();
+                comm.Connection = conn;
+                comm.CommandText = "select * from [Notifications] where userID_To=@userID_To and status=@status";
+                comm.Parameters.AddWithValue("@userID_To", userID);
+                comm.Parameters.AddWithValue("@status", "approved");
+                SqlDataReader dr = comm.ExecuteReader();
+                while (dr.Read())
+                {
+                    Notification n = new Notification();
+                    n.setUserIDFrom((string)dr["userID_from"]);
+                    n.setUserIDTo((string)dr["userID_to"]);
+                    n.setTNFID((int)dr["tnfid"]);
+                    n.setStatus((string)dr["status"]);
+                    n.setNotificationID((int)dr["notif_ID"]);
+                    n.setDateApproved((DateTime)dr["dateApproved"]);
+                    n.setRemarks((string)dr["remarks"]);
+
+                    toReturn.Add(n);
+                }
+                dr.Close();
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                conn.Close();
+            }
+            return toReturn;
+        }
     }
 }

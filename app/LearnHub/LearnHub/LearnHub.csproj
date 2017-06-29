@@ -194,6 +194,13 @@
     <Compile Include="approvalConfirmation.aspx.designer.cs">
       <DependentUpon>approvalConfirmation.aspx</DependentUpon>
     </Compile>
+    <Compile Include="approvedTRF.aspx.cs">
+      <DependentUpon>approvedTRF.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="approvedTRF.aspx.designer.cs">
+      <DependentUpon>approvedTRF.aspx</DependentUpon>
+    </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
@@ -293,6 +300,13 @@
     <Compile Include="TRFapproval.aspx.designer.cs">
       <DependentUpon>TRFapproval.aspx</DependentUpon>
     </Compile>
+    <Compile Include="viewApprovedTRF.aspx.cs">
+      <DependentUpon>viewApprovedTRF.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="viewApprovedTRF.aspx.designer.cs">
+      <DependentUpon>viewApprovedTRF.aspx</DependentUpon>
+    </Compile>
     <Compile Include="WebForm1.aspx.cs">
       <DependentUpon>WebForm1.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -304,6 +318,7 @@
   <ItemGroup>
     <Content Include="applyCourse.aspx" />
     <Content Include="approvalConfirmation.aspx" />
+    <Content Include="approvedTRF.aspx" />
     <Content Include="bootstrap\css\bootstrap-responsive.css" />
     <Content Include="bootstrap\css\bootstrap-responsive.min.css" />
     <Content Include="bootstrap\css\bootstrap.css" />
@@ -340,6 +355,7 @@
     <Content Include="testIndividualRouting.aspx" />
     <Content Include="trfApplicationStatus.aspx" />
     <Content Include="TRFapproval.aspx" />
+    <Content Include="viewApprovedTRF.aspx" />
     <Content Include="WebForm1.aspx" />
     <Content Include="bootstrap\fonts\glyphicons-halflings-regular.eot" />
     <Content Include="bootstrap\fonts\glyphicons-halflings-regular.ttf" />
