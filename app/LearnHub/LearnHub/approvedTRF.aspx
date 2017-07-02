@@ -7,7 +7,7 @@
     <form id="form1" runat="server" action="/TRFapproval.aspx" method="post">
 
  <div class="container">
-        <h1>View Approved TRFs</h1>
+        <h1>View Previously Approved and Rejected Training Request Form</h1>
          <div class="verticalLine">
              
         </div>
@@ -34,10 +34,21 @@
 
                     User currentUser = (User)Session["currentUser"];
                     List<Notification> allApprovedTRF = notificationDAO.getApprovedNotificationByUserID(currentUser.getUserID());
-                    if (allApprovedTRF.Count > 0)
+                    List<Notification> allRejectedTRF = notificationDAO.getRejectedNotificationByUserID(currentUser.getUserID());
+                    List<Notification> allTRF = new List<Notification>();
+
+                    foreach (Notification n in allApprovedTRF) {
+                        allTRF.Add(n);
+                    }
+
+                    foreach (Notification n in allRejectedTRF) {
+                        allTRF.Add(n);
+                    }
+
+                    if (allTRF.Count > 0)
                     {
 
-                        foreach (Notification n in allApprovedTRF)
+                        foreach (Notification n in allTRF)
                         {
                             User approver = userDAO.getUserByID(n.getUserIDFrom());
                             TNF currentTNF = tnfDAO.getIndividualTNFByID(approver.getUserID(), n.getTNFID());

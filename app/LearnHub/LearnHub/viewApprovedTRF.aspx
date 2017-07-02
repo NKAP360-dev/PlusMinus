@@ -209,8 +209,11 @@
                 <%
                     NotificationDAO notificationDAO = new NotificationDAO();
                     UserDAO userDAO = new UserDAO();
-                    List<Notification> notificationList = new List<Notification>();
-                    notificationList = notificationDAO.getApprovedNotificationByTnfID(getTNFid());
+                    List<Notification> notificationList = notificationDAO.getApprovedNotificationByTnfID(getTNFid());
+
+                    foreach (Notification n in notificationDAO.getRejectedNotificationByTnfID(getTNFid())) {
+                        notificationList.Add(n);
+                    }
 
                     for (int i = 0; i < notificationList.Count(); i++)
                     {
@@ -221,7 +224,7 @@
                             Response.Write("<h4>Remarks by " + u.getName() + ", " + u.getJobCategory().ToUpper() + "</h4>");
                             Response.Write("<textarea class=\"form-control\" rows=\"3\" id=\"textArea\" disabled=\"\">" + n.getRemarks() + "</textarea>");
                             Response.Write("</br>");
-                           
+
                         }
                     }
                     %>

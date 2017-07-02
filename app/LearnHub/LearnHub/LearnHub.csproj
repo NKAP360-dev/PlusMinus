@@ -258,6 +258,13 @@
       <DependentUpon>pendingApproval.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="rejectionConfirmation.aspx.cs">
+      <DependentUpon>rejectionConfirmation.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="rejectionConfirmation.aspx.designer.cs">
+      <DependentUpon>rejectionConfirmation.aspx</DependentUpon>
+    </Compile>
     <Compile Include="submitTRF.aspx.cs">
       <DependentUpon>submitTRF.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -344,6 +351,7 @@
     <Content Include="Login.aspx" />
     <Content Include="Logout.aspx" />
     <Content Include="pendingApproval.aspx" />
+    <Content Include="rejectionConfirmation.aspx" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">

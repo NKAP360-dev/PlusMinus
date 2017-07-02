@@ -264,7 +264,7 @@ namespace LearnHub
 
 
             Workflow_Reject.makeRejection(currentTNF, approver, currentNotification, remarksInput.Text);
-            Response.Redirect("/pendingApproval.aspx");
+            Response.Redirect("/rejectionConfirmation.aspx");
         }
         protected void rbnlFunding_SelectedIndexChanged(object sender, EventArgs e)
         {

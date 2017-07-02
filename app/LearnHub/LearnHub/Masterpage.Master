@@ -137,7 +137,7 @@
         });
     </script>
     <title></title>
-    <link href="/bootstrap/css/bootstrap.css" rel="stylesheet" />
+    <link href="~/bootstrap/css/bootstrap.css" rel="stylesheet" />
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 </head>
@@ -328,7 +328,7 @@
                         <a href="applyCourse.aspx" class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-file"></span>
                             <br />
                             <strong>Individual Training</strong></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <a href="#" class="btn btn-success btn-lg"><span class="glyphicon glyphicon-duplicate"></span>
+        <a href="errorPage.aspx" class="btn btn-success btn-lg"><span class="glyphicon glyphicon-duplicate"></span>
             <br />
             <strong>&nbsp;&nbsp;&nbsp;Group Training &nbsp;</strong></a>
                     </div>

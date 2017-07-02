@@ -65,7 +65,7 @@
 
     </form>
     <div class="right">
-                <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/approvedTRF.aspx"><span class="glyphicon glyphicon-menu-right"></span>&nbsp; View Approved TRF</asp:HyperLink>
+                <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/approvedTRF.aspx"><span class="glyphicon glyphicon-menu-right"></span>&nbsp; View History</asp:HyperLink>
     </div>
 
 </asp:Content>
