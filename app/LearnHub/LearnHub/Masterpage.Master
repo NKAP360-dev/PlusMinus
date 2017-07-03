@@ -25,6 +25,10 @@
             height: 170px;
         }
 
+        .navbar {
+            margin-bottom: 0;
+        }
+
         footer {
             background-color: #F8F8F8;
             border-top: 1px solid #E7E7E7;
@@ -140,7 +144,7 @@
         });
     </script>
     <title></title>
-   
+
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 </head>
@@ -234,8 +238,8 @@
                     %>
                     <a href="Login.aspx" class="btn btn-success"><span class="glyphicon glyphicon-user"></span>&nbsp;Login</a>
                     <% }
-                    else
-                    { %>
+                        else
+                        { %>
                     <a href="Logout.aspx" class="btn btn-danger"><span class="glyphicon glyphicon-log-out"></span>&nbsp;Logout</a>
                     <% } %>
                 </form>

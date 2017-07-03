@@ -6,12 +6,22 @@
   width:100%;
   max-height: 350px !important;
 }
+
+        .newsFooter {
+            padding-top: 20px;
+            border-top: 1px solid #dddddd;
+            text-align: right;
+        }
+
+        .well {
+    background-color: #fff;
+}
+        .navbar {
+            margin-bottom: 0;
+        }
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-
-    
-
         <div id="myCarousel" class="carousel slide" data-ride="carousel">
             <!-- Indicators -->
             <ol class="carousel-indicators">
@@ -23,12 +33,12 @@
             <div class="carousel-inner">
                 <div class="item active">  
                       <a href="#">
-                    <img src="img/learnhubbanner.png" alt="Los Angeles" style="width: 100%;">
+                    <img src="img/learnhub1.png" alt="Learnhub" style="width: 100%;">
                           </a>            
                 </div>
 
                 <div class="item">
-                    <img src="img/carousel.png" alt="New york" style="width: 100%;">
+                    <img src="img/learnhubbanner2.png" alt="Learnhub" style="width: 100%;">
                 </div>
             </div>
 
@@ -47,25 +57,60 @@
 
 
 </asp:Content>
-<asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder2" runat="server">
-    <br />
+<asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder2" runat="server">   
+    <div class="alert alert-dismissible alert-warning">
+    <a href="#">Highlights </a><a href="#"> Events</a></div>
+
     <div class="container">
 	<div class="row">
 		<div class="col-md-4">
-			
-			<h2>Latest News</h2>
+			<div class="well">
+			<h2>Highlights</h2>
 			<p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh.</p>
+		    <div class="newsFooter"><span class="glyphicon glyphicon-chevron-right"></span> View More</div>
+            </div>
+            
 		</div>
 		<div class="col-md-4">
-			
-			<h2>LearnHub Annoucement</h2>
+			<div class="well">
+            <h2>Highlights </h2>
 			<p>Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. Lorem ipsum dolor.</p>
+                <div class="newsFooter"><span class="glyphicon glyphicon-chevron-right"></span> View More</div>
+			</div>
 		</div>
 		<div class="col-md-4">
-			
-			<h2>Course Updates</h2>
+			<div class="well">
+			<h2>Highlights</h2>
 			<p>Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh.</p>
+		    <div class="newsFooter"><span class="glyphicon glyphicon-chevron-right"></span> View More</div>
+            </div>
+            </div>
+	</div>
+    </div><br />
+    <div class="container">
+	<div class="row">
+		<div class="col-md-4">
+			<div class="well">
+			<h2>Highlights</h2>
+			<p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh.</p>
+		    <div class="newsFooter"><span class="glyphicon glyphicon-chevron-right"></span> View More</div>
+            </div>
+            
 		</div>
+		<div class="col-md-4">
+			<div class="well">
+            <h2>Highlights </h2>
+			<p>Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. Lorem ipsum dolor.</p>
+                <div class="newsFooter"><span class="glyphicon glyphicon-chevron-right"></span> View More</div>
+			</div>
+		</div>
+		<div class="col-md-4">
+			<div class="well">
+			<h2>Highlights</h2>
+			<p>Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh.</p>
+		    <div class="newsFooter"><span class="glyphicon glyphicon-chevron-right"></span> View More</div>
+            </div>
+            </div>
 	</div>
 </div>
 </asp:Content>
