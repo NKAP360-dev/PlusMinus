@@ -213,7 +213,7 @@
             var inputtedDate = document.getElementById("<%=completeDateInput1.ClientID%>").value;
             var dateToCompare = document.getElementById("<%=toDateInput.ClientID%>").value;
             var compare = dateToCompare.split("/");
-            var cmonth = compare[1];
+            var cmonth = compare[1] - 1;
             if (cmonth.length == 1) {
                 cmonth = "0" + cmonth;
             }
@@ -229,7 +229,7 @@
             console.log(finCompare);
 
             var input = inputtedDate.split("/");
-            var month = input[0];
+            var month = input[0] - 1;
             if (month.length == 1) {
                 month = "0" + month;
             }
@@ -257,7 +257,7 @@
             var inputtedDate = document.getElementById("<%=completeDateInput2.ClientID%>").value;
             var dateToCompare = document.getElementById("<%=toDateInput.ClientID%>").value;
             var compare = dateToCompare.split("/");
-            var cmonth = compare[1];
+            var cmonth = compare[1] - 1;
             if (cmonth.length == 1) {
                 cmonth = "0" + cmonth;
             }
@@ -273,7 +273,7 @@
             console.log(finCompare);
 
             var input = inputtedDate.split("/");
-            var month = input[0];
+            var month = input[0] - 1;
             if (month.length == 1) {
                 month = "0" + month;
             }
@@ -301,7 +301,7 @@
             var inputtedDate = document.getElementById("<%=completeDateInput3.ClientID%>").value;
             var dateToCompare = document.getElementById("<%=toDateInput.ClientID%>").value;
             var compare = dateToCompare.split("/");
-            var cmonth = compare[1];
+            var cmonth = compare[1] - 1;
             if (cmonth.length == 1) {
                 cmonth = "0" + cmonth;
             }
@@ -317,7 +317,7 @@
             console.log(finCompare);
 
             var input = inputtedDate.split("/");
-            var month = input[0];
+            var month = input[0] - 1;
             if (month.length == 1) {
                 month = "0" + month;
             }

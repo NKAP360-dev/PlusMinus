@@ -63,14 +63,14 @@ namespace LearnHub
             else if (txtUsername.Text != "")
             {
                 System.Diagnostics.Debug.WriteLine("C");
-                Response.Redirect("google.com");
+                //Response.Redirect("google.com");
                 lblErrorMsgUse.Visible = true;
                 lblErrorMsgUse.Text = "Invalid username/password.";
             }
             else if (txtPassword.Text != "")
             {
                 System.Diagnostics.Debug.WriteLine("D");
-                Response.Redirect("yahoo.com");
+                //Response.Redirect("yahoo.com");
                 lblErrorMsgUse.Visible = true;
                 lblErrorMsgUse.Text = "Invalid username/password.";
             }
