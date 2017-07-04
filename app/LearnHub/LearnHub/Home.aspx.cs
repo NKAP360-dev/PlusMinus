@@ -13,5 +13,23 @@ namespace LearnHub
         {
 
         }
+
+        protected void showHighlights(object sender, EventArgs e)
+        {
+            eventsPanel.Visible = false;
+            highlightsPanel.Visible = true;
+            highlightsBtn.CssClass = "linkStyleActive";
+            eventsBtn.CssClass = "linkStyle";
+            
+        }
+
+        protected void showEvents(object sender, EventArgs e)
+        {
+            eventsPanel.Visible = true;
+            highlightsPanel.Visible = false;
+            eventsBtn.CssClass = "linkStyleActive";
+            highlightsBtn.CssClass = "linkStyle";
+           
+        }
     }
 }

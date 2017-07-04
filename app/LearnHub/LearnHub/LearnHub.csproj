@@ -293,6 +293,13 @@
     <Compile Include="testIndividualRouting.aspx.designer.cs">
       <DependentUpon>testIndividualRouting.aspx</DependentUpon>
     </Compile>
+    <Compile Include="trainingRequestFormPage.aspx.cs">
+      <DependentUpon>trainingRequestFormPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="trainingRequestFormPage.aspx.designer.cs">
+      <DependentUpon>trainingRequestFormPage.aspx</DependentUpon>
+    </Compile>
     <Compile Include="trfApplicationStatus.aspx.cs">
       <DependentUpon>trfApplicationStatus.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -361,6 +368,7 @@
     <Content Include="TestCipher.aspx" />
     <Content Include="TestHash.aspx" />
     <Content Include="testIndividualRouting.aspx" />
+    <Content Include="trainingRequestFormPage.aspx" />
     <Content Include="trfApplicationStatus.aspx" />
     <Content Include="TRFapproval.aspx" />
     <Content Include="viewApprovedTRF.aspx" />

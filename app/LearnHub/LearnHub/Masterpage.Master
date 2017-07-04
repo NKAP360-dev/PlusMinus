@@ -13,6 +13,10 @@
             min-height: 100%;
         }
 
+        body {
+            padding-top: 50px;
+        }
+
         #content {
             padding-top: 121px;
             width: 100%;
@@ -25,12 +29,8 @@
             height: 170px;
         }
 
-        .navbar {
-            margin-bottom: 0;
-        }
 
         footer {
-            background-color: #F8F8F8;
             border-top: 1px solid #E7E7E7;
             text-align: center;
             padding: 10px;
@@ -104,7 +104,7 @@
         .verticalLine {
             width: 100%;
             height: 1px;
-            padding: 10px;
+            padding: 5px;
             border-bottom: 1px solid #dddddd;
         }
 
@@ -150,7 +150,7 @@
 </head>
 <body>
 
-    <nav class="navbar navbar-default" role="navigation">
+    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
         <div class="container-fluid">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navigationbar">
@@ -165,67 +165,82 @@
 
             <div class="navbar-collapse collapse" id="navigationbar" aria-expanded="false" style="height: 1px;">
 
-                <%--News--%>
+                <%--Tab 1: Learning Policies and Procedures--%>
                 <ul class="nav navbar-nav">
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">News <span class="caret"></span></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Learning Policies<span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
                             <li>
-                                <asp:HyperLink ID="HyperLink1" runat="server">LearnHub Annoucement</asp:HyperLink></li>
+                                <asp:HyperLink ID="shortTermLink" runat="server">Short term courses</asp:HyperLink></li>
                             <li>
-                                <asp:HyperLink ID="HyperLink2" runat="server">Course Updates</asp:HyperLink></li>
+                                <asp:HyperLink ID="sponEduLink" runat="server">Sponsorship/Education</asp:HyperLink></li>
+                            <li class="divider"></li>
+                            <li>
+                                <asp:HyperLink ID="trfLink" runat="server" NavigateUrl="~/trainingRequestFormPage.aspx">Training Request Forms</asp:HyperLink></li>
                         </ul>
                     </li>
                 </ul>
 
-                <%--Courses--%>
+                <%--Tab 2: Module--%>
                 <ul class="nav navbar-nav">
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Courses <span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
                             <li>
-                                <asp:HyperLink ID="HyperLink3" runat="server">Create Courses</asp:HyperLink></li>
+                                <asp:HyperLink ID="HyperLink3" runat="server">Compulsory Training</asp:HyperLink></li>
                             <li>
-                                <asp:HyperLink ID="HyperLink4" runat="server">Course Listing</asp:HyperLink></li>
-                            <li class="divider"></li>
+                                <asp:HyperLink ID="HyperLink4" runat="server">Leadership Skills Training</asp:HyperLink></li>
                             <li>
-                                <asp:HyperLink ID="HyperLink5" runat="server" data-toggle="modal" href="#formModal">Apply for Courses</asp:HyperLink></li>
-                            <li>
-                                <asp:HyperLink ID="HyperLink14" runat="server" NavigateUrl="~/trfApplicationStatus.aspx">Application Status</asp:HyperLink></li>
-
-                            <li class="divider"></li>
-                            <li>
-                                <asp:HyperLink ID="HyperLink6" runat="server">My Enrolled Courses</asp:HyperLink></li>
+                                <asp:HyperLink ID="HyperLink1" runat="server">Professional Training</asp:HyperLink></li>
                         </ul>
                     </li>
                 </ul>
 
-                <%--Workflow--%>
+                <%--Tab 3: Resource--%>
                 <ul class="nav navbar-nav">
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Workflow <span class="caret"></span></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Resource <span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
                             <li>
-                                <asp:HyperLink ID="HyperLink8" runat="server">Create Workflow</asp:HyperLink></li>
+                                <asp:HyperLink ID="HyperLink8" runat="server">On Job Training</asp:HyperLink></li>
                             <li>
-                                <asp:HyperLink ID="HyperLink9" runat="server">Approve Workflow</asp:HyperLink></li>
+                                <asp:HyperLink ID="HyperLink9" runat="server">Sharing Through Experiences</asp:HyperLink></li>
+                            <li>
+                                <asp:HyperLink ID="HyperLink2" runat="server">Training Calendar</asp:HyperLink></li>
+
                         </ul>
                     </li>
                 </ul>
 
-                <%--Reports--%>
+                <%--Tab 4: Reports--%>
                 <ul class="nav navbar-nav">
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Reports <span class="caret"></span></a>
+                        <a href="#" class="dropdown-toggle" role="button" aria-expanded="false">E-Reports</a>
+                        
+                    </li>
+                </ul>
+
+                <%--Tab 5: Help/Support--%>
+                <ul class="nav navbar-nav">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Support <span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
                             <li>
-                                <asp:HyperLink ID="HyperLink10" runat="server">View Reports</asp:HyperLink></li>
+                                <asp:HyperLink ID="HyperLink6" runat="server">Account Settings</asp:HyperLink></li>
                             <li>
-                                <asp:HyperLink ID="HyperLink11" runat="server">Generate Reports</asp:HyperLink></li>
-                            <li class="divider"></li>
+                                <asp:HyperLink ID="HyperLink10" runat="server">Contact Us</asp:HyperLink></li>
                             <li>
-                                <asp:HyperLink ID="HyperLink12" runat="server">Dashboard</asp:HyperLink></li>
+                                <asp:HyperLink ID="HyperLink11" runat="server">Useful Links</asp:HyperLink></li>
+
                         </ul>
+                    </li>
+                </ul>
+
+                 <%--Tab 6: AI Chat Bot--%>
+                <ul class="nav navbar-nav">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" role="button" aria-expanded="false">Ask Emma &nbsp;<span class="glyphicon glyphicon-comment"></span></a>
+                        
                     </li>
                 </ul>
 
@@ -243,13 +258,6 @@
                     <a href="Logout.aspx" class="btn btn-danger"><span class="glyphicon glyphicon-log-out"></span>&nbsp;Logout</a>
                     <% } %>
                 </form>
-
-                <%--Settings--%>
-                <ul class="nav navbar-nav navbar-right">
-                    <li>
-                        <asp:HyperLink ID="HyperLink13" runat="server"><span class="glyphicon glyphicon-cog"></span></asp:HyperLink></li>
-
-                </ul>
 
                 <%-- If user is logged in, show username that will be linked to user dashboard, else don't show username--%>
                 <%
@@ -323,30 +331,6 @@
         </div>
     </nav>
 
-    <%--TRF Modal--%>
-    <div id="formModal" class="modal fade" role="dialog">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Choose Type of Training Request Form</h4>
-                </div>
-                <div class="modal-body">
-                    <div class="wrapper">
-                        <a href="applyCourse.aspx" class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-file"></span>
-                            <br />
-                            <strong>Individual Training</strong></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <a href="errorPage.aspx" class="btn btn-success btn-lg"><span class="glyphicon glyphicon-duplicate"></span>
-            <br />
-            <strong>&nbsp;&nbsp;&nbsp;Group Training &nbsp;</strong></a>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                </div>
-            </div>
-        </div>
-    </div>
-
     <%--Do not touch contentplaceholders--%>
     <div>
         <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
@@ -354,9 +338,11 @@
         <asp:ContentPlaceHolder ID="ContentPlaceHolder2" runat="server">
         </asp:ContentPlaceHolder>
     </div>
+
+
+    <%--Footer--%>
     <div class="clear">
         <footer>
-
             <img src="img/amkthk.png" alt="LHLogo" style="width: 165px; height: 117px;" />
             &nbsp;
          <img src="img/line.png" alt="line" style="width: 1px; height: 77.5px;" />

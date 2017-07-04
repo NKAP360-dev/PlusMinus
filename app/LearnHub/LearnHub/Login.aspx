@@ -11,19 +11,6 @@
             margin-bottom: 80px;
         }
 
-        footer {
-            background-color: #F8F8F8;
-            border-top: 1px solid #E7E7E7;
-            text-align: center;
-            padding: 10px;
-            position: absolute;
-            left: 0;
-            bottom: 0;
-            height: 150px;
-            width: 100%;
-            display: inline-block
-        }
-
     </style>
     <title>Login - LearnHub</title>
     <link href="/bootstrap/css/bootstrap.css" rel="stylesheet" />
@@ -105,21 +92,6 @@
         </div>
     </div>
 
-    <footer>
-
-        <img src="img/amkthk.png" alt="LHLogo" style="width: 165px; height: 117px;" />
-        &nbsp;
-         <img src="img/line.png" alt="line" style="width: 1px; height: 77.5px;" />
-        &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
-        <img src="img/smu.png" alt="smuLogo" style="width: 148px; height: 58.5px;" />
-        &nbsp;
-       <br />
-        <a href="#">About Us</a> &nbsp;&nbsp;|&nbsp;&nbsp; 
-            <a href="#">Terms and Condition</a> &nbsp;&nbsp;|&nbsp;&nbsp;  
-            <a href="#">Sitemap</a>
-
-
-    </footer>
     
 </body>
 
