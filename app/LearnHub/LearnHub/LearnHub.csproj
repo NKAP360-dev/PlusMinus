@@ -204,6 +204,27 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="askEmmaAddAns.aspx.cs">
+      <DependentUpon>askEmmaAddAns.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="askEmmaAddAns.aspx.designer.cs">
+      <DependentUpon>askEmmaAddAns.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="askEmmaEditAns.aspx.cs">
+      <DependentUpon>askEmmaEditAns.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="askEmmaEditAns.aspx.designer.cs">
+      <DependentUpon>askEmmaEditAns.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="askEmmaMain.aspx.cs">
+      <DependentUpon>askEmmaMain.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="askEmmaMain.aspx.designer.cs">
+      <DependentUpon>askEmmaMain.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="errorPage.aspx.cs">
       <DependentUpon>errorPage.aspx</DependentUpon>
@@ -333,6 +354,9 @@
     <Content Include="applyCourse.aspx" />
     <Content Include="approvalConfirmation.aspx" />
     <Content Include="approvedTRF.aspx" />
+    <Content Include="askEmmaAddAns.aspx" />
+    <Content Include="askEmmaEditAns.aspx" />
+    <Content Include="askEmmaMain.aspx" />
     <Content Include="bootstrap\css\bootstrap-responsive.css" />
     <Content Include="bootstrap\css\bootstrap-responsive.min.css" />
     <Content Include="bootstrap\css\bootstrap.css" />

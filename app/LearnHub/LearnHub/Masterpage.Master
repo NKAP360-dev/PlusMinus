@@ -116,7 +116,6 @@
             position: absolute;
             width: 300px;
             right: 0px;
-            padding: 10px;
         }
     </style>
     <link href="~/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
@@ -239,7 +238,7 @@
                  <%--Tab 6: AI Chat Bot--%>
                 <ul class="nav navbar-nav">
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" role="button" aria-expanded="false">Ask Emma &nbsp;<span class="glyphicon glyphicon-comment"></span></a>
+                        <a href="askEmmaMain.aspx" class="dropdown-toggle" role="button" aria-expanded="false">Ask Emma &nbsp;<span class="glyphicon glyphicon-comment"></span></a>
                         
                     </li>
                 </ul>
@@ -289,7 +288,7 @@
                         NotificationDAO notificationDAO = new NotificationDAO();
                         UserDAO userDAO = new UserDAO();
                         List<Notification> allPendingNotifications = notificationDAO.getPendingNotificationByUserID(currentUser.getUserID());
-                        if (!currentUser.getJobCategory().Equals("staff"))
+                        if (allPendingNotifications.Count()>0)
                         {
                 %>
                 <form class="navbar-form navbar-right">

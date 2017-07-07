@@ -776,7 +776,6 @@
                 document.getElementById('<%= lblErrorMsgFinal.ClientID %>').innerHTML = " ";
                 document.getElementById('<%= cfmSubmit.ClientID %>').disabled = false; 
             }
-            
         }
 </script>
 </asp:Content>

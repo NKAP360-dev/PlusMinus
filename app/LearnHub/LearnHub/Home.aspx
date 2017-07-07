@@ -68,6 +68,9 @@
             $(this).addClass("linkStyleActive");
             $(".eventsBtn").removeClass("linkStyleActive");
             $(".eventsBtn").addClass("linkStyle");
+            $(".eventsPanel").hide();
+            $("highlightsPanel").show();
+
         });
 
         $('.eventsBtn').click(function () {
@@ -75,7 +78,10 @@
             $(this).addClass("linkStyleActive");
             $(".highlightsBtn").removeClass("linkStyleActive");
             $(".highlightsBtn").addClass("linkStyle");
+            $(".eventsPanel").show();
+            $("highlightsPanel").hide();
         });
+
     </script>
 
 </asp:Content>
