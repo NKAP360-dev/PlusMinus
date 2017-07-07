@@ -166,6 +166,15 @@ namespace LearnHub {
         protected global::System.Web.UI.WebControls.RequiredFieldValidator rfv_courseInputSummary;
         
         /// <summary>
+        /// cus_courseInput control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CustomValidator cus_courseInput;
+        
+        /// <summary>
         /// lessonSelection control.
         /// </summary>
         /// <remarks>

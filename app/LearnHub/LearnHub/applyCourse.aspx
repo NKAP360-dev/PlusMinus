@@ -340,6 +340,7 @@
                 return true;
             }
         }
+        
     </script>
 
     <style>
@@ -474,6 +475,7 @@
                         </asp:SqlDataSource>
                         <asp:RequiredFieldValidator ID="rfv_courseInput" runat="server" ControlToValidate="courseInput" ErrorMessage="Please Select a Course" InitialValue="-1" ForeColor="Red" ValidationGroup="ValidateForm"></asp:RequiredFieldValidator>
                         <asp:RequiredFieldValidator ID="rfv_courseInputSummary" runat="server" ControlToValidate="courseInput" ErrorMessage="Please Select a Course" InitialValue="-1" ForeColor="Red" ValidationGroup="summaryGroup" Visible="False"></asp:RequiredFieldValidator>
+                        <asp:CustomValidator ID="cus_courseInput" runat="server" EnableClientScript="true" ControlToValidate="courseInput" ErrorMessage="You have already applied for this course before. Please select another course" OnServerValidate="ValidateCourse" ForeColor="Red" ValidationGroup="ValidateForm"></asp:CustomValidator>
                     </div>
                 </div>
     

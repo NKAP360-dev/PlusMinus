@@ -151,8 +151,27 @@ namespace LearnHub
                     }
                     fromDateInput.Text = selectedCourse.getStartDate().ToShortDateString();
                     toDateInput.Text = selectedCourse.getEndDate().ToShortDateString();
+                    System.Diagnostics.Debug.WriteLine(fromDateInput.Text);
                 }
             }
+
+            
+            
+        }
+        protected void ValidateCourse(object sender, ServerValidateEventArgs args)
+        {
+            String userId = employeeNoInput.Text;
+            int courseId = Convert.ToInt32(courseInput.SelectedValue);
+            TNFDAO tnfdao = new TNFDAO();
+            if (tnfdao.checkIfUserAppliedCourse(userId, courseId)){
+                args.IsValid = false;
+            }
+            else
+            {
+                args.IsValid = true;
+            }
+
         }
     }
+    
 }
