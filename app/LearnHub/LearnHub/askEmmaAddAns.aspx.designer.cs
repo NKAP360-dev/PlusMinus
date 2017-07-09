@@ -13,15 +13,6 @@ namespace LearnHub {
     public partial class askEmmaAddAns {
         
         /// <summary>
-        /// lblIntent control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblIntent;
-        
-        /// <summary>
         /// ddlIntent control.
         /// </summary>
         /// <remarks>
@@ -29,15 +20,6 @@ namespace LearnHub {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlIntent;
-        
-        /// <summary>
-        /// lblEntity control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblEntity;
         
         /// <summary>
         /// ddlEntity control.
