@@ -238,7 +238,7 @@
                 day = "0" + day;
             }
             var year = input[2];
-            var finDateToCheck = new Date();
+            var finDateToCheck = new Date();s
             finDateToCheck.setYear(year);
             finDateToCheck.setMonth(month);
             finDateToCheck.setDate(day);
@@ -465,7 +465,7 @@
                     <strong>
                         <asp:Label ID="courseLabel" runat="server" CssClass="col-lg-2 control-label" Text="Course Title"></asp:Label></strong>
                     <div class="col-lg-5">
-                        <asp:DropDownList ID="courseInput" runat="server" CssClass="form-control" placeholder="Course Title" DataSourceID="SqlDataSourceCourse" DataTextField="courseName" DataValueField="courseID" OnSelectedIndexChanged="courseInput_SelectedIndexChanged" AutoPostBack="True" AppendDataBoundItems="true">
+                        <asp:DropDownList ID="courseInput" runat="server" CssClass="form-control" placeholder="Course Title" DataSourceID="SqlDataSourceCourse" DataTextField="courseName" DataValueField="courseID" OnSelectedIndexChanged="courseInput_SelectedIndexChanged" AutoPostBack="True" AppendDataBoundItems="true" CausesValidation="False">
                             <asp:ListItem Selected="True" Value="-1" Text="Please select a course"></asp:ListItem>
                         </asp:DropDownList>
                         <asp:SqlDataSource ID="SqlDataSourceCourse" runat="server" ConnectionString="<%$ ConnectionStrings:DBConnectionString %>" SelectCommand="SELECT [courseID], [courseName] FROM [Course] WHERE ([status] = @status) ORDER BY [courseName]">
@@ -475,7 +475,10 @@
                         </asp:SqlDataSource>
                         <asp:RequiredFieldValidator ID="rfv_courseInput" runat="server" ControlToValidate="courseInput" ErrorMessage="Please Select a Course" InitialValue="-1" ForeColor="Red" ValidationGroup="ValidateForm"></asp:RequiredFieldValidator>
                         <asp:RequiredFieldValidator ID="rfv_courseInputSummary" runat="server" ControlToValidate="courseInput" ErrorMessage="Please Select a Course" InitialValue="-1" ForeColor="Red" ValidationGroup="summaryGroup" Visible="False"></asp:RequiredFieldValidator>
-                        <asp:CustomValidator ID="cus_courseInput" runat="server" EnableClientScript="true" ControlToValidate="courseInput" ErrorMessage="You have already applied for this course before. Please select another course" OnServerValidate="ValidateCourse" ForeColor="Red" ValidationGroup="ValidateForm"></asp:CustomValidator>
+                        <%--
+                        <asp:CustomValidator ID="cus_courseInput" runat="server" OnServerValidate="ValidateCourse" ControlToValidate="courseInput" ErrorMessage="You have already applied for this course before. Please select another course" ForeColor="Red" ValidationGroup="ValidateForm" EnableClientScript="False"></asp:CustomValidator>
+                        --%>
+                        <asp:Label ID="lblErrorMsgCourse" runat="server" CssClass="text-danger" Visible="false"></asp:Label>
                     </div>
                 </div>
     
@@ -768,15 +771,24 @@
             //Page_ClientValidate();
             
             if (!Page_IsValid) {
-                document.getElementById('<%= lblErrorMsgFinal.ClientID %>').style.display = 'inherit';
-                document.getElementById('<%= lblErrorMsgFinal.ClientID %>').innerHTML = "You have not filled up all of the required fields";
-                //Page_ClientValidate('summaryGroup');
-                document.getElementById('<%= cfmSubmit.ClientID %>').disabled = true; 
-                console.log("The end");
+                    document.getElementById('<%= lblErrorMsgFinal.ClientID %>').style.display = 'inherit';
+                    document.getElementById('<%= lblErrorMsgFinal.ClientID %>').innerHTML = "You have not filled up all of the required fields";
+                    //Page_ClientValidate('summaryGroup');
+                    document.getElementById('<%= cfmSubmit.ClientID %>').disabled = true;
+                    console.log("The end");
             }
             else {
-                document.getElementById('<%= lblErrorMsgFinal.ClientID %>').innerHTML = " ";
-                document.getElementById('<%= cfmSubmit.ClientID %>').disabled = false; 
+                if (document.getElementById('<%= lblErrorMsgCourse %>').Text = "") {
+                    document.getElementById('<%= lblErrorMsgFinal.ClientID %>').innerHTML = " ";
+                    document.getElementById('<%= cfmSubmit.ClientID %>').disabled = false;
+                }
+                else {
+                    document.getElementById('<%= lblErrorMsgFinal.ClientID %>').style.display = 'inherit';
+                    document.getElementById('<%= lblErrorMsgFinal.ClientID %>').innerHTML = "You have not filled up all of the required fields";
+                    //Page_ClientValidate('summaryGroup');
+                    document.getElementById('<%= cfmSubmit.ClientID %>').disabled = true;
+                    console.log("The end");
+                }
             }
         }
 </script>

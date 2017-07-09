@@ -124,18 +124,30 @@ namespace LearnHub
         {
             int courseID = Convert.ToInt32(courseInput.SelectedValue);
             Session["selectedCourse"] = courseID;
+            String userId = employeeNoInput.Text;
+            TNFDAO tnfdao = new TNFDAO();
             if (courseID == -1)
             {
                 courseFeeInput.Text = "";
                 externalCourseProvider.Text = "";
                 fromDateInput.Text = "";
                 toDateInput.Text = "";
+                System.Diagnostics.Debug.WriteLine("This is one got error you watch out");
+            }
+            else if (tnfdao.checkIfUserAppliedCourse(userId, courseID))
+            {
+                lblErrorMsgCourse.Text = "You have already applied for this course before. Please select another course";
+                lblErrorMsgCourse.Visible = true;
+                System.Diagnostics.Debug.WriteLine("This is the validation");
             }
             else
             {
+                lblErrorMsgCourse.Text = "";
+                lblErrorMsgCourse.Visible = false;
                 gvLesson.DataBind();
                 CourseDAO courseDAO = new CourseDAO();
                 Course selectedCourse = courseDAO.getCourseByID(courseID);
+                System.Diagnostics.Debug.WriteLine("This one no error boss");
 
                 if (selectedCourse != null)
                 {
@@ -158,20 +170,25 @@ namespace LearnHub
             
             
         }
+        /*
         protected void ValidateCourse(object sender, ServerValidateEventArgs args)
         {
+            System.Diagnostics.Debug.WriteLine("Im in");
             String userId = employeeNoInput.Text;
             int courseId = Convert.ToInt32(courseInput.SelectedValue);
             TNFDAO tnfdao = new TNFDAO();
             if (tnfdao.checkIfUserAppliedCourse(userId, courseId)){
+                System.Diagnostics.Debug.WriteLine("course false");
                 args.IsValid = false;
             }
             else
             {
+                System.Diagnostics.Debug.WriteLine("course true");
                 args.IsValid = true;
             }
 
         }
+        */
     }
     
 }
