@@ -413,7 +413,7 @@
         <div class="verticalLine"></div>
         <form class="form-horizontal" runat="server">
             <fieldset>
-                <legend>Training Request Form<a class="btn" data-toggle="modal" href="#myModal"><span class="glyphicon glyphicon-info-sign"></span></a></legend>
+                <legend>Training Request Form<a class="btn" data-toggle="modal" href="#myModal"><span class="label label-danger"><span class="glyphicon glyphicon-info-sign"></span></span></a></legend>
 
                 <%-- Section A--%>
                 <h4>Section A - Staff Particulars</h4>

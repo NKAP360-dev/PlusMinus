@@ -16,6 +16,8 @@
 
         $(document).ready(function () {
             $('#menu').hide();
+
+            $("[data-toggle='tooltip']").tooltip();
         });
 
         function myFunction() {
@@ -26,6 +28,8 @@
                 x.style.display = 'none';
             }
         }
+
+        
 
     </script>
 </asp:Content>
@@ -70,10 +74,10 @@
             <fieldset>
                 <legend>Customize answers for Emma</legend>
                 <div class="form-group">
-                    <strong>
+                    
                         <%--Intent--%>
-                        <asp:Label ID="lblIntent" CssClass="col-lg-2 control-label" runat="server" Text="Choose an intent*"></asp:Label>
-                    </strong>
+                        <label for="ddlIntent" class="col-lg-2 control-label"><span class="glyphicon glyphicon-question-sign"  data-toggle='tooltip' data-placement="left" title="" data-original-title="An Intent is a......"></span> Choose an Intent *</label>
+                    
                     <div class="col-lg-10">
                         <%--Mandatory Choose 1--%>
                         <asp:DropDownList ID="ddlIntent" runat="server" CssClass="form-control"></asp:DropDownList>
@@ -83,7 +87,7 @@
                 <div class="form-group">
                     <strong>
                         <%--Entity--%>
-                        <asp:Label ID="lblEntity" CssClass="col-lg-2 control-label" runat="server" Text="Choose an entity to represent"></asp:Label>
+                        <label for="ddlIntent" class="col-lg-2 control-label"> <span class="glyphicon glyphicon-question-sign" data-toggle='tooltip' data-placement="left" title="" data-original-title="An Entity is a......"></span> Choose an Entity to represent </label>
                     </strong>
                     <div class="col-lg-10">
                         <%--Optional Choose 1--%>
