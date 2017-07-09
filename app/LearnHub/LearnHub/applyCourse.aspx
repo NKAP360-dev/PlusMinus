@@ -38,9 +38,7 @@
                 }
             }
         }
-    </script>
 
-    <script type="text/javascript">
         <%--
         window.onload = function () {
             console.log("modal1");
@@ -59,7 +57,7 @@
                 document.getElementById('<%=rfv_objective1text.ClientID%>').enabled = true;
                 document.getElementById('<%=rfv_objective1date.ClientID%>').enabled = true;
                 document.getElementById('<%=cv_objective1date.ClientID%>').enabled = true;
-                
+
                 console.log("FOROBJECTIVE1CLICKED");
                 if (!document.getElementById('<%= objectiveInput2.ClientID %>').checked) {
                     console.log("0");
@@ -238,7 +236,7 @@
                 day = "0" + day;
             }
             var year = input[2];
-            var finDateToCheck = new Date();s
+            var finDateToCheck = new Date(); s
             finDateToCheck.setYear(year);
             finDateToCheck.setMonth(month);
             finDateToCheck.setDate(day);
@@ -340,8 +338,35 @@
                 return true;
             }
         }
-        
+
+        function checkForm_Clicked(source, args) {
+
+            Page_ClientValidate('ValidateForm');
+            //Page_ClientValidate();
+
+            if (!Page_IsValid) {
+                document.getElementById('<%= lblErrorMsgFinal.ClientID %>').style.display = 'inherit';
+                document.getElementById('<%= lblErrorMsgFinal.ClientID %>').innerHTML = "You have not filled up all of the required fields";
+                    //Page_ClientValidate('summaryGroup');
+                    document.getElementById('<%= cfmSubmit.ClientID %>').disabled = true;
+                    console.log("The end");
+            }
+            else {
+                if (document.getElementById('<%= lblErrorMsgCourse %>').Text = "") {
+                    document.getElementById('<%= lblErrorMsgFinal.ClientID %>').innerHTML = " ";
+                    document.getElementById('<%= cfmSubmit.ClientID %>').disabled = false;
+                }
+                else {
+                    document.getElementById('<%= lblErrorMsgFinal.ClientID %>').style.display = 'inherit';
+                    document.getElementById('<%= lblErrorMsgFinal.ClientID %>').innerHTML = "You have not filled up all of the required fields";
+                    //Page_ClientValidate('summaryGroup');
+                    document.getElementById('<%= cfmSubmit.ClientID %>').disabled = true;
+                    console.log("The end");
+                }
+            }
+        }
     </script>
+
 
     <style>
         .modal-body {
@@ -413,7 +438,7 @@
         <div class="verticalLine"></div>
         <form class="form-horizontal" runat="server">
             <fieldset>
-                <legend>Training Request Form<a class="btn" data-toggle="modal" href="#myModal"><span class="label label-danger"><span class="glyphicon glyphicon-info-sign"></span></span></a></legend>
+                <legend>Training Request Form<a class="btn" data-toggle="modal" href="#myModal"><span class="glyphicon glyphicon-info-sign"></span></a></legend>
 
                 <%-- Section A--%>
                 <h4>Section A - Staff Particulars</h4>
@@ -763,35 +788,6 @@
             </fieldset>
         </form>
     </div>
-    <script type="text/javascript">
-
-        function checkForm_Clicked(source, args) {
-            
-            Page_ClientValidate('ValidateForm');
-            //Page_ClientValidate();
-            
-            if (!Page_IsValid) {
-                    document.getElementById('<%= lblErrorMsgFinal.ClientID %>').style.display = 'inherit';
-                    document.getElementById('<%= lblErrorMsgFinal.ClientID %>').innerHTML = "You have not filled up all of the required fields";
-                    //Page_ClientValidate('summaryGroup');
-                    document.getElementById('<%= cfmSubmit.ClientID %>').disabled = true;
-                    console.log("The end");
-            }
-            else {
-                if (document.getElementById('<%= lblErrorMsgCourse %>').Text = "") {
-                    document.getElementById('<%= lblErrorMsgFinal.ClientID %>').innerHTML = " ";
-                    document.getElementById('<%= cfmSubmit.ClientID %>').disabled = false;
-                }
-                else {
-                    document.getElementById('<%= lblErrorMsgFinal.ClientID %>').style.display = 'inherit';
-                    document.getElementById('<%= lblErrorMsgFinal.ClientID %>').innerHTML = "You have not filled up all of the required fields";
-                    //Page_ClientValidate('summaryGroup');
-                    document.getElementById('<%= cfmSubmit.ClientID %>').disabled = true;
-                    console.log("The end");
-                }
-            }
-        }
-</script>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder2" runat="server">
 </asp:Content>
