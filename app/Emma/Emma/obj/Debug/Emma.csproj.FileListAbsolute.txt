@@ -1,0 +1,42 @@
+C:\Users\Tan Ming Kwang\Desktop\School\FYP\Project\Emma\Emma\bin\Bot Application.dll.config
+C:\Users\Tan Ming Kwang\Desktop\School\FYP\Project\Emma\Emma\bin\Bot Application.dll
+C:\Users\Tan Ming Kwang\Desktop\School\FYP\Project\Emma\Emma\bin\Bot Application.pdb
+C:\Users\Tan Ming Kwang\Desktop\School\FYP\Project\Emma\Emma\bin\Autofac.dll
+C:\Users\Tan Ming Kwang\Desktop\School\FYP\Project\Emma\Emma\bin\Chronic.dll
+C:\Users\Tan Ming Kwang\Desktop\School\FYP\Project\Emma\Emma\bin\Microsoft.Bot.Builder.Autofac.dll
+C:\Users\Tan Ming Kwang\Desktop\School\FYP\Project\Emma\Emma\bin\Microsoft.Bot.Builder.dll
+C:\Users\Tan Ming Kwang\Desktop\School\FYP\Project\Emma\Emma\bin\Microsoft.Bot.Connector.dll
+C:\Users\Tan Ming Kwang\Desktop\School\FYP\Project\Emma\Emma\bin\Microsoft.IdentityModel.Protocol.Extensions.dll
+C:\Users\Tan Ming Kwang\Desktop\School\FYP\Project\Emma\Emma\bin\Microsoft.Rest.ClientRuntime.dll
+C:\Users\Tan Ming Kwang\Desktop\School\FYP\Project\Emma\Emma\bin\Microsoft.WindowsAzure.Configuration.dll
+C:\Users\Tan Ming Kwang\Desktop\School\FYP\Project\Emma\Emma\bin\Newtonsoft.Json.dll
+C:\Users\Tan Ming Kwang\Desktop\School\FYP\Project\Emma\Emma\bin\System.IdentityModel.Tokens.Jwt.dll
+C:\Users\Tan Ming Kwang\Desktop\School\FYP\Project\Emma\Emma\bin\System.Net.Http.Formatting.dll
+C:\Users\Tan Ming Kwang\Desktop\School\FYP\Project\Emma\Emma\bin\System.Web.Http.dll
+C:\Users\Tan Ming Kwang\Desktop\School\FYP\Project\Emma\Emma\bin\System.Web.Http.WebHost.dll
+C:\Users\Tan Ming Kwang\Desktop\School\FYP\Project\Emma\Emma\bin\Autofac.xml
+C:\Users\Tan Ming Kwang\Desktop\School\FYP\Project\Emma\Emma\bin\Microsoft.Bot.Builder.xml
+C:\Users\Tan Ming Kwang\Desktop\School\FYP\Project\Emma\Emma\bin\Microsoft.Bot.Builder.Autofac.xml
+C:\Users\Tan Ming Kwang\Desktop\School\FYP\Project\Emma\Emma\bin\Microsoft.Bot.Connector.xml
+C:\Users\Tan Ming Kwang\Desktop\School\FYP\Project\Emma\Emma\bin\Microsoft.IdentityModel.Protocol.Extensions.xml
+C:\Users\Tan Ming Kwang\Desktop\School\FYP\Project\Emma\Emma\bin\Microsoft.WindowsAzure.Configuration.xml
+C:\Users\Tan Ming Kwang\Desktop\School\FYP\Project\Emma\Emma\bin\Newtonsoft.Json.xml
+C:\Users\Tan Ming Kwang\Desktop\School\FYP\Project\Emma\Emma\bin\System.IdentityModel.Tokens.Jwt.xml
+C:\Users\Tan Ming Kwang\Desktop\School\FYP\Project\Emma\Emma\bin\System.Net.Http.Formatting.xml
+C:\Users\Tan Ming Kwang\Desktop\School\FYP\Project\Emma\Emma\bin\System.Web.Http.xml
+C:\Users\Tan Ming Kwang\Desktop\School\FYP\Project\Emma\Emma\bin\System.Web.Http.WebHost.xml
+C:\Users\Tan Ming Kwang\Desktop\School\FYP\Project\Emma\Emma\bin\ar\Microsoft.Bot.Builder.resources.dll
+C:\Users\Tan Ming Kwang\Desktop\School\FYP\Project\Emma\Emma\bin\cs\Microsoft.Bot.Builder.resources.dll
+C:\Users\Tan Ming Kwang\Desktop\School\FYP\Project\Emma\Emma\bin\de-dE\Microsoft.Bot.Builder.resources.dll
+C:\Users\Tan Ming Kwang\Desktop\School\FYP\Project\Emma\Emma\bin\en\Microsoft.Bot.Builder.resources.dll
+C:\Users\Tan Ming Kwang\Desktop\School\FYP\Project\Emma\Emma\bin\es\Microsoft.Bot.Builder.resources.dll
+C:\Users\Tan Ming Kwang\Desktop\School\FYP\Project\Emma\Emma\bin\fa\Microsoft.Bot.Builder.resources.dll
+C:\Users\Tan Ming Kwang\Desktop\School\FYP\Project\Emma\Emma\bin\fr\Microsoft.Bot.Builder.resources.dll
+C:\Users\Tan Ming Kwang\Desktop\School\FYP\Project\Emma\Emma\bin\it\Microsoft.Bot.Builder.resources.dll
+C:\Users\Tan Ming Kwang\Desktop\School\FYP\Project\Emma\Emma\bin\ja\Microsoft.Bot.Builder.resources.dll
+C:\Users\Tan Ming Kwang\Desktop\School\FYP\Project\Emma\Emma\bin\nl\Microsoft.Bot.Builder.resources.dll
+C:\Users\Tan Ming Kwang\Desktop\School\FYP\Project\Emma\Emma\bin\ru\Microsoft.Bot.Builder.resources.dll
+C:\Users\Tan Ming Kwang\Desktop\School\FYP\Project\Emma\Emma\bin\zh-hans\Microsoft.Bot.Builder.resources.dll
+C:\Users\Tan Ming Kwang\Desktop\School\FYP\Project\Emma\Emma\obj\Debug\Emma.csprojResolveAssemblyReference.cache
+C:\Users\Tan Ming Kwang\Desktop\School\FYP\Project\Emma\Emma\obj\Debug\Bot Application.dll
+C:\Users\Tan Ming Kwang\Desktop\School\FYP\Project\Emma\Emma\obj\Debug\Bot Application.pdb
