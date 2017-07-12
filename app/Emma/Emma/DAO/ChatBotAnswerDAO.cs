@@ -83,6 +83,37 @@ namespace Emma.DAO
             return toReturn;
         }
 
+        public List<string> getChatBotInitializationMessage()
+        {
+            SqlConnection conn = new SqlConnection();
+            List<string> toReturn = new List<string>();
+            try
+            {
+                conn = new SqlConnection();
+                string connstr = ConfigurationManager.ConnectionStrings["DBConnectionString"].ToString();
+                conn.ConnectionString = connstr;
+                conn.Open();
+                SqlCommand comm = new SqlCommand();
+                comm.Connection = conn;
+                comm.CommandText = "select message from [ChatBotInitialization] order by levels asc";
+                SqlDataReader dr = comm.ExecuteReader();
+                while (dr.Read())
+                {
+                    toReturn.Add((string)dr["message"]);
+                }
+                dr.Close();
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                conn.Close();
+            }
+            return toReturn;
+        }
+
         public Boolean insertFeedback(string name, string feedback) // Insert.
         {
             SqlConnection conn = null;

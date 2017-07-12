@@ -6,6 +6,8 @@ using Microsoft.Bot.Builder.Dialogs;
 using Microsoft.Bot.Connector;
 using System;
 using System.Linq;
+using Emma.DAO;
+using System.Collections.Generic;
 
 namespace Emma
 {
@@ -16,6 +18,7 @@ namespace Emma
         /// POST: api/Messages
         /// Receive a message from a user and reply to it
         /// </summary>
+        ChatBotAnswerDAO cbaDAO = new ChatBotAnswerDAO();
         public async Task<HttpResponseMessage> Post([FromBody]Activity activity)
         {
             if (activity.Type == ActivityTypes.Message)
@@ -50,15 +53,13 @@ namespace Emma
                     {
                         if (newMember.Id != message.Recipient.Id)
                         {
-                            var reply = message.CreateReply();
-                            var reply2 = message.CreateReply();
-                            var reply3 = message.CreateReply();
-                            reply.Text = $"Hi! My name is Emma. I'm here to answer your questions relating to HR.";
-                            reply2.Text = $"You can ask me enquiries on training application, eligibility, bonds and approval process.";
-                            reply3.Text = $"How may I assist you today?";
-                            client.Conversations.ReplyToActivityAsync(reply);
-                            client.Conversations.ReplyToActivityAsync(reply2);
-                            client.Conversations.ReplyToActivityAsync(reply3);
+                            List<string> messages = cbaDAO.getChatBotInitializationMessage();
+                            foreach (string msg in messages)
+                            {
+                                var reply = message.CreateReply();
+                                reply.Text = msg;
+                                client.Conversations.ReplyToActivityAsync(reply);
+                            }
                         }
                     }
                 }

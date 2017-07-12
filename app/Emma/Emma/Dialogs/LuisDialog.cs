@@ -44,12 +44,13 @@ namespace Emma.Dialogs
         {
             List<ChatBotAnswer> possibleAns = cbaDAO.getChatBotAnswerByIntent("about me");
             EntityRecommendation rec;
-            if (result.TryFindEntity("name", out rec))
+            if (possibleAns.Count > 0)
             {
-                string name = rec.Entity;
-                Boolean checkIfAnswered = false;
-                if (possibleAns.Count > 0)
+                if (result.TryFindEntity("name", out rec))
                 {
+                    string name = rec.Entity;
+                    Boolean checkIfAnswered = false;
+
                     foreach (ChatBotAnswer cba in possibleAns)
                     {
                         if (cba.entityName != null && cba.entityName.ToLower().Contains("name"))
@@ -64,6 +65,14 @@ namespace Emma.Dialogs
                     {
                         await context.PostAsync($"I am an assistant");
                     }
+
+                }
+                else
+                {
+                    possibleAns.RemoveAll(x => x.entityName != null);
+                    Random rdm = new Random();
+                    int r = rdm.Next(possibleAns.Count);
+                    await context.PostAsync($"{possibleAns[r].answer}");
                 }
             }
             else
