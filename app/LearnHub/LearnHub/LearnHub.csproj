@@ -225,6 +225,13 @@
     <Compile Include="askEmmaMain.aspx.designer.cs">
       <DependentUpon>askEmmaMain.aspx</DependentUpon>
     </Compile>
+    <Compile Include="compulsoryModuleHome.aspx.cs">
+      <DependentUpon>compulsoryModuleHome.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="compulsoryModuleHome.aspx.designer.cs">
+      <DependentUpon>compulsoryModuleHome.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="errorPage.aspx.cs">
       <DependentUpon>errorPage.aspx</DependentUpon>
@@ -249,6 +256,13 @@
     </Compile>
     <Compile Include="Home.aspx.designer.cs">
       <DependentUpon>Home.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="leadershipModuleHome.aspx.cs">
+      <DependentUpon>leadershipModuleHome.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="leadershipModuleHome.aspx.designer.cs">
+      <DependentUpon>leadershipModuleHome.aspx</DependentUpon>
     </Compile>
     <Compile Include="Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
@@ -277,6 +291,13 @@
     </Compile>
     <Compile Include="pendingApproval.aspx.designer.cs">
       <DependentUpon>pendingApproval.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="professionalModuleHome.aspx.cs">
+      <DependentUpon>professionalModuleHome.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="professionalModuleHome.aspx.designer.cs">
+      <DependentUpon>professionalModuleHome.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="rejectionConfirmation.aspx.cs">
@@ -366,6 +387,7 @@
     <Content Include="bootstrap\img\glyphicons-halflings.png" />
     <Content Include="bootstrap\js\bootstrap.js" />
     <Content Include="bootstrap\js\bootstrap.min.js" />
+    <Content Include="compulsoryModuleHome.aspx" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="errorPage.aspx" />
@@ -379,9 +401,11 @@
     <Content Include="img\LearnHub2.png" />
     <Content Include="img\line.png" />
     <Content Include="img\smu.png" />
+    <Content Include="leadershipModuleHome.aspx" />
     <Content Include="Login.aspx" />
     <Content Include="Logout.aspx" />
     <Content Include="pendingApproval.aspx" />
+    <Content Include="professionalModuleHome.aspx" />
     <Content Include="rejectionConfirmation.aspx" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
