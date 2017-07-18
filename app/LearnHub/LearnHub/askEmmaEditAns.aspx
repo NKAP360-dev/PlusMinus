@@ -15,21 +15,8 @@
     <script>
 
         $(document).ready(function () {
-            $('#menu').hide();
-
             $("[data-toggle='tooltip']").tooltip();
         });
-
-        function myFunction() {
-            var x = document.getElementById('menu');
-            if (x.style.display === 'none') {
-                x.style.display = 'block';
-            } else {
-                x.style.display = 'none';
-            }
-        }
-
-        
 
     </script>
 </asp:Content>
@@ -44,21 +31,9 @@
     %>
 
     <div class="configure">
-        <a href="#" id="config" onclick="myFunction()"><span class="label label-primary"><span class="glyphicon glyphicon-cog"></span>Configuration Menu</span></a>
+        <a href="emmaConfiguration.aspx" id="config"><span class="label label-primary"><span class="glyphicon glyphicon-cog"></span>Configuration Menu</span></a>
     </div>
     <br />
-    <div class="configure">
-        <ul class="list-group" id="menu">
-            <a href="askEmmaAddAns.aspx">
-                <li class="list-group-item">Add New Answers
-                </li>
-            </a>
-            <a href="askEmmaEditAns.aspx">
-                <li class="list-group-item">Edit Answers
-                </li>
-            </a>
-        </ul>
-    </div>
 
     <%}
         }%>

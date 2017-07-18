@@ -15,21 +15,30 @@
     <script>
 
         $(document).ready(function () {
-            $('#menu').hide();
-
             $("[data-toggle='tooltip']").tooltip();
         });
 
+
         function myFunction() {
-            var x = document.getElementById('menu');
-            if (x.style.display === 'none') {
-                x.style.display = 'block';
-            } else {
-                x.style.display = 'none';
+            // Declare variables 
+            var input, filter, table, tr, td, i;
+            input = document.getElementById("myInput");
+            filter = input.value.toUpperCase();
+            table = document.getElementById("myTable");
+            tr = table.getElementsByTagName("tr");
+
+            // Loop through all table rows, and hide those who don't match the search query
+            for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[0];
+                if (td) {
+                    if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
             }
         }
-
-        
 
     </script>
 </asp:Content>
@@ -44,21 +53,10 @@
     %>
 
     <div class="configure">
-        <a href="#" id="config" onclick="myFunction()"><span class="label label-primary"><span class="glyphicon glyphicon-cog"></span>Configuration Menu</span></a>
+        <a href="emmaConfiguration.aspx" id="config"><span class="label label-primary"><span class="glyphicon glyphicon-cog"></span>Configuration Menu</span></a>
     </div>
     <br />
-    <div class="configure">
-        <ul class="list-group" id="menu">
-            <a href="askEmmaAddAns.aspx">
-                <li class="list-group-item">Add New Answers
-                </li>
-            </a>
-            <a href="askEmmaEditAns.aspx">
-                <li class="list-group-item">Edit Answers
-                </li>
-            </a>
-        </ul>
-    </div>
+    
 
     <%}
         }%>
@@ -107,14 +105,17 @@
                     <asp:Label ID="Label1" CssClass="col-lg-2 control-label" runat="server" Text="* = Compulsory fields"></asp:Label>
                 </div>
                 <%--Buttons--%>
+                <br />
+                <div class="wrapper">
                 <div class="form-group">
-                    <div class="col-lg-10 col-lg-offset-2">
-                        <asp:Button ID="submitBtn" CssClass="btn btn-primary" runat="server" Text="Submit" data-toggle="modal" href="#submitModal" OnClientClick="$('#myModal').modal(); return false;"/>
-                        <asp:Button ID="resetBtn" CssClass="btn btn-default" runat="server" Text="Clear" data-toggle="modal" href="#cancelModal" OnClientClick="$('#myModal').modal(); return false;"/>
-                    </div>
+                    
+                        <asp:Button ID="submitBtn" CssClass="btn btn-primary" runat="server" Text="Done" data-toggle="modal" href="#submitModal" OnClientClick="$('#myModal').modal(); return false;"/>
+                    <%--Make success message appear after user click submit button IN MODAL, stay at this page so that user can continue submitting answers--%>
+                    <p class="text-success"><strong><span class="glyphicon glyphicon-ok"></span> Answer has been successfully added!</strong></p>
+                    
                 </div>
-
-               
+                
+               </div>
 
 
                 <div id="submitModal" class="modal fade" role="dialog">
@@ -135,28 +136,7 @@
                         </div>
 
                     </div>
-                </div>
-                <%--Modal for Cancel Confirmation--%>
-                <div id="cancelModal" class="modal fade" role="dialog">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                <h4 class="modal-title"><b>Clear all contents</b></h4>
-                            </div>
-                            <%--Modal Content--%>
-                            <div class="modal-body">
-                                <div class="wrapper">
-                                    <h4>Are you sure you want to cancel?<br />
-                                        This will clear all fields previously entered!</h4>
-                                    <br />
-                                    <asp:Button ID="cfmCancel" CssClass="btn btn-primary" runat="server" Text="Clear" />
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
+                </div>             
             </fieldset>
         </form>
     </div>

@@ -98,24 +98,26 @@
     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+
+   
     <div class="container">
         <h1>View Modules</h1>
 
         <div class="verticalLine"></div>
     </div>
-    <br />
+
     <div class="row">
         <div class="col-md-2">
-            <br /><br />
             <div class="list-group">
-                <a href="compulsoryModuleHome.aspx" class="list-group-item">
-                    <h4 class="list-group-item-heading">Compulsory Training</h4>
+                 <div class="wrapper"><h4><strong>View Training Types</strong></h4></div>
+                <a href="compulsoryModuleHome.aspx" class="list-group-item active">
+                    Compulsory Training
                 </a>
                 <a href="leadershipModuleHome.aspx" class="list-group-item">
-                    <h4 class="list-group-item-heading">Leadership Skills Training</h4>
+                    Leadership Skills Training
                 </a>
                 <a href="professionalModuleHome.aspx" class="list-group-item">
-                    <h4 class="list-group-item-heading">Professional Training</h4>
+                    Professional Training
                 </a>
 
             </div>
@@ -139,7 +141,7 @@
                     <td>SMU</td>
                     <td>blahblah</td>
                     <td>blahbahbsf</td>
-                    <td><a href="#"><span class="glyphicon glyphicon-menu-right"></span> View More</a></td>
+                    <td><a href="viewModuleInfo.aspx"><span class="glyphicon glyphicon-menu-right"></span> View More</a></td>
                 </tr>
                 <tr>
                     <td>Wash Leg</td>

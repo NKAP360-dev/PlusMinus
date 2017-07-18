@@ -67,15 +67,6 @@ namespace LearnHub {
         protected global::System.Web.UI.WebControls.Button submitBtn;
         
         /// <summary>
-        /// resetBtn control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button resetBtn;
-        
-        /// <summary>
         /// cfmSubmit control.
         /// </summary>
         /// <remarks>
@@ -83,14 +74,5 @@ namespace LearnHub {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button cfmSubmit;
-        
-        /// <summary>
-        /// cfmCancel control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button cfmCancel;
     }
 }

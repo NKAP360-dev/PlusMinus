@@ -235,6 +235,13 @@
       <DependentUpon>compulsoryModuleHome.aspx</DependentUpon>
     </Compile>
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="emmaConfiguration.aspx.cs">
+      <DependentUpon>emmaConfiguration.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="emmaConfiguration.aspx.designer.cs">
+      <DependentUpon>emmaConfiguration.aspx</DependentUpon>
+    </Compile>
     <Compile Include="errorPage.aspx.cs">
       <DependentUpon>errorPage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -365,6 +372,13 @@
     <Compile Include="viewApprovedTRF.aspx.designer.cs">
       <DependentUpon>viewApprovedTRF.aspx</DependentUpon>
     </Compile>
+    <Compile Include="viewModuleInfo.aspx.cs">
+      <DependentUpon>viewModuleInfo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="viewModuleInfo.aspx.designer.cs">
+      <DependentUpon>viewModuleInfo.aspx</DependentUpon>
+    </Compile>
     <Compile Include="WebForm1.aspx.cs">
       <DependentUpon>WebForm1.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -406,6 +420,7 @@
     <Content Include="compulsoryModuleHome.aspx" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="emmaConfiguration.aspx" />
     <Content Include="errorPage.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="filledTRF.aspx" />
@@ -436,6 +451,7 @@
     <Content Include="trfApplicationStatus.aspx" />
     <Content Include="TRFapproval.aspx" />
     <Content Include="viewApprovedTRF.aspx" />
+    <Content Include="viewModuleInfo.aspx" />
     <Content Include="WebForm1.aspx" />
     <Content Include="bootstrap\fonts\glyphicons-halflings-regular.eot" />
     <Content Include="bootstrap\fonts\glyphicons-halflings-regular.ttf" />

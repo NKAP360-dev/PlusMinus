@@ -12,7 +12,7 @@
         }
     </style>
     <script>
-
+    <%--
         $(document).ready(function () {
             $('#menu').hide();
         });
@@ -25,7 +25,7 @@
                 x.style.display = 'none';
             }
         }
-
+        --%>
     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -39,9 +39,12 @@
     %>
 
     <div class="configure">
-        <a href="#" id="config" onclick="myFunction()"><span class="label label-primary"><span class="glyphicon glyphicon-cog"></span>Configuration Menu</span></a>
+
+        <%--<a href="#" id="config" onclick="myFunction()"><span class="label label-primary"><span class="glyphicon glyphicon-cog"></span>Configuration Menu</span></a>--%>
+        <a href="emmaConfiguration.aspx" id="config" onclick="myFunction()"><span class="label label-primary"><span class="glyphicon glyphicon-cog"></span>Configuration Menu</span></a>
     </div>
     <br />
+    <%--
     <div class="configure">
         <ul class="list-group" id="menu">
             <a href="askEmmaAddAns.aspx">
@@ -53,7 +56,7 @@
                 </li>
             </a>
         </ul>
-    </div>
+    </div>--%>
 
     <%}
         }%>
