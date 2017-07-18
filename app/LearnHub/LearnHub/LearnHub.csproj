@@ -153,6 +153,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppCode\dao\BondDAO.cs" />
+    <Compile Include="AppCode\dao\Course_elearnDAO.cs" />
     <Compile Include="AppCode\dao\DeptDAO.cs" />
     <Compile Include="AppCode\dao\CourseDAO.cs" />
     <Compile Include="AppCode\dao\LessonDAO.cs" />
@@ -166,6 +167,7 @@
     <Compile Include="AppCode\dao\WorkflowDAO.cs" />
     <Compile Include="AppCode\entity\Bonds.cs" />
     <Compile Include="AppCode\entity\Course.cs" />
+    <Compile Include="AppCode\entity\Course_elearn.cs" />
     <Compile Include="AppCode\entity\Department.cs" />
     <Compile Include="AppCode\entity\Lesson.cs" />
     <Compile Include="AppCode\entity\Notification.cs" />
@@ -370,6 +372,20 @@
     <Compile Include="WebForm1.aspx.designer.cs">
       <DependentUpon>WebForm1.aspx</DependentUpon>
     </Compile>
+    <Compile Include="WebForm2.aspx.cs">
+      <DependentUpon>WebForm2.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebForm2.aspx.designer.cs">
+      <DependentUpon>WebForm2.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebForm3.aspx.cs">
+      <DependentUpon>WebForm3.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebForm3.aspx.designer.cs">
+      <DependentUpon>WebForm3.aspx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="applyCourse.aspx" />
@@ -426,6 +442,8 @@
     <Content Include="bootstrap\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="bootstrap\fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="Masterpage.Master" />
+    <Content Include="WebForm2.aspx" />
+    <Content Include="WebForm3.aspx" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -437,7 +455,9 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
