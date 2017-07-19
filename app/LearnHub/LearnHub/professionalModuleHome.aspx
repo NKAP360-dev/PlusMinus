@@ -157,6 +157,14 @@
             <h6>Click on column name to sort</h6>
             <table class="table table-striped table-hover" id="myTable">
                 <thead>
+                    <tr>
+                    <th onclick="sortTable(0)">Course Name&emsp;<span class="glyphicon glyphicon-sort"></span></th>
+                    <th onclick="sortTable(1)">Course Provider&emsp;<span class="glyphicon glyphicon-sort"></span></th>
+                        <th>Start Date</th>
+                        <th>End Date</th>
+                        <th></th>
+                    </tr>
+                </thead>
                      <%
                          Course_elearnDAO allListing = new Course_elearnDAO();
                          ArrayList list = allListing.view_courses("Professional");

@@ -161,5 +161,57 @@ namespace LearnHub.AppCode.dao
             }
             return toReturn_list;
         }
+        public Course_elearn get_course_by_id(int id)
+        {
+            SqlConnection conn = new SqlConnection();
+            Course_elearn toReturn = null;
+            try
+            {
+                conn = new SqlConnection();
+                string connstr = ConfigurationManager.ConnectionStrings["DBConnectionString"].ToString();
+                conn.ConnectionString = connstr;
+                conn.Open();
+                SqlCommand comm = new SqlCommand();
+                comm.Connection = conn;
+                comm.CommandText = "select * from [Elearn_course] where elearn_courseID=@id";
+                comm.Parameters.AddWithValue("@id", id);
+                SqlDataReader dr = comm.ExecuteReader();
+                while (dr.Read())
+                {
+                    toReturn = new Course_elearn();
+                    int cid = (int)dr["elearn_courseID"]; //1
+                    toReturn.setCourseID(cid);
+                    toReturn.setCourseName((string)dr["elearn_courseName"]); //2
+                    if (!dr.IsDBNull(4))
+                    {
+                        toReturn.setCourseProvider((string)dr["elearn_courseProvider"]);
+                    };
+                    toReturn.setStartDate((DateTime)dr["start_date"]);//3
+                    if (!dr.IsDBNull(4))
+                    {
+                        toReturn.setExpiryDate((DateTime)dr["expiry_date"]);
+                    }
+                    toReturn.setStatus((string)dr["status"]);//4
+                    //get the prereq
+                    toReturn.setDescription((string)dr["description"]);//6
+                    ArrayList list = getPrereqOfCourse(cid);//5
+                    if (list != null)
+                    {
+                        toReturn.setPrerequisite(list); //retrieve arraylist of all prereq course_elearn objects
+                    }
+                    toReturn.setCategory((string)dr["category"]);//7
+                }
+                dr.Close();
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                conn.Close();
+            }
+            return toReturn;
+        }
     }
 }
