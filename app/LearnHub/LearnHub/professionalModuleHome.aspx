@@ -1,5 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Masterpage.Master" AutoEventWireup="true" CodeBehind="professionalModuleHome.aspx.cs" Inherits="LearnHub.professionalCoursesHome" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+<%@ Import Namespace="LearnHub.AppCode.entity"%>
+<%@ Import Namespace="LearnHub.AppCode.dao"%>
         <style>
         .list-group-item {
             border-left: 1px solid white;
@@ -125,33 +127,41 @@
             <h6>Click on column name to sort</h6>
             <table class="table table-striped table-hover" id="myTable">
                 <thead>
-                    <tr>
-                    <th onclick="sortTable(0)">Course Name</th>
-                    <th onclick="sortTable(1)">Course Provider</th>
-                        <th>Start Date</th>
-                        <th>End Date</th>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tr>
-                    <td>Wash Hands</td>
-                    <td>SMU</td>
-                    <td>blahblah</td>
-                    <td>blahbahbsf</td>
-                    <td><a href="#"><span class="glyphicon glyphicon-menu-right"></span> View More</a></td>
-                </tr>
-                <tr>
-                    <td>Wash Leg</td>
-                    <td>Sweden</td>
-                </tr>
-                <tr>
-                    <td>Wash Mouth</td>
-                    <td>UK</td>
-                </tr>
-                <tr>
-                    <td>Wash Teeth</td>
-                    <td>Germany</td>
-                </tr>
+                     <%
+                         Course_elearnDAO allListing = new Course_elearnDAO();
+                         ArrayList list = allListing.view_courses("Professional");
+                         String htmlStr = null;
+                         if (list.Count > 0)
+                         {
+                             foreach (Course_elearn ce in list)
+                             {
+                                 htmlStr += "<tr><td>";
+                                 htmlStr += ce.getCourseName();
+                                 htmlStr += "</td>";
+                                 htmlStr += "<td>";
+                                 htmlStr += ce.getCourseProvider();
+                                 htmlStr += "</td>";
+                                 htmlStr += "<td>";
+                                 htmlStr += ce.getStartDate();
+                                 htmlStr += "</td>";
+                                 if (ce.getExpiryDate() != null)
+                                 {
+                                     htmlStr += "<td>";
+                                     htmlStr += ce.getExpiryDate();
+                                     htmlStr += "</td>";
+                                 }
+                                 else
+                                 {
+                                     htmlStr += "<td>";
+                                     htmlStr += "N.A";
+                                     htmlStr += "</td>";
+                                 }
+                                 htmlStr += "<td><a href=\"viewModuleInfo.aspx?id="+ ce.getCourseID() + "\"><span class=\"glyphicon glyphicon-menu-right\"></span> View More</a></td>";
+                                 htmlStr += "</tr>";
+                             }
+                             Response.Write(htmlStr);
+                         }
+                    %>
             </table>
 
         </div>
