@@ -11,7 +11,7 @@
      <div class="row">
         <div class="col-md-2">
             <div class="list-group">
-                <div class="wrapper"><h4><strong>Module Homepage</strong></h4></div>
+                <div class="wrapper"><h4><strong><span class="glyphicon glyphicon-menu-hamburger">&emsp;</span>Module Homepage</strong></h4></div>
 
                 <a href="viewModuleInfo.aspx" class="list-group-item active">
                     <span class="glyphicon glyphicon-info-sign"></span> &emsp;Module Info

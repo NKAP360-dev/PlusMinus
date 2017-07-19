@@ -21,6 +21,19 @@
     </style>
 
     <script>
+        $(document).ready(function () {
+            $('#menu').hide();
+        });
+
+        function configuration() {
+            var x = document.getElementById('menu');
+            if (x.style.display === 'none') {
+                x.style.display = 'block';
+            } else {
+                x.style.display = 'none';
+            }
+        }
+
         function myFunction() {
             // Declare variables 
             var input, filter, table, tr, td, i;
@@ -99,7 +112,24 @@
     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-       <div class="container">
+    <div class="configure">
+        <a href="#" id="config" onclick="configuration()"><span class="label label-primary"><span class="glyphicon glyphicon-cog"></span>Configuration Menu</span></a>
+    </div>
+    <br />
+    <div class="configure">
+        <ul class="list-group" id="menu">
+            <a href="createModules.aspx">
+                <li class="list-group-item">Create New Modules
+                </li>
+            </a>
+            <a href="#">
+                <li class="list-group-item">Edit and Delete Modules
+                </li>
+            </a>
+        </ul>
+    </div>   
+    
+    <div class="container">
         <h1>View Modules</h1>
 
         <div class="verticalLine"></div>
@@ -108,7 +138,7 @@
     <div class="row">
         <div class="col-md-2">
             <div class="list-group">
-                 <div class="wrapper"><h4><strong>View Training Types</strong></h4></div>
+                 <div class="wrapper"><h4><strong><span class="glyphicon glyphicon-menu-hamburger">&emsp;</span>View Training Types</strong></h4></div>
                 <a href="compulsoryModuleHome.aspx" class="list-group-item">
                     Compulsory Training
                 </a>
@@ -116,12 +146,12 @@
                     Leadership Skills Training
                 </a>
                 <a href="professionalModuleHome.aspx" class="list-group-item active">
-                    Professional Training
+                    <span class="glyphicon glyphicon-menu-right"></span> &emsp;Professional Training
                 </a>
 
             </div>
         </div>
-        <div class="container">
+        <div class="col-md-8">
             <h2>Professional Modules</h2>
             <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for Courses">
             <h6>Click on column name to sort</h6>

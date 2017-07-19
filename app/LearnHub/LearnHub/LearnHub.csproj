@@ -235,6 +235,13 @@
       <DependentUpon>compulsoryModuleHome.aspx</DependentUpon>
     </Compile>
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="createModules.aspx.cs">
+      <DependentUpon>createModules.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="createModules.aspx.designer.cs">
+      <DependentUpon>createModules.aspx</DependentUpon>
+    </Compile>
     <Compile Include="emmaConfiguration.aspx.cs">
       <DependentUpon>emmaConfiguration.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -420,6 +427,7 @@
     <Content Include="compulsoryModuleHome.aspx" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="createModules.aspx" />
     <Content Include="emmaConfiguration.aspx" />
     <Content Include="errorPage.aspx" />
     <Content Include="favicon.ico" />
