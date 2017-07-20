@@ -220,13 +220,6 @@
     <Compile Include="askEmmaEditAns.aspx.designer.cs">
       <DependentUpon>askEmmaEditAns.aspx</DependentUpon>
     </Compile>
-    <Compile Include="askEmmaMain.aspx.cs">
-      <DependentUpon>askEmmaMain.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="askEmmaMain.aspx.designer.cs">
-      <DependentUpon>askEmmaMain.aspx</DependentUpon>
-    </Compile>
     <Compile Include="compulsoryModuleHome.aspx.cs">
       <DependentUpon>compulsoryModuleHome.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -414,7 +407,6 @@
     <Content Include="approvedTRF.aspx" />
     <Content Include="askEmmaAddAns.aspx" />
     <Content Include="askEmmaEditAns.aspx" />
-    <Content Include="askEmmaMain.aspx" />
     <Content Include="bootstrap\css\bootstrap-responsive.css" />
     <Content Include="bootstrap\css\bootstrap-responsive.min.css" />
     <Content Include="bootstrap\css\bootstrap.css" />

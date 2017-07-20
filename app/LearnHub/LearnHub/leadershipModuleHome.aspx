@@ -134,9 +134,9 @@
 
         <div class="verticalLine"></div>
     </div>
-
+    <div class="container">
     <div class="row">
-        <div class="col-md-2">
+        <div class="col-md-3">
             <div class="list-group">
                  <div class="wrapper"><h4><strong><span class="glyphicon glyphicon-menu-hamburger">&emsp;</span>View Training Types</strong></h4></div>
                 <a href="compulsoryModuleHome.aspx" class="list-group-item">
@@ -151,7 +151,7 @@
 
             </div>
         </div>
-        <div class="col-md-8">
+        <div class="col-md-9">
             <h2>Leadership Modules</h2>
             <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for Courses">
             <h6>Click on column name to sort</h6>
@@ -201,7 +201,7 @@
                          }
                     %>
             </table>
-
+            </div>
         </div>
     </div>
 </asp:Content>

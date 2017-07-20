@@ -49,6 +49,14 @@
 
                 <div class="form-group">
                     <strong>
+                        <asp:Label ID="descriptionModuleLabel" runat="server" CssClass="col-lg-2 control-label" Text="Description of Module"></asp:Label></strong>
+                    <div class="col-lg-5">
+                            <asp:TextBox ID="descriptionModuleInput" TextMode="multiline" Columns="50" Rows="5" runat="server" CssClass="form-control" placeholder="Enter module description"></asp:TextBox>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <strong>
                         <asp:Label ID="priceOfModuleLabel" runat="server" CssClass="col-lg-2 control-label" Text="Cost of Module"></asp:Label></strong>
                     <div class="col-lg-5">
                         <div class="input-group">
