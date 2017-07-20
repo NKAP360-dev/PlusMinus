@@ -25,18 +25,26 @@ namespace LearnHub.AppCode.dao
                 SqlCommand comm = new SqlCommand();
                 comm.Connection = conn;
                 comm.CommandText = "insert into [Elearn_course] " +
-                    "(elearn_courseID, elearn_courseName, elearn_courseProvider, start_date, expiry_date, status, description, category) " +
-                    "values (@cID, @cName, @provider, @time, @expiry, @status, @desc, @category)";
-                comm.Parameters.AddWithValue("@cID", course.getCourseID());
+                    "(elearn_courseName, elearn_courseProvider, start_date, expiry_date, status, description, category) " +
+                    "values (@cName, @provider, @time, @expiry, @status, @desc, @category)";
                 comm.Parameters.AddWithValue("@cName", course.getCourseName());
                 if (course.getCourseProvider() != null)
                 {
                     comm.Parameters.AddWithValue("@provider", course.getCourseProvider());
                 }
+                else
+                {
+                    comm.Parameters.AddWithValue("@provider", DBNull.Value);
+                }
+
                 comm.Parameters.AddWithValue("@time", course.getStartDate().ToString());
                 if (course.getExpiryDate() == null)
                 {
                     comm.Parameters.AddWithValue("@expiry", DBNull.Value);
+                }
+                else
+                {
+                    comm.Parameters.AddWithValue("@expiry", course.getExpiryDate().ToString());
                 }
                 comm.Parameters.AddWithValue("@status", course.getStatus());
                 comm.Parameters.AddWithValue("@desc", course.getDescription());
@@ -81,7 +89,7 @@ namespace LearnHub.AppCode.dao
                     toReturn.setCourseName((string)dr["elearn_courseName"]); //2
                     if (!dr.IsDBNull(4))
                     {
-                        toReturn.setCourseProvider((string)dr["elearn_courseProvider"]); 
+                        toReturn.setCourseProvider((string)dr["elearn_courseProvider"]);
                     };
                     toReturn.setStartDate((DateTime)dr["start_date"]);//3
                     if (!dr.IsDBNull(4))
@@ -175,6 +183,59 @@ namespace LearnHub.AppCode.dao
                 comm.Connection = conn;
                 comm.CommandText = "select * from [Elearn_course] where elearn_courseID=@id";
                 comm.Parameters.AddWithValue("@id", id);
+                SqlDataReader dr = comm.ExecuteReader();
+                while (dr.Read())
+                {
+                    toReturn = new Course_elearn();
+                    int cid = (int)dr["elearn_courseID"]; //1
+                    toReturn.setCourseID(cid);
+                    toReturn.setCourseName((string)dr["elearn_courseName"]); //2
+                    if (!dr.IsDBNull(4))
+                    {
+                        toReturn.setCourseProvider((string)dr["elearn_courseProvider"]);
+                    };
+                    toReturn.setStartDate((DateTime)dr["start_date"]);//3
+                    if (!dr.IsDBNull(4))
+                    {
+                        toReturn.setExpiryDate((DateTime)dr["expiry_date"]);
+                    }
+                    toReturn.setStatus((string)dr["status"]);//4
+                    //get the prereq
+                    toReturn.setDescription((string)dr["description"]);//6
+                    ArrayList list = getPrereqOfCourse(cid);//5
+                    if (list != null)
+                    {
+                        toReturn.setPrerequisite(list); //retrieve arraylist of all prereq course_elearn objects
+                    }
+                    toReturn.setCategory((string)dr["category"]);//7
+                }
+                dr.Close();
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                conn.Close();
+            }
+            return toReturn;
+        }
+
+        public Course_elearn get_course_by_name(Course_elearn getThis)
+        {
+            SqlConnection conn = new SqlConnection();
+            Course_elearn toReturn = null;
+            try
+            {
+                conn = new SqlConnection();
+                string connstr = ConfigurationManager.ConnectionStrings["DBConnectionString"].ToString();
+                conn.ConnectionString = connstr;
+                conn.Open();
+                SqlCommand comm = new SqlCommand();
+                comm.Connection = conn;
+                comm.CommandText = "select * from Elearn_course where elearn_courseName =@name";
+                comm.Parameters.AddWithValue("@name", getThis.getCourseName());
                 SqlDataReader dr = comm.ExecuteReader();
                 while (dr.Read())
                 {

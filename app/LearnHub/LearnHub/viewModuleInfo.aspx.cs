@@ -9,7 +9,7 @@ using LearnHub.AppCode.dao;
 
 namespace LearnHub
 {
-    
+
     public partial class viewModuleInfo : System.Web.UI.Page
     {
         protected Course_elearn course;
@@ -17,7 +17,7 @@ namespace LearnHub
         {
             Course_elearnDAO cdao = new Course_elearnDAO();
             string id_str = null;
-            if (Request.QueryString["id"]!=null)
+            if (Request.QueryString["id"] != null)
             {
                 id_str = Request.QueryString["id"];
             }

@@ -22,6 +22,21 @@ namespace LearnHub.AppCode.entity
         {
 
         }
+        public Course_elearn(string courseName, string provider,
+            DateTime startDate, string status,
+            string desc, string category)
+        {
+            //no need id
+            this.courseName = courseName;
+            this.courseProvider = provider;
+            this.startDate = startDate;
+            //this.expiry_date = endDate;
+            this.status = status;
+            this.description = desc;
+            //this.prerequisite = prereq; // so if no pre req put as null value for default. 
+            this.category = category; // professional, leadership or compulsory
+        }
+
         public Course_elearn(int courseID, string courseName, string provider,
             DateTime startDate, string status,
             string desc, ArrayList prereq, string category)
@@ -47,8 +62,8 @@ namespace LearnHub.AppCode.entity
             this.description = desc;
             this.category = category; // professional, leadership or compulsory
         }
-        public Course_elearn(int courseID, string courseName, 
-            DateTime startDate, DateTime endDate, string status, 
+        public Course_elearn(int courseID, string courseName,
+            DateTime startDate, DateTime endDate, string status,
             string desc, ArrayList prereq, string category)
         {
             //no provider only
@@ -72,12 +87,12 @@ namespace LearnHub.AppCode.entity
             this.startDate = startDate;
             this.expiry_date = endDate;
             this.status = status;
-            this.description = desc; 
+            this.description = desc;
             this.category = category; // professional, leadership or compulsory
         }
 
-        public Course_elearn(int courseID, string courseName, 
-            string courseProvider, DateTime startDate, DateTime endDate, 
+        public Course_elearn(int courseID, string courseName,
+            string courseProvider, DateTime startDate, DateTime endDate,
             string status, string desc, ArrayList prereq, string category)
         {
             //with provider and endDate

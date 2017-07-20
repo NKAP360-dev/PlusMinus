@@ -119,7 +119,7 @@
                     <div class="modal-body">
                         <div class="wrapper">                            
                             <h4>Are you sure you want to submit?</h4><br />
-                            <asp:Button ID="cfmSubmit" CssClass="btn btn-primary" runat="server" Text="Submit"/>
+                            <asp:Button ID="cfmSubmit" CssClass="btn btn-primary" runat="server" onclick="submitBtn_Click" Text="Submit"/>
                             <%--Redirect to viewModuleInfo of newly created course--%>
                             <br />
                         </div>                       
