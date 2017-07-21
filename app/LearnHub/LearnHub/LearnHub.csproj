@@ -220,13 +220,6 @@
     <Compile Include="askEmmaEditAns.aspx.designer.cs">
       <DependentUpon>askEmmaEditAns.aspx</DependentUpon>
     </Compile>
-    <Compile Include="compulsoryModuleHome.aspx.cs">
-      <DependentUpon>compulsoryModuleHome.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="compulsoryModuleHome.aspx.designer.cs">
-      <DependentUpon>compulsoryModuleHome.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="createModules.aspx.cs">
       <DependentUpon>createModules.aspx</DependentUpon>
@@ -234,6 +227,13 @@
     </Compile>
     <Compile Include="createModules.aspx.designer.cs">
       <DependentUpon>createModules.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="datatable.aspx.cs">
+      <DependentUpon>datatable.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="datatable.aspx.designer.cs">
+      <DependentUpon>datatable.aspx</DependentUpon>
     </Compile>
     <Compile Include="emmaConfiguration.aspx.cs">
       <DependentUpon>emmaConfiguration.aspx</DependentUpon>
@@ -266,13 +266,6 @@
     <Compile Include="Home.aspx.designer.cs">
       <DependentUpon>Home.aspx</DependentUpon>
     </Compile>
-    <Compile Include="leadershipModuleHome.aspx.cs">
-      <DependentUpon>leadershipModuleHome.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="leadershipModuleHome.aspx.designer.cs">
-      <DependentUpon>leadershipModuleHome.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -300,13 +293,6 @@
     </Compile>
     <Compile Include="pendingApproval.aspx.designer.cs">
       <DependentUpon>pendingApproval.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="professionalModuleHome.aspx.cs">
-      <DependentUpon>professionalModuleHome.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="professionalModuleHome.aspx.designer.cs">
-      <DependentUpon>professionalModuleHome.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="rejectionConfirmation.aspx.cs">
@@ -372,6 +358,20 @@
     <Compile Include="uploadDownloadTest.aspx.designer.cs">
       <DependentUpon>uploadDownloadTest.aspx</DependentUpon>
     </Compile>
+    <Compile Include="uploadLearningMaterials.aspx.cs">
+      <DependentUpon>uploadLearningMaterials.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="uploadLearningMaterials.aspx.designer.cs">
+      <DependentUpon>uploadLearningMaterials.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="viewAllModule.aspx.cs">
+      <DependentUpon>viewAllModule.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="viewAllModule.aspx.designer.cs">
+      <DependentUpon>viewAllModule.aspx</DependentUpon>
+    </Compile>
     <Compile Include="viewApprovedTRF.aspx.cs">
       <DependentUpon>viewApprovedTRF.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -423,10 +423,10 @@
     <Content Include="bootstrap\img\glyphicons-halflings.png" />
     <Content Include="bootstrap\js\bootstrap.js" />
     <Content Include="bootstrap\js\bootstrap.min.js" />
-    <Content Include="compulsoryModuleHome.aspx" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="createModules.aspx" />
+    <Content Include="datatable.aspx" />
     <Content Include="emmaConfiguration.aspx" />
     <Content Include="errorPage.aspx" />
     <Content Include="favicon.ico" />
@@ -439,11 +439,9 @@
     <Content Include="img\LearnHub2.png" />
     <Content Include="img\line.png" />
     <Content Include="img\smu.png" />
-    <Content Include="leadershipModuleHome.aspx" />
     <Content Include="Login.aspx" />
     <Content Include="Logout.aspx" />
     <Content Include="pendingApproval.aspx" />
-    <Content Include="professionalModuleHome.aspx" />
     <Content Include="rejectionConfirmation.aspx" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -458,6 +456,8 @@
     <Content Include="trfApplicationStatus.aspx" />
     <Content Include="TRFapproval.aspx" />
     <Content Include="uploadDownloadTest.aspx" />
+    <Content Include="uploadLearningMaterials.aspx" />
+    <Content Include="viewAllModule.aspx" />
     <Content Include="viewApprovedTRF.aspx" />
     <Content Include="viewModuleInfo.aspx" />
     <Content Include="WebForm1.aspx" />

@@ -11,7 +11,7 @@ namespace LearnHub
 {
 
 
-    public partial class compulsoryCoursesHome
+    public partial class uploadLearningMaterials
     {
     }
 }

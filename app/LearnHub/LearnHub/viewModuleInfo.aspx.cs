@@ -32,5 +32,22 @@ namespace LearnHub
             lblCourseName.Text = current.getCourseName();
             lblCourseDescription.Text = current.getDescription();
         }
+
+        protected void moduleInfo_Click(object sender, EventArgs e)
+        {
+            viewInfo.Visible = true;
+            viewLearningMaterial.Visible = false;
+        }
+        protected void learningMat_Click(object sender, EventArgs e)
+        {
+            viewInfo.Visible = false;
+            viewLearningMaterial.Visible = true;
+        }
+
+        protected void quizzes_Click(object sender, EventArgs e)
+        {
+            viewInfo.Visible = false;
+            viewLearningMaterial.Visible = false;
+        }
     }
 }

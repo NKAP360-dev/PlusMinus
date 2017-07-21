@@ -11,7 +11,7 @@ namespace LearnHub
 {
 
 
-    public partial class professionalCoursesHome
+    public partial class datatable
     {
     }
 }

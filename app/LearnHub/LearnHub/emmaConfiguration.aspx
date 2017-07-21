@@ -6,11 +6,12 @@
     <h1>Emma Configuration Settings</h1>
      <div class="verticalLine"></div>
      </div>
-    <br />
+
     <div class="container">
-        <a href="askEmmaAddAns.aspx" class="btn btn-success">Add Answers</a>
+        <h3>Answers Configuration</h3>
+        <a href="askEmmaAddAns.aspx" class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-plus-sign"></span> &nbsp; Add Answers</a>
         &emsp;
-        <a href="askEmmaEditAns.aspx" class="btn btn-success">Edit Answers</a>
+        <a href="askEmmaEditAns.aspx" class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-pencil"></span> &nbsp; Edit Answers</a>
     </div>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder2" runat="server">

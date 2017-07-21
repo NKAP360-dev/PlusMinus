@@ -192,11 +192,11 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Module <span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
                             <li>
-                                <asp:HyperLink ID="HyperLink3" runat="server" NavigateUrl="~/compulsoryModuleHome.aspx">Compulsory Training</asp:HyperLink></li>
+                                <asp:HyperLink ID="HyperLink3" runat="server" NavigateUrl="~/viewAllModule.aspx?module=compulsory">Compulsory Training</asp:HyperLink></li>
                             <li>
-                                <asp:HyperLink ID="HyperLink4" runat="server" NavigateUrl="~/leadershipModuleHome.aspx">Leadership Skills Training</asp:HyperLink></li>
+                                <asp:HyperLink ID="HyperLink4" runat="server" NavigateUrl="~/viewAllModule.aspx?module=leadership">Leadership Skills Training</asp:HyperLink></li>
                             <li>
-                                <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/professionalModuleHome.aspx">Professional Training</asp:HyperLink></li>
+                                <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/viewAllModule.aspx?module=professional">Professional Training</asp:HyperLink></li>
                         </ul>
                     </li>
                 </ul>
