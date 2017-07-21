@@ -29,7 +29,8 @@ namespace LearnHub
             string type = Request.QueryString["type"];
             if (check && moduleType.Text != "") // if no expiry date
             {
-                c = new Course_elearn(nameOfModuleInput.Text, user.getDepartment(), DateTime.Now, "Open", descriptionModuleInput.Text, moduleType.Text);
+                c = new Course_elearn(nameOfModuleInput.Text, user.getDepartment(), DateTime.Now,
+                    Convert.ToDateTime(fromDateInput.Text), Convert.ToDateTime(toDateInput.Text),  "Open", descriptionModuleInput.Text, moduleType.Text);
             }
 
             //check pre req here 

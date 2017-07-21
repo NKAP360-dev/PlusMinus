@@ -11,6 +11,7 @@ namespace LearnHub.AppCode.entity
         private int courseID;
         private string courseName;
         private string courseProvider;
+        private DateTime entry_date;
         private DateTime startDate;
         private DateTime expiry_date;
         private string status;
@@ -22,15 +23,16 @@ namespace LearnHub.AppCode.entity
         {
 
         }
-        public Course_elearn(string courseName, string provider,
-            DateTime startDate, string status,
+        public Course_elearn(string courseName, string provider, DateTime entry_date,
+            DateTime startDate, DateTime endDate,  string status,
             string desc, string category)
         {
-            //no need id
+            //no need id, with entry date and expiry date
             this.courseName = courseName;
             this.courseProvider = provider;
+            this.entry_date = entry_date;
             this.startDate = startDate;
-            //this.expiry_date = endDate;
+            this.expiry_date = endDate;
             this.status = status;
             this.description = desc;
             //this.prerequisite = prereq; // so if no pre req put as null value for default. 
@@ -105,6 +107,15 @@ namespace LearnHub.AppCode.entity
             this.description = desc;
             this.prerequisite = prereq;  // so if no pre req put as null value for default. 
             this.category = category;
+        }
+
+        public DateTime getEntryDate()
+        {
+            return entry_date;
+        }
+        public void setEntryDate(DateTime courseID)
+        {
+            this.entry_date = entry_date;
         }
         public int getCourseID()
         {

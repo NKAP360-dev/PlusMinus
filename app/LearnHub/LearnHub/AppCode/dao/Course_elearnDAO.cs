@@ -25,8 +25,8 @@ namespace LearnHub.AppCode.dao
                 SqlCommand comm = new SqlCommand();
                 comm.Connection = conn;
                 comm.CommandText = "insert into [Elearn_course] " +
-                    "(elearn_courseName, elearn_courseProvider, start_date, expiry_date, status, description, category) " +
-                    "values (@cName, @provider, @time, @expiry, @status, @desc, @category)";
+                    "(elearn_courseName, elearn_courseProvider, entry_date, start_date, expiry_date, status, description, category) " +
+                    "values (@cName, @provider, @entry, @time, @expiry, @status, @desc, @category)";
                 comm.Parameters.AddWithValue("@cName", course.getCourseName());
                 if (course.getCourseProvider() != null)
                 {
@@ -37,7 +37,15 @@ namespace LearnHub.AppCode.dao
                     comm.Parameters.AddWithValue("@provider", DBNull.Value);
                 }
 
-                comm.Parameters.AddWithValue("@time", course.getStartDate().ToString());
+                comm.Parameters.AddWithValue("@entry", course.getEntryDate().ToString());
+                if (course.getStartDate() == null)
+                {
+                    comm.Parameters.AddWithValue("@time", DBNull.Value);
+                }
+                else
+                {
+                    comm.Parameters.AddWithValue("@time", course.getStartDate().ToString());
+                }
                 if (course.getExpiryDate() == null)
                 {
                     comm.Parameters.AddWithValue("@expiry", DBNull.Value);
@@ -78,7 +86,7 @@ namespace LearnHub.AppCode.dao
                 SqlCommand comm = new SqlCommand();
                 comm.Connection = conn;
                 comm.CommandText = "select * " +
-                    "from [Elearn_course] where status = 'Open' and category = @cat";
+                    "from [Elearn_course] where status = 'Open' and category = @cat and start_date<=getDate()";
                 comm.Parameters.AddWithValue("@cat", type);
                 SqlDataReader dr = comm.ExecuteReader();
                 while (dr.Read())

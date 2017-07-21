@@ -365,6 +365,13 @@
     <Compile Include="TRFapproval.aspx.designer.cs">
       <DependentUpon>TRFapproval.aspx</DependentUpon>
     </Compile>
+    <Compile Include="uploadDownloadTest.aspx.cs">
+      <DependentUpon>uploadDownloadTest.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="uploadDownloadTest.aspx.designer.cs">
+      <DependentUpon>uploadDownloadTest.aspx</DependentUpon>
+    </Compile>
     <Compile Include="viewApprovedTRF.aspx.cs">
       <DependentUpon>viewApprovedTRF.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -450,6 +457,7 @@
     <Content Include="trainingRequestFormPage.aspx" />
     <Content Include="trfApplicationStatus.aspx" />
     <Content Include="TRFapproval.aspx" />
+    <Content Include="uploadDownloadTest.aspx" />
     <Content Include="viewApprovedTRF.aspx" />
     <Content Include="viewModuleInfo.aspx" />
     <Content Include="WebForm1.aspx" />
@@ -490,6 +498,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Data\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
