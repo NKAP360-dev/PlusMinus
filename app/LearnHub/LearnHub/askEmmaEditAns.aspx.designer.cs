@@ -31,6 +31,15 @@ namespace LearnHub {
         protected global::System.Web.UI.WebControls.RadioButton RadioButton2;
         
         /// <summary>
+        /// cv_answers control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CustomValidator cv_answers;
+        
+        /// <summary>
         /// ddlIntent control.
         /// </summary>
         /// <remarks>
@@ -65,6 +74,15 @@ namespace LearnHub {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtAnswers;
+        
+        /// <summary>
+        /// rfv_txtAnswers control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfv_txtAnswers;
         
         /// <summary>
         /// Label1 control.

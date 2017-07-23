@@ -18,6 +18,24 @@
             $("[data-toggle='tooltip']").tooltip();
         });
 
+        /*
+        function ValidateRadioButton(sender, args) {
+            var gv = document.getElementById("");
+            var items = gv.getElementsByTagName('input');
+            for (var i = 0; i < items.length; i++) {
+                if (items[i].type == "radio") {
+                    if (items[i].checked) {
+                        args.IsValid = true;
+                        return;
+                    }
+                    else {
+                        args.IsValid = false;
+                    }
+                }
+            }
+        }
+        */
+
     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -70,6 +88,7 @@
     </tr>
         </tbody>
 </table>
+        <asp:CustomValidator ID="cv_answers" runat="server" EnableClientScript="true" ErrorMessage="Please select an answer" ClientValidationFunction="ValidateRadioButton" ForeColor="Red"></asp:CustomValidator>
         <div class="verticalLine"></div>
       </div>
     <br />
@@ -108,6 +127,7 @@
                     <div class="col-lg-10">
                         <%--Mandatory text field--%>
                         <asp:TextBox ID="txtAnswers" TextMode="multiline" Columns="50" Rows="5" runat="server" CssClass="form-control" placeholder="Please enter your answers here"></asp:TextBox>
+                        <asp:RequiredFieldValidator ID="rfv_txtAnswers" runat="server" ErrorMessage="Please enter an answer" ControlToValidate="txtAnswers" ForeColor="Red"></asp:RequiredFieldValidator>
                     </div>
                     <asp:Label ID="Label1" CssClass="col-lg-2 control-label" runat="server" Text="* = Compulsory fields"></asp:Label>
                 </div>
