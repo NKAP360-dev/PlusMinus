@@ -123,6 +123,20 @@
             right: 0px;
             padding: 10px;
         }
+
+          .askEmma {
+            position: fixed; 
+            bottom: 0px; 
+            right: 0px;
+            z-index: 5;
+        }
+
+         #emmaContainer {
+            overflow: visible;
+            width: 350px;
+            padding-bottom: 15px;
+        }
+		
     </style>
     <link href="~/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
@@ -241,12 +255,12 @@
                     </li>
                 </ul>
 
-                <%--Tab 6: AI Chat Bot--%>
+                <%--Tab 6: AI Chat Bot
                 <ul class="nav navbar-nav">
                     <li class="dropdown">
                         <a href="#emmaModal" class="dropdown-toggle" role="button" aria-expanded="false" data-toggle="modal">Ask Emma &nbsp;<span class="glyphicon glyphicon-comment"></span></a>
                     </li>
-                </ul>
+                </ul>--%>
 
                 <%--Show login button only if user is not logged in--%>
                 <%--Show logout button only if user is logged in--%>
@@ -335,38 +349,6 @@
         </div>
     </nav>
 
-     <%--Emma Modal--%>
-    <div id="emmaModal" class="modal fade" role="dialog">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Hello! I am Emma, your friendly assistant</h4>
-                </div>
-                <div class="modal-body">
-                    <div class="wrapper">
-                        Emma goes here
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <% if (Session["currentUser"] != null)
-                        {
-                            User currentUser = (User)Session["currentUser"];
-
-                            if (currentUser.getDepartment().Equals("hr"))
-                            {
-
-                    %>
-                    <div class="configure">
-                        <a href="emmaConfiguration.aspx" id="config"><span class="label label-primary"><span class="glyphicon glyphicon-cog"></span>Configuration Menu</span></a>
-                    </div>    
-                    <br />
-                    <%}
-                    }%>
-                </div>
-            </div>
-        </div>
-    </div>
 
     <%--Do not touch contentplaceholders--%>
     <div>
@@ -376,6 +358,33 @@
         </asp:ContentPlaceHolder>
     </div>
 
+    <div class="askEmma">    
+         <div id="emmaContainer" class="collapse">
+   <div class="panel panel-primary">
+  <div class="panel-heading">
+    <h2 class="panel-title">Emma  &emsp;
+        <% if (Session["currentUser"] != null)
+                        {
+                            User currentUser = (User)Session["currentUser"];
+
+                            if (currentUser.getDepartment().Equals("hr"))
+                            {
+
+                    %>
+        <a href="emmaConfiguration.aspx"><span class="label label-danger"><span class="glyphicon glyphicon-cog"></span></span></a>
+         <%}
+                    }%>
+    </h2>
+  </div>
+  <div class="panel-body">
+    I am emma pls talk to me
+  </div>
+</div>
+  </div>
+        </div>
+    <div class="askEmma">
+        <button type="button" class="btn btn-primary btn-sm" data-toggle="collapse" data-target="#emmaContainer"> <span class="glyphicon glyphicon-comment"></span> &emsp;Ask Emma</button>
+    </div>
 
     <%--Footer--%>
     <div class="clear">
