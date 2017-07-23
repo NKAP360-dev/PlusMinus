@@ -1,4 +1,8 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Masterpage.Master" AutoEventWireup="true" CodeBehind="viewModuleInfo.aspx.cs" Inherits="LearnHub.viewModuleInfo" %>
+<%@ Import Namespace="System.IO" %>
+<%@ Import Namespace="System.Data" %>
+<%@ Import Namespace="LearnHub.AppCode.dao" %>
+<%@ Import Namespace="LearnHub.AppCode.entity" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <script>
@@ -106,44 +110,41 @@
 
             <div class="col-md-9">
                 <%--Each panel for one upload--%>
+                <%
+                    Course_elearnDAO cdao = new Course_elearnDAO();
+                    ArrayList list = cdao.get_uploaded_content_by_id(current);%>
+                <%
+                    string dir = "~/Data/" + current.getCourseName();
+                    foreach (string strfile in Directory.GetFiles(Server.MapPath(dir)))
+                    {
+                        //Response.Write(strfile);
+                        title = null;
+                        desc = null;
+                        date = DateTime.Now;
+
+                        foreach (Upload u in list)
+                        {
+                            //Response.Write(u.getServerPath());
+                            if (u.getServerPath()!=null && u.getServerPath().Equals(strfile))
+                            {
+                                title = u.getTitle();
+                                desc = u.getDesc();
+                                date = u.getDate();
+                            }
+                        }%>
                 <div class="panel panel-primary">
                     <div class="panel-heading">
-                        <h3 class="panel-title"><asp:Label ID="lblUploadTitle" runat="server" Text="Upload Title"></asp:Label></h3>                     
+                        <h3 class="panel-title"><asp:Label ID="lblUploadTitle" runat="server"><%= title %></asp:Label></h3>                     
                     </div>
                     <div class="panel-body">
-                        Uploaded on: <asp:Label ID="lblUploadDate" runat="server" Text="24th July"></asp:Label><br />
-                        <asp:Label ID="lblUploadDescription" runat="server" Text="Upload Description"></asp:Label>
+                        Uploaded on: <asp:Label ID="lblUploadDate" runat="server"><%= date.ToShortDateString() %></asp:Label><br />
+                        <asp:Label ID="lblUploadDescription" runat="server"><%= desc %></asp:Label>
                         <br /><br />
-                        <a href="#">Link to download</a><br />
-                        <a href="#">Link to download</a>
+                        <a href="<%=Path.GetFileName(strfile) %>" download><%=Path.GetFileName(strfile) %></a><br />
                     </div>
                 </div>
-                <div class="panel panel-primary">
-                    <div class="panel-heading">
-                        <h3 class="panel-title"><asp:Label ID="Label1" runat="server" Text="Upload Title"></asp:Label></h3>                     
-                    </div>
-                    <div class="panel-body">
-                        Uploaded on: <asp:Label ID="Label2" runat="server" Text="24th July"></asp:Label><br />
-                        <asp:Label ID="Label3" runat="server" Text="Upload Description"></asp:Label>
-                        <br /><br />
-                        <a href="#">Link to download</a><br />
-                        <a href="#">Link to download</a>
-                    </div>
-                </div>
-                <div class="panel panel-primary">
-                    <div class="panel-heading">
-                        <h3 class="panel-title"><asp:Label ID="Label4" runat="server" Text="Upload Title"></asp:Label></h3>                     
-                    </div>
-                    <div class="panel-body">
-                        Uploaded on: <asp:Label ID="Label5" runat="server" Text="24th July"></asp:Label><br />
-                        <asp:Label ID="Label6" runat="server" Text="Upload Description"></asp:Label>
-                        <br /><br />
-                        <a href="#">Link to download</a><br />
-                        <a href="#">Link to download</a>
-                    </div>
-                </div>
-            </div>
-            
+                <%} %>
+            </div>   
         </div>
             </asp:Panel>
     </div>
@@ -178,12 +179,14 @@
                             </div>
                     </div>
                     <%--Positioning for buttons--%>
-                    <a href="#" class="btn btn-success btn-xs">Choose File</a> &emsp;<a href=#>Show uploaded file link here...</a>
+                    <asp:FileUpload ID="FileUpload1" runat="server" />
+                    
                     <br />
                     
                 <div class="modal-footer">
 
-                    <a href="#" class="btn btn-success">Upload</a>
+                    <asp:Button ID="Button1" class="btn btn-success btn-xs" runat="server" Text="Upload" 
+                        OnClick="upload_click" />
 
                 </div>
                 </div>
