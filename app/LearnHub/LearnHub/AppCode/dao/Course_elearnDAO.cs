@@ -6,11 +6,93 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using System.Collections;
+using System.IO;
 
 namespace LearnHub.AppCode.dao
 {
     public class Course_elearnDAO
     {
+        public ArrayList get_uploaded_content_by_id(Course_elearn course)
+        {
+            SqlConnection conn = new SqlConnection();
+            ArrayList toReturn_list = new ArrayList();
+            Upload toReturn = null;
+            try
+            {
+                conn = new SqlConnection();
+                string connstr = ConfigurationManager.ConnectionStrings["DBConnectionString"].ToString();
+                conn.ConnectionString = connstr;
+                conn.Open();
+                SqlCommand comm = new SqlCommand();
+                comm.Connection = conn;
+                comm.CommandText = "select upload_date, upload_title, upload_desc, server_path from [Elearn_courseContent] where elearn_courseID=@id";
+                comm.Parameters.AddWithValue("@id", course.getCourseID());
+                SqlDataReader dr = comm.ExecuteReader();
+                while (dr.Read())
+                {
+                    toReturn = new Upload();
+                 
+                    toReturn.setDate((DateTime)dr["upload_date"]);//3
+                    
+                    toReturn.setTitle((string)dr["upload_title"]);//4
+
+                    toReturn.setDesc((string)dr["upload_desc"]);//6
+
+                    if (dr["server_path"]!=DBNull.Value)
+                    {
+                        toReturn.setServerPath((string)dr["server_path"]);
+                    }
+
+                    toReturn_list.Add(toReturn);
+                }
+                dr.Close();
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                conn.Close();
+            }
+            return toReturn_list;
+        }
+
+        public Upload upload_entry(Upload upload)
+        {
+            SqlConnection conn = new SqlConnection();
+            Upload toReturn = null;
+            try
+            {
+                conn = new SqlConnection();
+                string connstr = ConfigurationManager.ConnectionStrings["DBConnectionString"].ToString();
+                conn.ConnectionString = connstr;
+                conn.Open();
+                SqlCommand comm = new SqlCommand();
+                comm.Connection = conn;
+                comm.CommandText = "insert into [Elearn_courseContent] "
+                                    + "(elearn_courseID, upload_date, upload_title, upload_desc, server_path)"
+                                    + "values(@id, Convert(datetime, @date, 103), @title, @desc, @server_path)";
+                comm.Parameters.AddWithValue("@id", upload.getCourse_elearn().getCourseID());
+                comm.Parameters.AddWithValue("@date", upload.getDate());
+                comm.Parameters.AddWithValue("@title", upload.getTitle());
+                comm.Parameters.AddWithValue("@desc", upload.getDesc());
+                comm.Parameters.AddWithValue("@server_path", upload.getServerPath());
+                //comm.Parameters.AddWithValue("@content", course.getCourseID());
+                int rowsAffected = comm.ExecuteNonQuery();
+                //need new method to create pre-requisities here to store in seperate table (pre-req table)
+                toReturn = upload;
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                conn.Close();
+            }
+            return toReturn;
+        }
 
         public Course_elearn create_elearnCourse(Course_elearn course)
         {
@@ -26,7 +108,7 @@ namespace LearnHub.AppCode.dao
                 comm.Connection = conn;
                 comm.CommandText = "insert into [Elearn_course] " +
                     "(elearn_courseName, elearn_courseProvider, entry_date, start_date, expiry_date, status, description, category) " +
-                    "values (@cName, @provider, @entry, @time, @expiry, @status, @desc, @category)";
+                    "values (@cName, @provider, Convert(datetime, @entry, 103), convert(datetime,@time,103), Convert(datetime,@expiry,103), @status, @desc, @category)";
                 comm.Parameters.AddWithValue("@cName", course.getCourseName());
                 if (course.getCourseProvider() != null)
                 {
@@ -37,14 +119,14 @@ namespace LearnHub.AppCode.dao
                     comm.Parameters.AddWithValue("@provider", DBNull.Value);
                 }
 
-                comm.Parameters.AddWithValue("@entry", course.getEntryDate().ToString());
+                comm.Parameters.AddWithValue("@entry", course.getEntryDate());
                 if (course.getStartDate() == null)
                 {
                     comm.Parameters.AddWithValue("@time", DBNull.Value);
                 }
                 else
                 {
-                    comm.Parameters.AddWithValue("@time", course.getStartDate().ToString());
+                    comm.Parameters.AddWithValue("@time", course.getStartDate());
                 }
                 if (course.getExpiryDate() == null)
                 {
@@ -52,12 +134,12 @@ namespace LearnHub.AppCode.dao
                 }
                 else
                 {
-                    comm.Parameters.AddWithValue("@expiry", course.getExpiryDate().ToString());
+                    comm.Parameters.AddWithValue("@expiry", course.getExpiryDate());
                 }
                 comm.Parameters.AddWithValue("@status", course.getStatus());
                 comm.Parameters.AddWithValue("@desc", course.getDescription());
                 comm.Parameters.AddWithValue("@category", course.getCategory());
-                int rowsAffected = comm.ExecuteNonQuery();
+                int rowsAffected = comm.ExecuteNonQuery();                
                 //need new method to create pre-requisities here to store in seperate table (pre-req table)
                 toReturn = course;
             }

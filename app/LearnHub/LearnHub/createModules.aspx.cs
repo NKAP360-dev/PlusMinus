@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using LearnHub.AppCode.dao;
 using LearnHub.AppCode.entity;
+using System.IO;
 
 namespace LearnHub
 {
@@ -17,6 +18,7 @@ namespace LearnHub
             moduleType.Items.Insert(1, "Compulsory");
             moduleType.Items.Insert(2, "Leadership");
             moduleType.Items.Insert(3, "Professional");
+            Response.Write(DateTime.Now);
 
         }
         protected void submitBtn_Click(object sender, EventArgs e)
@@ -39,6 +41,11 @@ namespace LearnHub
 
             //create the course object 
             //now insert into database by calling DAO
+
+            //create dir
+            string file = "~/Data/";
+            string add = Server.MapPath(file) + c.getCourseName();
+            Directory.CreateDirectory(add);
 
             Course_elearnDAO cDao = new Course_elearnDAO();
             Course_elearn res = cDao.create_elearnCourse(c);
