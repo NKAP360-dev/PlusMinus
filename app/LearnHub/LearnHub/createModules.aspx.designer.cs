@@ -67,76 +67,40 @@ namespace LearnHub {
         protected global::System.Web.UI.WebControls.TextBox descriptionModuleInput;
         
         /// <summary>
-        /// priceOfModuleLabel control.
+        /// hoursLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label priceOfModuleLabel;
+        protected global::System.Web.UI.WebControls.Label hoursLabel;
         
         /// <summary>
-        /// priceOfModuleInput control.
+        /// hoursInput control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox priceOfModuleInput;
+        protected global::System.Web.UI.WebControls.TextBox hoursInput;
         
         /// <summary>
-        /// courseProviderLabel control.
+        /// preqModuleLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label courseProviderLabel;
+        protected global::System.Web.UI.WebControls.Label preqModuleLabel;
         
         /// <summary>
-        /// courseProvider control.
+        /// preqModuleDDL control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButtonList courseProvider;
-        
-        /// <summary>
-        /// in control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ListItem @in;
-        
-        /// <summary>
-        /// ex control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ListItem ex;
-        
-        /// <summary>
-        /// empty1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label empty1;
-        
-        /// <summary>
-        /// externalCourseProvider control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox externalCourseProvider;
+        protected global::System.Web.UI.WebControls.DropDownList preqModuleDDL;
         
         /// <summary>
         /// dateLabel control.
@@ -166,6 +130,15 @@ namespace LearnHub {
         protected global::System.Web.UI.WebControls.TextBox toDateInput;
         
         /// <summary>
+        /// Label2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label2;
+        
+        /// <summary>
         /// submitBtn control.
         /// </summary>
         /// <remarks>
@@ -182,5 +155,14 @@ namespace LearnHub {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button cfmSubmit;
+        
+        /// <summary>
+        /// Button2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button Button2;
     }
 }

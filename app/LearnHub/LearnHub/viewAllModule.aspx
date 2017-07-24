@@ -122,11 +122,7 @@
             <a href="createModules.aspx">
                 <li class="list-group-item">Create New Modules
                 </li>
-            </a>
-            <a href="#">
-                <li class="list-group-item">Edit and Delete Modules
-                </li>
-            </a>
+            </a>  
         </ul>
     </div>
    

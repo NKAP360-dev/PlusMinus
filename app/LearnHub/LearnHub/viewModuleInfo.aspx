@@ -29,8 +29,8 @@
     <br />
     <div class="configure">
         <ul class="list-group" id="menu">
-            <a href="#">
-                <li class="list-group-item">Edit Module Information
+            <a href="editModuleInfo.aspx">
+                <li class="list-group-item">Edit/Delete Module 
                 </li>
             </a>
             <a href="#uploadModal" data-toggle="modal">
@@ -86,8 +86,8 @@
                     </div>
                     <div class="panel-body">
                         <strong>
-                            <asp:Label ID="venueLabel" runat="server" Text="Venue"></asp:Label></strong><br />
-                        <asp:Label ID="venueOutput" runat="server" Text="Venue"></asp:Label>
+                            <asp:Label ID="hoursLabel" runat="server" Text="Hours awarded after completion"></asp:Label></strong><br />
+                        <asp:Label ID="hoursOutput" runat="server" Text="2"></asp:Label>
                         <br />
                         <br />
                         blahblah any other info timing date etc etc 
@@ -157,7 +157,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title"><span class="glyphicon glyphicon-open"></span>&nbsp;Upload Learning Materials</h4>
+                    <h4 class="modal-title"><span class="glyphicon glyphicon-open"></span>&emsp;Upload Learning Materials</h4>
                 </div>
                 <div class="modal-body">
                     
@@ -185,8 +185,9 @@
                     
                 <div class="modal-footer">
 
-                    <asp:Button ID="Button1" class="btn btn-success btn-xs" runat="server" Text="Upload" 
+                    <asp:Button ID="Button1" class="btn btn-primary" runat="server" Text="Upload" 
                         OnClick="upload_click" />
+                    <asp:Button ID="Button2" CssClass="btn btn-default" runat="server" class="close" data-dismiss="modal" Text="Go Back"/>
 
                 </div>
                 </div>

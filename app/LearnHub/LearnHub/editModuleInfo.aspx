@@ -1,6 +1,6 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Masterpage.Master" AutoEventWireup="true" CodeBehind="createModules.aspx.cs" Inherits="LearnHub.createModules" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Masterpage.Master" AutoEventWireup="true" CodeBehind="editModuleInfo.aspx.cs" Inherits="LearnHub.editModuleInfo" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
- <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/css/datepicker.css" rel="stylesheet" type="text/css" />
+     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/css/datepicker.css" rel="stylesheet" type="text/css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/js/bootstrap-datepicker.js"></script>
     <script type="text/javascript">
         $(function () {
@@ -18,18 +18,17 @@
         });
 
     </script>
-
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <div class="container">
-        <h1>Create Module</h1>
+      <div class="container">
+        <h1>Edit Module</h1>
         <div class="verticalLine"></div>
     </div>
 
     <div class="container">
         <form class="form-horizontal" runat="server">
             <fieldset>
-                <legend>Input new module information </legend>
+                <legend>Edit current module information </legend>
                 <div class="form-group">
                     <strong>
                         <%--Compulsory/Leadership/Professional--%>
@@ -118,7 +117,9 @@
                 <div class="form-group">
                     <br />
                     <div class="wrapper">
-                        <asp:Button ID="submitBtn" CssClass="btn btn-primary" runat="server" Text="Submit" data-toggle="modal" href="#submitModal"  OnClientClick="return false;"/>
+                        <asp:Button ID="submitBtn" CssClass="btn btn-primary" runat="server" Text="Save Changes" data-toggle="modal" href="#submitModal"  OnClientClick="return false;"/>
+                        <asp:Button ID="deleteBtn" CssClass="btn btn-danger" runat="server" Text="Delete Module" data-toggle="modal" href="#deleteModal"  OnClientClick="return false;"/>
+
                     </div>
                 </div>
 
@@ -128,14 +129,14 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title"><b>Create new module</b></h4>
+                        <h4 class="modal-title"><b>Save Changes</b></h4>
                     </div>
                     <%--Modal Content--%>
                     <div class="modal-body">
                         <div class="wrapper">                            
-                            <h4>Are you sure you want to submit?</h4><br />
-                            <asp:Button ID="cfmSubmit" CssClass="btn btn-primary" runat="server" onclick="submitBtn_Click" Text="Submit"/>
-                            <asp:Button ID="Button2" CssClass="btn btn-default" runat="server" class="close" data-dismiss="modal" Text="Go Back"/>
+                            <h4>Are you sure you want to save existing changes?</h4><br />
+                            <asp:Button ID="cfmSubmit" CssClass="btn btn-primary" runat="server" Text="Save changes"/>
+                            <asp:Button ID="Button3" CssClass="btn btn-default" runat="server" class="close" data-dismiss="modal" Text="Go Back"/>
                             <%--Redirect to viewModuleInfo of newly created course--%>
                             <br />
                         </div>                       
@@ -145,10 +146,31 @@
             </div>
         </div>
 
+                <%--Modal for Deletion Confirmation--%>
+                <div id="deleteModal" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content panel-warning">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title"><b>Delete this module</b></h4>
+                    </div>
+                    <%--Modal Content--%>
+                    <div class="modal-body">
+                        <div class="wrapper">                            
+                            <h4>Are you sure you want to delete this module?</h4><br />
+                            <asp:Button ID="Button1" CssClass="btn btn-danger" runat="server" Text="Delete"/>
+                            <asp:Button ID="Button2" CssClass="btn btn-default" runat="server" class="close" data-dismiss="modal" Text="Go Back"/>
+                            <%--Redirect to viewModuleInfo of newly created course--%>
+                            <br />
+                        </div>                       
+                    </div>                  
+                </div>
+
+            </div>
+        </div>
             </fieldset>
         </form>
     </div>
-
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder2" runat="server">
 </asp:Content>

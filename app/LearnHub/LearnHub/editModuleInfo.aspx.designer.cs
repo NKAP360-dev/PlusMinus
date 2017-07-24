@@ -10,70 +10,61 @@
 namespace LearnHub {
     
     
-    public partial class viewModuleInfo {
+    public partial class editModuleInfo {
         
         /// <summary>
-        /// lblCourseNameHeader control.
+        /// moduleTypeLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblCourseNameHeader;
+        protected global::System.Web.UI.WebControls.Label moduleTypeLabel;
         
         /// <summary>
-        /// viewInfo control.
+        /// moduleType control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel viewInfo;
+        protected global::System.Web.UI.WebControls.DropDownList moduleType;
         
         /// <summary>
-        /// LinkButton1 control.
+        /// nameOfModuleLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkButton1;
+        protected global::System.Web.UI.WebControls.Label nameOfModuleLabel;
         
         /// <summary>
-        /// LinkButton2 control.
+        /// nameOfModuleInput control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkButton2;
+        protected global::System.Web.UI.WebControls.TextBox nameOfModuleInput;
         
         /// <summary>
-        /// LinkButton3 control.
+        /// descriptionModuleLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkButton3;
+        protected global::System.Web.UI.WebControls.Label descriptionModuleLabel;
         
         /// <summary>
-        /// lblCourseName control.
+        /// descriptionModuleInput control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblCourseName;
-        
-        /// <summary>
-        /// lblCourseDescription control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblCourseDescription;
+        protected global::System.Web.UI.WebControls.TextBox descriptionModuleInput;
         
         /// <summary>
         /// hoursLabel control.
@@ -85,103 +76,103 @@ namespace LearnHub {
         protected global::System.Web.UI.WebControls.Label hoursLabel;
         
         /// <summary>
-        /// hoursOutput control.
+        /// hoursInput control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label hoursOutput;
+        protected global::System.Web.UI.WebControls.TextBox hoursInput;
         
         /// <summary>
-        /// viewLearningMaterial control.
+        /// preqModuleLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel viewLearningMaterial;
+        protected global::System.Web.UI.WebControls.Label preqModuleLabel;
         
         /// <summary>
-        /// LinkButton4 control.
+        /// preqModuleDDL control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkButton4;
+        protected global::System.Web.UI.WebControls.DropDownList preqModuleDDL;
         
         /// <summary>
-        /// LinkButton5 control.
+        /// dateLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkButton5;
+        protected global::System.Web.UI.WebControls.Label dateLabel;
         
         /// <summary>
-        /// LinkButton6 control.
+        /// fromDateInput control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkButton6;
+        protected global::System.Web.UI.WebControls.TextBox fromDateInput;
         
         /// <summary>
-        /// lblUploadTitle control.
+        /// toDateInput control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblUploadTitle;
+        protected global::System.Web.UI.WebControls.TextBox toDateInput;
         
         /// <summary>
-        /// lblUploadDate control.
+        /// Label2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblUploadDate;
+        protected global::System.Web.UI.WebControls.Label Label2;
         
         /// <summary>
-        /// lblUploadDescription control.
+        /// submitBtn control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblUploadDescription;
+        protected global::System.Web.UI.WebControls.Button submitBtn;
         
         /// <summary>
-        /// uploadTitleInput control.
+        /// deleteBtn control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox uploadTitleInput;
+        protected global::System.Web.UI.WebControls.Button deleteBtn;
         
         /// <summary>
-        /// uploadDescriptionInput control.
+        /// cfmSubmit control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox uploadDescriptionInput;
+        protected global::System.Web.UI.WebControls.Button cfmSubmit;
         
         /// <summary>
-        /// FileUpload1 control.
+        /// Button3 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.FileUpload FileUpload1;
+        protected global::System.Web.UI.WebControls.Button Button3;
         
         /// <summary>
         /// Button1 control.
