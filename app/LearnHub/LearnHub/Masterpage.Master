@@ -120,8 +120,8 @@
 
         .configure {
             position: absolute;
-            right: 0px;
-            padding: 10px;
+            left: 0px;
+            padding-top: 8px;
         }
 
           .askEmma {

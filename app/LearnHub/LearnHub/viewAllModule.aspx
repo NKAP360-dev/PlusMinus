@@ -114,11 +114,11 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
      <div class="configure">
-        <a href="#" id="config" onclick="configuration()"><span class="label label-primary"><span class="glyphicon glyphicon-cog"></span>Configuration Menu</span></a>
+        <a href="#" id="config" onclick="configuration()"><span class="label label-default"><span class="glyphicon glyphicon-cog"></span>Configuration Menu</span></a>
     </div>
     <br />
     <div class="configure">
-        <ul class="list-group" id="menu">
+        <ul class="list-group" id="menu" style="display: none;">
             <a href="createModules.aspx">
                 <li class="list-group-item">Create New Modules
                 </li>
