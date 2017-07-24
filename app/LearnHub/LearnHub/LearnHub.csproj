@@ -214,12 +214,40 @@
     <Compile Include="askEmmaAddAns.aspx.designer.cs">
       <DependentUpon>askEmmaAddAns.aspx</DependentUpon>
     </Compile>
+    <Compile Include="askEmmaAddIntent.aspx.cs">
+      <DependentUpon>askEmmaAddIntent.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="askEmmaAddIntent.aspx.designer.cs">
+      <DependentUpon>askEmmaAddIntent.aspx</DependentUpon>
+    </Compile>
     <Compile Include="askEmmaEditAns.aspx.cs">
       <DependentUpon>askEmmaEditAns.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="askEmmaEditAns.aspx.designer.cs">
       <DependentUpon>askEmmaEditAns.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="askEmmaFeedback.aspx.cs">
+      <DependentUpon>askEmmaFeedback.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="askEmmaFeedback.aspx.designer.cs">
+      <DependentUpon>askEmmaFeedback.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="askEmmaHelpQn.aspx.cs">
+      <DependentUpon>askEmmaHelpQn.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="askEmmaHelpQn.aspx.designer.cs">
+      <DependentUpon>askEmmaHelpQn.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="askEmmaInitializeMsg.aspx.cs">
+      <DependentUpon>askEmmaInitializeMsg.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="askEmmaInitializeMsg.aspx.designer.cs">
+      <DependentUpon>askEmmaInitializeMsg.aspx</DependentUpon>
     </Compile>
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="createModules.aspx.cs">
@@ -421,7 +449,11 @@
     <Content Include="approvalConfirmation.aspx" />
     <Content Include="approvedTRF.aspx" />
     <Content Include="askEmmaAddAns.aspx" />
+    <Content Include="askEmmaAddIntent.aspx" />
     <Content Include="askEmmaEditAns.aspx" />
+    <Content Include="askEmmaFeedback.aspx" />
+    <Content Include="askEmmaHelpQn.aspx" />
+    <Content Include="askEmmaInitializeMsg.aspx" />
     <Content Include="bootstrap\css\bootstrap-responsive.css" />
     <Content Include="bootstrap\css\bootstrap-responsive.min.css" />
     <Content Include="bootstrap\css\bootstrap.css" />
