@@ -1,9 +1,10 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Masterpage.Master" AutoEventWireup="true" CodeBehind="viewAllModule.aspx.cs" Inherits="LearnHub.viewAllModule" %>
-<%@ Import Namespace="LearnHub.AppCode.entity"%>
-<%@ Import Namespace="LearnHub.AppCode.dao"%>
+
+<%@ Import Namespace="LearnHub.AppCode.entity" %>
+<%@ Import Namespace="LearnHub.AppCode.dao" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-     <style>
+    <style>
         .list-group-item {
             border-left: 1px solid white;
             border-right: 1px solid white;
@@ -19,7 +20,23 @@
             border: 1px solid #ddd; /* Add a grey border */
             margin-bottom: 12px; /* Add some space below the input */
         }
+
+        .pager li > a,
+        .pager li > span,
+        .pager li > a:focus, .pager .disabled > a,
+        .pager .disabled > a:hover,
+        .pager .disabled > a:focus,
+        .pager .disabled > span {
+            background-color: #2c3e50;
+        }
+
+        .pager li > a:hover{
+            background-color: #576777;
+        }
+
+
     </style>
+    <script src="/Scripts/simple-bootstrap-paginator.js"></script>
     <script>
         $(document).ready(function () {
             $('#menu').hide();
@@ -113,7 +130,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
-     <div class="configure">
+    <div class="configure">
         <a href="#" id="config" onclick="configuration()"><span class="label label-default"><span class="glyphicon glyphicon-cog"></span>Configuration Menu</span></a>
     </div>
     <br />
@@ -122,238 +139,265 @@
             <a href="createModules.aspx">
                 <li class="list-group-item">Create New Modules
                 </li>
-            </a>  
+            </a>
         </ul>
     </div>
-   
+
     <div class="container">
         <h1>View Modules</h1>
 
         <div class="verticalLine"></div>
     </div>
     <asp:Panel ID="viewCompulsory" runat="server" Visible="false">
-    <div class="container">
-    <div class="row">
-        <div class="col-md-3">
-            <div class="list-group">
-                 <div class="wrapper"><h4><strong><span class="glyphicon glyphicon-menu-hamburger">&emsp;</span>View Training Types</strong></h4></div>
-                <a href="viewAllModule.aspx?module=compulsory" class="list-group-item active">
-                    <span class="glyphicon glyphicon-menu-right"></span> &emsp;Compulsory Training
-                </a>
-                <a href="viewAllModule.aspx?module=leadership" class="list-group-item">
-                    Leadership Skills Training
-                </a>
-                <a href="viewAllModule.aspx?module=professional" class="list-group-item">
-                    Professional Training
-                </a>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="list-group">
+                        <div class="wrapper">
+                            <h4><strong><span class="glyphicon glyphicon-menu-hamburger">&emsp;</span>View Training Types</strong></h4>
+                        </div>
+                        <a href="viewAllModule.aspx?module=compulsory" class="list-group-item active">
+                            <span class="glyphicon glyphicon-menu-right"></span>&emsp;Compulsory Training
+                        </a>
+                        <a href="viewAllModule.aspx?module=leadership" class="list-group-item">Leadership Skills Training
+                        </a>
+                        <a href="viewAllModule.aspx?module=professional" class="list-group-item">Professional Training
+                        </a>
 
+                    </div>
+                </div>
+                <div class="col-md-9">
+                    <h2>Compulsory Modules</h2>
+                    <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for Courses">
+                    <h6>Click on column name to sort</h6>
+                    <table class="table table-striped table-hover with-pager" id="myTable">
+                        <thead>
+                            <tr>
+                                <th onclick="sortTable(0)">Course Name&emsp;<span class="glyphicon glyphicon-sort"></span></th>
+                                <th onclick="sortTable(1)">Course Provider&emsp;<span class="glyphicon glyphicon-sort"></span></th>
+                                <th>Start Date</th>
+                                <th>End Date</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <%
+                            Course_elearnDAO allListing = new Course_elearnDAO();
+                            ArrayList list = allListing.view_courses("Compulsory");
+                            String htmlStr = null;
+                            if (list.Count > 0)
+                            {
+                                foreach (Course_elearn ce in list)
+                                {
+                                    htmlStr += "<tr><td>";
+                                    htmlStr += ce.getCourseName();
+                                    htmlStr += "</td>";
+                                    htmlStr += "<td>";
+                                    htmlStr += ce.getCourseProvider();
+                                    htmlStr += "</td>";
+                                    htmlStr += "<td>";
+                                    htmlStr += ce.getStartDate();
+                                    htmlStr += "</td>";
+                                    if (ce.getExpiryDate() != null)
+                                    {
+                                        htmlStr += "<td>";
+                                        htmlStr += ce.getExpiryDate();
+                                        htmlStr += "</td>";
+                                    }
+                                    else
+                                    {
+                                        htmlStr += "<td>";
+                                        htmlStr += "N.A";
+                                        htmlStr += "</td>";
+                                    }
+                                    htmlStr += "<td><a href=\"viewModuleInfo.aspx?id=" + ce.getCourseID() + "\"><span class=\"glyphicon glyphicon-menu-right\"></span> View More</a></td>";
+                                    htmlStr += "</tr>";
+                                }
+                                Response.Write(htmlStr);
+                            }
+
+                        %>
+                    </table>
+                    <nav>
+                        <ul class="pager">
+                            <li class="previous">
+                                <a href="#"><span aria-hidden="true"><span class="glyphicon glyphicon-chevron-left"></span></span>Older</a>
+                            </li>
+                            <li class="next"><a href="#">Newer<span aria-hidden="true"><span class="glyphicon glyphicon-chevron-right"></span></span>
+                            </a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
             </div>
         </div>
-        <div class="col-md-9">
-            <h2>Compulsory Modules</h2>
-            <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for Courses">
-            <h6>Click on column name to sort</h6>
-            <table class="table table-striped table-hover" id="myTable">
-                <thead>
-                    <tr>
-                    <th onclick="sortTable(0)">Course Name&emsp;<span class="glyphicon glyphicon-sort"></span></th>
-                    <th onclick="sortTable(1)">Course Provider&emsp;<span class="glyphicon glyphicon-sort"></span></th>
-                        <th>Start Date</th>
-                        <th>End Date</th>
-                        <th></th>
-                    </tr>
-                </thead>
-                 <%
-                     Course_elearnDAO allListing = new Course_elearnDAO();
-                     ArrayList list = allListing.view_courses("Compulsory");
-                     String htmlStr = null;
-                     if (list.Count > 0)
-                     {
-                         foreach (Course_elearn ce in list)
-                         {
-                             htmlStr += "<tr><td>";
-                             htmlStr += ce.getCourseName();
-                             htmlStr += "</td>";
-                             htmlStr += "<td>";
-                             htmlStr += ce.getCourseProvider();
-                             htmlStr += "</td>";
-                             htmlStr += "<td>";
-                             htmlStr += ce.getStartDate();
-                             htmlStr += "</td>";
-                             if (ce.getExpiryDate() != null)
-                             {
-                                 htmlStr += "<td>";
-                                 htmlStr += ce.getExpiryDate();
-                                 htmlStr += "</td>";
-                             }
-                             else
-                             {
-                                 htmlStr += "<td>";
-                                 htmlStr += "N.A";
-                                 htmlStr += "</td>";
-                             }
-                             htmlStr += "<td><a href=\"viewModuleInfo.aspx?id="+ ce.getCourseID() + "\"><span class=\"glyphicon glyphicon-menu-right\"></span> View More</a></td>";
-                             htmlStr += "</tr>";
-                         }
-                        Response.Write(htmlStr);
-                     }
-                     
-                    %>
-            </table>
+    </asp:Panel>
 
-        </div>
-    </div>
-        </div>
-        </asp:Panel>
+    <asp:Panel ID="viewLeadership" runat="server" Visible="false">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="list-group">
+                        <div class="wrapper">
+                            <h4><strong><span class="glyphicon glyphicon-menu-hamburger">&emsp;</span>View Training Types</strong></h4>
+                        </div>
+                        <a href="viewAllModule.aspx?module=compulsory" class="list-group-item">Compulsory Training
+                        </a>
+                        <a href="viewAllModule.aspx?module=leadership" class="list-group-item active">
+                            <span class="glyphicon glyphicon-menu-right"></span>&emsp;Leadership Skills Training
+                        </a>
+                        <a href="viewAllModule.aspx?module=professional" class="list-group-item">Professional Training
+                        </a>
 
-     <asp:Panel ID="viewLeadership" runat="server" Visible="false">
-    <div class="container">
-    <div class="row">
-        <div class="col-md-3">
-            <div class="list-group">
-                    <div class="wrapper">
-                        <h4><strong><span class="glyphicon glyphicon-menu-hamburger">&emsp;</span>View Training Types</strong></h4>
                     </div>
-                    <a href="viewAllModule.aspx?module=compulsory" class="list-group-item">Compulsory Training
-                    </a>
-                    <a href="viewAllModule.aspx?module=leadership" class="list-group-item active">
-                        <span class="glyphicon glyphicon-menu-right"></span>&emsp;Leadership Skills Training
-                    </a>
-                    <a href="viewAllModule.aspx?module=professional" class="list-group-item">Professional Training
-                    </a>
-
                 </div>
-        </div>
-        <div class="col-md-9">
-            <h2>Leadership Modules</h2>
-            <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for Courses">
-            <h6>Click on column name to sort</h6>
-            <table class="table table-striped table-hover" id="myTable">
-                <thead>
-                    <tr>
-                    <th onclick="sortTable(0)">Course Name&emsp;<span class="glyphicon glyphicon-sort"></span></th>
-                    <th onclick="sortTable(1)">Course Provider&emsp;<span class="glyphicon glyphicon-sort"></span></th>
-                        <th>Start Date</th>
-                        <th>End Date</th>
-                        <th></th>
-                    </tr>
-                </thead>
-                 <%
-                     Course_elearnDAO allListing = new Course_elearnDAO();
-                     ArrayList list = allListing.view_courses("Leadership");
-                     String htmlStr = null;
-                     if (list.Count > 0)
-                     {
-                         foreach (Course_elearn ce in list)
-                         {
-                             htmlStr += "<tr><td>";
-                             htmlStr += ce.getCourseName();
-                             htmlStr += "</td>";
-                             htmlStr += "<td>";
-                             htmlStr += ce.getCourseProvider();
-                             htmlStr += "</td>";
-                             htmlStr += "<td>";
-                             htmlStr += ce.getStartDate();
-                             htmlStr += "</td>";
-                             if (ce.getExpiryDate() != null)
-                             {
-                                 htmlStr += "<td>";
-                                 htmlStr += ce.getExpiryDate();
-                                 htmlStr += "</td>";
-                             }
-                             else
-                             {
-                                 htmlStr += "<td>";
-                                 htmlStr += "N.A";
-                                 htmlStr += "</td>";
-                             }
-                             htmlStr += "<td><a href=\"viewModuleInfo.aspx?id="+ ce.getCourseID() + "\"><span class=\"glyphicon glyphicon-menu-right\"></span> View More</a></td>";
-                             htmlStr += "</tr>";
-                         }
-                        Response.Write(htmlStr);
-                     }
-                     
-                    %>
-            </table>
+                <div class="col-md-9">
+                    <h2>Leadership Modules</h2>
+                    <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for Courses">
+                    <h6>Click on column name to sort</h6>
+                    <table class="table table-striped table-hover with-pager" id="myTable">
+                        <thead>
+                            <tr>
+                                <th onclick="sortTable(0)">Course Name&emsp;<span class="glyphicon glyphicon-sort"></span></th>
+                                <th onclick="sortTable(1)">Course Provider&emsp;<span class="glyphicon glyphicon-sort"></span></th>
+                                <th>Start Date</th>
+                                <th>End Date</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <%
+                            Course_elearnDAO allListing = new Course_elearnDAO();
+                            ArrayList list = allListing.view_courses("Leadership");
+                            String htmlStr = null;
+                            if (list.Count > 0)
+                            {
+                                foreach (Course_elearn ce in list)
+                                {
+                                    htmlStr += "<tr><td>";
+                                    htmlStr += ce.getCourseName();
+                                    htmlStr += "</td>";
+                                    htmlStr += "<td>";
+                                    htmlStr += ce.getCourseProvider();
+                                    htmlStr += "</td>";
+                                    htmlStr += "<td>";
+                                    htmlStr += ce.getStartDate();
+                                    htmlStr += "</td>";
+                                    if (ce.getExpiryDate() != null)
+                                    {
+                                        htmlStr += "<td>";
+                                        htmlStr += ce.getExpiryDate();
+                                        htmlStr += "</td>";
+                                    }
+                                    else
+                                    {
+                                        htmlStr += "<td>";
+                                        htmlStr += "N.A";
+                                        htmlStr += "</td>";
+                                    }
+                                    htmlStr += "<td><a href=\"viewModuleInfo.aspx?id=" + ce.getCourseID() + "\"><span class=\"glyphicon glyphicon-menu-right\"></span> View More</a></td>";
+                                    htmlStr += "</tr>";
+                                }
+                                Response.Write(htmlStr);
+                            }
 
+                        %>
+                    </table>
+                    <nav>
+                        <ul class="pager">
+                            <li class="previous">
+                                <a href="#"><span aria-hidden="true"><span class="glyphicon glyphicon-chevron-left"></span></span>Older</a>
+                            </li>
+                            <li class="next"><a href="#">Newer<span aria-hidden="true"><span class="glyphicon glyphicon-chevron-right"></span></span>
+                            </a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
         </div>
-    </div>
-        </div>
-        </asp:Panel>
+    </asp:Panel>
 
     <asp:Panel ID="viewProfessional" runat="server" Visible="false">
-    <div class="container">
-    <div class="row">
-        <div class="col-md-3">
-            <div class="list-group">
-                    <div class="wrapper">
-                        <h4><strong><span class="glyphicon glyphicon-menu-hamburger">&emsp;</span>View Training Types</strong></h4>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="list-group">
+                        <div class="wrapper">
+                            <h4><strong><span class="glyphicon glyphicon-menu-hamburger">&emsp;</span>View Training Types</strong></h4>
+                        </div>
+                        <a href="viewAllModule.aspx?module=compulsory" class="list-group-item">Compulsory Training
+                        </a>
+                        <a href="viewAllModule.aspx?module=leadership" class="list-group-item">Leadership Skills Training
+                        </a>
+                        <a href="viewAllModule.aspx?module=professional" class="list-group-item active"><span class="glyphicon glyphicon-menu-right"></span>&emsp;Professional Training
+                        </a>
+
                     </div>
-                    <a href="viewAllModule.aspx?module=compulsory" class="list-group-item">Compulsory Training
-                    </a>
-                    <a href="viewAllModule.aspx?module=leadership" class="list-group-item"> Leadership Skills Training
-                    </a>
-                    <a href="viewAllModule.aspx?module=professional" class="list-group-item active"><span class="glyphicon glyphicon-menu-right"></span>&emsp;Professional Training
-                    </a>
-
                 </div>
-        </div>
-        <div class="col-md-9">
-            <h2>Professional Modules</h2>
-            <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for Courses">
-            <h6>Click on column name to sort</h6>
-            <table class="table table-striped table-hover" id="myTable">
-                <thead>
-                    <tr>
-                    <th onclick="sortTable(0)">Course Name&emsp;<span class="glyphicon glyphicon-sort"></span></th>
-                    <th onclick="sortTable(1)">Course Provider&emsp;<span class="glyphicon glyphicon-sort"></span></th>
-                        <th>Start Date</th>
-                        <th>End Date</th>
-                        <th></th>
-                    </tr>
-                </thead>
-                 <%
-                     Course_elearnDAO allListing = new Course_elearnDAO();
-                     ArrayList list = allListing.view_courses("Professional");
-                     String htmlStr = null;
-                     if (list.Count > 0)
-                     {
-                         foreach (Course_elearn ce in list)
-                         {
-                             htmlStr += "<tr><td>";
-                             htmlStr += ce.getCourseName();
-                             htmlStr += "</td>";
-                             htmlStr += "<td>";
-                             htmlStr += ce.getCourseProvider();
-                             htmlStr += "</td>";
-                             htmlStr += "<td>";
-                             htmlStr += ce.getStartDate();
-                             htmlStr += "</td>";
-                             if (ce.getExpiryDate() != null)
-                             {
-                                 htmlStr += "<td>";
-                                 htmlStr += ce.getExpiryDate();
-                                 htmlStr += "</td>";
-                             }
-                             else
-                             {
-                                 htmlStr += "<td>";
-                                 htmlStr += "N.A";
-                                 htmlStr += "</td>";
-                             }
-                             htmlStr += "<td><a href=\"viewModuleInfo.aspx?id="+ ce.getCourseID() + "\"><span class=\"glyphicon glyphicon-menu-right\"></span> View More</a></td>";
-                             htmlStr += "</tr>";
-                         }
-                        Response.Write(htmlStr);
-                     }
-                     
-                    %>
-            </table>
+                <div class="col-md-9">
+                    <h2>Professional Modules</h2>
+                    <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for Courses">
+                    <h6>Click on column name to sort</h6>
+                    <table class="table table-striped table-hover with-pager" id="myTable">
+                        <thead>
+                            <tr>
+                                <th onclick="sortTable(0)">Course Name&emsp;<span class="glyphicon glyphicon-sort"></span></th>
+                                <th onclick="sortTable(1)">Course Provider&emsp;<span class="glyphicon glyphicon-sort"></span></th>
+                                <th>Start Date</th>
+                                <th>End Date</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <%
+                            Course_elearnDAO allListing = new Course_elearnDAO();
+                            ArrayList list = allListing.view_courses("Professional");
+                            String htmlStr = null;
+                            if (list.Count > 0)
+                            {
+                                foreach (Course_elearn ce in list)
+                                {
+                                    htmlStr += "<tr><td>";
+                                    htmlStr += ce.getCourseName();
+                                    htmlStr += "</td>";
+                                    htmlStr += "<td>";
+                                    htmlStr += ce.getCourseProvider();
+                                    htmlStr += "</td>";
+                                    htmlStr += "<td>";
+                                    htmlStr += ce.getStartDate();
+                                    htmlStr += "</td>";
+                                    if (ce.getExpiryDate() != null)
+                                    {
+                                        htmlStr += "<td>";
+                                        htmlStr += ce.getExpiryDate();
+                                        htmlStr += "</td>";
+                                    }
+                                    else
+                                    {
+                                        htmlStr += "<td>";
+                                        htmlStr += "N.A";
+                                        htmlStr += "</td>";
+                                    }
+                                    htmlStr += "<td><a href=\"viewModuleInfo.aspx?id=" + ce.getCourseID() + "\"><span class=\"glyphicon glyphicon-menu-right\"></span> View More</a></td>";
+                                    htmlStr += "</tr>";
+                                }
+                                Response.Write(htmlStr);
+                            }
 
+                        %>
+                    </table>
+                    <nav>
+                        <ul class="pager">
+                            <li class="previous">
+                                <a href="#"><span aria-hidden="true"><span class="glyphicon glyphicon-chevron-left"></span></span>Older</a>
+                            </li>
+                            <li class="next"><a href="#">Newer<span aria-hidden="true"><span class="glyphicon glyphicon-chevron-right"></span></span>
+                            </a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
         </div>
-    </div>
-        </div>
-        </asp:Panel>
+    </asp:Panel>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder2" runat="server">
 </asp:Content>
