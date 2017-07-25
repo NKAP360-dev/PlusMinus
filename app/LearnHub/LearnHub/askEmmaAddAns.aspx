@@ -72,7 +72,7 @@
                         <%--Mandatory Choose 1--%>
                         <asp:DropDownList ID="ddlIntent" runat="server" CssClass="form-control"></asp:DropDownList>
                         <br>
-                        <asp:RequiredFieldValidator ID="rfv_ddlIntent" runat="server" ControlToValidate="courseInput" ErrorMessage="Please Select a Course" InitialValue="--Select--" ForeColor="Red" ValidationGroup="ValidateForm"></asp:RequiredFieldValidator>
+                        <asp:RequiredFieldValidator ID="rfv_ddlIntent" runat="server" ControlToValidate="ddlIntent" ErrorMessage="Please Select a Course" InitialValue="--Select--" ForeColor="Red" ValidationGroup="ValidateForm"></asp:RequiredFieldValidator>
                     </div>
                 </div>
                 <div class="form-group">
