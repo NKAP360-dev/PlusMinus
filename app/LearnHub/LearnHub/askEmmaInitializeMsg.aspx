@@ -82,6 +82,13 @@
                  <asp:Button ID="addBtn" CssClass="btn btn-primary" runat="server" Text="Add"/>
                 </div>
             </div>
+            <br />
+            <div class="row">
+                    <div class="wrapper">
+                        <asp:Label ID="Label1" runat="server" CssClass="text-success"><span class="glyphicon glyphicon-ok"></span> Added</asp:Label><br />
+                        <asp:Label ID="Label2" runat="server" CssClass="text-danger"><span class="glyphicon glyphicon-remove"></span> You fucked up</asp:Label>
+                    </div>
+                </div>
         </div>
                 
             </form>

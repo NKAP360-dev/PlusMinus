@@ -166,25 +166,33 @@
                 <h2>Create new Intent</h2>
                 <br />
                 <div class="form-group">
-                    <strong>
-                        <%--Intent--%>
-                        <label for="intentInput" class="col-lg-3 control-label"><span class="glyphicon glyphicon-question-sign" data-toggle='tooltip' data-placement="left" title="" data-original-title="An Intent is a......"></span>&nbsp;Name of Intent *</label>
-                    </strong>
-                    <div class="col-lg-7">
-                        <%--Mandatory text field--%>
-                        <asp:TextBox ID="intentInput" runat="server" CssClass="form-control" placeholder="Enter New Intent"></asp:TextBox>
-                    </div>
-                    <div class="col-lg-1">
-                                                <asp:Button ID="submitBtn" CssClass="btn btn-primary" runat="server" Text="Submit" data-toggle="modal" href="#submitModal" OnClientClick="return false;" />
+                    <div class="row">
+                        <strong>
+                            <%--Intent--%>
+                            <label for="intentInput" class="col-lg-3 control-label"><span class="glyphicon glyphicon-question-sign" data-toggle='tooltip' data-placement="left" title="" data-original-title="An Intent is a......"></span>&nbsp;Name of Intent *</label>
+                        </strong>
+                        <div class="col-lg-7">
+                            <%--Mandatory text field--%>
+                            <asp:TextBox ID="intentInput" runat="server" CssClass="form-control" placeholder="Enter New Intent"></asp:TextBox>
+                        </div>
+                        <div class="col-lg-1">
+                            <asp:Button ID="submitBtn" CssClass="btn btn-primary" runat="server" Text="Submit" data-toggle="modal" href="#submitModal" OnClientClick="return false;" />
 
+                        </div>
                     </div>
-                    <br />
+                <br />
+                <br />
+                <div class="row">
+                    <div class="wrapper">
+                        <asp:Label ID="successMsg" runat="server" CssClass="text-success"><span class="glyphicon glyphicon-ok"></span> Submitted</asp:Label><br />
+                        <asp:Label ID="errorMsg" runat="server" CssClass="text-danger"><span class="glyphicon glyphicon-remove"></span> You fucked up</asp:Label>
+                    </div>
                 </div>
-                <asp:Label ID="Label1" CssClass="col-lg-2 control-label" runat="server" Text="* = Compulsory fields"></asp:Label>
-                <br />
+                </div>
+        <br />
                 <br />
 
-               
+
             </fieldset>
         </div>
     </form>

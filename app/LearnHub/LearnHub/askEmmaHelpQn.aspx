@@ -172,11 +172,15 @@
                         <asp:Button ID="addBtn" CssClass="btn btn-primary" runat="server" Text="Add" />
                     </div>
                     <br />
+                </div>        
+                <br />
+                <br />
+                <div class="row">
+                    <div class="wrapper">
+                        <asp:Label ID="successMsg" runat="server" CssClass="text-success"><span class="glyphicon glyphicon-ok"></span> Added</asp:Label><br />
+                        <asp:Label ID="errorMsg" runat="server" CssClass="text-danger"><span class="glyphicon glyphicon-remove"></span> You fucked up</asp:Label>
+                    </div>
                 </div>
-                <asp:Label ID="Label1" CssClass="col-lg-2 control-label" runat="server" Text="* = Compulsory fields"></asp:Label>
-                <br />
-                <br />
-
             </fieldset>
         </div>
     </form>
