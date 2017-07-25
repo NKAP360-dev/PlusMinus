@@ -4,16 +4,8 @@
 <%@ Import Namespace="LearnHub.AppCode.dao" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    <style>
-        .configure {
-            position: absolute;
-            right: 0px;
-            padding: 10px;
-        }
-    </style>
 
     <script>
-
         $(document).ready(function () {
             $("[data-toggle='tooltip']").tooltip();
         });

@@ -4,14 +4,6 @@
 <%@ Import Namespace="LearnHub.AppCode.dao" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-        <style>
-        .configure {
-            position: absolute;
-            right: 0px;
-            padding: 10px;
-        }
-    </style>
-
     <script>
 
         $(document).ready(function () {
@@ -49,7 +41,7 @@
     %>
 
     <div class="configure">
-        <a href="emmaConfiguration.aspx" id="config"><span class="label label-primary"><span class="glyphicon glyphicon-cog"></span>Configuration Menu</span></a>
+        <a href="emmaConfiguration.aspx" id="config"><span class="label label-default"><span class="glyphicon glyphicon-cog"></span>Configuration Menu</span></a>
     </div>
     <br />
 
