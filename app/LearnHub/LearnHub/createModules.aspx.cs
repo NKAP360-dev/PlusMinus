@@ -14,11 +14,22 @@ namespace LearnHub
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            moduleType.Items.Insert(0, "");
-            moduleType.Items.Insert(1, "Compulsory");
-            moduleType.Items.Insert(2, "Leadership");
-            moduleType.Items.Insert(3, "Professional");
-            Response.Write(DateTime.Now);
+            User currentUser = (User)Session["currentUser"];
+            if (currentUser == null)
+            {
+                Response.Redirect("/Login.aspx");
+            }
+            else if (!currentUser.getRole().Equals("course creator") && !currentUser.getRole().Equals("superuser"))
+            {
+                Response.Redirect("/errorPage.aspx");
+            }
+            else
+            {
+                moduleType.Items.Insert(0, "");
+                moduleType.Items.Insert(1, "Compulsory");
+                moduleType.Items.Insert(2, "Leadership");
+                moduleType.Items.Insert(3, "Professional");
+            }
 
         }
         protected void submitBtn_Click(object sender, EventArgs e)
@@ -32,7 +43,7 @@ namespace LearnHub
             if (check && moduleType.Text != "") // if no expiry date
             {
                 c = new Course_elearn(nameOfModuleInput.Text, user.getDepartment(), DateTime.Now,
-                    Convert.ToDateTime(fromDateInput.Text), Convert.ToDateTime(toDateInput.Text),  "Open", descriptionModuleInput.Text, moduleType.Text);
+                    Convert.ToDateTime(fromDateInput.Text), Convert.ToDateTime(toDateInput.Text),  "Open", descriptionModuleInput.Text, moduleType.Text, user);
             }
 
             //check pre req here 

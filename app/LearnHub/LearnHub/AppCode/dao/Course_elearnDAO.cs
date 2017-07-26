@@ -107,8 +107,8 @@ namespace LearnHub.AppCode.dao
                 SqlCommand comm = new SqlCommand();
                 comm.Connection = conn;
                 comm.CommandText = "insert into [Elearn_course] " +
-                    "(elearn_courseName, elearn_courseProvider, entry_date, start_date, expiry_date, status, description, category) " +
-                    "values (@cName, @provider, Convert(datetime, @entry, 103), convert(datetime,@time,103), Convert(datetime,@expiry,103), @status, @desc, @category)";
+                    "(elearn_courseName, elearn_courseProvider, entry_date, start_date, expiry_date, status, description, category, courseCreator) " +
+                    "values (@cName, @provider, Convert(datetime, @entry, 103), convert(datetime,@time,103), Convert(datetime,@expiry,103), @status, @desc, @category, @courseCreator)";
                 comm.Parameters.AddWithValue("@cName", course.getCourseName());
                 if (course.getCourseProvider() != null)
                 {
@@ -139,6 +139,7 @@ namespace LearnHub.AppCode.dao
                 comm.Parameters.AddWithValue("@status", course.getStatus());
                 comm.Parameters.AddWithValue("@desc", course.getDescription());
                 comm.Parameters.AddWithValue("@category", course.getCategory());
+                comm.Parameters.AddWithValue("@courseCreator", course.getCourseCreator().getUserID());
                 int rowsAffected = comm.ExecuteNonQuery();                
                 //need new method to create pre-requisities here to store in seperate table (pre-req table)
                 toReturn = course;
@@ -263,6 +264,7 @@ namespace LearnHub.AppCode.dao
         {
             SqlConnection conn = new SqlConnection();
             Course_elearn toReturn = null;
+            UserDAO userDAO = new UserDAO();
             try
             {
                 conn = new SqlConnection();
@@ -298,6 +300,7 @@ namespace LearnHub.AppCode.dao
                         toReturn.setPrerequisite(list); //retrieve arraylist of all prereq course_elearn objects
                     }
                     toReturn.setCategory((string)dr["category"]);//7
+                    toReturn.setCourseCreator(userDAO.getUserByID((string)dr["courseCreator"]));
                 }
                 dr.Close();
             }

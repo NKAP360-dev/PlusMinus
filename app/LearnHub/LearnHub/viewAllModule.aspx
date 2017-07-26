@@ -129,12 +129,11 @@
     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-     <%if (Session["currentUser"] != null)
-    {
+    <%
         User currentUser = (User)Session["currentUser"];
-
-        if (currentUser.getDepartment().Equals("hr"))
-        {%>
+        if (currentUser != null && (currentUser.getRole().Equals("course creator") || currentUser.getRole().Equals("superuser")))
+        {
+    %>
     <div class="configure">
         <a href="#" id="config" onclick="configuration()"><span class="label label-default"><span class="glyphicon glyphicon-cog"></span>Configuration Menu</span></a>
     </div>
@@ -147,8 +146,9 @@
             </a>
         </ul>
     </div>
-    <%}
-    } %>
+    <%
+        }
+    %>
     <div class="container">
         <h1>View Modules</h1>
 
@@ -201,12 +201,12 @@
                                     htmlStr += ce.getCourseProvider();
                                     htmlStr += "</td>";
                                     htmlStr += "<td>";
-                                    htmlStr += ce.getStartDate();
+                                    htmlStr += ce.getStartDate().ToString("dd/MM/yyyy");
                                     htmlStr += "</td>";
                                     if (ce.getExpiryDate() != null)
                                     {
                                         htmlStr += "<td>";
-                                        htmlStr += ce.getExpiryDate();
+                                        htmlStr += ce.getExpiryDate().ToString("dd/MM/yyyy");
                                         htmlStr += "</td>";
                                     }
                                     else
