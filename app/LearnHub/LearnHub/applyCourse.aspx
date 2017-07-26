@@ -8,6 +8,7 @@
 
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/js/bootstrap-datepicker.js"></script>
+
     <script type="text/javascript">
         
         $(window).load(function () {
@@ -38,7 +39,9 @@
                 }
             }
         }
+      </script>
 
+    <script type="text/javascript">
         <%--
         window.onload = function () {
             console.log("modal1");
@@ -338,7 +341,7 @@
                 return true;
             }
         }
-
+        
         function checkForm_Clicked(source, args) {
 
             Page_ClientValidate('ValidateForm');
@@ -353,7 +356,7 @@
             }
             else {
                 if (document.getElementById('<%= lblErrorMsgCourse %>').Text = "") {
-                    document.getElementById('<%= lblErrorMsgFinal.ClientID %>').innerHTML = " ";
+                    document.getElementById('<%= lblErrorMsgFinal.ClientID %>').innerHTML = "";
                     document.getElementById('<%= cfmSubmit.ClientID %>').disabled = false;
                 }
                 else {
@@ -364,6 +367,7 @@
                     console.log("The end");
                 }
             }
+            return false;
         }
     </script>
 
@@ -557,7 +561,6 @@
                     </div>
                     <asp:RequiredFieldValidator ID="rfv_courseProvider" runat="server" ErrorMessage="Please Select a Course Provider" ControlToValidate="courseProvider" ForeColor="Red" ValidationGroup="ValidateForm"></asp:RequiredFieldValidator>
                     <asp:RequiredFieldValidator ID="rfv_courseProviderSummary" runat="server" ErrorMessage="Please Selected a Course Provider" ControlToValidate="courseProvider" ForeColor="Red" ValidationGroup="summaryGroup" Visible="False"></asp:RequiredFieldValidator>
-                    <asp:Label ID="empty1" runat="server" CssClass="col-lg-2 control-label" Text=""></asp:Label>
                     <div class="col-lg-5">
                         <asp:TextBox ID="externalCourseProvider" disabled="" runat="server" CssClass="form-control" placeholder="If external, please specify"></asp:TextBox>
                     </div>
@@ -734,6 +737,7 @@
                         <div class="wrapper">                            
                             <h4>Are you sure you want to cancel?<br /> This will clear all fields previously entered!</h4><br />
                             <asp:Button ID="cfmCancel" CssClass="btn btn-primary" runat="server" Text="Clear" OnClick="cfmCancel_Click"/>
+                            <asp:Label ID="lblErrorMsgTest" runat="server" CssClass="col-lg-2 control-label" ForeColor="Red" Visible="False"></asp:Label>
                         </div>                       
                     </div>                  
                 </div>
@@ -781,8 +785,9 @@
 
                 <div class="form-group">
                     <div class="col-lg-10 col-lg-offset-2">
-                        <asp:Button ID="submitBtn" CssClass="btn btn-primary" runat="server" Text="Submit" data-toggle="modal" onClientClick ="checkForm_Clicked()" href="#submitModal"/>
-                        <asp:Button ID="resetBtn" CssClass="btn btn-default" runat="server" Text="Clear" data-toggle="modal" href="#cancelModal"/>
+                        <asp:Button ID="submitBtn" CssClass="btn btn-primary" runat="server" Text="Submit" data-toggle="modal" OnClientClick="return checkForm_Clicked()" href="#submitModal" CausesValidation="True" UseSubmitBehavior="False" />
+                        <asp:Button ID="resetBtn" CssClass="btn btn-default" runat="server" Text="Clear" data-toggle="modal" OnClientClick="return false;" href="#cancelModal"/>
+                    
                     </div>
                 </div>
             </fieldset>

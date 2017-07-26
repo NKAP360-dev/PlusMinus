@@ -35,12 +35,15 @@ namespace LearnHub
                 Session["selectedCourse"] = null;
             }
         }
-
-        protected void submitBtn_Click(object sender, EventArgs e)
+            protected void submitBtn_Click(object sender, EventArgs e)
         {
             //To do validations here
-            
-            
+            if (courseInput.SelectedIndex == 0)
+            {
+                lblErrorMsgTest.Visible = true;
+                lblErrorMsgTest.Text = "Got error";
+            }
+
             //Assume all fields entered correctly
             //declaration of variables
             WorkflowDAO wfDAO = new WorkflowDAO();
