@@ -24,6 +24,12 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
+    <%if (Session["currentUser"] != null)
+        {
+            User currentUser = (User)Session["currentUser"];
+
+            if (currentUser.getDepartment().Equals("hr"))
+            {%>
     <div class="configure">
         <a href="#" id="config" onclick="configuration()"><span class="label label-default"><span class="glyphicon glyphicon-cog"></span>Configuration Menu</span></a>
     </div>
@@ -40,7 +46,8 @@
             </a>
         </ul>
     </div>
-
+        <%}
+    }%>
     <form class="form-horizontal" runat="server">
         <div class="container">
             <h1>
@@ -265,16 +272,18 @@
                     </div>
                     <div class="modal-body">
                         <div class="wrapper">
-                            <h4>Are you sure you want to delete the following comment?</h4><br />
+                            <h4>Are you sure you want to delete the following comment?</h4>
+                            <br />
                             "
                             <asp:Label ID="Label5" runat="server" Text="Ming Kwang is my idol, but Rafid is my senpai"></asp:Label>"
 
-                            <br /><br />
+                            <br />
+                            <br />
                         </div>
                         <div class="modal-footer">
                             <div class="wrapper">
-                             <asp:Button ID="deleteBtn" CssClass="btn btn-danger" runat="server" Text="Delete" />
-                            <asp:Button ID="Button4" CssClass="btn btn-default" runat="server" class="close" data-dismiss="modal" Text="Go Back" />
+                                <asp:Button ID="deleteBtn" CssClass="btn btn-danger" runat="server" Text="Delete" />
+                                <asp:Button ID="Button4" CssClass="btn btn-default" runat="server" class="close" data-dismiss="modal" Text="Go Back" />
                             </div>
                         </div>
                     </div>

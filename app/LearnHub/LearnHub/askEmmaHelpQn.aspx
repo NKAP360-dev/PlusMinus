@@ -134,13 +134,13 @@
                     <tr>
                         <td>blahblah</td>
                         <td>
-                            <asp:LinkButton ID="LinkButton1" CssClass="btn btn-danger" runat="server" Text=""><span class="glyphicon glyphicon-trash"></span></asp:LinkButton></td>
+                            <asp:LinkButton ID="LinkButton1" CssClass="btn btn-danger" runat="server" Text="" data-toggle="modal" href="#deleteModal"><span class="glyphicon glyphicon-trash"></span></asp:LinkButton></td>
 
                     </tr>
                     <tr>
                         <td>ayeee</td>
                         <td>
-                            <asp:LinkButton ID="LinkButton2" CssClass="btn btn-danger" runat="server" Text=""><span class="glyphicon glyphicon-trash"></span></asp:LinkButton></td>
+                            <asp:LinkButton ID="LinkButton2" CssClass="btn btn-danger" runat="server" Text="" data-toggle="modal" href="#deleteModal"><span class="glyphicon glyphicon-trash"></span></asp:LinkButton></td>
 
                     </tr>
                 </tbody>
@@ -177,11 +177,34 @@
                 <br />
                 <div class="row">
                     <div class="wrapper">
-                        <asp:Label ID="successMsg" runat="server" CssClass="text-success"><span class="glyphicon glyphicon-ok"></span> Added</asp:Label><br />
-                        <asp:Label ID="errorMsg" runat="server" CssClass="text-danger"><span class="glyphicon glyphicon-remove"></span> You fucked up</asp:Label>
+                        <strong><asp:Label ID="successMsg" runat="server" CssClass="text-success"><span class="glyphicon glyphicon-ok"></span> Added successfully</asp:Label></strong><br />
+                        <strong><asp:Label ID="errorMsg" runat="server" CssClass="text-danger"><span class="glyphicon glyphicon-remove"></span> Something went wrong</asp:Label></strong>
                     </div>
                 </div>
             </fieldset>
+        </div>
+
+          <%--Modal for Deletion Confirmation--%>
+                <div id="deleteModal" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title"><span class="glyphicon glyphicon-trash"></span>&nbsp;<b>Delete Help Question</b></h4>
+                    </div>
+                    <%--Modal Content--%>
+                    <div class="modal-body">
+                        <div class="wrapper">                            
+                            <h4>Are you sure you want to delete?</h4><br />
+                            <asp:Button ID="cfmDelete" CssClass="btn btn-danger" runat="server" Text="Delete"/>
+                            <asp:Button ID="Button2" CssClass="btn btn-default" runat="server" class="close" data-dismiss="modal" Text="Cancel"/>
+                            
+                            <br />
+                        </div>                       
+                    </div>                  
+                </div>
+
+            </div>
         </div>
     </form>
 </asp:Content>

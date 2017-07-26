@@ -1,20 +1,21 @@
 ﻿<%@ Page Title="Apply For Courses - LearnHub" Language="C#" MasterPageFile="~/Masterpage.Master" AutoEventWireup="true" CodeBehind="applyCourse.aspx.cs" Inherits="LearnHub.applyCourse" %>
-<%@ Import Namespace="LearnHub.AppCode.entity"%>
-<%@ Import Namespace="LearnHub.AppCode.dao"%>
+
+<%@ Import Namespace="LearnHub.AppCode.entity" %>
+<%@ Import Namespace="LearnHub.AppCode.dao" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    
+
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/css/datepicker.css" rel="stylesheet" type="text/css" />
 
-    
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/js/bootstrap-datepicker.js"></script>
 
     <script type="text/javascript">
-        
+
         $(window).load(function () {
             $('#myModal').modal('show');
 
-            
+
         });
         $(function () {
             $('.input-daterange').datepicker({
@@ -39,7 +40,7 @@
                 }
             }
         }
-      </script>
+    </script>
 
     <script type="text/javascript">
         <%--
@@ -341,7 +342,7 @@
                 return true;
             }
         }
-        
+
         function checkForm_Clicked(source, args) {
 
             Page_ClientValidate('ValidateForm');
@@ -350,9 +351,9 @@
             if (!Page_IsValid) {
                 document.getElementById('<%= lblErrorMsgFinal.ClientID %>').style.display = 'inherit';
                 document.getElementById('<%= lblErrorMsgFinal.ClientID %>').innerHTML = "You have not filled up all of the required fields";
-                    //Page_ClientValidate('summaryGroup');
-                    document.getElementById('<%= cfmSubmit.ClientID %>').disabled = true;
-                    console.log("The end");
+                //Page_ClientValidate('summaryGroup');
+                document.getElementById('<%= cfmSubmit.ClientID %>').disabled = true;
+                console.log("The end");
             }
             else {
                 if (document.getElementById('<%= lblErrorMsgCourse %>').Text = "") {
@@ -374,16 +375,16 @@
 
     <style>
         .modal-body {
-    max-height: calc(100vh - 210px);
-    overflow-y: auto;
-}
+            max-height: calc(100vh - 210px);
+            overflow-y: auto;
+        }
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="container">
         <!-- Modal-->
         <div id="myModal" class="modal fade" role="dialog">
-            <div class="modal-dialog">               
+            <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -484,39 +485,39 @@
                 </div>
                 <br />
 
-                 <%-- Section B--%>
+                <%-- Section B--%>
                 <asp:ScriptManager ID="ScriptManagerCourse" runat="server" />
-                
+
                 <h4>Section B - Course Details</h4>
                 <asp:UpdatePanel ID="UpdatePanel1" runat="server">
-                <ContentTemplate>
-                <div class="form-group">
-                    <strong>
-                        <asp:Label ID="courseLabel" runat="server" CssClass="col-lg-2 control-label" Text="Course Title"></asp:Label></strong>
-                    <div class="col-lg-5">
-                        <asp:DropDownList ID="courseInput" runat="server" CssClass="form-control" placeholder="Course Title" DataSourceID="SqlDataSourceCourse" DataTextField="courseName" DataValueField="courseID" OnSelectedIndexChanged="courseInput_SelectedIndexChanged" AutoPostBack="True" AppendDataBoundItems="true" CausesValidation="False">
-                            <asp:ListItem Selected="True" Value="-1" Text="Please select a course"></asp:ListItem>
-                        </asp:DropDownList>
-                        <asp:SqlDataSource ID="SqlDataSourceCourse" runat="server" ConnectionString="<%$ ConnectionStrings:DBConnectionString %>" SelectCommand="SELECT [courseID], [courseName] FROM [Course] WHERE ([status] = @status) ORDER BY [courseName]">
-                            <SelectParameters>
-                                <asp:Parameter DefaultValue="open" Name="status" Type="String" />
-                            </SelectParameters>
-                        </asp:SqlDataSource>
-                        <asp:RequiredFieldValidator ID="rfv_courseInput" runat="server" ControlToValidate="courseInput" ErrorMessage="Please Select a Course" InitialValue="-1" ForeColor="Red" ValidationGroup="ValidateForm"></asp:RequiredFieldValidator>
-                        <asp:RequiredFieldValidator ID="rfv_courseInputSummary" runat="server" ControlToValidate="courseInput" ErrorMessage="Please Select a Course" InitialValue="-1" ForeColor="Red" ValidationGroup="summaryGroup" Visible="False"></asp:RequiredFieldValidator>
-                        <%--
+                    <ContentTemplate>
+                        <div class="form-group">
+                            <strong>
+                                <asp:Label ID="courseLabel" runat="server" CssClass="col-lg-2 control-label" Text="Course Title"></asp:Label></strong>
+                            <div class="col-lg-5">
+                                <asp:DropDownList ID="courseInput" runat="server" CssClass="form-control" placeholder="Course Title" DataSourceID="SqlDataSourceCourse" DataTextField="courseName" DataValueField="courseID" OnSelectedIndexChanged="courseInput_SelectedIndexChanged" AutoPostBack="True" AppendDataBoundItems="true" CausesValidation="False">
+                                    <asp:ListItem Selected="True" Value="-1" Text="Please select a course"></asp:ListItem>
+                                </asp:DropDownList>
+                                <asp:SqlDataSource ID="SqlDataSourceCourse" runat="server" ConnectionString="<%$ ConnectionStrings:DBConnectionString %>" SelectCommand="SELECT [courseID], [courseName] FROM [Course] WHERE ([status] = @status) ORDER BY [courseName]">
+                                    <SelectParameters>
+                                        <asp:Parameter DefaultValue="open" Name="status" Type="String" />
+                                    </SelectParameters>
+                                </asp:SqlDataSource>
+                                <asp:RequiredFieldValidator ID="rfv_courseInput" runat="server" ControlToValidate="courseInput" ErrorMessage="Please Select a Course" InitialValue="-1" ForeColor="Red" ValidationGroup="ValidateForm"></asp:RequiredFieldValidator>
+                                <asp:RequiredFieldValidator ID="rfv_courseInputSummary" runat="server" ControlToValidate="courseInput" ErrorMessage="Please Select a Course" InitialValue="-1" ForeColor="Red" ValidationGroup="summaryGroup" Visible="False"></asp:RequiredFieldValidator>
+                                <%--
                         <asp:CustomValidator ID="cus_courseInput" runat="server" OnServerValidate="ValidateCourse" ControlToValidate="courseInput" ErrorMessage="You have already applied for this course before. Please select another course" ForeColor="Red" ValidationGroup="ValidateForm" EnableClientScript="False"></asp:CustomValidator>
-                        --%>
-                        <asp:Label ID="lblErrorMsgCourse" runat="server" CssClass="text-danger" Visible="false"></asp:Label>
-                    </div>
-                </div>
-    
-                <%-- Make table dynamically appear only after course is selected from DDL--%>
+                                --%>
+                                <asp:Label ID="lblErrorMsgCourse" runat="server" CssClass="text-danger" Visible="false"></asp:Label>
+                            </div>
+                        </div>
+
+                        <%-- Make table dynamically appear only after course is selected from DDL--%>
                         <div class="form-group">
                             <strong>
                                 <asp:Label ID="lessonSelection" runat="server" CssClass="col-lg-2 control-label" Text="Lesson Selection"></asp:Label></strong>
                             <div class="col-lg-10">
-                               
+
                                 <asp:GridView ID="gvLesson" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSourceLesson" CssClass="table table-striped table-hover" GridLines="None" EmptyDataText="Please select a course first">
                                     <Columns>
                                         <asp:TemplateField>
@@ -524,9 +525,9 @@
                                                 <input name="rbnLessonID" type="radio" onclick="javascript.SelectRadiobutton(this)" value='<%# Eval("lessonID") %>' />
                                             </ItemTemplate>
                                         </asp:TemplateField>
-                                        <asp:BoundField DataField="lesson_start_date" dataformatstring="{0:MMMM d, yyyy}" HeaderText="Start Date" SortExpression="lesson_start_date" />
-                                        <asp:BoundField DataField="lesson_end_date" dataformatstring="{0:MMMM d, yyyy}" HeaderText="End Date" SortExpression="lesson_end_date" />
-                                        <asp:BoundField DataField="lesson_start_timing"  HeaderText="Start Time" SortExpression="lesson_start_timing" />
+                                        <asp:BoundField DataField="lesson_start_date" DataFormatString="{0:MMMM d, yyyy}" HeaderText="Start Date" SortExpression="lesson_start_date" />
+                                        <asp:BoundField DataField="lesson_end_date" DataFormatString="{0:MMMM d, yyyy}" HeaderText="End Date" SortExpression="lesson_end_date" />
+                                        <asp:BoundField DataField="lesson_start_timing" HeaderText="Start Time" SortExpression="lesson_start_timing" />
                                         <asp:BoundField DataField="lesson_end_timing" HeaderText="End Time" SortExpression="lesson_end_timing" />
                                         <asp:BoundField DataField="instructor" HeaderText="Instructor" SortExpression="instructor" />
                                         <asp:BoundField DataField="venue" HeaderText="Venue" SortExpression="venue" />
@@ -540,52 +541,54 @@
                                 <asp:CustomValidator ID="cv_Lessons" runat="server" EnableClientScript="true" ErrorMessage="Please select a lesson slot" ClientValidationFunction="ValidateRadioButton" ForeColor="Red" ValidationGroup="ValidateForm"></asp:CustomValidator>
                                 <asp:CustomValidator ID="cv_LessonsSummary" runat="server" EnableClientScript="true" ErrorMessage="Please select a lesson slot" ClientValidationFunction="ValidateRadioButton" ForeColor="Red" ValidationGroup="summaryGroup" Visible="False"></asp:CustomValidator>
                             </div>
-                            
+
                         </div>
 
-                <div class="form-group">
-                    <strong>
-                        <asp:Label ID="courseProviderLabel" disabled="" runat="server" CssClass="col-lg-2 control-label" Text="Course Provider"></asp:Label></strong>
-                    <div class="col-lg-10">
-                        <div class="radio">
-                            <label>
-                                <!--<asp:RadioButton ID="inhouse" GroupName="courseProvider" runat="server" Text="Inhouse" Checked="True" />
+                        <div class="form-group">
+                            <strong>
+                                <asp:Label ID="courseProviderLabel" disabled="" runat="server" CssClass="col-lg-2 control-label" Text="Course Provider"></asp:Label></strong>
+                            <div class="col-lg-10">
+                                <div class="radio">
+                                    <label>
+                                        <!--<asp:RadioButton ID="inhouse" GroupName="courseProvider" runat="server" Text="Inhouse" Checked="True" />
                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 <asp:RadioButton ID="external" GroupName="courseProvider" runat="server" Text="External" />-->
-                                <asp:radiobuttonlist id="courseProvider" runat="server" Enabled="False">
-                                    <asp:listitem id="in" runat="server" value="inhouse" Text="In house"/>
-                                    <asp:listitem id="ex" runat="server" value="external" Text="External" />
-                                </asp:radiobuttonlist> 
-                            </label>
-                        </div>
-                    </div>
-                    <asp:RequiredFieldValidator ID="rfv_courseProvider" runat="server" ErrorMessage="Please Select a Course Provider" ControlToValidate="courseProvider" ForeColor="Red" ValidationGroup="ValidateForm"></asp:RequiredFieldValidator>
-                    <asp:RequiredFieldValidator ID="rfv_courseProviderSummary" runat="server" ErrorMessage="Please Selected a Course Provider" ControlToValidate="courseProvider" ForeColor="Red" ValidationGroup="summaryGroup" Visible="False"></asp:RequiredFieldValidator>
+                                        <asp:RadioButtonList ID="courseProvider" runat="server" Enabled="False">
+                                            <asp:ListItem id="in" runat="server" Value="inhouse" Text="In house" />
+                                            <asp:ListItem id="ex" runat="server" Value="external" Text="External" />
+                                        </asp:RadioButtonList>
+                                    </label>
+                                </div>
+                            </div>
+                            <asp:RequiredFieldValidator ID="rfv_courseProvider" runat="server" ErrorMessage="Please Select a Course Provider" ControlToValidate="courseProvider" ForeColor="Red" ValidationGroup="ValidateForm"></asp:RequiredFieldValidator>
+                            <asp:RequiredFieldValidator ID="rfv_courseProviderSummary" runat="server" ErrorMessage="Please Selected a Course Provider" ControlToValidate="courseProvider" ForeColor="Red" ValidationGroup="summaryGroup" Visible="False"></asp:RequiredFieldValidator>
+                            <asp:Label ID="Label2" disabled="" runat="server" CssClass="col-lg-2 control-label" Text=""></asp:Label></strong>
+
                     <div class="col-lg-5">
                         <asp:TextBox ID="externalCourseProvider" disabled="" runat="server" CssClass="form-control" placeholder="If external, please specify"></asp:TextBox>
                     </div>
-                </div>
-                <div class="form-group">
-                    <strong>
-                        <asp:Label ID="courseFeeLabel" disabled="" runat="server" CssClass="col-lg-2 control-label" Text="Course Fees with GST"></asp:Label></strong>
-                    <div class="col-lg-5">
-                        <asp:TextBox ID="courseFeeInput" disabled="" runat="server" CssClass="form-control" placeholder="Course Fees with GST (where applicable)"></asp:TextBox>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <strong>
-                        <asp:Label ID="dateLabel" runat="server" CssClass="col-lg-2 control-label" Text="Date"></asp:Label></strong>
-
-                    <div class="col-lg-5">
-                        <div class="input-daterange input-group" id="datepicker">
-                            <asp:TextBox ID="fromDateInput" disabled="" runat="server" CssClass="form-control" placeholder="MM/DD/YYYY"></asp:TextBox>
-                            <span class="input-group-addon">to</span>
-                            <asp:TextBox ID="toDateInput" disabled="" runat="server" CssClass="form-control" placeholder="MM/DD/YYYY"></asp:TextBox>
-                            <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i>
-                            </span>
                         </div>
-                    </div>
-                </div>
+                        <div class="form-group">
+                            <strong>
+                                <asp:Label ID="courseFeeLabel" disabled="" runat="server" CssClass="col-lg-2 control-label" Text="Course Fees with GST"></asp:Label></strong>
+                            <div class="col-lg-5">
+                                <asp:TextBox ID="courseFeeInput" disabled="" runat="server" CssClass="form-control" placeholder="Course Fees with GST (where applicable)"></asp:TextBox>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <strong>
+                                <asp:Label ID="dateLabel" runat="server" CssClass="col-lg-2 control-label" Text="Date"></asp:Label></strong>
+
+                            <div class="col-lg-5">
+                                <div class="input-daterange input-group" id="datepicker">
+                                    <asp:TextBox ID="fromDateInput" disabled="" runat="server" CssClass="form-control" placeholder="MM/DD/YYYY"></asp:TextBox>
+                                    <span class="input-group-addon">to</span>
+                                    <asp:TextBox ID="toDateInput" disabled="" runat="server" CssClass="form-control" placeholder="MM/DD/YYYY"></asp:TextBox>
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
                     </ContentTemplate>
                     <Triggers>
                         <asp:AsyncPostBackTrigger ControlID="courseInput" EventName="SelectedIndexChanged" />
@@ -593,7 +596,7 @@
                 </asp:UpdatePanel>
                 <br />
 
-                 <%-- Section C--%>
+                <%-- Section C--%>
                 <h4>Section C - Pre Training Assessment</h4>
                 <div class="form-group">
                     <strong>
@@ -602,16 +605,16 @@
                     <div class="col-lg-10">
                         <div class="checkbox">
                             <label>
-                                <asp:CheckBox ID="objectiveInput1" runat="server" Text="To prepare for new job role/task" onClick="forObjective1Clicked('Group1', true)" class="objectiveValidation"/>
+                                <asp:CheckBox ID="objectiveInput1" runat="server" Text="To prepare for new job role/task" onClick="forObjective1Clicked('Group1', true)" class="objectiveValidation" />
                             </label>
                         </div>
                     </div>
 
-                    <div id="objective1text"  style="display: none;">
+                    <div id="objective1text" style="display: none;">
                         <div class="col-lg-5">
                             <asp:TextBox ID="objectiveElaborate1" TextMode="multiline" Columns="50" Rows="5" runat="server" CssClass="form-control" placeholder="Please elaborate on your choice"></asp:TextBox>
                             <asp:RequiredFieldValidator ID="rfv_objective1text" ControlToValidate="objectiveElaborate1" runat="server" ErrorMessage="*Required" ForeColor="Red" ValidationGroup="ValidateForm" />
-                            <asp:RequiredFieldValidator ID="rfv_objective1textSummary" ControlToValidate="objectiveElaborate1" runat="server" ErrorMessage="Please do not leave the objective blank" ForeColor="Red" ValidationGroup="summaryGroup" Visible="False"/>
+                            <asp:RequiredFieldValidator ID="rfv_objective1textSummary" ControlToValidate="objectiveElaborate1" runat="server" ErrorMessage="Please do not leave the objective blank" ForeColor="Red" ValidationGroup="summaryGroup" Visible="False" />
                         </div>
                     </div>
                 </div>
@@ -623,21 +626,21 @@
                             <div class="input-group date">
                                 <asp:TextBox ID="completeDateInput1" runat="server" CssClass="form-control" placeholder="Target Completion Date"></asp:TextBox><span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
                                 <asp:RequiredFieldValidator ID="rfv_objective1date" ControlToValidate="completeDateInput1" runat="server" ErrorMessage="*Required" ForeColor="Red" ValidationGroup="ValidateForm" />
-                                <asp:RequiredFieldValidator ID="rfv_objective1dateSummary" ControlToValidate="completeDateInput1" runat="server" ErrorMessage="Please fill in the date" ForeColor="Red" ValidationGroup="summaryGroup" Visible="False"/>
+                                <asp:RequiredFieldValidator ID="rfv_objective1dateSummary" ControlToValidate="completeDateInput1" runat="server" ErrorMessage="Please fill in the date" ForeColor="Red" ValidationGroup="summaryGroup" Visible="False" />
                             </div>
-                            <asp:CustomValidator ID="cv_objective1date"  runat="server" 	ControlToValidate="completeDateInput1" ClientValidationFunction="compareDates1" ErrorMessage="Please enter a date that is after the course end date." ForeColor="Red" ValidationGroup="ValidateForm"></asp:CustomValidator>
+                            <asp:CustomValidator ID="cv_objective1date" runat="server" ControlToValidate="completeDateInput1" ClientValidationFunction="compareDates1" ErrorMessage="Please enter a date that is after the course end date." ForeColor="Red" ValidationGroup="ValidateForm"></asp:CustomValidator>
                         </div>
                     </div>
                 </div>
 
-                 <%--Second checkbox--%>
+                <%--Second checkbox--%>
                 <div class="form-group">
                     <%--Empty label for formatting purposes--%>
                     <asp:Label ID="empty2" runat="server" CssClass="col-lg-2 control-label" Text=""></asp:Label>
                     <div class="col-lg-10">
                         <div class="checkbox">
                             <label>
-                                <asp:CheckBox ID="objectiveInput2" runat="server" Text="Share the knowledge and skills with fellow colleagues"  onClick="forObjective2Clicked('Group2', true)"  class="objectiveValidation"/>
+                                <asp:CheckBox ID="objectiveInput2" runat="server" Text="Share the knowledge and skills with fellow colleagues" onClick="forObjective2Clicked('Group2', true)" class="objectiveValidation" />
                             </label>
                         </div>
                     </div>
@@ -646,8 +649,8 @@
                     <div id="objective2text" style="display: none;">
                         <div class="col-lg-5">
                             <asp:TextBox ID="objectiveElaborate2" TextMode="multiline" Columns="50" Rows="5" runat="server" CssClass="form-control" placeholder="Please elaborate on your choice"></asp:TextBox>
-                            <asp:RequiredFieldValidator ID="rfv_objective2text" ControlToValidate="objectiveElaborate2" runat="server" ErrorMessage="*Required" ForeColor="Red" ValidationGroup="ValidateForm"/>
-                            <asp:RequiredFieldValidator ID="rfv_objective2textSummary" ControlToValidate="objectiveElaborate2" runat="server" ErrorMessage="Please do not leave the objective blank" ForeColor="Red" ValidationGroup="summaryGroup" Visible="False"/>
+                            <asp:RequiredFieldValidator ID="rfv_objective2text" ControlToValidate="objectiveElaborate2" runat="server" ErrorMessage="*Required" ForeColor="Red" ValidationGroup="ValidateForm" />
+                            <asp:RequiredFieldValidator ID="rfv_objective2textSummary" ControlToValidate="objectiveElaborate2" runat="server" ErrorMessage="Please do not leave the objective blank" ForeColor="Red" ValidationGroup="summaryGroup" Visible="False" />
                         </div>
                     </div>
                 </div>
@@ -658,10 +661,10 @@
                         <div class="col-lg-5">
                             <div class="input-group date">
                                 <asp:TextBox ID="completeDateInput2" runat="server" CssClass="form-control" placeholder="Target Completion Date"></asp:TextBox><span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
-                                <asp:RequiredFieldValidator ID="rfv_objective2date" ControlToValidate="completeDateInput2" runat="server" ErrorMessage="*Required" ForeColor="Red" ValidationGroup="ValidateForm"/>
-                                <asp:RequiredFieldValidator ID="rfv_objective2dateSummary" ControlToValidate="completeDateInput2" runat="server" ErrorMessage="Please fill in the date" ForeColor="Red" ValidationGroup="summaryGroup" Visible="False"/>
+                                <asp:RequiredFieldValidator ID="rfv_objective2date" ControlToValidate="completeDateInput2" runat="server" ErrorMessage="*Required" ForeColor="Red" ValidationGroup="ValidateForm" />
+                                <asp:RequiredFieldValidator ID="rfv_objective2dateSummary" ControlToValidate="completeDateInput2" runat="server" ErrorMessage="Please fill in the date" ForeColor="Red" ValidationGroup="summaryGroup" Visible="False" />
                             </div>
-                            <asp:CustomValidator ID="cv_objective2date"  runat="server" 	ControlToValidate="completeDateInput2" ClientValidationFunction="compareDates2" ErrorMessage="Please enter a date that is after the course end date." ForeColor="Red" ValidationGroup="ValidateForm"></asp:CustomValidator>
+                            <asp:CustomValidator ID="cv_objective2date" runat="server" ControlToValidate="completeDateInput2" ClientValidationFunction="compareDates2" ErrorMessage="Please enter a date that is after the course end date." ForeColor="Red" ValidationGroup="ValidateForm"></asp:CustomValidator>
                         </div>
                     </div>
                 </div>
@@ -673,7 +676,7 @@
                     <div class="col-lg-10">
                         <div class="checkbox">
                             <label>
-                                <asp:CheckBox ID="objectiveInput3" runat="server" Text="Others"   onClick="forObjective3Clicked('Group3', true)"  class="objectiveValidation"/>
+                                <asp:CheckBox ID="objectiveInput3" runat="server" Text="Others" onClick="forObjective3Clicked('Group3', true)" class="objectiveValidation" />
                             </label>
                         </div>
                     </div>
@@ -683,7 +686,7 @@
                         <div class="col-lg-5">
                             <asp:TextBox ID="objectiveElaborate3" TextMode="multiline" Columns="50" Rows="5" runat="server" CssClass="form-control" placeholder="Please elaborate on your choice"></asp:TextBox>
                             <asp:RequiredFieldValidator ID="rfv_objective3text" ControlToValidate="objectiveElaborate3" runat="server" ErrorMessage="*Required" ForeColor="Red" ValidationGroup="ValidateForm" />
-                            <asp:RequiredFieldValidator ID="rfv_objective3textSummary" ControlToValidate="objectiveElaborate3" runat="server" ErrorMessage="Please do not leave the objective blank" ForeColor="Red" ValidationGroup="summaryGroup" Visible="False"/>
+                            <asp:RequiredFieldValidator ID="rfv_objective3textSummary" ControlToValidate="objectiveElaborate3" runat="server" ErrorMessage="Please do not leave the objective blank" ForeColor="Red" ValidationGroup="summaryGroup" Visible="False" />
                         </div>
                     </div>
                 </div>
@@ -694,86 +697,91 @@
                         <div class="col-lg-5">
                             <div class="input-group date">
                                 <asp:TextBox ID="completeDateInput3" runat="server" CssClass="form-control" placeholder="Target Completion Date"></asp:TextBox><span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
-                                <asp:RequiredFieldValidator ID="rfv_objective3date" ControlToValidate="completeDateInput3" runat="server" ErrorMessage="*Required" ForeColor="Red" ValidationGroup="ValidateForm"/>
-                                <asp:RequiredFieldValidator ID="rfv_objectibe3dateSummary" ControlToValidate="completeDateInput3" runat="server" ErrorMessage="Please fill in the date" ForeColor="Red" ValidationGroup="summaryGroup" Visible="False"/>
+                                <asp:RequiredFieldValidator ID="rfv_objective3date" ControlToValidate="completeDateInput3" runat="server" ErrorMessage="*Required" ForeColor="Red" ValidationGroup="ValidateForm" />
+                                <asp:RequiredFieldValidator ID="rfv_objectibe3dateSummary" ControlToValidate="completeDateInput3" runat="server" ErrorMessage="Please fill in the date" ForeColor="Red" ValidationGroup="summaryGroup" Visible="False" />
                             </div>
-                            <asp:CustomValidator ID="cv_objective3date"  runat="server" 	ControlToValidate="completeDateInput3" ClientValidationFunction="compareDates3" ErrorMessage="Please enter a date that is after the course end date." ForeColor="Red" ValidationGroup="ValidateForm"></asp:CustomValidator>
+                            <asp:CustomValidator ID="cv_objective3date" runat="server" ControlToValidate="completeDateInput3" ClientValidationFunction="compareDates3" ErrorMessage="Please enter a date that is after the course end date." ForeColor="Red" ValidationGroup="ValidateForm"></asp:CustomValidator>
                         </div>
                     </div>
                 </div>
 
                 <%--Modal for Submission Confirmation--%>
                 <div id="submitModal" class="modal fade" role="dialog">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title"><b>Submit Training Request Form</b></h4>
-                    </div>
-                    <%--Modal Content--%>
-                    <div class="modal-body">
-                        <div class="wrapper">                            
-                            <h4>Are you sure you want to submit?</h4><br />
-                            <asp:Button ID="cfmSubmit" CssClass="btn btn-primary" runat="server" Text="Submit" OnClick="submitBtn_Click" />
-                            <br />
-                            <asp:Label ID="lblErrorMsgFinal" runat="server" CssClass="text-danger" Visible="True"></asp:Label>
-                            <%-- <asp:ValidationSummary ID="ValidationSummary1" runat="server" ValidationGroup="summaryGroup" /> --%>
-                        </div>                       
-                    </div>                  
-                </div>
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title"><b>Submit Training Request Form</b></h4>
+                            </div>
+                            <%--Modal Content--%>
+                            <div class="modal-body">
+                                <div class="wrapper">
+                                    <h4>Are you sure you want to submit?</h4>
+                                    <br />
+                                    <asp:Button ID="cfmSubmit" CssClass="btn btn-primary" runat="server" Text="Submit" OnClick="submitBtn_Click" />
+                                    <br />
+                                    <asp:Label ID="lblErrorMsgFinal" runat="server" CssClass="text-danger" Visible="True"></asp:Label>
+                                    <%-- <asp:ValidationSummary ID="ValidationSummary1" runat="server" ValidationGroup="summaryGroup" /> --%>
+                                </div>
+                            </div>
+                        </div>
 
-            </div>
-        </div>
+                    </div>
+                </div>
                 <%--Modal for Cancel Confirmation--%>
                 <div id="cancelModal" class="modal fade" role="dialog">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title"><b>Clear all contents</b></h4>
-                    </div>
-                    <%--Modal Content--%>
-                    <div class="modal-body">
-                        <div class="wrapper">                            
-                            <h4>Are you sure you want to cancel?<br /> This will clear all fields previously entered!</h4><br />
-                            <asp:Button ID="cfmCancel" CssClass="btn btn-primary" runat="server" Text="Clear" OnClick="cfmCancel_Click"/>
-                            <asp:Label ID="lblErrorMsgTest" runat="server" CssClass="col-lg-2 control-label" ForeColor="Red" Visible="False"></asp:Label>
-                        </div>                       
-                    </div>                  
-                </div>
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title"><b>Clear all contents</b></h4>
+                            </div>
+                            <%--Modal Content--%>
+                            <div class="modal-body">
+                                <div class="wrapper">
+                                    <h4>Are you sure you want to cancel?<br />
+                                        This will clear all fields previously entered!</h4>
+                                    <br />
+                                    <asp:Button ID="cfmCancel" CssClass="btn btn-primary" runat="server" Text="Clear" OnClick="cfmCancel_Click" />
+                                    <asp:Label ID="lblErrorMsgTest" runat="server" CssClass="col-lg-2 control-label" ForeColor="Red" Visible="False"></asp:Label>
+                                </div>
+                            </div>
+                        </div>
 
-            </div>
-        </div>
+                    </div>
+                </div>
                 <%--Modal for REJECTION--%>
                 <div id="rejectionModal" class="modal fade" role="dialog">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title"><b>Unsucessful</b></h4>
-                    </div>
-                    <%--Modal Content--%>
-                    <div class="modal-body">
-                        <div class="wrapper">                            
-                            <h4>Your application is unable to proceed due to the following reason(s):<br /> reasonreasonreason</h4><br />
-                            <asp:Button ID="Button1" CssClass="btn btn-primary" runat="server" Text="Go Back"/>
-                        </div>                       
-                    </div>                  
-                </div>
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title"><b>Unsucessful</b></h4>
+                            </div>
+                            <%--Modal Content--%>
+                            <div class="modal-body">
+                                <div class="wrapper">
+                                    <h4>Your application is unable to proceed due to the following reason(s):<br />
+                                        reasonreasonreason</h4>
+                                    <br />
+                                    <asp:Button ID="Button1" CssClass="btn btn-primary" runat="server" Text="Go Back" />
+                                </div>
+                            </div>
+                        </div>
 
-            </div>
-        </div>
-        <div class="form-group">
+                    </div>
+                </div>
+                <div class="form-group">
                     <%--Empty label for formatting purposes--%>
                     <asp:Label ID="Label1" runat="server" CssClass="col-lg-2 control-label" Text=""></asp:Label>
                     <div id="forObjectiveValidator" style="color: red">
-                        <asp:CustomValidator ID="cv1_objective1" runat="server" 
+                        <asp:CustomValidator ID="cv1_objective1" runat="server"
                             EnableClientScript="true"
                             ErrorMessage="Please select at least one objective"
                             ClientValidationFunction="ValidateCheckBoxes"
                             ValidationGroup="ValidateForm">
                         </asp:CustomValidator>
-                        <asp:CustomValidator ID="cv1_objective1Summary" runat="server" 
+                        <asp:CustomValidator ID="cv1_objective1Summary" runat="server"
                             EnableClientScript="true"
                             ErrorMessage="Please select at least one objective"
                             ClientValidationFunction="ValidateCheckBoxes"
@@ -786,8 +794,8 @@
                 <div class="form-group">
                     <div class="col-lg-10 col-lg-offset-2">
                         <asp:Button ID="submitBtn" CssClass="btn btn-primary" runat="server" Text="Submit" data-toggle="modal" OnClientClick="return checkForm_Clicked()" href="#submitModal" CausesValidation="True" UseSubmitBehavior="False" />
-                        <asp:Button ID="resetBtn" CssClass="btn btn-default" runat="server" Text="Clear" data-toggle="modal" OnClientClick="return false;" href="#cancelModal"/>
-                    
+                        <asp:Button ID="resetBtn" CssClass="btn btn-default" runat="server" Text="Clear" data-toggle="modal" OnClientClick="return false;" href="#cancelModal" />
+
                     </div>
                 </div>
             </fieldset>

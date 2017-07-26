@@ -3,47 +3,98 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <br />
     <div class="container">
         <h1>Emma Configuration Settings</h1>
-        <div class="verticalLine"></div>
+        <div class="verticalLine"></div><br/>
     </div>
-
     <div class="container">
         <div class="row">
-            <h3>Creation</h3>
-            <div class="col-md-3">
-                <a href="askEmmaAddAns.aspx" class="btn btn-primary btn-lg btn-block"><span class="glyphicon glyphicon-plus-sign"></span>&nbsp; Add Answers</a>
-            </div>
-            <div class="col-md-1"></div>
-            <div class="col-md-3">
-                <a href="askEmmaAddIntent.aspx" class="btn btn-primary btn-lg btn-block"><span class="glyphicon glyphicon-asterisk"></span>&nbsp; Create New Intent</a>
-            </div>
-
+            <a href="askEmmaAddAns.aspx">
+                <div class="col-md-3 btn-primary">
+                    <br /><br />
+                    <div class="wrapper">
+                        <span style="font-size:75px;" class="glyphicon glyphicon-plus-sign"></span>
+                        <br />
+                        <h3>Add Answers</h3>
+                        <br />
+                    </div>
+                </div>
+            </a>
+             <a href="askEmmaEditAns.aspx">
+                <div class="col-md-3 btn-success">
+                    <br /><br />
+                    <div class="wrapper">
+                        <span style="font-size:75px;" class="glyphicon glyphicon-pencil"></span>
+                        <br />
+                        <h3>Edit Answers</h3>
+                        <br />
+                    </div>
+                </div>
+            </a>
+            <a href="askEmmaAddIntent.aspx">
+                <div class="col-md-3 btn-danger">
+                    <br /><br />
+                    <div class="wrapper">
+                        <span style="font-size:75px;" class="glyphicon glyphicon-asterisk"></span>
+                        <br />
+                        <h3>Create New Intent</h3>
+                        <br />
+                    </div>
+                </div>
+            </a>
+            <a href="askEmmaInitializeMsg.aspx">
+                <div class="col-md-3 btn-info">
+                    <br /><br />
+                    <div class="wrapper">
+                        <span style="font-size:75px;" class="glyphicon glyphicon-off"></span>
+                        <br />
+                        <h3>Initialization Message</h3>
+                        <br />
+                    </div>
+                </div>
+            </a>
         </div>
         <div class="row">
-            <h3>Configuration</h3>
-            <div class="col-md-3">
-                <a href="askEmmaInitializeMsg.aspx" class="btn btn-primary btn-lg btn-block"><span class="glyphicon glyphicon-off"></span>&nbsp; Initialization Message</a>
-            </div>
-
-            <div class="col-md-1"></div>
-            <div class="col-md-3">
-                <a href="askEmmaHelpQn.aspx" class="btn btn-primary btn-lg btn-block"><span class="glyphicon glyphicon-send"></span>&nbsp; Question Suggestions</a>
-            </div>
-            <div class="col-md-1"></div>
-            <div class="col-md-3">
-                <a href="askEmmaEditAns.aspx" class="btn btn-primary btn-lg btn-block"><span class="glyphicon glyphicon-pencil"></span>&nbsp; Edit Answers</a>
-            </div>
-
-        </div>
-        <div class="row">
-            <h3>View</h3>
-            <div class="col-md-3">
-                <a href="askEmmaFeedback.aspx" class="btn btn-primary btn-lg btn-block"><span class="glyphicon glyphicon-thumbs-up"></span>&nbsp; Emma's Feedback</a>
-            </div>
-
+            <a href="askEmmaHelpQn.aspx">
+                <div class="col-md-3 btn-warning">
+                    <br /><br />
+                    <div class="wrapper">
+                        <span style="font-size:75px;" class="glyphicon glyphicon-question-sign"></span>
+                        <br />
+                        <h3>Help Questions</h3>
+                        <br />
+                    </div>
+                </div>
+            </a>
+             <a href="askEmmaFeedback.aspx">
+                <div class="col-md-3 btn-default">
+                    <br /><br />
+                    <div class="wrapper">
+                        <span style="font-size:75px;" class="glyphicon glyphicon-thumbs-up"></span>
+                        <br />
+                        <h3>Emma's Feedback</h3>
+                        <br />
+                    </div>
+                </div>
+            </a>
+             <a href="askEmmaFeedback.aspx">
+                <div class="col-md-3 btn-primary">
+                    <br /><br />
+                    <div class="wrapper">
+                        <span style="font-size:75px;" class="glyphicon glyphicon-book"></span>
+                        <br />
+                        <h3>Edit Instructions</h3>
+                        <br />
+                    </div>
+                </div>
+            </a>
         </div>
     </div>
+
+
+
+   
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder2" runat="server">
 </asp:Content>

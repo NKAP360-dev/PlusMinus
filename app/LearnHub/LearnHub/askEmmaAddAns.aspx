@@ -45,10 +45,10 @@
     %>
 
     <div class="configure">
-        <a href="emmaConfiguration.aspx" id="config"><span class="label label-primary"><span class="glyphicon glyphicon-cog"></span>Configuration Menu</span></a>
+        <a href="emmaConfiguration.aspx" id="config"><span class="label label-default"><span class="glyphicon glyphicon-cog"></span>Configuration Menu</span></a>
     </div>
     <br />
-    
+
 
     <%}
         }%>
@@ -64,10 +64,10 @@
             <fieldset>
                 <legend>Customize answers for Emma</legend>
                 <div class="form-group">
-                    
-                        <%--Intent--%>
-                        <label for="ddlIntent" class="col-lg-2 control-label"><span class="glyphicon glyphicon-question-sign"  data-toggle='tooltip' data-placement="left" title="" data-original-title="An Intent is a......"></span> Choose an Intent *</label>
-                    
+
+                    <%--Intent--%>
+                    <label for="ddlIntent" class="col-lg-2 control-label"><span class="glyphicon glyphicon-question-sign" data-toggle='tooltip' data-placement="left" title="" data-original-title="An Intent is a......"></span>Choose an Intent *</label>
+
                     <div class="col-lg-10">
                         <%--Mandatory Choose 1--%>
                         <asp:DropDownList ID="ddlIntent" runat="server" CssClass="form-control"></asp:DropDownList>
@@ -78,7 +78,7 @@
                 <div class="form-group">
                     <strong>
                         <%--Entity--%>
-                        <label for="ddlIntent" class="col-lg-2 control-label"> <span class="glyphicon glyphicon-question-sign" data-toggle='tooltip' data-placement="left" title="" data-original-title="An Entity is a......"></span> Choose an Entity to represent </label>
+                        <label for="ddlIntent" class="col-lg-2 control-label"><span class="glyphicon glyphicon-question-sign" data-toggle='tooltip' data-placement="left" title="" data-original-title="An Entity is a......"></span>Choose an Entity to represent </label>
                     </strong>
                     <div class="col-lg-10">
                         <%--Optional Choose 1--%>
@@ -89,27 +89,28 @@
                 <div class="form-group">
                     <strong>
                         <%--Answers--%>
-                        <asp:Label ID="lblAnswers" CssClass="col-lg-2 control-label" runat="server" Text="Answers*"></asp:Label>
+                        <asp:Label ID="lblAnswers" CssClass="col-lg-2 control-label" runat="server" Text="Answers *"></asp:Label>
                     </strong>
                     <div class="col-lg-10">
                         <%--Mandatory text field--%>
                         <asp:TextBox ID="txtAnswers" TextMode="multiline" Columns="50" Rows="5" runat="server" CssClass="form-control" placeholder="Please enter your answers here"></asp:TextBox>
                         <asp:RequiredFieldValidator ID="rfv_txtAnswers" runat="server" ErrorMessage="Please enter an answer" ControlToValidate="txtAnswers" ForeColor="Red"></asp:RequiredFieldValidator>
                     </div>
-                    <asp:Label ID="Label1" CssClass="col-lg-2 control-label" runat="server" Text="* = Compulsory fields"></asp:Label>
                 </div>
                 <%--Buttons--%>
                 <br />
                 <div class="wrapper">
-                <div class="form-group">
-                    
-                        <asp:Button ID="submitBtn" CssClass="btn btn-primary" runat="server" Text="Done" data-toggle="modal" href="#submitModal" OnClientClick="$('#myModal').modal(); return false;"/>
-                    <%--Make success message appear after user click submit button IN MODAL, stay at this page so that user can continue submitting answers--%>
-                    <p class="text-success"><strong><span class="glyphicon glyphicon-ok"></span> Answer has been successfully added!</strong></p>
-                    
+                    <div class="form-group">
+
+                        <asp:Button ID="submitBtn" CssClass="btn btn-primary" runat="server" Text="Submit" data-toggle="modal" href="#submitModal" OnClientClick="$('#myModal').modal(); return false;" />
+                        <%--Make success message appear after user click submit button IN MODAL, stay at this page so that user can continue submitting answers--%>
+                    </div>
+                    <strong>
+                        <asp:Label ID="Label2" runat="server" CssClass="text-success"><span class="glyphicon glyphicon-ok"></span> Added successfully</asp:Label></strong><br />
+                    <strong>
+                        <asp:Label ID="Label3" runat="server" CssClass="text-danger"><span class="glyphicon glyphicon-remove"></span> Something went wrong</asp:Label></strong>
+
                 </div>
-                
-               </div>
 
 
                 <div id="submitModal" class="modal fade" role="dialog">
@@ -124,13 +125,15 @@
                                     <h4>Are you sure you want to submit?</h4>
                                     <br />
                                     <asp:Button ID="cfmSubmit" CssClass="btn btn-primary" runat="server" Text="Submit" />
+                                    <asp:Button ID="Button2" CssClass="btn btn-default" runat="server" class="close" data-dismiss="modal" Text="Cancel" OnClientClick="return false;"/>
+
                                     <br />
                                 </div>
                             </div>
                         </div>
 
                     </div>
-                </div>             
+                </div>
             </fieldset>
         </form>
     </div>

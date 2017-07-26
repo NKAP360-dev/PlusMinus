@@ -121,13 +121,15 @@
                         <asp:TextBox ID="txtAnswers" TextMode="multiline" Columns="50" Rows="5" runat="server" CssClass="form-control" placeholder="Please enter your answers here"></asp:TextBox>
                         <asp:RequiredFieldValidator ID="rfv_txtAnswers" runat="server" ErrorMessage="Please enter an answer" ControlToValidate="txtAnswers" ForeColor="Red"></asp:RequiredFieldValidator>
                     </div>
-                    <asp:Label ID="Label1" CssClass="col-lg-2 control-label" runat="server" Text="* = Compulsory fields"></asp:Label>
                 </div>
                 <%--Buttons--%>
                 <div class="form-group">
-                    <div class="col-lg-10 col-lg-offset-2">
+                    <div class="wrapper">
                         <asp:Button ID="submitBtn" CssClass="btn btn-primary" runat="server" Text="Update" data-toggle="modal" href="#updateModal" OnClientClick="$('#myModal').modal(); return false;"/>
-                        <asp:Button ID="resetBtn" CssClass="btn btn-default" runat="server" Text="Clear" data-toggle="modal" href="#cancelModal" OnClientClick="$('#myModal').modal(); return false;"/>
+                        <br /> 
+                        <strong><asp:Label ID="successMsg" runat="server" CssClass="text-success"><span class="glyphicon glyphicon-ok"></span> Updated successfully</asp:Label></strong><br />
+                        <strong><asp:Label ID="errorMsg" runat="server" CssClass="text-danger"><span class="glyphicon glyphicon-remove"></span> Something went wrong</asp:Label></strong>
+
                     </div>
                 </div>
 
@@ -145,7 +147,9 @@
                                 <div class="wrapper">
                                     <h4>Are you sure you want to overwrite the existing answers?</h4>
                                     <br />
-                                    <asp:Button ID="cfmSubmit" CssClass="btn btn-primary" runat="server" Text="Submit" />
+                                    <asp:Button ID="cfmSubmit" CssClass="btn btn-primary" runat="server" Text="Yes" />
+                                    <asp:Button ID="Button2" CssClass="btn btn-default" runat="server" class="close" data-dismiss="modal" Text="Cancel" OnClientClick="return false;"/>
+
                                     <br />
                                 </div>
                             </div>
@@ -153,27 +157,7 @@
 
                     </div>
                 </div>
-                <%--Modal for Cancel Confirmation--%>
-                <div id="cancelModal" class="modal fade" role="dialog">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                <h4 class="modal-title"><b>Clear all contents</b></h4>
-                            </div>
-                            <%--Modal Content--%>
-                            <div class="modal-body">
-                                <div class="wrapper">
-                                    <h4>Are you sure you want to cancel?<br />
-                                        This will clear all fields previously entered!</h4>
-                                    <br />
-                                    <asp:Button ID="cfmCancel" CssClass="btn btn-primary" runat="server" Text="Clear" />
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
+               
             </fieldset>
         
     </div>
