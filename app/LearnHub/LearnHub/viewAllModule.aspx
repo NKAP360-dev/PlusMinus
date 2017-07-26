@@ -142,7 +142,7 @@
     <div class="configure">
         <ul class="list-group" id="menu" style="display: none;">
             <a href="createModules.aspx">
-                <li class="list-group-item">Create New Modules
+                <li class="list-group-item"><span class="glyphicon glyphicon-plus"></span>&emsp;Create New Modules
                 </li>
             </a>
         </ul>

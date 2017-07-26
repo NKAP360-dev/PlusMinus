@@ -363,7 +363,7 @@
    <div class="panel panel-primary">
   <div class="panel-heading">
     <h2 class="panel-title">Emma  &emsp;
-        <a href="#emmaModal" data-toggle="modal"><span class="label label-info"><span class="glyphicon glyphicon-question-sign"></span></span></a>
+        <a href="#emmaModal" data-toggle="modal"><span class="label label-info pull-right"><span class="glyphicon glyphicon-question-sign"></span></span></a>
         <% if (Session["currentUser"] != null)
                         {
                             User currentUser = (User)Session["currentUser"];
@@ -372,7 +372,7 @@
                             {
 
                     %>
-        <a href="emmaConfiguration.aspx"><span class="label label-danger"><span class="glyphicon glyphicon-cog"></span></span></a>
+        <a href="emmaConfiguration.aspx"><span class="label label-danger pull-right"><span class="glyphicon glyphicon-cog"></span></span></a>
          <%}
                     }%>
     </h2>

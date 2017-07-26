@@ -37,17 +37,17 @@
     <div class="configure">
         <ul class="list-group" id="menu" style="display: none;">
             <a href="editModuleInfo.aspx">
-                <li class="list-group-item">Edit/Delete Module 
+                <li class="list-group-item"><span class="glyphicon glyphicon-pencil"></span>&emsp;Edit/Delete Module 
                 </li>
             </a>
             <a href="#uploadModal" data-toggle="modal">
-                <li class="list-group-item">Upload Learning Materials
+                <li class="list-group-item"><span class="glyphicon glyphicon-level-up"></span>&emsp;Upload Learning Materials
                 </li>
             </a>
         </ul>
     </div>
-        <%}
-    }%>
+    <%}
+        }%>
     <form class="form-horizontal" runat="server">
         <div class="container">
             <h1>
@@ -110,7 +110,7 @@
                     <div class="col-md-9">
                         <div class="panel panel-primary">
                             <div class="panel-heading">
-                                <h3 class="panel-title">Comments&emsp; <a href="#" data-toggle="collapse" data-target="#addComment"><span class="label label-default"><span class="glyphicon glyphicon-pencil"></span></span></a></h3>
+                                <h3 class="panel-title">Comments&emsp; <a href="#" data-toggle="collapse" data-target="#addComment"><span class="label label-default pull-right"><span class="glyphicon glyphicon-pencil"></span></span></a></h3>
                             </div>
                             <div class="panel-body">
                                 <div class="collapse" id="addComment">
@@ -143,7 +143,7 @@
                                 <br />
                                 <br />
                                 <strong>
-                                    <asp:Label ID="lblCommentTitle" runat="server" Text="About Ming Kwang"></asp:Label>&emsp;<a href="#" data-toggle="modal" data-target="#deleteComment"><span class="label label-danger"><span class="glyphicon glyphicon-trash"></span></span></a></strong><br />
+                                    <asp:Label ID="lblCommentTitle" runat="server" Text="About Ming Kwang"></asp:Label>&emsp;<a href="#" data-toggle="modal" data-target="#deleteComment"><span class="label label-danger pull-right"><span class="glyphicon glyphicon-trash"></span></span></a></strong><br />
                                 <asp:Label ID="lblCommentBody" runat="server" Text="Ming Kwang is my idol, I aspire to be like him"></asp:Label>
                                 <hr />
                                 <strong>
@@ -152,7 +152,7 @@
                                 <br />
                                 <br />
                                 <strong>
-                                    <asp:Label ID="Label3" runat="server" Text="About Rafid"></asp:Label>&emsp;<a href="#" data-toggle="modal" data-target="#deleteComment"><span class="label label-danger"><span class="glyphicon glyphicon-trash"></span></span></a></strong><br />
+                                    <asp:Label ID="Label3" runat="server" Text="About Rafid"></asp:Label>&emsp;<a href="#" data-toggle="modal" data-target="#deleteComment"><span class="label label-danger pull-right"><span class="glyphicon glyphicon-trash"></span></span></a></strong><br />
                                 <asp:Label ID="Label4" runat="server" Text="Ming Kwang is my idol, but Rafid is my senpai"></asp:Label>
                             </div>
                         </div>
@@ -198,7 +198,11 @@
                         <div class="panel panel-primary">
                             <div class="panel-heading">
                                 <h3 class="panel-title">
-                                    <asp:Label ID="lblUploadTitle" runat="server"><%= title %></asp:Label></h3>
+                                    <asp:Label ID="lblUploadTitle" runat="server"><%= title %></asp:Label> 
+                                    <asp:LinkButton ID="LinkButton7" CssClass="btn btn-danger btn-xs pull-right" runat="server" Text="" data-toggle="modal" href="#deleteMaterials"><span class="glyphicon glyphicon-trash"></span></asp:LinkButton>
+                                    </h3>
+
+
                             </div>
                             <div class="panel-body">
                                 Uploaded on:
@@ -290,7 +294,29 @@
                 </div>
             </div>
         </div>
-
+        <%--Delete Materials Modal--%>
+        <div id="deleteMaterials" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title"><span class="glyphicon glyphicon-trash"></span>&emsp;<b>Delete Learning Materials</b></h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="wrapper">
+                            <h4>Are you sure you want to delete?</h4>
+                        </div>
+                        <br />
+                        <div class="modal-footer">
+                            <div class="wrapper">
+                                <asp:Button ID="Button3" CssClass="btn btn-danger" runat="server" Text="Delete" />
+                                <asp:Button ID="Button5" CssClass="btn btn-default" runat="server" class="close" data-dismiss="modal" Text="Go Back" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </form>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder2" runat="server">
