@@ -107,8 +107,8 @@ namespace LearnHub.AppCode.dao
                 SqlCommand comm = new SqlCommand();
                 comm.Connection = conn;
                 comm.CommandText = "insert into [Elearn_course] " +
-                    "(elearn_courseName, elearn_courseProvider, entry_date, start_date, expiry_date, status, description, category, courseCreator) " +
-                    "values (@cName, @provider, Convert(datetime, @entry, 103), convert(datetime,@time,103), Convert(datetime,@expiry,103), @status, @desc, @category, @courseCreator)";
+                    "(elearn_courseName, elearn_courseProvider, entry_date, start_date, expiry_date, status, description, category, courseCreator, hoursAwarded) " +
+                    "values (@cName, @provider, Convert(datetime, @entry, 103), convert(datetime,@time,103), Convert(datetime,@expiry,103), @status, @desc, @category, @courseCreator, @hoursAwarded)";
                 comm.Parameters.AddWithValue("@cName", course.getCourseName());
                 if (course.getCourseProvider() != null)
                 {
@@ -140,6 +140,7 @@ namespace LearnHub.AppCode.dao
                 comm.Parameters.AddWithValue("@desc", course.getDescription());
                 comm.Parameters.AddWithValue("@category", course.getCategory());
                 comm.Parameters.AddWithValue("@courseCreator", course.getCourseCreator().getUserID());
+                comm.Parameters.AddWithValue("@hoursAwarded", course.getHoursAwarded());
                 int rowsAffected = comm.ExecuteNonQuery();                
                 //need new method to create pre-requisities here to store in seperate table (pre-req table)
                 toReturn = course;
@@ -294,6 +295,7 @@ namespace LearnHub.AppCode.dao
                     toReturn.setStatus((string)dr["status"]);//4
                     //get the prereq
                     toReturn.setDescription((string)dr["description"]);//6
+                    toReturn.setEntryDate((DateTime)dr["entry_date"]);
                     ArrayList list = getPrereqOfCourse(cid);//5
                     if (list != null)
                     {
@@ -301,6 +303,7 @@ namespace LearnHub.AppCode.dao
                     }
                     toReturn.setCategory((string)dr["category"]);//7
                     toReturn.setCourseCreator(userDAO.getUserByID((string)dr["courseCreator"]));
+                    toReturn.setHoursAwarded((int)dr["hoursAwarded"]);
                 }
                 dr.Close();
             }
@@ -366,6 +369,38 @@ namespace LearnHub.AppCode.dao
                 conn.Close();
             }
             return toReturn;
+        }
+        public void updateCourse(int courseID, string category, string name, string description, int hours, DateTime start, DateTime expiry) // Update.
+        {
+            SqlConnection conn = new SqlConnection();
+
+            try
+            {
+                conn = new SqlConnection();
+                string connstr = ConfigurationManager.ConnectionStrings["DBConnectionString"].ToString();
+                conn.ConnectionString = connstr;
+                conn.Open();
+                SqlCommand comm = new SqlCommand();
+                comm.Connection = conn;
+                comm.CommandText =
+                    "Update [Elearn_course] SET elearn_courseName=@name, description=@description, category=@category, start_date=@start, expiry_date=@expiry, hoursAwarded=@hours WHERE elearn_courseID=@courseID";
+                comm.Parameters.AddWithValue("@name", name);
+                comm.Parameters.AddWithValue("@description", description);
+                comm.Parameters.AddWithValue("@category", category);
+                comm.Parameters.AddWithValue("@start", start);
+                comm.Parameters.AddWithValue("@expiry", expiry);
+                comm.Parameters.AddWithValue("@hours", hours);
+                comm.Parameters.AddWithValue("@courseID", courseID);
+                int rowsAffected = comm.ExecuteNonQuery();
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                conn.Close();
+            }
         }
     }
 }

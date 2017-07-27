@@ -96,7 +96,7 @@
                             <div class="panel-body">
                                 <strong>
                                     <asp:Label ID="hoursLabel" runat="server" Text="Hours awarded after completion"></asp:Label></strong><br />
-                                <asp:Label ID="hoursOutput" runat="server" Text="2"></asp:Label>
+                                <asp:Label ID="hoursOutput" runat="server" Text=""></asp:Label>
                                 <br />
                                 <br />
                                 blahblah any other info timing date etc etc 
@@ -177,7 +177,7 @@
                             Course_elearnDAO cdao = new Course_elearnDAO();
                             ArrayList list = cdao.get_uploaded_content_by_id(current);%>
                         <%
-                            string dir = "~/Data/" + current.getCourseName();
+                            string dir = "~/Data/" + current.getCourseID();
                             foreach (string strfile in Directory.GetFiles(Server.MapPath(dir)))
                             {
                                 //Response.Write(strfile);

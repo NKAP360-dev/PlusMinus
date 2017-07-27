@@ -59,7 +59,7 @@
                         <asp:Label ID="hoursLabel" runat="server" CssClass="col-lg-2 control-label" Text="Hours Awarded *"></asp:Label></strong>
                     <div class="col-lg-5">
                         <div class="input-group">
-                        <asp:TextBox ID="hoursInput" runat="server" CssClass="form-control" placeholder="No. of Hours"></asp:TextBox>
+                        <asp:TextBox ID="hoursInput" runat="server" CssClass="form-control" placeholder="No. of Hours" TextMode="Number"></asp:TextBox>
                             <span class="input-group-addon">hours </span>
                             </div>
                     </div>
@@ -135,7 +135,7 @@
                     <div class="modal-body">
                         <div class="wrapper">                            
                             <h4>Are you sure you want to save existing changes?</h4><br />
-                            <asp:Button ID="cfmSubmit" CssClass="btn btn-primary" runat="server" Text="Save changes"/>
+                            <asp:Button ID="cfmSubmit" CssClass="btn btn-primary" runat="server" Text="Save changes" OnClick="cfmSubmit_Click"/>
                             <asp:Button ID="Button3" CssClass="btn btn-default" runat="server" class="close" data-dismiss="modal" Text="Go Back"/>
                             <%--Redirect to viewModuleInfo of newly created course--%>
                             <br />

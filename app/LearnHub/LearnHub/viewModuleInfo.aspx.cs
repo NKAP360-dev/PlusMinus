@@ -38,6 +38,7 @@ namespace LearnHub
             lblCourseNameHeader.Text = current.getCourseName();
             lblCourseName.Text = current.getCourseName();
             lblCourseDescription.Text = current.getDescription();
+            hoursOutput.Text = current.getHoursAwarded().ToString();
         }
 
         protected void moduleInfo_Click(object sender, EventArgs e)
@@ -61,7 +62,7 @@ namespace LearnHub
         {
             if (FileUpload1.HasFile)
             {
-                string coursedir = current.getCourseName();
+                int coursedir = current.getCourseID();
                 string fileName = FileUpload1.FileName;
                 string filepath = "~/Data/" + coursedir + "/";
                 FileUpload1.PostedFile

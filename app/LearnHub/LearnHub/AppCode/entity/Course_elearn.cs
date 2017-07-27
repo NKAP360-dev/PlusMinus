@@ -19,6 +19,7 @@ namespace LearnHub.AppCode.entity
         private ArrayList prerequisite;
         private string category;
         private User courseCreator;
+        private int hoursAwarded;
 
         public Course_elearn()
         {
@@ -26,7 +27,7 @@ namespace LearnHub.AppCode.entity
         }
         public Course_elearn(string courseName, string provider, DateTime entry_date,
             DateTime startDate, DateTime endDate,  string status,
-            string desc, string category, User courseCreator)
+            string desc, string category, User courseCreator, int hoursAwarded)
         {
             //no need id, with entry date and expiry date
             this.courseName = courseName;
@@ -39,6 +40,7 @@ namespace LearnHub.AppCode.entity
             //this.prerequisite = prereq; // so if no pre req put as null value for default. 
             this.category = category; // professional, leadership or compulsory
             this.courseCreator = courseCreator;
+            this.hoursAwarded = hoursAwarded;
         }
 
         public Course_elearn(int courseID, string courseName, string provider,
@@ -199,6 +201,14 @@ namespace LearnHub.AppCode.entity
         public void setCourseCreator(User courseCreator)
         {
             this.courseCreator = courseCreator;
+        }
+        public int getHoursAwarded()
+        {
+            return hoursAwarded;
+        }
+        public void setHoursAwarded(int hoursAwarded)
+        {
+            this.hoursAwarded = hoursAwarded;
         }
     }
 }

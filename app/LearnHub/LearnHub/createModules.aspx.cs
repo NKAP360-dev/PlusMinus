@@ -43,7 +43,7 @@ namespace LearnHub
             if (check && moduleType.Text != "") // if no expiry date
             {
                 c = new Course_elearn(nameOfModuleInput.Text, user.getDepartment(), DateTime.Now,
-                    Convert.ToDateTime(fromDateInput.Text), Convert.ToDateTime(toDateInput.Text),  "Open", descriptionModuleInput.Text, moduleType.Text, user);
+                    Convert.ToDateTime(fromDateInput.Text), Convert.ToDateTime(toDateInput.Text),  "Open", descriptionModuleInput.Text, moduleType.Text, user, Convert.ToInt32(hoursInput.Text));
             }
 
             //check pre req here 
@@ -53,15 +53,15 @@ namespace LearnHub
             //create the course object 
             //now insert into database by calling DAO
 
-            //create dir
-            string file = "~/Data/";
-            string add = Server.MapPath(file) + c.getCourseName();
-            Directory.CreateDirectory(add);
-
             Course_elearnDAO cDao = new Course_elearnDAO();
             Course_elearn res = cDao.create_elearnCourse(c);
             Course_elearn course_with_id = cDao.get_course_by_name(res);
             int id = course_with_id.getCourseID();
+
+            //create dir
+            string file = "~/Data/";
+            string add = Server.MapPath(file) + id;
+            Directory.CreateDirectory(add);
             Response.Redirect("viewModuleInfo.aspx?id=" + id);
         }
     }

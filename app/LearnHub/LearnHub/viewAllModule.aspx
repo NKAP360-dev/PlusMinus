@@ -54,7 +54,7 @@
         jQuery(function ($) {
             $('.table').footable({
                 "paging": {
-                    "size": 2 <%--Change how many rows per page--%>
+                    "size": 5 <%--Change how many rows per page--%>
                 },
                 "filtering": {
                     "position": "left"
