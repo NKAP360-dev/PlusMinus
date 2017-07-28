@@ -102,25 +102,25 @@
                     </div>
                 </div>
 
-                <%--Date-%>
-                <%--
+                <%--Date--%>
+                
                 <div class="form-group">
                     <strong>
-                        <asp:Label ID="dateLabel" runat="server" CssClass="col-lg-2 control-label" Text="Date"></asp:Label></strong>
+                        <asp:Label ID="dateLabel" runat="server" CssClass="col-lg-2 control-label" Text="Date" Visible="false"></asp:Label></strong>
 
                     <div class="col-lg-5">
                         <div class="input-daterange input-group" id="datepicker">
-                            <asp:TextBox ID="fromDateInput" runat="server" CssClass="form-control" placeholder="MM/DD/YYYY"></asp:TextBox>
-                            <span class="input-group-addon">to</span>
-                            <asp:TextBox ID="toDateInput" runat="server" CssClass="form-control" placeholder="MM/DD/YYYY"></asp:TextBox>
-                            <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i>
-                            </span>
+                            <asp:TextBox ID="fromDateInput" runat="server" CssClass="form-control" placeholder="MM/DD/YYYY" Visible="false"></asp:TextBox>
+                            <%--<span class="input-group-addon">to</span> --%>
+                            <asp:TextBox ID="toDateInput" runat="server" CssClass="form-control" placeholder="MM/DD/YYYY" Visible="false"></asp:TextBox>
+                            <%--<span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i>
+                            </span>--%>
                         </div>
                     </div>
                     <br />
 
                 </div>
-                --%>
+                
 
                 <%--Preq--%>
                 <div class="form-group">
