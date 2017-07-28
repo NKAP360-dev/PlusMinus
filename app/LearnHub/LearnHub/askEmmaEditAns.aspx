@@ -4,11 +4,25 @@
 <%@ Import Namespace="LearnHub.AppCode.dao" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <link href="/Scripts/footable.bootstrap.min.css" rel="stylesheet" />
+    <script src="/Scripts/footable.min.js"></script>
     <script>
 
         $(document).ready(function () {
             $("[data-toggle='tooltip']").tooltip();
         });
+
+        jQuery(function ($) {
+            $('.table').footable({
+                "paging": {
+                    "size": 1 <%--Change how many rows per page--%>
+                  },
+                  "filtering": {
+                      "position": "left"
+                  }
+              });
+          });
+
 
         /*
         function ValidateRadioButton(sender, args) {
@@ -29,6 +43,30 @@
         */
 
     </script>
+    <style>
+           .pagination li > a,
+        .pagination li > span,
+        .pagination li > a:focus, .pagination .disabled > a,
+        .pagination .disabled > a:hover,
+        .pagination .disabled > a:focus,
+        .pagination .disabled > span {
+            background-color: white;
+            color: black;
+        }
+
+            .pagination li > a:hover {
+                background-color: #96a8ba;
+            }
+
+        .pagination > .active > a,
+        .pagination > .active > span,
+        .pagination > .active > a:hover,
+        .pagination > .active > span:hover,
+        .pagination > .active > a:focus,
+        .pagination > .active > span:focus {
+            background-color: #576777;
+        }
+    </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
        <% if (Session["currentUser"] != null)
@@ -56,13 +94,13 @@
     <form class="form-horizontal" runat="server">
     <div class="container">
         <br />
-    <table class="table table-striped table-hover ">
+    <table class="table table-striped table-hover" data-paging="true" data-sorting="true" data-filtering="true">
   <thead>
     <tr>
-      <th>Select</th>
+      <th data-filterable="false" data-sortable="false">Select</th>
       <th>Answers</th>
-      <th>Intent</th>
-      <th>Entity</th>
+      <th data-breakpoints="xs sm">Intent</th>
+      <th data-breakpoints="xs sm">Entity</th>
     </tr>
   </thead>
   <tbody>

@@ -2,118 +2,53 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <style>
-        #myInput {
-            background-image: url('/img/search.png'); /* Add a search icon to input */
-            background-position: 10px 12px; /* Position the search icon */
-            background-repeat: no-repeat; /* Do not repeat the icon image */
-            width: 100%; /* Full-width */
-            font-size: 16px; /* Increase font-size */
-            padding: 12px 20px 12px 40px; /* Add some padding */
-            border: 1px solid #ddd; /* Add a grey border */
-            margin-bottom: 12px; /* Add some space below the input */
+       .pagination li > a,
+        .pagination li > span,
+        .pagination li > a:focus, .pagination .disabled > a,
+        .pagination .disabled > a:hover,
+        .pagination .disabled > a:focus,
+        .pagination .disabled > span {
+            background-color: white;
+            color: black;
         }
 
-        .pager li > a,
-        .pager li > span,
-        .pager li > a:focus, .pager .disabled > a,
-        .pager .disabled > a:hover,
-        .pager .disabled > a:focus,
-        .pager .disabled > span {
-            background-color: #2c3e50;
-        }
-
-            .pager li > a:hover {
-                background-color: #576777;
+            .pagination li > a:hover {
+                background-color: #96a8ba;
             }
+
+        .pagination > .active > a,
+        .pagination > .active > span,
+        .pagination > .active > a:hover,
+        .pagination > .active > span:hover,
+        .pagination > .active > a:focus,
+        .pagination > .active > span:focus {
+            background-color: #576777;
+        }
     </style>
-    <script src="/Scripts/simple-bootstrap-paginator.js"></script>
+    <link href="/Scripts/footable.bootstrap.min.css" rel="stylesheet" />
+    <script src="/Scripts/footable.min.js"></script>
     <script>
         $(document).ready(function () {
             $("[data-toggle='tooltip']").tooltip();
         });
 
-        function myFunction() {
-            // Declare variables 
-            var input, filter, table, tr, td, i;
-            input = document.getElementById("myInput");
-            filter = input.value.toUpperCase();
-            table = document.getElementById("myTable");
-            tr = table.getElementsByTagName("tr");
-
-            // Loop through all table rows, and hide those who don't match the search query
-            for (i = 0; i < tr.length; i++) {
-                td = tr[i].getElementsByTagName("td")[0];
-                if (td) {
-                    if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
-                        tr[i].style.display = "";
-                    } else {
-                        tr[i].style.display = "none";
-                    }
+        jQuery(function ($) {
+            $('.table').footable({
+                "paging": {
+                    "size": 1 <%--Change how many rows per page--%>
+                },
+                "filtering": {
+                    "position": "left"
                 }
-            }
-        }
-
-        function sortTable(n) {
-            var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
-            table = document.getElementById("myTable");
-            switching = true;
-            //Set the sorting direction to ascending:
-            dir = "asc";
-            /*Make a loop that will continue until
-            no switching has been done:*/
-            while (switching) {
-                //start by saying: no switching is done:
-                switching = false;
-                rows = table.getElementsByTagName("TR");
-                /*Loop through all table rows (except the
-                first, which contains table headers):*/
-                for (i = 1; i < (rows.length - 1); i++) {
-                    //start by saying there should be no switching:
-                    shouldSwitch = false;
-                    /*Get the two elements you want to compare,
-                    one from current row and one from the next:*/
-                    x = rows[i].getElementsByTagName("TD")[n];
-                    y = rows[i + 1].getElementsByTagName("TD")[n];
-                    /*check if the two rows should switch place,
-                    based on the direction, asc or desc:*/
-                    if (dir == "asc") {
-                        if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
-                            //if so, mark as a switch and break the loop:
-                            shouldSwitch = true;
-                            break;
-                        }
-                    } else if (dir == "desc") {
-                        if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
-                            //if so, mark as a switch and break the loop:
-                            shouldSwitch = true;
-                            break;
-                        }
-                    }
-                }
-                if (shouldSwitch) {
-                    /*If a switch has been marked, make the switch
-                    and mark that a switch has been done:*/
-                    rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
-                    switching = true;
-                    //Each time a switch is done, increase this count by 1:
-                    switchcount++;
-                } else {
-                    /*If no switching has been done AND the direction is "asc",
-                    set the direction to "desc" and run the while loop again.*/
-                    if (switchcount == 0 && dir == "asc") {
-                        dir = "desc";
-                        switching = true;
-                    }
-                }
-            }
-        }
+            });
+        });
     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="configure">
         <a href="emmaConfiguration.aspx" id="config"><span class="label label-default"><span class="glyphicon glyphicon-cog"></span>Configuration Menu</span></a>
     </div>
-
+    <br />
     <div class="container">
         <h1>Emma's Help Questions</h1>
         <div class="verticalLine"></div>
@@ -121,40 +56,29 @@
     <form class="form-horizontal" runat="server">
         <div class="container">
             <br />
-            <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for Questions">
-
-            <table class="table table-striped table-hover with-pager" id="myTable">
+            <table class="table table-striped table-hover" data-paging="true" data-sorting="true" data-filtering="true">
                 <thead>
                     <tr>
-                        <th onclick="sortTable(0)" width="90%">Help Questions&emsp;<span class="glyphicon glyphicon-sort"></span></th>
-                        <th></th>
+                        <th width="90%">Help Questions</th>
+                        <th data-filterable="false" data-sortable="false"></th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
                         <td>blahblah</td>
                         <td>
-                            <asp:LinkButton ID="LinkButton1" CssClass="btn btn-danger" runat="server" Text="" data-toggle="modal" href="#deleteModal"><span class="glyphicon glyphicon-trash"></span></asp:LinkButton></td>
+                            <asp:LinkButton ID="LinkButton1" CssClass="btn btn-danger pull-right" runat="server" Text="" data-toggle="modal" href="#deleteModal"><span class="glyphicon glyphicon-trash"></span></asp:LinkButton></td>
 
                     </tr>
                     <tr>
                         <td>ayeee</td>
                         <td>
-                            <asp:LinkButton ID="LinkButton2" CssClass="btn btn-danger" runat="server" Text="" data-toggle="modal" href="#deleteModal"><span class="glyphicon glyphicon-trash"></span></asp:LinkButton></td>
+                            <asp:LinkButton ID="LinkButton2" CssClass="btn btn-danger pull-right" runat="server" Text="" data-toggle="modal" href="#deleteModal"><span class="glyphicon glyphicon-trash"></span></asp:LinkButton></td>
 
                     </tr>
                 </tbody>
             </table>
-            <nav>
-                <ul class="pager">
-                    <li class="previous">
-                        <a href="#"><span aria-hidden="true"><span class="glyphicon glyphicon-chevron-left"></span></span>Older</a>
-                    </li>
-                    <li class="next"><a href="#">Newer<span aria-hidden="true"><span class="glyphicon glyphicon-chevron-right"></span></span>
-                    </a>
-                    </li>
-                </ul>
-            </nav>
+
             <div class="verticalLine"></div>
             <fieldset>
                 <h2>Create new Help Questions</h2>
@@ -172,20 +96,22 @@
                         <asp:Button ID="addBtn" CssClass="btn btn-primary" runat="server" Text="Add" />
                     </div>
                     <br />
-                </div>        
+                </div>
                 <br />
                 <br />
                 <div class="row">
                     <div class="wrapper">
-                        <strong><asp:Label ID="successMsg" runat="server" CssClass="text-success"><span class="glyphicon glyphicon-ok"></span> Added successfully</asp:Label></strong><br />
-                        <strong><asp:Label ID="errorMsg" runat="server" CssClass="text-danger"><span class="glyphicon glyphicon-remove"></span> Something went wrong</asp:Label></strong>
+                        <strong>
+                            <asp:Label ID="successMsg" runat="server" CssClass="text-success"><span class="glyphicon glyphicon-ok"></span> Added successfully</asp:Label></strong><br />
+                        <strong>
+                            <asp:Label ID="errorMsg" runat="server" CssClass="text-danger"><span class="glyphicon glyphicon-remove"></span> Something went wrong</asp:Label></strong>
                     </div>
                 </div>
             </fieldset>
         </div>
 
-          <%--Modal for Deletion Confirmation--%>
-                <div id="deleteModal" class="modal fade" role="dialog">
+        <%--Modal for Deletion Confirmation--%>
+        <div id="deleteModal" class="modal fade" role="dialog">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -194,14 +120,15 @@
                     </div>
                     <%--Modal Content--%>
                     <div class="modal-body">
-                        <div class="wrapper">                            
-                            <h4>Are you sure you want to delete?</h4><br />
-                            <asp:Button ID="cfmDelete" CssClass="btn btn-danger" runat="server" Text="Delete"/>
-                            <asp:Button ID="Button2" CssClass="btn btn-default" runat="server" class="close" data-dismiss="modal" Text="Cancel"/>
-                            
+                        <div class="wrapper">
+                            <h4>Are you sure you want to delete?</h4>
                             <br />
-                        </div>                       
-                    </div>                  
+                            <asp:Button ID="cfmDelete" CssClass="btn btn-danger" runat="server" Text="Delete" />
+                            <asp:Button ID="Button2" CssClass="btn btn-default" runat="server" class="close" data-dismiss="modal" Text="Cancel" />
+
+                            <br />
+                        </div>
+                    </div>
                 </div>
 
             </div>

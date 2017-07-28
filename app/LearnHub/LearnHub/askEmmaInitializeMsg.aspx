@@ -1,18 +1,55 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Masterpage.Master" AutoEventWireup="true" CodeBehind="askEmmaInitializeMsg.aspx.cs" Inherits="LearnHub.askEmmaInitializeMsg" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <style>
+        .pagination li > a,
+        .pagination li > span,
+        .pagination li > a:focus, .pagination .disabled > a,
+        .pagination .disabled > a:hover,
+        .pagination .disabled > a:focus,
+        .pagination .disabled > span {
+            background-color: white;
+            color: black;
+        }
+
+            .pagination li > a:hover {
+                background-color: #96a8ba;
+            }
+
+        .pagination > .active > a,
+        .pagination > .active > span,
+        .pagination > .active > a:hover,
+        .pagination > .active > span:hover,
+        .pagination > .active > a:focus,
+        .pagination > .active > span:focus {
+            background-color: #576777;
+        }
+    </style>
+
+     <link href="/Scripts/footable.bootstrap.min.css" rel="stylesheet" />
+    <script src="/Scripts/footable.min.js"></script>
     <script>
         $(document).ready(function () {
             $("[data-toggle='tooltip']").tooltip();
         });
 
+        jQuery(function ($) {
+            $('.table').footable({
+                "paging": {
+                    "size": 1 <%--Change how many rows per page--%>
+                },
+                "filtering": {
+                    "position": "left"
+                }
+            });
+        });
     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="configure">
         <a href="emmaConfiguration.aspx" id="config"><span class="label label-default"><span class="glyphicon glyphicon-cog"></span>Configuration Menu</span></a>
     </div>
-
+    <br />
     <div class="container">
         <h2>Configure Initialization Messages</h2>
         <div class="verticalLine"></div>
@@ -21,12 +58,12 @@
     </div>
     <div class="container">
         <form class="form-horizontal" runat="server">
-        <table class="table table-striped table-hover with-pager" id="myTable">
+        <table class="table table-striped table-hover" data-paging="true" data-sorting="true" data-filtering="true">
             <thead>
                 <tr>
                     <th width="80%">Initialization Message</th>
                     <th>Message Order</th>
-                    <th></th>
+                    <th data-filterable="false" data-sortable="false"></th>
                 </tr>
             </thead>
             <tbody>
@@ -40,7 +77,7 @@
                             <option>4</option>
                             <option>5</option>
                         </select></td>
-                    <td><asp:LinkButton ID="Button1" CssClass="btn btn-danger" runat="server" Text="" data-toggle="modal" href="#deleteModal"><span class="glyphicon glyphicon-trash"></span></asp:LinkButton></td>
+                    <td><asp:LinkButton ID="Button1" CssClass="btn btn-danger pull-right" runat="server" Text="" data-toggle="modal" href="#deleteModal"><span class="glyphicon glyphicon-trash"></span></asp:LinkButton></td>
                 </tr>
                 <tr>
                     <td>kekeke</td>
@@ -52,7 +89,7 @@
                             <option>4</option>
                             <option>5</option>
                         </select></td>
-                   <td><asp:LinkButton ID="LinkButton1" CssClass="btn btn-danger" runat="server" Text="" data-toggle="modal" href="#deleteModal"><span class="glyphicon glyphicon-trash"></span></asp:LinkButton></td>
+                   <td><asp:LinkButton ID="LinkButton1" CssClass="btn btn-danger pull-right" runat="server" Text="" data-toggle="modal" href="#deleteModal"><span class="glyphicon glyphicon-trash"></span></asp:LinkButton></td>
                 </tr>
 
             </tbody>
@@ -70,6 +107,7 @@
         <br />
             
         <div class="form-group">
+            <div class="container">
             <div class="row">
                 <strong>
                         <label for="inputMsg" class="col-lg-3 control-label"><span class="glyphicon glyphicon-question-sign" data-toggle='tooltip' data-placement="left" title="" data-original-title="An Initialization Message is the message you see when you initialize :)"></span>&nbsp;Initialization Message *</label>
@@ -88,6 +126,7 @@
                         <strong><asp:Label ID="Label1" runat="server" CssClass="text-success"><span class="glyphicon glyphicon-ok"></span> Added successfully</asp:Label></strong><br />
                         <strong><asp:Label ID="Label2" runat="server" CssClass="text-danger"><span class="glyphicon glyphicon-remove"></span> Something went wrong</asp:Label></strong>
                     </div>
+                </div>
                 </div>
         </div>
                 <%--Modal for Deletion Confirmation--%>
