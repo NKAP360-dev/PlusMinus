@@ -1,5 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Masterpage.Master" AutoEventWireup="true" CodeBehind="askEmmaFeedback.aspx.cs" Inherits="LearnHub.askEmmaFeedback" %>
-
+<%@ Import Namespace="LearnHub.AppCode.entity" %>
+<%@ Import Namespace="LearnHub.AppCode.dao" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <style>
         .pagination li > a,
@@ -25,7 +26,7 @@
             background-color: #576777;
         }
     </style>
-     <link href="/Scripts/footable.bootstrap.min.css" rel="stylesheet" />
+    <link href="/Scripts/footable.bootstrap.min.css" rel="stylesheet" />
     <script src="/Scripts/footable.min.js"></script>
     <script>
         jQuery(function ($) {
@@ -41,12 +42,18 @@
     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <div class="configure">
-        <a href="emmaConfiguration.aspx" id="config"><span class="label label-default"><span class="glyphicon glyphicon-cog"></span>Configuration Menu</span></a>
-    </div>
-    <br />
     <div class="container">
-        <h1>View Feedback for Emma</h1>
+        <h1>View Feedback for Emma
+                         <% if (Session["currentUser"] != null)
+                             {
+                                 User currentUser = (User)Session["currentUser"];
+                                 if (currentUser.getDepartment().Equals("hr"))
+                                 {
+                         %>
+            <a href="emmaConfiguration.aspx" id="config"><span class="btn btn-default pull-right"><span class="glyphicon glyphicon-option-horizontal"></span></span></a>
+            <%}
+                }%>
+        </h1>
         <div class="verticalLine"></div>
         <form class="form-horizontal" runat="server">
             <div class="container">
@@ -64,14 +71,14 @@
                             <td>Good good very good Good good very good Good good very good Good good very good Good good very good Good good very good Good good very good Good good very good Good good very good Good good very good Good good very good Good good very good </td>
                             <td>Ber</td>
                             <td>
-                                <asp:LinkButton ID="LinkButton1" CssClass="btn btn-danger pull-right" runat="server" Text="" data-toggle="modal" href="#deleteModal"><span class="glyphicon glyphicon-trash"></span></asp:LinkButton></td>
+                                <asp:LinkButton ID="LinkButton1" CssClass="btn btn-danger pull-right btn-sm" runat="server" Text="" data-toggle="modal" href="#deleteModal"><span class="glyphicon glyphicon-trash"></span></asp:LinkButton></td>
 
                         </tr>
                         <tr>
                             <td>ayeee</td>
                             <td>Rafid</td>
                             <td>
-                                <asp:LinkButton ID="LinkButton2" CssClass="btn btn-danger pull-right" runat="server" Text="" data-toggle="modal" href="#deleteModal"><span class="glyphicon glyphicon-trash"></span></asp:LinkButton></td>
+                                <asp:LinkButton ID="LinkButton2" CssClass="btn btn-danger pull-right btn-sm" runat="server" Text="" data-toggle="modal" href="#deleteModal"><span class="glyphicon glyphicon-trash"></span></asp:LinkButton></td>
 
                         </tr>
                     </tbody>

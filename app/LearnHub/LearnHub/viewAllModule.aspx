@@ -65,29 +65,31 @@
     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <%
+    <div class="container">
+        <h1>View Modules
+
+             <%
         User currentUser = (User)Session["currentUser"];
         if (currentUser != null && (currentUser.getRole().Equals("course creator") || currentUser.getRole().Equals("superuser")))
         {
     %>
-    <div class="configure">
-        <a href="#" id="config" onclick="configuration()"><span class="label label-default"><span class="glyphicon glyphicon-cog"></span>Configuration Menu</span></a>
-    </div>
-    <br />
-    <div class="configure">
+       <a href="#" id="config" onclick="configuration()"class="btn btn-default pull-right"><span class="glyphicon glyphicon-option-horizontal"></span></a>
+</h1>
+        <div class="configure">
         <ul class="list-group" id="menu" style="display: none;">
             <a href="createModules.aspx">
                 <li class="list-group-item"><span class="glyphicon glyphicon-plus"></span>&emsp;Create New Modules
                 </li>
             </a>
+             <a href="viewCreatedModules.aspx">
+                <li class="list-group-item"><span class="glyphicon glyphicon-search"></span>&emsp;View My Created Modules
+                </li>
+            </a>
         </ul>
     </div>
-    <%
+         <%
         }
     %>
-    <div class="container">
-        <h1>View Modules</h1>
-
         <div class="verticalLine"></div>
     </div>
     <asp:Panel ID="viewCompulsory" runat="server" Visible="false">
@@ -96,7 +98,7 @@
                 <div class="col-md-3">
                     <div class="list-group">
                         <div class="wrapper">
-                            <h4><strong><span class="glyphicon glyphicon-menu-hamburger">&emsp;</span>View Training Types</strong></h4>
+                            <h4><strong><span class="glyphicon glyphicon-search">&emsp;</span>View Training Types</strong></h4>
                         </div>
                         <a href="viewAllModule.aspx?module=compulsory" class="list-group-item active">
                             <span class="glyphicon glyphicon-menu-right"></span>&emsp;Compulsory Training
@@ -115,8 +117,7 @@
                             <tr>
                                 <th>Course Name</th>
                                 <th data-breakpoints="xs sm">Course Provider</th>
-                                <th data-breakpoints="xs sm">Start Date</th>
-                                <th data-breakpoints="xs sm">End Date</th>
+                                <th data-breakpoints="xs sm">Hours Awarded</th>
                                 <th data-filterable="false" data-sortable="false">View</th>
 
                             </tr>
@@ -137,20 +138,8 @@
                                         htmlStr += ce.getCourseProvider();
                                         htmlStr += "</td>";
                                         htmlStr += "<td>";
-                                        htmlStr += ce.getStartDate().ToString("dd/MM/yyyy");
+                                        htmlStr += ce.getHoursAwarded();
                                         htmlStr += "</td>";
-                                        if (ce.getExpiryDate() != null)
-                                        {
-                                            htmlStr += "<td>";
-                                            htmlStr += ce.getExpiryDate().ToString("dd/MM/yyyy");
-                                            htmlStr += "</td>";
-                                        }
-                                        else
-                                        {
-                                            htmlStr += "<td>";
-                                            htmlStr += "N.A";
-                                            htmlStr += "</td>";
-                                        }
                                         htmlStr += "<td><a href=\"viewModuleInfo.aspx?id=" + ce.getCourseID() + "\"><span class=\"glyphicon glyphicon-menu-right\"></span> View Info</a></td>";
                                         htmlStr += "</tr>";
                                     }
@@ -171,7 +160,7 @@
                 <div class="col-md-3">
                     <div class="list-group">
                         <div class="wrapper">
-                            <h4><strong><span class="glyphicon glyphicon-menu-hamburger">&emsp;</span>View Training Types</strong></h4>
+                            <h4><strong><span class="glyphicon glyphicon-search">&emsp;</span>View Training Types</strong></h4>
                         </div>
                         <a href="viewAllModule.aspx?module=compulsory" class="list-group-item">Compulsory Training
                         </a>
@@ -190,8 +179,7 @@
                             <tr>
                                 <th>Course Name</th>
                                 <th data-breakpoints="xs sm">Course Provider</th>
-                                <th data-breakpoints="xs sm">Start Date</th>
-                                <th data-breakpoints="xs sm">End Date</th>
+                                <th data-breakpoints="xs sm">Hours Awarded</th>
                                 <th data-filterable="false" data-sortable="false">View</th>
 
                             </tr>
@@ -199,7 +187,7 @@
                         <tbody>
                             <%
                                 Course_elearnDAO allListing = new Course_elearnDAO();
-                                ArrayList list = allListing.view_courses("Leadership");
+                                ArrayList list = allListing.view_courses("Compulsory");
                                 String htmlStr = null;
                                 if (list.Count > 0)
                                 {
@@ -212,20 +200,8 @@
                                         htmlStr += ce.getCourseProvider();
                                         htmlStr += "</td>";
                                         htmlStr += "<td>";
-                                        htmlStr += ce.getStartDate().ToString("dd/MM/yyyy");
+                                        htmlStr += ce.getHoursAwarded();
                                         htmlStr += "</td>";
-                                        if (ce.getExpiryDate() != null)
-                                        {
-                                            htmlStr += "<td>";
-                                            htmlStr += ce.getExpiryDate().ToString("dd/MM/yyyy");
-                                            htmlStr += "</td>";
-                                        }
-                                        else
-                                        {
-                                            htmlStr += "<td>";
-                                            htmlStr += "N.A";
-                                            htmlStr += "</td>";
-                                        }
                                         htmlStr += "<td><a href=\"viewModuleInfo.aspx?id=" + ce.getCourseID() + "\"><span class=\"glyphicon glyphicon-menu-right\"></span> View Info</a></td>";
                                         htmlStr += "</tr>";
                                     }
@@ -246,7 +222,7 @@
                 <div class="col-md-3">
                     <div class="list-group">
                         <div class="wrapper">
-                            <h4><strong><span class="glyphicon glyphicon-menu-hamburger">&emsp;</span>View Training Types</strong></h4>
+                            <h4><strong><span class="glyphicon glyphicon-search">&emsp;</span>View Training Types</strong></h4>
                         </div>
                         <a href="viewAllModule.aspx?module=compulsory" class="list-group-item">Compulsory Training
                         </a>
@@ -264,8 +240,7 @@
                             <tr>
                                 <th>Course Name</th>
                                 <th data-breakpoints="xs sm">Course Provider</th>
-                                <th data-breakpoints="xs sm">Start Date</th>
-                                <th data-breakpoints="xs sm">End Date</th>
+                                <th data-breakpoints="xs sm">Hours Awarded</th>
                                 <th data-filterable="false" data-sortable="false">View</th>
 
                             </tr>
@@ -273,7 +248,7 @@
                         <tbody>
                             <%
                                 Course_elearnDAO allListing = new Course_elearnDAO();
-                                ArrayList list = allListing.view_courses("Professional");
+                                ArrayList list = allListing.view_courses("Compulsory");
                                 String htmlStr = null;
                                 if (list.Count > 0)
                                 {
@@ -286,20 +261,8 @@
                                         htmlStr += ce.getCourseProvider();
                                         htmlStr += "</td>";
                                         htmlStr += "<td>";
-                                        htmlStr += ce.getStartDate().ToString("dd/MM/yyyy");
+                                        htmlStr += ce.getHoursAwarded();
                                         htmlStr += "</td>";
-                                        if (ce.getExpiryDate() != null)
-                                        {
-                                            htmlStr += "<td>";
-                                            htmlStr += ce.getExpiryDate().ToString("dd/MM/yyyy");
-                                            htmlStr += "</td>";
-                                        }
-                                        else
-                                        {
-                                            htmlStr += "<td>";
-                                            htmlStr += "N.A";
-                                            htmlStr += "</td>";
-                                        }
                                         htmlStr += "<td><a href=\"viewModuleInfo.aspx?id=" + ce.getCourseID() + "\"><span class=\"glyphicon glyphicon-menu-right\"></span> View Info</a></td>";
                                         htmlStr += "</tr>";
                                     }

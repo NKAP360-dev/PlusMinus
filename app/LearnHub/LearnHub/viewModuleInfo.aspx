@@ -23,36 +23,35 @@
     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <% 
-        int courseID = Convert.ToInt32(Request.QueryString["id"]);
-        User currentUser = (User)Session["currentUser"];
-        Course_elearnDAO ceDAO = new Course_elearnDAO();
-        User courseCreator = ceDAO.get_course_by_id(courseID).getCourseCreator();
-        if (currentUser != null && (currentUser.getUserID() == courseCreator.getUserID() || currentUser.getRole().Equals("superuser")))
-        {
-    %>
-    <div class="configure">
-        <a href="#" id="config" onclick="configuration()"><span class="label label-default"><span class="glyphicon glyphicon-cog"></span>Configuration Menu</span></a>
-    </div>
-    <br />
-    <div class="configure">
-        <ul class="list-group" id="menu" style="display: none;">
-            <a href="editModuleInfo.aspx?id=<%=courseID %>">
-                <li class="list-group-item"><span class="glyphicon glyphicon-pencil"></span>&emsp;Edit/Delete Module
-                </li>
-            </a>
-            <a href="#uploadModal" data-toggle="modal">
-                <li class="list-group-item"><span class="glyphicon glyphicon-level-up"></span>&emsp;Upload Learning Materials
-                </li>
-            </a>
-        </ul>
-    </div>
-    <%} %>
     <form class="form-horizontal" runat="server">
         <div class="container">
             <h1>
-                <asp:Label ID="lblCourseNameHeader" runat="server" Text="courseName"></asp:Label></h1>
+                <asp:Label ID="lblCourseNameHeader" runat="server" Text="courseName"></asp:Label>
+                <% 
+                    int courseID = Convert.ToInt32(Request.QueryString["id"]);
+                    User currentUser = (User)Session["currentUser"];
+                    Course_elearnDAO ceDAO = new Course_elearnDAO();
+                    User courseCreator = ceDAO.get_course_by_id(courseID).getCourseCreator();
+                    if (currentUser != null && (currentUser.getUserID() == courseCreator.getUserID() || currentUser.getRole().Equals("superuser")))
+                    {
+                %>
 
+                <a href="#" id="config" onclick="configuration()" class="btn btn-default pull-right"><span class="glyphicon glyphicon-option-horizontal"></span></a>
+
+            </h1>
+            <div class="configure">
+                <ul class="list-group" id="menu" style="display: none;">
+                    <a href="editModuleInfo.aspx?id=<%=courseID %>">
+                        <li class="list-group-item"><span class="glyphicon glyphicon-pencil"></span>&emsp;Edit/Delete Module
+                        </li>
+                    </a>
+                    <a href="#uploadModal" data-toggle="modal">
+                        <li class="list-group-item"><span class="glyphicon glyphicon-level-up"></span>&emsp;Upload Learning Materials
+                        </li>
+                    </a>
+                </ul>
+            </div>
+            <%} %>
             <div class="verticalLine"></div>
         </div>
 
@@ -60,7 +59,7 @@
             <div class="row">
                 <div class="col-md-3">
                     <div class="wrapper">
-                        <h4><strong><span class="glyphicon glyphicon-menu-hamburger">&emsp;</span>View Module Information</strong></h4>
+                        <h4><strong><span class="glyphicon glyphicon-search">&emsp;</span>View Module Information</strong></h4>
                     </div>
                 </div>
             </div>
@@ -198,9 +197,9 @@
                         <div class="panel panel-primary">
                             <div class="panel-heading">
                                 <h3 class="panel-title">
-                                    <asp:Label ID="lblUploadTitle" runat="server"><%= title %></asp:Label> 
+                                    <asp:Label ID="lblUploadTitle" runat="server"><%= title %></asp:Label>
                                     <asp:LinkButton ID="LinkButton7" CssClass="btn btn-danger btn-xs pull-right" runat="server" Text="" data-toggle="modal" href="#deleteMaterials"><span class="glyphicon glyphicon-trash"></span></asp:LinkButton>
-                                    </h3>
+                                </h3>
                             </div>
                             <div class="panel-body">
                                 Uploaded on:
@@ -274,16 +273,18 @@
                     </div>
                     <div class="modal-body">
                         <div class="wrapper">
-                            <h4>Are you sure you want to delete the following comment?</h4><br />
+                            <h4>Are you sure you want to delete the following comment?</h4>
+                            <br />
                             "
                             <asp:Label ID="Label5" runat="server" Text="Ming Kwang is my idol, but Rafid is my senpai"></asp:Label>"
 
-                            <br /><br />
+                            <br />
+                            <br />
                         </div>
                         <div class="modal-footer">
                             <div class="wrapper">
-                             <asp:Button ID="deleteBtn" CssClass="btn btn-danger" runat="server" Text="Delete" />
-                            <asp:Button ID="Button4" CssClass="btn btn-default" runat="server" class="close" data-dismiss="modal" Text="Go Back" />
+                                <asp:Button ID="deleteBtn" CssClass="btn btn-danger" runat="server" Text="Delete" />
+                                <asp:Button ID="Button4" CssClass="btn btn-default" runat="server" class="close" data-dismiss="modal" Text="Go Back" />
                             </div>
                         </div>
                     </div>

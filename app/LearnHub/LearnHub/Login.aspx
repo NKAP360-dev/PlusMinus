@@ -25,8 +25,8 @@
                     <form id="form1" runat="server">
                         <fieldset>
                             <br />
-                            <h2 class="text-center login-title">
-                                <img src="img/LearnHub2.png" alt="LHLogo" style="width: 65px; height: 65px;" />&nbsp;&nbsp;LearnHub</h2>
+                            <a href="Home.aspx"><h2 class="text-center login-title">
+                                <img src="img/LearnHub2.png" alt="LHLogo" style="width: 65px; height: 65px;" />&nbsp;&nbsp;LearnHub</h2></a>
                             <br />
                             <div class="form-group">
                                 <%if (lblErrorMsgUse.Text == "")

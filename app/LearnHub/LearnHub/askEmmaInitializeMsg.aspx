@@ -1,4 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Masterpage.Master" AutoEventWireup="true" CodeBehind="askEmmaInitializeMsg.aspx.cs" Inherits="LearnHub.askEmmaInitializeMsg" %>
+<%@ Import Namespace="LearnHub.AppCode.entity" %>
+<%@ Import Namespace="LearnHub.AppCode.dao" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <style>
@@ -46,12 +48,19 @@
     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <div class="configure">
-        <a href="emmaConfiguration.aspx" id="config"><span class="label label-default"><span class="glyphicon glyphicon-cog"></span>Configuration Menu</span></a>
-    </div>
-    <br />
+
     <div class="container">
-        <h2>Configure Initialization Messages</h2>
+        <h1>Configure Initialization Messages
+            <% if (Session["currentUser"] != null)
+                {
+                    User currentUser = (User)Session["currentUser"];
+                    if (currentUser.getDepartment().Equals("hr"))
+                    {
+            %>
+            <a href="emmaConfiguration.aspx" id="config"><span class="btn btn-default pull-right"><span class="glyphicon glyphicon-option-horizontal"></span></span></a>
+            <%}
+                }%>
+        </h1>
         <div class="verticalLine"></div>
         <br />
 
@@ -77,7 +86,7 @@
                             <option>4</option>
                             <option>5</option>
                         </select></td>
-                    <td><asp:LinkButton ID="Button1" CssClass="btn btn-danger pull-right" runat="server" Text="" data-toggle="modal" href="#deleteModal"><span class="glyphicon glyphicon-trash"></span></asp:LinkButton></td>
+                    <td><asp:LinkButton ID="Button1" CssClass="btn btn-danger btn-sm pull-right" runat="server" Text="" data-toggle="modal" href="#deleteModal"><span class="glyphicon glyphicon-trash"></span></asp:LinkButton></td>
                 </tr>
                 <tr>
                     <td>kekeke</td>
@@ -89,7 +98,7 @@
                             <option>4</option>
                             <option>5</option>
                         </select></td>
-                   <td><asp:LinkButton ID="LinkButton1" CssClass="btn btn-danger pull-right" runat="server" Text="" data-toggle="modal" href="#deleteModal"><span class="glyphicon glyphicon-trash"></span></asp:LinkButton></td>
+                   <td><asp:LinkButton ID="LinkButton1" CssClass="btn btn-danger btn-sm pull-right" runat="server" Text="" data-toggle="modal" href="#deleteModal"><span class="glyphicon glyphicon-trash"></span></asp:LinkButton></td>
                 </tr>
 
             </tbody>

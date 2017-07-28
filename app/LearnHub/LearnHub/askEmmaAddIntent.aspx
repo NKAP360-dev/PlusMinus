@@ -51,12 +51,18 @@
 
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <div class="configure">
-        <a href="emmaConfiguration.aspx" id="config"><span class="label label-default"><span class="glyphicon glyphicon-cog"></span>Configuration Menu</span></a>
-    </div>
-    <br />
     <div class="container">
-        <h1>Intents</h1>
+        <h1>Intents
+                         <% if (Session["currentUser"] != null)
+                 {
+                     User currentUser = (User)Session["currentUser"];
+                     if (currentUser.getDepartment().Equals("hr"))
+                     {
+             %>
+            <a href="emmaConfiguration.aspx" id="config"><span class="btn btn-default pull-right"><span class="glyphicon glyphicon-option-horizontal"></span></span></a>
+           <%}
+                }%>
+        </h1>
         <div class="verticalLine"></div>
     </div>
     <form class="form-horizontal" runat="server">
@@ -75,13 +81,13 @@
                     <tr>
                         <td>blahblah</td>
                         <td>
-                            <asp:LinkButton ID="LinkButton1" CssClass="btn btn-danger pull-right" runat="server" Text="" data-toggle="modal" href="#deleteModal"><span class="glyphicon glyphicon-trash"></span></asp:LinkButton></td>
+                            <asp:LinkButton ID="LinkButton1" CssClass="btn btn-danger btn-sm pull-right" runat="server" Text="" data-toggle="modal" href="#deleteModal"><span class="glyphicon glyphicon-trash"></span></asp:LinkButton></td>
 
                     </tr>
                     <tr>
                         <td>ayeee</td>
                         <td>
-                            <asp:LinkButton ID="LinkButton2" CssClass="btn btn-danger pull-right" runat="server" Text="" data-toggle="modal" href="#deleteModal"><span class="glyphicon glyphicon-trash"></span></asp:LinkButton></td>
+                            <asp:LinkButton ID="LinkButton2" CssClass="btn btn-danger btn-sm pull-right" runat="server" Text="" data-toggle="modal" href="#deleteModal"><span class="glyphicon glyphicon-trash"></span></asp:LinkButton></td>
 
                     </tr>
                 </tbody>

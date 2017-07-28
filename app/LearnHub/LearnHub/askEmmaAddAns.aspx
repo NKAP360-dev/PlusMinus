@@ -4,63 +4,103 @@
 <%@ Import Namespace="LearnHub.AppCode.dao" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-
+    <link href="/Scripts/footable.bootstrap.min.css" rel="stylesheet" />
+    <script src="/Scripts/footable.min.js"></script>
     <script>
         $(document).ready(function () {
             $("[data-toggle='tooltip']").tooltip();
         });
 
-
-        function myFunction() {
-            // Declare variables 
-            var input, filter, table, tr, td, i;
-            input = document.getElementById("myInput");
-            filter = input.value.toUpperCase();
-            table = document.getElementById("myTable");
-            tr = table.getElementsByTagName("tr");
-
-            // Loop through all table rows, and hide those who don't match the search query
-            for (i = 0; i < tr.length; i++) {
-                td = tr[i].getElementsByTagName("td")[0];
-                if (td) {
-                    if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
-                        tr[i].style.display = "";
-                    } else {
-                        tr[i].style.display = "none";
-                    }
+        jQuery(function ($) {
+            $('.table').footable({
+                "paging": {
+                    "size": 1 <%--Change how many rows per page--%>
+                },
+                "filtering": {
+                    "position": "left"
                 }
-            }
-        }
+            });
+        });
+
 
     </script>
+    <style>
+        .pagination li > a,
+        .pagination li > span,
+        .pagination li > a:focus, .pagination .disabled > a,
+        .pagination .disabled > a:hover,
+        .pagination .disabled > a:focus,
+        .pagination .disabled > span {
+            background-color: white;
+            color: black;
+        }
+
+            .pagination li > a:hover {
+                background-color: #96a8ba;
+            }
+
+        .pagination > .active > a,
+        .pagination > .active > span,
+        .pagination > .active > a:hover,
+        .pagination > .active > span:hover,
+        .pagination > .active > a:focus,
+        .pagination > .active > span:focus {
+            background-color: #576777;
+        }
+    </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <% if (Session["currentUser"] != null)
-        {
-            User currentUser = (User)Session["currentUser"];
-
-            if (currentUser.getDepartment().Equals("hr"))
-            {
-
-    %>
-
-    <div class="configure">
-        <a href="emmaConfiguration.aspx" id="config"><span class="label label-default"><span class="glyphicon glyphicon-cog"></span>Configuration Menu</span></a>
-    </div>
-    <br />
-
-
-    <%}
-        }%>
-
-
     <div class="container">
-        <h1>Add Answers</h1>
+        <h1>Add Answers
+             <% if (Session["currentUser"] != null)
+                 {
+                     User currentUser = (User)Session["currentUser"];
+                     if (currentUser.getDepartment().Equals("hr"))
+                     {
+             %>
+            <a href="emmaConfiguration.aspx" id="config"><span class="btn btn-default pull-right"><span class="glyphicon glyphicon-option-horizontal"></span></span></a>
+           <%}
+                }%>
+        </h1>
         <div class="verticalLine"></div>
     </div>
+    <form class="form-horizontal" runat="server">
+        <div class="container">
+            <table class="table table-striped table-hover" data-paging="true" data-sorting="true" data-filtering="true">
+                <thead>
+                    <tr>
+                        <th>Answers</th>
+                        <th data-breakpoints="xs sm">Intent</th>
+                        <th data-breakpoints="xs sm">Entity</th>
+                        <th data-filterable="false" data-sortable="false"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Column content</td>
+                        <td>Column content</td>
+                        <td>Column content</td>
+                        <td>
+                            <asp:LinkButton ID="LinkButton2" CssClass="btn btn-danger btn-sm pull-right" runat="server" Text="" data-toggle="modal" href="#deleteModal"><span class="glyphicon glyphicon-trash"></span></asp:LinkButton></td>
 
-    <div class="container">
-        <form class="form-horizontal" runat="server">
+                    </tr>
+                    <tr>
+                        <td>Column content</td>
+                        <td>Column content</td>
+                        <td>Column content</td>
+                        <td>
+                            <asp:LinkButton ID="LinkButton1" CssClass="btn btn-danger btn-sm pull-right" runat="server" Text="" data-toggle="modal" href="#deleteModal"><span class="glyphicon glyphicon-trash"></span></asp:LinkButton></td>
+
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+
+
+        <div class="container">
+            <div class="verticalLine"></div>
+            <br />
             <fieldset>
                 <legend>Customize answers for Emma</legend>
                 <div class="form-group">
@@ -125,7 +165,7 @@
                                     <h4>Are you sure you want to submit?</h4>
                                     <br />
                                     <asp:Button ID="cfmSubmit" CssClass="btn btn-primary" runat="server" Text="Submit" />
-                                    <asp:Button ID="Button2" CssClass="btn btn-default" runat="server" class="close" data-dismiss="modal" Text="Cancel" OnClientClick="return false;"/>
+                                    <asp:Button ID="Button2" CssClass="btn btn-default" runat="server" class="close" data-dismiss="modal" Text="Cancel" OnClientClick="return false;" />
 
                                     <br />
                                 </div>
@@ -135,8 +175,9 @@
                     </div>
                 </div>
             </fieldset>
-        </form>
-    </div>
+
+        </div>
+    </form>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder2" runat="server">
 </asp:Content>
