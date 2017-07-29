@@ -14,20 +14,9 @@
                 <div class="col-md-3 btn-primary">
                     <br /><br />
                     <div class="wrapper">
-                        <span style="font-size:75px;" class="glyphicon glyphicon-plus-sign"></span>
+                        <span style="font-size:75px;" class="glyphicon glyphicon-send"></span>
                         <br />
-                        <h3>Add Answers</h3>
-                        <br />
-                    </div>
-                </div>
-            </a>
-             <a href="askEmmaEditAns.aspx">
-                <div class="col-md-3 btn-success">
-                    <br /><br />
-                    <div class="wrapper">
-                        <span style="font-size:75px;" class="glyphicon glyphicon-pencil"></span>
-                        <br />
-                        <h3>Edit Answers</h3>
+                        <h3>Answers</h3>
                         <br />
                     </div>
                 </div>
@@ -38,7 +27,7 @@
                     <div class="wrapper">
                         <span style="font-size:75px;" class="glyphicon glyphicon-asterisk"></span>
                         <br />
-                        <h3>Create New Intent</h3>
+                        <h3>Intents</h3>
                         <br />
                     </div>
                 </div>
@@ -54,9 +43,7 @@
                     </div>
                 </div>
             </a>
-        </div>
-        <div class="row">
-            <a href="askEmmaHelpQn.aspx">
+              <a href="askEmmaHelpQn.aspx">
                 <div class="col-md-3 btn-warning">
                     <br /><br />
                     <div class="wrapper">
@@ -67,6 +54,8 @@
                     </div>
                 </div>
             </a>
+        </div>
+        <div class="row">         
              <a href="askEmmaFeedback.aspx">
                 <div class="col-md-3 btn-default">
                     <br /><br />
@@ -79,12 +68,12 @@
                 </div>
             </a>
              <a href="askEmmaInstruction.aspx">
-                <div class="col-md-3 btn-primary">
+                <div class="col-md-3 btn-success">
                     <br /><br />
                     <div class="wrapper">
                         <span style="font-size:75px;" class="glyphicon glyphicon-book"></span>
                         <br />
-                        <h3>Edit Instructions</h3>
+                        <h3>Instructions</h3>
                         <br />
                     </div>
                 </div>

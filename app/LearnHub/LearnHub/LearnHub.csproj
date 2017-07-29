@@ -337,13 +337,6 @@
     <Compile Include="pendingApproval.aspx.designer.cs">
       <DependentUpon>pendingApproval.aspx</DependentUpon>
     </Compile>
-    <Compile Include="plsnoparser.aspx.cs">
-      <DependentUpon>plsnoparser.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="plsnoparser.aspx.designer.cs">
-      <DependentUpon>plsnoparser.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="rejectionConfirmation.aspx.cs">
       <DependentUpon>rejectionConfirmation.aspx</DependentUpon>
@@ -498,7 +491,6 @@
     <Content Include="Login.aspx" />
     <Content Include="Logout.aspx" />
     <Content Include="pendingApproval.aspx" />
-    <Content Include="plsnoparser.aspx" />
     <Content Include="rejectionConfirmation.aspx" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
