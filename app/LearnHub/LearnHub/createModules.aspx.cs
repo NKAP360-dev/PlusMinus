@@ -43,7 +43,7 @@ namespace LearnHub
             if (check && moduleType.Text != "") // if no expiry date
             {
                 c = new Course_elearn(nameOfModuleInput.Text, user.getDepartment(), DateTime.Now,
-                    Convert.ToDateTime(fromDateInput.Text), Convert.ToDateTime(toDateInput.Text),  "Open", descriptionModuleInput.Text, moduleType.Text, user, Convert.ToInt32(hoursInput.Text));
+                    Convert.ToDateTime("01/01/2017"), Convert.ToDateTime("12/31/2017"),  "Open", descriptionModuleInput.Text, moduleType.Text, user, Convert.ToInt32(hoursInput.Text));
             }
 
             //check pre req here 
