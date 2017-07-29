@@ -26,6 +26,9 @@
             $('.table').footable({
                 "paging": {
                     "size": 5 <%--Change how many rows per page--%>
+                },
+                "filtering": {
+                    "position": "left"
                 }
             });
         });
@@ -127,9 +130,10 @@
                     <strong>
                         <asp:Label ID="preqModuleLabel" runat="server" CssClass="col-lg-2 control-label" Text="Module Pre-requisite"></asp:Label></strong>
                     <div class="col-lg-5">
-                        <table class="table table-striped table-hover" data-paging="true" data-sorting="true">
+                        <table class="table table-striped table-hover" data-paging="true" data-sorting="true" data-filtering="true">
                             <thead>
                                 <tr>
+                                    <th data-filterable="false" data-sortable="false">Select</th>
                                     <th>Module Name</th>
                                     <th>Module Category</th>
                                     <th data-filterable="false" data-sortable="false"></th>
@@ -137,6 +141,8 @@
                             </thead>
                             <tbody>
                                 <tr>
+                                    <td>
+                                        <input id="checkbox1" type="checkbox" /></td>
                                     <td>Column content</td>
                                     <td>Column content</td>
                                     <td><%--View Module's Info // viewModuleInfo.aspx--%>
@@ -144,6 +150,8 @@
 
                                 </tr>
                                 <tr>
+                                     <td>
+                                        <input id="checkbox2" type="checkbox" /></td>
                                     <td>Column content</td>
                                     <td>Column content</td>
                                     <td>
