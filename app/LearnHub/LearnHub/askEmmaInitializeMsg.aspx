@@ -1,4 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Masterpage.Master" AutoEventWireup="true" CodeBehind="askEmmaInitializeMsg.aspx.cs" Inherits="LearnHub.askEmmaInitializeMsg" %>
+
 <%@ Import Namespace="LearnHub.AppCode.entity" %>
 <%@ Import Namespace="LearnHub.AppCode.dao" %>
 
@@ -28,7 +29,7 @@
         }
     </style>
 
-     <link href="/Scripts/footable.bootstrap.min.css" rel="stylesheet" />
+    <link href="/Scripts/footable.bootstrap.min.css" rel="stylesheet" />
     <script src="/Scripts/footable.min.js"></script>
     <script>
         $(document).ready(function () {
@@ -67,100 +68,148 @@
     </div>
     <div class="container">
         <form class="form-horizontal" runat="server">
-        <table class="table table-striped table-hover" data-paging="true" data-sorting="true" data-filtering="true">
-            <thead>
-                <tr>
-                    <th width="80%">Initialization Message</th>
-                    <th>Message Order</th>
-                    <th data-filterable="false" data-sortable="false"></th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>blahblah</td>
-                    <td>
-                        <select class="form-control" id="select">
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                            <option>5</option>
-                        </select></td>
-                    <td><asp:LinkButton ID="Button1" CssClass="btn btn-danger btn-sm pull-right" runat="server" Text="" data-toggle="modal" href="#deleteModal"><span class="glyphicon glyphicon-trash"></span></asp:LinkButton></td>
-                </tr>
-                <tr>
-                    <td>kekeke</td>
-                    <td>
-                        <select class="form-control" id="select">
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                            <option>5</option>
-                        </select></td>
-                   <td><asp:LinkButton ID="LinkButton1" CssClass="btn btn-danger btn-sm pull-right" runat="server" Text="" data-toggle="modal" href="#deleteModal"><span class="glyphicon glyphicon-trash"></span></asp:LinkButton></td>
-                </tr>
+            <table class="table table-striped table-hover" data-paging="true" data-sorting="true" data-filtering="true">
+                <thead>
+                    <tr>
+                        <th width="80%">Initialization Message</th>
+                        <th>Message Order</th>
+                        <th data-filterable="false" data-sortable="false"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>blahblah</td>
+                        <td>
+                            <select class="form-control" id="select">
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5</option>
+                            </select></td>
+                        <td>
+                            <asp:LinkButton ID="btnDel" CssClass="btn btn-danger btn-sm pull-right" runat="server" Text="" data-toggle="modal" href="#deleteModal"><span class="glyphicon glyphicon-trash"></span></asp:LinkButton>
+                            <asp:LinkButton ID="btnEdit" CssClass="btn btn-info btn-sm pull-right" runat="server" Text="" data-toggle="modal" href="#editModal"><span class="glyphicon glyphicon-pencil"></span></asp:LinkButton></td>
 
-            </tbody>
-        </table>
+                    </tr>
+                    <tr>
+                        <td>kekeke</td>
+                        <td>
+                            <select class="form-control" id="select">
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5</option>
+                            </select></td>
+                        <td>
+                            <asp:LinkButton ID="LinkButton1" CssClass="btn btn-danger btn-sm pull-right" runat="server" Text="" data-toggle="modal" href="#deleteModal"><span class="glyphicon glyphicon-trash"></span></asp:LinkButton>
+                            <asp:LinkButton ID="LinkButton3" CssClass="btn btn-info btn-sm pull-right" runat="server" Text="" data-toggle="modal" href="#editModal"><span class="glyphicon glyphicon-pencil"></span></asp:LinkButton></td>
+
+                    </tr>
+
+                </tbody>
+            </table>
             <div class="wrapper">
                 <div class="form-group">
-                    <asp:LinkButton ID="saveBtn" CssClass="btn btn-success" runat="server"><span class="glyphicon glyphicon-floppy-saved"></span>&nbsp; Save</asp:LinkButton>
+                    <asp:LinkButton ID="btnSave" CssClass="btn btn-success" runat="server"><span class="glyphicon glyphicon-floppy-saved"></span>&nbsp; Save</asp:LinkButton>
                     <br />
                 </div>
-                        <strong><asp:Label ID="successMsg" runat="server" CssClass="text-success"><span class="glyphicon glyphicon-ok"></span> Saved successfully</asp:Label></strong><br />
-                        <strong><asp:Label ID="errorMsg" runat="server" CssClass="text-danger"><span class="glyphicon glyphicon-remove"></span> Something went wrong</asp:Label></strong>
+                <strong>
+                    <asp:Label ID="lblSaveSuccess" runat="server" CssClass="text-success"><span class="glyphicon glyphicon-ok"></span> Saved successfully</asp:Label></strong><br />
+                <strong>
+                    <asp:Label ID="lblSaveError" runat="server" CssClass="text-danger"><span class="glyphicon glyphicon-remove"></span> Something went wrong</asp:Label></strong>
 
             </div>
-        <div class="verticalLine"></div>
-        <br />
-            
-        <div class="form-group">
-            <div class="container">
-            <div class="row">
-                <strong>
-                        <label for="inputMsg" class="col-lg-3 control-label"><span class="glyphicon glyphicon-question-sign" data-toggle='tooltip' data-placement="left" title="" data-original-title="An Initialization Message is the message you see when you initialize :)"></span>&nbsp;Initialization Message *</label>
-                </strong>
-                <div class="col-lg-7">
-                    <%--Mandatory text field--%>
-                    <asp:TextBox ID="inputmsg" runat="server" CssClass="form-control" placeholder="Initialization Message"></asp:TextBox>
-                </div>
-                <div class="col-lg-1">
-                 <asp:Button ID="addBtn" CssClass="btn btn-primary" runat="server" Text="Add"/>
-                </div>
-            </div>
+            <div class="verticalLine"></div>
             <br />
-            <div class="row">
-                    <div class="wrapper">
-                        <strong><asp:Label ID="Label1" runat="server" CssClass="text-success"><span class="glyphicon glyphicon-ok"></span> Added successfully</asp:Label></strong><br />
-                        <strong><asp:Label ID="Label2" runat="server" CssClass="text-danger"><span class="glyphicon glyphicon-remove"></span> Something went wrong</asp:Label></strong>
+
+            <div class="form-group">
+                <div class="container">
+                    <div class="row">
+                        <strong>
+                            <label for="txtMsgInput" class="col-lg-3 control-label"><span class="glyphicon glyphicon-question-sign" data-toggle='tooltip' data-placement="left" title="" data-original-title="An Initialization Message is the message you see when you initialize :)"></span>&nbsp;Initialization Message *</label>
+                        </strong>
+                        <div class="col-lg-7">
+                            <%--Mandatory text field--%>
+                            <asp:TextBox ID="txtMsgInput" runat="server" CssClass="form-control" placeholder="Initialization Message"></asp:TextBox>
+                        </div>
+                        <div class="col-lg-1">
+                            <asp:Button ID="btnAdd" CssClass="btn btn-primary" runat="server" Text="Add" />
+                        </div>
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="wrapper">
+                            <strong>
+                                <asp:Label ID="lblAddSuccess" runat="server" CssClass="text-success"><span class="glyphicon glyphicon-ok"></span> Added successfully</asp:Label></strong><br />
+                            <strong>
+                                <asp:Label ID="lblAddError" runat="server" CssClass="text-danger"><span class="glyphicon glyphicon-remove"></span> Something went wrong</asp:Label></strong>
+                        </div>
                     </div>
                 </div>
+            </div>
+            <%--Modal for Deletion Confirmation--%>
+            <div id="deleteModal" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title"><span class="glyphicon glyphicon-trash"></span>&nbsp;<b>Delete Message</b></h4>
+                        </div>
+                        <%--Modal Content--%>
+                        <div class="modal-body">
+                            <div class="wrapper">
+                                <h4>Are you sure you want to delete?</h4>
+                                <br />
+                                <asp:Button ID="btnCfmDel" CssClass="btn btn-danger" runat="server" Text="Delete" />
+                                <asp:Button ID="btnClose" CssClass="btn btn-default" runat="server" class="close" data-dismiss="modal" Text="Cancel" />
+
+                                <br />
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
-        </div>
-                <%--Modal for Deletion Confirmation--%>
-                <div id="deleteModal" class="modal fade" role="dialog">
+            </div>
+
+              <%--Modal for Edit--%>
+        <div id="editModal" class="modal fade" role="dialog">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title"><span class="glyphicon glyphicon-trash"></span>&nbsp;<b>Delete Message</b></h4>
+                        <h4 class="modal-title"><span class="glyphicon glyphicon-pencil"></span>&nbsp;<b>Edit Initialization Message</b></h4>
                     </div>
                     <%--Modal Content--%>
                     <div class="modal-body">
-                        <div class="wrapper">                            
-                            <h4>Are you sure you want to delete?</h4><br />
-                            <asp:Button ID="cfmDelete" CssClass="btn btn-danger" runat="server" Text="Delete"/>
-                            <asp:Button ID="Button2" CssClass="btn btn-default" runat="server" class="close" data-dismiss="modal" Text="Cancel"/>
-                            
-                            <br />
-                        </div>                       
-                    </div>                  
-                </div>
+                        <div class="form-group">
+                            <strong>
+                                <asp:Label ID="lblEditMsg" runat="server" CssClass="col-lg-3 control-label">Edit Initialization Message </asp:Label></strong>
+                            <div class="col-lg-8">
+                                <%--Mandatory text field--%>
+                                <asp:TextBox ID="txtEditMsg" runat="server" CssClass="form-control" placeholder="Current Message goes here"></asp:TextBox>
+                            </div>
 
+                        </div>
+                        <div class="wrapper">
+                            <br />
+                            <asp:Button ID="btnEditSubmit" CssClass="btn btn-primary" runat="server" Text="Submit Edits" />
+                            <br />
+                            <br />
+                            <strong>
+                                <asp:Label ID="lblUpdated" runat="server" CssClass="text-success"><span class="glyphicon glyphicon-ok"></span> Updated successfully</asp:Label></strong><br />
+                            <strong>
+                                <asp:Label ID="lblUpdateError" runat="server" CssClass="text-danger"><span class="glyphicon glyphicon-remove"></span> Something went wrong</asp:Label></strong>
+
+                            <br />
+                        </div>
+                    </div>
+                </div>
             </div>
+
         </div>
-            </form>
+        </form>
     </div>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder2" runat="server">
