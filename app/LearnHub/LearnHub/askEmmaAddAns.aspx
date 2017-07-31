@@ -2,6 +2,8 @@
 
 <%@ Import Namespace="LearnHub.AppCode.entity" %>
 <%@ Import Namespace="LearnHub.AppCode.dao" %>
+<%@ Import Namespace="Emma.DAO" %>
+<%@ Import Namespace="Emma.Entity" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link href="/Scripts/footable.bootstrap.min.css" rel="stylesheet" />
@@ -14,7 +16,7 @@
         jQuery(function ($) {
             $('.table').footable({
                 "paging": {
-                    "size": 1 <%--Change how many rows per page--%>
+                    "size": 10 <%--Change how many rows per page--%>
                 },
                 "filtering": {
                     "position": "left"
@@ -69,6 +71,7 @@
             <table class="table table-striped table-hover" data-paging="true" data-sorting="true" data-filtering="true">
                 <thead>
                     <tr>
+                        <th>ID</th>
                         <th>Answers</th>
                         <th data-breakpoints="xs sm">Intent</th>
                         <th data-breakpoints="xs sm">Entity</th>
@@ -76,24 +79,33 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                        <td>
-                            <asp:LinkButton ID="btnDelete" CssClass="btn btn-danger btn-sm pull-right" runat="server" Text="" data-toggle="modal" href="#deleteModal"><span class="glyphicon glyphicon-trash"></span></asp:LinkButton>
-                            <asp:LinkButton ID="btnEdit" CssClass="btn btn-info btn-sm pull-right" runat="server" Text="" data-toggle="modal" href="#editModal"><span class="glyphicon glyphicon-pencil"></span></asp:LinkButton></td>
+                    <% 
+                        ChatBotAnswerDAO cbaDAO = new ChatBotAnswerDAO();
+                        List<ChatBotAnswer> allAnswers = cbaDAO.getAllChatBotAnswers();
+                        foreach (ChatBotAnswer cba in allAnswers)
+                        {
+                            Response.Write("<tr>");
+                            Response.Write($"<td>{cba.answerID}</td>");
+                            Response.Write($"<td>{cba.answer}</td>");
+                            Response.Write($"<td>{cba.intent}</td>");
+                            if (cba.entityName == null || cba.entityName.Equals(""))
+                            {
+                                Response.Write($"<td>-</td>");
+                            }
+                            else
+                            {
+                                Response.Write($"<td>{cba.entityName}</td>");
+                            }
+                            Response.Write("<td>");
+                     %>
+                            <asp:LinkButton ID="LinkButton3" CssClass="btn btn-danger btn-sm pull-right" runat="server" Text="" data-toggle="modal" href="#deleteModal"><span class="glyphicon glyphicon-trash"></span></asp:LinkButton>
+                            <asp:LinkButton ID="LinkButton4" CssClass="btn btn-info btn-sm pull-right" runat="server" Text="" data-toggle="modal" href="#editModal"><span class="glyphicon glyphicon-pencil"></span></asp:LinkButton>
 
-                    </tr>
-                    <tr>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                        <td>
-                            <asp:LinkButton ID="LinkButton1" CssClass="btn btn-danger btn-sm pull-right" runat="server" Text="" data-toggle="modal" href="#deleteModal"><span class="glyphicon glyphicon-trash"></span></asp:LinkButton>
-                            <asp:LinkButton ID="LinkButton2" CssClass="btn btn-info btn-sm pull-right" runat="server" Text="" data-toggle="modal" href="#editModal"><span class="glyphicon glyphicon-pencil"></span></asp:LinkButton></td>
-
-                    </tr>
+                    <%
+                            Response.Write("</td>");
+                            Response.Write("</tr>");
+                        }
+                    %>
                 </tbody>
             </table>
         </div>
@@ -112,7 +124,8 @@
 
                     <div class="col-lg-10">
                         <%--Mandatory Choose 1--%>
-                        <asp:DropDownList ID="ddlIntent" runat="server" CssClass="form-control"></asp:DropDownList>
+                        <asp:DropDownList ID="ddlIntent" runat="server" CssClass="form-control" DataSourceID="SqlDataSource1" DataTextField="intent" DataValueField="intentID"></asp:DropDownList>
+                        <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:DBConnectionString %>" SelectCommand="SELECT [intent], [intentID] FROM [ChatBotIntent] ORDER BY [intent]"></asp:SqlDataSource>
                         <br>
                         <asp:RequiredFieldValidator ID="rfv_ddlIntent" runat="server" ControlToValidate="ddlIntent" ErrorMessage="Please Select a Course" InitialValue="--Select--" ForeColor="Red" ValidationGroup="ValidateForm"></asp:RequiredFieldValidator>
                     </div>

@@ -53,6 +53,7 @@ namespace Emma
                     {
                         if (newMember.Id != message.Recipient.Id)
                         {
+                            
                             List<string> messages = cbaDAO.getChatBotInitializationMessage();
                             foreach (string msg in messages)
                             {
@@ -60,6 +61,7 @@ namespace Emma
                                 reply.Text = msg;
                                 client.Conversations.ReplyToActivityAsync(reply);
                             }
+                            
                         }
                     }
                 }

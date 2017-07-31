@@ -455,5 +455,43 @@ namespace Emma.Dialogs
                 context.Wait(MessageReceived);
             }
         }
+
+        /*
+        [LuisIntent("course description enquiry")]
+        public async Task CourseDescriptionEnquiry(IDialogContext context, LuisResult result)
+        {
+            List<ChatBotAnswer> possibleAns = cbaDAO.getChatBotAnswerByIntent("about me");
+            EntityRecommendation rec;
+                if (result.TryFindEntity("course", out rec))
+                {
+                    string name = rec.Entity;
+                    Boolean checkIfAnswered = false;
+
+                    foreach (ChatBotAnswer cba in possibleAns)
+                    {
+                        if (cba.entityName != null && cba.entityName.ToLower().Contains("name"))
+                        {
+                            checkIfAnswered = true;
+                            await context.PostAsync($"{cba.answer}");
+                            break;
+                        }
+                    }
+
+                    if (!checkIfAnswered)
+                    {
+                        await context.PostAsync($"I am an assistant");
+                    }
+
+                }
+                else
+                {
+                    possibleAns.RemoveAll(x => x.entityName != null);
+                    Random rdm = new Random();
+                    int r = rdm.Next(possibleAns.Count);
+                    await context.PostAsync($"{possibleAns[r].answer}");
+                }
+            
+            context.Wait(MessageReceived);
+        }*/
     }
 }
