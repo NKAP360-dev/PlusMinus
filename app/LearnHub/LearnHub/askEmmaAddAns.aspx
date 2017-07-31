@@ -14,19 +14,71 @@
         });
 
         jQuery(function ($) {
-            $('.table').footable({
-                "paging": {
-                    "size": 10 <%--Change how many rows per page--%>
-                },
-                "filtering": {
-                    "position": "left"
+            var $modal = $('#editor-modal'),
+                $editor = $('#editor'),
+                $editorTitle = $('#editor-title'),
+                ft = FooTable.init('#ansTable', {
+                    editing: {
+                        enabled: true,
+                        addRow: function () {
+                            $modal.removeData('row');
+                            $editor[0].reset();
+                            $editorTitle.text('Add a new row');
+                            $modal.modal('show');
+                        },
+                        editRow: function (row) {
+                            var values = row.val();
+                            $editor.find('#id').val(values.id);
+                            $editor.find('#firstName').val(values.firstName);
+                            $editor.find('#lastName').val(values.lastName);
+                            $editor.find('#jobTitle').val(values.jobTitle);
+                            $editor.find('#startedOn').val(values.startedOn);
+                            $editor.find('#dob').val(values.dob);
+
+                            $modal.data('row', row);
+                            $editorTitle.text('Edit row #' + values.id);
+                            $modal.modal('show');
+                        },
+                        deleteRow: function (row) {
+                            if (confirm('Are you sure you want to delete the row?')) {
+                                row.delete();
+                            }
+                        }
+                    }
+                }),
+                uid = 10;
+
+            $editor.on('submit', function (e) {
+                if (this.checkValidity && !this.checkValidity()) return;
+                e.preventDefault();
+                var row = $modal.data('row'),
+                    values = {
+                        id: $editor.find('#id').val(),
+                        firstName: $editor.find('#firstName').val(),
+                        lastName: $editor.find('#lastName').val(),
+                        jobTitle: $editor.find('#jobTitle').val(),
+                        startedOn: moment($editor.find('#startedOn').val(), 'YYYY-MM-DD'),
+                        dob: moment($editor.find('#dob').val(), 'YYYY-MM-DD')
+                    };
+
+                if (row instanceof FooTable.Row) {
+                    row.val(values);
+                } else {
+                    values.id = uid++;
+                    ft.rows.add(values);
                 }
+                $modal.modal('hide');
             });
         });
 
-
     </script>
     <style>
+        .form-group.required .control-label:after {
+            content: "*";
+            color: red;
+            margin-left: 4px;
+        }
+
         .pagination li > a,
         .pagination li > span,
         .pagination li > a:focus, .pagination .disabled > a,
@@ -68,7 +120,7 @@
     </div>
     <form class="form-horizontal" runat="server">
         <div class="container">
-            <table class="table table-striped table-hover" data-paging="true" data-sorting="true" data-filtering="true">
+            <table class="table table-striped table-hover" id="ansTable" data-paging="true" data-paging-size="10" data-sorting="true" data-filtering="true" data-filter-position="left" data-editing="true">
                 <thead>
                     <tr>
                         <th>ID</th>
@@ -97,15 +149,9 @@
                                 Response.Write($"<td>{cba.entityName}</td>");
                             }
                             Response.Write("<td>");
-                     %>
-                            <asp:LinkButton ID="LinkButton3" CssClass="btn btn-danger btn-sm pull-right" runat="server" Text="" data-toggle="modal" href="#deleteModal"><span class="glyphicon glyphicon-trash"></span></asp:LinkButton>
-                            <asp:LinkButton ID="LinkButton4" CssClass="btn btn-info btn-sm pull-right" runat="server" Text="" data-toggle="modal" href="#editModal"><span class="glyphicon glyphicon-pencil"></span></asp:LinkButton>
-
-                    <%
                             Response.Write("</td>");
                             Response.Write("</tr>");
-                        }
-                    %>
+                        }%>
                 </tbody>
             </table>
         </div>
@@ -192,89 +238,58 @@
 
         </div>
 
-        <%--Modal for Deletion Confirmation--%>
-        <div id="deleteModal" class="modal fade" role="dialog">
-            <div class="modal-dialog">
-                <div class="modal-content">
+        <%--Footable Modal--%>
+        <div class="modal fade" id="editor-modal" tabindex="-1" role="dialog" aria-labelledby="editor-title">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content form-horizontal" id="editor">
                     <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title"><span class="glyphicon glyphicon-trash"></span>&nbsp;<b>Delete Answer</b></h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                        <h4 class="modal-title" id="editor-title">Add Row</h4>
                     </div>
-                    <%--Modal Content--%>
                     <div class="modal-body">
-                        <div class="wrapper">
-                            <h4>Are you sure you want to delete?</h4>
-                            <br />
-                            <asp:Button ID="btnCfmDelete" CssClass="btn btn-danger" runat="server" Text="Delete" />
-                            <asp:Button ID="btnCancel2" CssClass="btn btn-default" runat="server" class="close" data-dismiss="modal" Text="Cancel" />
-
-                            <br />
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-
-        <%--Modal for Edit--%>
-        <div id="editModal" class="modal fade" role="dialog">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title"><span class="glyphicon glyphicon-pencil"></span>&nbsp;<b>Edit Answer</b></h4>
-                    </div>
-                    <%--Modal Content--%>
-                    <div class="modal-body">
-                        <div class="form-group">
-                            <%--Intent--%>
+                        <input type="number" id="id" name="id" class="hidden" />
+                        <div class="form-group required">
                             <strong>
-                                <label for="ddlEditIntent" class="col-lg-3 control-label"><span class="glyphicon glyphicon-question-sign" data-toggle='tooltip' data-placement="left" title="" data-original-title="An Intent is a......"></span>Choose an Intent *</label>
+                                <label for="ddlEditIntent" class="col-lg-3 control-label"><span class="glyphicon glyphicon-question-sign" data-toggle='tooltip' data-placement="left" title="" data-original-title="An Intent is a......"></span>&nbsp;Choose an Intent</label>
                             </strong>
-                            <div class="col-lg-8">
+                            <div class="col-lg-9">
                                 <%--Mandatory Choose 1--%>
                                 <asp:DropDownList ID="ddlEditIntent" runat="server" disabled="" CssClass="form-control"></asp:DropDownList>
                                 <br>
                             </div>
                         </div>
-
                         <div class="form-group">
-                            <strong>
-                                <%--Entity--%>
-                                <label for="txtEditEntity" class="col-lg-3 control-label"><span class="glyphicon glyphicon-question-sign" data-toggle='tooltip' data-placement="left" title="" data-original-title="An Entity is a......"></span>Choose an Entity </label>
-                            </strong>
-                            <div class="col-lg-8">
+                            <div class="form-group">
+                                <strong>
+                                    <%--Entity--%>
+                                    <label for="txtEditEntity" class="col-lg-3 control-label"><span class="glyphicon glyphicon-question-sign" data-toggle='tooltip' data-placement="left" title="" data-original-title="An Entity is a......"></span>&nbsp;Choose an Entity </label>
+                                </strong>
+                                <div class="col-lg-9">
 
-                                <asp:TextBox ID="txtEditEntity" runat="server" CssClass="form-control" placeholder="Please enter an Entity"></asp:TextBox>
-                                <br>
+                                    <asp:TextBox ID="txtEditEntity" runat="server" CssClass="form-control" placeholder="Please enter an Entity"></asp:TextBox>
+                                    <br>
+                                </div>
                             </div>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group required">
                             <strong>
                                 <%--Answers--%>
-                                <asp:Label ID="lblAns" CssClass="col-lg-3 control-label" runat="server" Text="Answers*"></asp:Label>
+                                <asp:Label ID="lblEditAns" CssClass="col-lg-3 control-label" runat="server" Text="Answers*"></asp:Label>
                             </strong>
-                            <div class="col-lg-8">
+                            <div class="col-lg-9">
                                 <%--Mandatory text field--%>
-                                <asp:TextBox ID="txtEditAnswers" TextMode="multiline" Columns="50" Rows="5" runat="server" CssClass="form-control" placeholder="Please enter your answers here"></asp:TextBox>
-                                <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="Please enter an answer" ControlToValidate="txtEditAnswers" ForeColor="Red"></asp:RequiredFieldValidator>
+                                <asp:TextBox ID="txtEditAns" TextMode="multiline" Columns="50" Rows="5" runat="server" CssClass="form-control" placeholder="Please enter your answers here"></asp:TextBox>
+                                <asp:RequiredFieldValidator ID="validateEditAns" runat="server" ErrorMessage="Please enter an answer" ControlToValidate="txtEditAns" ForeColor="Red"></asp:RequiredFieldValidator>
                             </div>
                         </div>
-                        <div class="wrapper">
-                            <asp:Button ID="btnEditSubmit" CssClass="btn btn-primary" runat="server" Text="Submit Edits" />
-                            <br />
-                            <br />
-                            <strong>
-                                <asp:Label ID="successMsg" runat="server" CssClass="text-success"><span class="glyphicon glyphicon-ok"></span> Updated successfully</asp:Label></strong><br />
-                            <strong>
-                                <asp:Label ID="errorMsg" runat="server" CssClass="text-danger"><span class="glyphicon glyphicon-remove"></span> Something went wrong</asp:Label></strong>
 
-                            <br />
-                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary">Save changes</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
                     </div>
                 </div>
             </div>
-
         </div>
 
     </form>

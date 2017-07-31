@@ -13,24 +13,6 @@ namespace LearnHub {
     public partial class askEmmaAddAns {
         
         /// <summary>
-        /// LinkButton3 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkButton3;
-        
-        /// <summary>
-        /// LinkButton4 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkButton4;
-        
-        /// <summary>
         /// ddlIntent control.
         /// </summary>
         /// <remarks>
@@ -139,24 +121,6 @@ namespace LearnHub {
         protected global::System.Web.UI.WebControls.Button btnCancel1;
         
         /// <summary>
-        /// btnCfmDelete control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnCfmDelete;
-        
-        /// <summary>
-        /// btnCancel2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnCancel2;
-        
-        /// <summary>
         /// ddlEditIntent control.
         /// </summary>
         /// <remarks>
@@ -175,57 +139,30 @@ namespace LearnHub {
         protected global::System.Web.UI.WebControls.TextBox txtEditEntity;
         
         /// <summary>
-        /// lblAns control.
+        /// lblEditAns control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblAns;
+        protected global::System.Web.UI.WebControls.Label lblEditAns;
         
         /// <summary>
-        /// txtEditAnswers control.
+        /// txtEditAns control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtEditAnswers;
+        protected global::System.Web.UI.WebControls.TextBox txtEditAns;
         
         /// <summary>
-        /// RequiredFieldValidator1 control.
+        /// validateEditAns control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator1;
-        
-        /// <summary>
-        /// btnEditSubmit control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnEditSubmit;
-        
-        /// <summary>
-        /// successMsg control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label successMsg;
-        
-        /// <summary>
-        /// errorMsg control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label errorMsg;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator validateEditAns;
     }
 }
