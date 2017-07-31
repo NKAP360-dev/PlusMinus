@@ -120,11 +120,10 @@
                 <div class="form-group">
                     <strong>
                         <%--Entity--%>
-                        <label for="ddlIntent" class="col-lg-2 control-label"><span class="glyphicon glyphicon-question-sign" data-toggle='tooltip' data-placement="left" title="" data-original-title="An Entity is a......"></span>Choose an Entity to represent </label>
+                        <label for="txtEntity" class="col-lg-2 control-label"><span class="glyphicon glyphicon-question-sign" data-toggle='tooltip' data-placement="left" title="" data-original-title="An Entity is a......"></span>Choose an Entity to represent </label>
                     </strong>
                     <div class="col-lg-10">
-                        <%--Optional Choose 1--%>
-                        <asp:DropDownList ID="ddlEntity" runat="server" CssClass="form-control"></asp:DropDownList>
+                        <asp:TextBox ID="txtEntity" runat="server" CssClass="form-control" placeholder="Please Enter an Entity"></asp:TextBox>
                         <br>
                     </div>
                 </div>
@@ -229,11 +228,11 @@
                         <div class="form-group">
                             <strong>
                                 <%--Entity--%>
-                                <label for="ddlEditEntity" class="col-lg-3 control-label"><span class="glyphicon glyphicon-question-sign" data-toggle='tooltip' data-placement="left" title="" data-original-title="An Entity is a......"></span>Choose an Entity </label>
+                                <label for="txtEditEntity" class="col-lg-3 control-label"><span class="glyphicon glyphicon-question-sign" data-toggle='tooltip' data-placement="left" title="" data-original-title="An Entity is a......"></span>Choose an Entity </label>
                             </strong>
                             <div class="col-lg-8">
-                                <%--Optional Choose 1--%>
-                                <asp:DropDownList ID="ddlEditEntity" runat="server" disabled="" CssClass="form-control"></asp:DropDownList>
+
+                                <asp:TextBox ID="txtEditEntity" runat="server" CssClass="form-control" placeholder="Please enter an Entity"></asp:TextBox>
                                 <br>
                             </div>
                         </div>

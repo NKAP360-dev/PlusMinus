@@ -67,13 +67,13 @@ namespace LearnHub {
         protected global::System.Web.UI.WebControls.RequiredFieldValidator rfv_ddlIntent;
         
         /// <summary>
-        /// ddlEntity control.
+        /// txtEntity control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlEntity;
+        protected global::System.Web.UI.WebControls.TextBox txtEntity;
         
         /// <summary>
         /// lblAnswers control.
@@ -175,13 +175,13 @@ namespace LearnHub {
         protected global::System.Web.UI.WebControls.DropDownList ddlEditIntent;
         
         /// <summary>
-        /// ddlEditEntity control.
+        /// txtEditEntity control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlEditEntity;
+        protected global::System.Web.UI.WebControls.TextBox txtEditEntity;
         
         /// <summary>
         /// lblAns control.
