@@ -1,6 +1,8 @@
 ﻿using System;
 using LearnHub.AppCode.dao;
 using LearnHub.AppCode.entity;
+using Emma.DAO;
+using Emma.Entity;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -29,6 +31,26 @@ namespace LearnHub
                     }
                 }
             }
+        }
+
+        protected void btnConfirmSubmit_Click(object sender, EventArgs e)
+        {
+            //to do validations
+
+            ChatBotAnswerDAO cbaDAO = new ChatBotAnswerDAO();
+            ChatBotAnswer cbAnswer = new ChatBotAnswer();
+            cbAnswer.answer = txtAnswers.Text;
+            cbAnswer.intent = ddlIntent.SelectedValue;
+            if (txtEntity.Text != "")
+            {
+                cbAnswer.entityName = txtEntity.Text;
+            }
+            else
+            {
+                cbAnswer.entityName = null;
+            }
+            cbaDAO.insertAnswer(cbAnswer);
+            Response.Redirect("/askEmmaAddAns.aspx");
         }
     }
 }

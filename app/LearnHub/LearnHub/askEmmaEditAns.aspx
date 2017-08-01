@@ -143,7 +143,8 @@
 
                     <div class="col-lg-10">
                         <%--Mandatory Choose 1--%>
-                        <asp:DropDownList ID="ddlIntent" runat="server" disabled="" CssClass="form-control"></asp:DropDownList>
+                        <asp:DropDownList ID="ddlIntent" runat="server" CssClass="form-control" DataSourceID="SqlDataSource1" DataTextField="intent" DataValueField="intentID"></asp:DropDownList>
+                        <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:DBConnectionString %>" SelectCommand="SELECT * FROM [ChatBotIntent]"></asp:SqlDataSource>
                         <br>
                     </div>
                 </div>
@@ -218,7 +219,7 @@
                                 <div class="wrapper">
                                     <h4>Are you sure you want to overwrite the existing answers?</h4>
                                     <br />
-                                    <asp:Button ID="cfmSubmit" CssClass="btn btn-primary" runat="server" Text="Yes" />
+                                    <asp:Button ID="cfmSubmit" CssClass="btn btn-primary" runat="server" Text="Yes" OnClick="cfmSubmit_Click" />
                                     <asp:Button ID="Button2" CssClass="btn btn-default" runat="server" class="close" data-dismiss="modal" Text="Cancel" OnClientClick="return false;" />
 
                                     <br />

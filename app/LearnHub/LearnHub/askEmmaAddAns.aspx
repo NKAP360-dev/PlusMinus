@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Masterpage.Master" AutoEventWireup="true" CodeBehind="askEmmaAddAns.aspx.cs" Inherits="LearnHub.askEmmaAddAns" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Masterpage.Master" AutoEventWireup="true" CodeFile="askEmmaAddAns.aspx.cs" Inherits="LearnHub.askEmmaAddAns" %>
 
 <%@ Import Namespace="LearnHub.AppCode.entity" %>
 <%@ Import Namespace="LearnHub.AppCode.dao" %>
@@ -29,11 +29,9 @@
                         editRow: function (row) {
                             var values = row.val();
                             $editor.find('#id').val(values.id);
-                            $editor.find('#firstName').val(values.firstName);
-                            $editor.find('#lastName').val(values.lastName);
-                            $editor.find('#jobTitle').val(values.jobTitle);
-                            $editor.find('#startedOn').val(values.startedOn);
-                            $editor.find('#dob').val(values.dob);
+                            $editor.find('#txtEditAnswer').val(values.answers);
+                            $editor.find('#ddlEditIntent').val(values.intent);
+                            $editor.find('#txtEditEntity').val(values.entity);
 
                             $modal.data('row', row);
                             $editorTitle.text('Edit row #' + values.id);
@@ -54,11 +52,9 @@
                 var row = $modal.data('row'),
                     values = {
                         id: $editor.find('#id').val(),
-                        firstName: $editor.find('#firstName').val(),
-                        lastName: $editor.find('#lastName').val(),
-                        jobTitle: $editor.find('#jobTitle').val(),
-                        startedOn: moment($editor.find('#startedOn').val(), 'YYYY-MM-DD'),
-                        dob: moment($editor.find('#dob').val(), 'YYYY-MM-DD')
+                        answer: $editor.find('#txtEditAnswer').val(),
+                        intent: $editor.find('#ddlEditIntent').val(),
+                        entity: $editor.find('#extEditEntity').val()
                     };
 
                 if (row instanceof FooTable.Row) {
@@ -123,10 +119,9 @@
             <table class="table table-striped table-hover" id="ansTable" data-paging="true" data-paging-size="10" data-sorting="true" data-filtering="true" data-filter-position="left" data-editing="true">
                 <thead>
                     <tr>
-                        <th>ID</th>
-                        <th>Answers</th>
-                        <th data-breakpoints="xs sm">Intent</th>
-                        <th data-breakpoints="xs sm">Entity</th>
+                        <th id="answers">Answers</th>
+                        <th id="intent" data-breakpoints="xs sm">Intent</th>
+                        <th id="entity" data-breakpoints="xs sm">Entity</th>
                         <th data-filterable="false" data-sortable="false"></th>
                     </tr>
                 </thead>
@@ -137,18 +132,18 @@
                         foreach (ChatBotAnswer cba in allAnswers)
                         {
                             Response.Write("<tr>");
-                            Response.Write($"<td>{cba.answerID}</td>");
-                            Response.Write($"<td>{cba.answer}</td>");
-                            Response.Write($"<td>{cba.intent}</td>");
+                            Response.Write($"<td id=\"answers\">{cba.answer}</td>");
+                            Response.Write($"<td id=\"intent\">{cba.intent}</td>");
                             if (cba.entityName == null || cba.entityName.Equals(""))
                             {
-                                Response.Write($"<td>-</td>");
+                                Response.Write($"<td id=\"entity\">-</td>");
                             }
                             else
                             {
-                                Response.Write($"<td>{cba.entityName}</td>");
+                                Response.Write($"<td id=\"entity\">{cba.entityName}</td>");
                             }
                             Response.Write("<td>");
+                            Response.Write($"<a href=\"/askEmmaEditAns.aspx?id={cba.answerID}\">Edit</a>");
                             Response.Write("</td>");
                             Response.Write("</tr>");
                         }%>
@@ -173,7 +168,7 @@
                         <asp:DropDownList ID="ddlIntent" runat="server" CssClass="form-control" DataSourceID="SqlDataSource1" DataTextField="intent" DataValueField="intentID"></asp:DropDownList>
                         <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:DBConnectionString %>" SelectCommand="SELECT [intent], [intentID] FROM [ChatBotIntent] ORDER BY [intent]"></asp:SqlDataSource>
                         <br>
-                        <asp:RequiredFieldValidator ID="rfv_ddlIntent" runat="server" ControlToValidate="ddlIntent" ErrorMessage="Please Select a Course" InitialValue="--Select--" ForeColor="Red" ValidationGroup="ValidateForm"></asp:RequiredFieldValidator>
+                        <%--<asp:RequiredFieldValidator ID="rfv_ddlIntent" runat="server" ControlToValidate="ddlIntent" ErrorMessage="Please Select a Course" InitialValue="--Select--" ForeColor="Red" ValidationGroup="ValidateForm"></asp:RequiredFieldValidator>--%>
                     </div>
                 </div>
                 <div class="form-group">
@@ -194,7 +189,7 @@
                     <div class="col-lg-10">
                         <%--Mandatory text field--%>
                         <asp:TextBox ID="txtAnswers" TextMode="multiline" Columns="50" Rows="5" runat="server" CssClass="form-control" placeholder="Please enter your answers here"></asp:TextBox>
-                        <asp:RequiredFieldValidator ID="rfv_txtAnswers" runat="server" ErrorMessage="Please enter an answer" ControlToValidate="txtAnswers" ForeColor="Red"></asp:RequiredFieldValidator>
+                        <%-- <asp:RequiredFieldValidator ID="rfv_txtAnswers" runat="server" ErrorMessage="Please enter an answer" ControlToValidate="txtAnswers" ForeColor="Red"></asp:RequiredFieldValidator> --%>
                     </div>
                 </div>
                 <%--Buttons--%>
@@ -202,7 +197,7 @@
                 <div class="wrapper">
                     <div class="form-group">
 
-                        <asp:Button ID="btnSubmit" CssClass="btn btn-primary" runat="server" Text="Submit" data-toggle="modal" href="#submitModal" OnClientClick="$('#myModal').modal(); return false;" />
+                        <asp:Button ID="btnSubmit" CssClass="btn btn-primary" runat="server" Text="Submit" data-toggle="modal" href="#submitModal" OnClientClick="$('#myModal').modal(); return false;"/>
                         <%--Make success message appear after user click submit button IN MODAL, stay at this page so that user can continue submitting answers--%>
                     </div>
                     <strong>
@@ -224,8 +219,8 @@
                                 <div class="wrapper">
                                     <h4>Are you sure you want to submit?</h4>
                                     <br />
-                                    <asp:Button ID="btnCfmSubmit" CssClass="btn btn-primary" runat="server" Text="Submit" />
-                                    <asp:Button ID="btnCancel1" CssClass="btn btn-default" runat="server" class="close" data-dismiss="modal" Text="Cancel" OnClientClick="return false;" />
+                                    <asp:Button ID="btnConfirmSubmit" CssClass="btn btn-primary" runat="server" Text="Submit" OnClick="btnConfirmSubmit_Click" />
+                                     <asp:Button ID="btnCancel1" CssClass="btn btn-default" runat="server" class="close" data-dismiss="modal" Text="Cancel" OnClientClick="return false;" />
 
                                     <br />
                                 </div>
@@ -279,7 +274,7 @@
                             <div class="col-lg-9">
                                 <%--Mandatory text field--%>
                                 <asp:TextBox ID="txtEditAns" TextMode="multiline" Columns="50" Rows="5" runat="server" CssClass="form-control" placeholder="Please enter your answers here"></asp:TextBox>
-                                <asp:RequiredFieldValidator ID="validateEditAns" runat="server" ErrorMessage="Please enter an answer" ControlToValidate="txtEditAns" ForeColor="Red"></asp:RequiredFieldValidator>
+                                <%-- <asp:RequiredFieldValidator ID="validateEditAns" runat="server" ErrorMessage="Please enter an answer" ControlToValidate="txtEditAns" ForeColor="Red"></asp:RequiredFieldValidator> --%>
                             </div>
                         </div>
 

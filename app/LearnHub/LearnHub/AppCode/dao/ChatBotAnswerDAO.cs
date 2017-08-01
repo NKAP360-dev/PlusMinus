@@ -181,5 +181,115 @@ namespace Emma.DAO
             }
             return toReturn;
         }
+
+        public Boolean insertAnswer(ChatBotAnswer cbAnswer) // Insert.
+        {
+            SqlConnection conn = null;
+            Boolean success = false;
+            try
+            {
+                conn = new SqlConnection();
+                conn.ConnectionString = ConfigurationManager.ConnectionStrings["DBConnectionString"].ConnectionString;
+                conn.Open();
+                SqlCommand comm = new SqlCommand();
+                comm.Connection = conn;
+                comm.CommandText = "Insert into [ChatBotAns] (answer, intentID, entityName) VALUES (@answer, @intentID, @entityName)";
+                comm.Parameters.AddWithValue("@answer", cbAnswer.answer);
+                comm.Parameters.AddWithValue("@intentID", cbAnswer.intent);
+                if (cbAnswer.entityName != null)
+                {
+                    comm.Parameters.AddWithValue("@entityName", cbAnswer.entityName);
+                }
+                else
+                {
+                    comm.Parameters.AddWithValue("@entityName", DBNull.Value);
+                }
+                comm.ExecuteNonQuery();
+                success = true;
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                conn.Close();
+            }
+            return success;
+        }
+        public ChatBotAnswer getChatBotAnswerByID(int answerID)
+        {
+            SqlConnection conn = new SqlConnection();
+            ChatBotAnswer toReturn = new ChatBotAnswer();
+            try
+            {
+                conn = new SqlConnection();
+                string connstr = ConfigurationManager.ConnectionStrings["DBConnectionString"].ToString();
+                conn.ConnectionString = connstr;
+                conn.Open();
+                SqlCommand comm = new SqlCommand();
+                comm.Connection = conn;
+                comm.CommandText = "select cba.answerID, cba.answer, cbi.intent, cba.entityName from [ChatBotAns] cba inner join [ChatBotIntent] cbi on cba.intentID = cbi.intentID where cba.answerID=@answerID";
+                comm.Parameters.AddWithValue("@answerID", answerID);
+                SqlDataReader dr = comm.ExecuteReader();
+                while (dr.Read())
+                {
+                    toReturn.answerID = (int)dr["answerID"];
+                    toReturn.answer = (string)dr["answer"];
+                    if (!dr.IsDBNull(3))
+                    {
+                        toReturn.entityName = (string)dr["entityName"];
+                    }
+                    toReturn.intent = (string)dr["intent"];
+                }
+                dr.Close();
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                conn.Close();
+            }
+            return toReturn;
+        }
+
+        public void updateChatBotAnswer(string answer, string entity, string intent, int answerID) // Update.
+        {
+            SqlConnection conn = new SqlConnection();
+
+            try
+            {
+                conn = new SqlConnection();
+                string connstr = ConfigurationManager.ConnectionStrings["DBConnectionString"].ToString();
+                conn.ConnectionString = connstr;
+                conn.Open();
+                SqlCommand comm = new SqlCommand();
+                comm.Connection = conn;
+                comm.CommandText =
+                    "Update [ChatBotAns] SET answer=@answer, entityName=@entity, intentID=@intent WHERE answerID=@answerID";
+                comm.Parameters.AddWithValue("@answer", answer);
+                if (entity != null)
+                {
+                    comm.Parameters.AddWithValue("@entity", entity);
+                }
+                else
+                {
+                    comm.Parameters.AddWithValue("@entity", DBNull.Value);
+                }
+                comm.Parameters.AddWithValue("@intent", intent);
+                comm.Parameters.AddWithValue("@answerID", answerID);
+                int rowsAffected = comm.ExecuteNonQuery();
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
     }
 }
