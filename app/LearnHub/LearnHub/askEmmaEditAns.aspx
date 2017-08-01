@@ -69,82 +69,32 @@
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <% if (Session["currentUser"] != null)
-        {
-            User currentUser = (User)Session["currentUser"];
-
-            if (currentUser.getDepartment().Equals("hr"))
-            {
-
-    %>
-
-    <div class="configure">
-        <a href="emmaConfiguration.aspx" id="config"><span class="label label-default"><span class="glyphicon glyphicon-cog"></span>Configuration Menu</span></a>
-    </div>
-    <br />
-
-    <%}
-        }%>
-
-
     <div class="container">
-        <h1>Edit Answers</h1>
+        <h1>Edit Answers
+                        <% if (Session["currentUser"] != null)
+                            {
+                                User currentUser = (User)Session["currentUser"];
+                                if (currentUser.getDepartment().Equals("hr"))
+                                {
+                        %>
+            <a href="emmaConfiguration.aspx" id="config"><span class="btn btn-default pull-right"><span class="glyphicon glyphicon-option-horizontal"></span></span></a>
+            <%}
+                }%>
+        </h1>
         <div class="verticalLine"></div>
     </div>
     <form class="form-horizontal" runat="server">
         <div class="container">
-            <br />
-            <table class="table table-striped table-hover" data-paging="true" data-sorting="true" data-filtering="true">
-                <thead>
-                    <tr>
-                        <th data-filterable="false" data-sortable="false">Select</th>
-                        <th>Answers</th>
-                        <th data-breakpoints="xs sm">Intent</th>
-                        <th data-breakpoints="xs sm">Entity</th>
-                        <th data-filterable="false" data-sortable="false"></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>
-                            <asp:RadioButton ID="RadioButton1" runat="server" GroupName="select" /></td>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                        <td>
-                            <asp:LinkButton ID="LinkButton2" CssClass="btn btn-danger btn-sm pull-right" runat="server" Text="" data-toggle="modal" href="#deleteModal"><span class="glyphicon glyphicon-trash"></span></asp:LinkButton></td>
-
-                    </tr>
-                    <tr>
-                        <td>
-                            <asp:RadioButton ID="RadioButton2" runat="server" GroupName="select" /></td>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                        <td>
-                            <asp:LinkButton ID="LinkButton1" CssClass="btn btn-danger btn-sm pull-right" runat="server" Text="" data-toggle="modal" href="#deleteModal"><span class="glyphicon glyphicon-trash"></span></asp:LinkButton></td>
-
-                    </tr>
-                </tbody>
-            </table>
-            <asp:CustomValidator ID="cv_answers" runat="server" EnableClientScript="true" ErrorMessage="Please select an answer" ClientValidationFunction="ValidateRadioButton" ForeColor="Red"></asp:CustomValidator>
-            <div class="verticalLine"></div>
-        </div>
-        <br />
-
-        <div class="container">
-
             <fieldset>
-                <legend>Customize answers for Emma</legend>
-                <div class="form-group">
-
+                <br />
+                <div class="form-group required">
                     <%--Intent--%>
-                    <label for="ddlIntent" class="col-lg-2 control-label"><span class="glyphicon glyphicon-question-sign" data-toggle='tooltip' data-placement="left" title="" data-original-title="An Intent is a......"></span>Choose an Intent *</label>
-
+                    <label for="ddlIntent" class="col-lg-2 control-label"><span class="glyphicon glyphicon-question-sign" data-toggle='tooltip' data-placement="left" title="" data-original-title="An Intent is a......"></span>Choose an Intent</label>
                     <div class="col-lg-10">
                         <%--Mandatory Choose 1--%>
                         <asp:DropDownList ID="ddlIntent" runat="server" CssClass="form-control" DataSourceID="SqlDataSource1" DataTextField="intent" DataValueField="intentID"></asp:DropDownList>
                         <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:DBConnectionString %>" SelectCommand="SELECT * FROM [ChatBotIntent]"></asp:SqlDataSource>
+                        <asp:HyperLink ID="HyperLink1" runat="server"  data-toggle="collapse" data-target="#viewTable" CssClass="pull-right"><span class="glyphicon glyphicon-search">&nbsp; View Answers For This Intent</span></asp:HyperLink>
                         <br>
                     </div>
                 </div>
@@ -154,15 +104,14 @@
                         <label for="ddlIntent" class="col-lg-2 control-label"><span class="glyphicon glyphicon-question-sign" data-toggle='tooltip' data-placement="left" title="" data-original-title="An Entity is a......"></span>Choose an Entity </label>
                     </strong>
                     <div class="col-lg-10">
-                        <%--Optional Choose 1--%>
-                        <asp:DropDownList ID="ddlEntity" runat="server" disabled="" CssClass="form-control"></asp:DropDownList>
+                        <asp:TextBox ID="txtEntity" runat="server" CssClass="form-control"></asp:TextBox>
                         <br>
                     </div>
                 </div>
-                <div class="form-group">
+                <div class="form-group required">
                     <strong>
                         <%--Answers--%>
-                        <asp:Label ID="lblAnswers" CssClass="col-lg-2 control-label" runat="server" Text="Answers*"></asp:Label>
+                        <asp:Label ID="lblAnswers" CssClass="col-lg-2 control-label" runat="server" Text="Answers"></asp:Label>
                     </strong>
                     <div class="col-lg-10">
                         <%--Mandatory text field--%>
@@ -174,7 +123,7 @@
                 <div class="form-group">
                     <div class="wrapper">
                         <asp:Button ID="submitBtn" CssClass="btn btn-primary" runat="server" Text="Update" data-toggle="modal" href="#updateModal" OnClientClick="$('#myModal').modal(); return false;" />
-                        <br />
+                        <br /><br />
                         <strong>
                             <asp:Label ID="successMsg" runat="server" CssClass="text-success"><span class="glyphicon glyphicon-ok"></span> Updated successfully</asp:Label></strong><br />
                         <strong>
@@ -208,30 +157,63 @@
                 </div>
 
 
-                <div id="updateModal" class="modal fade" role="dialog">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                <h4 class="modal-title"><b>Update Answers</b></h4>
-                            </div>
-                            <div class="modal-body">
-                                <div class="wrapper">
-                                    <h4>Are you sure you want to overwrite the existing answers?</h4>
-                                    <br />
-                                    <asp:Button ID="cfmSubmit" CssClass="btn btn-primary" runat="server" Text="Yes" OnClick="cfmSubmit_Click" />
-                                    <asp:Button ID="Button2" CssClass="btn btn-default" runat="server" class="close" data-dismiss="modal" Text="Cancel" OnClientClick="return false;" />
 
-                                    <br />
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
 
             </fieldset>
 
+        </div>
+        <div class="container">
+            <div id="viewTable" class="collapse">
+                <div class="verticalLine"></div>
+            <br />
+            <table class="table table-striped table-hover" data-paging="true" data-sorting="true" data-filtering="true">
+                <thead>
+                    <tr>
+                        <th>Answers</th>
+                        <th data-breakpoints="xs sm">Intent</th>
+                        <th data-breakpoints="xs sm">Entity</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Column content</td>
+                        <td>Column content</td>
+                        <td>Column content</td>
+
+
+                    </tr>
+                    <tr>
+                        <td>Column content</td>
+                        <td>Column content</td>
+                        <td>Column content</td>
+
+                    </tr>
+                </tbody>
+            </table>
+            <asp:CustomValidator ID="cv_answers" runat="server" EnableClientScript="true" ErrorMessage="Please select an answer" ClientValidationFunction="ValidateRadioButton" ForeColor="Red"></asp:CustomValidator>
+        </div>
+        <br />
+            </div>
+        <div id="updateModal" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title"><b>Update Answers</b></h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="wrapper">
+                            <h4>Are you sure you want to overwrite the existing answers?</h4>
+                            <br />
+                            <asp:Button ID="cfmSubmit" CssClass="btn btn-primary" runat="server" Text="Overwrite" OnClick="cfmSubmit_Click" />
+                            <asp:Button ID="Button2" CssClass="btn btn-default" runat="server" class="close" data-dismiss="modal" Text="Cancel" OnClientClick="return false;" />
+
+                            <br />
+                        </div>
+                    </div>
+                </div>
+
+            </div>
         </div>
     </form>
 </asp:Content>

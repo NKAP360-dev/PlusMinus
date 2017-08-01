@@ -124,19 +124,24 @@
             z-index: 10;
         }
 
-          .askEmma {
-            position: fixed; 
-            bottom: 0px; 
+        .askEmma {
+            position: fixed;
+            bottom: 0px;
             right: 0px;
             z-index: 5;
         }
 
-         #emmaContainer {
+        #emmaContainer {
             overflow: visible;
             width: 350px;
             padding-bottom: 15px;
         }
-		
+
+        .form-group.required .control-label:after {
+            content: "*";
+            color: red;
+            margin-left: 4px;
+        }
     </style>
     <link href="~/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
@@ -358,53 +363,53 @@
         </asp:ContentPlaceHolder>
     </div>
 
-    <div class="askEmma">    
-         <div id="emmaContainer" class="collapse">
-   <div class="panel panel-primary">
-  <div class="panel-heading">
-    <h2 class="panel-title">Emma  &emsp;
-        <a href="#emmaModal" data-toggle="modal"><span class="label label-info"><span class="glyphicon glyphicon-question-sign"></span></span></a>
-        <% if (Session["currentUser"] != null)
-                        {
-                            User currentUser = (User)Session["currentUser"];
-
-                            if (currentUser.getDepartment().Equals("hr"))
-                            {
-
-                    %>
-        <a href="emmaConfiguration.aspx"><span class="label label-danger"><span class="glyphicon glyphicon-cog"></span></span></a>
-         <%}
-                    }%>
-    </h2>
-  </div>
-  <div class="panel-body">
-    I am emma pls talk to me
-  </div>
-</div>
-  </div>
-        </div>
     <div class="askEmma">
-        <button type="button" class="btn btn-primary btn-sm" data-toggle="collapse" data-target="#emmaContainer"> <span class="glyphicon glyphicon-comment"></span> &emsp;Ask Emma</button>
+        <div id="emmaContainer" class="collapse">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h2 class="panel-title">Emma  &emsp;
+        <a href="#emmaModal" data-toggle="modal"><span class="label label-info"><span class="glyphicon glyphicon-question-sign"></span></span></a>
+                        <% if (Session["currentUser"] != null)
+                            {
+                                User currentUser = (User)Session["currentUser"];
+
+                                if (currentUser.getDepartment().Equals("hr"))
+                                {
+
+                        %>
+                        <a href="emmaConfiguration.aspx"><span class="label label-danger"><span class="glyphicon glyphicon-cog"></span></span></a>
+                        <%}
+                            }%>
+                    </h2>
+                </div>
+                <div class="panel-body">
+                    I am emma pls talk to me
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="askEmma">
+        <button type="button" class="btn btn-primary btn-sm" data-toggle="collapse" data-target="#emmaContainer"><span class="glyphicon glyphicon-comment"></span>&emsp;Ask Emma</button>
     </div>
 
     <%--Modal for Emma Instructions--%>
-                <div id="emmaModal" class="modal fade" role="dialog">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title"><b>Sup sup I am EMMMMAAAAA</b></h4>
-                    </div>
-                    <%--Modal Content--%>
-                    <div class="modal-body">
-                        <div class="wrapper">                            
-                           Instructions
-                        </div>                       
-                    </div>                  
+    <div id="emmaModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title"><b>Sup sup I am EMMMMAAAAA</b></h4>
                 </div>
-
+                <%--Modal Content--%>
+                <div class="modal-body">
+                    <div class="wrapper">
+                        Instructions
+                    </div>
+                </div>
             </div>
+
         </div>
+    </div>
 
 
     <%--Footer--%>
