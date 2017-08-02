@@ -31,6 +31,15 @@ namespace LearnHub {
         protected global::System.Web.UI.WebControls.DropDownList moduleType;
         
         /// <summary>
+        /// SqlDataSourceCourseCategory control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSourceCourseCategory;
+        
+        /// <summary>
         /// nameOfModuleLabel control.
         /// </summary>
         /// <remarks>
@@ -121,22 +130,22 @@ namespace LearnHub {
         protected global::System.Web.UI.WebControls.Label preqModuleLabel;
         
         /// <summary>
-        /// LinkButton2 control.
+        /// SqlDataSource1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkButton2;
+        protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSource1;
         
         /// <summary>
-        /// LinkButton1 control.
+        /// gvPrereq control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkButton1;
+        protected global::System.Web.UI.WebControls.GridView gvPrereq;
         
         /// <summary>
         /// submitBtn control.

@@ -14,7 +14,11 @@ namespace LearnHub
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            User currentUser = (User)Session["currentUser"];
+            if (currentUser == null)
+            {
+                Response.Redirect("/Login.aspx");
+            }
         }
 
     }

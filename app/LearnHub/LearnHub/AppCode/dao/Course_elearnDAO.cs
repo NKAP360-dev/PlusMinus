@@ -107,7 +107,7 @@ namespace LearnHub.AppCode.dao
                 SqlCommand comm = new SqlCommand();
                 comm.Connection = conn;
                 comm.CommandText = "insert into [Elearn_course] " +
-                    "(elearn_courseName, elearn_courseProvider, entry_date, start_date, expiry_date, status, description, category, courseCreator, hoursAwarded) " +
+                    "(elearn_courseName, elearn_courseProvider, entry_date, start_date, expiry_date, status, description, categoryID, courseCreator, hoursAwarded) " +
                     "values (@cName, @provider, Convert(datetime, @entry, 103), convert(datetime,@time,103), Convert(datetime,@expiry,103), @status, @desc, @category, @courseCreator, @hoursAwarded)";
                 comm.Parameters.AddWithValue("@cName", course.getCourseName());
                 if (course.getCourseProvider() != null)
@@ -138,7 +138,7 @@ namespace LearnHub.AppCode.dao
                 }
                 comm.Parameters.AddWithValue("@status", course.getStatus());
                 comm.Parameters.AddWithValue("@desc", course.getDescription());
-                comm.Parameters.AddWithValue("@category", course.getCategory());
+                comm.Parameters.AddWithValue("@category", course.getCategoryID());
                 comm.Parameters.AddWithValue("@courseCreator", course.getCourseCreator().getUserID());
                 comm.Parameters.AddWithValue("@hoursAwarded", course.getHoursAwarded());
                 int rowsAffected = comm.ExecuteNonQuery();                
@@ -156,7 +156,7 @@ namespace LearnHub.AppCode.dao
             return toReturn;
         }
 
-        public ArrayList view_courses(String type)
+        public ArrayList view_courses(int categoryID)
         {
             SqlConnection conn = new SqlConnection();
             ArrayList toReturn_list = new ArrayList();
@@ -170,8 +170,8 @@ namespace LearnHub.AppCode.dao
                 SqlCommand comm = new SqlCommand();
                 comm.Connection = conn;
                 comm.CommandText = "select * " +
-                    "from [Elearn_course] where status = 'Open' and category = @cat and start_date<=getDate()";
-                comm.Parameters.AddWithValue("@cat", type);
+                    "from [Elearn_course] where status = 'Open' and categoryID = @cat and start_date<=getDate()";
+                comm.Parameters.AddWithValue("@cat", categoryID);
                 SqlDataReader dr = comm.ExecuteReader();
                 while (dr.Read())
                 {
@@ -196,7 +196,8 @@ namespace LearnHub.AppCode.dao
                     {
                         toReturn.setPrerequisite(list); //retrieve arraylist of all prereq course_elearn objects
                     }
-                    toReturn.setCategory((string)dr["category"]);//7
+                    toReturn.setCategoryID((int)dr["categoryID"]);//7
+                    toReturn.setHoursAwarded((int)dr["hoursAwarded"]);
                     toReturn_list.Add(toReturn); //add to arraylist to return of all courses related to given category
                 }
                 dr.Close();
@@ -212,7 +213,7 @@ namespace LearnHub.AppCode.dao
             return toReturn_list;
         }
 
-        private ArrayList getPrereqOfCourse(int course_id)
+        public ArrayList getPrereqOfCourse(int course_id)
         {
             ArrayList toReturn_list = new ArrayList();
             SqlConnection conn = new SqlConnection();
@@ -246,7 +247,8 @@ namespace LearnHub.AppCode.dao
                     }
                     toReturn.setStatus((string)dr["status"]);
                     toReturn.setDescription((string)dr["description"]);
-                    toReturn.setCategory((string)dr["category"]);
+                    toReturn.setCategoryID((int)dr["categoryID"]);
+                    toReturn.setHoursAwarded((int)dr["hoursAwarded"]);
                     toReturn_list.Add(toReturn); //parse as course_elearn object to store and return in arraylist
                 }
                 dr.Close();
@@ -301,7 +303,7 @@ namespace LearnHub.AppCode.dao
                     {
                         toReturn.setPrerequisite(list); //retrieve arraylist of all prereq course_elearn objects
                     }
-                    toReturn.setCategory((string)dr["category"]);//7
+                    toReturn.setCategoryID((int)dr["categoryID"]);//7
                     toReturn.setCourseCreator(userDAO.getUserByID((string)dr["courseCreator"]));
                     toReturn.setHoursAwarded((int)dr["hoursAwarded"]);
                 }
@@ -356,7 +358,8 @@ namespace LearnHub.AppCode.dao
                     {
                         toReturn.setPrerequisite(list); //retrieve arraylist of all prereq course_elearn objects
                     }
-                    toReturn.setCategory((string)dr["category"]);//7
+                    toReturn.setCategoryID((int)dr["categoryID"]);//7
+                    toReturn.setHoursAwarded((int)dr["hoursAwarded"]);
                 }
                 dr.Close();
             }
@@ -370,7 +373,7 @@ namespace LearnHub.AppCode.dao
             }
             return toReturn;
         }
-        public void updateCourse(int courseID, string category, string name, string description, int hours, DateTime start, DateTime expiry) // Update.
+        public void updateCourse(int courseID, int categoryID, string name, string description, int hours, DateTime start, DateTime expiry) // Update.
         {
             SqlConnection conn = new SqlConnection();
 
@@ -383,10 +386,10 @@ namespace LearnHub.AppCode.dao
                 SqlCommand comm = new SqlCommand();
                 comm.Connection = conn;
                 comm.CommandText =
-                    "Update [Elearn_course] SET elearn_courseName=@name, description=@description, category=@category, start_date=@start, expiry_date=@expiry, hoursAwarded=@hours WHERE elearn_courseID=@courseID";
+                    "Update [Elearn_course] SET elearn_courseName=@name, description=@description, categoryID=@category, start_date=@start, expiry_date=@expiry, hoursAwarded=@hours WHERE elearn_courseID=@courseID";
                 comm.Parameters.AddWithValue("@name", name);
                 comm.Parameters.AddWithValue("@description", description);
-                comm.Parameters.AddWithValue("@category", category);
+                comm.Parameters.AddWithValue("@category", categoryID);
                 comm.Parameters.AddWithValue("@start", start);
                 comm.Parameters.AddWithValue("@expiry", expiry);
                 comm.Parameters.AddWithValue("@hours", hours);
@@ -401,6 +404,122 @@ namespace LearnHub.AppCode.dao
             {
                 conn.Close();
             }
+        }
+
+        public List<Course_elearn> viewAvailablePrerequisiteCourses()
+        {
+            SqlConnection conn = new SqlConnection();
+            List<Course_elearn> toReturn_list = new List<Course_elearn>();
+            Course_elearn toReturn;
+            try
+            {
+                conn = new SqlConnection();
+                string connstr = ConfigurationManager.ConnectionStrings["DBConnectionString"].ToString();
+                conn.ConnectionString = connstr;
+                conn.Open();
+                SqlCommand comm = new SqlCommand();
+                comm.Connection = conn;
+                comm.CommandText = "select * " +
+                    "from [Elearn_course] where status = 'Open' and start_date<=getDate()";
+                SqlDataReader dr = comm.ExecuteReader();
+                while (dr.Read())
+                {
+                    toReturn = new Course_elearn();
+                    toReturn.setCourseID((int)dr["elearn_courseID"]); //1
+                    toReturn.setCourseName((string)dr["elearn_courseName"]); //2
+                    if (!dr.IsDBNull(4))
+                    {
+                        toReturn.setCourseProvider((string)dr["elearn_courseProvider"]);
+                    };
+                    toReturn.setStartDate((DateTime)dr["start_date"]);//3
+                    if (!dr.IsDBNull(4))
+                    {
+                        toReturn.setExpiryDate((DateTime)dr["expiry_date"]);
+                    }
+                    toReturn.setStatus((string)dr["status"]);//4
+                    //get the prereq
+                    toReturn.setDescription((string)dr["description"]);//6
+                    ArrayList list = getPrereqOfCourse((int)dr["elearn_courseID"]);//5
+                    if (list != null)
+                    {
+                        toReturn.setPrerequisite(list); //retrieve arraylist of all prereq course_elearn objects
+                    }
+                    toReturn.setCategoryID((int)dr["categoryID"]);//7
+                    toReturn.setHoursAwarded((int)dr["hoursAwarded"]);
+                    toReturn_list.Add(toReturn); //add to arraylist to return of all courses related to given category
+                }
+                dr.Close();
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                conn.Close();
+            }
+            return toReturn_list;
+        }
+        public string getCourseCategoryByID(int categoryID)
+        {
+            SqlConnection conn = new SqlConnection();
+            string toReturn = null;
+            try
+            {
+                conn = new SqlConnection();
+                string connstr = ConfigurationManager.ConnectionStrings["DBConnectionString"].ToString();
+                conn.ConnectionString = connstr;
+                conn.Open();
+                SqlCommand comm = new SqlCommand();
+                comm.Connection = conn;
+                comm.CommandText = "select category from [Elearn_courseCategory] where categoryID=@id";
+                comm.Parameters.AddWithValue("@id", categoryID);
+                SqlDataReader dr = comm.ExecuteReader();
+                while (dr.Read())
+                {
+                    toReturn = (string)dr["category"];
+                }
+                dr.Close();
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                conn.Close();
+            }
+            return toReturn;
+        }
+        public Boolean insertPrerequisite(int courseID, int prereqID)
+        {
+            SqlConnection conn = new SqlConnection();
+            Boolean toReturn = false;
+            try
+            {
+                conn = new SqlConnection();
+                string connstr = ConfigurationManager.ConnectionStrings["DBConnectionString"].ToString();
+                conn.ConnectionString = connstr;
+                conn.Open();
+                SqlCommand comm = new SqlCommand();
+                comm.Connection = conn;
+                comm.CommandText = "insert into [Elearn_prerequisites] "
+                                    + "(elearn_courseID, prereq_courseID)"
+                                    + "values(@courseID, @prereqID)";
+                comm.Parameters.AddWithValue("@courseID", courseID);
+                comm.Parameters.AddWithValue("@prereqID", prereqID);
+                int rowsAffected = comm.ExecuteNonQuery();
+                toReturn = true;
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                conn.Close();
+            }
+            return toReturn;
         }
     }
 }

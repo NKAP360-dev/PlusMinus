@@ -125,7 +125,7 @@
                         <tbody>
                             <%
                                 Course_elearnDAO allListing = new Course_elearnDAO();
-                                ArrayList list = allListing.view_courses("Compulsory");
+                                ArrayList list = allListing.view_courses(1);
                                 String htmlStr = null;
                                 if (list.Count > 0)
                                 {
@@ -187,7 +187,7 @@
                         <tbody>
                             <%
                                 Course_elearnDAO allListing = new Course_elearnDAO();
-                                ArrayList list = allListing.view_courses("Compulsory");
+                                ArrayList list = allListing.view_courses(2);
                                 String htmlStr = null;
                                 if (list.Count > 0)
                                 {
@@ -248,7 +248,7 @@
                         <tbody>
                             <%
                                 Course_elearnDAO allListing = new Course_elearnDAO();
-                                ArrayList list = allListing.view_courses("Compulsory");
+                                ArrayList list = allListing.view_courses(3);
                                 String htmlStr = null;
                                 if (list.Count > 0)
                                 {

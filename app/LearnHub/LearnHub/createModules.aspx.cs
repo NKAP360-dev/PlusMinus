@@ -12,6 +12,7 @@ namespace LearnHub
 {
     public partial class createModules : System.Web.UI.Page
     {
+        public const string SELECTED_PREREQUISITE_INDEX = "SelectedPrerequisiteIndex";
         protected void Page_Load(object sender, EventArgs e)
         {
             User currentUser = (User)Session["currentUser"];
@@ -25,10 +26,7 @@ namespace LearnHub
             }
             else
             {
-                moduleType.Items.Insert(0, "");
-                moduleType.Items.Insert(1, "Compulsory");
-                moduleType.Items.Insert(2, "Leadership");
-                moduleType.Items.Insert(3, "Professional");
+
             }
 
         }
@@ -40,15 +38,27 @@ namespace LearnHub
             User user = (User)Session["currentUser"];
             Course_elearn c = null;
             string type = Request.QueryString["type"];
+
             if (check && moduleType.Text != "") // if no expiry date
             {
                 c = new Course_elearn(nameOfModuleInput.Text, user.getDepartment(), DateTime.Now,
-                    Convert.ToDateTime("01/01/2017"), Convert.ToDateTime("12/31/2017"),  "Open", descriptionModuleInput.Text, moduleType.Text, user, Convert.ToInt32(hoursInput.Text));
+                    Convert.ToDateTime(fromDateInput.Text), Convert.ToDateTime(toDateInput.Text), "Open", descriptionModuleInput.Text, Convert.ToInt32(moduleType.SelectedValue), user, Convert.ToInt32(hoursInput.Text));
             }
 
             //check pre req here 
             //pull pre req from model, check the course object here before creating the entry in the database
-
+            List<int> allSelectedID = new List<int>();
+            int counter = 0;
+            foreach (GridViewRow row in gvPrereq.Rows)
+            {
+                CheckBox chkRow = (row.Cells[0].FindControl("chkboxPrereq") as CheckBox);
+                if (chkRow.Checked)
+                {
+                    int prereqID = Convert.ToInt32(gvPrereq.DataKeys[counter].Value.ToString());
+                    allSelectedID.Add(prereqID);
+                }
+                counter++;
+            }
 
             //create the course object 
             //now insert into database by calling DAO
@@ -58,11 +68,17 @@ namespace LearnHub
             Course_elearn course_with_id = cDao.get_course_by_name(res);
             int id = course_with_id.getCourseID();
 
+            foreach (int prereqID in allSelectedID)
+            {
+                cDao.insertPrerequisite(id, prereqID);
+            }
+
             //create dir
             string file = "~/Data/";
             string add = Server.MapPath(file) + id;
             Directory.CreateDirectory(add);
             Response.Redirect("viewModuleInfo.aspx?id=" + id);
         }
+        
     }
 }

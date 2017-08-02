@@ -32,19 +32,32 @@ namespace LearnHub
                 {
                     if (!IsPostBack)
                     {
-                        //to populate data
-                        moduleType.Items.Insert(0, "");
-                        moduleType.Items.Insert(1, "Compulsory");
-                        moduleType.Items.Insert(2, "Leadership");
-                        moduleType.Items.Insert(3, "Professional");
-
-                        moduleType.SelectedValue = currentCourse.getCategory();
+                        moduleType.SelectedValue = currentCourse.getCategoryID().ToString();
                         nameOfModuleInput.Text = currentCourse.getCourseName();
                         descriptionModuleInput.Text = currentCourse.getDescription();
                         hoursInput.Text = currentCourse.getHoursAwarded().ToString();
                         //to add in prerequisite
                         fromDateInput.Text = currentCourse.getStartDate().ToString("MM/dd/yyyy");
                         toDateInput.Text = currentCourse.getExpiryDate().ToString("MM/dd/yyyy");
+
+                        //load gridview
+                        List<Course_elearn> allPrerequisites = ceDAO.getPrereqOfCourse(currentCourse.getCourseID()).Cast<Course_elearn>().ToList();
+                        if (allPrerequisites.Count > 0)
+                        {
+                            int counter = 0;
+                            foreach (GridViewRow row in gvPrereq.Rows)
+                            {
+                                CheckBox chkRow = (row.Cells[0].FindControl("chkboxPrereq") as CheckBox);
+                                int prereqID = Convert.ToInt32(gvPrereq.DataKeys[counter].Value.ToString());
+                                Course_elearn prerequisiteCourse = ceDAO.get_course_by_id(prereqID);
+                                if (allPrerequisites.Contains(prerequisiteCourse))
+                                {
+                                    chkRow.Checked = true;
+                                }
+
+                                counter++;
+                            }
+                        }
                     }
                 }
             }
@@ -56,8 +69,13 @@ namespace LearnHub
 
             Course_elearnDAO ceDAO = new Course_elearnDAO();
             int courseID = Convert.ToInt32(Request.QueryString["id"]);
-            ceDAO.updateCourse(courseID, moduleType.SelectedValue, nameOfModuleInput.Text, descriptionModuleInput.Text, Convert.ToInt32(hoursInput.Text), DateTime.ParseExact(fromDateInput.Text, "MM/dd/yyyy", CultureInfo.InvariantCulture), DateTime.ParseExact(toDateInput.Text, "MM/dd/yyyy", CultureInfo.InvariantCulture));
+            ceDAO.updateCourse(courseID, Convert.ToInt32(moduleType.SelectedValue), nameOfModuleInput.Text, descriptionModuleInput.Text, Convert.ToInt32(hoursInput.Text), DateTime.ParseExact(fromDateInput.Text, "MM/dd/yyyy", CultureInfo.InvariantCulture), DateTime.ParseExact(toDateInput.Text, "MM/dd/yyyy", CultureInfo.InvariantCulture));
             Response.Redirect($"/viewModuleInfo.aspx?id={courseID}");
+        }
+
+        protected void gvPrereq_PageIndexChanged(object sender, EventArgs e)
+        {
+            
         }
     }
 }

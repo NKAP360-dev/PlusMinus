@@ -1,5 +1,8 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Masterpage.Master" AutoEventWireup="true" CodeBehind="createModules.aspx.cs" Inherits="LearnHub.createModules" %>
 
+<%@ Import Namespace="LearnHub.AppCode.entity" %>
+<%@ Import Namespace="LearnHub.AppCode.dao" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/css/datepicker.css" rel="stylesheet" type="text/css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/js/bootstrap-datepicker.js"></script>
@@ -74,7 +77,8 @@
                         <%--Compulsory/Leadership/Professional--%>
                         <asp:Label ID="moduleTypeLabel" runat="server" CssClass="col-lg-2 control-label" Text="Module Category * "></asp:Label></strong>
                     <div class="col-lg-5">
-                        <asp:DropDownList ID="moduleType" runat="server" CssClass="form-control" placeholder="Choose Category *"></asp:DropDownList>
+                        <asp:DropDownList ID="moduleType" runat="server" CssClass="form-control" placeholder="Choose Category *" DataSourceID="SqlDataSourceCourseCategory" DataTextField="category" DataValueField="categoryID"></asp:DropDownList>
+                        <asp:SqlDataSource ID="SqlDataSourceCourseCategory" runat="server" ConnectionString="<%$ ConnectionStrings:DBConnectionString %>" SelectCommand="SELECT * FROM [Elearn_courseCategory]"></asp:SqlDataSource>
                     </div>
                 </div>
 
@@ -109,15 +113,15 @@
                 
                 <div class="form-group">
                     <strong>
-                        <asp:Label ID="dateLabel" runat="server" CssClass="col-lg-2 control-label" Text="Date" Visible="false"></asp:Label></strong>
+                        <asp:Label ID="dateLabel" runat="server" CssClass="col-lg-2 control-label" Text="Date to Display"></asp:Label></strong>
 
                     <div class="col-lg-5">
                         <div class="input-daterange input-group" id="datepicker">
-                            <asp:TextBox ID="fromDateInput" runat="server" CssClass="form-control" placeholder="MM/DD/YYYY" Visible="false"></asp:TextBox>
-                            <%--<span class="input-group-addon">to</span> --%>
-                            <asp:TextBox ID="toDateInput" runat="server" CssClass="form-control" placeholder="MM/DD/YYYY" Visible="false"></asp:TextBox>
-                            <%--<span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i>
-                            </span>--%>
+                            <asp:TextBox ID="fromDateInput" runat="server" CssClass="form-control" placeholder="MM/DD/YYYY"></asp:TextBox>
+                            <span class="input-group-addon">to</span>
+                            <asp:TextBox ID="toDateInput" runat="server" CssClass="form-control" placeholder="MM/DD/YYYY"></asp:TextBox>
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i>
+                            </span>
                         </div>
                     </div>
                     <br />
@@ -130,7 +134,7 @@
                     <strong>
                         <asp:Label ID="preqModuleLabel" runat="server" CssClass="col-lg-2 control-label" Text="Module Pre-requisite"></asp:Label></strong>
                     <div class="col-lg-5">
-                        <table class="table table-striped table-hover" data-paging="true" data-sorting="true" data-filtering="true">
+                        <%--<table class="table table-striped table-hover" data-paging="true" data-sorting="true" data-filtering="true">
                             <thead>
                                 <tr>
                                     <th data-filterable="false" data-sortable="false">Select</th>
@@ -140,26 +144,45 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                <%
+                                    Course_elearnDAO ceDAO = new Course_elearnDAO();
+                                    List<Course_elearn> availablePrereq = ceDAO.viewAvailablePrerequisiteCourses();
+                                    foreach (Course_elearn ce in availablePrereq)
+                                    {
+                                 %>
                                 <tr>
-                                    <td>
-                                        <input id="checkbox1" type="checkbox" /></td>
-                                    <td>Column content</td>
-                                    <td>Column content</td>
-                                    <td><%--View Module's Info // viewModuleInfo.aspx--%>
-                                        <asp:LinkButton ID="LinkButton2" CssClass="btn btn-success btn-sm pull-right" runat="server" Text=""><span class="glyphicon glyphicon-search"></span></asp:LinkButton></td>
+                                <td>
+                                    <input type="checkbox" id="chkPreReq" name="prerequisites" value="<%= ce.getCourseID(); %>" runat="server" />
+                                </td>
+                                <%
+                                        //Response.Write($"<td><input type=\"checkbox\" id=\"chkPrereq\" name=\"prerequisites\" value=\"{ce.getCourseID()}\" runat=\"server\" /></td>");
+                                        Response.Write($"<td>{ce.getCourseName()}</td>");
+                                        string category = ceDAO.getCourseCategoryByID(ce.getCategoryID());
+                                        Response.Write($"<td>{category}</td>");
+                                        Response.Write("<td><a target=\"_blank\" href=\"viewModuleInfo.aspx?id=" + ce.getCourseID() + "\"><span class=\"glyphicon glyphicon-menu-right\"></span> View Info</a></td>");
+                                        Response.Write("</tr>");
 
-                                </tr>
-                                <tr>
-                                     <td>
-                                        <input id="checkbox2" type="checkbox" /></td>
-                                    <td>Column content</td>
-                                    <td>Column content</td>
-                                    <td>
-                                        <asp:LinkButton ID="LinkButton1" CssClass="btn btn-success btn-sm pull-right" runat="server" Text=""><span class="glyphicon glyphicon-search"></span></asp:LinkButton></td>
-
-                                </tr>
+                                %>
+                                    </tr>
+                                <%
+                                    }
+                                %>
                             </tbody>
-                        </table>
+                        </table>--%>
+                        <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:DBConnectionString %>" SelectCommand="SELECT * FROM [Elearn_course] ec INNER JOIN [Elearn_courseCategory] ecc ON ec.categoryID = ecc.categoryID WHERE ec.status='Open' and ec.start_date &lt;= getDate()"></asp:SqlDataSource>
+                        <asp:GridView ID="gvPrereq" runat="server" AutoGenerateColumns="False" DataKeyNames="elearn_courseID,categoryID1" DataSourceID="SqlDataSource1" AllowPaging="True" CssClass="table table-striped table-hover" GridLines="None">
+                            <Columns>
+                                <asp:TemplateField>
+                                    <ItemTemplate>
+                                        <asp:CheckBox ID="chkboxPrereq" runat="server" />
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                                <asp:BoundField DataField="elearn_courseName" HeaderText="Module Name" SortExpression="elearn_courseName" />
+                                <asp:BoundField DataField="category" HeaderText="Category" SortExpression="category" />
+                                <asp:BoundField DataField="elearn_courseID" Visible="False" />
+                                <asp:HyperLinkField DataNavigateUrlFields="elearn_courseID" DataNavigateUrlFormatString="viewModuleInfo.aspx?id={0}" Target="_blank" Text="View Details" />
+                            </Columns>
+                        </asp:GridView>
                     </div>
                 </div>
 
