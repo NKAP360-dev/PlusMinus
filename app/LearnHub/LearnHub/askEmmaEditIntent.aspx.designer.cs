@@ -10,7 +10,7 @@
 namespace LearnHub {
     
     
-    public partial class askEmmaAddIntent {
+    public partial class askEmmaEditIntent {
         
         /// <summary>
         /// txtIntentInput control.
@@ -22,31 +22,31 @@ namespace LearnHub {
         protected global::System.Web.UI.WebControls.TextBox txtIntentInput;
         
         /// <summary>
-        /// btnSubmitIntent control.
+        /// submitBtn control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnSubmitIntent;
+        protected global::System.Web.UI.WebControls.Button submitBtn;
         
         /// <summary>
-        /// lblSuccess control.
+        /// successMsg control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblSuccess;
+        protected global::System.Web.UI.WebControls.Label successMsg;
         
         /// <summary>
-        /// lblError control.
+        /// errorMsg control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblError;
+        protected global::System.Web.UI.WebControls.Label errorMsg;
         
         /// <summary>
         /// btnDelete control.
@@ -58,15 +58,6 @@ namespace LearnHub {
         protected global::System.Web.UI.WebControls.LinkButton btnDelete;
         
         /// <summary>
-        /// btnEdit control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton btnEdit;
-        
-        /// <summary>
         /// LinkButton2 control.
         /// </summary>
         /// <remarks>
@@ -76,13 +67,22 @@ namespace LearnHub {
         protected global::System.Web.UI.WebControls.LinkButton LinkButton2;
         
         /// <summary>
-        /// LinkButton1 control.
+        /// cfmSubmit control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkButton1;
+        protected global::System.Web.UI.WebControls.Button cfmSubmit;
+        
+        /// <summary>
+        /// Button2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button Button2;
         
         /// <summary>
         /// btnCfmDelete control.

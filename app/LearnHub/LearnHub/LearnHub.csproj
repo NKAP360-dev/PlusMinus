@@ -230,6 +230,13 @@
     <Compile Include="askEmmaEditAns.aspx.designer.cs">
       <DependentUpon>askEmmaEditAns.aspx</DependentUpon>
     </Compile>
+    <Compile Include="askEmmaEditIntent.aspx.cs">
+      <DependentUpon>askEmmaEditIntent.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="askEmmaEditIntent.aspx.designer.cs">
+      <DependentUpon>askEmmaEditIntent.aspx</DependentUpon>
+    </Compile>
     <Compile Include="askEmmaFeedback.aspx.cs">
       <DependentUpon>askEmmaFeedback.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -446,6 +453,7 @@
     <Content Include="askEmmaAddAns.aspx" />
     <Content Include="askEmmaAddIntent.aspx" />
     <Content Include="askEmmaEditAns.aspx" />
+    <Content Include="askEmmaEditIntent.aspx" />
     <Content Include="askEmmaFeedback.aspx" />
     <Content Include="askEmmaHelpQn.aspx" />
     <Content Include="askEmmaInitializeMsg.aspx" />

@@ -94,7 +94,8 @@
                         <%--Mandatory Choose 1--%>
                         <asp:DropDownList ID="ddlIntent" runat="server" CssClass="form-control" DataSourceID="SqlDataSource1" DataTextField="intent" DataValueField="intentID"></asp:DropDownList>
                         <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:DBConnectionString %>" SelectCommand="SELECT * FROM [ChatBotIntent]"></asp:SqlDataSource>
-                        <asp:HyperLink ID="HyperLink1" runat="server"  data-toggle="collapse" data-target="#viewTable" CssClass="pull-right"><span class="glyphicon glyphicon-search">&nbsp; View Answers For This Intent</span></asp:HyperLink>
+                        <a href="#" data-toggle="collapse" data-target="#viewTable" class="pull-right"><span class="glyphicon glyphicon-search"></span>View Answers For This Intent</a>
+
                         <br>
                     </div>
                 </div>
@@ -123,7 +124,8 @@
                 <div class="form-group">
                     <div class="wrapper">
                         <asp:Button ID="submitBtn" CssClass="btn btn-primary" runat="server" Text="Update" data-toggle="modal" href="#updateModal" OnClientClick="$('#myModal').modal(); return false;" />
-                        <br /><br />
+                        <br />
+                        <br />
                         <strong>
                             <asp:Label ID="successMsg" runat="server" CssClass="text-success"><span class="glyphicon glyphicon-ok"></span> Updated successfully</asp:Label></strong><br />
                         <strong>
@@ -165,35 +167,35 @@
         <div class="container">
             <div id="viewTable" class="collapse">
                 <div class="verticalLine"></div>
-            <br />
-            <table class="table table-striped table-hover" data-paging="true" data-sorting="true" data-filtering="true">
-                <thead>
-                    <tr>
-                        <th>Answers</th>
-                        <th data-breakpoints="xs sm">Intent</th>
-                        <th data-breakpoints="xs sm">Entity</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                        <td>Column content</td>
+                <br />
+                <table class="table table-striped table-hover" data-paging="true" data-sorting="true" data-filtering="true">
+                    <thead>
+                        <tr>
+                            <th>Answers</th>
+                            <th data-breakpoints="xs sm">Intent</th>
+                            <th data-breakpoints="xs sm">Entity</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Column content</td>
+                            <td>Column content</td>
+                            <td>Column content</td>
 
 
-                    </tr>
-                    <tr>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                        <td>Column content</td>
+                        </tr>
+                        <tr>
+                            <td>Column content</td>
+                            <td>Column content</td>
+                            <td>Column content</td>
 
-                    </tr>
-                </tbody>
-            </table>
-            <asp:CustomValidator ID="cv_answers" runat="server" EnableClientScript="true" ErrorMessage="Please select an answer" ClientValidationFunction="ValidateRadioButton" ForeColor="Red"></asp:CustomValidator>
-        </div>
-        <br />
+                        </tr>
+                    </tbody>
+                </table>
+                <asp:CustomValidator ID="cv_answers" runat="server" EnableClientScript="true" ErrorMessage="Please select an answer" ClientValidationFunction="ValidateRadioButton" ForeColor="Red"></asp:CustomValidator>
             </div>
+            <br />
+        </div>
         <div id="updateModal" class="modal fade" role="dialog">
             <div class="modal-dialog">
                 <div class="modal-content">
