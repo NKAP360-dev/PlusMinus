@@ -2,6 +2,8 @@
 
 <%@ Import Namespace="LearnHub.AppCode.entity" %>
 <%@ Import Namespace="LearnHub.AppCode.dao" %>
+<%@ Import Namespace="Emma.DAO" %>
+<%@ Import Namespace="Emma.Entity" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link href="/Scripts/footable.bootstrap.min.css" rel="stylesheet" />
@@ -15,7 +17,7 @@
         jQuery(function ($) {
             $('.table').footable({
                 "paging": {
-                    "size": 1 <%--Change how many rows per page--%>
+                    "size": 6 <%--Change how many rows per page--%>
                 },
                 "filtering": {
                     "position": "left"
@@ -124,6 +126,7 @@
                 <div class="form-group">
                     <div class="wrapper">
                         <asp:Button ID="submitBtn" CssClass="btn btn-primary" runat="server" Text="Update" data-toggle="modal" href="#updateModal" OnClientClick="$('#myModal').modal(); return false;" />
+                        <asp:Button ID="deleteBtn" CssClass="btn btn-danger" runat="server" Text="Delete" OnClick="deleteBtn_Click" />
                         <br />
                         <br />
                         <strong>
@@ -177,19 +180,19 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>Column content</td>
-                            <td>Column content</td>
-                            <td>Column content</td>
-
-
-                        </tr>
-                        <tr>
-                            <td>Column content</td>
-                            <td>Column content</td>
-                            <td>Column content</td>
-
-                        </tr>
+                        <%
+                            ChatBotAnswerDAO cbaDAO = new ChatBotAnswerDAO();
+                            ChatBotAnswer currrentAnswer = cbaDAO.getChatBotAnswerByID(Convert.ToInt32(Request.QueryString["id"]));
+                            List<ChatBotAnswer> answerList = cbaDAO.getChatBotAnswerByIntent(currrentAnswer.intent);
+                            foreach (ChatBotAnswer cba in answerList)
+                            {
+                                Response.Write("<tr>");
+                                Response.Write($"<td>{cba.answer}</td>");
+                                Response.Write($"<td>{cba.intent}</td>");
+                                Response.Write($"<td>{cba.entityName}</td>");
+                                Response.Write("</tr>");
+                            }
+                        %>
                     </tbody>
                 </table>
                 <asp:CustomValidator ID="cv_answers" runat="server" EnableClientScript="true" ErrorMessage="Please select an answer" ClientValidationFunction="ValidateRadioButton" ForeColor="Red"></asp:CustomValidator>

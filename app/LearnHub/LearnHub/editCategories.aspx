@@ -80,6 +80,7 @@
                 <label for="txtCategory" class="col-lg-2 control-label">Category Name</label>
                 <div class="col-lg-10">
                     <asp:TextBox ID="txtCategory" runat="server" CssClass="form-control" placeholder="Populate value here"></asp:TextBox>
+                    <asp:Label ID="lblHiddenID" runat="server" Visible="False"></asp:Label>
                     <br>
                 </div>
             </div>
@@ -111,7 +112,7 @@
                             <div class="wrapper">
                                 <h4>Are you sure you want to proceed?</h4>
                                 <br />
-                                <asp:Button ID="btnConfirmSubmit" CssClass="btn btn-primary" runat="server" Text="Submit" />
+                                <asp:Button ID="btnConfirmSubmit" CssClass="btn btn-primary" runat="server" Text="Submit" OnClick="btnConfirmSubmit_Click"/>
                                 <asp:Button ID="btnCancel1" CssClass="btn btn-default" runat="server" class="close" data-dismiss="modal" Text="Cancel" OnClientClick="return false;" />
 
                                 <br />

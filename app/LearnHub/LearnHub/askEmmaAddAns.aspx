@@ -160,7 +160,7 @@
                                 Response.Write($"<td id=\"entity\">{cba.entityName}</td>");
                             }
                             Response.Write("<td>");
-                            Response.Write($"<a href=\"#deleteModal\" data-toggle=\"modal\" class=\"btn btn-danger btn-sm pull-right\"> <span class=\"glyphicon glyphicon-trash\"></span></a>");
+                            //Response.Write($"<a href=\"#deleteModal\" data-toggle=\"modal\" class=\"btn btn-danger btn-sm pull-right\"> <span class=\"glyphicon glyphicon-trash\"></span></a>");
                             Response.Write($"<a href=\"/askEmmaEditAns.aspx?id={cba.answerID}\" class=\"btn btn-info btn-sm pull-right\"><span class=\"glyphicon glyphicon-pencil\"></span></a>");
                             Response.Write("</td>");
                             Response.Write("</tr>");
@@ -205,8 +205,8 @@
                         <div class="wrapper">
                             <h4>Are you sure you want to delete?</h4>
                             <br />
-                            <asp:Button ID="cfmDelete" CssClass="btn btn-danger" runat="server" Text="Delete" />
-                            <asp:Button ID="cfmcANCEL" CssClass="btn btn-default" runat="server" class="close" data-dismiss="modal" Text="Cancel" />
+                            <asp:Button ID="cfmDelete" CssClass="btn btn-danger" runat="server" Text="Delete" OnClick="cfmDelete_Click"/>
+                            <asp:Button ID="cfmCancel" CssClass="btn btn-default" runat="server" class="close" data-dismiss="modal" Text="Cancel" />
 
                             <br />
                         </div>

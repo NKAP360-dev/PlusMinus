@@ -102,15 +102,22 @@
             <table class="table table-striped table-hover" id="catTable" data-paging="true" data-sorting="true" data-filtering="true">
                 <thead>
                     <tr>
-                        <th id="answers" width="90%">Current Module Categories</th>
+                        <th id="categories" width="90%">Current Module Categories</th>
                         <th data-filterable="false" data-sortable="false" width="10%"></th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>Value1</td>
-                        <td><a href="editCategories.aspx" class="btn btn-info btn-sm pull-right"><span class="glyphicon glyphicon-pencil"></span></a></td>
-                    </tr>
+                    <%
+                        Course_elearnCategoryDAO cecDAO = new Course_elearnCategoryDAO();
+                        List<CourseCategory> categories = cecDAO.getAllCategory();
+                        foreach (CourseCategory cc in categories)
+                        {
+                            Response.Write("<tr>");
+                            Response.Write($"<td>{cc.category}</td>");
+                            Response.Write($"<td><a href=\"/editCategories.aspx?id={cc.categoryID}\" class=\"btn btn-info btn-sm pull-right\"><span class=\"glyphicon glyphicon-pencil\"></span></a></td>");
+                            Response.Write("</tr>");
+                        }
+                    %>
                 </tbody>
             </table>
 
@@ -128,7 +135,7 @@
                             <div class="wrapper">
                                 <h4>Are you sure you want to proceed?</h4>
                                 <br />
-                                <asp:Button ID="btnConfirmSubmit" CssClass="btn btn-primary" runat="server" Text="Submit" />
+                                <asp:Button ID="btnConfirmSubmit" CssClass="btn btn-primary" runat="server" Text="Submit" OnClick="btnConfirmSubmit_Click"/>
                                 <asp:Button ID="btnCancel1" CssClass="btn btn-default" runat="server" class="close" data-dismiss="modal" Text="Cancel" OnClientClick="return false;" />
 
                                 <br />

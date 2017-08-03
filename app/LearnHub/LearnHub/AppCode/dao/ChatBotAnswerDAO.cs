@@ -291,5 +291,60 @@ namespace Emma.DAO
                 conn.Close();
             }
         }
+        public string getIntentNameByID(int intentID)
+        {
+            SqlConnection conn = new SqlConnection();
+            string toReturn = "";
+            try
+            {
+                conn = new SqlConnection();
+                string connstr = ConfigurationManager.ConnectionStrings["DBConnectionString"].ToString();
+                conn.ConnectionString = connstr;
+                conn.Open();
+                SqlCommand comm = new SqlCommand();
+                comm.Connection = conn;
+                comm.CommandText = "select intent from [ChatBotIntent] where intentID=@intentID";
+                comm.Parameters.AddWithValue("@intentID", intentID);
+                SqlDataReader dr = comm.ExecuteReader();
+                while (dr.Read())
+                {
+                    toReturn = (string)dr["intent"];
+                }
+                dr.Close();
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                conn.Close();
+            }
+            return toReturn;
+        }
+        public void deleteAnswerByID(int answerID)
+        {
+            SqlConnection conn = new SqlConnection();
+            try
+            {
+                conn = new SqlConnection();
+                string connstr = ConfigurationManager.ConnectionStrings["DBConnectionString"].ToString();
+                conn.ConnectionString = connstr;
+                conn.Open();
+                SqlCommand comm = new SqlCommand();
+                comm.Connection = conn;
+                comm.CommandText = "DELETE FROM [ChatBotAns] WHERE answerID=@answerID";
+                comm.Parameters.AddWithValue("@answerID", answerID);
+                comm.ExecuteNonQuery();
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
     }
 }

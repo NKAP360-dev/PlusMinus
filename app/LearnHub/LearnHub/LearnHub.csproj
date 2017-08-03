@@ -154,6 +154,7 @@
   <ItemGroup>
     <Compile Include="AppCode\dao\BondDAO.cs" />
     <Compile Include="AppCode\dao\ChatBotAnswerDAO.cs" />
+    <Compile Include="AppCode\dao\Course_elearnCategoryDAO.cs" />
     <Compile Include="AppCode\dao\Course_elearnDAO.cs" />
     <Compile Include="AppCode\dao\DeptDAO.cs" />
     <Compile Include="AppCode\dao\CourseDAO.cs" />
@@ -168,6 +169,7 @@
     <Compile Include="AppCode\dao\WorkflowDAO.cs" />
     <Compile Include="AppCode\entity\Bonds.cs" />
     <Compile Include="AppCode\entity\ChatBotAnswer.cs" />
+    <Compile Include="AppCode\entity\CourseCategory.cs" />
     <Compile Include="AppCode\entity\Upload.cs" />
     <Compile Include="AppCode\entity\Course.cs" />
     <Compile Include="AppCode\entity\Course_elearn.cs" />

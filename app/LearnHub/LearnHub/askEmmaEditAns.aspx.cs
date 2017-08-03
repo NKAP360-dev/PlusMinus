@@ -36,6 +36,7 @@ namespace LearnHub
                         if (currrentAnswer.answer != null)
                         {
                             txtAnswers.Text = currrentAnswer.answer;
+                            txtEntity.Text = currrentAnswer.entityName;
                             ddlIntent.DataBind();
                             ddlIntent.SelectedIndex = ddlIntent.Items.IndexOf(ddlIntent.Items.FindByText(currrentAnswer.intent));
                         }
@@ -55,6 +56,14 @@ namespace LearnHub
             ChatBotAnswerDAO cbaDAO = new ChatBotAnswerDAO();
             int answerID = Convert.ToInt32(Request.QueryString["id"]);
             cbaDAO.updateChatBotAnswer(txtAnswers.Text, null, ddlIntent.SelectedValue, answerID);
+            Response.Redirect("/askEmmaAddAns.aspx");
+        }
+
+        protected void deleteBtn_Click(object sender, EventArgs e)
+        {
+            ChatBotAnswerDAO cbaDAO = new ChatBotAnswerDAO();
+            int answerID = Convert.ToInt32(Request.QueryString["id"]);
+            cbaDAO.deleteAnswerByID(answerID);
             Response.Redirect("/askEmmaAddAns.aspx");
         }
     }
