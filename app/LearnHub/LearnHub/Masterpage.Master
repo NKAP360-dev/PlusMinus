@@ -142,6 +142,29 @@
             color: red;
             margin-left: 4px;
         }
+
+         .pagination li > a,
+        .pagination li > span,
+        .pagination li > a:focus, .pagination .disabled > a,
+        .pagination .disabled > a:hover,
+        .pagination .disabled > a:focus,
+        .pagination .disabled > span {
+            background-color: white;
+            color: black;
+        }
+
+            .pagination li > a:hover {
+                background-color: #96a8ba;
+            }
+
+        .pagination > .active > a,
+        .pagination > .active > span,
+        .pagination > .active > a:hover,
+        .pagination > .active > span:hover,
+        .pagination > .active > a:focus,
+        .pagination > .active > span:focus {
+            background-color: #576777;
+        }
     </style>
     <link href="~/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
@@ -260,12 +283,20 @@
                     </li>
                 </ul>
 
-                <%--Tab 6: AI Chat Bot
+                <%--Tab 6: Configuration--%>
+                <%
+                    User u = (User)Session["currentUser"];
+                    if (u != null && u.getDepartment().Equals("hr"))
+                    {
+                %>
                 <ul class="nav navbar-nav">
                     <li class="dropdown">
-                        <a href="#emmaModal" class="dropdown-toggle" role="button" aria-expanded="false" data-toggle="modal">Ask Emma &nbsp;<span class="glyphicon glyphicon-comment"></span></a>
+                        <a href="emmaConfiguration.aspx" class="dropdown-toggle" role="button" aria-expanded="false">Configuration</a>
+
                     </li>
-                </ul>--%>
+
+                </ul>
+                <%} %>
 
                 <%--Show login button only if user is not logged in--%>
                 <%--Show logout button only if user is logged in--%>

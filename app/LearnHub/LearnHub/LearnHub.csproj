@@ -280,6 +280,13 @@
     <Compile Include="datatable.aspx.designer.cs">
       <DependentUpon>datatable.aspx</DependentUpon>
     </Compile>
+    <Compile Include="editCategories.aspx.cs">
+      <DependentUpon>editCategories.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="editCategories.aspx.designer.cs">
+      <DependentUpon>editCategories.aspx</DependentUpon>
+    </Compile>
     <Compile Include="editModuleInfo.aspx.cs">
       <DependentUpon>editModuleInfo.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -331,6 +338,13 @@
     </Compile>
     <Compile Include="Logout.aspx.designer.cs">
       <DependentUpon>Logout.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="manageCategories.aspx.cs">
+      <DependentUpon>manageCategories.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="manageCategories.aspx.designer.cs">
+      <DependentUpon>manageCategories.aspx</DependentUpon>
     </Compile>
     <Compile Include="Masterpage.Master.cs">
       <DependentUpon>Masterpage.Master</DependentUpon>
@@ -471,6 +485,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="createModules.aspx" />
     <Content Include="datatable.aspx" />
+    <Content Include="editCategories.aspx" />
     <Content Include="editModuleInfo.aspx" />
     <Content Include="emmaConfiguration.aspx" />
     <Content Include="errorPage.aspx" />
@@ -486,6 +501,7 @@
     <Content Include="img\smu.png" />
     <Content Include="Login.aspx" />
     <Content Include="Logout.aspx" />
+    <Content Include="manageCategories.aspx" />
     <Content Include="pendingApproval.aspx" />
     <Content Include="rejectionConfirmation.aspx" />
     <Content Include="Scripts\bootstrap.js" />
