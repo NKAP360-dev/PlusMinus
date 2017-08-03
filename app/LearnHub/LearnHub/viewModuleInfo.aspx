@@ -6,9 +6,12 @@
 <%@ Import Namespace="LearnHub.AppCode.entity" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <script src="https://cdn.ckeditor.com/4.7.1/basic/ckeditor.js"></script>
     <script>
         $(document).ready(function () {
             $('#menu').hide();
+            CKEDITOR.replace('editor1');
+            CKEDITOR.replace('editor2');
         });
 
         function configuration() {
@@ -90,15 +93,34 @@
                     <div class="col-md-3">
                         <div class="panel panel-primary">
                             <div class="panel-heading">
-                                <h3 class="panel-title">Details</h3>
+                                <h3 class="panel-title">Details <a href="#" data-toggle="collapse" data-target="#editDetails"><span class="label label-default pull-right"><span class="glyphicon glyphicon-pencil"></span></span></a></h3>
                             </div>
                             <div class="panel-body">
-                                <strong>
-                                    <asp:Label ID="hoursLabel" runat="server" Text="Hours awarded after completion"></asp:Label></strong><br />
+                                <div class="collapse" id="editDetails">
+                                    <h4><strong>Edit Details</strong></h4>
+                                    <fieldset>
+                                        <div class="form-group">
+                                            <div class="col-lg-12">
+                                                <textarea name="editor2"></textarea>
+                                            </div>
+
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-lg-10">
+                                                <asp:Button ID="btnSaveDetails" CssClass="btn btn-primary" runat="server" Text="Save" />
+                                            </div>
+                                        </div>
+
+                                    </fieldset>
+
+                                    <hr />
+                                </div>
+                                <b>Learning Hours</b><br />
                                 <asp:Label ID="hoursOutput" runat="server" Text=""></asp:Label>
                                 <br />
                                 <br />
-                                blahblah any other info timing date etc etc 
+                                <b>Target Audience</b><br />
+                                Nurses, Doctors
                             </div>
                         </div>
                     </div>
@@ -109,22 +131,26 @@
                     <div class="col-md-9">
                         <div class="panel panel-primary">
                             <div class="panel-heading">
-                                <h3 class="panel-title">Comments&emsp; <a href="#" data-toggle="collapse" data-target="#addComment"><span class="label label-default pull-right"><span class="glyphicon glyphicon-pencil"></span></span></a></h3>
+                                <h3 class="panel-title">Testimonial&emsp; <a href="#" data-toggle="collapse" data-target="#addTestimonial"><span class="label label-default pull-right"><span class="glyphicon glyphicon-pencil"></span></span></a></h3>
                             </div>
                             <div class="panel-body">
-                                <div class="collapse" id="addComment">
-                                    <h4><strong>Add new comment</strong></h4>
+                                <div class="collapse" id="addTestimonial">
+                                    <h4><strong>Add New Testimonial</strong></h4>
                                     <fieldset>
                                         <div class="form-group">
-                                            <div class="col-lg-10">
-                                                <asp:TextBox ID="inputCommentTitle" runat="server" CssClass="form-control" placeholder="Title"></asp:TextBox>
+                                            <div class="col-lg-12">
+                                                <asp:TextBox ID="txtTestimonial" runat="server" CssClass="form-control" placeholder="Title"></asp:TextBox>
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <div class="col-lg-10">
-                                                <asp:TextBox ID="inputCommentBody" TextMode="multiline" Columns="50" Rows="5" runat="server" CssClass="form-control" placeholder="Comment"></asp:TextBox>
+                                            <div class="col-lg-12">
+                                                <textarea name="editor1"></textarea>
                                             </div>
-
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-lg-12">
+                                                <asp:TextBox ID="txtByWho" runat="server" CssClass="form-control" placeholder="Name"></asp:TextBox>
+                                            </div>
                                         </div>
                                         <div class="form-group">
                                             <div class="col-lg-10">
@@ -137,22 +163,20 @@
                                     <hr />
                                 </div>
                                 <strong>
-                                    <asp:Label ID="lblCommentUser" runat="server" Text="Rafid Aziz"></asp:Label></strong><br />
-                                <asp:Label ID="lblCommentDate" runat="server" Text="24th July 2017"></asp:Label>
+                                    <asp:Label ID="lblCommentTitle" runat="server" Text="About Ming Kwang"></asp:Label></strong>&emsp;<a href="#" data-toggle="modal" data-target="#deleteComment"><span class="label label-danger pull-right"><span class="glyphicon glyphicon-trash"></span></span></a></strong><br />
                                 <br />
-                                <br />
-                                <strong>
-                                    <asp:Label ID="lblCommentTitle" runat="server" Text="About Ming Kwang"></asp:Label>&emsp;<a href="#" data-toggle="modal" data-target="#deleteComment"><span class="label label-danger pull-right"><span class="glyphicon glyphicon-trash"></span></span></a></strong><br />
-                                <asp:Label ID="lblCommentBody" runat="server" Text="Ming Kwang is my idol, I aspire to be like him"></asp:Label>
+                                <blockquote>
+                                    <asp:Label ID="lblCommentBody" runat="server" Text="Ming Kwang is my idol, I aspire to be like him"></asp:Label>
+                                    <small>Rafid Aziz</small>
+                                </blockquote>
                                 <hr />
+
                                 <strong>
-                                    <asp:Label ID="Label1" runat="server" Text="Eugene Tan Wei Hong"></asp:Label></strong><br />
-                                <asp:Label ID="Label2" runat="server" Text="24th July 2017"></asp:Label>
+                                    <asp:Label ID="Label3" runat="server" Text="About Rafid"></asp:Label></strong>&emsp;<a href="#" data-toggle="modal" data-target="#deleteComment"><span class="label label-danger pull-right"><span class="glyphicon glyphicon-trash"></span></span></a></strong><br />
                                 <br />
-                                <br />
-                                <strong>
-                                    <asp:Label ID="Label3" runat="server" Text="About Rafid"></asp:Label>&emsp;<a href="#" data-toggle="modal" data-target="#deleteComment"><span class="label label-danger pull-right"><span class="glyphicon glyphicon-trash"></span></span></a></strong><br />
-                                <asp:Label ID="Label4" runat="server" Text="Ming Kwang is my idol, but Rafid is my senpai"></asp:Label>
+                                <blockquote><asp:Label ID="Label4" runat="server" Text="Ming Kwang is my idol, but Rafid is my senpai"></asp:Label>
+                                    <small>Eugene Tan Wei Hong</small>
+                                </blockquote>                               
                             </div>
                         </div>
                     </div>

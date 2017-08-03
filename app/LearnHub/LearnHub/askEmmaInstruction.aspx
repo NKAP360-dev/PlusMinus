@@ -4,31 +4,20 @@
 <%@ Import Namespace="LearnHub.AppCode.dao" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    <link href="http://netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
-    <link href="/Scripts/editor.css" rel="stylesheet" type="text/css" />
-    <script src="/Scripts/editor.js"></script>
+      <script src="https://cdn.ckeditor.com/4.7.1/standard/ckeditor.js"></script>
     <script>
-        <%--https://github.com/suyati/line-control--%>
         $(document).ready(function () {
-            $("#txtEditor").Editor();
-            $("#txtEditor").Editor("setText", "Hello this field shall be configured to display the current instructions so that users can edit from existing instruction")
-
+            CKEDITOR.replace('editor1');
         });
 
-        <%--Just for you to see the html code output by editor--%>
         function displayText() {
-            var preview = $("#txtEditor").Editor("getText");
-            document.getElementById('myField').value = preview;
+            var preview = CKEDITOR.instances.editor1.getData();
+            document.getElementById('myField').innerHTML = preview;
             $('#previewModal').modal('show');
             return false;
         }
 
-        <%--To retrieve text from editor--%>
-        <%--
-        
-       alert($("#txtEditor").Editor("getText"));
 
-        --%>
 </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -50,7 +39,7 @@
         </h1>
         <div class="verticalLine"></div>
         <form runat="server">
-            <div id="txtEditor"></div>
+            <textarea name="editor1"></textarea>
             <br />
             <asp:Button ID="btnSave" CssClass="btn btn-primary pull-right" runat="server" Text="Save"/>
             <asp:Button ID="btnPreview" CssClass="btn btn-primary" runat="server" Text="Preview" OnClientClick="return displayText();" UseSubmitBehavior="False" />
@@ -64,7 +53,7 @@
                         </div>
                         <div class="modal-body">
                             <div class="wrapper">
-                                <input type="hidden" id="myField"/>
+                                <label id="myField"/>
                             </div>
                         </div>
                     </div>

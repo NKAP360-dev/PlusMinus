@@ -40,13 +40,13 @@ namespace LearnHub {
         protected global::System.Web.UI.WebControls.Button btnSubmit;
         
         /// <summary>
-        /// btnDelete control.
+        /// btnStatus control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnDelete;
+        protected global::System.Web.UI.WebControls.Button btnStatus;
         
         /// <summary>
         /// lblSaveSuccess control.
@@ -85,13 +85,13 @@ namespace LearnHub {
         protected global::System.Web.UI.WebControls.Button btnCancel1;
         
         /// <summary>
-        /// btnCfmDelete control.
+        /// btnCfmDeactivate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnCfmDelete;
+        protected global::System.Web.UI.WebControls.Button btnCfmDeactivate;
         
         /// <summary>
         /// btnCancel2 control.

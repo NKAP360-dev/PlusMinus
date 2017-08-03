@@ -52,8 +52,8 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="container">
-        <h1>Intents
-                                    <button type="button" data-toggle="collapse" data-target="#addForm" class="btn btn-success"><span class="glyphicon glyphicon-plus"></span></button>
+        <h1>Manage Intents
+                                    <button type="button" data-toggle="collapse" data-target="#addForm" class="btn btn-success"><span class="glyphicon glyphicon-plus"></span>&nbsp; New</button>
 
             <% if (Session["currentUser"] != null)
                 {
@@ -123,7 +123,6 @@
                     <tr>
                         <td>blahblah</td>
                         <td>
-                            <asp:LinkButton ID="btnDelete" CssClass="btn btn-danger btn-sm pull-right" runat="server" Text="" data-toggle="modal" href="#deleteModal"><span class="glyphicon glyphicon-trash"></span></asp:LinkButton>
                             <asp:LinkButton ID="btnEdit" CssClass="btn btn-info btn-sm pull-right" runat="server" Text="" href="askEmmaEditIntent.aspx"><span class="glyphicon glyphicon-pencil"></span></asp:LinkButton></td>
 
                     </tr>

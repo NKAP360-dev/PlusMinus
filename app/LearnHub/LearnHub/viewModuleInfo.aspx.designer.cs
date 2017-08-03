@@ -76,13 +76,13 @@ namespace LearnHub {
         protected global::System.Web.UI.WebControls.Label lblCourseDescription;
         
         /// <summary>
-        /// hoursLabel control.
+        /// btnSaveDetails control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label hoursLabel;
+        protected global::System.Web.UI.WebControls.Button btnSaveDetails;
         
         /// <summary>
         /// hoursOutput control.
@@ -94,22 +94,22 @@ namespace LearnHub {
         protected global::System.Web.UI.WebControls.Label hoursOutput;
         
         /// <summary>
-        /// inputCommentTitle control.
+        /// txtTestimonial control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox inputCommentTitle;
+        protected global::System.Web.UI.WebControls.TextBox txtTestimonial;
         
         /// <summary>
-        /// inputCommentBody control.
+        /// txtByWho control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox inputCommentBody;
+        protected global::System.Web.UI.WebControls.TextBox txtByWho;
         
         /// <summary>
         /// cfmSubmit control.
@@ -119,24 +119,6 @@ namespace LearnHub {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button cfmSubmit;
-        
-        /// <summary>
-        /// lblCommentUser control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblCommentUser;
-        
-        /// <summary>
-        /// lblCommentDate control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblCommentDate;
         
         /// <summary>
         /// lblCommentTitle control.
@@ -155,24 +137,6 @@ namespace LearnHub {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblCommentBody;
-        
-        /// <summary>
-        /// Label1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label1;
-        
-        /// <summary>
-        /// Label2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label2;
         
         /// <summary>
         /// Label3 control.

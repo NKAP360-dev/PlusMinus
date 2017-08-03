@@ -89,7 +89,7 @@
             <div class="wrapper">
                 <div class="form-group">
                     <asp:Button ID="btnSubmit" CssClass="btn btn-primary" runat="server" Text="Save" data-toggle="modal" href="#submitModal" OnClientClick="return false;" />
-                    <asp:Button ID="btnDelete" CssClass="btn btn-danger" runat="server" Text="Delete" data-toggle="modal" href="#deleteModal" OnClientClick="return false;" />
+                    <asp:Button ID="btnStatus" CssClass="btn btn-warning" runat="server" Text="Deactivate" data-toggle="modal" href="#deactivateModal" OnClientClick="return false;" />
 
                 </div>
                 <strong>
@@ -124,18 +124,20 @@
             </div>
 
              <%--Modal for Deletion Confirmation--%>
-            <div id="deleteModal" class="modal fade" role="dialog">
+            <div id="deactivateModal" class="modal fade" role="dialog">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal">&times;</button>
-                            <h4 class="modal-title"><b>Delete Module Category</b></h4>
+                            <h4 class="modal-title"><b>Deactivate This Category</b></h4>
                         </div>
                         <div class="modal-body">
                             <div class="wrapper">
                                 <h4>Are you sure you want to proceed?</h4>
+                                
+                                <h4 class="text-danger">This category will be deactivated!</h4>
                                 <br />
-                                <asp:Button ID="btnCfmDelete" CssClass="btn btn-danger" runat="server" Text="Delete" />
+                                <asp:Button ID="btnCfmDeactivate" CssClass="btn btn-warning" runat="server" Text="Deactivate" />
                                 <asp:Button ID="btnCancel2" CssClass="btn btn-default" runat="server" class="close" data-dismiss="modal" Text="Cancel" OnClientClick="return false;" />
 
                                 <br />

@@ -126,7 +126,7 @@
                 <div class="form-group">
                     <div class="wrapper">
                         <asp:Button ID="submitBtn" CssClass="btn btn-primary" runat="server" Text="Update" data-toggle="modal" href="#updateModal" OnClientClick="$('#myModal').modal(); return false;" />
-                        <asp:Button ID="deleteBtn" CssClass="btn btn-danger" runat="server" Text="Delete" OnClick="deleteBtn_Click" />
+                        <asp:Button ID="deleteBtn" CssClass="btn btn-danger" runat="server" Text="Delete" data-toggle="modal" href="#deleteModal" OnClientClick="$('#myModal').modal(); return false;" />
                         <br />
                         <br />
                         <strong>
@@ -150,7 +150,7 @@
                                 <div class="wrapper">
                                     <h4>Are you sure you want to delete?</h4>
                                     <br />
-                                    <asp:Button ID="cfmDelete" CssClass="btn btn-danger" runat="server" Text="Delete" />
+                                    <asp:Button ID="cfmDelete" CssClass="btn btn-danger" runat="server" Text="Delete" OnClick="deleteBtn_Click" />
                                     <asp:Button ID="Button1" CssClass="btn btn-default" runat="server" class="close" data-dismiss="modal" Text="Cancel" />
 
                                     <br />
@@ -220,6 +220,8 @@
 
             </div>
         </div>
+
+        
     </form>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder2" runat="server">

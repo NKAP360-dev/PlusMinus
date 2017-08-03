@@ -72,35 +72,35 @@
         <form class="form-horizontal" runat="server">
             <fieldset>
                 <legend>Input new module information </legend>
-                <div class="form-group">
+                <div class="form-group required">
                     <strong>
                         <%--Compulsory/Leadership/Professional--%>
-                        <asp:Label ID="moduleTypeLabel" runat="server" CssClass="col-lg-2 control-label" Text="Module Category * "></asp:Label></strong>
+                        <asp:Label ID="moduleTypeLabel" runat="server" CssClass="col-lg-2 control-label" Text="Module Category"></asp:Label></strong>
                     <div class="col-lg-5">
                         <asp:DropDownList ID="moduleType" runat="server" CssClass="form-control" placeholder="Choose Category *" DataSourceID="SqlDataSourceCourseCategory" DataTextField="category" DataValueField="categoryID"></asp:DropDownList>
                         <asp:SqlDataSource ID="SqlDataSourceCourseCategory" runat="server" ConnectionString="<%$ ConnectionStrings:DBConnectionString %>" SelectCommand="SELECT * FROM [Elearn_courseCategory]"></asp:SqlDataSource>
                     </div>
                 </div>
 
-                <div class="form-group">
+                <div class="form-group required">
                     <strong>
-                        <asp:Label ID="nameOfModuleLabel" runat="server" CssClass="col-lg-2 control-label" Text="Name of Module *"></asp:Label></strong>
+                        <asp:Label ID="nameOfModuleLabel" runat="server" CssClass="col-lg-2 control-label" Text="Name of Module"></asp:Label></strong>
                     <div class="col-lg-5">
                         <asp:TextBox ID="nameOfModuleInput" runat="server" CssClass="form-control" placeholder="Module Name"></asp:TextBox>
                     </div>
                 </div>
 
-                <div class="form-group">
+                <div class="form-group required">
                     <strong>
-                        <asp:Label ID="descriptionModuleLabel" runat="server" CssClass="col-lg-2 control-label" Text="Description of Module *"></asp:Label></strong>
+                        <asp:Label ID="descriptionModuleLabel" runat="server" CssClass="col-lg-2 control-label" Text="Description of Module"></asp:Label></strong>
                     <div class="col-lg-5">
                         <asp:TextBox ID="descriptionModuleInput" TextMode="multiline" Columns="50" Rows="5" runat="server" CssClass="form-control" placeholder="Enter module description"></asp:TextBox>
                     </div>
                 </div>
 
-                <div class="form-group">
+                <div class="form-group required">
                     <strong>
-                        <asp:Label ID="hoursLabel" runat="server" CssClass="col-lg-2 control-label" Text="Hours Awarded *"></asp:Label></strong>
+                        <asp:Label ID="hoursLabel" runat="server" CssClass="col-lg-2 control-label" Text="Learning Hours"></asp:Label></strong>
                     <div class="col-lg-5">
                         <div class="input-group">
                             <asp:TextBox ID="hoursInput" runat="server" CssClass="form-control" placeholder="No. of Hours"></asp:TextBox>
@@ -111,7 +111,7 @@
 
                 <%--Date--%>
                 
-                <div class="form-group">
+                <div class="form-group required">
                     <strong>
                         <asp:Label ID="dateLabel" runat="server" CssClass="col-lg-2 control-label" Text="Date to Display"></asp:Label></strong>
 

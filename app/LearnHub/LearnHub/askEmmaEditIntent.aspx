@@ -79,7 +79,7 @@
                     <asp:TextBox ID="txtIntentInput" runat="server" CssClass="form-control" placeholder="intent value"></asp:TextBox>
                     <a href="#" data-toggle="collapse" data-target="#viewTable" class="pull-right"><span class="glyphicon glyphicon-search"></span>View available Intents</a>
                 </div>
-                
+
 
             </div>
             <br />
@@ -89,6 +89,8 @@
                 <div class="form-group">
                     <div class="wrapper">
                         <asp:Button ID="submitBtn" CssClass="btn btn-primary" runat="server" Text="Update" data-toggle="modal" href="#updateModal" OnClientClick="$('#myModal').modal(); return false;" />
+                        <asp:Button ID="deleteBtn" CssClass="btn btn-danger" runat="server" Text="Delete" data-toggle="modal" href="#deleteModal" OnClientClick="$('#myModal').modal(); return false;" />
+
                         <br />
                         <br />
                         <strong>
@@ -103,32 +105,26 @@
 
         <%--Collapsible Table--%>
         <div class="container">
-        <div id="viewTable" class="collapse">
+            <div id="viewTable" class="collapse">
                 <div class="verticalLine"></div>
-            <br />
-            <table class="table table-striped table-hover" data-paging="true" data-sorting="true" data-filtering="true">
-                <thead>
-                    <tr>
-                        <th width="90%">Intent</th>
-                        <th data-filterable="false" data-sortable="false"></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Should we allow delete on edit page as well? </td>
-                        <td>
-                            <asp:LinkButton ID="btnDelete" CssClass="btn btn-danger btn-sm pull-right" runat="server" Text="" data-toggle="modal" href="#deleteModal"><span class="glyphicon glyphicon-trash"></span></asp:LinkButton>
-
-                    </tr>
-                    <tr>
-                        <td>SHOULD WE??</td>
-                        <td>
-                            <asp:LinkButton ID="LinkButton2" CssClass="btn btn-danger btn-sm pull-right" runat="server" Text="" data-toggle="modal" href="#deleteModal"><span class="glyphicon glyphicon-trash"></span></asp:LinkButton>
-
-                    </tr>
-                </tbody>
-            </table>      
-        </div>
+                <br />
+                <table class="table table-striped table-hover" data-paging="true" data-sorting="true" data-filtering="true">
+                    <thead>
+                        <tr>
+                            <th width="90%">Intent</th>
+                            <th data-filterable="false" data-sortable="false"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>lalalalala </td>
+                        </tr>
+                        <tr>
+                            <td>sseolsa</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
 
         <%--Update Modal--%>
@@ -143,7 +139,7 @@
                         <div class="wrapper">
                             <h4>Are you sure you want to overwrite the existing intent?</h4>
                             <br />
-                            <asp:Button ID="cfmSubmit" CssClass="btn btn-primary" runat="server" Text="Overwrite"/>
+                            <asp:Button ID="cfmSubmit" CssClass="btn btn-primary" runat="server" Text="Overwrite" />
                             <asp:Button ID="Button2" CssClass="btn btn-default" runat="server" class="close" data-dismiss="modal" Text="Cancel" OnClientClick="return false;" />
 
                             <br />
@@ -154,7 +150,7 @@
             </div>
         </div>
 
-         <%--Modal for Deletion Confirmation--%>
+        <%--Modal for Deletion Confirmation--%>
         <div id="deleteModal" class="modal fade" role="dialog">
             <div class="modal-dialog">
                 <div class="modal-content">
