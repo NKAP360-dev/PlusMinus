@@ -174,7 +174,11 @@
                     <div class="modal-body">
                         <div class="wrapper">
                             <h4>Are you sure you want to delete?</h4>
-                            <div class="alert alert-danger" role="alert">Notice: This will delete all answers relating to this intent.</div>
+                      <br />
+                            <div class="alert alert-danger"role="alert">
+                                <span style="font-size:30px;" class="glyphicon glyphicon-warning-sign"></span><br />
+                                Notice: This will <b>DELETE ALL ANSWERS</b> relating to this intent.
+                            </div>
                             <br />
                             <asp:Button ID="btnCfmDelete" CssClass="btn btn-danger" runat="server" Text="Delete" OnClick="btnCfmDelete_Click"/>
                             <asp:Button ID="btnClose" CssClass="btn btn-default" runat="server" class="close" data-dismiss="modal" Text="Cancel" />

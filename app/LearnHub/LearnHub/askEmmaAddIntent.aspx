@@ -80,19 +80,18 @@
                                 <%--Intent--%>
                                 <label for="intentInput" class="col-lg-3 control-label"><span class="glyphicon glyphicon-question-sign" data-toggle='tooltip' data-placement="left" title="" data-original-title="An Intent is a......"></span>&nbsp;Name of Intent</label>
                             </strong>
-                            <div class="col-lg-7">
+                            <div class="col-lg-8">
                                 <%--Mandatory text field--%>
                                 <asp:TextBox ID="txtIntentInput" runat="server" CssClass="form-control" placeholder="Enter New Intent"></asp:TextBox>
                             </div>
-                            <div class="col-lg-1">
-                                <asp:Button ID="btnSubmitIntent" CssClass="btn btn-primary" runat="server" Text="Submit" OnClick="btnSubmitIntent_Click"/>
 
-                            </div>
                         </div>
                         <br />
                         <br />
                         <div class="row">
                             <div class="wrapper">
+                                <asp:Button ID="btnSubmit" CssClass="btn btn-primary" runat="server" Text="Submit" data-toggle="modal" href="#submitModal" OnClientClick="$('#myModal').modal(); return false;" />
+                                <br /><br />
                                 <strong>
                                     <asp:Label ID="lblSuccess" runat="server" CssClass="text-success"><span class="glyphicon glyphicon-ok"></span> Added successfully</asp:Label></strong><br />
                                 <strong>
@@ -134,10 +133,31 @@
                         }
                     %>
                 </tbody>
-            </table>      
+            </table>
         </div>
 
-  
+        <%--Modal for Submission Confirmation--%>
+        <div id="submitModal" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title"><b>Submit Intent</b></h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="wrapper">
+                            <h4>Are you sure you want to submit?</h4>
+                            <br />
+                            <asp:Button ID="btnSubmitIntent" CssClass="btn btn-primary" runat="server" Text="Submit" OnClick="btnSubmitIntent_Click" />
+                            <asp:Button ID="btnCancel1" CssClass="btn btn-default" runat="server" class="close" data-dismiss="modal" Text="Cancel" OnClientClick="return false;" />
+
+                            <br />
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
 
         <%--Modal for Deletion Confirmation--%>
         <div id="deleteModal" class="modal fade" role="dialog">

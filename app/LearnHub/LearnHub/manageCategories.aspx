@@ -102,7 +102,8 @@
             <table class="table table-striped table-hover" id="catTable" data-paging="true" data-sorting="true" data-filtering="true">
                 <thead>
                     <tr>
-                        <th id="categories" width="90%">Current Module Categories</th>
+                        <th id="categories" width="80%">Current Module Categories</th>
+                        <th id="status" width="10%">Status</th>
                         <th data-filterable="false" data-sortable="false" width="10%"></th>
                     </tr>
                 </thead>
@@ -114,6 +115,7 @@
                         {
                             Response.Write("<tr>");
                             Response.Write($"<td>{cc.category}</td>");
+                            Response.Write($"<td>{cc.status}</td>");
                             Response.Write($"<td><a href=\"/editCategories.aspx?id={cc.categoryID}\" class=\"btn btn-info btn-sm pull-right\"><span class=\"glyphicon glyphicon-pencil\"></span></a></td>");
                             Response.Write("</tr>");
                         }

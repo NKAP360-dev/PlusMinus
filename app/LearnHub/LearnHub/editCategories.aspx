@@ -89,7 +89,8 @@
             <div class="wrapper">
                 <div class="form-group">
                     <asp:Button ID="btnSubmit" CssClass="btn btn-primary" runat="server" Text="Save" data-toggle="modal" href="#submitModal" OnClientClick="return false;" />
-                    <asp:Button ID="btnStatus" CssClass="btn btn-warning" runat="server" Text="Deactivate" data-toggle="modal" href="#deactivateModal" OnClientClick="return false;" />
+                    <asp:Button ID="btnDeactivate" CssClass="btn btn-warning" runat="server" Text="Deactivate" data-toggle="modal" href="#deactivateModal" OnClientClick="return false;" />
+                    <asp:Button ID="btnActivate" CssClass="btn btn-success" runat="server" Text="Activate" data-toggle="modal" href="#activateModal" OnClientClick="return false;" />
 
                 </div>
                 <strong>
@@ -123,7 +124,7 @@
                 </div>
             </div>
 
-             <%--Modal for Deletion Confirmation--%>
+             <%--Modal for Deactivation Confirmation--%>
             <div id="deactivateModal" class="modal fade" role="dialog">
                 <div class="modal-dialog">
                     <div class="modal-content">
@@ -135,10 +136,35 @@
                             <div class="wrapper">
                                 <h4>Are you sure you want to proceed?</h4>
                                 
-                                <h4 class="text-danger">This category will be deactivated!</h4>
+                                <h4 class="text-danger">This category will be deactivated and all modules under this category will not be visible to users!</h4>
                                 <br />
                                 <asp:Button ID="btnCfmDeactivate" CssClass="btn btn-warning" runat="server" Text="Deactivate" OnClick="btnCfmDeactivate_Click"/>
                                 <asp:Button ID="btnCancel2" CssClass="btn btn-default" runat="server" class="close" data-dismiss="modal" Text="Cancel" OnClientClick="return false;" />
+
+                                <br />
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <%--Modal for Activation Confirmation--%>
+            <div id="activateModal" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title"><b>Activate This Category</b></h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="wrapper">
+                                <h4>Are you sure you want to proceed?</h4>
+                                
+                                <h4 class="text-success">This category will be activated and modules under this category will be visible to all users</h4>
+                                <br />
+                                <asp:Button ID="btnCfmActivate" CssClass="btn btn-success" runat="server" Text="Activate"/>
+                                <asp:Button ID="Button2" CssClass="btn btn-default" runat="server" class="close" data-dismiss="modal" Text="Cancel" OnClientClick="return false;" />
 
                                 <br />
                             </div>
