@@ -2,6 +2,8 @@
 
 <%@ Import Namespace="LearnHub.AppCode.entity" %>
 <%@ Import Namespace="LearnHub.AppCode.dao" %>
+<%@ Import Namespace="Emma.DAO" %>
+<%@ Import Namespace="Emma.Entity" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <style>
@@ -39,7 +41,7 @@
         jQuery(function ($) {
             $('.table').footable({
                 "paging": {
-                    "size": 1 <%--Change how many rows per page--%>
+                    "size": 10 <%--Change how many rows per page--%>
                 },
                 "filtering": {
                     "position": "left"
@@ -83,7 +85,7 @@
                                 <asp:TextBox ID="txtIntentInput" runat="server" CssClass="form-control" placeholder="Enter New Intent"></asp:TextBox>
                             </div>
                             <div class="col-lg-1">
-                                <asp:Button ID="btnSubmitIntent" CssClass="btn btn-primary" runat="server" Text="Submit" />
+                                <asp:Button ID="btnSubmitIntent" CssClass="btn btn-primary" runat="server" Text="Submit" OnClick="btnSubmitIntent_Click"/>
 
                             </div>
                         </div>
@@ -120,19 +122,17 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>blahblah</td>
-                        <td>
-                            <asp:LinkButton ID="btnEdit" CssClass="btn btn-info btn-sm pull-right" runat="server" Text="" href="askEmmaEditIntent.aspx"><span class="glyphicon glyphicon-pencil"></span></asp:LinkButton></td>
-
-                    </tr>
-                    <tr>
-                        <td>ayeee</td>
-                        <td>
-                            <asp:LinkButton ID="LinkButton2" CssClass="btn btn-danger btn-sm pull-right" runat="server" Text="" data-toggle="modal" href="#deleteModal"><span class="glyphicon glyphicon-trash"></span></asp:LinkButton>
-                            <asp:LinkButton ID="LinkButton1" CssClass="btn btn-info btn-sm pull-right" runat="server" Text="" data-toggle="modal" href="#editModal"><span class="glyphicon glyphicon-pencil"></span></asp:LinkButton></td>
-
-                    </tr>
+                    <%
+                        ChatBotIntentDAO cbiDAO = new ChatBotIntentDAO();
+                        List<ChatBotIntent> allChatBotIntents = cbiDAO.getAllChatBotIntent();
+                        foreach (ChatBotIntent cbi in allChatBotIntents)
+                        {
+                            Response.Write("<tr>");
+                            Response.Write($"<td>{cbi.intent}</td>");
+                            Response.Write($"<td><a href=\"/askEmmaEditIntent.aspx?id={cbi.intentID}\" class=\"btn btn-info btn-sm pull-right\"><span class=\"glyphicon glyphicon-pencil\"></span></a></td>");
+                            Response.Write("</tr>");
+                        }
+                    %>
                 </tbody>
             </table>      
         </div>

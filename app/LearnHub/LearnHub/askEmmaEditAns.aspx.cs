@@ -66,5 +66,10 @@ namespace LearnHub
             cbaDAO.deleteAnswerByID(answerID);
             Response.Redirect("/askEmmaAddAns.aspx");
         }
+
+        protected void ddlIntent_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            gvIntentAnswers.DataBind();
+        }
     }
 }

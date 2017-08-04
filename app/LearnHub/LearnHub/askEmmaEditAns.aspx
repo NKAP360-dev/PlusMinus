@@ -94,7 +94,7 @@
                     <label for="ddlIntent" class="col-lg-2 control-label"><span class="glyphicon glyphicon-question-sign" data-toggle='tooltip' data-placement="left" title="" data-original-title="An Intent is a......"></span>Choose an Intent</label>
                     <div class="col-lg-10">
                         <%--Mandatory Choose 1--%>
-                        <asp:DropDownList ID="ddlIntent" runat="server" CssClass="form-control" DataSourceID="SqlDataSource1" DataTextField="intent" DataValueField="intentID"></asp:DropDownList>
+                        <asp:DropDownList ID="ddlIntent" runat="server" CssClass="form-control" DataSourceID="SqlDataSource1" DataTextField="intent" DataValueField="intentID" AutoPostBack="True" OnSelectedIndexChanged="ddlIntent_SelectedIndexChanged"></asp:DropDownList>
                         <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:DBConnectionString %>" SelectCommand="SELECT * FROM [ChatBotIntent]"></asp:SqlDataSource>
                         <a href="#" data-toggle="collapse" data-target="#viewTable" class="pull-right"><span class="glyphicon glyphicon-search"></span>View Answers For This Intent</a>
 
@@ -167,10 +167,26 @@
             </fieldset>
 
         </div>
+        <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
+        <asp:UpdatePanel runat="server" ID="upanelTable">
+            <ContentTemplate>
+
         <div class="container">
             <div id="viewTable" class="collapse">
                 <div class="verticalLine"></div>
                 <br />
+                <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:DBConnectionString %>" SelectCommand="SELECT * FROM [ChatBotAns] WHERE ([intentID] = @intentID)">
+                            <SelectParameters>
+                                <asp:ControlParameter ControlID="ddlIntent" Name="intentID" PropertyName="SelectedValue" Type="String" />
+                            </SelectParameters>
+                        </asp:SqlDataSource>
+                <asp:GridView ID="gvIntentAnswers" CssClass="table table-striped table-hover" runat="server" AllowPaging="True" DataSourceID="SqlDataSource2" AutoGenerateColumns="False" GridLines="None">
+                            <Columns>
+                                <asp:BoundField DataField="answer" HeaderText="Answer" SortExpression="answer" />
+                                <asp:BoundField DataField="entityName" HeaderText="Entity" SortExpression="entityName" NullDisplayText="-" />
+                            </Columns>
+                        </asp:GridView>
+                <%--
                 <table class="table table-striped table-hover" data-paging="true" data-sorting="true" data-filtering="true">
                     <thead>
                         <tr>
@@ -195,10 +211,16 @@
                         %>
                     </tbody>
                 </table>
+                --%>
                 <asp:CustomValidator ID="cv_answers" runat="server" EnableClientScript="true" ErrorMessage="Please select an answer" ClientValidationFunction="ValidateRadioButton" ForeColor="Red"></asp:CustomValidator>
             </div>
             <br />
         </div>
+                </ContentTemplate>
+            <Triggers>
+                <asp:AsyncPostBackTrigger ControlID="ddlIntent" EventName="SelectedIndexChanged" />
+            </Triggers>
+        </asp:UpdatePanel>
         <div id="updateModal" class="modal fade" role="dialog">
             <div class="modal-dialog">
                 <div class="modal-content">

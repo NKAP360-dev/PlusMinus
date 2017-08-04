@@ -137,7 +137,7 @@
                                 
                                 <h4 class="text-danger">This category will be deactivated!</h4>
                                 <br />
-                                <asp:Button ID="btnCfmDeactivate" CssClass="btn btn-warning" runat="server" Text="Deactivate" />
+                                <asp:Button ID="btnCfmDeactivate" CssClass="btn btn-warning" runat="server" Text="Deactivate" OnClick="btnCfmDeactivate_Click"/>
                                 <asp:Button ID="btnCancel2" CssClass="btn btn-default" runat="server" class="close" data-dismiss="modal" Text="Cancel" OnClientClick="return false;" />
 
                                 <br />

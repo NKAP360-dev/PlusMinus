@@ -18,7 +18,13 @@ namespace LearnHub
 
         protected void btnConfirmSubmit_Click(object sender, EventArgs e)
         {
+            //to do validation
 
+            Course_elearnCategoryDAO cecDAO = new Course_elearnCategoryDAO();
+            CourseCategory cc = new CourseCategory();
+            cc.category = txtCategory.Text;
+            cc.status = "active";
+            cecDAO.createCategory(cc);
         }
     }
 }

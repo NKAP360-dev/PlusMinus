@@ -9,5 +9,6 @@ namespace LearnHub.AppCode.entity
     {
         public int categoryID { get; set; }
         public string category { get; set; }
+        public string status { get; set; }
     }
 }

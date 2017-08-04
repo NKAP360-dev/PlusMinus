@@ -1,19 +1,20 @@
-﻿using System;
+﻿using Emma.Entity;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data.SqlClient;
-using LearnHub.AppCode.entity;
 using System.Linq;
 using System.Web;
 
-namespace LearnHub.AppCode.dao
+namespace Emma.DAO
 {
-    public class Course_elearnCategoryDAO
+    [Serializable]
+    public class ChatBotIntentDAO
     {
-        public List<CourseCategory> getAllCategory()
+        public List<ChatBotIntent> getAllChatBotIntent()
         {
             SqlConnection conn = new SqlConnection();
-            List<CourseCategory> toReturn = new List<CourseCategory>();
+            List<ChatBotIntent> toReturn = new List<ChatBotIntent>();
             try
             {
                 conn = new SqlConnection();
@@ -22,15 +23,15 @@ namespace LearnHub.AppCode.dao
                 conn.Open();
                 SqlCommand comm = new SqlCommand();
                 comm.Connection = conn;
-                comm.CommandText = "select * from [Elearn_courseCategory]";
+                comm.CommandText = "select * from [ChatBotIntent]";
                 SqlDataReader dr = comm.ExecuteReader();
                 while (dr.Read())
                 {
-                    CourseCategory cc = new CourseCategory();
-                    cc.categoryID = (int)dr["categoryID"];
-                    cc.category = (string)dr["category"];
-                    cc.status = (string)dr["status"];
-                    toReturn.Add(cc);
+                    ChatBotIntent cbi = new ChatBotIntent();
+                    cbi.intentID = (int)dr["intentID"];
+                    cbi.intent = (string)dr["intent"];
+
+                    toReturn.Add(cbi);
                 }
                 dr.Close();
             }
@@ -44,106 +45,10 @@ namespace LearnHub.AppCode.dao
             }
             return toReturn;
         }
-
-        public List<CourseCategory> getAllActiveCategory()
-        {
-            SqlConnection conn = new SqlConnection();
-            List<CourseCategory> toReturn = new List<CourseCategory>();
-            try
-            {
-                conn = new SqlConnection();
-                string connstr = ConfigurationManager.ConnectionStrings["DBConnectionString"].ToString();
-                conn.ConnectionString = connstr;
-                conn.Open();
-                SqlCommand comm = new SqlCommand();
-                comm.Connection = conn;
-                comm.CommandText = "select * from [Elearn_courseCategory] where status=@status";
-                comm.Parameters.AddWithValue("@status", "active");
-                SqlDataReader dr = comm.ExecuteReader();
-                while (dr.Read())
-                {
-                    CourseCategory cc = new CourseCategory();
-                    cc.categoryID = (int)dr["categoryID"];
-                    cc.category = (string)dr["category"];
-                    cc.status = (string)dr["status"];
-                    toReturn.Add(cc);
-                }
-                dr.Close();
-            }
-            catch (SqlException ex)
-            {
-                throw ex;
-            }
-            finally
-            {
-                conn.Close();
-            }
-            return toReturn;
-        }
-
-        public CourseCategory getCategoryByID(int categoryID)
-        {
-            SqlConnection conn = new SqlConnection();
-            CourseCategory toReturn = new CourseCategory();
-            try
-            {
-                conn = new SqlConnection();
-                string connstr = ConfigurationManager.ConnectionStrings["DBConnectionString"].ToString();
-                conn.ConnectionString = connstr;
-                conn.Open();
-                SqlCommand comm = new SqlCommand();
-                comm.Connection = conn;
-                comm.CommandText = "select * from [Elearn_courseCategory] where categoryID=@categoryID";
-                comm.Parameters.AddWithValue("@categoryID", categoryID);
-                SqlDataReader dr = comm.ExecuteReader();
-                while (dr.Read())
-                {
-                    toReturn.categoryID = (int)dr["categoryID"];
-                    toReturn.category = (string)dr["category"];
-                    toReturn.status = (string)dr["status"];
-                }
-                dr.Close();
-            }
-            catch (SqlException ex)
-            {
-                throw ex;
-            }
-            finally
-            {
-                conn.Close();
-            }
-            return toReturn;
-        }
-        public void updateCategory(string category, int categoryID) // Update.
-        {
-            SqlConnection conn = new SqlConnection();
-
-            try
-            {
-                conn = new SqlConnection();
-                string connstr = ConfigurationManager.ConnectionStrings["DBConnectionString"].ToString();
-                conn.ConnectionString = connstr;
-                conn.Open();
-                SqlCommand comm = new SqlCommand();
-                comm.Connection = conn;
-                comm.CommandText =
-                    "Update [Elearn_courseCategory] SET category=@category WHERE categoryID=@categoryID";
-                comm.Parameters.AddWithValue("@categoryID", categoryID);
-                comm.Parameters.AddWithValue("@category", category);
-                int rowsAffected = comm.ExecuteNonQuery();
-            }
-            catch (SqlException ex)
-            {
-                throw ex;
-            }
-            finally
-            {
-                conn.Close();
-            }
-        }
-        public void createCategory(CourseCategory cc) // Insert.
+        public Boolean addIntent(string intent) // Insert.
         {
             SqlConnection conn = null;
+            Boolean success = false;
             try
             {
                 conn = new SqlConnection();
@@ -151,10 +56,10 @@ namespace LearnHub.AppCode.dao
                 conn.Open();
                 SqlCommand comm = new SqlCommand();
                 comm.Connection = conn;
-                comm.CommandText = "Insert into [Elearn_courseCategory] (category, status) VALUES (@category, @status)";
-                comm.Parameters.AddWithValue("@category", cc.category);
-                comm.Parameters.AddWithValue("@status", cc.status);
-                int rowsAffected = comm.ExecuteNonQuery();
+                comm.CommandText = "Insert into [ChatBotIntent] (intent) VALUES (@intent)";
+                comm.Parameters.AddWithValue("@intent", intent);
+                comm.ExecuteNonQuery();
+                success = true;
             }
             catch (SqlException ex)
             {
@@ -164,8 +69,42 @@ namespace LearnHub.AppCode.dao
             {
                 conn.Close();
             }
+            return success;
         }
-        public void deactivateCategory(int categoryID) // Update.
+        public ChatBotIntent getChatBotIntentByID(int intentID)
+        {
+            SqlConnection conn = new SqlConnection();
+            ChatBotIntent toReturn = new ChatBotIntent();
+            try
+            {
+                conn = new SqlConnection();
+                string connstr = ConfigurationManager.ConnectionStrings["DBConnectionString"].ToString();
+                conn.ConnectionString = connstr;
+                conn.Open();
+                SqlCommand comm = new SqlCommand();
+                comm.Connection = conn;
+                comm.CommandText = "select * from [ChatBotIntent] where intentID=@intentID";
+                comm.Parameters.AddWithValue("@intentID", intentID);
+                SqlDataReader dr = comm.ExecuteReader();
+                while (dr.Read())
+                {
+                    toReturn.intentID = (int)dr["intentID"];
+                    toReturn.intent = (string)dr["intent"];
+                    
+                }
+                dr.Close();
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                conn.Close();
+            }
+            return toReturn;
+        }
+        public void updateChatBotIntent(string intent, int intentID) // Update.
         {
             SqlConnection conn = new SqlConnection();
 
@@ -178,10 +117,59 @@ namespace LearnHub.AppCode.dao
                 SqlCommand comm = new SqlCommand();
                 comm.Connection = conn;
                 comm.CommandText =
-                    "Update [Elearn_courseCategory] SET status=@status WHERE categoryID=@categoryID";
-                comm.Parameters.AddWithValue("@categoryID", categoryID);
-                comm.Parameters.AddWithValue("@status", "inactive");
+                    "Update [ChatBotIntent] SET intent=@intent WHERE intentID=@intentID";
+                comm.Parameters.AddWithValue("@intent", intent);
+                comm.Parameters.AddWithValue("@intentID", intentID);
+                
                 int rowsAffected = comm.ExecuteNonQuery();
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+        public void deleteAnswersByIntent(int intentID)
+        {
+            SqlConnection conn = new SqlConnection();
+            try
+            {
+                conn = new SqlConnection();
+                string connstr = ConfigurationManager.ConnectionStrings["DBConnectionString"].ToString();
+                conn.ConnectionString = connstr;
+                conn.Open();
+                SqlCommand comm = new SqlCommand();
+                comm.Connection = conn;
+                comm.CommandText = "DELETE FROM [ChatBotAns] WHERE intentID=@intentID";
+                comm.Parameters.AddWithValue("@intentID", intentID);
+                comm.ExecuteNonQuery();
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+        public void deleteIntentByID(int intentID)
+        {
+            SqlConnection conn = new SqlConnection();
+            try
+            {
+                conn = new SqlConnection();
+                string connstr = ConfigurationManager.ConnectionStrings["DBConnectionString"].ToString();
+                conn.ConnectionString = connstr;
+                conn.Open();
+                SqlCommand comm = new SqlCommand();
+                comm.Connection = conn;
+                comm.CommandText = "DELETE FROM [ChatBotIntent] WHERE intentID=@intentID";
+                comm.Parameters.AddWithValue("@intentID", intentID);
+                comm.ExecuteNonQuery();
             }
             catch (SqlException ex)
             {

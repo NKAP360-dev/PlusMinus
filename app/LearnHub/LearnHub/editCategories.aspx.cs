@@ -31,5 +31,14 @@ namespace LearnHub
             cecDAO.updateCategory(txtCategory.Text, categoryID);
             Response.Redirect("/manageCategories.aspx");
         }
+
+        protected void btnCfmDeactivate_Click(object sender, EventArgs e)
+        {
+            //to do validation
+            int categoryID = Convert.ToInt32(lblHiddenID.Text);
+            Course_elearnCategoryDAO cecDAO = new Course_elearnCategoryDAO();
+            cecDAO.deactivateCategory(categoryID);
+            Response.Redirect("/manageCategories.aspx");
+        }
     }
 }

@@ -109,7 +109,7 @@
                 <tbody>
                     <%
                         Course_elearnCategoryDAO cecDAO = new Course_elearnCategoryDAO();
-                        List<CourseCategory> categories = cecDAO.getAllCategory();
+                        List<CourseCategory> categories = cecDAO.getAllActiveCategory();
                         foreach (CourseCategory cc in categories)
                         {
                             Response.Write("<tr>");

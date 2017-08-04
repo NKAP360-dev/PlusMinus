@@ -2,6 +2,8 @@
 
 <%@ Import Namespace="LearnHub.AppCode.entity" %>
 <%@ Import Namespace="LearnHub.AppCode.dao" %>
+<%@ Import Namespace="Emma.DAO" %>
+<%@ Import Namespace="Emma.Entity" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <style>
@@ -39,7 +41,7 @@
         jQuery(function ($) {
             $('.table').footable({
                 "paging": {
-                    "size": 1 <%--Change how many rows per page--%>
+                    "size": 5 <%--Change how many rows per page--%>
                 },
                 "filtering": {
                     "position": "left"
@@ -116,6 +118,16 @@
                         </tr>
                     </thead>
                     <tbody>
+                        <%
+                            ChatBotIntentDAO cbiDAO = new ChatBotIntentDAO();
+                            List<ChatBotIntent> allIntents = cbiDAO.getAllChatBotIntent();
+                            foreach (ChatBotIntent cbi in allIntents)
+                        {
+                            Response.Write("<tr>");
+                            Response.Write($"<td>{cbi.intent}</td>");
+                            Response.Write("</tr>");
+                        }
+                        %>
                         <tr>
                             <td>lalalalala </td>
                         </tr>
@@ -139,7 +151,7 @@
                         <div class="wrapper">
                             <h4>Are you sure you want to overwrite the existing intent?</h4>
                             <br />
-                            <asp:Button ID="cfmSubmit" CssClass="btn btn-primary" runat="server" Text="Overwrite" />
+                            <asp:Button ID="cfmSubmit" CssClass="btn btn-primary" runat="server" Text="Overwrite" OnClick="cfmSubmit_Click" />
                             <asp:Button ID="Button2" CssClass="btn btn-default" runat="server" class="close" data-dismiss="modal" Text="Cancel" OnClientClick="return false;" />
 
                             <br />
@@ -162,8 +174,9 @@
                     <div class="modal-body">
                         <div class="wrapper">
                             <h4>Are you sure you want to delete?</h4>
+                            <div class="alert alert-danger" role="alert">Notice: This will delete all answers relating to this intent.</div>
                             <br />
-                            <asp:Button ID="btnCfmDelete" CssClass="btn btn-danger" runat="server" Text="Delete" />
+                            <asp:Button ID="btnCfmDelete" CssClass="btn btn-danger" runat="server" Text="Delete" OnClick="btnCfmDelete_Click"/>
                             <asp:Button ID="btnClose" CssClass="btn btn-default" runat="server" class="close" data-dismiss="modal" Text="Cancel" />
 
                             <br />
