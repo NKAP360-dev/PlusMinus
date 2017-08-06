@@ -73,7 +73,7 @@ namespace LearnHub {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox descriptionModuleInput;
+        protected global::CKEditor.NET.CKEditorControl descriptionModuleInput;
         
         /// <summary>
         /// hoursLabel control.
@@ -157,13 +157,13 @@ namespace LearnHub {
         protected global::System.Web.UI.WebControls.Button submitBtn;
         
         /// <summary>
-        /// deleteBtn control.
+        /// btnDeactivate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button deleteBtn;
+        protected global::System.Web.UI.WebControls.Button btnDeactivate;
         
         /// <summary>
         /// cfmSubmit control.

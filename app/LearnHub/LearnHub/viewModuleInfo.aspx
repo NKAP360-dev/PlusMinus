@@ -1,4 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Masterpage.Master" AutoEventWireup="true" CodeBehind="viewModuleInfo.aspx.cs" Inherits="LearnHub.viewModuleInfo" %>
+<%@ Register Assembly="CKEditor.NET" Namespace="CKEditor.NET" TagPrefix="CKEditor" %>
 
 <%@ Import Namespace="System.IO" %>
 <%@ Import Namespace="System.Data" %>
@@ -6,12 +7,9 @@
 <%@ Import Namespace="LearnHub.AppCode.entity" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    <script src="https://cdn.ckeditor.com/4.7.1/basic/ckeditor.js"></script>
     <script>
         $(document).ready(function () {
             $('#menu').hide();
-            CKEDITOR.replace('editor1');
-            CKEDITOR.replace('editor2');
         });
 
         function configuration() {
@@ -45,7 +43,7 @@
             <div class="configure">
                 <ul class="list-group" id="menu" style="display: none;">
                     <a href="editModuleInfo.aspx?id=<%=courseID %>">
-                        <li class="list-group-item"><span class="glyphicon glyphicon-pencil"></span>&emsp;Edit/Delete Module
+                        <li class="list-group-item"><span class="glyphicon glyphicon-pencil"></span>&emsp;Edit Module
                         </li>
                     </a>
                     <a href="#uploadModal" data-toggle="modal">
@@ -101,7 +99,8 @@
                                     <fieldset>
                                         <div class="form-group">
                                             <div class="col-lg-12">
-                                                <textarea name="editor2"></textarea>
+                                                <CKEditor:CKEditorControl ID="CKEditor1" runat="server">
+            </CKEditor:CKEditorControl>
                                             </div>
 
                                         </div>
@@ -144,7 +143,8 @@
                                         </div>
                                         <div class="form-group">
                                             <div class="col-lg-12">
-                                                <textarea name="editor1"></textarea>
+                                                <CKEditor:CKEditorControl ID="CKEditorControl2" runat="server">
+            </CKEditor:CKEditorControl>
                                             </div>
                                         </div>
                                         <div class="form-group">

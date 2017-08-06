@@ -76,6 +76,15 @@ namespace LearnHub {
         protected global::System.Web.UI.WebControls.Label lblCourseDescription;
         
         /// <summary>
+        /// CKEditor1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::CKEditor.NET.CKEditorControl CKEditor1;
+        
+        /// <summary>
         /// btnSaveDetails control.
         /// </summary>
         /// <remarks>
@@ -101,6 +110,15 @@ namespace LearnHub {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtTestimonial;
+        
+        /// <summary>
+        /// CKEditorControl2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::CKEditor.NET.CKEditorControl CKEditorControl2;
         
         /// <summary>
         /// txtByWho control.

@@ -1,4 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Masterpage.Master" AutoEventWireup="true" CodeBehind="editModuleInfo.aspx.cs" Inherits="LearnHub.editModuleInfo" %>
+<%@ Register Assembly="CKEditor.NET" Namespace="CKEditor.NET" TagPrefix="CKEditor" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/css/datepicker.css" rel="stylesheet" type="text/css" />
@@ -94,7 +95,9 @@
                     <strong>
                         <asp:Label ID="descriptionModuleLabel" runat="server" CssClass="col-lg-2 control-label" Text="Description of Module *"></asp:Label></strong>
                     <div class="col-lg-5">
-                        <asp:TextBox ID="descriptionModuleInput" TextMode="multiline" Columns="50" Rows="5" runat="server" CssClass="form-control" placeholder="Enter module description"></asp:TextBox>
+                        <%--<asp:TextBox ID="descriptionModuleInput" TextMode="multiline" Columns="50" Rows="5" runat="server" CssClass="form-control" placeholder="Enter module description"></asp:TextBox>--%>
+                        <CKEditor:CKEditorControl ID="descriptionModuleInput" runat="server"></CKEditor:CKEditorControl>
+
                     </div>
                 </div>
 
@@ -212,7 +215,7 @@
                     <br />
                     <div class="wrapper">
                         <asp:Button ID="submitBtn" CssClass="btn btn-primary" runat="server" Text="Save Changes" data-toggle="modal" href="#submitModal" OnClientClick="return false;" />
-                        <asp:Button ID="deleteBtn" CssClass="btn btn-danger" runat="server" Text="Delete Module" data-toggle="modal" href="#deleteModal" OnClientClick="return false;" />
+                        <asp:Button ID="btnDeactivate" CssClass="btn btn-warning" runat="server" Text="Deactivate Module" data-toggle="modal" href="#deactivateModal" OnClientClick="return false;" />
 
                     </div>
                 </div>
@@ -242,19 +245,19 @@
                 </div>
 
                 <%--Modal for Deletion Confirmation--%>
-                <div id="deleteModal" class="modal fade" role="dialog">
+                <div id="deactivateModal" class="modal fade" role="dialog">
                     <div class="modal-dialog">
                         <div class="modal-content panel-warning">
                             <div class="modal-header">
                                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                <h4 class="modal-title"><b>Delete this module</b></h4>
+                                <h4 class="modal-title"><b>Deactivate this module</b></h4>
                             </div>
                             <%--Modal Content--%>
                             <div class="modal-body">
                                 <div class="wrapper">
-                                    <h4>Are you sure you want to delete this module?</h4>
+                                    <h4>Are you sure you want to deactivate this module?</h4>
                                     <br />
-                                    <asp:Button ID="Button1" CssClass="btn btn-danger" runat="server" Text="Delete" />
+                                    <asp:Button ID="Button1" CssClass="btn btn-warning" runat="server" Text="Deactivate" />
                                     <asp:Button ID="Button2" CssClass="btn btn-default" runat="server" class="close" data-dismiss="modal" Text="Go Back" />
                                     <%--Redirect to viewModuleInfo of newly created course--%>
                                     <br />
