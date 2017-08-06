@@ -269,6 +269,13 @@
     <Compile Include="askEmmaInstruction.aspx.designer.cs">
       <DependentUpon>askEmmaInstruction.aspx</DependentUpon>
     </Compile>
+    <Compile Include="askEmmaEditHelp.aspx.cs">
+      <DependentUpon>askEmmaEditHelp.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="askEmmaEditHelp.aspx.designer.cs">
+      <DependentUpon>askEmmaEditHelp.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="createModules.aspx.cs">
       <DependentUpon>createModules.aspx</DependentUpon>
@@ -476,6 +483,7 @@
     <Content Include="askEmmaHelpQn.aspx" />
     <Content Include="askEmmaInitializeMsg.aspx" />
     <Content Include="askEmmaInstruction.aspx" />
+    <Content Include="askEmmaEditHelp.aspx" />
     <Content Include="bootstrap\css\bootstrap-responsive.css" />
     <Content Include="bootstrap\css\bootstrap-responsive.min.css" />
     <Content Include="bootstrap\css\bootstrap.css" />

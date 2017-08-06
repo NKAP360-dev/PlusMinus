@@ -75,7 +75,7 @@
                             <td>Ber</td>
                             <td>Nursing</td>
                             <td>
-                                <asp:LinkButton ID="LinkButton1" CssClass="btn btn-danger pull-right btn-sm" runat="server" Text="" data-toggle="modal" href="#deleteModal"><span class="glyphicon glyphicon-trash"></span></asp:LinkButton></td>
+                            <a href="#deleteModal" data-toggle="modal" class="btn btn-danger btn-sm pull-right"><span class="glyphicon glyphicon-trash"></span></a>
 
                         </tr>
                         <tr>
@@ -83,7 +83,7 @@
                             <td>Rafid</td>
                             <td>Cleaning</td>
                             <td>
-                                <asp:LinkButton ID="LinkButton2" CssClass="btn btn-danger pull-right btn-sm" runat="server" Text="" data-toggle="modal" href="#deleteModal"><span class="glyphicon glyphicon-trash"></span></asp:LinkButton></td>
+                            <a href="#deleteModal" data-toggle="modal" class="btn btn-danger btn-sm pull-right"><span class="glyphicon glyphicon-trash"></span></a>
 
                         </tr>
                     </tbody>
@@ -126,6 +126,29 @@
                             </div>
                             <br />
 
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <%--Modal for Deletion Confirmation--%>
+            <div id="deleteModal" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title"><span class="glyphicon glyphicon-trash"></span>&nbsp;<b>Delete Feedback</b></h4>
+                        </div>
+                        <%--Modal Content--%>
+                        <div class="modal-body">
+                            <div class="wrapper">
+                                <h4>Are you sure you want to delete?</h4>
+                                <br />
+                                <asp:Button ID="btnCfmDelete" CssClass="btn btn-danger" runat="server" Text="Delete" />
+                                <asp:Button ID="btnClose" CssClass="btn btn-default" runat="server" class="close" data-dismiss="modal" Text="Cancel" />
+
+                                <br />
+                            </div>
                         </div>
                     </div>
 
