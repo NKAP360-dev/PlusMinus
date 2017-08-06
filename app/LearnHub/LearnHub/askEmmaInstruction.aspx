@@ -1,24 +1,22 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Masterpage.Master" AutoEventWireup="true" CodeBehind="askEmmaInstruction.aspx.cs" Inherits="LearnHub.askEmmaInstruction" %>
+<%@ Register Assembly="CKEditor.NET" Namespace="CKEditor.NET" TagPrefix="CKEditor" %>
 
 <%@ Import Namespace="LearnHub.AppCode.entity" %>
 <%@ Import Namespace="LearnHub.AppCode.dao" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-      <script src="https://cdn.ckeditor.com/4.7.1/standard/ckeditor.js"></script>
+    <script src="https://cdn.ckeditor.com/4.7.1/standard/ckeditor.js"></script>
     <script>
-        $(document).ready(function () {
-            CKEDITOR.replace('editor1');
-        });
 
         function displayText() {
-            var preview = CKEDITOR.instances.editor1.getData();
+            var preview = CKEDITOR.instances.CKEDITOR1.getData();
             document.getElementById('myField').innerHTML = preview;
             $('#previewModal').modal('show');
             return false;
         }
 
 
-</script>
+    </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <br />
@@ -39,9 +37,10 @@
         </h1>
         <div class="verticalLine"></div>
         <form runat="server">
-            <textarea name="editor1"></textarea>
+            <CKEditor:CKEditorControl ID="CKEditor1" runat="server">
+            </CKEditor:CKEditorControl>
             <br />
-            <asp:Button ID="btnSave" CssClass="btn btn-primary pull-right" runat="server" Text="Save"/>
+            <asp:Button ID="btnSave" CssClass="btn btn-primary pull-right" runat="server" Text="Save" />
             <asp:Button ID="btnPreview" CssClass="btn btn-primary" runat="server" Text="Preview" OnClientClick="return displayText();" UseSubmitBehavior="False" />
 
             <div id="previewModal" class="modal fade" role="dialog">
@@ -53,7 +52,7 @@
                         </div>
                         <div class="modal-body">
                             <div class="wrapper">
-                                <label id="myField"/>
+                                <label id="myField" />
                             </div>
                         </div>
                     </div>
@@ -63,7 +62,7 @@
 
         </form>
     </div>
-    </label>
+    
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder2" runat="server">
 </asp:Content>
