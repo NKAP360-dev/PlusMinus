@@ -12,6 +12,7 @@ namespace LearnHub.AppCode.entity
         private string title;
         private string desc;
         private string server_path;
+        private int id;
 
         public Upload()
         {
@@ -68,6 +69,14 @@ namespace LearnHub.AppCode.entity
         public void setCourse_elearn(Course_elearn c)
         {
             this.course = c;
+        }
+        public int getID()
+        {
+            return id;
+        }
+        public void setID(int id)
+        {
+            this.id = id;
         }
     }
 }

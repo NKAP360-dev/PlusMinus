@@ -134,8 +134,8 @@
                                 <%
                                     int cID = Convert.ToInt32(Request.QueryString["id"]);
                                     Course_elearnDAO courseElearnDAO = new Course_elearnDAO();
-                                    Course_elearn currentCourse = courseElearnDAO.get_course_by_id(cID);
-                                    Response.Write(currentCourse.getTargetAudience());
+                                    current = courseElearnDAO.get_course_by_id(cID);
+                                    Response.Write(current.getTargetAudience());
                                 %>
                             </div>
                         </div>
@@ -217,7 +217,7 @@
                             Course_elearnDAO cdao = new Course_elearnDAO();
                             ArrayList list = cdao.get_uploaded_content_by_id(current);%>
                         <%
-                            string dir = "~/Data/" + current.getCourseID();
+                            string dir = "Data/" + current.getCourseID();
                             foreach (string strfile in Directory.GetFiles(Server.MapPath(dir)))
                             {
                                 //Response.Write(strfile);
@@ -248,7 +248,8 @@
                                 <asp:Label ID="lblUploadDescription" runat="server"><%= desc %></asp:Label>
                                 <br />
                                 <br />
-                                <a href="<%=Path.GetFileName(strfile) %>" download><%=Path.GetFileName(strfile) %></a><br />
+                                <% string var = dir + "/" + Path.GetFileName(strfile); %>
+                                <a href='<%=var %>' download><%=Path.GetFileName(strfile) %></a><br />
                             </div>
                         </div>
                         <%} %>

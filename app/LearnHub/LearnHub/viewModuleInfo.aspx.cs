@@ -27,6 +27,8 @@ namespace LearnHub
             if (Request.QueryString["id"] != null)
             {
                 id_str = Request.QueryString["id"];
+                int id_num = int.Parse(id_str);
+                current = cdao.get_course_by_id(id_num);
             }
             else
             {
