@@ -432,7 +432,7 @@ namespace Emma.Dialogs
             try
             {
                 var feedback = await result;
-                Boolean success = cbaDAO.insertFeedback(feedback.Name, feedback.Feedback);
+                Boolean success = cbaDAO.insertFeedback(feedback.Name, feedback.Feedback, feedback.Department, DateTime.Now);
                 if (!success)
                     await context.PostAsync("I was not able to send your message. Something went wrong.");
                 else

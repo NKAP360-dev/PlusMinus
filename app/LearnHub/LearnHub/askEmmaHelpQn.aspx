@@ -2,6 +2,8 @@
 
 <%@ Import Namespace="LearnHub.AppCode.entity" %>
 <%@ Import Namespace="LearnHub.AppCode.dao" %>
+<%@ Import Namespace="Emma.DAO" %>
+<%@ Import Namespace="Emma.Entity" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <style>
@@ -38,7 +40,7 @@
         jQuery(function ($) {
             $('.table').footable({
                 "paging": {
-                    "size": 1 <%--Change how many rows per page--%>
+                    "size": 10 <%--Change how many rows per page--%>
                 },
                 "filtering": {
                     "position": "left"
@@ -106,18 +108,17 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>blahblah</td>
-                        <td>
-                            <a href="askEmmaEditHelp.aspx" class="btn btn-info btn-sm pull-right"><span class="glyphicon glyphicon-pencil"></span></a>
-
-                    </tr>
-                    <tr>
-                        <td>ayeee</td>
-                        <td>
-                            <a href="askEmmaEditHelp.aspx" class="btn btn-info btn-sm pull-right"><span class="glyphicon glyphicon-pencil"></span></a>
-
-                    </tr>
+                    <%
+                        ChatBotHelpQuestionDAO cbhqDAO = new ChatBotHelpQuestionDAO();
+                        List<ChatBotHelpQuestion> allQuestions = cbhqDAO.getAllChatBotHelpQuestions();
+                        foreach (ChatBotHelpQuestion cbhq in allQuestions)
+                        {
+                            Response.Write("<tr>");
+                            Response.Write($"<td>{cbhq.question}</td>");
+                            Response.Write($"<td><a href=\"askEmmaEditHelp.aspx?id={cbhq.questionID}\" class=\"btn btn-info btn-sm pull-right\"><span class=\"glyphicon glyphicon-pencil\"></span></a></td>");
+                            Response.Write("</tr>");
+                        }
+                    %>
                 </tbody>
             </table>
 
@@ -135,7 +136,7 @@
                         <div class="wrapper">
                             <h4>Are you sure you want to submit?</h4>
                             <br />
-                            <asp:Button ID="btnConfirmSubmit" CssClass="btn btn-primary" runat="server" Text="Submit"/>
+                            <asp:Button ID="btnConfirmSubmit" CssClass="btn btn-primary" runat="server" Text="Submit" OnClick="btnConfirmSubmit_Click"/>
                             <asp:Button ID="btnCancel1" CssClass="btn btn-default" runat="server" class="close" data-dismiss="modal" Text="Cancel" OnClientClick="return false;" />
 
                             <br />

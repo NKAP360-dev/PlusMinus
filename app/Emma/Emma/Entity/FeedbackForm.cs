@@ -13,10 +13,10 @@ namespace Emma.Entity
         [Prompt(new string[] { "What is your name?" })]
         public string Name { get; set; }
 
-        /*
-        [Prompt("How can we contact you? You can enter either your email id or twitter handle (@something)")]
-        public string Contact { get; set; }
-        */
+        
+        [Prompt("What department are you from?")]
+        public string Department { get; set; }
+        
         [Prompt("What's your feedback?")]
         public string Feedback { get; set; }
 

@@ -37,10 +37,11 @@
         </h1>
         <div class="verticalLine"></div>
         <form runat="server">
+            <asp:Label ID="lblTitle" runat="server" Text="Title: "></asp:Label><asp:TextBox ID="txtTitle" runat="server"></asp:TextBox>
             <CKEditor:CKEditorControl ID="CKEditor1" runat="server">
             </CKEditor:CKEditorControl>
             <br />
-            <asp:Button ID="btnSave" CssClass="btn btn-primary pull-right" runat="server" Text="Save" />
+            <asp:Button ID="btnSave" CssClass="btn btn-primary pull-right" runat="server" Text="Save" OnClick="btnSave_Click"/>
             <asp:Button ID="btnPreview" CssClass="btn btn-primary" runat="server" Text="Preview" OnClientClick="return displayText();" UseSubmitBehavior="False" />
 
             <div id="previewModal" class="modal fade" role="dialog">

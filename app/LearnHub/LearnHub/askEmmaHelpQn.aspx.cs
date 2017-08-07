@@ -1,5 +1,7 @@
 ﻿using System;
 using LearnHub.AppCode.entity;
+using Emma.DAO;
+using Emma.Entity;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -25,6 +27,14 @@ namespace LearnHub
             {
                 Response.Redirect("Login.aspx");
             }
+        }
+
+        protected void btnConfirmSubmit_Click(object sender, EventArgs e)
+        {
+            //To do validations
+            ChatBotHelpQuestionDAO cbhqDAO = new ChatBotHelpQuestionDAO();
+            cbhqDAO.insertQuestion(txtHelpInput.Text);
+            Response.Redirect("/askEmmaHelpQn.aspx");
         }
     }
     

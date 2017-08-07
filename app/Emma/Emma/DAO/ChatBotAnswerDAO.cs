@@ -114,7 +114,7 @@ namespace Emma.DAO
             return toReturn;
         }
 
-        public Boolean insertFeedback(string name, string feedback) // Insert.
+        public Boolean insertFeedback(string name, string feedback, string department, DateTime feedbackDate) // Insert.
         {
             SqlConnection conn = null;
             Boolean success = false;
@@ -125,9 +125,11 @@ namespace Emma.DAO
                 conn.Open();
                 SqlCommand comm = new SqlCommand();
                 comm.Connection = conn;
-                comm.CommandText = "Insert into [ChatBotFeedback] (name, feedback) VALUES (@name, @feedback)";
+                comm.CommandText = "Insert into [ChatBotFeedback] (name, feedback, department, feedbackDate) VALUES (@name, @feedback, @department, @feedbackDate)";
                 comm.Parameters.AddWithValue("@name", name);
                 comm.Parameters.AddWithValue("@feedback", feedback);
+                comm.Parameters.AddWithValue("@department", department);
+                comm.Parameters.AddWithValue("@feedbackDate", feedbackDate);
                 comm.ExecuteNonQuery();
                 success = true;
             }

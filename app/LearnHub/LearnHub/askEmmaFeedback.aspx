@@ -2,6 +2,8 @@
 
 <%@ Import Namespace="LearnHub.AppCode.entity" %>
 <%@ Import Namespace="LearnHub.AppCode.dao" %>
+<%@ Import Namespace="Emma.DAO" %>
+<%@ Import Namespace="Emma.Entity" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <style>
         .pagination li > a,
@@ -33,7 +35,7 @@
         jQuery(function ($) {
             $('.table').footable({
                 "paging": {
-                    "size": 1 <%--Change how many rows per page--%>
+                    "size": 10 <%--Change how many rows per page--%>
                 },
                 "filtering": {
                     "position": "left"
@@ -63,29 +65,26 @@
                 <table class="table table-striped table-hover" data-paging="true" data-sorting="true" data-filtering="true">
                     <thead>
                         <tr>
-                            <th width="70%">Feedback</th>
+                            <th width="55%">Feedback</th>
                             <th width="10%">Department</th>
                             <th width="10%">Given by</th>
-                            <th data-filterable="false" data-sortable="false"></th>
+                            <th width="25%">Date Registered</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>Good good very good Good good very good Good good very good Good good very good Good good very good Good good very good Good good very good Good good very good Good good very good Good good very good Good good very good Good good very good </td>
-                            <td>Ber</td>
-                            <td>Nursing</td>
-                            <td>
-                            <a href="#deleteModal" data-toggle="modal" class="btn btn-danger btn-sm pull-right"><span class="glyphicon glyphicon-trash"></span></a>
-
-                        </tr>
-                        <tr>
-                            <td>ayeee</td>
-                            <td>Rafid</td>
-                            <td>Cleaning</td>
-                            <td>
-                            <a href="#deleteModal" data-toggle="modal" class="btn btn-danger btn-sm pull-right"><span class="glyphicon glyphicon-trash"></span></a>
-
-                        </tr>
+                        <%
+                            ChatBotFeedbackDAO cbfDAO = new ChatBotFeedbackDAO();
+                            List<ChatBotFeedback> allFeedback = cbfDAO.getAllChatBotFeedback();
+                            foreach (ChatBotFeedback feedback in allFeedback)
+                            {
+                                Response.Write("<tr>");
+                                Response.Write($"<td>{feedback.feedback}</td>");
+                                Response.Write($"<td>{feedback.department}</td>");
+                                Response.Write($"<td>{feedback.name}</td>");
+                                Response.Write($"<td>{String.Format("{0:f}", feedback.feedbackDate)}</td>");
+                                Response.Write("</tr>");
+                            }
+                        %>
                     </tbody>
                 </table>
             </div>
