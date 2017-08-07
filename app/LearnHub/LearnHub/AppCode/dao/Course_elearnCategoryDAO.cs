@@ -192,5 +192,32 @@ namespace LearnHub.AppCode.dao
                 conn.Close();
             }
         }
+        public void activateCategory(int categoryID) // Update.
+        {
+            SqlConnection conn = new SqlConnection();
+
+            try
+            {
+                conn = new SqlConnection();
+                string connstr = ConfigurationManager.ConnectionStrings["DBConnectionString"].ToString();
+                conn.ConnectionString = connstr;
+                conn.Open();
+                SqlCommand comm = new SqlCommand();
+                comm.Connection = conn;
+                comm.CommandText =
+                    "Update [Elearn_courseCategory] SET status=@status WHERE categoryID=@categoryID";
+                comm.Parameters.AddWithValue("@categoryID", categoryID);
+                comm.Parameters.AddWithValue("@status", "active");
+                int rowsAffected = comm.ExecuteNonQuery();
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
     }
 }

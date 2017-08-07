@@ -33,12 +33,16 @@ namespace LearnHub
                 return;
             }
 
-            int id_num = int.Parse(id_str);
-            current = cdao.get_course_by_id(id_num);
-            lblCourseNameHeader.Text = current.getCourseName();
-            lblCourseName.Text = current.getCourseName();
-            lblCourseDescription.Text = current.getDescription();
-            hoursOutput.Text = current.getHoursAwarded().ToString();
+            if (!IsPostBack)
+            {
+                int id_num = int.Parse(id_str);
+                current = cdao.get_course_by_id(id_num);
+                lblCourseNameHeader.Text = current.getCourseName();
+                lblCourseName.Text = current.getCourseName();
+                lblCourseDescription.Text = current.getDescription();
+                hoursOutput.Text = current.getHoursAwarded().ToString();
+                txtTargetAudience.Text = current.getTargetAudience();
+            }
         }
 
         protected void moduleInfo_Click(object sender, EventArgs e)
@@ -85,6 +89,14 @@ namespace LearnHub
             Response.TransmitFile(Server.MapPath(coursedir)
                 + e.CommandArgument);
             Response.End();
+        }
+
+        protected void btnSaveDetails_Click(object sender, EventArgs e)
+        {
+            int courseID = Convert.ToInt32(Request.QueryString["id"]);
+            Course_elearnDAO ceDAO = new Course_elearnDAO();
+            ceDAO.updateCourseTargetAudience(courseID, txtTargetAudience.Text);
+            Response.Redirect("/viewModuleInfo.aspx?id=" + courseID);
         }
     }
 }

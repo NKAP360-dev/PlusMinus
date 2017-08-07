@@ -107,8 +107,8 @@ namespace LearnHub.AppCode.dao
                 SqlCommand comm = new SqlCommand();
                 comm.Connection = conn;
                 comm.CommandText = "insert into [Elearn_course] " +
-                    "(elearn_courseName, elearn_courseProvider, entry_date, start_date, expiry_date, status, description, categoryID, courseCreator, hoursAwarded) " +
-                    "values (@cName, @provider, Convert(datetime, @entry, 103), convert(datetime,@time,103), Convert(datetime,@expiry,103), @status, @desc, @category, @courseCreator, @hoursAwarded)";
+                    "(elearn_courseName, elearn_courseProvider, entry_date, start_date, expiry_date, status, description, categoryID, courseCreator, hoursAwarded, targetAudience) " +
+                    "values (@cName, @provider, Convert(datetime, @entry, 103), convert(datetime,@time,103), Convert(datetime,@expiry,103), @status, @desc, @category, @courseCreator, @hoursAwarded, @targetAudience)";
                 comm.Parameters.AddWithValue("@cName", course.getCourseName());
                 if (course.getCourseProvider() != null)
                 {
@@ -141,6 +141,7 @@ namespace LearnHub.AppCode.dao
                 comm.Parameters.AddWithValue("@category", course.getCategoryID());
                 comm.Parameters.AddWithValue("@courseCreator", course.getCourseCreator().getUserID());
                 comm.Parameters.AddWithValue("@hoursAwarded", course.getHoursAwarded());
+                comm.Parameters.AddWithValue("@targetAudience", course.getTargetAudience());
                 int rowsAffected = comm.ExecuteNonQuery();                
                 //need new method to create pre-requisities here to store in seperate table (pre-req table)
                 toReturn = course;
@@ -198,6 +199,10 @@ namespace LearnHub.AppCode.dao
                     }
                     toReturn.setCategoryID((int)dr["categoryID"]);//7
                     toReturn.setHoursAwarded((int)dr["hoursAwarded"]);
+                    if (!dr.IsDBNull(11))
+                    {
+                        toReturn.setTargetAudience((string)dr["targetAudience"]);
+                    }
                     toReturn_list.Add(toReturn); //add to arraylist to return of all courses related to given category
                 }
                 dr.Close();
@@ -249,6 +254,10 @@ namespace LearnHub.AppCode.dao
                     toReturn.setDescription((string)dr["description"]);
                     toReturn.setCategoryID((int)dr["categoryID"]);
                     toReturn.setHoursAwarded((int)dr["hoursAwarded"]);
+                    if (!dr.IsDBNull(11))
+                    {
+                        toReturn.setTargetAudience((string)dr["targetAudience"]);
+                    }
                     toReturn_list.Add(toReturn); //parse as course_elearn object to store and return in arraylist
                 }
                 dr.Close();
@@ -306,6 +315,10 @@ namespace LearnHub.AppCode.dao
                     toReturn.setCategoryID((int)dr["categoryID"]);//7
                     toReturn.setCourseCreator(userDAO.getUserByID((string)dr["courseCreator"]));
                     toReturn.setHoursAwarded((int)dr["hoursAwarded"]);
+                    if (!dr.IsDBNull(11))
+                    {
+                        toReturn.setTargetAudience((string)dr["targetAudience"]);
+                    }
                 }
                 dr.Close();
             }
@@ -360,6 +373,10 @@ namespace LearnHub.AppCode.dao
                     }
                     toReturn.setCategoryID((int)dr["categoryID"]);//7
                     toReturn.setHoursAwarded((int)dr["hoursAwarded"]);
+                    if (!dr.IsDBNull(11))
+                    {
+                        toReturn.setTargetAudience((string)dr["targetAudience"]);
+                    }
                 }
                 dr.Close();
             }
@@ -446,6 +463,10 @@ namespace LearnHub.AppCode.dao
                     }
                     toReturn.setCategoryID((int)dr["categoryID"]);//7
                     toReturn.setHoursAwarded((int)dr["hoursAwarded"]);
+                    if (!dr.IsDBNull(11))
+                    {
+                        toReturn.setTargetAudience((string)dr["targetAudience"]);
+                    }
                     toReturn_list.Add(toReturn); //add to arraylist to return of all courses related to given category
                 }
                 dr.Close();
@@ -520,6 +541,34 @@ namespace LearnHub.AppCode.dao
                 conn.Close();
             }
             return toReturn;
+        }
+
+        public void updateCourseTargetAudience(int courseID, string targetAudience) // Update.
+        {
+            SqlConnection conn = new SqlConnection();
+
+            try
+            {
+                conn = new SqlConnection();
+                string connstr = ConfigurationManager.ConnectionStrings["DBConnectionString"].ToString();
+                conn.ConnectionString = connstr;
+                conn.Open();
+                SqlCommand comm = new SqlCommand();
+                comm.Connection = conn;
+                comm.CommandText =
+                    "Update [Elearn_course] SET targetAudience=@targetAudience WHERE elearn_courseID=@courseID";
+                comm.Parameters.AddWithValue("@targetAudience", targetAudience);
+                comm.Parameters.AddWithValue("@courseID", courseID);
+                int rowsAffected = comm.ExecuteNonQuery();
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                conn.Close();
+            }
         }
     }
 }

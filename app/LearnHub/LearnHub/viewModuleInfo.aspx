@@ -34,7 +34,7 @@
                     Course_elearnDAO ceDAO = new Course_elearnDAO();
                     User courseCreator = ceDAO.get_course_by_id(courseID).getCourseCreator();
                     if (currentUser != null && (currentUser.getUserID() == courseCreator.getUserID() || currentUser.getRole().Equals("superuser")))
-                    {
+                    { 
                 %>
 
                 <a href="#" id="config" onclick="configuration()" class="btn btn-default pull-right"><span class="glyphicon glyphicon-option-horizontal"></span></a>
@@ -91,7 +91,18 @@
                     <div class="col-md-3">
                         <div class="panel panel-primary">
                             <div class="panel-heading">
-                                <h3 class="panel-title">Details <a href="#" data-toggle="collapse" data-target="#editDetails"><span class="label label-default pull-right"><span class="glyphicon glyphicon-pencil"></span></span></a></h3>
+                                <h3 class="panel-title">Details 
+                                <%
+                                    int cseID = Convert.ToInt32(Request.QueryString["id"]);
+                                    User curUser = (User)Session["currentUser"];
+                                    Course_elearnDAO ceDAO = new Course_elearnDAO();
+                                    User cc = ceDAO.get_course_by_id(cseID).getCourseCreator();
+                                    if (curUser != null && (curUser.getUserID() == cc.getUserID() || curUser.getRole().Equals("superuser")))
+                                    {
+                                %>
+                                    <a href="#" data-toggle="collapse" data-target="#editDetails"><span class="label label-default pull-right"><span class="glyphicon glyphicon-pencil"></span></span></a>
+                                <%} %>
+                                </h3>
                             </div>
                             <div class="panel-body">
                                 <div class="collapse" id="editDetails">
@@ -99,14 +110,15 @@
                                     <fieldset>
                                         <div class="form-group">
                                             <div class="col-lg-12">
-                                                <CKEditor:CKEditorControl ID="CKEditor1" runat="server">
-            </CKEditor:CKEditorControl>
-                                            </div>
+                                                <%--<CKEditor:CKEditorControl ID="CKEditor1" runat="server">
+            </CKEditor:CKEditorControl>--%>
 
+                                            </div>
+                                            <asp:TextBox ID="txtTargetAudience" CssClass="form-control" placeholder="Target Audience" runat="server" TextMode="MultiLine"></asp:TextBox>
                                         </div>
                                         <div class="form-group">
                                             <div class="col-lg-10">
-                                                <asp:Button ID="btnSaveDetails" CssClass="btn btn-primary" runat="server" Text="Save" />
+                                                <asp:Button ID="btnSaveDetails" CssClass="btn btn-primary" runat="server" Text="Save" OnClick="btnSaveDetails_Click" />
                                             </div>
                                         </div>
 
@@ -119,7 +131,12 @@
                                 <br />
                                 <br />
                                 <b>Target Audience</b><br />
-                                Nurses, Doctors
+                                <%
+                                    int cID = Convert.ToInt32(Request.QueryString["id"]);
+                                    Course_elearnDAO courseElearnDAO = new Course_elearnDAO();
+                                    Course_elearn currentCourse = courseElearnDAO.get_course_by_id(cID);
+                                    Response.Write(currentCourse.getTargetAudience());
+                                %>
                             </div>
                         </div>
                     </div>

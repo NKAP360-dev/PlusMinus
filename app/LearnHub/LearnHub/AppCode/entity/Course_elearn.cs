@@ -20,6 +20,7 @@ namespace LearnHub.AppCode.entity
         private int categoryID;
         private User courseCreator;
         private int hoursAwarded;
+        private string targetAudience;
 
         public Course_elearn()
         {
@@ -27,7 +28,7 @@ namespace LearnHub.AppCode.entity
         }
         public Course_elearn(string courseName, string provider, DateTime entry_date,
             DateTime startDate, DateTime endDate,  string status,
-            string desc, int categoryID, User courseCreator, int hoursAwarded)
+            string desc, int categoryID, User courseCreator, int hoursAwarded, string targetAudience)
         {
             //no need id, with entry date and expiry date
             this.courseName = courseName;
@@ -41,6 +42,7 @@ namespace LearnHub.AppCode.entity
             this.categoryID = categoryID; // professional, leadership or compulsory
             this.courseCreator = courseCreator;
             this.hoursAwarded = hoursAwarded;
+            this.targetAudience = targetAudience;
         }
 
         public Course_elearn(int courseID, string courseName, string provider,
@@ -209,6 +211,14 @@ namespace LearnHub.AppCode.entity
         public void setHoursAwarded(int hoursAwarded)
         {
             this.hoursAwarded = hoursAwarded;
+        }
+        public string getTargetAudience()
+        {
+            return targetAudience;
+        }
+        public void setTargetAudience(string targetAudience)
+        {
+            this.targetAudience = targetAudience;
         }
     }
 }

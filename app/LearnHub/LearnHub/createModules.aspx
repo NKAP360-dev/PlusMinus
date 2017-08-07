@@ -111,6 +111,14 @@
                     </div>
                 </div>
 
+                <div class="form-group">
+                    <strong>
+                        <asp:Label ID="Label1" runat="server" CssClass="col-lg-2 control-label" Text="Target Audience"></asp:Label></strong>
+                        <div class="col-lg-5">
+                            <asp:TextBox ID="txtTargetAudience" runat="server" CssClass="form-control" placeholder="Target Audience"></asp:TextBox>
+                        </div>
+                </div>
+
                 <%--Date--%>
                 
                 <div class="form-group required">

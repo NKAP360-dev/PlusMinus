@@ -68,6 +68,22 @@
     </div>
     <div class="container">
         <form class="form-horizontal" runat="server">
+            <asp:SqlDataSource ID="SqlDataSourceMessages" runat="server" ConnectionString="<%$ ConnectionStrings:DBConnectionString %>" SelectCommand="SELECT * FROM [ChatBotInitialization] ORDER BY levels"></asp:SqlDataSource>
+            <asp:GridView ID="gvMessages" CssClass="table table-striped table-hover" runat="server" AutoGenerateColumns="False" DataKeyNames="messageID" DataSourceID="SqlDataSourceMessages" GridLines="None">
+                <Columns>
+                    <asp:BoundField DataField="message" HeaderText="Message" SortExpression="message" />
+                    <asp:TemplateField>
+                        <ItemTemplate>
+                            <a href="/askEmmaEditInitializationMessage.aspx?id=<%# Eval("messageID") %>" class="btn btn-info btn-sm pull-right"><span class="glyphicon glyphicon-pencil"></span></a>
+                        </ItemTemplate>
+                    </asp:TemplateField>
+
+                </Columns>
+                <EmptyDataTemplate>
+                    
+                </EmptyDataTemplate>
+            </asp:GridView>
+            <%--
             <table class="table table-striped table-hover" data-paging="true" data-sorting="true" data-filtering="true">
                 <thead>
                     <tr>
@@ -109,7 +125,7 @@
                     </tr>
 
                 </tbody>
-            </table>
+            </table> --%>
             <div class="wrapper">
                 <div class="form-group">
                     <asp:LinkButton ID="btnSave" CssClass="btn btn-success" runat="server"><span class="glyphicon glyphicon-floppy-saved"></span>&nbsp; Save</asp:LinkButton>

@@ -76,13 +76,13 @@ namespace LearnHub {
         protected global::System.Web.UI.WebControls.Label lblCourseDescription;
         
         /// <summary>
-        /// CKEditor1 control.
+        /// txtTargetAudience control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::CKEditor.NET.CKEditorControl CKEditor1;
+        protected global::System.Web.UI.WebControls.TextBox txtTargetAudience;
         
         /// <summary>
         /// btnSaveDetails control.

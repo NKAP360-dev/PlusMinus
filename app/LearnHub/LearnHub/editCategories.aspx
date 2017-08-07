@@ -163,7 +163,7 @@
                                 
                                 <h4 class="text-success">This category will be activated and modules under this category will be visible to all users</h4>
                                 <br />
-                                <asp:Button ID="btnCfmActivate" CssClass="btn btn-success" runat="server" Text="Activate"/>
+                                <asp:Button ID="btnCfmActivate" CssClass="btn btn-success" runat="server" Text="Activate" OnClick="btnCfmActivate_Click"/>
                                 <asp:Button ID="Button2" CssClass="btn btn-default" runat="server" class="close" data-dismiss="modal" Text="Cancel" OnClientClick="return false;" />
 
                                 <br />
