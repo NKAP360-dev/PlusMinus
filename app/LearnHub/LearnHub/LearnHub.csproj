@@ -383,12 +383,26 @@
     <Compile Include="rejectionConfirmation.aspx.designer.cs">
       <DependentUpon>rejectionConfirmation.aspx</DependentUpon>
     </Compile>
+    <Compile Include="siteConfig.aspx.cs">
+      <DependentUpon>siteConfig.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="siteConfig.aspx.designer.cs">
+      <DependentUpon>siteConfig.aspx</DependentUpon>
+    </Compile>
     <Compile Include="submitTRF.aspx.cs">
       <DependentUpon>submitTRF.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="submitTRF.aspx.designer.cs">
       <DependentUpon>submitTRF.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="test.aspx.cs">
+      <DependentUpon>test.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="test.aspx.designer.cs">
+      <DependentUpon>test.aspx</DependentUpon>
     </Compile>
     <Compile Include="TestCipher.aspx.cs">
       <DependentUpon>TestCipher.aspx</DependentUpon>
@@ -833,7 +847,9 @@
     </Content>
     <Content Include="Scripts\footable.bootstrap.min.css" />
     <Content Include="Scripts\footable.min.js" />
+    <Content Include="siteConfig.aspx" />
     <Content Include="submitTRF.aspx" />
+    <Content Include="test.aspx" />
     <Content Include="TestCipher.aspx" />
     <Content Include="TestHash.aspx" />
     <Content Include="testIndividualRouting.aspx" />

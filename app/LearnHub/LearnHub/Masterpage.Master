@@ -291,7 +291,7 @@
                 %>
                 <ul class="nav navbar-nav">
                     <li class="dropdown">
-                        <a href="emmaConfiguration.aspx" class="dropdown-toggle" role="button" aria-expanded="false">Configuration</a>
+                        <a href="siteConfig.aspx" class="dropdown-toggle" role="button" aria-expanded="false">Configuration</a>
 
                     </li>
 
