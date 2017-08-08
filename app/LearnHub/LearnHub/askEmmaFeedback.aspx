@@ -108,19 +108,14 @@
                                 </div>
                             </div>
                              <div class="form-group">
-                                <label class="col-lg-3 control-label">Frequency</label>
-                                <div class="col-lg-7">
-                                    <asp:DropDownList ID="ddlFreq" runat="server" CssClass="form-control">
-                                        <asp:ListItem>Immediately</asp:ListItem>
-                                        <asp:ListItem>Every day</asp:ListItem>
-                                        <asp:ListItem>Every week</asp:ListItem>
-                                        <asp:ListItem>Every month</asp:ListItem>
-                                    </asp:DropDownList>                                   
+                                <label class="col-lg-3 control-label">Email</label>
+                                <div class="col-lg-9">
+                                    <asp:TextBox ID="txtEmail" CssClass="form-control" placeholder="Email Adress To Be Sent To" runat="server"></asp:TextBox>                            
                                 </div>
                             </div>
                             <br />
                             <div class="wrapper">
-                            <asp:Button ID="btnConfirmSubmit" CssClass="btn btn-primary" runat="server" Text="Submit" />
+                            <asp:Button ID="btnConfirmSave" CssClass="btn btn-primary" runat="server" Text="Save" />
                             <asp:Button ID="btnCancel1" CssClass="btn btn-default" runat="server" class="close" data-dismiss="modal" Text="Cancel" OnClientClick="return false;" />
                             </div>
                             <br />

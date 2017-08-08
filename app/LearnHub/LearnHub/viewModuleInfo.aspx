@@ -109,13 +109,9 @@
                                     <h4><strong>Edit Details</strong></h4>
                                     <fieldset>
                                         <div class="form-group">
-                                            <div class="col-lg-12">
-                                                <%--<CKEditor:CKEditorControl ID="CKEditor1" runat="server">
-            </CKEditor:CKEditorControl>--%>
-
-                                            </div>
-                                            <asp:TextBox ID="txtTargetAudience" CssClass="form-control" placeholder="Target Audience" runat="server" TextMode="MultiLine"></asp:TextBox>
-                                        </div>
+                                                <div class="col-lg-12">
+                                            <asp:TextBox ID="txtTargetAudience" CssClass="form-control" placeholder="Target Audience" runat="server" TextMode="MultiLine"></asp:TextBox>                                    
+                                            </div></div>
                                         <div class="form-group">
                                             <div class="col-lg-10">
                                                 <asp:Button ID="btnSaveDetails" CssClass="btn btn-primary" runat="server" Text="Save" OnClick="btnSaveDetails_Click" />
