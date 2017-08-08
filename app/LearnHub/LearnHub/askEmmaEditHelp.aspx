@@ -6,6 +6,26 @@
 <%@ Import Namespace="Emma.Entity" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <script>
+        function checkForm_Clicked(source, args) {
+
+            Page_ClientValidate('ValidateForm');
+            //Page_ClientValidate();
+
+            if (!Page_IsValid) {
+                document.getElementById('<%= lblErrorMsgFinal.ClientID %>').style.display = 'inherit';
+                document.getElementById('<%= lblErrorMsgFinal.ClientID %>').innerHTML = "You have not filled up all of the required fields";
+                //Page_ClientValidate('summaryGroup');
+                document.getElementById('<%= btnConfirmSubmit.ClientID %>').disabled = true;
+                console.log("The end");
+            }
+            else {
+                document.getElementById('<%= lblErrorMsgFinal.ClientID %>').innerHTML = "";
+                document.getElementById('<%= btnConfirmSubmit.ClientID %>').disabled = false;
+            }
+            return false;
+        }
+    </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="container">
@@ -32,13 +52,15 @@
                     <div class="col-lg-7">
                         <%--Mandatory text field--%>
                         <asp:TextBox ID="txtHelpInput" runat="server" CssClass="form-control" placeholder="initial value goes here"></asp:TextBox>
+                        <br />
+                        <asp:RequiredFieldValidator ID="rfv_txtHelpInput" runat="server" ErrorMessage="Please enter a Help Question" ControlToValidate="txtHelpInput" ForeColor="Red" ValidationGroup="ValidateForm"></asp:RequiredFieldValidator>
                     </div>
                     <br />
                 </div>
                 <br />
                 <div class="row">
                     <div class="wrapper">
-                        <asp:Button ID="btnSubmit" CssClass="btn btn-primary" runat="server" Text="Update" data-toggle="modal" href="#submitModal" OnClientClick="$('#myModal').modal(); return false;" />
+                        <asp:Button ID="btnSubmit" CssClass="btn btn-primary" runat="server" Text="Update" data-toggle="modal" href="#submitModal" OnClientClick="$('#myModal').modal();   return checkForm_Clicked();" CausesValidation="True" UseSubmitBehavior="False" />
                         <asp:Button ID="btnDelete" CssClass="btn btn-danger" runat="server" Text="Delete" data-toggle="modal" href="#deleteModal" OnClientClick="$('#myModal').modal(); return false;" />
                         <br />
                         <br />
@@ -61,6 +83,8 @@
                         <div class="modal-body">
                             <div class="wrapper">
                                 <h4>Are you sure you want to overwrite the existing question?</h4>
+                                <br />
+                                <asp:Label ID="lblErrorMsgFinal" runat="server" CssClass="text-danger" Visible="True"></asp:Label>
                                 <br />
                                 <asp:Button ID="btnConfirmSubmit" CssClass="btn btn-primary" runat="server" Text="Overwrite" OnClick="btnConfirmSubmit_Click"/>
                                 <asp:Button ID="btnCancel1" CssClass="btn btn-default" runat="server" class="close" data-dismiss="modal" Text="Cancel" OnClientClick="return false;" />
