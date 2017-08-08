@@ -63,7 +63,7 @@
                         <div class="wrapper">
                             <h4>Are you sure you want to overwrite?</h4>
                             <br />
-                            <asp:Button ID="btnConfirmSubmit" CssClass="btn btn-primary" runat="server" Text="Overwrite"/>
+                            <asp:Button ID="btnConfirmSubmit" CssClass="btn btn-primary" runat="server" Text="Overwrite" OnClick="btnConfirmSubmit_Click"/>
                             <asp:Button ID="btnCancel1" CssClass="btn btn-default" runat="server" class="close" data-dismiss="modal" Text="Cancel" OnClientClick="return false;" />
 
                             <br />
@@ -87,7 +87,7 @@
                                 <div class="wrapper">
                                     <h4>Are you sure you want to delete?</h4>
                                     <br />
-                                    <asp:Button ID="cfmDelete" CssClass="btn btn-danger" runat="server" Text="Delete"/>
+                                    <asp:Button ID="cfmDelete" CssClass="btn btn-danger" runat="server" Text="Delete" OnClick="cfmDelete_Click"/>
                                     <asp:Button ID="Button1" CssClass="btn btn-default" runat="server" class="close" data-dismiss="modal" Text="Cancel" />
 
                                     <br />

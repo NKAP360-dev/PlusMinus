@@ -103,7 +103,7 @@
                         <br />
                         <div class="row">
                             <div class="wrapper">
-                            <asp:Button ID="btnSubmit" CssClass="btn btn-primary" runat="server" Text="Submit" data-toggle="modal" href="#submitModal" OnClientClick="$('#myModal').modal(); return false;" />
+                            <asp:Button ID="btnSubmit" CssClass="btn btn-primary" runat="server" Text="Submit" data-toggle="modal" href="#submitModal" OnClientClick="$('#myModal').modal(); return false;" UseSubmitBehavior="False" />
                                 <br /><br />
                                 <strong>
                                     <asp:Label ID="lblAddSuccess" runat="server" CssClass="text-success"><span class="glyphicon glyphicon-ok"></span> Added successfully</asp:Label></strong><br />
@@ -123,7 +123,15 @@
             <asp:SqlDataSource ID="SqlDataSourceMessages" runat="server" ConnectionString="<%$ ConnectionStrings:DBConnectionString %>" SelectCommand="SELECT * FROM [ChatBotInitialization] ORDER BY levels"></asp:SqlDataSource>
             <asp:GridView ID="gvMessages" runat="server" AutoGenerateColumns="False" DataKeyNames="messageID" DataSourceID="SqlDataSourceMessages" GridLines="None" CssClass="table table-striped table-hover">
                 <Columns>
+                    
+                    <asp:TemplateField>
+                        <ItemTemplate>
+                            <input type="hidden" name="messageID" value='<%# Eval("messageID") %>' />
+                        </ItemTemplate>
+                    </asp:TemplateField>
+
                     <asp:BoundField DataField="message" HeaderText="Message" SortExpression="message" />
+
                     <asp:TemplateField>
                         <ItemTemplate>
                             <a href="/askEmmaEditInitializeMsg.aspx?id=<%# Eval("messageID") %>" class="btn btn-info btn-sm pull-right"><span class="glyphicon glyphicon-pencil"></span></a>
@@ -137,7 +145,7 @@
 
             <div class="wrapper">
                 <div class="form-group">
-                    <asp:LinkButton ID="btnSave" CssClass="btn btn-success" runat="server"><span class="glyphicon glyphicon-floppy-saved"></span>&nbsp; Save</asp:LinkButton>
+                    <asp:LinkButton ID="btnSave" CssClass="btn btn-success" runat="server" OnClick="btnSave_Click"><span class="glyphicon glyphicon-floppy-saved"></span>&nbsp; Save</asp:LinkButton>
                     <br />
                 </div>
                 <strong>
@@ -223,7 +231,7 @@
                         <div class="wrapper">
                             <h4>Are you sure you want to submit?</h4>
                             <br />
-                            <asp:Button ID="btnConfirmSubmit" CssClass="btn btn-primary" runat="server" Text="Submit"/>
+                            <asp:Button ID="btnConfirmSubmit" CssClass="btn btn-primary" runat="server" Text="Submit" OnClick="btnConfirmSubmit_Click"/>
                             <asp:Button ID="btnCancel1" CssClass="btn btn-default" runat="server" class="close" data-dismiss="modal" Text="Cancel" OnClientClick="return false;" />
 
                             <br />

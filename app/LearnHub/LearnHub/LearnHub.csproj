@@ -159,6 +159,7 @@
     <Compile Include="AppCode\dao\BondDAO.cs" />
     <Compile Include="AppCode\dao\ChatBotFeedbackDAO.cs" />
     <Compile Include="AppCode\dao\ChatBotHelpQuestionDAO.cs" />
+    <Compile Include="AppCode\dao\ChatBotInitializeMsgDAO.cs" />
     <Compile Include="AppCode\dao\ChatBotInstructionDAO.cs" />
     <Compile Include="AppCode\dao\ChatBotIntentDAO.cs" />
     <Compile Include="AppCode\dao\ChatBotAnswerDAO.cs" />
@@ -179,6 +180,7 @@
     <Compile Include="AppCode\entity\ChatBotAnswer.cs" />
     <Compile Include="AppCode\entity\ChatBotFeedback.cs" />
     <Compile Include="AppCode\entity\ChatBotHelpQuestion.cs" />
+    <Compile Include="AppCode\entity\ChatBotInitializeMsg.cs" />
     <Compile Include="AppCode\entity\ChatBotInstruction.cs" />
     <Compile Include="AppCode\entity\ChatBotIntent.cs" />
     <Compile Include="AppCode\entity\CourseCategory.cs" />
