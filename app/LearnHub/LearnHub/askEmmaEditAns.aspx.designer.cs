@@ -31,6 +31,15 @@ namespace LearnHub {
         protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSource1;
         
         /// <summary>
+        /// rfv_ddlIntent control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfv_ddlIntent;
+        
+        /// <summary>
         /// txtEntity control.
         /// </summary>
         /// <remarks>
@@ -157,13 +166,13 @@ namespace LearnHub {
         protected global::System.Web.UI.WebControls.GridView gvIntentAnswers;
         
         /// <summary>
-        /// cv_answers control.
+        /// lblErrorMsgFinal control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CustomValidator cv_answers;
+        protected global::System.Web.UI.WebControls.Label lblErrorMsgFinal;
         
         /// <summary>
         /// cfmSubmit control.
