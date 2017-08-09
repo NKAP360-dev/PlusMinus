@@ -176,18 +176,18 @@
                                     <hr />
                                 </div>
                                 <strong>
-                                    <asp:Label ID="lblCommentTitle" runat="server" Text="About Ming Kwang"></asp:Label></strong>&emsp;<a href="#" data-toggle="modal" data-target="#deleteComment"><span class="label label-danger pull-right"><span class="glyphicon glyphicon-trash"></span></span></a></strong><br />
+                                    <asp:Label ID="lblCommentTitle" runat="server" Text="About the content"></asp:Label></strong>&emsp;<a href="#" data-toggle="modal" data-target="#deleteComment"><span class="label label-danger pull-right"><span class="glyphicon glyphicon-trash"></span></span></a></strong><br />
                                 <br />
                                 <blockquote>
-                                    <asp:Label ID="lblCommentBody" runat="server" Text="Ming Kwang is my idol, I aspire to be like him"></asp:Label>
+                                    <asp:Label ID="lblCommentBody" runat="server" Text="Needs more in depth explanation."></asp:Label>
                                     <small>Rafid Aziz</small>
                                 </blockquote>
                                 <hr />
 
                                 <strong>
-                                    <asp:Label ID="Label3" runat="server" Text="About Rafid"></asp:Label></strong>&emsp;<a href="#" data-toggle="modal" data-target="#deleteComment"><span class="label label-danger pull-right"><span class="glyphicon glyphicon-trash"></span></span></a></strong><br />
+                                    <asp:Label ID="Label3" runat="server" Text="About this course"></asp:Label></strong>&emsp;<a href="#" data-toggle="modal" data-target="#deleteComment"><span class="label label-danger pull-right"><span class="glyphicon glyphicon-trash"></span></span></a></strong><br />
                                 <br />
-                                <blockquote><asp:Label ID="Label4" runat="server" Text="Ming Kwang is my idol, but Rafid is my senpai"></asp:Label>
+                                <blockquote><asp:Label ID="Label4" runat="server" Text="This is an interesting course"></asp:Label>
                                     <small>Eugene Tan Wei Hong</small>
                                 </blockquote>                               
                             </div>
@@ -220,7 +220,6 @@
                                 title = null;
                                 desc = null;
                                 date = DateTime.Now;
-
                                 foreach (Upload u in list)
                                 {
                                     //Response.Write(u.getServerPath());
@@ -245,7 +244,7 @@
                                 <br />
                                 <br />
                                 <% string var = dir + "/" + Path.GetFileName(strfile); %>
-                                <a href='<%=var %>' download><%=Path.GetFileName(strfile) %></a><br />
+                                <a href="<%=var %>" download><%=Path.GetFileName(strfile) %></a><br />
                             </div>
                         </div>
                         <%} %>

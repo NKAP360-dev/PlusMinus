@@ -34,7 +34,20 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <PublishDatabaseSettings>&lt;Objects xmlns="http://schemas.microsoft.com/developer/msbuild/2003"&gt;&lt;ObjectGroup Name="LearnHub DB" Order="1"&gt;&lt;Destination Path="" /&gt;&lt;Object Type="DbFullSql"&gt;&lt;Source Path="..\amkthk-smu_fyp.sql" Transacted="False" /&gt;&lt;/Object&gt;&lt;Object Type="DbFullSql"&gt;&lt;PreSource Path="Data Source=%28LocalDB%29\MSSQLLocalDB%3bAttachDbFilename=|DataDirectory|\Database1.mdf%3bIntegrated Security=True" ScriptSchema="True" ScriptData="False" CopyAllFullTextCatalogs="False" DriDefaults="True" /&gt;&lt;Source Path="obj\Debug\AutoScripts\LearnHub DB_SchemaOnly.sql" Transacted="True" /&gt;&lt;/Object&gt;&lt;/ObjectGroup&gt;&lt;ObjectGroup Name="online" Order="2" xmlns=""&gt;&lt;Destination Path="Data Source=amkthk2.database.windows.net%3bInitial Catalog=&amp;quot%3bAMKTHK-PLUSMINUS FYP2&amp;quot%3b%3bPersist Security Info=True%3bUser ID=dbadmin%3bPassword=Z!x2c3v4" /&gt;&lt;Object Type="DbFullSql" Enabled="True"&gt;&lt;PreSource Path="Data Source=amkthk2.database.windows.net%3bInitial Catalog=&amp;quot%3bAMKTHK-PLUSMINUS FYP2&amp;quot%3b%3bPersist Security Info=True%3bUser ID=dbadmin%3bPassword=Z!x2c3v4" ScriptSchema="True" ScriptData="False" CopyAllFullTextCatalogs="False" DriDefaults="True" /&gt;&lt;Source Path="obj\Debug\AutoScripts\online_SchemaOnly.sql" Transacted="True" /&gt;&lt;/Object&gt;&lt;/ObjectGroup&gt;&lt;/Objects&gt;</PublishDatabaseSettings>
+    <PublishDatabaseSettings>
+      <Objects>
+        <ObjectGroup Name="LearnHub DB" Order="1">
+          <Destination Path="" />
+          <Object Type="DbFullSql">
+            <Source Path="..\amkthk-smu_fyp.sql" Transacted="False" />
+          </Object>
+          <Object Type="DbFullSql">
+            <PreSource Path="Data Source=%28LocalDB%29\MSSQLLocalDB%3bAttachDbFilename=|DataDirectory|\Database1.mdf%3bIntegrated Security=True" ScriptSchema="True" ScriptData="False" CopyAllFullTextCatalogs="False" DriDefaults="True" />
+            <Source Path="obj\Debug\AutoScripts\LearnHub DB_SchemaOnly.sql" Transacted="True" />
+          </Object>
+        </ObjectGroup>
+      </Objects>
+    </PublishDatabaseSettings>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -146,7 +159,6 @@
     <Compile Include="AppCode\dao\BondDAO.cs" />
     <Compile Include="AppCode\dao\ChatBotFeedbackDAO.cs" />
     <Compile Include="AppCode\dao\ChatBotHelpQuestionDAO.cs" />
-    <Compile Include="AppCode\dao\ChatBotInitializeMsgDAO.cs" />
     <Compile Include="AppCode\dao\ChatBotInstructionDAO.cs" />
     <Compile Include="AppCode\dao\ChatBotIntentDAO.cs" />
     <Compile Include="AppCode\dao\ChatBotAnswerDAO.cs" />
@@ -167,7 +179,6 @@
     <Compile Include="AppCode\entity\ChatBotAnswer.cs" />
     <Compile Include="AppCode\entity\ChatBotFeedback.cs" />
     <Compile Include="AppCode\entity\ChatBotHelpQuestion.cs" />
-    <Compile Include="AppCode\entity\ChatBotInitializeMsg.cs" />
     <Compile Include="AppCode\entity\ChatBotInstruction.cs" />
     <Compile Include="AppCode\entity\ChatBotIntent.cs" />
     <Compile Include="AppCode\entity\CourseCategory.cs" />
@@ -232,13 +243,6 @@
     </Compile>
     <Compile Include="askEmmaEditAns.aspx.designer.cs">
       <DependentUpon>askEmmaEditAns.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="askEmmaEditInitializeMsg.aspx.cs">
-      <DependentUpon>askEmmaEditInitializeMsg.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="askEmmaEditInitializeMsg.aspx.designer.cs">
-      <DependentUpon>askEmmaEditInitializeMsg.aspx</DependentUpon>
     </Compile>
     <Compile Include="askEmmaEditIntent.aspx.cs">
       <DependentUpon>askEmmaEditIntent.aspx</DependentUpon>
@@ -491,7 +495,6 @@
     <Content Include="askEmmaAddAns.aspx" />
     <Content Include="askEmmaAddIntent.aspx" />
     <Content Include="askEmmaEditAns.aspx" />
-    <Content Include="askEmmaEditInitializeMsg.aspx" />
     <Content Include="askEmmaEditIntent.aspx" />
     <Content Include="askEmmaFeedback.aspx" />
     <Content Include="askEmmaHelpQn.aspx" />
@@ -878,6 +881,10 @@
     <Content Include="ckeditor\samples\toolbarconfigurator\font\fontello.woff" />
     <Content Include="ckeditor\samples\toolbarconfigurator\lib\codemirror\LICENSE" />
     <Content Include="ckeditor\skins\moono-lisa\readme.md" />
+    <None Include="Properties\PublishProfiles\LearnHub20170621022116 - Web Deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\LearnHub20170731061614 - Web Deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\LearnHub20170808011754 - Web Deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\mvc-5-with-entity-framework-l0e4h5 - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
