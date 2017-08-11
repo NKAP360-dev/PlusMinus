@@ -157,7 +157,7 @@
                     <div class="col-md-9">
                         <div class="panel panel-primary">
                             <div class="panel-heading">
-                                <h3 class="panel-title">Testimonial&emsp; <a href="#" data-toggle="collapse" data-target="#addTestimonial"><span class="label label-default pull-right"><span class="glyphicon glyphicon-pencil"></span></span></a></h3>
+                                <h3 class="panel-title">Testimonial&emsp; <a href="javascript:void(0);" data-toggle="collapse" data-target="#addTestimonial"><span class="label label-default pull-right"><span class="glyphicon glyphicon-pencil"></span></span></a></h3>
                             </div>
                             <div class="panel-body">
                                 <div class="collapse" id="addTestimonial">

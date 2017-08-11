@@ -52,6 +52,12 @@
 
     </script>
     <style>
+        .form-horizontal .control-label-left {
+            text-align: left;
+            margin-bottom: 0;
+            padding-top: 11px;
+        }
+
         .pagination li > a,
         .pagination li > span,
         .pagination li > a:focus, .pagination .disabled > a,
@@ -74,7 +80,7 @@
         .pagination > .active > span:focus {
             background-color: #576777;
         }
-        
+
         .breadcrumb {
             padding-top: 15px;
             margin-bottom: 0px;
@@ -95,9 +101,9 @@
     <div class="container">   
         <h1>Create Module
              <%
-                User currentUser = (User)Session["currentUser"];
-                if (currentUser != null && (currentUser.getRole().Equals("course creator") || currentUser.getRole().Equals("superuser")))
-                {
+                 User currentUser = (User)Session["currentUser"];
+                 if (currentUser != null && (currentUser.getRole().Equals("course creator") || currentUser.getRole().Equals("superuser")))
+                 {
             %>
             <a href="#" id="config" onclick="configuration()" class="btn btn-default pull-right"><span class="glyphicon glyphicon-option-horizontal"></span></a>
         </h1>
@@ -197,49 +203,16 @@
                 <%--Preq--%>
                 <div class="form-group">
                     <strong>
-                        <asp:Label ID="preqModuleLabel" runat="server" CssClass="col-lg-2 control-label" Text="Module Pre-requisite"></asp:Label></strong>
+                         <a href="javascript:void(0);" class="col-lg-2 control-label" data-toggle="collapse" data-target="#preq"">Module Prerequisite Selection </a></strong>
+                
                     <div class="col-lg-5">
-                        <%--<table class="table table-striped table-hover" data-paging="true" data-sorting="true" data-filtering="true">
-                            <thead>
-                                <tr>
-                                    <th data-filterable="false" data-sortable="false">Select</th>
-                                    <th>Module Name</th>
-                                    <th>Module Category</th>
-                                    <th data-filterable="false" data-sortable="false"></th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <%
-                                    Course_elearnDAO ceDAO = new Course_elearnDAO();
-                                    List<Course_elearn> availablePrereq = ceDAO.viewAvailablePrerequisiteCourses();
-                                    foreach (Course_elearn ce in availablePrereq)
-                                    {
-                                 %>
-                                <tr>
-                                <td>
-                                    <input type="checkbox" id="chkPreReq" name="prerequisites" value="<%= ce.getCourseID(); %>" runat="server" />
-                                </td>
-                                <%
-                                        //Response.Write($"<td><input type=\"checkbox\" id=\"chkPrereq\" name=\"prerequisites\" value=\"{ce.getCourseID()}\" runat=\"server\" /></td>");
-                                        Response.Write($"<td>{ce.getCourseName()}</td>");
-                                        string category = ceDAO.getCourseCategoryByID(ce.getCategoryID());
-                                        Response.Write($"<td>{category}</td>");
-                                        Response.Write("<td><a target=\"_blank\" href=\"viewModuleInfo.aspx?id=" + ce.getCourseID() + "\"><span class=\"glyphicon glyphicon-menu-right\"></span> View Info</a></td>");
-                                        Response.Write("</tr>");
-
-                                %>
-                                    </tr>
-                                <%
-                                    }
-                                %>
-                            </tbody>
-                        </table>--%>
+                        <div id="preq" class="collapse">
                         <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:DBConnectionString %>" SelectCommand="SELECT * FROM [Elearn_course] ec INNER JOIN [Elearn_courseCategory] ecc ON ec.categoryID = ecc.categoryID WHERE ec.status='Open' and ec.start_date &lt;= getDate()"></asp:SqlDataSource>
                         <asp:GridView ID="gvPrereq" runat="server" AutoGenerateColumns="False" DataKeyNames="elearn_courseID,categoryID1" DataSourceID="SqlDataSource1" AllowPaging="True" CssClass="table table-striped table-hover" GridLines="None">
                             <Columns>
                                 <asp:TemplateField>
                                     <ItemTemplate>
-                                        <asp:CheckBox ID="chkboxPrereq" runat="server" />
+                                        +
                                     </ItemTemplate>
                                 </asp:TemplateField>
                                 <asp:BoundField DataField="elearn_courseName" HeaderText="Module Name" SortExpression="elearn_courseName" />
@@ -248,8 +221,32 @@
                                 <asp:HyperLinkField DataNavigateUrlFields="elearn_courseID" DataNavigateUrlFormatString="viewModuleInfo.aspx?id={0}" Target="_blank" Text="View Details" />
                             </Columns>
                         </asp:GridView>
+                          <h6><em>Click on "+" to select module as a prerequisite module</em></h6>
+                          <h6><em>Click on "-" to remove module as a prerequisite module</em></h6>
+
+
+                            <br />
+                        </div>
+                        <table class="table table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Prequisite Module Name</th>
+                        <th>Category</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>-</td>
+                        <td>I am not a gridview</td>
+                        <td>Please replace me with gridview</td>
+                    </tr>
+                    </tbody>
+                    </table>
+                       <h6><em>Click on "Module Prerequisite Selection" to choose prerequisite modules</em></h6>
                     </div>
-                </div>
+                    </div>
+                
 
                 <%-- No external vendors based on latest requirement as of 24th July
                 <div class="form-group">

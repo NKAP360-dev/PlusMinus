@@ -143,6 +143,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="accountSetting.aspx.cs">
+      <DependentUpon>accountSetting.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="accountSetting.aspx.designer.cs">
+      <DependentUpon>accountSetting.aspx</DependentUpon>
+    </Compile>
     <Compile Include="AppCode\dao\BondDAO.cs" />
     <Compile Include="AppCode\dao\ChatBotFeedbackDAO.cs" />
     <Compile Include="AppCode\dao\ChatBotHelpQuestionDAO.cs" />
@@ -485,6 +492,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="accountSetting.aspx" />
     <Content Include="applyCourse.aspx" />
     <Content Include="approvalConfirmation.aspx" />
     <Content Include="approvedTRF.aspx" />
