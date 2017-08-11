@@ -1,11 +1,26 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Masterpage.Master" AutoEventWireup="true" CodeBehind="siteConfig.aspx.cs" Inherits="LearnHub.siteConfig" %>
+
 <%@ Import Namespace="LearnHub.AppCode.entity" %>
 <%@ Import Namespace="LearnHub.AppCode.dao" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <style>
+        .breadcrumb {
+            padding-top: 15px;
+            margin-bottom: 0px;
+            list-style: none;
+            background-color: white;
+            border-radius: 0px;
+        }
+    </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-      <div class="container">
+           <ul class="breadcrumb">
+  <li><a href="home.aspx">Home</a></li>
+  <li class="active">Configuration Settings</li>
+  </ul>
+
+    <div class="container">
         <h1>Configuration Settings</h1>
         <div class="verticalLine"></div>
     </div>
@@ -13,7 +28,7 @@
         <div class="row">
             <h3><span class="glyphicon glyphicon-chevron-right"></span>&emsp;Training Request Forms (Not In Use)</h3>
             <a href="#formModal" data-toggle="modal">
-                <div class="col-md-3 btn-danger">
+                <div class="col-md-3 btn-default">
                     <br />
                     <br />
                     <div class="wrapper">
@@ -25,7 +40,7 @@
                 </div>
             </a>
             <a href="trfApplicationStatus.aspx">
-                <div class="col-md-3 btn-danger">
+                <div class="col-md-3 btn-default">
                     <br />
                     <br />
                     <div class="wrapper">
@@ -37,7 +52,7 @@
                 </div>
             </a>
             <a href="pendingApproval.aspx">
-                <div class="col-md-3 btn-danger">
+                <div class="col-md-3 btn-default">
                     <br />
                     <br />
                     <div class="wrapper">
@@ -49,7 +64,7 @@
                 </div>
             </a>
             <a href="approvedTRF.aspx">
-                <div class="col-md-3 btn-danger">
+                <div class="col-md-3 btn-default">
                     <br />
                     <br />
                     <div class="wrapper">
@@ -172,7 +187,7 @@
     </div>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder2" runat="server">
-     <%--TRF Modal--%>
+    <%--TRF Modal--%>
     <div id="formModal" class="modal fade" role="dialog">
         <div class="modal-dialog">
             <div class="modal-content">

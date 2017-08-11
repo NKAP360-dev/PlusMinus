@@ -3,19 +3,26 @@
 <%@ Import Namespace="LearnHub.AppCode.dao" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <style>
+        .breadcrumb {
+            padding-top: 15px;
+            margin-bottom: 0px;
+            list-style: none;
+            background-color: white;
+            border-radius: 0px;
+        }
+    </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+       <ul class="breadcrumb">
+  <li><a href="home.aspx">Home</a></li>
+  <li><a href="emmaConfiguration.aspx">Emma Configuration</a></li>
+           <li><a href="askEmmaInitializeMsg.aspx">Configure Initialization Messages</a></li>
+  <li class="active">Edit Initialization Message</li>
+  </ul>
    <div class="container">
-        <h1>Edit Initialization Messages
-              <% if (Session["currentUser"] != null)
-                {
-                    User currentUser = (User)Session["currentUser"];
-                    if (currentUser.getDepartment().Equals("hr"))
-                    {
-            %>
-            <a href="emmaConfiguration.aspx" id="config"><span class="btn btn-default pull-right"><span class="glyphicon glyphicon-option-horizontal"></span></span></a>
-            <%}
-                }%>
+        <h1>Edit Initialization Message
+             
         </h1>
           <div class="verticalLine"></div>
           </div>
@@ -23,7 +30,7 @@
         <Br />
     <div class="container">          
                 <fieldset>
-                    <div class="row">
+                    
                         <div class="form-group required">
                             <strong>
                                 <label for="txtMsgInput" class="col-lg-3 control-label"><span class="glyphicon glyphicon-question-sign" data-toggle='tooltip' data-placement="left" title="" data-original-title="An Initialization Message is the message you see when you initialize :)"></span>&nbsp;Initialization Message </label>
@@ -34,19 +41,15 @@
                             </div>
                         </div>
                         <br />
-                        <div class="row">
+                        
                             <div class="wrapper">
                             <asp:Button ID="btnSubmit" CssClass="btn btn-primary" runat="server" Text="Update" data-toggle="modal" href="#submitModal" OnClientClick="$('#myModal').modal(); return false;" />
-                                                        <asp:Button ID="deleteBtn" CssClass="btn btn-danger" runat="server" Text="Delete" data-toggle="modal" href="#deleteModal" OnClientClick="$('#myModal').modal(); return false;" />
+                            <asp:Button ID="deleteBtn" CssClass="btn btn-danger" runat="server" Text="Delete" data-toggle="modal" href="#deleteModal" OnClientClick="$('#myModal').modal(); return false;" />
 
                                 <br /><br />
-                                <strong>
-                                    <asp:Label ID="lblAddSuccess" runat="server" CssClass="text-success"><span class="glyphicon glyphicon-ok"></span> Saved successfully</asp:Label></strong><br />
-                                <strong>
-                                    <asp:Label ID="lblAddError" runat="server" CssClass="text-danger"><span class="glyphicon glyphicon-remove"></span> Something went wrong</asp:Label></strong>
                             </div>
-                        </div>
-                    </div>
+                        
+                    
                 </fieldset>
 
         </div>

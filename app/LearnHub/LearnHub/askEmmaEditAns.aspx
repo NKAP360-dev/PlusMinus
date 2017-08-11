@@ -87,11 +87,28 @@
         .pagination > .active > span:focus {
             background-color: #576777;
         }
+
+        .breadcrumb {
+            padding-top: 15px;
+            margin-bottom: 0px;
+            list-style: none;
+            background-color: white;
+            border-radius: 0px;
+        }
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+
+    <ul class="breadcrumb">
+        <li><a href="home.aspx">Home</a></li>
+        <li><a href="emmaConfiguration.aspx">Emma Configuration</a></li>
+        <li><a href="askEmmaAddAns.aspx">Manage Answers</a></li>
+        <li class="active">Edit Answer</li>
+    </ul>
+
+
     <div class="container">
-        <h1>Edit Answers
+        <h1>Edit Answer
                         <% if (Session["currentUser"] != null)
                             {
                                 User currentUser = (User)Session["currentUser"];
@@ -110,7 +127,7 @@
                 <br />
                 <div class="form-group required">
                     <%--Intent--%>
-                    <label for="ddlIntent" class="col-lg-2 control-label"><span class="glyphicon glyphicon-question-sign" data-toggle='tooltip' data-placement="left" title="" data-original-title="An Intent is a......"></span>Choose an Intent</label>
+                    <label for="ddlIntent" class="col-lg-2 control-label"><span class="glyphicon glyphicon-question-sign" data-toggle='tooltip' data-placement="left" title="" data-original-title="An Intent is a......"></span>&nbsp;Choose an Intent</label>
                     <div class="col-lg-10">
                         <%--Mandatory Choose 1--%>
                         <asp:DropDownList ID="ddlIntent" runat="server" CssClass="form-control" DataSourceID="SqlDataSource1" DataTextField="intent" DataValueField="intentID" AutoPostBack="True" OnSelectedIndexChanged="ddlIntent_SelectedIndexChanged"></asp:DropDownList>
@@ -124,7 +141,7 @@
                 <div class="form-group">
                     <strong>
                         <%--Entity--%>
-                        <label for="ddlIntent" class="col-lg-2 control-label"><span class="glyphicon glyphicon-question-sign" data-toggle='tooltip' data-placement="left" title="" data-original-title="An Entity is a......"></span>Choose an Entity </label>
+                        <label for="ddlIntent" class="col-lg-2 control-label"><span class="glyphicon glyphicon-question-sign" data-toggle='tooltip' data-placement="left" title="" data-original-title="An Entity is a......"></span>&nbsp;Choose an Entity </label>
                     </strong>
                     <div class="col-lg-10">
                         <asp:TextBox ID="txtEntity" runat="server" CssClass="form-control"></asp:TextBox>
@@ -134,12 +151,12 @@
                 <div class="form-group required">
                     <strong>
                         <%--Answers--%>
-                        <asp:Label ID="lblAnswers" CssClass="col-lg-2 control-label" runat="server" Text="Answers"></asp:Label>
+                        <asp:Label ID="lblAnswers" CssClass="col-lg-2 control-label" runat="server" Text="Answer"></asp:Label>
                     </strong>
                     <div class="col-lg-10">
                         <%--Mandatory text field--%>
                         <asp:TextBox ID="txtAnswers" TextMode="multiline" Columns="50" Rows="5" runat="server" CssClass="form-control" placeholder="Please enter your answers here"></asp:TextBox>
-                        <asp:RequiredFieldValidator ID="rfv_txtAnswers" runat="server" ErrorMessage="Please enter an answer" ControlToValidate="txtAnswers" ForeColor="Red" ValidationGroup="ValidateForm"></asp:RequiredFieldValidator>
+                        <asp:RequiredFieldValidator ID="rfv_txtAnswers" runat="server" ErrorMessage="Please enter an Answer" ControlToValidate="txtAnswers" ForeColor="Red" ValidationGroup="ValidateForm"></asp:RequiredFieldValidator>
                     </div>
                 </div>
                 <%--Buttons--%>
@@ -153,8 +170,7 @@
                                     <asp:Label ID="lblSuccess" runat="server" CssClass="text-success"><span class="glyphicon glyphicon-ok"></span> Added successfully</asp:Label></strong><br />
                                 <strong>
                                     <asp:Label ID="lblError" runat="server" CssClass="text-danger"><span class="glyphicon glyphicon-remove"></span> Something went wrong</asp:Label></strong>
-                                --%>
-
+                        --%>
                     </div>
                 </div>
 
@@ -192,22 +208,22 @@
         <asp:UpdatePanel runat="server" ID="upanelTable">
             <ContentTemplate>
 
-        <div class="container">
-            <div id="viewTable" class="collapse">
-                <div class="verticalLine"></div>
-                <br />
-                <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:DBConnectionString %>" SelectCommand="SELECT * FROM [ChatBotAns] WHERE ([intentID] = @intentID)">
+                <div class="container">
+                    <div id="viewTable" class="collapse">
+                        <div class="verticalLine"></div>
+                        <br />
+                        <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:DBConnectionString %>" SelectCommand="SELECT * FROM [ChatBotAns] WHERE ([intentID] = @intentID)">
                             <SelectParameters>
                                 <asp:ControlParameter ControlID="ddlIntent" Name="intentID" PropertyName="SelectedValue" Type="String" />
                             </SelectParameters>
                         </asp:SqlDataSource>
-                <asp:GridView ID="gvIntentAnswers" CssClass="table table-striped table-hover" runat="server" AllowPaging="True" DataSourceID="SqlDataSource2" AutoGenerateColumns="False" GridLines="None">
+                        <asp:GridView ID="gvIntentAnswers" CssClass="table table-striped table-hover" runat="server" AllowPaging="True" DataSourceID="SqlDataSource2" AutoGenerateColumns="False" GridLines="None">
                             <Columns>
                                 <asp:BoundField DataField="answer" HeaderText="Answer" SortExpression="answer" />
                                 <asp:BoundField DataField="entityName" HeaderText="Entity" SortExpression="entityName" NullDisplayText="-" />
                             </Columns>
                         </asp:GridView>
-                <%--
+                        <%--
                 <table class="table table-striped table-hover" data-paging="true" data-sorting="true" data-filtering="true">
                     <thead>
                         <tr>
@@ -232,12 +248,12 @@
                         %>
                     </tbody>
                 </table>
-                --%>
-                <%--<asp:CustomValidator ID="cv_answers" runat="server" EnableClientScript="true" ErrorMessage="Please select an answer" ClientValidationFunction="ValidateRadioButton" ForeColor="Red"></asp:CustomValidator> --%>
-            </div>
-            <br />
-        </div>
-                </ContentTemplate>
+                        --%>
+                        <%--<asp:CustomValidator ID="cv_answers" runat="server" EnableClientScript="true" ErrorMessage="Please select an answer" ClientValidationFunction="ValidateRadioButton" ForeColor="Red"></asp:CustomValidator> --%>
+                    </div>
+                    <br />
+                </div>
+            </ContentTemplate>
             <Triggers>
                 <asp:AsyncPostBackTrigger ControlID="ddlIntent" EventName="SelectedIndexChanged" />
             </Triggers>
@@ -256,7 +272,7 @@
                             <asp:Label ID="lblErrorMsgFinal" runat="server" CssClass="text-danger" Visible="True"></asp:Label>
                             <br />
                             <asp:Button ID="cfmSubmit" CssClass="btn btn-primary" runat="server" Text="Overwrite" OnClick="cfmSubmit_Click" />
-                            
+
                             <asp:Button ID="Button2" CssClass="btn btn-default" runat="server" class="close" data-dismiss="modal" Text="Cancel" OnClientClick="return false;" />
 
                             <br />
@@ -267,7 +283,7 @@
             </div>
         </div>
 
-        
+
     </form>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder2" runat="server">

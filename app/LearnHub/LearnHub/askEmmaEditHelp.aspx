@@ -26,19 +26,25 @@
             return false;
         }
     </script>
+    <style>
+        .breadcrumb {
+            padding-top: 15px;
+            margin-bottom: 0px;
+            list-style: none;
+            background-color: white;
+            border-radius: 0px;
+        }
+    </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <ul class="breadcrumb">
+        <li><a href="home.aspx">Home</a></li>
+        <li><a href="emmaConfiguration.aspx">Emma Configuration</a></li>
+        <li><a href="askEmmaHelpQn.aspx">Manage Help Questions</a></li>
+        <li class="active">Edit Help Question</li>
+    </ul>
     <div class="container">
-        <h1>Edit Help Question
-              <% if (Session["currentUser"] != null)
-                  {
-                      User currentUser = (User)Session["currentUser"];
-                      if (currentUser.getDepartment().Equals("hr"))
-                      {
-              %>
-            <a href="emmaConfiguration.aspx" id="config"><span class="btn btn-default pull-right"><span class="glyphicon glyphicon-option-horizontal"></span></span></a>
-            <%}
-                }%>
+        <h1>Edit Help Question        
         </h1>
         <div class="verticalLine"></div>
         <br />
@@ -52,12 +58,11 @@
                     <div class="col-lg-7">
                         <%--Mandatory text field--%>
                         <asp:TextBox ID="txtHelpInput" runat="server" CssClass="form-control" placeholder="initial value goes here"></asp:TextBox>
-                        <br />
                         <asp:RequiredFieldValidator ID="rfv_txtHelpInput" runat="server" ErrorMessage="Please enter a Help Question" ControlToValidate="txtHelpInput" ForeColor="Red" ValidationGroup="ValidateForm"></asp:RequiredFieldValidator>
                     </div>
                     <br />
                 </div>
-                <br />
+
                 <div class="row">
                     <div class="wrapper">
                         <asp:Button ID="btnSubmit" CssClass="btn btn-primary" runat="server" Text="Update" data-toggle="modal" href="#submitModal" OnClientClick="$('#myModal').modal();   return checkForm_Clicked();" CausesValidation="True" UseSubmitBehavior="False" />
@@ -68,7 +73,7 @@
                                     <asp:Label ID="lblSuccess" runat="server" CssClass="text-success"><span class="glyphicon glyphicon-ok"></span> Added successfully</asp:Label></strong><br />
                                 <strong>
                                     <asp:Label ID="lblError" runat="server" CssClass="text-danger"><span class="glyphicon glyphicon-remove"></span> Something went wrong</asp:Label></strong>
-                                --%>
+                        --%>
                     </div>
                 </div>
             </fieldset>
@@ -87,7 +92,7 @@
                                 <br />
                                 <asp:Label ID="lblErrorMsgFinal" runat="server" CssClass="text-danger" Visible="True"></asp:Label>
                                 <br />
-                                <asp:Button ID="btnConfirmSubmit" CssClass="btn btn-primary" runat="server" Text="Overwrite" OnClick="btnConfirmSubmit_Click"/>
+                                <asp:Button ID="btnConfirmSubmit" CssClass="btn btn-primary" runat="server" Text="Overwrite" OnClick="btnConfirmSubmit_Click" />
                                 <asp:Button ID="btnCancel1" CssClass="btn btn-default" runat="server" class="close" data-dismiss="modal" Text="Cancel" OnClientClick="return false;" />
 
                                 <br />
@@ -110,7 +115,7 @@
                             <div class="wrapper">
                                 <h4>Are you sure you want to delete?</h4>
                                 <br />
-                                <asp:Button ID="btnCfmDelete" CssClass="btn btn-danger" runat="server" Text="Delete" OnClick="btnCfmDelete_Click"/>
+                                <asp:Button ID="btnCfmDelete" CssClass="btn btn-danger" runat="server" Text="Delete" OnClick="btnCfmDelete_Click" />
                                 <asp:Button ID="btnClose" CssClass="btn btn-default" runat="server" class="close" data-dismiss="modal" Text="Cancel" />
 
                                 <br />

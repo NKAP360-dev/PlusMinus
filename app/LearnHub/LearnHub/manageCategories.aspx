@@ -31,8 +31,22 @@
             });
         });
     </script>
+    <style>
+          .breadcrumb {
+            padding-top: 15px;
+            margin-bottom: 0px;
+            list-style: none;
+            background-color: white;
+            border-radius: 0px;
+        }
+    </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+       <ul class="breadcrumb">
+  <li><a href="home.aspx">Home</a></li>
+  <li><a href="viewAllModule.aspx">Modules</a></li>
+  <li class="active">Manage Module Category</li>
+  </ul>
 
     <div class="container">
         <h1>Module Category

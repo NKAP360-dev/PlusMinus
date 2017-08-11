@@ -8,7 +8,7 @@
         .list-group-item {
             border-left: 1px solid white;
             border-right: 1px solid white;
-        }  
+        }
 
         .pagination li > a,
         .pagination li > span,
@@ -33,7 +33,13 @@
             background-color: #576777;
         }
 
-
+        .breadcrumb {
+            padding-top: 15px;
+            margin-bottom: 0px;
+            list-style: none;
+            background-color: white;
+            border-radius: 0px;
+        }
     </style>
     <link href="/Scripts/footable.bootstrap.min.css" rel="stylesheet" />
     <script src="/Scripts/footable.min.js"></script>
@@ -65,35 +71,39 @@
     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <ul class="breadcrumb">
+        <li><a href="home.aspx">Home</a></li>
+        <li class="active">Modules</li>
+    </ul>
     <div class="container">
         <h1>View Modules
 
              <%
-        User currentUser = (User)Session["currentUser"];
-        if (currentUser != null && (currentUser.getRole().Equals("course creator") || currentUser.getRole().Equals("superuser")))
-        {
-    %>
-       <a href="#" id="config" onclick="configuration()"class="btn btn-default pull-right"><span class="glyphicon glyphicon-option-horizontal"></span></a>
-</h1>
+                 User currentUser = (User)Session["currentUser"];
+                 if (currentUser != null && (currentUser.getRole().Equals("course creator") || currentUser.getRole().Equals("superuser")))
+                 {
+             %>
+            <a href="#" id="config" onclick="configuration()" class="btn btn-default pull-right"><span class="glyphicon glyphicon-option-horizontal"></span></a>
+        </h1>
         <div class="configure">
-        <ul class="list-group" id="menu" style="display: none;">
-            <a href="createModules.aspx">
-                <li class="list-group-item"><span class="glyphicon glyphicon-book"></span>&emsp;Create New Modules
-                </li>
-            </a>
-            <a href="manageCategories.aspx">
-                <li class="list-group-item"><span class="glyphicon glyphicon-bookmark"></span>&emsp;Manage Module Categories
-                </li>
-            </a>
-             <a href="viewCreatedModules.aspx">
-                <li class="list-group-item"><span class="glyphicon glyphicon-search"></span>&emsp;View My Created Modules
-                </li>
-            </a>
-        </ul>
-    </div>
-         <%
-        }
-    %>
+            <ul class="list-group" id="menu" style="display: none;">
+                <a href="createModules.aspx">
+                    <li class="list-group-item"><span class="glyphicon glyphicon-book"></span>&emsp;Create New Modules
+                    </li>
+                </a>
+                <a href="manageCategories.aspx">
+                    <li class="list-group-item"><span class="glyphicon glyphicon-bookmark"></span>&emsp;Manage Module Categories
+                    </li>
+                </a>
+                <a href="viewCreatedModules.aspx">
+                    <li class="list-group-item"><span class="glyphicon glyphicon-search"></span>&emsp;View My Created Modules
+                    </li>
+                </a>
+            </ul>
+        </div>
+        <%
+            }
+        %>
         <div class="verticalLine"></div>
     </div>
     <asp:Panel ID="viewCompulsory" runat="server" Visible="false">

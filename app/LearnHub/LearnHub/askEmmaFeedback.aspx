@@ -28,6 +28,14 @@
         .pagination > .active > span:focus {
             background-color: #576777;
         }
+
+        .breadcrumb {
+            padding-top: 15px;
+            margin-bottom: 0px;
+            list-style: none;
+            background-color: white;
+            border-radius: 0px;
+        }
     </style>
     <link href="/Scripts/footable.bootstrap.min.css" rel="stylesheet" />
     <script src="/Scripts/footable.min.js"></script>
@@ -45,18 +53,14 @@
     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+        <ul class="breadcrumb">
+        <li><a href="home.aspx">Home</a></li>
+        <li><a href="emmaConfiguration.aspx">Emma Configuration</a></li>
+        <li class="active">Feedback for Emma</li>
+    </ul>
     <div class="container">
         <h1>Feedback for Emma
             <button type="button" data-toggle="modal" data-target="#feedbackSettings" class="btn btn-success"><span class="glyphicon glyphicon-cog"></span>&nbsp;Settings </button>
-            <% if (Session["currentUser"] != null)
-                {
-                    User currentUser = (User)Session["currentUser"];
-                    if (currentUser.getDepartment().Equals("hr"))
-                    {
-            %>
-            <a href="emmaConfiguration.aspx" id="config"><span class="btn btn-default pull-right"><span class="glyphicon glyphicon-option-horizontal"></span></span></a>
-            <%}
-                }%>
         </h1>
         <div class="verticalLine"></div>
         <form class="form-horizontal" runat="server">

@@ -29,6 +29,14 @@
         .pagination > .active > span:focus {
             background-color: #576777;
         }
+
+        .breadcrumb {
+            padding-top: 15px;
+            margin-bottom: 0px;
+            list-style: none;
+            background-color: white;
+            border-radius: 0px;
+        }
     </style>
     <link href="/Scripts/footable.bootstrap.min.css" rel="stylesheet" />
     <script src="/Scripts/footable.min.js"></script>
@@ -71,42 +79,39 @@
 
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <ul class="breadcrumb">
+        <li><a href="home.aspx">Home</a></li>
+        <li><a href="emmaConfiguration.aspx">Emma Configuration</a></li>
+        <li><a href="askEmmaAddIntent.aspx">Manage Intents</a></li>
+        <li class="active">Edit Intent</li>
+    </ul>
     <div class="container">
-        <h1>Edit Intents
-            <% if (Session["currentUser"] != null)
-                {
-                    User currentUser = (User)Session["currentUser"];
-                    if (currentUser.getDepartment().Equals("hr"))
-                    {
-            %>
-            <a href="emmaConfiguration.aspx" id="config"><span class="btn btn-default pull-right"><span class="glyphicon glyphicon-option-horizontal"></span></span></a>
-            <%}
-                }%>
+        <h1>Edit Intent
         </h1>
         <div class="verticalLine"></div>
         <br />
     </div>
 
     <form class="form-horizontal" runat="server">
-        <div class="form-group required">
-            <div class="row">
+        <div class="container">
+            <div class="form-group required">
+
                 <strong>
                     <%--Intent--%>
                     <label for="intentInput" class="col-lg-3 control-label"><span class="glyphicon glyphicon-question-sign" data-toggle='tooltip' data-placement="left" title="" data-original-title="An Intent is a......"></span>&nbsp;Name of Intent</label>
                 </strong>
                 <div class="col-lg-7">
                     <%--Mandatory text field--%>
-                    <asp:TextBox ID="txtIntentInput" runat="server" CssClass="form-control" placeholder="intent value"></asp:TextBox>
+                    <asp:TextBox ID="txtIntentInput" runat="server" CssClass="form-control" placeholder="Intent Name"></asp:TextBox>
                     <a href="#" data-toggle="collapse" data-target="#viewTable" class="pull-right"><span class="glyphicon glyphicon-search"></span>View available Intents</a>
                     <br />
                     <asp:RequiredFieldValidator ID="rfv_txtIntentInput" runat="server" ErrorMessage="Please enter the Intent Name" ControlToValidate="txtIntentInput" ForeColor="Red" ValidationGroup="ValidateForm"></asp:RequiredFieldValidator>
                 </div>
 
 
-            </div>
-            <br />
-            <br />
-            <div class="row">
+
+                <br />
+
                 <%--Buttons--%>
                 <div class="form-group">
                     <div class="wrapper">
@@ -114,17 +119,16 @@
                         <asp:Button ID="deleteBtn" CssClass="btn btn-danger" runat="server" Text="Delete" data-toggle="modal" href="#deleteModal" OnClientClick="$('#myModal').modal(); return false;" />
 
                         <br />
-                        <br />
                         <%--<strong>
                                     <asp:Label ID="lblSuccess" runat="server" CssClass="text-success"><span class="glyphicon glyphicon-ok"></span> Added successfully</asp:Label></strong><br />
                             <strong>
                                 <asp:Label ID="lblError" runat="server" CssClass="text-danger"><span class="glyphicon glyphicon-remove"></span> Something went wrong</asp:Label></strong>
-                            --%>
+                        --%>
                     </div>
                 </div>
+
             </div>
         </div>
-
         <%--Collapsible Table--%>
         <div class="container">
             <div id="viewTable" class="collapse">
@@ -142,11 +146,11 @@
                             ChatBotIntentDAO cbiDAO = new ChatBotIntentDAO();
                             List<ChatBotIntent> allIntents = cbiDAO.getAllChatBotIntent();
                             foreach (ChatBotIntent cbi in allIntents)
-                        {
-                            Response.Write("<tr>");
-                            Response.Write($"<td>{cbi.intent}</td>");
-                            Response.Write("</tr>");
-                        }
+                            {
+                                Response.Write("<tr>");
+                                Response.Write($"<td>{cbi.intent}</td>");
+                                Response.Write("</tr>");
+                            }
                         %>
                         <tr>
                             <td>lalalalala </td>
@@ -196,13 +200,14 @@
                     <div class="modal-body">
                         <div class="wrapper">
                             <h4>Are you sure you want to delete?</h4>
-                      <br />
-                            <div class="alert alert-danger"role="alert">
-                                <span style="font-size:30px;" class="glyphicon glyphicon-warning-sign"></span><br />
+                            <br />
+                            <div class="alert alert-danger" role="alert">
+                                <span style="font-size: 30px;" class="glyphicon glyphicon-warning-sign"></span>
+                                <br />
                                 Notice: This will <b>DELETE ALL ANSWERS</b> relating to this intent.
                             </div>
                             <br />
-                            <asp:Button ID="btnCfmDelete" CssClass="btn btn-danger" runat="server" Text="Delete" OnClick="btnCfmDelete_Click"/>
+                            <asp:Button ID="btnCfmDelete" CssClass="btn btn-danger" runat="server" Text="Delete" OnClick="btnCfmDelete_Click" />
                             <asp:Button ID="btnClose" CssClass="btn btn-default" runat="server" class="close" data-dismiss="modal" Text="Cancel" />
 
                             <br />

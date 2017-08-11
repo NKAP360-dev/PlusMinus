@@ -13,6 +13,15 @@ namespace LearnHub {
     public partial class editModuleInfo {
         
         /// <summary>
+        /// lblBreadcrumbCourseName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblBreadcrumbCourseName;
+        
+        /// <summary>
         /// moduleTypeLabel control.
         /// </summary>
         /// <remarks>
@@ -94,6 +103,24 @@ namespace LearnHub {
         protected global::System.Web.UI.WebControls.TextBox hoursInput;
         
         /// <summary>
+        /// Label1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label1;
+        
+        /// <summary>
+        /// txtTargetAudience control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtTargetAudience;
+        
+        /// <summary>
         /// dateLabel control.
         /// </summary>
         /// <remarks>
@@ -166,6 +193,15 @@ namespace LearnHub {
         protected global::System.Web.UI.WebControls.Button btnDeactivate;
         
         /// <summary>
+        /// btnActivate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnActivate;
+        
+        /// <summary>
         /// cfmSubmit control.
         /// </summary>
         /// <remarks>
@@ -184,13 +220,13 @@ namespace LearnHub {
         protected global::System.Web.UI.WebControls.Button Button3;
         
         /// <summary>
-        /// Button1 control.
+        /// btnCfmDeactivate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button1;
+        protected global::System.Web.UI.WebControls.Button btnCfmDeactivate;
         
         /// <summary>
         /// Button2 control.
@@ -200,5 +236,23 @@ namespace LearnHub {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button Button2;
+        
+        /// <summary>
+        /// btnCfmActivate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnCfmActivate;
+        
+        /// <summary>
+        /// Button5 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button Button5;
     }
 }

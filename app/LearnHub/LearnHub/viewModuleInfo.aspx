@@ -22,8 +22,22 @@
         }
 
     </script>
+    <style>
+        .breadcrumb {
+            padding-top: 15px;
+            margin-bottom: 0px;
+            list-style: none;
+            background-color: white;
+            border-radius: 0px;
+        }
+    </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+      <ul class="breadcrumb">
+  <li><a href="home.aspx">Home</a></li>
+<li><a href="viewAllModule.aspx">Modules</a></li>
+  <li class="active"><asp:Label ID="lblBreadcrumbCourseName" runat="server" Text="courseName"></asp:Label></li>
+  </ul>
     <form class="form-horizontal" runat="server">
         <div class="container">
             <h1>

@@ -37,9 +37,23 @@
             });
         });
     </script>
+    <style>
+                  .breadcrumb {
+            padding-top: 15px;
+            margin-bottom: 0px;
+            list-style: none;
+            background-color: white;
+            border-radius: 0px;
+        }
+    </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-
+           <ul class="breadcrumb">
+  <li><a href="home.aspx">Home</a></li>
+  <li><a href="viewAllModule.aspx">Modules</a></li>
+<li><a href="manageCategory.aspx">Manage Module Category</a></li>
+  <li class="active">Edit Module Category</li>
+  </ul>
     <div class="container">
         <h1>Edit Module Category
 
@@ -93,11 +107,6 @@
                     <asp:Button ID="btnActivate" CssClass="btn btn-success" runat="server" Text="Activate" data-toggle="modal" href="#activateModal" OnClientClick="return false;" />
 
                 </div>
-                <strong>
-                    <asp:Label ID="lblSaveSuccess" runat="server" CssClass="text-success"><span class="glyphicon glyphicon-ok"></span> Saved successfully</asp:Label></strong><br />
-                <strong>
-                    <asp:Label ID="lblError" runat="server" CssClass="text-danger"><span class="glyphicon glyphicon-remove"></span> Something went wrong</asp:Label></strong>
-
             </div>
 
 

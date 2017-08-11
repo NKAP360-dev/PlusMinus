@@ -72,22 +72,26 @@
         .pagination > .active > span:focus {
             background-color: #576777;
         }
+            
+        .breadcrumb {
+            padding-top: 15px;
+            margin-bottom: 0px;
+            list-style: none;
+            background-color: white;
+            border-radius: 0px;
+        }
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <ul class="breadcrumb">
+  <li><a href="home.aspx">Home</a></li>
+  <li><a href="emmaConfiguration.aspx">Emma Configuration</a></li>
+  <li class="active">Manage Answers</li>
+  </ul>
+
     <div class="container">
         <h1>Manage Emma's Answers
                         <button type="button" data-toggle="collapse" data-target="#addForm" class="btn btn-success"><span class="glyphicon glyphicon-plus"></span>&nbsp;New </button>
-
-            <% if (Session["currentUser"] != null)
-                {
-                    User currentUser = (User)Session["currentUser"];
-                    if (currentUser.getDepartment().Equals("hr"))
-                    {
-            %>
-            <a href="emmaConfiguration.aspx" id="config"><span class="btn btn-default pull-right"><span class="glyphicon glyphicon-option-horizontal"></span></span></a>
-            <%}
-                }%>
         </h1>
         <div class="verticalLine"></div>
     </div>
@@ -99,7 +103,7 @@
                     <div class="form-group required">
 
                         <%--Intent--%>
-                        <label for="ddlIntent" class="col-lg-2 control-label"><span class="glyphicon glyphicon-question-sign" data-toggle='tooltip' data-placement="left" title="" data-original-title="An Intent is a......"></span>Choose an Intent</label>
+                        <label for="ddlIntent" class="col-lg-2 control-label"><span class="glyphicon glyphicon-question-sign" data-toggle='tooltip' data-placement="left" title="" data-original-title="An Intent is a......"></span>&nbsp; Choose an Intent</label>
 
                         <div class="col-lg-10">
                             <%--Mandatory Choose 1--%>
@@ -107,14 +111,13 @@
                                 <asp:ListItem Text="--Select--" Selected="true" Value="0"></asp:ListItem>
                             </asp:DropDownList>
                             <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:DBConnectionString %>" SelectCommand="SELECT [intent], [intentID] FROM [ChatBotIntent] ORDER BY [intent]"></asp:SqlDataSource>
-                            <br>
-                            <asp:RequiredFieldValidator ID="rfv_ddlIntent" runat="server" ControlToValidate="ddlIntent" ErrorMessage="Please Select a Course" InitialValue="0" ForeColor="Red" ValidationGroup="ValidateForm"></asp:RequiredFieldValidator>
+                            <asp:RequiredFieldValidator ID="rfv_ddlIntent" runat="server" ControlToValidate="ddlIntent" ErrorMessage="Please select an Intent" InitialValue="0" ForeColor="Red" ValidationGroup="ValidateForm"></asp:RequiredFieldValidator>
                         </div>
                     </div>
                     <div class="form-group">
                         <strong>
                             <%--Entity--%>
-                            <label for="txtEntity" class="col-lg-2 control-label"><span class="glyphicon glyphicon-question-sign" data-toggle='tooltip' data-placement="left" title="" data-original-title="An Entity is a......"></span>Choose an Entity to represent </label>
+                            <label for="txtEntity" class="col-lg-2 control-label"><span class="glyphicon glyphicon-question-sign" data-toggle='tooltip' data-placement="left" title="" data-original-title="An Entity is a......"></span>&nbsp;Choose an Entity to represent </label>
                         </strong>
                         <div class="col-lg-10">
                             <asp:TextBox ID="txtEntity" runat="server" CssClass="form-control" placeholder="Please Enter an Entity"></asp:TextBox>
@@ -124,12 +127,12 @@
                     <div class="form-group required">
                         <strong>
                             <%--Answers--%>
-                            <asp:Label ID="lblAnswers" CssClass="col-lg-2 control-label" runat="server" Text="Answers"></asp:Label>
+                            <asp:Label ID="lblAnswers" CssClass="col-lg-2 control-label" runat="server" Text="Answer"></asp:Label>
                         </strong>
                         <div class="col-lg-10">
                             <%--Mandatory text field--%>
                             <asp:TextBox ID="txtAnswers" TextMode="multiline" Columns="50" Rows="5" runat="server" CssClass="form-control" placeholder="Please enter your answers here"></asp:TextBox>
-                            <asp:RequiredFieldValidator ID="rfv_txtAnswers" runat="server" ErrorMessage="Please enter an answer" ControlToValidate="txtAnswers" ForeColor="Red" ValidationGroup="ValidateForm"></asp:RequiredFieldValidator>
+                            <asp:RequiredFieldValidator ID="rfv_txtAnswers" runat="server" ErrorMessage="Please enter an Answer" ControlToValidate="txtAnswers" ForeColor="Red" ValidationGroup="ValidateForm"></asp:RequiredFieldValidator>
                         </div>
                     </div>
                     <%--Buttons--%>

@@ -29,6 +29,14 @@
         .pagination > .active > span:focus {
             background-color: #576777;
         }
+
+                .breadcrumb {
+            padding-top: 15px;
+            margin-bottom: 0px;
+            list-style: none;
+            background-color: white;
+            border-radius: 0px;
+        }
     </style>
     <link href="/Scripts/footable.bootstrap.min.css" rel="stylesheet" />
     <script src="/Scripts/footable.min.js"></script>
@@ -69,19 +77,16 @@
     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+            <ul class="breadcrumb">
+  <li><a href="home.aspx">Home</a></li>
+  <li><a href="emmaConfiguration.aspx">Emma Configuration</a></li>
+  <li class="active">Manage Help Questions</li>
+  </ul>
     <div class="container">
-        <h1>Manage Emma's Help Question
+        <h1>Manage Help Questions
                                     <button type="button" data-toggle="collapse" data-target="#addForm" class="btn btn-success"><span class="glyphicon glyphicon-plus"></span>&nbsp;New </button>
 
-            <% if (Session["currentUser"] != null)
-                {
-                    User currentUser = (User)Session["currentUser"];
-                    if (currentUser.getDepartment().Equals("hr"))
-                    {
-            %>
-            <a href="emmaConfiguration.aspx" id="config"><span class="btn btn-default pull-right"><span class="glyphicon glyphicon-option-horizontal"></span></span></a>
-            <%}
-                }%></h1>
+           </h1>
         <div class="verticalLine"></div>
     </div>
     <form class="form-horizontal" runat="server">
@@ -97,10 +102,9 @@
                         <div class="col-lg-7">
                             <%--Mandatory text field--%>
                             <asp:TextBox ID="txtHelpInput" runat="server" CssClass="form-control" placeholder="Enter Help Question"></asp:TextBox>
-                            <br />
                             <asp:RequiredFieldValidator ID="rfv_txtHelpInput" runat="server" ErrorMessage="Please enter a Help Question" ControlToValidate="txtHelpInput" ForeColor="Red" ValidationGroup="ValidateForm"></asp:RequiredFieldValidator>
                         </div>      
-                        <br />
+                        
                     </div>
                     <br />
                     <div class="row">

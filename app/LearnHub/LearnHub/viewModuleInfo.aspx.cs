@@ -40,6 +40,7 @@ namespace LearnHub
                 int id_num = int.Parse(id_str);
                 current = cdao.get_course_by_id(id_num);
                 lblCourseNameHeader.Text = current.getCourseName();
+                lblBreadcrumbCourseName.Text = current.getCourseName();
                 lblCourseName.Text = current.getCourseName();
                 lblCourseDescription.Text = current.getDescription();
                 hoursOutput.Text = current.getHoursAwarded().ToString();

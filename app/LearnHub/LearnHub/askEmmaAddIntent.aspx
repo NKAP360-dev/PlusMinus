@@ -29,6 +29,14 @@
         .pagination > .active > span:focus {
             background-color: #576777;
         }
+
+        .breadcrumb {
+            padding-top: 15px;
+            margin-bottom: 0px;
+            list-style: none;
+            background-color: white;
+            border-radius: 0px;
+        }
     </style>
     <link href="/Scripts/footable.bootstrap.min.css" rel="stylesheet" />
     <script src="/Scripts/footable.min.js"></script>
@@ -71,19 +79,15 @@
 
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+        <ul class="breadcrumb">
+  <li><a href="home.aspx">Home</a></li>
+  <li><a href="emmaConfiguration.aspx">Emma Configuration</a></li>
+  <li class="active">Manage Intents</li>
+  </ul>
     <div class="container">
         <h1>Manage Intents
                                     <button type="button" data-toggle="collapse" data-target="#addForm" class="btn btn-success"><span class="glyphicon glyphicon-plus"></span>&nbsp; New</button>
 
-            <% if (Session["currentUser"] != null)
-                {
-                    User currentUser = (User)Session["currentUser"];
-                    if (currentUser.getDepartment().Equals("hr"))
-                    {
-            %>
-            <a href="emmaConfiguration.aspx" id="config"><span class="btn btn-default pull-right"><span class="glyphicon glyphicon-option-horizontal"></span></span></a>
-            <%}
-                }%>
         </h1>
         <div class="verticalLine"></div>
     </div>
@@ -93,7 +97,6 @@
                 <fieldset>
                     <br />
                     <div class="form-group required">
-                        <div class="row">
                             <strong>
                                 <%--Intent--%>
                                 <label for="intentInput" class="col-lg-3 control-label"><span class="glyphicon glyphicon-question-sign" data-toggle='tooltip' data-placement="left" title="" data-original-title="An Intent is a......"></span>&nbsp;Name of Intent</label>
@@ -101,29 +104,21 @@
                             <div class="col-lg-8">
                                 <%--Mandatory text field--%>
                                 <asp:TextBox ID="txtIntentInput" runat="server" CssClass="form-control" placeholder="Enter New Intent"></asp:TextBox>
-                                <br />
-                                <asp:RequiredFieldValidator ID="rfv_txtIntentInput" runat="server" ErrorMessage="Please enter the Intent Name" ControlToValidate="txtIntentInput" ForeColor="Red" ValidationGroup="ValidateForm"></asp:RequiredFieldValidator>
+                                <asp:RequiredFieldValidator ID="rfv_txtIntentInput" runat="server" ErrorMessage="Please enter an Intent" ControlToValidate="txtIntentInput" ForeColor="Red" ValidationGroup="ValidateForm"></asp:RequiredFieldValidator>
                             </div>
 
-                        </div>
                         <br />
-                        <br />
-                        <div class="row">
+
                             <div class="wrapper">
                                 <asp:Button ID="btnSubmit" CssClass="btn btn-primary" runat="server" Text="Submit" data-toggle="modal" href="#submitModal" OnClientClick="$('#myModal').modal();  return checkForm_Clicked();" CausesValidation="True" UseSubmitBehavior="False" />
-                                <br /><br />
+                                <br />
                                 <%--<strong>
                                     <asp:Label ID="lblSuccess" runat="server" CssClass="text-success"><span class="glyphicon glyphicon-ok"></span> Added successfully</asp:Label></strong><br />
                                 <strong>
                                     <asp:Label ID="lblError" runat="server" CssClass="text-danger"><span class="glyphicon glyphicon-remove"></span> Something went wrong</asp:Label></strong>
                                 --%>
-                            </div>
-                        </div>
+                            </div>                       
                     </div>
-
-
-
-
                 </fieldset>
                 <div class="verticalLine"></div>
                 <br />

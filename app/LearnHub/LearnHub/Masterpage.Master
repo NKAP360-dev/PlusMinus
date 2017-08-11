@@ -135,8 +135,8 @@
 
         #emmaContainer {
             overflow: visible;
-            width: 350px;
-            padding-bottom: 15px;
+            width: 320px;
+            padding-bottom: 30px;
         }
 
         .form-group.required .control-label:after {
@@ -145,7 +145,7 @@
             margin-left: 4px;
         }
 
-         .pagination li > a,
+        .pagination li > a,
         .pagination li > span,
         .pagination li > a:focus, .pagination .disabled > a,
         .pagination .disabled > a:hover,
@@ -166,6 +166,14 @@
         .pagination > .active > a:focus,
         .pagination > .active > span:focus {
             background-color: #576777;
+        }
+
+        .breadcrumb {
+            padding-top: 15px;
+            margin-bottom: 0px;
+            list-style: none;
+            background-color: white;
+            border-radius: 0px;
         }
     </style>
     <link href="~/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
@@ -275,7 +283,7 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Support <span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
                             <li>
-                                <asp:HyperLink ID="HyperLink6" runat="server">Account Settings</asp:HyperLink></li>
+                                <asp:HyperLink ID="HyperLink6" runat="server" NavigateUrl="~/accountSetting.aspx">Account Settings</asp:HyperLink></li>
                             <li>
                                 <asp:HyperLink ID="HyperLink10" runat="server">Contact Us</asp:HyperLink></li>
                             <li>
@@ -398,30 +406,26 @@
 
     <div class="askEmma">
         <div id="emmaContainer" class="collapse">
-            <div class="panel panel-primary">
-                <div class="panel-heading">
-                    <h2 class="panel-title">Emma  &emsp;
-        <a href="#emmaModal" data-toggle="modal"><span class="label label-info"><span class="glyphicon glyphicon-question-sign"></span></span></a>
-                        <% if (Session["currentUser"] != null)
-                            {
-                                User currentUser = (User)Session["currentUser"];
 
-                                if (currentUser.getDepartment().Equals("hr"))
-                                {
 
-                        %>
-                        <a href="emmaConfiguration.aspx"><span class="label label-danger"><span class="glyphicon glyphicon-cog"></span></span></a>
-                        <%}
-                            }%>
-                    </h2>
-                </div>
-                <div class="panel-body">
-                    <iframe style="height:480px; width:320px" src='https://webchat.botframework.com/embed/Emma_AMK?s=itz7GAB2UHk.cwA.hZk.7-C4UzPn4bJzptvoiBvD0GMQXckgif35RF6_L0LTPY4'></iframe>
-                </div>
-            </div>
+            <iframe style="height: 480px; width: 320px; background-color: white" src='https://webchat.botframework.com/embed/Emma_AMK?s=itz7GAB2UHk.cwA.hZk.7-C4UzPn4bJzptvoiBvD0GMQXckgif35RF6_L0LTPY4'></iframe>
+
+
         </div>
     </div>
     <div class="askEmma">
+        <% if (Session["currentUser"] != null)
+            {
+                User currentUser = (User)Session["currentUser"];
+
+                if (currentUser.getDepartment().Equals("hr"))
+                {
+
+        %>
+        <a href="emmaConfiguration.aspx" class="btn btn-primary btn-sm pull-right" role="button"><span class="glyphicon glyphicon-cog"></span></a>
+        <%}
+            }%>
+        <button type="button" class="btn btn-primary btn-sm pull-right" data-toggle="modal" data-target="#emmaModal"><span class="glyphicon glyphicon-question-sign"></span></button>
         <button type="button" class="btn btn-primary btn-sm" data-toggle="collapse" data-target="#emmaContainer"><span class="glyphicon glyphicon-comment"></span>&emsp;Ask Emma</button>
     </div>
 
@@ -439,7 +443,7 @@
                 </div>
                 <%--Modal Content--%>
                 <div class="modal-body">
-                        <%=instruction.instruction %>
+                    <%=instruction.instruction %>
                 </div>
             </div>
 

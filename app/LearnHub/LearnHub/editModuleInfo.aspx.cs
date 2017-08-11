@@ -34,8 +34,10 @@ namespace LearnHub
                     {
                         moduleType.SelectedValue = currentCourse.getCategoryID().ToString();
                         nameOfModuleInput.Text = currentCourse.getCourseName();
+                        lblBreadcrumbCourseName.Text = currentCourse.getCourseName();
                         descriptionModuleInput.Text = currentCourse.getDescription();
                         hoursInput.Text = currentCourse.getHoursAwarded().ToString();
+                        txtTargetAudience.Text = currentCourse.getTargetAudience().ToString();
                         //to add in prerequisite
                         fromDateInput.Text = currentCourse.getStartDate().ToString("MM/dd/yyyy");
                         toDateInput.Text = currentCourse.getExpiryDate().ToString("MM/dd/yyyy");

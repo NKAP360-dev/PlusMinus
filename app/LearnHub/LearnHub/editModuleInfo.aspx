@@ -1,4 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Masterpage.Master" AutoEventWireup="true" CodeBehind="editModuleInfo.aspx.cs" Inherits="LearnHub.editModuleInfo" %>
+
 <%@ Register Assembly="CKEditor.NET" Namespace="CKEditor.NET" TagPrefix="CKEditor" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
@@ -39,7 +40,7 @@
     </script>
 
     <style>
-         .pagination li > a,
+        .pagination li > a,
         .pagination li > span,
         .pagination li > a:focus, .pagination .disabled > a,
         .pagination .disabled > a:hover,
@@ -61,9 +62,27 @@
         .pagination > .active > span:focus {
             background-color: #576777;
         }
+
+        .breadcrumb {
+            padding-top: 15px;
+            margin-bottom: 0px;
+            list-style: none;
+            background-color: white;
+            border-radius: 0px;
+        }
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <ul class="breadcrumb">
+        <li><a href="home.aspx">Home</a></li>
+        <li><a href="viewAllModule.aspx">Modules</a></li>
+        <li><a href="viewModuleInfo.aspx?id=<%=Request.QueryString["id"]%>">
+            <asp:Label ID="lblBreadcrumbCourseName" runat="server" Text="courseName"></asp:Label></a></li>
+        <li class="active">Edit Module</li>
+
+    </ul>
+
+
     <div class="container">
         <h1>Edit Module</h1>
         <div class="verticalLine"></div>
@@ -73,27 +92,27 @@
         <form class="form-horizontal" runat="server">
             <fieldset>
                 <legend>Edit current module information </legend>
-                <div class="form-group">
+                <div class="form-group required">
                     <strong>
                         <%--Compulsory/Leadership/Professional--%>
-                        <asp:Label ID="moduleTypeLabel" runat="server" CssClass="col-lg-2 control-label" Text="Module Category * "></asp:Label></strong>
+                        <asp:Label ID="moduleTypeLabel" runat="server" CssClass="col-lg-2 control-label" Text="Module Category"></asp:Label></strong>
                     <div class="col-lg-5">
                         <asp:DropDownList ID="moduleType" runat="server" CssClass="form-control" placeholder="Choose Category *" DataSourceID="SqlDataSourceCourseCategory" DataTextField="category" DataValueField="categoryID"></asp:DropDownList>
                         <asp:SqlDataSource ID="SqlDataSourceCourseCategory" runat="server" ConnectionString="<%$ ConnectionStrings:DBConnectionString %>" SelectCommand="SELECT * FROM [Elearn_courseCategory]"></asp:SqlDataSource>
                     </div>
                 </div>
 
-                <div class="form-group">
+                <div class="form-group required">
                     <strong>
-                        <asp:Label ID="nameOfModuleLabel" runat="server" CssClass="col-lg-2 control-label" Text="Name of Module *"></asp:Label></strong>
+                        <asp:Label ID="nameOfModuleLabel" runat="server" CssClass="col-lg-2 control-label" Text="Name of Module"></asp:Label></strong>
                     <div class="col-lg-5">
                         <asp:TextBox ID="nameOfModuleInput" runat="server" CssClass="form-control" placeholder="Module Name"></asp:TextBox>
                     </div>
                 </div>
 
-                <div class="form-group">
+                <div class="form-group required">
                     <strong>
-                        <asp:Label ID="descriptionModuleLabel" runat="server" CssClass="col-lg-2 control-label" Text="Description of Module *"></asp:Label></strong>
+                        <asp:Label ID="descriptionModuleLabel" runat="server" CssClass="col-lg-2 control-label" Text="Description of Module"></asp:Label></strong>
                     <div class="col-lg-5">
                         <%--<asp:TextBox ID="descriptionModuleInput" TextMode="multiline" Columns="50" Rows="5" runat="server" CssClass="form-control" placeholder="Enter module description"></asp:TextBox>--%>
                         <CKEditor:CKEditorControl ID="descriptionModuleInput" runat="server"></CKEditor:CKEditorControl>
@@ -101,9 +120,9 @@
                     </div>
                 </div>
 
-                <div class="form-group">
+                <div class="form-group required">
                     <strong>
-                        <asp:Label ID="hoursLabel" runat="server" CssClass="col-lg-2 control-label" Text="Hours Awarded *"></asp:Label></strong>
+                        <asp:Label ID="hoursLabel" runat="server" CssClass="col-lg-2 control-label" Text="Learning Hours"></asp:Label></strong>
                     <div class="col-lg-5">
                         <div class="input-group">
                             <asp:TextBox ID="hoursInput" runat="server" CssClass="form-control" placeholder="No. of Hours" TextMode="Number"></asp:TextBox>
@@ -112,6 +131,13 @@
                     </div>
                 </div>
 
+                <div class="form-group">
+                    <strong>
+                        <asp:Label ID="Label1" runat="server" CssClass="col-lg-2 control-label" Text="Target Audience"></asp:Label></strong>
+                    <div class="col-lg-5">
+                        <asp:TextBox ID="txtTargetAudience" runat="server" CssClass="form-control" placeholder="Target Audience"></asp:TextBox>
+                    </div>
+                </div>
 
                 <%-- No external vendors based on latest requirement as of 24th July
                 <div class="form-group">
@@ -138,27 +164,27 @@
                 --%>
 
                 <%--Date--%>
-                <div class="form-group">
+                <div class="form-group required">
                     <strong>
                         <asp:Label ID="dateLabel" runat="server" CssClass="col-lg-2 control-label" Text="Date to Display"></asp:Label></strong>
 
                     <div class="col-lg-5">
                         <div class="input-daterange input-group" id="datepicker">
                             <asp:TextBox ID="fromDateInput" runat="server" CssClass="form-control" placeholder="MM/DD/YYYY"></asp:TextBox>
-                            <span class="input-group-addon" >to</span>
+                            <span class="input-group-addon">to</span>
                             <asp:TextBox ID="toDateInput" runat="server" CssClass="form-control" placeholder="MM/DD/YYYY"></asp:TextBox>
                             <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i>
                             </span>
                         </div>
                     </div>
-                   
+
 
                 </div>
 
 
 
                 <%--Preq--%>
-               <div class="form-group">
+                <div class="form-group">
                     <strong>
                         <asp:Label ID="preqModuleLabel" runat="server" CssClass="col-lg-2 control-label" Text="Module Pre-requisite"></asp:Label></strong>
                     <div class="col-lg-5">
@@ -215,8 +241,10 @@
                     <br />
                     <div class="wrapper">
                         <asp:Button ID="submitBtn" CssClass="btn btn-primary" runat="server" Text="Save Changes" data-toggle="modal" href="#submitModal" OnClientClick="return false;" />
+                        <%--READ ME: If course status = activated, show deactivate button
+                                     If course status = deactivated, show activate button--%>
                         <asp:Button ID="btnDeactivate" CssClass="btn btn-warning" runat="server" Text="Deactivate Module" data-toggle="modal" href="#deactivateModal" OnClientClick="return false;" />
-
+                        <asp:Button ID="btnActivate" CssClass="btn btn-success" runat="server" Text="Activate Module" data-toggle="modal" href="#activateModal" OnClientClick="return false;" />
                     </div>
                 </div>
 
@@ -244,7 +272,7 @@
                     </div>
                 </div>
 
-                <%--Modal for Deletion Confirmation--%>
+                <%--Modal for Deactivation Confirmation--%>
                 <div id="deactivateModal" class="modal fade" role="dialog">
                     <div class="modal-dialog">
                         <div class="modal-content panel-warning">
@@ -257,9 +285,8 @@
                                 <div class="wrapper">
                                     <h4>Are you sure you want to deactivate this module?</h4>
                                     <br />
-                                    <asp:Button ID="Button1" CssClass="btn btn-warning" runat="server" Text="Deactivate" />
+                                    <asp:Button ID="btnCfmDeactivate" CssClass="btn btn-warning" runat="server" Text="Deactivate" />
                                     <asp:Button ID="Button2" CssClass="btn btn-default" runat="server" class="close" data-dismiss="modal" Text="Go Back" />
-                                    <%--Redirect to viewModuleInfo of newly created course--%>
                                     <br />
                                 </div>
                             </div>
@@ -267,6 +294,30 @@
 
                     </div>
                 </div>
+           
+                <%--Modal for Activation Confirmation--%>
+                <div id="activateModal" class="modal fade" role="dialog">
+                    <div class="modal-dialog">
+                        <div class="modal-content panel-warning">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title"><b>Activate this module</b></h4>
+                            </div>
+                            <%--Modal Content--%>
+                            <div class="modal-body">
+                                <div class="wrapper">
+                                    <h4>Are you sure you want to activate this module?</h4>
+                                    <br />
+                                    <asp:Button ID="btnCfmActivate" CssClass="btn btn-success" runat="server" Text="Activate" />
+                                    <asp:Button ID="Button5" CssClass="btn btn-default" runat="server" class="close" data-dismiss="modal" Text="Go Back" />
+                                    <br />
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+    
             </fieldset>
         </form>
     </div>
