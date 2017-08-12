@@ -103,7 +103,7 @@
                     <div class="form-group required">
 
                         <%--Intent--%>
-                        <label for="ddlIntent" class="col-lg-2 control-label"><span class="glyphicon glyphicon-question-sign" data-toggle='tooltip' data-placement="left" title="" data-original-title="An Intent is a......"></span>&nbsp; Choose an Intent</label>
+                        <label for="ddlIntent" class="col-lg-2 control-label"><span class="glyphicon glyphicon-question-sign" data-toggle='tooltip' data-placement="bottom" title="" data-original-title="Category of the Answer. For example, 'greeting', 'course enquiry'"></span>&nbsp; Choose a Category</label>
 
                         <div class="col-lg-10">
                             <%--Mandatory Choose 1--%>
@@ -111,16 +111,16 @@
                                 <asp:ListItem Text="--Select--" Selected="true" Value="0"></asp:ListItem>
                             </asp:DropDownList>
                             <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:DBConnectionString %>" SelectCommand="SELECT [intent], [intentID] FROM [ChatBotIntent] ORDER BY [intent]"></asp:SqlDataSource>
-                            <asp:RequiredFieldValidator ID="rfv_ddlIntent" runat="server" ControlToValidate="ddlIntent" ErrorMessage="Please select an Intent" InitialValue="0" ForeColor="Red" ValidationGroup="ValidateForm"></asp:RequiredFieldValidator>
+                            <asp:RequiredFieldValidator ID="rfv_ddlIntent" runat="server" ControlToValidate="ddlIntent" ErrorMessage="Please select a Category" InitialValue="0" ForeColor="Red" ValidationGroup="ValidateForm"></asp:RequiredFieldValidator>
                         </div>
                     </div>
                     <div class="form-group">
                         <strong>
                             <%--Entity--%>
-                            <label for="txtEntity" class="col-lg-2 control-label"><span class="glyphicon glyphicon-question-sign" data-toggle='tooltip' data-placement="left" title="" data-original-title="An Entity is a......"></span>&nbsp;Choose an Entity to represent </label>
+                            <label for="txtEntity" class="col-lg-2 control-label"><span class="glyphicon glyphicon-question-sign" data-toggle='tooltip' data-placement="bottom" title="" data-original-title="Keyword related to the Answer. For example, 'probation', 'chronic disease' "></span>&nbsp;Enter Keyword </label>
                         </strong>
                         <div class="col-lg-10">
-                            <asp:TextBox ID="txtEntity" runat="server" CssClass="form-control" placeholder="Please Enter an Entity"></asp:TextBox>
+                            <asp:TextBox ID="txtEntity" runat="server" CssClass="form-control" placeholder="eg. Chronic Disease"></asp:TextBox>
                             <br>
                         </div>
                     </div>
@@ -131,7 +131,7 @@
                         </strong>
                         <div class="col-lg-10">
                             <%--Mandatory text field--%>
-                            <asp:TextBox ID="txtAnswers" TextMode="multiline" Columns="50" Rows="5" runat="server" CssClass="form-control" placeholder="Please enter your answers here"></asp:TextBox>
+                            <asp:TextBox ID="txtAnswers" TextMode="multiline" Columns="50" Rows="5" runat="server" CssClass="form-control" placeholder="e.g Chronic Disease is a module about understanding the different types of chronic diseases."></asp:TextBox>
                             <asp:RequiredFieldValidator ID="rfv_txtAnswers" runat="server" ErrorMessage="Please enter an Answer" ControlToValidate="txtAnswers" ForeColor="Red" ValidationGroup="ValidateForm"></asp:RequiredFieldValidator>
                         </div>
                     </div>
@@ -162,8 +162,8 @@
                 <thead>
                     <tr>
                         <th id="answers" width="70%">Answers</th>
-                        <th id="intent" data-breakpoints="xs sm" width="10%">Intent</th>
-                        <th id="entity" data-breakpoints="xs sm" width="10%">Entity</th>
+                        <th id="intent" data-breakpoints="xs sm" width="10%">Category</th>
+                        <th id="entity" data-breakpoints="xs sm" width="10%">Keyword</th>
                         <th data-filterable="false" data-sortable="false" width="10%"></th>
                     </tr>
                 </thead>
