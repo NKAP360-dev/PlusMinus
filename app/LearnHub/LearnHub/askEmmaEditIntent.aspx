@@ -82,11 +82,11 @@
     <ul class="breadcrumb">
         <li><a href="home.aspx">Home</a></li>
         <li><a href="emmaConfiguration.aspx">Emma Configuration</a></li>
-        <li><a href="askEmmaAddIntent.aspx">Manage Intents</a></li>
-        <li class="active">Edit Intent</li>
+        <li><a href="askEmmaAddIntent.aspx">Manage Categories</a></li>
+        <li class="active">Edit Category</li>
     </ul>
     <div class="container">
-        <h1>Edit Intent
+        <h1>Edit Category
         </h1>
         <div class="verticalLine"></div>
         <br />
@@ -98,14 +98,14 @@
 
                 <strong>
                     <%--Intent--%>
-                    <label for="intentInput" class="col-lg-3 control-label"><span class="glyphicon glyphicon-question-sign" data-toggle='tooltip' data-placement="left" title="" data-original-title="An Intent is a......"></span>&nbsp;Name of Intent</label>
+                    <label for="intentInput" class="col-lg-3 control-label"><span class="glyphicon glyphicon-question-sign" data-toggle='tooltip' data-placement="bottom" title="" data-original-title="A Category is used for categorising Answers. For example, 'greeting', 'course enquiry'"></span>&nbsp;Name of Category</label>
                 </strong>
                 <div class="col-lg-7">
                     <%--Mandatory text field--%>
-                    <asp:TextBox ID="txtIntentInput" runat="server" CssClass="form-control" placeholder="Intent Name"></asp:TextBox>
-                    <a href="#" data-toggle="collapse" data-target="#viewTable" class="pull-right"><span class="glyphicon glyphicon-search"></span>View available Intents</a>
+                    <asp:TextBox ID="txtIntentInput" runat="server" CssClass="form-control" placeholder="e.g Course Enquiry"></asp:TextBox>
+                    <a href="#" data-toggle="collapse" data-target="#viewTable" class="pull-right"><span class="glyphicon glyphicon-search"></span>View available Categories</a>
                     <br />
-                    <asp:RequiredFieldValidator ID="rfv_txtIntentInput" runat="server" ErrorMessage="Please enter the Intent Name" ControlToValidate="txtIntentInput" ForeColor="Red" ValidationGroup="ValidateForm"></asp:RequiredFieldValidator>
+                    <asp:RequiredFieldValidator ID="rfv_txtIntentInput" runat="server" ErrorMessage="Please enter the Category Name" ControlToValidate="txtIntentInput" ForeColor="Red" ValidationGroup="ValidateForm"></asp:RequiredFieldValidator>
                 </div>
 
 
@@ -137,7 +137,7 @@
                 <table class="table table-striped table-hover" data-paging="true" data-sorting="true" data-filtering="true">
                     <thead>
                         <tr>
-                            <th width="90%">Intent</th>
+                            <th width="90%">Category</th>
                             <th data-filterable="false" data-sortable="false"></th>
                         </tr>
                     </thead>
@@ -169,11 +169,11 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title"><b>Update Intents</b></h4>
+                        <h4 class="modal-title"><b>Update Category</b></h4>
                     </div>
                     <div class="modal-body">
                         <div class="wrapper">
-                            <h4>Are you sure you want to overwrite the existing intent?</h4>
+                            <h4>Are you sure you want to overwrite the existing Category?</h4>
                             <br />
                             <asp:Label ID="lblErrorMsgFinal" runat="server" CssClass="text-danger" Visible="True"></asp:Label>
                             <br />
@@ -194,7 +194,7 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title"><span class="glyphicon glyphicon-trash"></span>&nbsp;<b>Delete Intent</b></h4>
+                        <h4 class="modal-title"><span class="glyphicon glyphicon-trash"></span>&nbsp;<b>Delete Category</b></h4>
                     </div>
                     <%--Modal Content--%>
                     <div class="modal-body">
@@ -204,7 +204,7 @@
                             <div class="alert alert-danger" role="alert">
                                 <span style="font-size: 30px;" class="glyphicon glyphicon-warning-sign"></span>
                                 <br />
-                                Notice: This will <b>DELETE ALL ANSWERS</b> relating to this intent.
+                                Notice: This will <b>DELETE ALL ANSWERS</b> relating to this Category.
                             </div>
                             <br />
                             <asp:Button ID="btnCfmDelete" CssClass="btn btn-danger" runat="server" Text="Delete" OnClick="btnCfmDelete_Click" />

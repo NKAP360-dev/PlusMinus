@@ -82,10 +82,10 @@
         <ul class="breadcrumb">
   <li><a href="home.aspx">Home</a></li>
   <li><a href="emmaConfiguration.aspx">Emma Configuration</a></li>
-  <li class="active">Manage Intents</li>
+  <li class="active">Manage Categories</li>
   </ul>
     <div class="container">
-        <h1>Manage Intents
+        <h1>Manage Categories
                                     <button type="button" data-toggle="collapse" data-target="#addForm" class="btn btn-success"><span class="glyphicon glyphicon-plus"></span>&nbsp; New</button>
 
         </h1>
@@ -99,12 +99,12 @@
                     <div class="form-group required">
                             <strong>
                                 <%--Intent--%>
-                                <label for="intentInput" class="col-lg-3 control-label"><span class="glyphicon glyphicon-question-sign" data-toggle='tooltip' data-placement="left" title="" data-original-title="An Intent is a......"></span>&nbsp;Name of Intent</label>
+                                <label for="intentInput" class="col-lg-3 control-label"><span class="glyphicon glyphicon-question-sign" data-toggle='tooltip' data-placement="bottom" title="" data-original-title="A Category is used for categorising Answers. For example, 'greeting', 'course enquiry'"></span>&nbsp;Name of Category</label>
                             </strong>
                             <div class="col-lg-8">
                                 <%--Mandatory text field--%>
-                                <asp:TextBox ID="txtIntentInput" runat="server" CssClass="form-control" placeholder="Enter New Intent"></asp:TextBox>
-                                <asp:RequiredFieldValidator ID="rfv_txtIntentInput" runat="server" ErrorMessage="Please enter an Intent" ControlToValidate="txtIntentInput" ForeColor="Red" ValidationGroup="ValidateForm"></asp:RequiredFieldValidator>
+                                <asp:TextBox ID="txtIntentInput" runat="server" CssClass="form-control" placeholder="e.g Course Enquiry"></asp:TextBox>
+                                <asp:RequiredFieldValidator ID="rfv_txtIntentInput" runat="server" ErrorMessage="Please enter a Category" ControlToValidate="txtIntentInput" ForeColor="Red" ValidationGroup="ValidateForm"></asp:RequiredFieldValidator>
                             </div>
 
                         <br />
@@ -132,7 +132,7 @@
             <table class="table table-striped table-hover" data-paging="true" data-sorting="true" data-filtering="true">
                 <thead>
                     <tr>
-                        <th width="90%">Intent</th>
+                        <th width="90%">Category</th>
                         <th data-filterable="false" data-sortable="false"></th>
                     </tr>
                 </thead>
@@ -158,7 +158,7 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title"><b>Submit Intent</b></h4>
+                        <h4 class="modal-title"><b>Submit Category</b></h4>
                     </div>
                     <div class="modal-body">
                         <div class="wrapper">
@@ -183,7 +183,7 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title"><span class="glyphicon glyphicon-trash"></span>&nbsp;<b>Delete Intent</b></h4>
+                        <h4 class="modal-title"><span class="glyphicon glyphicon-trash"></span>&nbsp;<b>Delete Category</b></h4>
                     </div>
                     <%--Modal Content--%>
                     <div class="modal-body">

@@ -128,7 +128,7 @@
                     <div class="wrapper">
                         <span style="font-size: 75px;" class="glyphicon glyphicon-asterisk"></span>
                         <br />
-                        <h3>Intents</h3>
+                        <h3>Categories</h3>
                         <br />
                     </div>
                 </div>
