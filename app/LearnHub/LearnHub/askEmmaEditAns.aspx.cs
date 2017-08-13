@@ -55,7 +55,14 @@ namespace LearnHub
 
             ChatBotAnswerDAO cbaDAO = new ChatBotAnswerDAO();
             int answerID = Convert.ToInt32(Request.QueryString["id"]);
-            cbaDAO.updateChatBotAnswer(txtAnswers.Text, null, ddlIntent.SelectedValue, answerID);
+            if (txtEntity.Text.Equals(""))
+            {
+                cbaDAO.updateChatBotAnswer(txtAnswers.Text, null, ddlIntent.SelectedValue, answerID);
+            }
+            else
+            {
+                cbaDAO.updateChatBotAnswer(txtAnswers.Text, txtEntity.Text, ddlIntent.SelectedValue, answerID);
+            }
             Response.Redirect("/askEmmaAddAns.aspx");
         }
 

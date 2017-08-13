@@ -570,5 +570,36 @@ namespace LearnHub.AppCode.dao
                 conn.Close();
             }
         }
+        public List<int> getAllCourseLinkedToPrerequisite(int prereq_courseID)
+        {
+            SqlConnection conn = new SqlConnection();
+            List<int> toReturn = new List<int>();
+            try
+            {
+                conn = new SqlConnection();
+                string connstr = ConfigurationManager.ConnectionStrings["DBConnectionString"].ToString();
+                conn.ConnectionString = connstr;
+                conn.Open();
+                SqlCommand comm = new SqlCommand();
+                comm.Connection = conn;
+                comm.CommandText = "select elearn_courseID from [Elearn_prerequisites] where prereq_courseID =@prereq_courseID";
+                comm.Parameters.AddWithValue("@prereq_courseID", prereq_courseID);
+                SqlDataReader dr = comm.ExecuteReader();
+                while (dr.Read())
+                {
+                    toReturn.Add((int)dr["elearn_courseID"]);
+                }
+                dr.Close();
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                conn.Close();
+            }
+            return toReturn;
+        }
     }
 }

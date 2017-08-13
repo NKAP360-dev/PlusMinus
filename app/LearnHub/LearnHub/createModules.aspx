@@ -207,12 +207,13 @@
                 
                     <div class="col-lg-5">
                         <div id="preq" class="collapse">
-                        <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:DBConnectionString %>" SelectCommand="SELECT * FROM [Elearn_course] ec INNER JOIN [Elearn_courseCategory] ecc ON ec.categoryID = ecc.categoryID WHERE ec.status='Open' and ec.start_date &lt;= getDate()"></asp:SqlDataSource>
-                        <asp:GridView ID="gvPrereq" runat="server" AutoGenerateColumns="False" DataKeyNames="elearn_courseID,categoryID1" DataSourceID="SqlDataSource1" AllowPaging="True" CssClass="table table-striped table-hover" GridLines="None">
+                        <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:DBConnectionString %>">
+                        </asp:SqlDataSource>
+                        <asp:GridView ID="gvPrereq" runat="server" AutoGenerateColumns="False" DataKeyNames="elearn_courseID,categoryID1" AllowPaging="True" CssClass="table table-striped table-hover" GridLines="None" OnRowCommand="gvPrereq_RowCommand" EmptyDataText="There are no courses available to choose from.">
                             <Columns>
                                 <asp:TemplateField>
                                     <ItemTemplate>
-                                        +
+                                        <asp:LinkButton ID="btnAdd" runat="server" CausesValidation="false" Text="+" CommandArgument='<%# Eval("elearn_courseID") %>'/>
                                     </ItemTemplate>
                                 </asp:TemplateField>
                                 <asp:BoundField DataField="elearn_courseName" HeaderText="Module Name" SortExpression="elearn_courseName" />
@@ -222,12 +223,32 @@
                             </Columns>
                         </asp:GridView>
                           <h6><em>Click on "+" to select module as a prerequisite module</em></h6>
-                          <h6><em>Click on "-" to remove module as a prerequisite module</em></h6>
 
 
                             <br />
                         </div>
-                        <table class="table table-striped table-hover">
+                         <asp:SqlDataSource ID="SqlDataSourcePrereqCart" runat="server" ConnectionString="<%$ ConnectionStrings:DBConnectionString %>">
+                        </asp:SqlDataSource>
+                        <asp:GridView ID="gvPrereqCart" runat="server" CssClass="table table-striped table-hover" DataKeyNames="elearn_courseID" EmptyDataText="Please choose a prerequisite first" GridLines="None" AutoGenerateColumns="False" OnRowCommand="gvPrereqCart_RowCommand">
+                            <Columns>
+                                <asp:TemplateField>
+                                    <ItemTemplate>
+                                        <asp:LinkButton ID="btnRemove" runat="server" CausesValidation="false" Text="-" CommandArgument='<%# Eval("elearn_courseID") %>'/>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                                <asp:TemplateField>
+                                    <ItemTemplate>
+                                        <input type="hidden" name="elearn_courseID" value='<%# Eval("elearn_courseID") %>' />
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                                <asp:BoundField DataField="elearn_courseName" HeaderText="Name" SortExpression="elearn_courseName" />
+                                <asp:BoundField DataField="elearn_courseProvider" HeaderText="Provider" SortExpression="elearn_courseProvider" />
+                                <asp:BoundField DataField="hoursAwarded" HeaderText="Learning Hours" SortExpression="hoursAwarded" />
+                            </Columns>
+                            
+                        </asp:GridView>
+
+                        <%--<table class="table table-striped table-hover">
                 <thead>
                     <tr>
                         <th></th>
@@ -242,7 +263,7 @@
                         <td>Please replace me with gridview</td>
                     </tr>
                     </tbody>
-                    </table>
+                    </table>--%>
                        <h6><em>Click on "Module Prerequisite Selection" to choose prerequisite modules</em></h6>
                     </div>
                     </div>
