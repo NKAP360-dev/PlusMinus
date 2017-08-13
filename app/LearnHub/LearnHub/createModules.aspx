@@ -50,6 +50,154 @@
             });
         });
 
+
+
+        function ValidateModuleDescription(sender, args) {
+            console.log("validateModuleDesc");
+            var moduleDescription = document.getElementById("<%= descriptionModuleInput.ClientID %>").value;
+            console.log("moduledesc" + moduleDescription);
+            if (moduleDescription == "") {
+                console.log("no desc");
+                args.IsValid = false;
+            }
+            else {
+                console.log("Yes desc");
+                args.IsValid = true;
+            }
+        }
+
+        function ValidateHours(sender, args) {
+            console.log("validateHours");
+            var hours = document.getElementById("<%= hoursInput.ClientID %>").value;
+            console.log("hours " + hours);
+            if (hours >= 0 && hours < 100000) {
+                args.IsValid = true;
+
+            }
+            else {
+                args.IsValid = false;
+            }
+        }
+
+        function ValidateHoursFormat(sender, args) {
+            console.log("validateHoursFormat");
+            var hours = document.getElementById("<%= hoursInput.ClientID %>").value;
+            console.log("hours " + hours);
+            if (isNaN(hours)) {
+                args.IsValid = false;
+                console.log("NaN");
+                return false;
+            }
+            else {
+                if (hours.indexOf('.') != -1) {
+                    console.log("has .");
+                    var indexes = hours.split(".");
+                    if (indexes[1].length > 1) {
+                        console.log("more than 1 dec");
+                        console.log(indexes[1].length);
+                        args.IsValid = false;
+                        return false;
+                    }
+                    else {
+                        console.log("1 dec");
+                        console.log(indexes[1]);
+                        console.log(indexes[1].length);
+                        args.IsValid = true;
+                        return true;
+                    }
+                }
+                else {
+                    console.log("is whole number");
+                    args.IsValid = true;
+                    return true;
+                }
+            }
+            if (hours >= 0 && hours < 100000) {
+                args.IsValid = true;
+                return true;
+
+            }
+            else {
+                args.IsValid = false;
+            }
+        }
+
+        function compareDates(sender, args) {
+            var toDate = document.getElementById("<%=toDateInput.ClientID%>").value;
+            var fromDate = document.getElementById("<%=fromDateInput.ClientID%>").value;
+            console.log(toDate);
+            console.log(fromDate);
+            if (toDate == "" || fromDate == "") {
+                args.IsValid = true;
+                return true;
+            }
+            else {
+                var compare = fromDate.split("/");
+
+                var cmonth = compare[0] - 1;
+                if (cmonth.length == 1) {
+                    cmonth = "0" + cmonth;
+                }
+                console.log(cmonth);
+                var cday = compare[1];
+                if (cday.length == 1) {
+                    cday = "0" + cday;
+                }
+                console.log(cday);
+                var cyear = compare[2];
+                console.log(cyear);
+                var fromDateFinal = new Date();
+                fromDateFinal.setYear(cyear);
+                fromDateFinal.setMonth(cmonth);
+                fromDateFinal.setDate(cday);
+                console.log(fromDateFinal);
+
+                var input = toDate.split("/");
+                var month = input[0] - 1;
+                if (month.length == 1) {
+                    month = "0" + month;
+                }
+                var day = input[1];
+                if (day.length == 1) {
+                    day = "0" + day;
+                }
+                var year = input[2];
+                var toDateFinal = new Date();
+                toDateFinal.setYear(year);
+                toDateFinal.setMonth(month);
+                toDateFinal.setDate(day);
+                console.log(toDateFinal);
+                if (toDateFinal <= fromDateFinal) {
+                    args.IsValid = false;
+                    return false;
+                }
+                else {
+                    args.IsValid = true;
+                    return true;
+                }
+            }
+        }
+
+        function checkForm_Clicked(source, args) {
+
+            console.log("Checkform");
+            Page_ClientValidate('ValidateForm');
+            //Page_ClientValidate();
+
+            if (!Page_IsValid) {
+                document.getElementById('<%= lblErrorMsgFinal.ClientID %>').style.display = 'inherit';
+                document.getElementById('<%= lblErrorMsgFinal.ClientID %>').innerHTML = "You have not filled up all of the required fields";
+                //Page_ClientValidate('summaryGroup');
+                document.getElementById('<%= cfmSubmit.ClientID %>').disabled = true;
+                console.log("The end");
+            }
+            else {
+                document.getElementById('<%= lblErrorMsgFinal.ClientID %>').innerHTML = "";
+                document.getElementById('<%= cfmSubmit.ClientID %>').disabled = false;
+            }
+            return false;
+        }
+
     </script>
     <style>
         .form-horizontal .control-label-left {
@@ -139,8 +287,11 @@
                         <%--Compulsory/Leadership/Professional--%>
                         <asp:Label ID="moduleTypeLabel" runat="server" CssClass="col-lg-2 control-label" Text="Module Category"></asp:Label></strong>
                     <div class="col-lg-5">
-                        <asp:DropDownList ID="moduleType" runat="server" CssClass="form-control" placeholder="Choose Category *" DataSourceID="SqlDataSourceCourseCategory" DataTextField="category" DataValueField="categoryID"></asp:DropDownList>
+                        <asp:DropDownList ID="moduleType" runat="server" CssClass="form-control" placeholder="Choose Category *" DataSourceID="SqlDataSourceCourseCategory" DataTextField="category" DataValueField="categoryID" AppendDataBoundItems="True">
+                            <asp:ListItem Text="--Select--" Selected="true" Value="0"></asp:ListItem>
+                        </asp:DropDownList>
                         <asp:SqlDataSource ID="SqlDataSourceCourseCategory" runat="server" ConnectionString="<%$ ConnectionStrings:DBConnectionString %>" SelectCommand="SELECT * FROM [Elearn_courseCategory]"></asp:SqlDataSource>
+                        <asp:RequiredFieldValidator ID="rfv_moduleType" runat="server" ControlToValidate="moduleType" ErrorMessage="Please select a Category" InitialValue="0" ForeColor="Red" ValidationGroup="ValidateForm"></asp:RequiredFieldValidator>
                     </div>
                 </div>
 
@@ -149,6 +300,7 @@
                         <asp:Label ID="nameOfModuleLabel" runat="server" CssClass="col-lg-2 control-label" Text="Name of Module"></asp:Label></strong>
                     <div class="col-lg-5">
                         <asp:TextBox ID="nameOfModuleInput" runat="server" CssClass="form-control" placeholder="Module Name"></asp:TextBox>
+                        <asp:RequiredFieldValidator ID="rfv_nameOfModuleInput" runat="server" ErrorMessage="Please enter a Module Name" ControlToValidate="nameOfModuleInput" ForeColor="Red" ValidationGroup="ValidateForm"></asp:RequiredFieldValidator>
                     </div>
                 </div>
 
@@ -158,7 +310,9 @@
                     <div class="col-lg-5">
                         <%--<asp:TextBox ID="descriptionModuleInput" TextMode="multiline" Columns="50" Rows="5" runat="server" CssClass="form-control" placeholder="Enter module description"></asp:TextBox>--%>
                         <CKEditor:CKEditorControl ID="descriptionModuleInput" runat="server"></CKEditor:CKEditorControl>
+                        <asp:CustomValidator ID="cv_descriptionModuleInput" runat="server" EnableClientScript="true" ErrorMessage="Please input a Module Description" ClientValidationFunction="ValidateModuleDescription" ForeColor="Red" ValidationGroup="ValidateForm"></asp:CustomValidator>
                     </div>
+                    
                 </div>
 
                 <div class="form-group required">
@@ -169,6 +323,11 @@
                             <asp:TextBox ID="hoursInput" runat="server" CssClass="form-control" placeholder="No. of Hours"></asp:TextBox>
                             <span class="input-group-addon">hours </span>
                         </div>
+                        <asp:RequiredFieldValidator ID="rfv_hoursInput" runat="server" ErrorMessage="Please Input the Number of Learning Hours" ControlToValidate="hoursInput" ForeColor="Red" ValidationGroup="ValidateForm"></asp:RequiredFieldValidator>
+                        <br />    
+                        <asp:CustomValidator ID="cv_hoursInputFormat" runat="server" EnableClientScript="true" ErrorMessage="Please enter hours in either whole number or with only one decimal place e.g (15.5)" ClientValidationFunction="ValidateHoursFormat" ForeColor="Red" ValidationGroup="ValidateForm"></asp:CustomValidator>
+                        <br />
+                        <asp:CustomValidator ID="cv_hoursInput" runat="server" EnableClientScript="true" ErrorMessage="Please enter a value between 0.0 and 100000.0" ClientValidationFunction="ValidateHours" ForeColor="Red" ValidationGroup="ValidateForm"></asp:CustomValidator>
                     </div>
                 </div>
 
@@ -194,7 +353,12 @@
                             <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i>
                             </span>
                         </div>
-                    </div>
+                        <asp:RequiredFieldValidator ID="rfv_fromDateInput" ControlToValidate="fromDateInput" runat="server" ErrorMessage="Please enter the Start Date of the Module" ForeColor="Red" ValidationGroup="ValidateForm" />
+                        <br />
+                        <asp:RequiredFieldValidator ID="rfv_toDateInput" ControlToValidate="toDateInput" runat="server" ErrorMessage="Please enter the End Date of the Module" ForeColor="Red" ValidationGroup="ValidateForm" />
+                        <br />
+                        <asp:CustomValidator ID="cv_dateInput" runat="server" ClientValidationFunction="compareDates" ErrorMessage="Please enter a Module Start Date that is Before the Module End Date." ForeColor="Red" ValidationGroup="ValidateForm"></asp:CustomValidator>
+                     </div>
                     <br />
 
                 </div>
@@ -296,7 +460,7 @@
                 <div class="form-group">
                     <br />
                     <div class="wrapper">
-                        <asp:Button ID="submitBtn" CssClass="btn btn-primary" runat="server" Text="Submit" data-toggle="modal" href="#submitModal" OnClientClick="return false;" />
+                        <asp:Button ID="submitBtn" CssClass="btn btn-primary" runat="server" Text="Submit" data-toggle="modal" href="#submitModal" OnClientClick="return checkForm_Clicked();" CausesValidation="True" UseSubmitBehavior="False" />
                     </div>
                 </div>
 
@@ -312,6 +476,8 @@
                             <div class="modal-body">
                                 <div class="wrapper">
                                     <h4>Are you sure you want to submit?</h4>
+                                    <br />
+                                    <asp:Label ID="lblErrorMsgFinal" runat="server" CssClass="text-danger" Visible="True"></asp:Label>
                                     <br />
                                     <asp:Button ID="cfmSubmit" CssClass="btn btn-primary" runat="server" OnClick="submitBtn_Click" Text="Submit" />
                                     <asp:Button ID="Button2" CssClass="btn btn-default" runat="server" class="close" data-dismiss="modal" Text="Go Back" />

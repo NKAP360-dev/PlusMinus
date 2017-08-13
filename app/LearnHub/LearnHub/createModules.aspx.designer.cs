@@ -40,6 +40,15 @@ namespace LearnHub {
         protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSourceCourseCategory;
         
         /// <summary>
+        /// rfv_moduleType control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfv_moduleType;
+        
+        /// <summary>
         /// nameOfModuleLabel control.
         /// </summary>
         /// <remarks>
@@ -56,6 +65,15 @@ namespace LearnHub {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox nameOfModuleInput;
+        
+        /// <summary>
+        /// rfv_nameOfModuleInput control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfv_nameOfModuleInput;
         
         /// <summary>
         /// descriptionModuleLabel control.
@@ -76,6 +94,15 @@ namespace LearnHub {
         protected global::CKEditor.NET.CKEditorControl descriptionModuleInput;
         
         /// <summary>
+        /// cv_descriptionModuleInput control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CustomValidator cv_descriptionModuleInput;
+        
+        /// <summary>
         /// hoursLabel control.
         /// </summary>
         /// <remarks>
@@ -92,6 +119,33 @@ namespace LearnHub {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox hoursInput;
+        
+        /// <summary>
+        /// rfv_hoursInput control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfv_hoursInput;
+        
+        /// <summary>
+        /// cv_hoursInputFormat control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CustomValidator cv_hoursInputFormat;
+        
+        /// <summary>
+        /// cv_hoursInput control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CustomValidator cv_hoursInput;
         
         /// <summary>
         /// Label1 control.
@@ -139,6 +193,33 @@ namespace LearnHub {
         protected global::System.Web.UI.WebControls.TextBox toDateInput;
         
         /// <summary>
+        /// rfv_fromDateInput control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfv_fromDateInput;
+        
+        /// <summary>
+        /// rfv_toDateInput control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfv_toDateInput;
+        
+        /// <summary>
+        /// cv_dateInput control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CustomValidator cv_dateInput;
+        
+        /// <summary>
         /// SqlDataSource1 control.
         /// </summary>
         /// <remarks>
@@ -182,6 +263,15 @@ namespace LearnHub {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button submitBtn;
+        
+        /// <summary>
+        /// lblErrorMsgFinal control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblErrorMsgFinal;
         
         /// <summary>
         /// cfmSubmit control.
