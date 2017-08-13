@@ -148,31 +148,22 @@ namespace LearnHub {
         protected global::System.Web.UI.WebControls.TextBox toDateInput;
         
         /// <summary>
-        /// preqModuleLabel control.
+        /// btnAdd control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label preqModuleLabel;
+        protected global::System.Web.UI.WebControls.LinkButton btnAdd;
         
         /// <summary>
-        /// SqlDataSource1 control.
+        /// btnRemove control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSource1;
-        
-        /// <summary>
-        /// gvPrereq control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvPrereq;
+        protected global::System.Web.UI.WebControls.LinkButton btnRemove;
         
         /// <summary>
         /// submitBtn control.

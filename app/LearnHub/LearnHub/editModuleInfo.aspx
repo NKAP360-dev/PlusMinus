@@ -186,53 +186,53 @@
                 <%--Preq--%>
                 <div class="form-group">
                     <strong>
-                        <asp:Label ID="preqModuleLabel" runat="server" CssClass="col-lg-2 control-label" Text="Module Pre-requisite"></asp:Label></strong>
+                         <a href="javascript:void(0);" class="col-lg-2 control-label" data-toggle="collapse" data-target="#preq"">Module Prerequisite Selection </a></strong>
+
                     <div class="col-lg-5">
+                        <div id="preq" class="collapse">
+                            <%--Replace from here--%>
+                            <table class="table table-striped table-hover">
+                                <thead>
+                                    <tr>
+                                        <th></th>
+                                        <th>Prequisite Module Name</th>
+                                        <th>Category</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><asp:LinkButton ID="btnAdd" runat="server"><span class="glyphicon glyphicon-plus"></span></asp:LinkButton></td>
+                                        <td>I am not a gridview</td>
+                                        <td>Please replace me with gridview</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <%--to here--%>
+                            <h6><em>Click on "+" to select module as a prerequisite module</em></h6>
 
-                        <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:DBConnectionString %>" SelectCommand="SELECT * FROM [Elearn_course] ec INNER JOIN [Elearn_courseCategory] ecc ON ec.categoryID = ecc.categoryID WHERE ec.status='Open' and ec.start_date &lt;= getDate()"></asp:SqlDataSource>
-                        <asp:GridView ID="gvPrereq" runat="server" AutoGenerateColumns="False" DataKeyNames="elearn_courseID,categoryID1" DataSourceID="SqlDataSource1" AllowPaging="True" CssClass="table table-striped table-hover" GridLines="None" OnPageIndexChanged="gvPrereq_PageIndexChanged">
-                            <Columns>
-                                <asp:TemplateField>
-                                    <ItemTemplate>
-                                        <asp:CheckBox ID="chkboxPrereq" runat="server" />
-                                    </ItemTemplate>
-                                </asp:TemplateField>
-                                <asp:BoundField DataField="elearn_courseName" HeaderText="Module Name" SortExpression="elearn_courseName" />
-                                <asp:BoundField DataField="category" HeaderText="Category" SortExpression="category" />
-                                <asp:BoundField DataField="elearn_courseID" Visible="False" />
-                                <asp:HyperLinkField DataNavigateUrlFields="elearn_courseID" DataNavigateUrlFormatString="viewModuleInfo.aspx?id={0}" Target="_blank" Text="View Details" />
-                            </Columns>
-                        </asp:GridView>
 
-                        <%--<table class="table table-striped table-hover" data-paging="true" data-sorting="true" data-filtering="true">
+                            <br />
+                        </div>
+
+                        <%--Replace from here--%>
+                        <table class="table table-striped table-hover">
                             <thead>
                                 <tr>
-                                    <th data-filterable="false" data-sortable="false">Select</th>
-                                    <th>Module Name</th>
-                                    <th>Module Category</th>
-                                    <th data-filterable="false" data-sortable="false"></th>
+                                    <th></th>
+                                    <th>Prequisite Module Name</th>
+                                    <th>Category</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>
-                                        <input id="checkbox1" type="checkbox" /></td>
-                                    <td>Column content</td>
-                                    <td>Column content</td>
-                                        <asp:LinkButton ID="LinkButton2" CssClass="btn btn-success btn-sm pull-right" runat="server" Text=""><span class="glyphicon glyphicon-search"></span></asp:LinkButton></td>
-
-                                </tr>
-                                <tr>
-                                     <td>
-                                        <input id="checkbox2" type="checkbox" /></td>
-                                    <td>Column content</td>
-                                    <td>Column content</td>
-                                    <td>
-                                        <asp:LinkButton ID="LinkButton1" CssClass="btn btn-success btn-sm pull-right" runat="server" Text=""><span class="glyphicon glyphicon-search"></span></asp:LinkButton></td>
-
+                                    <td><asp:LinkButton ID="btnRemove" runat="server"><span class="glyphicon glyphicon-minus"></span></asp:LinkButton></td>
+                                    <td>I am not a gridview</td>
+                                    <td>Please replace me with gridview</td>
                                 </tr>
                             </tbody>
-                        </table>--%>
+                        </table>
+                        <%--to here--%>
+                        <h6><em>Click on "Module Prerequisite Selection" to choose prerequisite modules</em></h6>
                     </div>
                 </div>
 
