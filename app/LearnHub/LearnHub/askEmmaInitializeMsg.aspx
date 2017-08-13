@@ -41,6 +41,9 @@
     <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.24/themes/smoothness/jquery-ui.css" />
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.24/jquery-ui.min.js"></script>
     <script type="text/javascript">
+
+        var unsaved = false;
+
         $(function () {
             $("[id*=gvMessages]").sortable({
                 items: 'tr:not(tr:first-child)',
@@ -49,16 +52,32 @@
                 dropOnEmpty: false,
                 start: function (e, ui) {
                     ui.item.addClass("selected");
+                    unsaved = true;
                 },
                 stop: function (e, ui) {
                     ui.item.removeClass("selected");
+                    unsaved = true;
                 },
                 receive: function (e, ui) {
                     $(this).find("tbody").append(ui.item);
+                    unsaved = true;
                 }
             });
         });
 
+        function btnSaveClick() {
+            unsaved = false;
+        }
+
+        $(document).ready(function () {
+            function unloadPage() {
+                if (unsaved) {
+                    return "You have unsaved changes on this page. Do you want to leave this page and discard your changes or stay on this page?";
+                }
+            }
+
+            window.onbeforeunload = unloadPage;
+        });
 
         $(document).ready(function () {
             $("[data-toggle='tooltip']").tooltip();
@@ -144,7 +163,7 @@
 
             <div class="wrapper">
                 <div class="form-group">
-                    <asp:LinkButton ID="btnSave" CssClass="btn btn-success" runat="server" OnClick="btnSave_Click">Save Order</asp:LinkButton>
+                    <asp:LinkButton ID="btnSave" CssClass="btn btn-success" runat="server" OnClientClick="btnSaveClick()" OnClick="btnSave_Click">Save Order</asp:LinkButton>
                     <br />
                 </div>
                 <strong>

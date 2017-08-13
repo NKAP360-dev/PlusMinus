@@ -44,7 +44,7 @@ namespace LearnHub
                 lblCourseName.Text = current.getCourseName();
                 lblCourseDescription.Text = current.getDescription();
                 hoursOutput.Text = current.getHoursAwarded().ToString();
-                txtTargetAudience.Text = current.getTargetAudience();
+                lblTargetAudience.Text = current.getTargetAudience();
             }
         }
 
@@ -98,7 +98,7 @@ namespace LearnHub
         {
             int courseID = Convert.ToInt32(Request.QueryString["id"]);
             Course_elearnDAO ceDAO = new Course_elearnDAO();
-            ceDAO.updateCourseTargetAudience(courseID, txtTargetAudience.Text);
+            //ceDAO.updateCourseTargetAudience(courseID, txtTargetAudience.Text);
             Response.Redirect("/viewModuleInfo.aspx?id=" + courseID);
         }
     }

@@ -120,11 +120,11 @@
                             </div>
                             <div class="panel-body">
                                 <div class="collapse" id="editDetails">
-                                    <h4><strong>Edit Details</strong></h4>
+                                    <h4><strong>Edit Other Details</strong></h4>
                                     <fieldset>
                                         <div class="form-group">
                                                 <div class="col-lg-12">
-                                            <asp:TextBox ID="txtTargetAudience" CssClass="form-control" placeholder="Target Audience" runat="server" TextMode="MultiLine"></asp:TextBox>                                    
+                                            <asp:TextBox ID="txtOtherDetails" CssClass="form-control" placeholder="Other Details" runat="server" TextMode="MultiLine"></asp:TextBox>                                    
                                             </div></div>
                                         <div class="form-group">
                                             <div class="col-lg-10">
@@ -136,17 +136,20 @@
 
                                     <hr />
                                 </div>
+                                <b>Prerequisite</b><br />
+                                <ul><li>hi..</li>
+                                    <li>generate...</li>
+                                    <li>me...</li>
+                                </ul>
                                 <b>Learning Hours</b><br />
                                 <asp:Label ID="hoursOutput" runat="server" Text=""></asp:Label>
                                 <br />
                                 <br />
                                 <b>Target Audience</b><br />
-                                <%
-                                    int cID = Convert.ToInt32(Request.QueryString["id"]);
-                                    Course_elearnDAO courseElearnDAO = new Course_elearnDAO();
-                                    current = courseElearnDAO.get_course_by_id(cID);
-                                    Response.Write(current.getTargetAudience());
-                                %>
+                                <asp:Label ID="lblTargetAudience" runat="server"></asp:Label>
+                                <br /><br />
+                                <b>Other Details</b><br/>
+                                <asp:Label ID="lblOtherDetails" runat="server" Text="whatever is in that text box will appear here"></asp:Label>
                             </div>
                         </div>
                     </div>
