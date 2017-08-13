@@ -601,5 +601,29 @@ namespace LearnHub.AppCode.dao
             }
             return toReturn;
         }
+        public void deletePrerequisitesByCourseID(int elearn_courseID)
+        {
+            SqlConnection conn = new SqlConnection();
+            try
+            {
+                conn = new SqlConnection();
+                string connstr = ConfigurationManager.ConnectionStrings["DBConnectionString"].ToString();
+                conn.ConnectionString = connstr;
+                conn.Open();
+                SqlCommand comm = new SqlCommand();
+                comm.Connection = conn;
+                comm.CommandText = "DELETE FROM [Elearn_prerequisites] WHERE elearn_courseID=@elearn_courseID";
+                comm.Parameters.AddWithValue("@elearn_courseID", elearn_courseID);
+                comm.ExecuteNonQuery();
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
     }
 }

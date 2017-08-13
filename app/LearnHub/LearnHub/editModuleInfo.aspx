@@ -190,48 +190,47 @@
 
                     <div class="col-lg-5">
                         <div id="preq" class="collapse">
-                            <%--Replace from here--%>
-                            <table class="table table-striped table-hover">
-                                <thead>
-                                    <tr>
-                                        <th></th>
-                                        <th>Prequisite Module Name</th>
-                                        <th>Category</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td><asp:LinkButton ID="btnAdd" runat="server"><span class="glyphicon glyphicon-plus"></span></asp:LinkButton></td>
-                                        <td>I am not a gridview</td>
-                                        <td>Please replace me with gridview</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                            <%--to here--%>
+                            <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:DBConnectionString %>">
+                        </asp:SqlDataSource>
+                        <asp:GridView ID="gvPrereq" runat="server" AutoGenerateColumns="False" DataKeyNames="elearn_courseID,categoryID1" AllowPaging="True" CssClass="table table-striped table-hover" GridLines="None" OnRowCommand="gvPrereq_RowCommand" EmptyDataText="There are no courses available to choose from.">
+                            <Columns>
+                                <asp:TemplateField>
+                                    <ItemTemplate>
+                                        <asp:LinkButton ID="btnAdd" runat="server" CausesValidation="false" CommandArgument='<%# Eval("elearn_courseID") %>'><span class="glyphicon glyphicon-plus"></span></asp:LinkButton>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                                <asp:BoundField DataField="elearn_courseName" HeaderText="Module Name" SortExpression="elearn_courseName" />
+                                <asp:BoundField DataField="category" HeaderText="Category" SortExpression="category" />
+                                <asp:BoundField DataField="elearn_courseID" Visible="False" />
+                                <asp:HyperLinkField DataNavigateUrlFields="elearn_courseID" DataNavigateUrlFormatString="viewModuleInfo.aspx?id={0}" Target="_blank" Text="View Details" />
+                            </Columns>
+                        </asp:GridView>
                             <h6><em>Click on "+" to select module as a prerequisite module</em></h6>
 
 
                             <br />
                         </div>
 
-                        <%--Replace from here--%>
-                        <table class="table table-striped table-hover">
-                            <thead>
-                                <tr>
-                                    <th></th>
-                                    <th>Prequisite Module Name</th>
-                                    <th>Category</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td><asp:LinkButton ID="btnRemove" runat="server"><span class="glyphicon glyphicon-minus"></span></asp:LinkButton></td>
-                                    <td>I am not a gridview</td>
-                                    <td>Please replace me with gridview</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        <%--to here--%>
+                        <asp:SqlDataSource ID="SqlDataSourcePrereqCart" runat="server" ConnectionString="<%$ ConnectionStrings:DBConnectionString %>">
+                        </asp:SqlDataSource>
+                        <asp:GridView ID="gvPrereqCart" runat="server" CssClass="table table-striped table-hover" DataKeyNames="elearn_courseID" EmptyDataText="Please choose a prerequisite first" GridLines="None" AutoGenerateColumns="False" OnRowCommand="gvPrereqCart_RowCommand">
+                            <Columns>
+                                <asp:TemplateField>
+                                    <ItemTemplate>
+                                        <asp:LinkButton ID="btnRemove" runat="server" CausesValidation="false" CommandArgument='<%# Eval("elearn_courseID") %>'><span class="glyphicon glyphicon-minus"></span></asp:LinkButton>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                                <asp:TemplateField>
+                                    <ItemTemplate>
+                                        <input type="hidden" name="elearn_courseID" value='<%# Eval("elearn_courseID") %>' />
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                                <asp:BoundField DataField="elearn_courseName" HeaderText="Name" SortExpression="elearn_courseName" />
+                                <asp:BoundField DataField="elearn_courseProvider" HeaderText="Provider" SortExpression="elearn_courseProvider" />
+                                <asp:BoundField DataField="hoursAwarded" HeaderText="Learning Hours" SortExpression="hoursAwarded" />
+                            </Columns>
+                            
+                        </asp:GridView>
                         <h6><em>Click on "Module Prerequisite Selection" to choose prerequisite modules</em></h6>
                     </div>
                 </div>
