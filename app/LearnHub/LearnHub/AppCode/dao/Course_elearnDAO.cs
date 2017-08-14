@@ -12,6 +12,59 @@ namespace LearnHub.AppCode.dao
 {
     public class Course_elearnDAO
     {
+
+        public void activateCourse(int courseID) // Update.
+        {
+            SqlConnection conn = new SqlConnection();
+
+            try
+            {
+                conn = new SqlConnection();
+                string connstr = ConfigurationManager.ConnectionStrings["DBConnectionString"].ToString();
+                conn.ConnectionString = connstr;
+                conn.Open();
+                SqlCommand comm = new SqlCommand();
+                comm.Connection = conn;
+                comm.CommandText =
+                    "Update [Elearn_course] SET status='Open' WHERE elearn_courseID=@courseID";
+                comm.Parameters.AddWithValue("@courseID", courseID);
+                int rowsAffected = comm.ExecuteNonQuery();
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+        public void deactivateCourse(int courseID) // Update.
+        {
+            SqlConnection conn = new SqlConnection();
+
+            try
+            {
+                conn = new SqlConnection();
+                string connstr = ConfigurationManager.ConnectionStrings["DBConnectionString"].ToString();
+                conn.ConnectionString = connstr;
+                conn.Open();
+                SqlCommand comm = new SqlCommand();
+                comm.Connection = conn;
+                comm.CommandText =
+                    "Update [Elearn_course] SET status='Inactive' WHERE elearn_courseID=@courseID";
+                comm.Parameters.AddWithValue("@courseID", courseID);
+                int rowsAffected = comm.ExecuteNonQuery();
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
         public ArrayList get_uploaded_content_by_id(Course_elearn course)
         {
             SqlConnection conn = new SqlConnection();

@@ -172,7 +172,7 @@
                                         </div>
                                         <div class="form-group">
                                             <div class="col-lg-10">
-                                                <asp:Button ID="cfmSubmit" CssClass="btn btn-primary" runat="server" Text="Submit" />
+                                                <asp:Button ID="cfmSubmit" CssClass="btn btn-primary" runat="server" Text="Submit" OnClick ="submitTestimonial_Click"/>
                                             </div>
                                         </div>
 
@@ -180,21 +180,16 @@
 
                                     <hr />
                                 </div>
+                                <%foreach(Testimonial test in testimonials){ %>
                                 <strong>
-                                    <asp:Label ID="lblCommentTitle" runat="server" Text="About the content"></asp:Label></strong>&emsp;<a href="#" data-toggle="modal" data-target="#deleteComment"><span class="label label-danger pull-right"><span class="glyphicon glyphicon-trash"></span></span></a></strong><br />
+                                    <asp:Label ID="lblCommentTitle"><%= test.getTitle() %></asp:Label></strong>&emsp;<a href="#" data-toggle="modal" data-target="#deleteComment"><span class="label label-danger pull-right"><span class="glyphicon glyphicon-trash"></span></span></a></strong><br />
                                 <br />
                                 <blockquote>
-                                    <asp:Label ID="lblCommentBody" runat="server" Text="Needs more in depth explanation."></asp:Label>
-                                    <small>Rafid Aziz</small>
+                                    <asp:Label ID="lblCommentBody"><%= test.getQuote() %></asp:Label>
+                                    <small><%= test.getStaffName()%></small>
                                 </blockquote>
                                 <hr />
-
-                                <strong>
-                                    <asp:Label ID="Label3" runat="server" Text="About this course"></asp:Label></strong>&emsp;<a href="#" data-toggle="modal" data-target="#deleteComment"><span class="label label-danger pull-right"><span class="glyphicon glyphicon-trash"></span></span></a></strong><br />
-                                <br />
-                                <blockquote><asp:Label ID="Label4" runat="server" Text="This is an interesting course"></asp:Label>
-                                    <small>Eugene Tan Wei Hong</small>
-                                </blockquote>                               
+                                <%} %>
                             </div>
                         </div>
                     </div>
@@ -306,6 +301,8 @@
             </div>
         </div>
         <%--Delete Comments Modal--%>
+        <% foreach (Testimonial t in testimonials)
+            { %>
         <div id="deleteComment" class="modal fade" role="dialog">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -318,14 +315,14 @@
                             <h4>Are you sure you want to delete the following comment?</h4>
                             <br />
                             "
-                            <asp:Label ID="Label5" runat="server" Text="Ming Kwang is my idol, but Rafid is my senpai"></asp:Label>"
-
+                            <asp:Label ID="Label5"><%= t.getQuote() %></asp:Label>"                           
                             <br />
                             <br />
                         </div>
                         <div class="modal-footer">
                             <div class="wrapper">
-                                <asp:Button ID="deleteBtn" CssClass="btn btn-danger" runat="server" Text="Delete" />
+                                <% deleteThis = t; %>
+                                <asp:Button ID="deleteBtn" CssClass="btn btn-danger" runat="server" Text="Delete"  OnClick="deleteComment_Click"/>
                                 <asp:Button ID="Button4" CssClass="btn btn-default" runat="server" class="close" data-dismiss="modal" Text="Go Back" />
                             </div>
                         </div>
@@ -333,6 +330,7 @@
                 </div>
             </div>
         </div>
+        <%} %>
 
         <%--Delete Materials Modal--%>
         <div id="deleteMaterials" class="modal fade" role="dialog">

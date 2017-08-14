@@ -284,7 +284,7 @@
                                 <div class="wrapper">
                                     <h4>Are you sure you want to deactivate this module?</h4>
                                     <br />
-                                    <asp:Button ID="btnCfmDeactivate" CssClass="btn btn-warning" runat="server" Text="Deactivate" />
+                                    <asp:Button ID="btnCfmDeactivate" CssClass="btn btn-warning" runat="server" Text="Deactivate" OnClick="btnCfmDeactivate_Click" />
                                     <asp:Button ID="Button2" CssClass="btn btn-default" runat="server" class="close" data-dismiss="modal" Text="Go Back" />
                                     <br />
                                 </div>
@@ -307,7 +307,7 @@
                                 <div class="wrapper">
                                     <h4>Are you sure you want to activate this module?</h4>
                                     <br />
-                                    <asp:Button ID="btnCfmActivate" CssClass="btn btn-success" runat="server" Text="Activate" />
+                                    <asp:Button ID="btnCfmActivate" CssClass="btn btn-success" runat="server" Text="Activate" OnClick ="cfmActivate_Click" />
                                     <asp:Button ID="Button5" CssClass="btn btn-default" runat="server" class="close" data-dismiss="modal" Text="Go Back" />
                                     <br />
                                 </div>

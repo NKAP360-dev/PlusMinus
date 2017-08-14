@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -19,6 +20,8 @@ namespace LearnHub
         protected string desc;
         protected DateTime date;
         protected Course_elearn current;
+        protected ArrayList testimonials;
+        protected Testimonial deleteThis;
         protected void Page_Load(object sender, EventArgs e)
         {
             //Response.Write(DateTime.Now.ToShortDateString());
@@ -29,6 +32,8 @@ namespace LearnHub
                 id_str = Request.QueryString["id"];
                 int id_num = int.Parse(id_str);
                 current = cdao.get_course_by_id(id_num);
+                TestimonialDAO t = new TestimonialDAO();
+                testimonials = t.get_testimonials_by_course(current);
             }
             else
             {
@@ -54,7 +59,16 @@ namespace LearnHub
                 }
             }
         }
-
+        protected void submitTestimonial_Click(object sender, EventArgs e)
+        {
+            string byWho = txtByWho.Text;
+            string quote = CKEditorControl2.Text;
+            string title = txtTestimonial.Text;
+            TestimonialDAO tdao = new TestimonialDAO();
+            Boolean res = tdao.create_testimonial(new Testimonial(byWho, quote, (User)Session["currentUser"], current, title));
+            int courseID = Convert.ToInt32(Request.QueryString["id"]);
+            Response.Redirect("/viewModuleInfo.aspx?id=" + courseID);
+        }
         protected void moduleInfo_Click(object sender, EventArgs e)
         {
             viewInfo.Visible = true;
@@ -88,6 +102,16 @@ namespace LearnHub
             }
             
         }
+
+        protected void deleteComment_Click(object sender, EventArgs e)
+        {
+            TestimonialDAO tdao = new TestimonialDAO();
+            //string res = hdnResultValue.Value;
+            Boolean done = tdao.delete_testimonial(deleteThis);
+            int courseID = Convert.ToInt32(Request.QueryString["id"]);
+            Response.Redirect("/viewModuleInfo.aspx?id=" + courseID);
+        }
+
         protected void GridView1_RowCommand(object sender,
            GridViewCommandEventArgs e)
         {

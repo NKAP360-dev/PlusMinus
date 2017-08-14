@@ -88,6 +88,47 @@ namespace LearnHub
                 }
             }
         }
+        protected void btnCfmDeactivate_Click(object sender, EventArgs e)
+        {
+            Course_elearnDAO ceDAO = new Course_elearnDAO();
+            Course_elearn currentCourse = ceDAO.get_course_by_id(Convert.ToInt32(Request.QueryString["id"]));
+            ceDAO.deactivateCourse(Convert.ToInt32(Request.QueryString["id"]));
+            int cat = currentCourse.getCategoryID();
+            if (cat == 1)
+            {
+                Response.Redirect($"/viewAllModule.aspx?module=compulsory");
+            }
+            else if (cat == 2)
+            {
+                Response.Redirect($"/viewAllModule.aspx?module=leadership");
+            }
+            else
+            {
+                Response.Redirect($"/viewAllModule.aspx?module=professional");
+            }
+
+        }
+
+        protected void cfmActivate_Click(object sender, EventArgs e)
+        {
+            Course_elearnDAO ceDAO = new Course_elearnDAO();
+            Course_elearn currentCourse = ceDAO.get_course_by_id(Convert.ToInt32(Request.QueryString["id"]));
+            ceDAO.activateCourse(Convert.ToInt32(Request.QueryString["id"]));
+            int cat = currentCourse.getCategoryID();
+            if (cat == 1)
+            {
+                Response.Redirect($"/viewAllModule.aspx?module=compulsory");
+            }
+            else if (cat == 2)
+            {
+                Response.Redirect($"/viewAllModule.aspx?module=leadership");
+            }
+            else
+            {
+                Response.Redirect($"/viewAllModule.aspx?module=professional");
+            }
+
+        }
 
         protected void cfmSubmit_Click(object sender, EventArgs e)
         {
