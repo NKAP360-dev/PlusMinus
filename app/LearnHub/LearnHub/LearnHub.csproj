@@ -476,6 +476,13 @@
     <Compile Include="viewApprovedTRF.aspx.designer.cs">
       <DependentUpon>viewApprovedTRF.aspx</DependentUpon>
     </Compile>
+    <Compile Include="viewCreatedModules.aspx.cs">
+      <DependentUpon>viewCreatedModules.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="viewCreatedModules.aspx.designer.cs">
+      <DependentUpon>viewCreatedModules.aspx</DependentUpon>
+    </Compile>
     <Compile Include="viewModuleInfo.aspx.cs">
       <DependentUpon>viewModuleInfo.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -864,6 +871,7 @@
     <Content Include="uploadLearningMaterials.aspx" />
     <Content Include="viewAllModule.aspx" />
     <Content Include="viewApprovedTRF.aspx" />
+    <Content Include="viewCreatedModules.aspx" />
     <Content Include="viewModuleInfo.aspx" />
     <Content Include="WebForm1.aspx" />
     <Content Include="bootstrap\fonts\glyphicons-halflings-regular.eot" />

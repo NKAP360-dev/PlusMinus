@@ -32,6 +32,13 @@
             background-color: #576777;
         }
 
+         .breadcrumb {
+            padding-top: 15px;
+            margin-bottom: 0px;
+            list-style: none;
+            background-color: white;
+            border-radius: 0px;
+        }
 
     </style>
     <link href="/Scripts/footable.bootstrap.min.css" rel="stylesheet" />
@@ -64,33 +71,39 @@
     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-        <%
-        User currentUser = (User)Session["currentUser"];
-        if (currentUser != null && (currentUser.getRole().Equals("course creator") || currentUser.getRole().Equals("superuser")))
-        {
-    %>
-    <div class="configure">
-        <a href="#" id="config" onclick="configuration()"><span class="label label-default"><span class="glyphicon glyphicon-cog"></span>Configuration Menu</span></a>
-    </div>
-    <br />
-    <div class="configure">
-        <ul class="list-group" id="menu" style="display: none;">
-            <a href="createModules.aspx">
-                <li class="list-group-item"><span class="glyphicon glyphicon-plus"></span>&emsp;Create New Modules
-                </li>
-            </a>
-            <a href="viewCreatedModules.aspx">
-                <li class="list-group-item"><span class="glyphicon glyphicon-book"></span>&emsp; My Created Modules
-                </li>
-            </a>
-        </ul>
-    </div>
-    <%
-        }
-    %>
+         <ul class="breadcrumb">
+        <li><a href="home.aspx">Home</a></li>
+              <li><a href="viewAllModule.aspx">Module</a></li>
+        <li class="active">View My Created Modules</li>
+    </ul>
     <div class="container">
-        <h1>View My Created Modules</h1>
-
+        <h1>View My Created Modules
+                 <%
+                 User currentUser = (User)Session["currentUser"];
+                 if (currentUser != null && (currentUser.getRole().Equals("course creator") || currentUser.getRole().Equals("superuser")))
+                 {
+             %>
+            <a href="#" id="config" onclick="configuration()" class="btn btn-default pull-right"><span class="glyphicon glyphicon-option-horizontal"></span></a>
+        </h1>
+         <div class="configure">
+            <ul class="list-group" id="menu" style="display: none;">
+                <a href="createModules.aspx">
+                    <li class="list-group-item"><span class="glyphicon glyphicon-book"></span>&emsp;Create New Modules
+                    </li>
+                </a>
+                <a href="manageCategories.aspx">
+                    <li class="list-group-item"><span class="glyphicon glyphicon-bookmark"></span>&emsp;Manage Module Categories
+                    </li>
+                </a>
+                <a href="viewCreatedModules.aspx">
+                    <li class="list-group-item"><span class="glyphicon glyphicon-search"></span>&emsp;View My Created Modules
+                    </li>
+                </a>
+            </ul>
+        </div>
+        <%
+            }
+                %>
         <div class="verticalLine"></div>
     </div>
     <div class="container">
@@ -114,36 +127,12 @@
                                 <td>Eugene Pte Ltd</td>
                                 <td>938498234</td>
                                 <td>ksdfkdjsfn</td>
-                                <td><asp:LinkButton ID="btnDelete" CssClass="btn btn-danger btn-sm pull-right" runat="server" Text="" data-toggle="modal" href="#deleteModal"><span class="glyphicon glyphicon-trash"></span></asp:LinkButton>
-                                    <asp:LinkButton ID="btnEdit" CssClass="btn btn-info btn-sm pull-right" runat="server" Text="" href="#"><span class="glyphicon glyphicon-pencil"></span></asp:LinkButton>
+                                <%--Link to editModuleinfo.aspx--%>
+                                    <td><asp:LinkButton ID="btnEdit" CssClass="btn btn-info btn-sm pull-right" runat="server" Text="" href="#"><span class="glyphicon glyphicon-pencil"></span></asp:LinkButton>
                                 </td>
                             </tr>
                         </tbody>
-                    </table>
-
-              <%--Modal for Deletion Confirmation--%>
-        <div id="deleteModal" class="modal fade" role="dialog">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title"><span class="glyphicon glyphicon-trash"></span>&nbsp;<b>Delete Module</b></h4>
-                    </div>
-                    <%--Modal Content--%>
-                    <div class="modal-body">
-                        <div class="wrapper">
-                            <h4>Are you sure you want to delete?</h4>
-                            <br />
-                            <asp:Button ID="cfmDelete" CssClass="btn btn-danger" runat="server" Text="Delete" />
-                            <asp:Button ID="Button2" CssClass="btn btn-default" runat="server" class="close" data-dismiss="modal" Text="Cancel" />
-
-                            <br />
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
+                    </table>       
             </form>
     </div>
 </asp:Content>

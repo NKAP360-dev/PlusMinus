@@ -106,19 +106,21 @@
                                 <asp:TextBox ID="txtIntentInput" runat="server" CssClass="form-control" placeholder="e.g Course Enquiry"></asp:TextBox>
                                 <asp:RequiredFieldValidator ID="rfv_txtIntentInput" runat="server" ErrorMessage="Please enter a Category" ControlToValidate="txtIntentInput" ForeColor="Red" ValidationGroup="ValidateForm"></asp:RequiredFieldValidator>
                             </div>
-
+                        </div>
                         <br />
 
                             <div class="wrapper">
+                               <div class="form-group">
                                 <asp:Button ID="btnSubmit" CssClass="btn btn-primary" runat="server" Text="Submit" data-toggle="modal" href="#submitModal" OnClientClick="$('#myModal').modal();  return checkForm_Clicked();" CausesValidation="True" UseSubmitBehavior="False" />
-                                <br />
+                                </div>
+                                   <br />
                                 <%--<strong>
                                     <asp:Label ID="lblSuccess" runat="server" CssClass="text-success"><span class="glyphicon glyphicon-ok"></span> Added successfully</asp:Label></strong><br />
                                 <strong>
                                     <asp:Label ID="lblError" runat="server" CssClass="text-danger"><span class="glyphicon glyphicon-remove"></span> Something went wrong</asp:Label></strong>
                                 --%>
                             </div>                       
-                    </div>
+                    
                 </fieldset>
                 <div class="verticalLine"></div>
                 <br />

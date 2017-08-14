@@ -109,7 +109,7 @@
                 </div>
 
 
-
+                </div>
                 <br />
 
                 <%--Buttons--%>
@@ -127,7 +127,7 @@
                     </div>
                 </div>
 
-            </div>
+            
         </div>
         <%--Collapsible Table--%>
         <div class="container">

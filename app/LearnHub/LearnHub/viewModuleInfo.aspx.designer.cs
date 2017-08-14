@@ -85,24 +85,6 @@ namespace LearnHub {
         protected global::System.Web.UI.WebControls.Label lblCourseDescription;
         
         /// <summary>
-        /// txtOtherDetails control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtOtherDetails;
-        
-        /// <summary>
-        /// btnSaveDetails control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnSaveDetails;
-        
-        /// <summary>
         /// hoursOutput control.
         /// </summary>
         /// <remarks>
@@ -119,15 +101,6 @@ namespace LearnHub {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblTargetAudience;
-        
-        /// <summary>
-        /// lblOtherDetails control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblOtherDetails;
         
         /// <summary>
         /// txtTestimonial control.

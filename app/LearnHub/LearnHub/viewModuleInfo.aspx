@@ -106,38 +106,13 @@
                         <div class="panel panel-primary">
                             <div class="panel-heading">
                                 <h3 class="panel-title">Details 
-                                <%
-                                    int cseID = Convert.ToInt32(Request.QueryString["id"]);
-                                    User curUser = (User)Session["currentUser"];
-                                    Course_elearnDAO ceDAO = new Course_elearnDAO();
-                                    User cc = ceDAO.get_course_by_id(cseID).getCourseCreator();
-                                    if (curUser != null && (curUser.getUserID() == cc.getUserID() || curUser.getRole().Equals("superuser")))
-                                    {
-                                %>
-                                    <a href="#" data-toggle="collapse" data-target="#editDetails"><span class="label label-default pull-right"><span class="glyphicon glyphicon-pencil"></span></span></a>
-                                <%} %>
                                 </h3>
                             </div>
                             <div class="panel-body">
-                                <div class="collapse" id="editDetails">
-                                    <h4><strong>Edit Other Details</strong></h4>
-                                    <fieldset>
-                                        <div class="form-group">
-                                                <div class="col-lg-12">
-                                            <asp:TextBox ID="txtOtherDetails" CssClass="form-control" placeholder="Other Details" runat="server" TextMode="MultiLine"></asp:TextBox>                                    
-                                            </div></div>
-                                        <div class="form-group">
-                                            <div class="col-lg-10">
-                                                <asp:Button ID="btnSaveDetails" CssClass="btn btn-primary" runat="server" Text="Save" OnClick="btnSaveDetails_Click" />
-                                            </div>
-                                        </div>
-
-                                    </fieldset>
-
-                                    <hr />
-                                </div>
+                                
                                 <b>Prerequisite</b><br />
                                 <%
+                                    Course_elearnDAO ceDAO = new Course_elearnDAO();
                                     int courseID = Convert.ToInt32(Request.QueryString["id"]);
                                     ArrayList allPrereq = ceDAO.getPrereqOfCourse(courseID);
                                     if (allPrereq.Count > 0)
@@ -163,8 +138,6 @@
                                 <b>Target Audience</b><br />
                                 <asp:Label ID="lblTargetAudience" runat="server"></asp:Label>
                                 <br /><br />
-                                <b>Other Details</b><br/>
-                                <asp:Label ID="lblOtherDetails" runat="server" Text="whatever is in that text box will appear here"></asp:Label>
                             </div>
                         </div>
                     </div>
