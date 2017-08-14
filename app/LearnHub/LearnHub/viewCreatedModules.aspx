@@ -60,7 +60,7 @@
         jQuery(function ($) {
             $('.table').footable({
                 "paging": {
-                    "size": 5 <%--Change how many rows per page--%>
+                    "size": 10 <%--Change how many rows per page--%>
                 },
                 "filtering": {
                     "position": "left"
@@ -108,6 +108,14 @@
     </div>
     <div class="container">
         <form runat="server">
+            <%
+                User currentUser = (User)Session["currentUser"];
+                Course_elearnDAO ceDAO = new Course_elearnDAO();
+                Course_elearnCategoryDAO cecDAO = new Course_elearnCategoryDAO();
+                ArrayList allUserCourses = ceDAO.getAllCoursesByCreatorID(currentUser.getUserID());
+                if (allUserCourses.Count > 0)
+                {
+            %>
         <table class="table table-striped table-hover" data-paging="true" data-sorting="true" data-filtering="true">
                         <thead>
                             <tr>
@@ -121,18 +129,29 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>How to be Ming Kuang</td>
-                                <td>Compulsory</td>
-                                <td>Eugene Pte Ltd</td>
-                                <td>938498234</td>
-                                <td>ksdfkdjsfn</td>
-                                <%--Link to editModuleinfo.aspx--%>
-                                    <td><asp:LinkButton ID="btnEdit" CssClass="btn btn-info btn-sm pull-right" runat="server" Text="" href="#"><span class="glyphicon glyphicon-pencil"></span></asp:LinkButton>
-                                </td>
-                            </tr>
+                            <%
+                                foreach (Course_elearn ce in allUserCourses)
+                                {
+                                    CourseCategory cc = cecDAO.getCategoryByID(ce.getCategoryID());
+                                    Response.Write("<tr>");
+                                    Response.Write($"<td>{ce.getCourseName()}</td>");
+                                    Response.Write($"<td>{cc.category}</td>");
+                                    Response.Write($"<td>{ce.getCourseProvider()}</td>");
+                                    Response.Write($"<td>{ce.getStartDate().ToString("dd/MM/yyyy")}</td>");
+                                    Response.Write($"<td>{ce.getExpiryDate().ToString("dd/MM/yyyy")}</td>");
+                                    Response.Write("<td><a href=\"editModuleInfo.aspx?id=" + ce.getCourseID() + "\" class=\"btn btn-info btn-sm pull-right\"><span class=\"glyphicon glyphicon-pencil\"></span></a></td>");
+                                    Response.Write("</tr>");
+                                }
+                            %>
                         </tbody>
-                    </table>       
+                    </table>    
+            <%
+                }
+                else
+                {
+                    Response.Write("<h3>You have not created any modules</h3>");
+                }
+            %>
             </form>
     </div>
 </asp:Content>

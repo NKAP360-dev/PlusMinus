@@ -38,7 +38,10 @@ namespace LearnHub
                         lblBreadcrumbCourseName.Text = currentCourse.getCourseName();
                         descriptionModuleInput.Text = currentCourse.getDescription();
                         hoursInput.Text = currentCourse.getHoursAwarded().ToString();
-                        txtTargetAudience.Text = currentCourse.getTargetAudience().ToString();
+                        if (currentCourse.getTargetAudience() != null)
+                        {
+                            txtTargetAudience.Text = currentCourse.getTargetAudience().ToString();
+                        }
                         fromDateInput.Text = currentCourse.getStartDate().ToString("MM/dd/yyyy");
                         toDateInput.Text = currentCourse.getExpiryDate().ToString("MM/dd/yyyy");
 
