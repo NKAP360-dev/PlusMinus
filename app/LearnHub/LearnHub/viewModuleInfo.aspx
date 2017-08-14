@@ -137,10 +137,25 @@
                                     <hr />
                                 </div>
                                 <b>Prerequisite</b><br />
-                                <ul><li>hi..</li>
-                                    <li>generate...</li>
-                                    <li>me...</li>
-                                </ul>
+                                <%
+                                    int courseID = Convert.ToInt32(Request.QueryString["id"]);
+                                    ArrayList allPrereq = ceDAO.getPrereqOfCourse(courseID);
+                                    if (allPrereq.Count > 0)
+                                    {
+                                        Response.Write("<ul>");
+                                        foreach (Course_elearn ce in allPrereq)
+                                        {
+                                            Response.Write($"<li><a href=\"/viewModuleInfo.aspx?id={ce.getCourseID()}\">{ce.getCourseName()}</a></li>");
+                                        }
+                                        Response.Write("</ul>");
+                                    }
+                                    else
+                                    {
+                                        Response.Write("-");
+                                        Response.Write("<br />");
+                                        Response.Write("<br />");
+                                    }
+                                %>
                                 <b>Learning Hours</b><br />
                                 <asp:Label ID="hoursOutput" runat="server" Text=""></asp:Label>
                                 <br />

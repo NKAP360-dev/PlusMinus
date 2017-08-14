@@ -44,7 +44,14 @@ namespace LearnHub
                 lblCourseName.Text = current.getCourseName();
                 lblCourseDescription.Text = current.getDescription();
                 hoursOutput.Text = current.getHoursAwarded().ToString();
-                lblTargetAudience.Text = current.getTargetAudience();
+                if (!current.getTargetAudience().Equals(""))
+                {
+                    lblTargetAudience.Text = current.getTargetAudience();
+                }
+                else
+                {
+                    lblTargetAudience.Text = "-";
+                }
             }
         }
 
