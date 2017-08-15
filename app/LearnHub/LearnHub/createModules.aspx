@@ -182,6 +182,7 @@
 
             console.log("Checkform");
             Page_ClientValidate('ValidateForm');
+            
             //Page_ClientValidate();
 
             if (!Page_IsValid) {
@@ -301,6 +302,8 @@
                     <div class="col-lg-5">
                         <asp:TextBox ID="nameOfModuleInput" runat="server" CssClass="form-control" placeholder="Module Name"></asp:TextBox>
                         <asp:RequiredFieldValidator ID="rfv_nameOfModuleInput" runat="server" ErrorMessage="Please enter a Module Name" ControlToValidate="nameOfModuleInput" ForeColor="Red" ValidationGroup="ValidateForm"></asp:RequiredFieldValidator>
+                        <br />
+                        <asp:CustomValidator ID="cv_nameOfModuleInput" runat="server" OnServerValidate="validateNameExists" ErrorMessage="This module already exists! Please input another Name." ForeColor="Red"  ValidationGroup="ValidateForm" EnableClientScript="False"></asp:CustomValidator>
                     </div>
                 </div>
 

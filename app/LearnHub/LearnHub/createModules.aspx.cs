@@ -227,5 +227,23 @@ namespace LearnHub
             }
             return toReturn;
         }
+
+        protected void validateNameExists(object source, ServerValidateEventArgs args)
+        {
+            
+            System.Diagnostics.Debug.WriteLine("VALIDATENAMEEXISTS");
+            String input = nameOfModuleInput.Text;
+            Course_elearnDAO course_elearnDAO = new Course_elearnDAO();
+            if (course_elearnDAO.checkModuleNameExists(input))
+            {
+                System.Diagnostics.Debug.WriteLine("modulenameexists");
+                args.IsValid = false;
+            }
+            else
+            {
+                System.Diagnostics.Debug.WriteLine("modulenamedoesnotexist");
+                args.IsValid = true;
+            }
+        }
     }
 }

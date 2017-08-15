@@ -503,6 +503,43 @@ namespace LearnHub.AppCode.dao
             }
             return toReturn;
         }
+
+        public Boolean checkModuleNameExists(String courseName)
+        {
+            Boolean toReturn = false;
+            SqlConnection conn = new SqlConnection();
+            try
+            {
+                conn = new SqlConnection();
+                string connstr = ConfigurationManager.ConnectionStrings["DBConnectionString"].ToString();
+                conn.ConnectionString = connstr;
+                conn.Open();
+                SqlCommand comm = new SqlCommand();
+                comm.Connection = conn;
+                comm.CommandText = "select * from Elearn_course where elearn_courseName = '" + courseName + "' ";
+                SqlDataReader dr = comm.ExecuteReader();
+                if (dr == null || !dr.HasRows)
+                {
+                    toReturn = false;
+                }
+                else
+                {
+                    toReturn = true;
+                }
+                dr.Close();
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                conn.Close();
+            }
+            return toReturn;
+        }
+
+
         public void updateCourse(int courseID, int categoryID, string name, string description, int hours, DateTime start, DateTime expiry) // Update.
         {
             SqlConnection conn = new SqlConnection();
