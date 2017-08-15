@@ -66,6 +66,20 @@
             }
         }
 
+        function ValidateNameAlreadyExists(sender, args) {
+            console.log("validateName");
+            var input = document.getElementById("<%= nameOfModuleInput.ClientID %>").value;;
+            var moduleExist = PageMethods.validateNameExists(input);
+            if (moduleExist == "true") {
+                console.log("no desc");
+                args.IsValid = true;
+            }
+            else {
+                console.log("Yes desc");
+                args.IsValid = false;
+            }
+        }
+
         function ValidateHours(sender, args) {
             console.log("validateHours");
             var hours = document.getElementById("<%= hoursInput.ClientID %>").value;
@@ -238,9 +252,9 @@
             border-radius: 0px;
         }
     </style>
+
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-
    <ul class="breadcrumb">
   <li><a href="home.aspx">Home</a></li>
   <li><a href="viewAllModule.aspx">Modules</a></li>
@@ -281,6 +295,8 @@
 
     <div class="container">
         <form class="form-horizontal" runat="server">
+            <asp:ScriptManager ID="ScriptManager1" runat="server" EnablePageMethods="true">
+</asp:ScriptManager>
             <fieldset>
                 <legend>Input new module information </legend>
                 <div class="form-group required">
@@ -303,7 +319,7 @@
                         <asp:TextBox ID="nameOfModuleInput" runat="server" CssClass="form-control" placeholder="Module Name"></asp:TextBox>
                         <asp:RequiredFieldValidator ID="rfv_nameOfModuleInput" runat="server" ErrorMessage="Please enter a Module Name" ControlToValidate="nameOfModuleInput" ForeColor="Red" ValidationGroup="ValidateForm"></asp:RequiredFieldValidator>
                         <br />
-                        <asp:CustomValidator ID="cv_nameOfModuleInput" runat="server" OnServerValidate="validateNameExists" ErrorMessage="This module already exists! Please input another Name." ForeColor="Red"  ValidationGroup="ValidateForm" EnableClientScript="False"></asp:CustomValidator>
+                        <asp:CustomValidator ID="cv_nameOfModuleInput" runat="server" ClientValidationFunction="ValidateNameAlreadyExists" ErrorMessage="This module already exists! Please input another Name." ForeColor="Red"  ValidationGroup="ValidateForm" EnableClientScript="true"></asp:CustomValidator>
                     </div>
                 </div>
 

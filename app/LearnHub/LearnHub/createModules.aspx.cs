@@ -8,6 +8,7 @@ using LearnHub.AppCode.dao;
 using LearnHub.AppCode.entity;
 using System.IO;
 using System.Collections;
+using System.Web.Services;
 
 namespace LearnHub
 {
@@ -227,22 +228,24 @@ namespace LearnHub
             }
             return toReturn;
         }
-
-        protected void validateNameExists(object source, ServerValidateEventArgs args)
+        [System.Web.Services.WebMethod]
+        public static Boolean validateNameExists(String input)
         {
             
             System.Diagnostics.Debug.WriteLine("VALIDATENAMEEXISTS");
-            String input = nameOfModuleInput.Text;
+            //String input = nameOfModuleInput.Text;
             Course_elearnDAO course_elearnDAO = new Course_elearnDAO();
             if (course_elearnDAO.checkModuleNameExists(input))
             {
                 System.Diagnostics.Debug.WriteLine("modulenameexists");
-                args.IsValid = false;
+                //args.IsValid = false;
+                return false;
             }
             else
             {
                 System.Diagnostics.Debug.WriteLine("modulenamedoesnotexist");
-                args.IsValid = true;
+                //args.IsValid = true;
+                return true;
             }
         }
     }
