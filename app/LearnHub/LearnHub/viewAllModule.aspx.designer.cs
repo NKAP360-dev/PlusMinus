@@ -13,30 +13,48 @@ namespace LearnHub {
     public partial class viewAllModule {
         
         /// <summary>
-        /// viewCompulsory control.
+        /// form1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel viewCompulsory;
+        protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
-        /// viewLeadership control.
+        /// SqlDataSourceCourseCategory control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel viewLeadership;
+        protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSourceCourseCategory;
         
         /// <summary>
-        /// viewProfessional control.
+        /// lblModuleCategory control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel viewProfessional;
+        protected global::System.Web.UI.WebControls.Label lblModuleCategory;
+        
+        /// <summary>
+        /// SqlDataSourceCourse control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSourceCourse;
+        
+        /// <summary>
+        /// gvCourse control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gvCourse;
     }
 }
