@@ -96,7 +96,7 @@ namespace LearnHub.AppCode.dao
             return success;
         }
 
-        public Boolean delete_testimonial(Testimonial t)
+        public Boolean delete_testimonial(int tid, int cid)
         {
             SqlConnection conn = new SqlConnection();
             Boolean success = false;
@@ -110,8 +110,8 @@ namespace LearnHub.AppCode.dao
                 SqlCommand comm = new SqlCommand();
                 comm.Connection = conn;
                 comm.CommandText = "delete from [Testimonials] where courseID=@cid and ID=@id";
-                comm.Parameters.AddWithValue("@cid", t.getCourse_elearn().getCourseID());
-                comm.Parameters.AddWithValue("@id", t.getID());
+                comm.Parameters.AddWithValue("@cid", cid);
+                comm.Parameters.AddWithValue("@id", tid);
                 
                 int rowsAffected = comm.ExecuteNonQuery();
                 success = true;

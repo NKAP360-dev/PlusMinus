@@ -182,7 +182,12 @@
                                 </div>
                                 <%foreach(Testimonial test in testimonials){ %>
                                 <strong>
-                                    <asp:Label ID="lblCommentTitle"><%= test.getTitle() %></asp:Label></strong>&emsp;<a href="#" data-toggle="modal" data-target="#deleteComment"><span class="label label-danger pull-right"><span class="glyphicon glyphicon-trash"></span></span></a></strong><br />
+                                    <asp:Label ID="lblCommentTitle"><%= test.getTitle() %></asp:Label></strong>&emsp;
+                                <%  User user = (User)Session["currentUser"];
+                                    if (user.getRole().Equals("superuser") || user.getDepartment().Equals("hr"))
+                                    {%>
+                                <a href="/deleteTestimonial.aspx?id=<%=test.getID() %>&cid=<%=current.getCourseID() %>" onclick="return confirm('Are you sure?')"><span class="label label-danger pull-right"><span class="glyphicon glyphicon-trash"></span></span></a></strong><br />
+                                    <%} %>
                                 <br />
                                 <blockquote>
                                     <asp:Label ID="lblCommentBody"><%= test.getQuote() %></asp:Label>
@@ -315,14 +320,14 @@
                             <h4>Are you sure you want to delete the following comment?</h4>
                             <br />
                             "
-                            <asp:Label ID="Label5"><%= t.getQuote() %></asp:Label>"                           
+                            <asp:Label ID="Label5"></asp:Label>"                           
                             <br />
                             <br />
                         </div>
                         <div class="modal-footer">
                             <div class="wrapper">
                                 <% deleteThis = t; %>
-                                <asp:Button ID="deleteBtn" CssClass="btn btn-danger" runat="server" Text="Delete"  OnClick="deleteComment_Click"/>
+                                <asp:Button ID="deleteBtn" CssClass="btn btn-danger" runat="server" Text="Delete" />
                                 <asp:Button ID="Button4" CssClass="btn btn-default" runat="server" class="close" data-dismiss="modal" Text="Go Back" />
                             </div>
                         </div>

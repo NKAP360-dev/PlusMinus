@@ -103,15 +103,6 @@ namespace LearnHub
             
         }
 
-        protected void deleteComment_Click(object sender, EventArgs e)
-        {
-            TestimonialDAO tdao = new TestimonialDAO();
-            //string res = hdnResultValue.Value;
-            Boolean done = tdao.delete_testimonial(deleteThis);
-            int courseID = Convert.ToInt32(Request.QueryString["id"]);
-            Response.Redirect("/viewModuleInfo.aspx?id=" + courseID);
-        }
-
         protected void GridView1_RowCommand(object sender,
            GridViewCommandEventArgs e)
         {
