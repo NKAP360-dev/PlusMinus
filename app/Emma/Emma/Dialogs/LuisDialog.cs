@@ -1,5 +1,7 @@
 ﻿using Emma.DAO;
 using Emma.Entity;
+using LearnHub.AppCode.dao;
+using LearnHub.AppCode.entity;
 using Microsoft.Bot.Builder.Dialogs;
 using Microsoft.Bot.Builder.FormFlow;
 using Microsoft.Bot.Builder.Luis;
@@ -8,6 +10,8 @@ using Microsoft.Bot.Connector;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
+using System.Net.Mail;
 using System.Threading.Tasks;
 using System.Web;
 
@@ -98,7 +102,7 @@ namespace Emma.Dialogs
                 };
                 cardButtons.Add(CardButton);
             }
-           
+
             HeroCard hc = new HeroCard()
             {
                 Title = "Help Enquiry",
@@ -395,7 +399,7 @@ namespace Emma.Dialogs
             }
             context.Wait(MessageReceived);
         }
-        
+
         [LuisIntent("")]
         [LuisIntent("None")]
         public async Task None(IDialogContext context, LuisResult result)
@@ -437,6 +441,24 @@ namespace Emma.Dialogs
                     await context.PostAsync("I was not able to send your message. Something went wrong.");
                 else
                 {
+                    //to send success email
+                    ChatBotFeedbackSettingsDAO cbfsDAO = new ChatBotFeedbackSettingsDAO();
+                    ChatBotFeedbackSettings currentSettings = cbfsDAO.getCurrentSettings();
+                    if (currentSettings.enabled.Equals("y"))
+                    {
+                        SmtpClient client = new SmtpClient("Host");
+                        client.Host = "smtp.gmail.com";
+                        client.Port = 587;
+                        client.EnableSsl = true;
+                        client.Credentials = new NetworkCredential(currentSettings.smtpUsername, currentSettings.smtpPassword);
+                        MailMessage mailMessage = new MailMessage();
+                        mailMessage.IsBodyHtml = true;
+                        mailMessage.From = new MailAddress("DO_NOT_REPLY@amkthk.gov.sg");
+                        mailMessage.To.Add(currentSettings.emailToSendTo);
+                        mailMessage.Body = $"Hi, <br /><br /> New feedback received from {feedback.Name}, {feedback.Department}. <br /><br />His/her feedback is: <br />{feedback.Feedback}.";
+                        mailMessage.Subject = "New Feedback";
+                        client.Send(mailMessage);
+                    }
                     await context.PostAsync("Thanks for the feedback.");
                     await context.PostAsync("What else would you like to do?");
                 }
@@ -446,8 +468,9 @@ namespace Emma.Dialogs
             {
                 await context.PostAsync("Don't want to send feedback? Alright!");
             }
-            catch (Exception)
+            catch (Exception e)
             {
+                await context.PostAsync(e.Message);
                 await context.PostAsync("Something really bad happened. You can try again later meanwhile I'll check what went wrong.");
             }
             finally
@@ -493,5 +516,390 @@ namespace Emma.Dialogs
             
             context.Wait(MessageReceived);
         }*/
+
+        [LuisIntent("advance course application enquiry")]
+        public async Task AdvanceCourseApplicationEnquiry(IDialogContext context, LuisResult result)
+        {
+            List<ChatBotAnswer> possibleAns = cbaDAO.getChatBotAnswerByIntent("advance course application enquiry");
+
+            if (possibleAns.Count > 0)
+            {
+                Random rdm = new Random();
+                int r = rdm.Next(possibleAns.Count);
+                await context.PostAsync($"{possibleAns[r].answer}");
+            }
+            else
+            {
+                await context.PostAsync($"I do not have the answer to your questions just yet.");
+            }
+
+
+            context.Wait(MessageReceived);
+        }
+        [LuisIntent("learning budget entitlement enquiry")]
+        public async Task LearningBudgetEntitlementEnquiry(IDialogContext context, LuisResult result)
+        {
+            List<ChatBotAnswer> possibleAns = cbaDAO.getChatBotAnswerByIntent("learning budget entitlement enquiry");
+
+            if (possibleAns.Count > 0)
+            {
+                Random rdm = new Random();
+                int r = rdm.Next(possibleAns.Count);
+                await context.PostAsync($"{possibleAns[r].answer}");
+            }
+            else
+            {
+                await context.PostAsync($"I do not have the answer to your questions just yet.");
+            }
+
+
+            context.Wait(MessageReceived);
+        }
+        [LuisIntent("learning budget enquiry")]
+        public async Task LearningBudgetEnquiry(IDialogContext context, LuisResult result)
+        {
+            List<ChatBotAnswer> possibleAns = cbaDAO.getChatBotAnswerByIntent("learning budget enquiry");
+
+            if (possibleAns.Count > 0)
+            {
+                Random rdm = new Random();
+                int r = rdm.Next(possibleAns.Count);
+                await context.PostAsync($"{possibleAns[r].answer}");
+            }
+            else
+            {
+                await context.PostAsync($"I do not have the answer to your questions just yet.");
+            }
+
+
+            context.Wait(MessageReceived);
+        }
+        [LuisIntent("sponsorship application criteria enquiry")]
+        public async Task SponsorshipApplicationCriteriaEnquiry(IDialogContext context, LuisResult result)
+        {
+            List<ChatBotAnswer> possibleAns = cbaDAO.getChatBotAnswerByIntent("sponsorship application criteria enquiry");
+
+            if (possibleAns.Count > 0)
+            {
+                Random rdm = new Random();
+                int r = rdm.Next(possibleAns.Count);
+                await context.PostAsync($"{possibleAns[r].answer}");
+            }
+            else
+            {
+                await context.PostAsync($"I do not have the answer to your questions just yet.");
+            }
+
+
+            context.Wait(MessageReceived);
+        }
+        [LuisIntent("course catalog enquiry")]
+        public async Task CourseCatalogEnquiry(IDialogContext context, LuisResult result)
+        {
+            List<ChatBotAnswer> possibleAns = cbaDAO.getChatBotAnswerByIntent("course catalog enquiry");
+
+            if (possibleAns.Count > 0)
+            {
+                Random rdm = new Random();
+                int r = rdm.Next(possibleAns.Count);
+                await context.PostAsync($"{possibleAns[r].answer}");
+            }
+            else
+            {
+                await context.PostAsync($"I do not have the answer to your questions just yet.");
+            }
+
+
+            context.Wait(MessageReceived);
+        }
+        [LuisIntent("sponsorship application status enquiry")]
+        public async Task SponsorshipApplicationStatusEnquiry(IDialogContext context, LuisResult result)
+        {
+            List<ChatBotAnswer> possibleAns = cbaDAO.getChatBotAnswerByIntent("sponsorship application status enquiry");
+
+            if (possibleAns.Count > 0)
+            {
+                Random rdm = new Random();
+                int r = rdm.Next(possibleAns.Count);
+                await context.PostAsync($"{possibleAns[r].answer}");
+            }
+            else
+            {
+                await context.PostAsync($"I do not have the answer to your questions just yet.");
+            }
+
+
+            context.Wait(MessageReceived);
+        }
+        [LuisIntent("sponsorship application enquiry")]
+        public async Task SponsorshipApplicationEnquiry(IDialogContext context, LuisResult result)
+        {
+            List<ChatBotAnswer> possibleAns = cbaDAO.getChatBotAnswerByIntent("sponsorship application enquiry");
+
+            if (possibleAns.Count > 0)
+            {
+                Random rdm = new Random();
+                int r = rdm.Next(possibleAns.Count);
+                await context.PostAsync($"{possibleAns[r].answer}");
+            }
+            else
+            {
+                await context.PostAsync($"I do not have the answer to your questions just yet.");
+            }
+
+
+            context.Wait(MessageReceived);
+        }
+        [LuisIntent("bond requirements enquiry")]
+        public async Task BondRequirementsEnquiry(IDialogContext context, LuisResult result)
+        {
+            List<ChatBotAnswer> possibleAns = cbaDAO.getChatBotAnswerByIntent("bond requirements enquiry");
+
+            if (possibleAns.Count > 0)
+            {
+                Random rdm = new Random();
+                int r = rdm.Next(possibleAns.Count);
+                await context.PostAsync($"{possibleAns[r].answer}");
+            }
+            else
+            {
+                await context.PostAsync($"I do not have the answer to your questions just yet.");
+            }
+
+
+            context.Wait(MessageReceived);
+        }
+        [LuisIntent("education liaising enquiry")]
+        public async Task EducationLiaisingEnquiry(IDialogContext context, LuisResult result)
+        {
+            List<ChatBotAnswer> possibleAns = cbaDAO.getChatBotAnswerByIntent("education liaising enquiry");
+
+            if (possibleAns.Count > 0)
+            {
+                Random rdm = new Random();
+                int r = rdm.Next(possibleAns.Count);
+                await context.PostAsync($"{possibleAns[r].answer}");
+            }
+            else
+            {
+                await context.PostAsync($"I do not have the answer to your questions just yet.");
+            }
+
+
+            context.Wait(MessageReceived);
+        }
+        [LuisIntent("study leave enquiry")]
+        public async Task StudyLeaveEnquiry(IDialogContext context, LuisResult result)
+        {
+            List<ChatBotAnswer> possibleAns = cbaDAO.getChatBotAnswerByIntent("study leave enquiry");
+
+            if (possibleAns.Count > 0)
+            {
+                Random rdm = new Random();
+                int r = rdm.Next(possibleAns.Count);
+                await context.PostAsync($"{possibleAns[r].answer}");
+            }
+            else
+            {
+                await context.PostAsync($"I do not have the answer to your questions just yet.");
+            }
+
+
+            context.Wait(MessageReceived);
+        }
+        [LuisIntent("time allowance enquiry")]
+        public async Task TimeAllowanceEnquiry(IDialogContext context, LuisResult result)
+        {
+            List<ChatBotAnswer> possibleAns = cbaDAO.getChatBotAnswerByIntent("time allowance enquiry");
+
+            if (possibleAns.Count > 0)
+            {
+                Random rdm = new Random();
+                int r = rdm.Next(possibleAns.Count);
+                await context.PostAsync($"{possibleAns[r].answer}");
+            }
+            else
+            {
+                await context.PostAsync($"I do not have the answer to your questions just yet.");
+            }
+
+
+            context.Wait(MessageReceived);
+        }
+        [LuisIntent("sponsorship allowance enquiry")]
+        public async Task SponsorshipAllowanceEnquiry(IDialogContext context, LuisResult result)
+        {
+            List<ChatBotAnswer> possibleAns = cbaDAO.getChatBotAnswerByIntent("sponsorship allowance enquiry");
+
+            if (possibleAns.Count > 0)
+            {
+                Random rdm = new Random();
+                int r = rdm.Next(possibleAns.Count);
+                await context.PostAsync($"{possibleAns[r].answer}");
+            }
+            else
+            {
+                await context.PostAsync($"I do not have the answer to your questions just yet.");
+            }
+
+
+            context.Wait(MessageReceived);
+        }
+        [LuisIntent("sponsorship leave enquiry")]
+        public async Task SponsorshipLeaveEnquiry(IDialogContext context, LuisResult result)
+        {
+            List<ChatBotAnswer> possibleAns = cbaDAO.getChatBotAnswerByIntent("sponsorship leave enquiry");
+            EntityRecommendation rec;
+            if (possibleAns.Count > 0)
+            {
+                if (result.TryFindEntity("sponsorshipType", out rec))
+                {
+                    string sponsorshipType = rec.Entity;
+                    Boolean checkIfAnswered = false;
+
+                    foreach (ChatBotAnswer cba in possibleAns)
+                    {
+                        if (cba.entityName != null && cba.entityName.ToLower().Contains(sponsorshipType))
+                        {
+                            checkIfAnswered = true;
+                            await context.PostAsync($"{cba.answer}");
+                            break;
+                        }
+                    }
+
+                    if (!checkIfAnswered)
+                    {
+                        await context.PostAsync($"I do not have the answer to your questions just yet.");
+                    }
+
+                }
+                else
+                {
+                    possibleAns.RemoveAll(x => x.entityName != null);
+                    Random rdm = new Random();
+                    int r = rdm.Next(possibleAns.Count);
+                    await context.PostAsync($"{possibleAns[r].answer}");
+                }
+            }
+            else
+            {
+                await context.PostAsync($"I do not have the answer to your questions just yet.");
+            }
+            context.Wait(MessageReceived);
+        }
+        [LuisIntent("course completion submission material enquiry")]
+        public async Task CourseCompletionSubmissionMaterialEnquiry(IDialogContext context, LuisResult result)
+        {
+            List<ChatBotAnswer> possibleAns = cbaDAO.getChatBotAnswerByIntent("course completion submission material enquiry");
+
+            if (possibleAns.Count > 0)
+            {
+                Random rdm = new Random();
+                int r = rdm.Next(possibleAns.Count);
+                await context.PostAsync($"{possibleAns[r].answer}");
+            }
+            else
+            {
+                await context.PostAsync($"I do not have the answer to your questions just yet.");
+            }
+
+
+            context.Wait(MessageReceived);
+        }
+        [LuisIntent("reimbursement enquiry")]
+        public async Task ReimbursementEnquiry(IDialogContext context, LuisResult result)
+        {
+            List<ChatBotAnswer> possibleAns = cbaDAO.getChatBotAnswerByIntent("reimbursement enquiry");
+
+            if (possibleAns.Count > 0)
+            {
+                Random rdm = new Random();
+                int r = rdm.Next(possibleAns.Count);
+                await context.PostAsync($"{possibleAns[r].answer}");
+            }
+            else
+            {
+                await context.PostAsync($"I do not have the answer to your questions just yet.");
+            }
+
+
+            context.Wait(MessageReceived);
+        }
+        [LuisIntent("interview panel enquiry")]
+        public async Task InterviewPanelEnquiry(IDialogContext context, LuisResult result)
+        {
+            List<ChatBotAnswer> possibleAns = cbaDAO.getChatBotAnswerByIntent("interview panel enquiry");
+
+            if (possibleAns.Count > 0)
+            {
+                Random rdm = new Random();
+                int r = rdm.Next(possibleAns.Count);
+                await context.PostAsync($"{possibleAns[r].answer}");
+            }
+            else
+            {
+                await context.PostAsync($"I do not have the answer to your questions just yet.");
+            }
+
+
+            context.Wait(MessageReceived);
+        }
+        [LuisIntent("bond commencement enquiry")]
+        public async Task BondCommenceEnquiry(IDialogContext context, LuisResult result)
+        {
+            List<ChatBotAnswer> possibleAns = cbaDAO.getChatBotAnswerByIntent("bond commencement enquiry");
+
+            if (possibleAns.Count > 0)
+            {
+                Random rdm = new Random();
+                int r = rdm.Next(possibleAns.Count);
+                await context.PostAsync($"{possibleAns[r].answer}");
+            }
+            else
+            {
+                await context.PostAsync($"I do not have the answer to your questions just yet.");
+            }
+
+
+            context.Wait(MessageReceived);
+        }
+        [LuisIntent("orientation attendance enquiry")]
+        public async Task OrientationAttendanceEnquiry(IDialogContext context, LuisResult result)
+        {
+            List<ChatBotAnswer> possibleAns = cbaDAO.getChatBotAnswerByIntent("orientation attendance enquiry");
+
+            if (possibleAns.Count > 0)
+            {
+                Random rdm = new Random();
+                int r = rdm.Next(possibleAns.Count);
+                await context.PostAsync($"{possibleAns[r].answer}");
+            }
+            else
+            {
+                await context.PostAsync($"I do not have the answer to your questions just yet.");
+            }
+
+
+            context.Wait(MessageReceived);
+        }
+        [LuisIntent("orientation training hours enquiry")]
+        public async Task OrientationTrainingHoursEnquiry(IDialogContext context, LuisResult result)
+        {
+            List<ChatBotAnswer> possibleAns = cbaDAO.getChatBotAnswerByIntent("orientation training hours enquiry");
+
+            if (possibleAns.Count > 0)
+            {
+                Random rdm = new Random();
+                int r = rdm.Next(possibleAns.Count);
+                await context.PostAsync($"{possibleAns[r].answer}");
+            }
+            else
+            {
+                await context.PostAsync($"I do not have the answer to your questions just yet.");
+            }
+
+
+            context.Wait(MessageReceived);
+        }
     }
 }

@@ -113,9 +113,11 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\MessagesController.cs" />
     <Compile Include="DAO\ChatBotAnswerDAO.cs" />
+    <Compile Include="DAO\ChatBotFeedbackSettingsDAO.cs" />
     <Compile Include="Dialogs\LuisDialog.cs" />
     <Compile Include="Dialogs\RootDialog.cs" />
     <Compile Include="Entity\ChatBotAnswer.cs" />
+    <Compile Include="Entity\ChatBotFeedbackSettings.cs" />
     <Compile Include="Entity\FeedbackForm.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

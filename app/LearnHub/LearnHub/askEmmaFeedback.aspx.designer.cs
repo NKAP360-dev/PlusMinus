@@ -13,6 +13,15 @@ namespace LearnHub {
     public partial class askEmmaFeedback {
         
         /// <summary>
+        /// lblSaveSuccess control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblSaveSuccess;
+        
+        /// <summary>
         /// rdlEmail control.
         /// </summary>
         /// <remarks>
@@ -29,6 +38,24 @@ namespace LearnHub {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtEmail;
+        
+        /// <summary>
+        /// txtSMTPUser control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtSMTPUser;
+        
+        /// <summary>
+        /// txtSMTPPassword control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtSMTPPassword;
         
         /// <summary>
         /// btnConfirmSave control.

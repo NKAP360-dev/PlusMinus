@@ -19,6 +19,7 @@ namespace Emma
         /// Receive a message from a user and reply to it
         /// </summary>
         ChatBotAnswerDAO cbaDAO = new ChatBotAnswerDAO();
+        [HttpPost]
         public async Task<HttpResponseMessage> Post([FromBody]Activity activity)
         {
             if (activity.Type == ActivityTypes.Message)
@@ -32,7 +33,7 @@ namespace Emma
             var response = Request.CreateResponse(HttpStatusCode.OK);
             return response;
         }
-
+        [HttpGet]
         private Activity HandleSystemMessage(Activity message)
         {
             if (message.Type == ActivityTypes.DeleteUserData)

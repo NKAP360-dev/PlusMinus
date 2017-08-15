@@ -5,6 +5,7 @@ using System.Configuration;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
+using System.Web.Http;
 
 namespace Emma.DAO
 {
@@ -51,7 +52,6 @@ namespace Emma.DAO
             }
             return toReturn;
         }
-
         public List<string> getChatBotHelpQuestions()
         {
             SqlConnection conn = new SqlConnection();
@@ -82,7 +82,6 @@ namespace Emma.DAO
             }
             return toReturn;
         }
-
         public List<string> getChatBotInitializationMessage()
         {
             SqlConnection conn = new SqlConnection();
@@ -113,7 +112,6 @@ namespace Emma.DAO
             }
             return toReturn;
         }
-
         public Boolean insertFeedback(string name, string feedback, string department, DateTime feedbackDate) // Insert.
         {
             SqlConnection conn = null;
@@ -143,7 +141,6 @@ namespace Emma.DAO
             }
             return success;
         }
-
         public List<ChatBotAnswer> getAllChatBotAnswers()
         {
             SqlConnection conn = new SqlConnection();

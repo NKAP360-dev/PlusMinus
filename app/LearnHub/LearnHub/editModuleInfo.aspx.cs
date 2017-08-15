@@ -169,7 +169,7 @@ namespace LearnHub
             ArrayList allPrereqNoDup = new ArrayList();
             foreach (int prereqID in allPrereq)
             {
-                if (!allPrereqNoDup.Contains(prereqID))
+                if (!allPrereqNoDup.Contains(prereqID) && !prereqIDlist.Contains(prereqID))
                 {
                     allPrereqNoDup.Add(prereqID);
                 }

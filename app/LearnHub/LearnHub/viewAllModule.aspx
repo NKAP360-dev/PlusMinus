@@ -60,7 +60,7 @@
         jQuery(function ($) {
             $('.table').footable({
                 "paging": {
-                    "size": 2 <%--Change how many rows per page--%>
+                    "size": 10 <%--Change how many rows per page--%>
                 },
                 "filtering": {
                     "position": "left"
@@ -133,7 +133,7 @@
                                 <asp:BoundField DataField="elearn_courseName" HeaderText="Module Name" SortExpression="elearn_courseName" />
                                 <asp:BoundField DataField="elearn_courseProvider" HeaderText="Module Provider" SortExpression="elearn_courseProvider" />
                                 <asp:BoundField DataField="hoursAwarded" HeaderText="Hours Awarded" SortExpression="hoursAwarded" />
-                                <asp:HyperLinkField DataNavigateUrlFields="elearn_courseID" DataNavigateUrlFormatString="viewModuleInfo.aspx?id={0}" Target="_blank" Text="View Details" />
+                                <asp:HyperLinkField DataNavigateUrlFields="elearn_courseID" DataNavigateUrlFormatString="viewModuleInfo.aspx?id={0}" Text="View Details" />
                             </Columns>
                         </asp:GridView>
                     </p>

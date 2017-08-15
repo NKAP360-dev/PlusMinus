@@ -53,7 +53,7 @@
     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-        <ul class="breadcrumb">
+    <ul class="breadcrumb">
         <li><a href="home.aspx">Home</a></li>
         <li><a href="emmaConfiguration.aspx">Emma Configuration</a></li>
         <li class="active">Feedback for Emma</li>
@@ -62,6 +62,9 @@
         <h1>Feedback for Emma
             <button type="button" data-toggle="modal" data-target="#feedbackSettings" class="btn btn-success"><span class="glyphicon glyphicon-cog"></span>&nbsp;Settings </button>
         </h1>
+        <div class="center-block">
+            <asp:Label ID="lblSaveSuccess" runat="server" Text="Your settings have been saved" Visible="False" CssClass="label label-success text-center" Font-Size="Medium"></asp:Label>
+        </div>
         <div class="verticalLine"></div>
         <form class="form-horizontal" runat="server">
             <div class="container">
@@ -106,21 +109,35 @@
                                 <label class="col-lg-3 control-label">Email Settings</label>
                                 <div class="col-lg-7">
                                     <asp:RadioButtonList ID="rdlEmail" runat="server" TextAlign="Right">
-                                        <asp:ListItem>&emsp;Enable</asp:ListItem>
-                                        <asp:ListItem>&emsp;Disable</asp:ListItem>
+                                        <asp:ListItem Value="y">&emsp;Enable</asp:ListItem>
+                                        <asp:ListItem Value="n">&emsp;Disable</asp:ListItem>
                                     </asp:RadioButtonList>
                                 </div>
                             </div>
-                             <div class="form-group">
+                            <div class="form-group required">
                                 <label class="col-lg-3 control-label">Email</label>
                                 <div class="col-lg-9">
-                                    <asp:TextBox ID="txtEmail" CssClass="form-control" placeholder="Email Adress To Be Sent To" runat="server"></asp:TextBox>                            
+                                    <asp:TextBox ID="txtEmail" CssClass="form-control" placeholder="Email Adress To Be Sent To" runat="server"></asp:TextBox>
+                                </div>
+                            </div>
+                            <hr />
+                            <h4><b>&emsp;SMTP Configuration</b></h4>
+                            <div class="form-group required">
+                                <label class="col-lg-3 control-label">Username</label>
+                                <div class="col-lg-9">
+                                    <asp:TextBox ID="txtSMTPUser" CssClass="form-control" placeholder="SMTP Email Username" runat="server"></asp:TextBox>
+                                </div>
+                            </div>
+                            <div class="form-group required">
+                                <label class="col-lg-3 control-label">Password</label>
+                                <div class="col-lg-9">
+                                    <asp:TextBox ID="txtSMTPPassword" CssClass="form-control" placeholder="SMTP Email Password" runat="server"></asp:TextBox>
                                 </div>
                             </div>
                             <br />
                             <div class="wrapper">
-                            <asp:Button ID="btnConfirmSave" CssClass="btn btn-primary" runat="server" Text="Save" />
-                            <asp:Button ID="btnCancel1" CssClass="btn btn-default" runat="server" class="close" data-dismiss="modal" Text="Cancel" OnClientClick="return false;" />
+                                <asp:Button ID="btnConfirmSave" CssClass="btn btn-primary" runat="server" Text="Save" OnClick="btnConfirmSave_Click"/>
+                                <asp:Button ID="btnCancel1" CssClass="btn btn-default" runat="server" class="close" data-dismiss="modal" Text="Cancel" OnClientClick="return false;" />
                             </div>
                             <br />
 
