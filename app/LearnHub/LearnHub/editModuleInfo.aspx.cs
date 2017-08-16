@@ -18,7 +18,7 @@ namespace LearnHub
         {
             if (Session["currentUser"] == null)
             {
-                Response.Redirect("/Login.aspx");
+                Response.Redirect("Login.aspx");
             }
             else 
             {
@@ -27,7 +27,7 @@ namespace LearnHub
                 Course_elearn currentCourse = ceDAO.get_course_by_id(Convert.ToInt32(Request.QueryString["id"]));
                 if (currentUser.getUserID() != currentCourse.getCourseCreator().getUserID() && !(currentUser.getRole().Equals("course creator") || currentUser.getRole().Equals("superuser")))
                 {
-                    Response.Redirect("/errorPage.aspx");
+                    Response.Redirect("errorPage.aspx");
                 }
                 else
                 {
@@ -148,7 +148,7 @@ namespace LearnHub
                 ceDAO.insertPrerequisite(courseID, prereqID);
             }
 
-            Response.Redirect($"/viewModuleInfo.aspx?id={courseID}");
+            Response.Redirect($"viewModuleInfo.aspx?id={courseID}");
         }
 
         protected void gvPrereq_PageIndexChanged(object sender, EventArgs e)

@@ -67,7 +67,7 @@ namespace LearnHub
             TestimonialDAO tdao = new TestimonialDAO();
             Boolean res = tdao.create_testimonial(new Testimonial(byWho, quote, (User)Session["currentUser"], current, title));
             int courseID = Convert.ToInt32(Request.QueryString["id"]);
-            Response.Redirect("/viewModuleInfo.aspx?id=" + courseID);
+            Response.Redirect("viewModuleInfo.aspx?id=" + courseID);
         }
         protected void moduleInfo_Click(object sender, EventArgs e)
         {

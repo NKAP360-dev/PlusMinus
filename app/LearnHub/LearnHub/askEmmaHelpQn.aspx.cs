@@ -34,7 +34,7 @@ namespace LearnHub
             //To do validations
             ChatBotHelpQuestionDAO cbhqDAO = new ChatBotHelpQuestionDAO();
             cbhqDAO.insertQuestion(txtHelpInput.Text);
-            Response.Redirect("/askEmmaHelpQn.aspx");
+            Response.Redirect("askEmmaHelpQn.aspx");
         }
     }
     

@@ -146,7 +146,7 @@
                         {
                             Response.Write("<tr>");
                             Response.Write($"<td>{cbi.intent}</td>");
-                            Response.Write($"<td><a href=\"/askEmmaEditIntent.aspx?id={cbi.intentID}\" class=\"btn btn-info btn-sm pull-right\"><span class=\"glyphicon glyphicon-pencil\"></span></a></td>");
+                            Response.Write($"<td><a href=\"askEmmaEditIntent.aspx?id={cbi.intentID}\" class=\"btn btn-info btn-sm pull-right\"><span class=\"glyphicon glyphicon-pencil\"></span></a></td>");
                             Response.Write("</tr>");
                         }
                     %>

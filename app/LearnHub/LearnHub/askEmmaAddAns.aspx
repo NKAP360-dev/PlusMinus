@@ -186,7 +186,7 @@
                             }
                             Response.Write("<td>");
                             //Response.Write($"<a href=\"#deleteModal\" data-toggle=\"modal\" class=\"btn btn-danger btn-sm pull-right\"> <span class=\"glyphicon glyphicon-trash\"></span></a>");
-                            Response.Write($"<a href=\"/askEmmaEditAns.aspx?id={cba.answerID}\" class=\"btn btn-info btn-sm pull-right\"><span class=\"glyphicon glyphicon-pencil\"></span></a>");
+                            Response.Write($"<a href=\"askEmmaEditAns.aspx?id={cba.answerID}\" class=\"btn btn-info btn-sm pull-right\"><span class=\"glyphicon glyphicon-pencil\"></span></a>");
                             Response.Write("</td>");
                             Response.Write("</tr>");
                         }%>

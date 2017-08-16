@@ -120,7 +120,7 @@
                                         Response.Write("<ul>");
                                         foreach (Course_elearn ce in allPrereq)
                                         {
-                                            Response.Write($"<li><a href=\"/viewModuleInfo.aspx?id={ce.getCourseID()}\">{ce.getCourseName()}</a></li>");
+                                            Response.Write($"<li><a href=\"viewModuleInfo.aspx?id={ce.getCourseID()}\">{ce.getCourseName()}</a></li>");
                                         }
                                         Response.Write("</ul>");
                                     }
@@ -186,7 +186,7 @@
                                 <%  User user = (User)Session["currentUser"];
                                     if (user.getRole().Equals("superuser") || user.getDepartment().Equals("hr"))
                                     {%>
-                                <a href="/deleteTestimonial.aspx?id=<%=test.getID() %>&cid=<%=current.getCourseID() %>" onclick="return confirm('Are you sure?')"><span class="label label-danger pull-right"><span class="glyphicon glyphicon-trash"></span></span></a></strong><br />
+                                <a href="deleteTestimonial.aspx?id=<%=test.getID() %>&cid=<%=current.getCourseID() %>" onclick="return confirm('Are you sure?')"><span class="label label-danger pull-right"><span class="glyphicon glyphicon-trash"></span></span></a></strong><br />
                                     <%} %>
                                 <br />
                                 <blockquote>

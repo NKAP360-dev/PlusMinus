@@ -401,7 +401,7 @@
                         <asp:Button ID="submitBtn" CssClass="btn btn-primary" runat="server" Text="Save Changes" data-toggle="modal" href="#submitModal" OnClientClick="return checkForm_Clicked();" CausesValidation="True" UseSubmitBehavior="False" />
                         <%--READ ME: If course status = activated, show deactivate button
                                      If course status = deactivated, show activate button--%>
-                        <asp:Button ID="btnDeactivate" CssClass="btn btn-warning" runat="server" Text="Deactivate Module" data-toggle="modal" href="#deactivateModal" OnClientClick="return false;" />
+                        <asp:Button ID="btnDeactivate" CssClass="btn btn-warning" runat="server" Text="Deactivate Module" data-toggle="modal" href="#deactivateModal" OnClick="btnCfmDeactivate_Click"/>
                         <asp:Button ID="btnActivate" CssClass="btn btn-success" runat="server" Text="Activate Module" data-toggle="modal" href="#activateModal" OnClientClick="return false;" />
                     </div>
                 </div>

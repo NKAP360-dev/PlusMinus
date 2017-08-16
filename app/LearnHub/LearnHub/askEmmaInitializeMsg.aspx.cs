@@ -41,7 +41,7 @@ namespace LearnHub
             //to do validations
             ChatBotInitializeMsgDAO cbimDAO = new ChatBotInitializeMsgDAO();
             cbimDAO.insertMessage(txtMsgInput.Text);
-            Response.Redirect("/askEmmaInitializeMsg.aspx");
+            Response.Redirect("askEmmaInitializeMsg.aspx");
         }
 
         protected void btnSave_Click(object sender, EventArgs e)
@@ -55,7 +55,7 @@ namespace LearnHub
                 cbimDAO.updateInitializationLevel(messageID, counter);
                 counter++;
             }
-            Response.Redirect("/askEmmaInitializeMsg.aspx");
+            Response.Redirect("askEmmaInitializeMsg.aspx");
         }
     }
 }

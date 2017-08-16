@@ -13,7 +13,7 @@
 
     </style>
     <title>Login - LearnHub</title>
-    <link href="/bootstrap/css/bootstrap.css" rel="stylesheet" />
+    <link href="bootstrap/css/bootstrap.css" rel="stylesheet" />
 </head>
 <body>
     

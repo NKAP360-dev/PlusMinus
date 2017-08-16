@@ -20,7 +20,7 @@ namespace LearnHub
             User currentUser = (User)Session["currentUser"];
             if (currentUser == null)
             {
-                Response.Redirect("/Login.aspx");
+                Response.Redirect("Login.aspx");
             }
             else if (!currentUser.getRole().Equals("course creator") && !currentUser.getRole().Equals("superuser"))
             {

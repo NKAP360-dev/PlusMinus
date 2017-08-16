@@ -44,7 +44,7 @@ namespace LearnHub
             //to do validations
             ChatBotInstructionDAO cbiDAO = new ChatBotInstructionDAO();
             cbiDAO.updateChatBotInstruction(txtTitle.Text, CKEditor1.Text);
-            Response.Redirect("/emmaConfiguration.aspx");
+            Response.Redirect("emmaConfiguration.aspx");
         }
     }
 }
