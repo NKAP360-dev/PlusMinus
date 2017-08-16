@@ -275,6 +275,7 @@
                             <div class="col-lg-12">
                                 <p>
                                     <asp:TextBox ID="uploadTitleInput" runat="server" CssClass="form-control" placeholder="Enter Upload Title"></asp:TextBox>
+                                    <asp:RequiredFieldValidator ID="rfv_uploadTitleInput" runat="server" ErrorMessage="Please enter a Title" ControlToValidate="uploadTitleInput" ForeColor="Red"></asp:RequiredFieldValidator>
                                 </p>
                                 <br />
                             </div>
@@ -285,19 +286,20 @@
                             <div class="col-lg-12">
                                 <p>
                                     <asp:TextBox ID="uploadDescriptionInput" TextMode="multiline" Columns="50" Rows="5" runat="server" CssClass="form-control" placeholder="Enter Upload Description"></asp:TextBox>
+                                    <asp:RequiredFieldValidator ID="rfv_uploadDescriptionInput" runat="server" ErrorMessage="Please enter a Description" ControlToValidate="uploadDescriptionInput" ForeColor="Red"></asp:RequiredFieldValidator>
                                 </p>
                                 <br />
                             </div>
                         </div>
                         <%--Positioning for buttons--%>
                         <asp:FileUpload ID="FileUpload1" runat="server" />
-
+                        <asp:RequiredFieldValidator ID="rfv_FileUpload1" runat="server" ErrorMessage="Please select an item to upload!" ControlToValidate="FileUpload1" ForeColor="Red" ></asp:RequiredFieldValidator>
                         <br />
 
                         <div class="modal-footer">
 
                             <asp:Button ID="Button1" class="btn btn-primary" runat="server" Text="Upload"
-                                OnClick="upload_click" />
+                                OnClick="upload_click" CausesValidation="True"/>
                             <asp:Button ID="Button2" CssClass="btn btn-default" runat="server" class="close" data-dismiss="modal" Text="Go Back" />
 
                         </div>

@@ -65,10 +65,12 @@
                 args.IsValid = true;
             }
         }
-
+        /*
         function ValidateNameAlreadyExists(sender, args) {
             console.log("validateName");
-            var input = document.getElementById("<%= nameOfModuleInput.ClientID %>").value;;
+            */
+            //var input = document.getElementById("<%= nameOfModuleInput.ClientID %>").value;;
+            /*
             var moduleExist = PageMethods.validateNameExists(input);
             if (moduleExist == "true") {
                 console.log("no desc");
@@ -79,6 +81,7 @@
                 args.IsValid = false;
             }
         }
+        */
 
         function ValidateHours(sender, args) {
             console.log("validateHours");
@@ -319,7 +322,8 @@
                         <asp:TextBox ID="nameOfModuleInput" runat="server" CssClass="form-control" placeholder="Module Name"></asp:TextBox>
                         <asp:RequiredFieldValidator ID="rfv_nameOfModuleInput" runat="server" ErrorMessage="Please enter a Module Name" ControlToValidate="nameOfModuleInput" ForeColor="Red" ValidationGroup="ValidateForm"></asp:RequiredFieldValidator>
                         <br />
-                        <asp:CustomValidator ID="cv_nameOfModuleInput" runat="server" ClientValidationFunction="ValidateNameAlreadyExists" ErrorMessage="This module already exists! Please input another Name." ForeColor="Red"  ValidationGroup="ValidateForm" EnableClientScript="true"></asp:CustomValidator>
+                        <%--<asp:CustomValidator ID="cv_nameOfModuleInput" runat="server" ClientValidationFunction="ValidateNameAlreadyExists" ErrorMessage="This module already exists! Please input another Name." ForeColor="Red"  ValidationGroup="ValidateForm" EnableClientScript="true"></asp:CustomValidator>--%>
+                        
                     </div>
                 </div>
 
