@@ -30,6 +30,26 @@
                 }
             });
         });
+
+
+        function checkForm_Clicked(source, args) {
+
+            Page_ClientValidate('ValidateForm');
+            //Page_ClientValidate();
+
+            if (!Page_IsValid) {
+                document.getElementById('<%= lblErrorMsgFinal.ClientID %>').style.display = 'inherit';
+                document.getElementById('<%= lblErrorMsgFinal.ClientID %>').innerHTML = "You have not filled up all of the required fields";
+                //Page_ClientValidate('summaryGroup');
+                document.getElementById('<%= btnConfirmSubmit.ClientID %>').disabled = true;
+                console.log("The end");
+            }
+            else {
+                document.getElementById('<%= lblErrorMsgFinal.ClientID %>').innerHTML = "";
+                document.getElementById('<%= btnConfirmSubmit.ClientID %>').disabled = false;
+            }
+            return false;
+        }
     </script>
     <style>
           .breadcrumb {
@@ -92,6 +112,7 @@
                         <label for="txtCategory" class="col-lg-2 control-label">Category Name</label>
                         <div class="col-lg-10">
                             <asp:TextBox ID="txtCategory" runat="server" CssClass="form-control" placeholder="Category Name"></asp:TextBox>
+                            <asp:RequiredFieldValidator ID="rfv_txtCategory" runat="server" ErrorMessage="Please enter a category name" ControlToValidate="txtCategory" ForeColor="Red" ValidationGroup="ValidateForm"></asp:RequiredFieldValidator>
                             <br>
                         </div>
                     </div>
@@ -100,13 +121,9 @@
                     <div class="wrapper">
                         <div class="form-group">
 
-                            <asp:Button ID="btnSubmit" CssClass="btn btn-primary" runat="server" Text="Create" data-toggle="modal" href="#submitModal" OnClientClick="return false;" />
+                            <asp:Button ID="btnSubmit" CssClass="btn btn-primary" runat="server" Text="Create" data-toggle="modal" href="#submitModal" OnClientClick="return checkForm_Clicked();" CausesValidation="True" UseSubmitBehavior="False" />
                         </div>
-                        <strong>
-                            <asp:Label ID="lblSuccess" runat="server" CssClass="text-success"><span class="glyphicon glyphicon-ok"></span> Added successfully</asp:Label></strong><br />
-                        <strong>
-                            <asp:Label ID="lblError" runat="server" CssClass="text-danger"><span class="glyphicon glyphicon-remove"></span> Something went wrong</asp:Label></strong>
-
+                        
                     </div>
                 </fieldset>
                 <div class="verticalLine"></div>
@@ -150,6 +167,8 @@
                         <div class="modal-body">
                             <div class="wrapper">
                                 <h4>Are you sure you want to proceed?</h4>
+                                <br />
+                                <asp:Label ID="lblErrorMsgFinal" runat="server" CssClass="text-danger" Visible="True"></asp:Label>
                                 <br />
                                 <asp:Button ID="btnConfirmSubmit" CssClass="btn btn-primary" runat="server" Text="Submit" OnClick="btnConfirmSubmit_Click"/>
                                 <asp:Button ID="btnCancel1" CssClass="btn btn-default" runat="server" class="close" data-dismiss="modal" Text="Cancel" OnClientClick="return false;" />

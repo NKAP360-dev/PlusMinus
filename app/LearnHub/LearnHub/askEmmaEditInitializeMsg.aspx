@@ -12,6 +12,27 @@
             border-radius: 0px;
         }
     </style>
+    <script type="text/javascript">
+
+        function checkForm_Clicked(source, args) {
+            console.log("ValidateForm");
+            Page_ClientValidate('ValidateForm');
+            //Page_ClientValidate();
+
+            if (!Page_IsValid) {
+                document.getElementById('<%= lblErrorMsgFinal.ClientID %>').style.display = 'inherit';
+                document.getElementById('<%= lblErrorMsgFinal.ClientID %>').innerHTML = "You have not filled up all of the required fields";
+                //Page_ClientValidate('summaryGroup');
+                document.getElementById('<%= btnConfirmSubmit.ClientID %>').disabled = true;
+                console.log("The end");
+            }
+            else {
+                document.getElementById('<%= lblErrorMsgFinal.ClientID %>').innerHTML = "";
+                document.getElementById('<%= btnConfirmSubmit.ClientID %>').disabled = false;
+            }
+            return false;
+        }
+    </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
        <ul class="breadcrumb">
@@ -38,12 +59,14 @@
                             <div class="col-lg-8">
                                 <%--Mandatory text field--%>
                                 <asp:TextBox ID="txtMsgInput" runat="server" CssClass="form-control" placeholder="Initialization Message"></asp:TextBox>
+                                <asp:RequiredFieldValidator ID="rfv_txtMsgInput" runat="server" ErrorMessage="Please enter an Initialization Message" ControlToValidate="txtMsgInput" ForeColor="Red" ValidationGroup="ValidateForm"></asp:RequiredFieldValidator>
+
                             </div>
                         </div>
                         <br />
                         
                             <div class="wrapper">
-                            <asp:Button ID="btnSubmit" CssClass="btn btn-primary" runat="server" Text="Update" data-toggle="modal" href="#submitModal" OnClientClick="$('#myModal').modal(); return false;" />
+                            <asp:Button ID="btnSubmit" CssClass="btn btn-primary" runat="server" Text="Update" data-toggle="modal" href="#submitModal" OnClientClick="return checkForm_Clicked(); $('#myModal').modal(); " CausesValidation="True" UseSubmitBehavior="False" />
                             <asp:Button ID="deleteBtn" CssClass="btn btn-danger" runat="server" Text="Delete" data-toggle="modal" href="#deleteModal" OnClientClick="$('#myModal').modal(); return false;" />
 
                                 <br /><br />
@@ -65,6 +88,8 @@
                     <div class="modal-body">
                         <div class="wrapper">
                             <h4>Are you sure you want to overwrite?</h4>
+                            <br />
+                            <asp:Label ID="lblErrorMsgFinal" runat="server" CssClass="text-danger" Visible="True"></asp:Label>
                             <br />
                             <asp:Button ID="btnConfirmSubmit" CssClass="btn btn-primary" runat="server" Text="Overwrite" OnClick="btnConfirmSubmit_Click"/>
                             <asp:Button ID="btnCancel1" CssClass="btn btn-default" runat="server" class="close" data-dismiss="modal" Text="Cancel" OnClientClick="return false;" />
@@ -90,6 +115,7 @@
                                 <div class="wrapper">
                                     <h4>Are you sure you want to delete?</h4>
                                     <br />
+                                    
                                     <asp:Button ID="cfmDelete" CssClass="btn btn-danger" runat="server" Text="Delete" OnClick="cfmDelete_Click"/>
                                     <asp:Button ID="Button1" CssClass="btn btn-default" runat="server" class="close" data-dismiss="modal" Text="Cancel" />
 

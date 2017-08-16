@@ -65,6 +65,26 @@
             });
         });
 
+
+        function checkForm_Clicked(source, args) {
+            console.log("ValidateForm");
+            Page_ClientValidate('ValidateForm');
+            //Page_ClientValidate();
+            
+            if (!Page_IsValid) {
+                document.getElementById('<%= lblErrorMsgFinal.ClientID %>').style.display = 'inherit';
+                document.getElementById('<%= lblErrorMsgFinal.ClientID %>').innerHTML = "You have not filled up all of the required fields";
+                //Page_ClientValidate('summaryGroup');
+                document.getElementById('<%= btnConfirmSubmit.ClientID %>').disabled = true;
+                console.log("The end");
+            }
+            else {
+                document.getElementById('<%= lblErrorMsgFinal.ClientID %>').innerHTML = "";
+                document.getElementById('<%= btnConfirmSubmit.ClientID %>').disabled = false;
+            }
+            return false;
+        }
+
         function btnSaveClick() {
             unsaved = false;
         }
@@ -93,6 +113,8 @@
                 }
             });
         });
+
+
     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -120,12 +142,13 @@
                             <div class="col-lg-8">
                                 <%--Mandatory text field--%>
                                 <asp:TextBox ID="txtMsgInput" runat="server" CssClass="form-control" placeholder="Initialization Message"></asp:TextBox>
+                                <asp:RequiredFieldValidator ID="rfv_txtMsgInput" runat="server" ErrorMessage="Please enter an Initialization Message" ControlToValidate="txtMsgInput" ForeColor="Red" ValidationGroup="ValidateForm"></asp:RequiredFieldValidator>
                             </div>
                         </div>
                         <br />
                         <div class="row">
                             <div class="wrapper">
-                            <asp:Button ID="btnSubmit" CssClass="btn btn-primary" runat="server" Text="Submit" data-toggle="modal" href="#submitModal" OnClientClick="$('#myModal').modal(); return false;" UseSubmitBehavior="False" />
+                            <asp:Button ID="btnSubmit" CssClass="btn btn-primary" runat="server" Text="Submit" data-toggle="modal" href="#submitModal" OnClientClick="return checkForm_Clicked(); $('#myModal').modal(); " CausesValidation="True" UseSubmitBehavior="False" />
                                 <br /><br />
                             </div>
                         </div>
@@ -166,11 +189,7 @@
                     <asp:LinkButton ID="btnSave" CssClass="btn btn-success" runat="server" OnClientClick="btnSaveClick()" OnClick="btnSave_Click">Save Order</asp:LinkButton>
                     <br />
                 </div>
-                <strong>
-                    <asp:Label ID="lblSaveSuccess" runat="server" CssClass="text-success"><span class="glyphicon glyphicon-ok"></span> Saved successfully</asp:Label></strong><br />
-                <strong>
-                    <asp:Label ID="lblSaveError" runat="server" CssClass="text-danger"><span class="glyphicon glyphicon-remove"></span> Something went wrong</asp:Label></strong>
-
+                
             </div>
 
             <br />
@@ -248,6 +267,8 @@
                     <div class="modal-body">
                         <div class="wrapper">
                             <h4>Are you sure you want to submit?</h4>
+                            <br />
+                            <asp:Label ID="lblErrorMsgFinal" runat="server" CssClass="text-danger" Visible="True"></asp:Label>
                             <br />
                             <asp:Button ID="btnConfirmSubmit" CssClass="btn btn-primary" runat="server" Text="Submit" OnClick="btnConfirmSubmit_Click"/>
                             <asp:Button ID="btnCancel1" CssClass="btn btn-default" runat="server" class="close" data-dismiss="modal" Text="Cancel" OnClientClick="return false;" />

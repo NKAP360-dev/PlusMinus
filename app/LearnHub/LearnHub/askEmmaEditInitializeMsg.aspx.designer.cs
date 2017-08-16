@@ -22,6 +22,15 @@ namespace LearnHub {
         protected global::System.Web.UI.WebControls.TextBox txtMsgInput;
         
         /// <summary>
+        /// rfv_txtMsgInput control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfv_txtMsgInput;
+        
+        /// <summary>
         /// btnSubmit control.
         /// </summary>
         /// <remarks>
@@ -38,6 +47,15 @@ namespace LearnHub {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button deleteBtn;
+        
+        /// <summary>
+        /// lblErrorMsgFinal control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblErrorMsgFinal;
         
         /// <summary>
         /// btnConfirmSubmit control.
