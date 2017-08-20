@@ -9,6 +9,7 @@ using LearnHub.AppCode.entity;
 using System.IO;
 using System.Collections;
 using System.Web.Services;
+using System.Globalization;
 
 namespace LearnHub
 {
@@ -24,7 +25,7 @@ namespace LearnHub
             }
             else if (!currentUser.getRole().Equals("course creator") && !currentUser.getRole().Equals("superuser"))
             {
-                Response.Redirect("/errorPage.aspx");
+                Response.Redirect("errorPage.aspx");
             }
             else
             {
@@ -79,7 +80,7 @@ namespace LearnHub
             if (check && moduleType.Text != "") // if no expiry date
             {
                 c = new Course_elearn(nameOfModuleInput.Text, user.getDepartment(), DateTime.Now,
-                    Convert.ToDateTime(fromDateInput.Text), Convert.ToDateTime(toDateInput.Text), "Open", descriptionModuleInput.Text, Convert.ToInt32(moduleType.SelectedValue), user, Convert.ToInt32(hoursInput.Text), txtTargetAudience.Text);
+                    DateTime.ParseExact(fromDateInput.Text, "MM/dd/yyyy", CultureInfo.InvariantCulture), DateTime.ParseExact(toDateInput.Text, "MM/dd/yyyy", CultureInfo.InvariantCulture), "Open", descriptionModuleInput.Text, Convert.ToInt32(moduleType.SelectedValue), user, Convert.ToDouble(hoursInput.Text), txtTargetAudience.Text);
             }
 
             //check pre req here 
@@ -214,13 +215,13 @@ namespace LearnHub
             ArrayList toReturn = new ArrayList();
             Course_elearnDAO ceDAO = new Course_elearnDAO();
             ArrayList coursePrereqs = ceDAO.getPrereqOfCourse(courseID);
-            foreach(Course_elearn prerequisite in coursePrereqs)
+            foreach (Course_elearn prerequisite in coursePrereqs)
             {
                 toReturn.Add(prerequisite.getCourseID());
                 ArrayList morePrereq = getAllPrerequisites(prerequisite.getCourseID());
                 if (morePrereq.Count > 0)
                 {
-                    foreach(int prerequisitesID in morePrereq)
+                    foreach (int prerequisitesID in morePrereq)
                     {
                         toReturn.Add(prerequisitesID);
                     }
@@ -231,7 +232,7 @@ namespace LearnHub
         [System.Web.Services.WebMethod]
         public static Boolean validateNameExists(String input)
         {
-            
+
             System.Diagnostics.Debug.WriteLine("VALIDATENAMEEXISTS");
             //String input = nameOfModuleInput.Text;
             Course_elearnDAO course_elearnDAO = new Course_elearnDAO();

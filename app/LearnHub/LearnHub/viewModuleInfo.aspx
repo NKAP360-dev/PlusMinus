@@ -82,9 +82,9 @@
                 <div class="row">
                     <div class="col-md-3">
                         <div class="list-group">
-                            <asp:LinkButton ID="LinkButton1" runat="server" class="list-group-item active" OnClick="moduleInfo_Click"><span class="glyphicon glyphicon-info-sign"></span>&emsp;Module Info&emsp;</asp:LinkButton>
-                            <asp:LinkButton ID="LinkButton2" runat="server" class="list-group-item" OnClick="learningMat_Click">Learning Materials &emsp;</asp:LinkButton>
-                            <asp:LinkButton ID="LinkButton3" runat="server" class="list-group-item" OnClick="quizzes_Click">Quizzes &emsp;</asp:LinkButton>
+                            <asp:LinkButton ID="LinkButton1" runat="server" class="list-group-item active" OnClick="moduleInfo_Click"><span class="glyphicon glyphicon-info-sign" CausesValidation="false"></span>&emsp;Module Info&emsp;</asp:LinkButton>
+                            <asp:LinkButton ID="LinkButton2" runat="server" class="list-group-item" OnClick="learningMat_Click" CausesValidation="false">Learning Materials &emsp;</asp:LinkButton>
+                            <asp:LinkButton ID="LinkButton3" runat="server" class="list-group-item" OnClick="quizzes_Click" CausesValidation="false">Quizzes &emsp;</asp:LinkButton>
                         </div>
                     </div>
 
@@ -172,7 +172,7 @@
                                         </div>
                                         <div class="form-group">
                                             <div class="col-lg-10">
-                                                <asp:Button ID="cfmSubmit" CssClass="btn btn-primary" runat="server" Text="Submit" OnClick ="submitTestimonial_Click"/>
+                                                <asp:Button ID="cfmSubmit" CssClass="btn btn-primary" runat="server" Text="Submit" OnClick ="submitTestimonial_Click" CausesValidation="false"/>
                                             </div>
                                         </div>
 
@@ -204,9 +204,9 @@
                 <div class="row">
                     <div class="col-md-3">
                         <div class="list-group">
-                            <asp:LinkButton ID="LinkButton4" runat="server" class="list-group-item" OnClick="moduleInfo_Click">Module Info&emsp;</asp:LinkButton>
-                            <asp:LinkButton ID="LinkButton5" runat="server" class="list-group-item active" OnClick="learningMat_Click"><span class="glyphicon glyphicon-folder-open"></span>&emsp;Learning Materials &emsp;</asp:LinkButton>
-                            <asp:LinkButton ID="LinkButton6" runat="server" class="list-group-item" OnClick="quizzes_Click">Quizzes &emsp;</asp:LinkButton>
+                            <asp:LinkButton ID="LinkButton4" runat="server" class="list-group-item" OnClick="moduleInfo_Click" CausesValidation="false">Module Info&emsp;</asp:LinkButton>
+                            <asp:LinkButton ID="LinkButton5" runat="server" class="list-group-item active" OnClick="learningMat_Click" CausesValidation="false"><span class="glyphicon glyphicon-folder-open"></span>&emsp;Learning Materials &emsp;</asp:LinkButton>
+                            <asp:LinkButton ID="LinkButton6" runat="server" class="list-group-item" OnClick="quizzes_Click" CausesValidation="false">Quizzes &emsp;</asp:LinkButton>
 
                         </div>
                     </div>

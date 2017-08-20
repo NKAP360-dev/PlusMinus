@@ -540,7 +540,7 @@ namespace LearnHub.AppCode.dao
         }
 
 
-        public void updateCourse(int courseID, int categoryID, string name, string description, int hours, DateTime start, DateTime expiry) // Update.
+        public void updateCourse(int courseID, int categoryID, string name, string description, double hours, DateTime start, DateTime expiry) // Update.
         {
             SqlConnection conn = new SqlConnection();
 

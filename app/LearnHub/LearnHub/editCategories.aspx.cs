@@ -38,7 +38,7 @@ namespace LearnHub
             int categoryID = Convert.ToInt32(lblHiddenID.Text);
             Course_elearnCategoryDAO cecDAO = new Course_elearnCategoryDAO();
             cecDAO.updateCategory(txtCategory.Text, categoryID);
-            Response.Redirect("/manageCategories.aspx");
+            Response.Redirect("manageCategories.aspx");
         }
 
         protected void btnCfmDeactivate_Click(object sender, EventArgs e)
@@ -47,7 +47,7 @@ namespace LearnHub
             int categoryID = Convert.ToInt32(lblHiddenID.Text);
             Course_elearnCategoryDAO cecDAO = new Course_elearnCategoryDAO();
             cecDAO.deactivateCategory(categoryID);
-            Response.Redirect("/manageCategories.aspx");
+            Response.Redirect("manageCategories.aspx");
         }
 
         protected void btnCfmActivate_Click(object sender, EventArgs e)
@@ -56,7 +56,7 @@ namespace LearnHub
             int categoryID = Convert.ToInt32(lblHiddenID.Text);
             Course_elearnCategoryDAO cecDAO = new Course_elearnCategoryDAO();
             cecDAO.activateCategory(categoryID);
-            Response.Redirect("/manageCategories.aspx");
+            Response.Redirect("manageCategories.aspx");
         }
     }
 }

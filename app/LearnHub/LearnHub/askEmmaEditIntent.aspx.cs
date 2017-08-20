@@ -16,7 +16,7 @@ namespace LearnHub
         {
             if (Session["currentUser"] == null)
             {
-                Response.Redirect("/Login.aspx");
+                Response.Redirect("Login.aspx");
             }
             else
             {
@@ -26,7 +26,7 @@ namespace LearnHub
 
                     if (!currentUser.getDepartment().Equals("hr"))
                     {
-                        Response.Redirect("/errorPage.aspx");
+                        Response.Redirect("errorPage.aspx");
                     }
                     else
                     {
@@ -45,7 +45,7 @@ namespace LearnHub
             ChatBotIntentDAO cbiDAO = new ChatBotIntentDAO();
             ChatBotIntent currentCBI = cbiDAO.getChatBotIntentByID(Convert.ToInt32(Request.QueryString["id"]));
             cbiDAO.updateChatBotIntent(txtIntentInput.Text, currentCBI.intentID);
-            Response.Redirect("/askEmmaAddIntent.aspx");
+            Response.Redirect("askEmmaAddIntent.aspx");
         }
 
         protected void btnCfmDelete_Click(object sender, EventArgs e)
@@ -56,7 +56,7 @@ namespace LearnHub
             ChatBotIntent currentCBI = cbiDAO.getChatBotIntentByID(Convert.ToInt32(Request.QueryString["id"]));
             cbiDAO.deleteAnswersByIntent(currentCBI.intentID);
             cbiDAO.deleteIntentByID(currentCBI.intentID);
-            Response.Redirect("/askEmmaAddIntent.aspx");
+            Response.Redirect("askEmmaAddIntent.aspx");
         }
     }
 }

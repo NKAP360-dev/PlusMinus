@@ -16,7 +16,7 @@ namespace LearnHub
         {
             if (Session["currentUser"] == null)
             {
-                Response.Redirect("/Login.aspx");
+                Response.Redirect("Login.aspx");
             }
             else
             {
@@ -24,7 +24,7 @@ namespace LearnHub
 
                 if (!currentUser.getDepartment().Equals("hr"))
                 {
-                    Response.Redirect("/errorPage.aspx");
+                    Response.Redirect("errorPage.aspx");
                 }
                 else
                 {
@@ -46,7 +46,7 @@ namespace LearnHub
             ChatBotInitializeMsgDAO cbimDAO = new ChatBotInitializeMsgDAO();
             int messageID = Convert.ToInt32(Request.QueryString["id"]);
             cbimDAO.updateInitializationMessage(messageID, txtMsgInput.Text);
-            Response.Redirect("/askEmmaInitializeMsg.aspx");
+            Response.Redirect("askEmmaInitializeMsg.aspx");
         }
 
         protected void cfmDelete_Click(object sender, EventArgs e)
@@ -56,7 +56,7 @@ namespace LearnHub
             ChatBotInitializeMsgDAO cbimDAO = new ChatBotInitializeMsgDAO();
             int messageID = Convert.ToInt32(Request.QueryString["id"]);
             cbimDAO.deleteMessageByID(messageID);
-            Response.Redirect("/askEmmaInitializeMsg.aspx");
+            Response.Redirect("askEmmaInitializeMsg.aspx");
         }
     }
 }

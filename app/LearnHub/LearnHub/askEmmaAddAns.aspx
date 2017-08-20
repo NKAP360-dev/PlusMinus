@@ -19,6 +19,7 @@
                     "size": 10 <%--Change how many rows per page--%>
                 },
                 "filtering": {
+                    "enabled": true,
                     "position": "left"
                 }
             });
@@ -158,7 +159,7 @@
             </div>           
         </div>
         <div class="container">
-            <table class="table table-striped table-hover" id="ansTable" data-paging="true" data-sorting="true" data-filtering="true">
+            <table class="table table-striped table-hover" id="ansTable" data-paging="true" data-sorting="true">
                 <thead>
                     <tr>
                         <th id="answers" width="70%">Answers</th>

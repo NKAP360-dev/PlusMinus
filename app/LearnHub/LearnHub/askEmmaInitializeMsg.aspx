@@ -175,7 +175,7 @@
 
                     <asp:TemplateField>
                         <ItemTemplate>
-                            <a href="/askEmmaEditInitializeMsg.aspx?id=<%# Eval("messageID") %>" class="btn btn-info btn-sm pull-right"><span class="glyphicon glyphicon-pencil"></span></a>
+                            <a href="askEmmaEditInitializeMsg.aspx?id=<%# Eval("messageID") %>" class="btn btn-info btn-sm pull-right"><span class="glyphicon glyphicon-pencil"></span></a>
                         </ItemTemplate>
                     </asp:TemplateField>
 

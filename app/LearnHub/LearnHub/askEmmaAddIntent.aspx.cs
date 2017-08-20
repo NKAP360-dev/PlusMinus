@@ -34,7 +34,7 @@ namespace LearnHub
             //to do validation
             ChatBotIntentDAO cbiDAO = new ChatBotIntentDAO();
             cbiDAO.addIntent(txtIntentInput.Text);
-            Response.Redirect("/askEmmaAddIntent.aspx");
+            Response.Redirect("askEmmaAddIntent.aspx");
         }
     }
 }

@@ -108,7 +108,7 @@ namespace LearnHub
             if (successOrNot)
             {
                 //to create lesson info
-                Response.Redirect("~/submitTRF.aspx");
+                Response.Redirect("submitTRF.aspx");
             }
             else
             {

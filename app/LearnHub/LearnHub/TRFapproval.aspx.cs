@@ -17,7 +17,7 @@ namespace LearnHub
         {
             if (Session["currentUser"] == null)
             {
-                Response.Redirect("/Login.aspx");
+                Response.Redirect("Login.aspx");
             }
             else
             {
@@ -35,7 +35,7 @@ namespace LearnHub
 
                     if (currentNotification == null || !currentNotification.getUserIDTo().Equals(currentUser.getUserID()))
                     {
-                        Response.Redirect("/errorPage.aspx");
+                        Response.Redirect("errorPage.aspx");
                     }
 
                     TNF currentTNF = tnfDAO.getIndividualTNFByID(currentNotification.getUserIDFrom(), currentNotification.getTNFID());
@@ -248,7 +248,7 @@ namespace LearnHub
 
             }
             Workflow_Approve.makeApproval(currentTNF, approver, currentNotification, remarksInput.Text);
-            Response.Redirect("/approvalConfirmation.aspx");
+            Response.Redirect("approvalConfirmation.aspx");
         }
         protected void cfmRejectBtn_Click(object sender, EventArgs e)
         {
@@ -264,7 +264,7 @@ namespace LearnHub
 
 
             Workflow_Reject.makeRejection(currentTNF, approver, currentNotification, remarksInput.Text);
-            Response.Redirect("/rejectionConfirmation.aspx");
+            Response.Redirect("rejectionConfirmation.aspx");
         }
         protected void rbnlFunding_SelectedIndexChanged(object sender, EventArgs e)
         {

@@ -15,7 +15,7 @@ namespace LearnHub
         {
             if (Session["currentUser"] == null)
             {
-                Response.Redirect("/Login.aspx");
+                Response.Redirect("Login.aspx");
             }
             else
             {
@@ -44,7 +44,7 @@ namespace LearnHub
 
                     if (isApprover == false || currentTNF == null)
                     {
-                        Response.Redirect("/errorPage.aspx");
+                        Response.Redirect("errorPage.aspx");
                     }
 
                     User applicant = userDAO.getUserByID(applicantUserID);

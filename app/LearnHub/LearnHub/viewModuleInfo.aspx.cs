@@ -121,7 +121,7 @@ namespace LearnHub
             int courseID = Convert.ToInt32(Request.QueryString["id"]);
             Course_elearnDAO ceDAO = new Course_elearnDAO();
             //ceDAO.updateCourseTargetAudience(courseID, txtTargetAudience.Text);
-            Response.Redirect("/viewModuleInfo.aspx?id=" + courseID);
+            Response.Redirect("viewModuleInfo.aspx?id=" + courseID);
         }
     }
 }

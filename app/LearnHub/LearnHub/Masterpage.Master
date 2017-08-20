@@ -233,7 +233,7 @@
                                 <asp:HyperLink ID="sponEduLink" runat="server">Sponsorship/Education</asp:HyperLink></li>
                             <li class="divider"></li>
                             <li>
-                                <asp:HyperLink ID="trfLink" runat="server" NavigateUrl="~/trainingRequestFormPage.aspx">Training Request Forms</asp:HyperLink></li>
+                                <asp:HyperLink ID="trfLink" runat="server" NavigateUrl="trainingRequestFormPage.aspx">Training Request Forms</asp:HyperLink></li>
                         </ul>
                     </li>
                 </ul>
@@ -276,7 +276,7 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Support <span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
                             <li>
-                                <asp:HyperLink ID="HyperLink6" runat="server" NavigateUrl="~/accountSetting.aspx">Account Settings</asp:HyperLink></li>
+                                <asp:HyperLink ID="HyperLink6" runat="server" NavigateUrl="accountSetting.aspx">Account Settings</asp:HyperLink></li>
                             <li>
                                 <asp:HyperLink ID="HyperLink10" runat="server">Contact Us</asp:HyperLink></li>
                             <li>
@@ -365,7 +365,7 @@
                                         {
                                             Notification n = allPendingNotifications[i];
                                             User sender = userDAO.getUserByID(n.getUserIDFrom());
-                                            Response.Write("<a href=\"/TRFapproval.aspx?n=" + n.getNotificationID() + "\">You have a form pending approval from " + sender.getName() + "</a>");
+                                            Response.Write("<a href=\"TRFapproval.aspx?n=" + n.getNotificationID() + "\">You have a form pending approval from " + sender.getName() + "</a>");
                                             if (i != allPendingNotifications.Count - 1)
                                             {
                                                 Response.Write("<div class=\"verticalLine\"></div>");
@@ -374,7 +374,7 @@
                                         }
                                     %>
                                 </div>
-                                <div id="notificationFooter"><a href="../pendingApproval.aspx">See All</a></div>
+                                <div id="notificationFooter"><a href="pendingApproval.aspx">See All</a></div>
                             </div>
 
                         </li>

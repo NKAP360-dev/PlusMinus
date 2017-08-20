@@ -96,15 +96,15 @@ namespace LearnHub
             int cat = currentCourse.getCategoryID();
             if (cat == 1)
             {
-                Response.Redirect($"/viewAllModule.aspx?module=compulsory");
+                Response.Redirect($"viewAllModule.aspx?module=compulsory");
             }
             else if (cat == 2)
             {
-                Response.Redirect($"/viewAllModule.aspx?module=leadership");
+                Response.Redirect($"viewAllModule.aspx?module=leadership");
             }
             else
             {
-                Response.Redirect($"/viewAllModule.aspx?module=professional");
+                Response.Redirect($"viewAllModule.aspx?module=professional");
             }
 
         }
@@ -117,15 +117,15 @@ namespace LearnHub
             int cat = currentCourse.getCategoryID();
             if (cat == 1)
             {
-                Response.Redirect($"/viewAllModule.aspx?module=compulsory");
+                Response.Redirect($"viewAllModule.aspx?module=compulsory");
             }
             else if (cat == 2)
             {
-                Response.Redirect($"/viewAllModule.aspx?module=leadership");
+                Response.Redirect($"viewAllModule.aspx?module=leadership");
             }
             else
             {
-                Response.Redirect($"/viewAllModule.aspx?module=professional");
+                Response.Redirect($"viewAllModule.aspx?module=professional");
             }
 
         }
@@ -136,7 +136,7 @@ namespace LearnHub
 
             Course_elearnDAO ceDAO = new Course_elearnDAO();
             int courseID = Convert.ToInt32(Request.QueryString["id"]);
-            ceDAO.updateCourse(courseID, Convert.ToInt32(moduleType.SelectedValue), nameOfModuleInput.Text, descriptionModuleInput.Text, Convert.ToInt32(hoursInput.Text), DateTime.ParseExact(fromDateInput.Text, "MM/dd/yyyy", CultureInfo.InvariantCulture), DateTime.ParseExact(toDateInput.Text, "MM/dd/yyyy", CultureInfo.InvariantCulture));
+            ceDAO.updateCourse(courseID, type, nameOfModuleInput.Text, descriptionModuleInput.Text, Convert.ToDouble(hoursInput.Text), DateTime.ParseExact(fromDateInput.Text, "MM/dd/yyyy", CultureInfo.InvariantCulture), DateTime.ParseExact(toDateInput.Text, "MM/dd/yyyy", CultureInfo.InvariantCulture));
 
             //update prerequisites
             //delete all prereq first

@@ -1,5 +1,10 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Masterpage.Master" AutoEventWireup="true" CodeBehind="editModuleInfo.aspx.cs" Inherits="LearnHub.editModuleInfo" %>
 
+<%@ Import Namespace="System.IO" %>
+<%@ Import Namespace="System.Data" %>
+<%@ Import Namespace="LearnHub.AppCode.dao" %>
+<%@ Import Namespace="LearnHub.AppCode.entity" %>
+
 <%@ Register Assembly="CKEditor.NET" Namespace="CKEditor.NET" TagPrefix="CKEditor" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
@@ -219,6 +224,7 @@
             border-radius: 0px;
         }
     </style>
+
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <ul class="breadcrumb">
@@ -401,9 +407,14 @@
                         <asp:Button ID="submitBtn" CssClass="btn btn-primary" runat="server" Text="Save Changes" data-toggle="modal" href="#submitModal" OnClientClick="return checkForm_Clicked();" CausesValidation="True" UseSubmitBehavior="False" />
                         <%--READ ME: If course status = activated, show deactivate button
                                      If course status = deactivated, show activate button--%>
-                        <asp:Button ID="btnDeactivate" CssClass="btn btn-warning" runat="server" Text="Deactivate Module" data-toggle="modal" href="#deactivateModal" OnClick="btnCfmDeactivate_Click"/>
+                        <%Course_elearnDAO ceDAO = new Course_elearnDAO();
+                            Course_elearn currentCourse = ceDAO.get_course_by_id(Convert.ToInt32(Request.QueryString["id"]));
+                            if (currentCourse.getStatus().Equals("Open")){%>
+                        <asp:Button ID="btnDeactivate" CssClass="btn btn-warning" runat="server" Text="Deactivate Module" data-toggle="modal" href="#deactivateModal" OnClientClick="return false;"/>
+                        <%}else{ %>
                         <asp:Button ID="btnActivate" CssClass="btn btn-success" runat="server" Text="Activate Module" data-toggle="modal" href="#activateModal" OnClientClick="return false;" />
                     </div>
+                    <%} %>
                 </div>
 
                 <%--Modal for Submission Confirmation--%>
@@ -431,7 +442,7 @@
 
                     </div>
                 </div>
-
+                
                 <%--Modal for Deactivation Confirmation--%>
                 <div id="deactivateModal" class="modal fade" role="dialog">
                     <div class="modal-dialog">
@@ -445,7 +456,7 @@
                                 <div class="wrapper">
                                     <h4>Are you sure you want to deactivate this module?</h4>
                                     <br />
-                                    <asp:Button ID="btnCfmDeactivate" CssClass="btn btn-warning" runat="server" Text="Deactivate" OnClick="btnCfmDeactivate_Click" />
+                                    <asp:Button ID="btnCfmDeactivate" CssClass="btn btn-warning" runat="server" Text="Deactivate" OnClick="btnCfmDeactivate_Click" CausesValidation="false" />
                                     <asp:Button ID="Button2" CssClass="btn btn-default" runat="server" class="close" data-dismiss="modal" Text="Go Back" />
                                     <br />
                                 </div>
@@ -454,7 +465,7 @@
 
                     </div>
                 </div>
-           
+
                 <%--Modal for Activation Confirmation--%>
                 <div id="activateModal" class="modal fade" role="dialog">
                     <div class="modal-dialog">
@@ -468,7 +479,7 @@
                                 <div class="wrapper">
                                     <h4>Are you sure you want to activate this module?</h4>
                                     <br />
-                                    <asp:Button ID="btnCfmActivate" CssClass="btn btn-success" runat="server" Text="Activate" OnClick ="cfmActivate_Click" />
+                                    <asp:Button ID="btnCfmActivate" CssClass="btn btn-success" runat="server" Text="Activate" OnClick ="cfmActivate_Click" CausesValidation="false"/>
                                     <asp:Button ID="Button5" CssClass="btn btn-default" runat="server" class="close" data-dismiss="modal" Text="Go Back" />
                                     <br />
                                 </div>
@@ -477,7 +488,7 @@
 
                     </div>
                 </div>
-    
+           
             </fieldset>
         </form>
     </div>

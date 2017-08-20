@@ -63,7 +63,7 @@
                             Response.Write("<td> $" + currentCourse.getPrice() + "</td>");
                             Response.Write("<td>"+ n.getDateApproved() + "</td>");
                             Response.Write("<td>" + tnfDAO.getIndividualTNFByID(approver.getUserID(), n.getTNFID()).getStatus());
-                            Response.Write("<td>" + "<a href=\"/viewApprovedTRF.aspx?tnfid=" + currentTNF.getTNFID() +"&applicant="+currentTNF.getUser().getUserID()+"\"><span class=\"glyphicon glyphicon-menu-right\"></span>&nbsp;View Form</a>" + "</td>");
+                            Response.Write("<td>" + "<a href=\"viewApprovedTRF.aspx?tnfid=" + currentTNF.getTNFID() +"&applicant="+currentTNF.getUser().getUserID()+"\"><span class=\"glyphicon glyphicon-menu-right\"></span>&nbsp;View Form</a>" + "</td>");
                             Response.Write("</tr>");
                         }
                     }

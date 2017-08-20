@@ -27,7 +27,7 @@ namespace LearnHub
 
                     if (!currentUser.getDepartment().Equals("hr"))
                     {
-                        Response.Redirect("/errorPage.aspx");
+                        Response.Redirect("errorPage.aspx");
                     }
                     else
                     {
@@ -42,7 +42,7 @@ namespace LearnHub
                         }
                         else
                         {
-                            Response.Redirect("/errorPage.aspx");
+                            Response.Redirect("errorPage.aspx");
                         }
                     }
                 }
@@ -63,7 +63,7 @@ namespace LearnHub
             {
                 cbaDAO.updateChatBotAnswer(txtAnswers.Text, txtEntity.Text, ddlIntent.SelectedValue, answerID);
             }
-            Response.Redirect("/askEmmaAddAns.aspx");
+            Response.Redirect("askEmmaAddAns.aspx");
         }
 
         protected void deleteBtn_Click(object sender, EventArgs e)
@@ -71,7 +71,7 @@ namespace LearnHub
             ChatBotAnswerDAO cbaDAO = new ChatBotAnswerDAO();
             int answerID = Convert.ToInt32(Request.QueryString["id"]);
             cbaDAO.deleteAnswerByID(answerID);
-            Response.Redirect("/askEmmaAddAns.aspx");
+            Response.Redirect("askEmmaAddAns.aspx");
         }
 
         protected void ddlIntent_SelectedIndexChanged(object sender, EventArgs e)

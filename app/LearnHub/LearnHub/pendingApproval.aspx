@@ -54,7 +54,7 @@
                             Response.Write("<td> $" + currentCourse.getPrice() + "</td>");
                             Response.Write("<td> $" + currentDept.getActualBudget() + "</td>");
                             Response.Write("<td> $" + (currentDept.getActualBudget() - currentCourse.getPrice()) + "</td>");
-                            Response.Write("<td>" + "<a href=\"/TRFapproval.aspx?n=" + n.getNotificationID() + "\"><span class=\"glyphicon glyphicon-menu-right\"></span>&nbsp;More Info</a>" + "</td>");
+                            Response.Write("<td>" + "<a href=\"TRFapproval.aspx?n=" + n.getNotificationID() + "\"><span class=\"glyphicon glyphicon-menu-right\"></span>&nbsp;More Info</a>" + "</td>");
                             Response.Write("</tr>");
                         }
                     }

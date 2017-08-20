@@ -26,7 +26,7 @@ namespace LearnHub
 
                     if (!currentUser.getDepartment().Equals("hr"))
                     {
-                        Response.Redirect("/errorPage.aspx");
+                        Response.Redirect("errorPage.aspx");
                     }
                     else
                     {
@@ -38,7 +38,7 @@ namespace LearnHub
                         }
                         else
                         {
-                            Response.Redirect("/errorPage.aspx");
+                            Response.Redirect("errorPage.aspx");
                         }
                     }
                 }
@@ -51,7 +51,7 @@ namespace LearnHub
             ChatBotHelpQuestionDAO cbhqDAO = new ChatBotHelpQuestionDAO();
             ChatBotHelpQuestion currentQuestion = cbhqDAO.getChatBotHelpQuestionByID(Convert.ToInt32(Request.QueryString["id"]));
             cbhqDAO.updateChatBotHelpQuestion(txtHelpInput.Text, currentQuestion.questionID);
-            Response.Redirect("/askEmmaHelpQn.aspx");
+            Response.Redirect("askEmmaHelpQn.aspx");
         }
 
         protected void btnCfmDelete_Click(object sender, EventArgs e)
@@ -60,7 +60,7 @@ namespace LearnHub
             ChatBotHelpQuestionDAO cbhqDAO = new ChatBotHelpQuestionDAO();
             ChatBotHelpQuestion currentQuestion = cbhqDAO.getChatBotHelpQuestionByID(Convert.ToInt32(Request.QueryString["id"]));
             cbhqDAO.deleteQuestionByID(currentQuestion.questionID);
-            Response.Redirect("/askEmmaHelpQn.aspx");
+            Response.Redirect("askEmmaHelpQn.aspx");
         }
     }
 }

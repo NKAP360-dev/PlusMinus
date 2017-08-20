@@ -50,7 +50,7 @@ namespace LearnHub
                 cbAnswer.entityName = null;
             }
             cbaDAO.insertAnswer(cbAnswer);
-            Response.Redirect("/askEmmaAddAns.aspx");
+            Response.Redirect("askEmmaAddAns.aspx");
         }
 
         protected void cfmDelete_Click(object sender, EventArgs e)
