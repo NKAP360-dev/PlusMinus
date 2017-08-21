@@ -158,6 +158,11 @@
     <Compile Include="AppCode\dao\ChatBotInstructionDAO.cs" />
     <Compile Include="AppCode\dao\ChatBotIntentDAO.cs" />
     <Compile Include="AppCode\dao\ChatBotAnswerDAO.cs" />
+    <Compile Include="AppCode\dao\QuizAnswerDAO.cs" />
+    <Compile Include="AppCode\dao\QuizDAO.cs" />
+    <Compile Include="AppCode\dao\QuizQuestionDAO.cs" />
+    <Compile Include="AppCode\dao\QuizResultDAO.cs" />
+    <Compile Include="AppCode\dao\QuizResultHistoryDAO.cs" />
     <Compile Include="AppCode\dao\TestimonialDAO.cs" />
     <Compile Include="AppCode\dao\Course_elearnCategoryDAO.cs" />
     <Compile Include="AppCode\dao\DeptDAO.cs" />
@@ -179,6 +184,10 @@
     <Compile Include="AppCode\entity\ChatBotInitializeMsg.cs" />
     <Compile Include="AppCode\entity\ChatBotInstruction.cs" />
     <Compile Include="AppCode\entity\ChatBotIntent.cs" />
+    <Compile Include="AppCode\entity\QuizAnswer.cs" />
+    <Compile Include="AppCode\entity\QuizQuestion.cs" />
+    <Compile Include="AppCode\entity\QuizResult.cs" />
+    <Compile Include="AppCode\entity\QuizResultHistory.cs" />
     <Compile Include="AppCode\entity\Testimonial.cs" />
     <Compile Include="AppCode\entity\CourseCategory.cs" />
     <Compile Include="AppCode\entity\Upload.cs" />
@@ -188,7 +197,6 @@
     <Compile Include="AppCode\entity\Lesson.cs" />
     <Compile Include="AppCode\entity\Notification.cs" />
     <Compile Include="AppCode\entity\Quiz.cs" />
-    <Compile Include="AppCode\entity\QuizContent.cs" />
     <Compile Include="AppCode\entity\TNF.cs" />
     <Compile Include="AppCode\entity\TNFData.cs" />
     <Compile Include="AppCode\entity\User.cs" />

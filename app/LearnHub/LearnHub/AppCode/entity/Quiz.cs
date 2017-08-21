@@ -7,50 +7,80 @@ namespace LearnHub.AppCode.entity
 {
     public class Quiz
     {
-        private string quizID;
-        private Course mainCourse;
-        private int quizDuration;
-        private string quiz_expiry_date;
+        private int quizID;
+        private Course_elearn mainCourse;
+        private string title;
+        private string description;
+        private int passingGrade;
+        private string status;
+        private string randomOrder;
 
         public Quiz() { }
-        public Quiz (string quizID, Course mainCourse, int quizDuration, string quiz_expiry_date)
+        public Quiz (int quizID, Course_elearn mainCourse, string title, string description, int passingGrade, string status, string randomOrder)
         {
             this.quizID = quizID;
-            this.quizDuration = quizDuration;
-            this.quiz_expiry_date = quiz_expiry_date;
             this.mainCourse = mainCourse;
+            this.title = title;
+            this.description = description;
+            this.passingGrade = passingGrade;
+            this.status = status;
+            this.randomOrder = randomOrder;
         }
-        public string getQuizID()
+        public int getQuizID()
         {
             return quizID;
         }
-        public void setQuizID(string quizID)
+        public void setQuizID(int quizID)
         {
             this.quizID = quizID;
         }
-        public Course getMainCourse()
+        public Course_elearn getMainCourse()
         {
             return mainCourse;
         }
-        public void setMainCourse(Course mainCourse)
+        public void setMainCourse(Course_elearn mainCourse)
         {
             this.mainCourse = mainCourse;
         }
-        public int getQuizDuration()
+        public string getTitle()
         {
-            return quizDuration;
+            return title;
         }
-        public void setQuizDuration(int quizDuration)
+        public void setTitle(string title)
         {
-            this.quizDuration = quizDuration;
+            this.title = title;
         }
-        public string getQuizExpiryDate()
+        public string getDescription()
         {
-            return quiz_expiry_date;
+            return description;
         }
-        public void setQuizExpiryDate(string quiz_expiry_date)
+        public void setDescription(string description)
         {
-            this.quiz_expiry_date = quiz_expiry_date;
+            this.description = description;
+        }
+        public int getPassingGrade()
+        {
+            return passingGrade;
+        }
+        public void setPassingGrade(int passingGrade)
+        {
+            this.passingGrade = passingGrade;
+        }
+        public string getStatus()
+        {
+            return status;
+        }
+        public void setStatus(string status)
+        {
+            this.status = status;
+        }
+        public string getRandomOrder()
+        {
+            return randomOrder;
+        }
+        public void setRandomOrder(string randomOrder)
+        {
+            this.randomOrder = randomOrder;
         }
     }
 }
