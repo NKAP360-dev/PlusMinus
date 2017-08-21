@@ -1,4 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Masterpage.Master" AutoEventWireup="true" CodeBehind="viewModuleInfo.aspx.cs" Inherits="LearnHub.viewModuleInfo" %>
+
 <%@ Register Assembly="CKEditor.NET" Namespace="CKEditor.NET" TagPrefix="CKEditor" %>
 
 <%@ Import Namespace="System.IO" %>
@@ -33,11 +34,12 @@
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-      <ul class="breadcrumb">
-  <li><a href="home.aspx">Home</a></li>
-<li><a href="viewAllModule.aspx">Modules</a></li>
-  <li class="active"><asp:Label ID="lblBreadcrumbCourseName" runat="server" Text="courseName"></asp:Label></li>
-  </ul>
+    <ul class="breadcrumb">
+        <li><a href="home.aspx">Home</a></li>
+        <li><a href="viewAllModule.aspx">Modules</a></li>
+        <li class="active">
+            <asp:Label ID="lblBreadcrumbCourseName" runat="server" Text="courseName"></asp:Label></li>
+    </ul>
     <form class="form-horizontal" runat="server">
         <div class="container">
             <h1>
@@ -55,17 +57,21 @@
 
             </h1>
             <div class="configure">
-                <ul class="list-group" id="menu" style="display: none;">
-                    <a href="editModuleInfo.aspx?id=<%=courseID %>">
-                        <li class="list-group-item"><span class="glyphicon glyphicon-pencil"></span>&emsp;Edit Module
-                        </li>
-                    </a>
-                    <a href="#uploadModal" data-toggle="modal">
-                        <li class="list-group-item"><span class="glyphicon glyphicon-level-up"></span>&emsp;Upload Learning Materials
-                        </li>
-                    </a>
-                </ul>
-            </div>
+            <ul class="list-group" id="menu" style="display: none;">
+                <a href="editModuleInfo.aspx?id=<%=courseID %>">
+                    <li class="list-group-item"><span class="glyphicon glyphicon-pencil"></span>&emsp;Edit Module
+                    </li>
+                </a>
+                <a href="#uploadModal" data-toggle="modal">
+                    <li class="list-group-item"><span class="glyphicon glyphicon-level-up"></span>&emsp;Upload Learning Materials
+                    </li>
+                </a>
+                <a href="createQuiz.aspx?id=<%=courseID%>">
+                    <li class="list-group-item"><span class="glyphicon glyphicon-book"></span>&emsp;Create Quiz
+                    </li>
+                </a>
+            </ul>
+        </div>
             <%} %>
             <div class="verticalLine"></div>
         </div>
@@ -109,7 +115,7 @@
                                 </h3>
                             </div>
                             <div class="panel-body">
-                                
+
                                 <b>Prerequisite</b><br />
                                 <%
                                     Course_elearnDAO ceDAO = new Course_elearnDAO();
@@ -137,7 +143,8 @@
                                 <br />
                                 <b>Target Audience</b><br />
                                 <asp:Label ID="lblTargetAudience" runat="server"></asp:Label>
-                                <br /><br />
+                                <br />
+                                <br />
                             </div>
                         </div>
                     </div>
@@ -162,7 +169,7 @@
                                         <div class="form-group">
                                             <div class="col-lg-12">
                                                 <CKEditor:CKEditorControl ID="CKEditorControl2" runat="server">
-            </CKEditor:CKEditorControl>
+                                                </CKEditor:CKEditorControl>
                                             </div>
                                         </div>
                                         <div class="form-group">
@@ -172,7 +179,7 @@
                                         </div>
                                         <div class="form-group">
                                             <div class="col-lg-10">
-                                                <asp:Button ID="cfmSubmit" CssClass="btn btn-primary" runat="server" Text="Submit" OnClick ="submitTestimonial_Click" CausesValidation="false"/>
+                                                <asp:Button ID="cfmSubmit" CssClass="btn btn-primary" runat="server" Text="Submit" OnClick="submitTestimonial_Click" CausesValidation="false" />
                                             </div>
                                         </div>
 
@@ -180,14 +187,15 @@
 
                                     <hr />
                                 </div>
-                                <%foreach(Testimonial test in testimonials){ %>
+                                <%foreach (Testimonial test in testimonials)
+                                    { %>
                                 <strong>
                                     <asp:Label ID="lblCommentTitle"><%= test.getTitle() %></asp:Label></strong>&emsp;
                                 <%  User user = (User)Session["currentUser"];
                                     if (user.getRole().Equals("superuser") || user.getDepartment().Equals("hr"))
                                     {%>
                                 <a href="deleteTestimonial.aspx?id=<%=test.getID() %>&cid=<%=current.getCourseID() %>" onclick="return confirm('Are you sure?')"><span class="label label-danger pull-right"><span class="glyphicon glyphicon-trash"></span></span></a></strong><br />
-                                    <%} %>
+                                <%} %>
                                 <br />
                                 <blockquote>
                                     <asp:Label ID="lblCommentBody"><%= test.getQuote() %></asp:Label>
@@ -239,7 +247,7 @@
                             <div class="panel-heading">
                                 <h3 class="panel-title">
                                     <asp:Label ID="lblUploadTitle" runat="server"><%= title %></asp:Label>
-                                    <asp:LinkButton ID="LinkButton7" CssClass="btn btn-danger btn-xs pull-right" runat="server" Text="" data-toggle="modal" href="#deleteMaterials"><span class="glyphicon glyphicon-trash"></span></asp:LinkButton>
+                                    <asp:LinkButton ID="LinkButton7" CssClass="label label-danger pull-right" runat="server" Text="" data-toggle="modal" href="#deleteMaterials"><span class="glyphicon glyphicon-trash"></span></asp:LinkButton>
                                 </h3>
                             </div>
                             <div class="panel-body">
@@ -253,6 +261,37 @@
                             </div>
                         </div>
                         <%} %>
+                    </div>
+                </div>
+            </asp:Panel>
+            <asp:Panel ID="viewQuizzes" runat="server" Visible="false">
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="list-group">
+                            <asp:LinkButton ID="LinkButton8" runat="server" class="list-group-item" OnClick="moduleInfo_Click" CausesValidation="false">Module Info</asp:LinkButton>
+                            <asp:LinkButton ID="LinkButton9" runat="server" class="list-group-item" OnClick="learningMat_Click" CausesValidation="false">Learning Materials</asp:LinkButton>
+                            <asp:LinkButton ID="LinkButton10" runat="server" class="list-group-item active" OnClick="quizzes_Click" CausesValidation="false"><span class="glyphicon glyphicon-education"></span>&emsp;Quizzes</asp:LinkButton>
+                        </div>
+                    </div>
+
+
+                    <div class="col-md-9">
+                        <%--One panel per quiz--%>
+                        <div class="panel panel-primary">
+                            <div class="panel-heading">
+                                <h3 class="panel-title"><asp:Label ID="lblQuizTitle" runat="server" text="Quiz Title Here"></asp:Label>
+                                    <asp:LinkButton ID="btnEdit" CssClass="label label-default pull-right" runat="server" Text=""><span class="glyphicon glyphicon-pencil"></span></asp:LinkButton>
+                                </h3>
+                            </div>
+                            <div class="panel-body">
+                                <asp:Label ID="lblQuizDesc" runat="server" text="Quiz Description Here"></asp:Label>
+                                <br /><br />
+                                <div class="pull-right">
+                                <asp:Button ID="btnAttempt" runat="server" CssClass="btn btn-success btn-sm" Text="Attempt Quiz"/>&emsp;
+                                <asp:Button ID="btnResults" runat="server" CssClass="btn btn-success btn-sm" Text="View Results"/>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </asp:Panel>
@@ -293,13 +332,13 @@
                         </div>
                         <%--Positioning for buttons--%>
                         <asp:FileUpload ID="FileUpload1" runat="server" />
-                        <asp:RequiredFieldValidator ID="rfv_FileUpload1" runat="server" ErrorMessage="Please select an item to upload!" ControlToValidate="FileUpload1" ForeColor="Red" ></asp:RequiredFieldValidator>
+                        <asp:RequiredFieldValidator ID="rfv_FileUpload1" runat="server" ErrorMessage="Please select an item to upload!" ControlToValidate="FileUpload1" ForeColor="Red"></asp:RequiredFieldValidator>
                         <br />
 
                         <div class="modal-footer">
 
                             <asp:Button ID="Button1" class="btn btn-primary" runat="server" Text="Upload"
-                                OnClick="upload_click" CausesValidation="True"/>
+                                OnClick="upload_click" CausesValidation="True" />
                             <asp:Button ID="Button2" CssClass="btn btn-default" runat="server" class="close" data-dismiss="modal" Text="Go Back" />
 
                         </div>

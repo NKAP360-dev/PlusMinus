@@ -316,6 +316,20 @@
     <Compile Include="createModules.aspx.designer.cs">
       <DependentUpon>createModules.aspx</DependentUpon>
     </Compile>
+    <Compile Include="createQuiz.aspx.cs">
+      <DependentUpon>createQuiz.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="createQuiz.aspx.designer.cs">
+      <DependentUpon>createQuiz.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="createQuizQnA.aspx.cs">
+      <DependentUpon>createQuizQnA.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="createQuizQnA.aspx.designer.cs">
+      <DependentUpon>createQuizQnA.aspx</DependentUpon>
+    </Compile>
     <Compile Include="datatable.aspx.cs">
       <DependentUpon>datatable.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -856,6 +870,8 @@
     <Content Include="ckeditor\skins\moono-lisa\images\spinner.gif" />
     <Content Include="ckeditor\styles.js" />
     <Content Include="createModules.aspx" />
+    <Content Include="createQuiz.aspx" />
+    <Content Include="createQuizQnA.aspx" />
     <Content Include="datatable.aspx" />
     <Content Include="editCategories.aspx" />
     <Content Include="editModuleInfo.aspx" />

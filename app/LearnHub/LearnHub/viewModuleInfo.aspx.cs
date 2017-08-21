@@ -73,17 +73,20 @@ namespace LearnHub
         {
             viewInfo.Visible = true;
             viewLearningMaterial.Visible = false;
+            viewQuizzes.Visible = false;
         }
         protected void learningMat_Click(object sender, EventArgs e)
         {
             viewInfo.Visible = false;
             viewLearningMaterial.Visible = true;
+            viewQuizzes.Visible = false;
         }
 
         protected void quizzes_Click(object sender, EventArgs e)
         {
             viewInfo.Visible = false;
             viewLearningMaterial.Visible = false;
+            viewQuizzes.Visible = true;
         }
 
         protected void upload_click(object sender, EventArgs e)
