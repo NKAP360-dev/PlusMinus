@@ -136,7 +136,7 @@ namespace LearnHub
 
             Course_elearnDAO ceDAO = new Course_elearnDAO();
             int courseID = Convert.ToInt32(Request.QueryString["id"]);
-            ceDAO.updateCourse(courseID, type, nameOfModuleInput.Text, descriptionModuleInput.Text, Convert.ToDouble(hoursInput.Text), DateTime.ParseExact(fromDateInput.Text, "MM/dd/yyyy", CultureInfo.InvariantCulture), DateTime.ParseExact(toDateInput.Text, "MM/dd/yyyy", CultureInfo.InvariantCulture));
+            ceDAO.updateCourse(courseID, Convert.ToInt32(moduleType.SelectedValue), nameOfModuleInput.Text, descriptionModuleInput.Text, Convert.ToDouble(hoursInput.Text), DateTime.ParseExact(fromDateInput.Text, "MM/dd/yyyy", CultureInfo.InvariantCulture), DateTime.ParseExact(toDateInput.Text, "MM/dd/yyyy", CultureInfo.InvariantCulture));
 
             //update prerequisites
             //delete all prereq first
