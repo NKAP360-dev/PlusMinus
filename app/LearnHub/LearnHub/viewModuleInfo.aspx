@@ -50,28 +50,28 @@
                     Course_elearnDAO ceDAO = new Course_elearnDAO();
                     User courseCreator = ceDAO.get_course_by_id(courseID).getCourseCreator();
                     if (currentUser != null && (currentUser.getUserID() == courseCreator.getUserID() || currentUser.getRole().Equals("superuser")))
-                    { 
+                    {
                 %>
 
                 <a href="#" id="config" onclick="configuration()" class="btn btn-default pull-right"><span class="glyphicon glyphicon-option-horizontal"></span></a>
 
             </h1>
             <div class="configure">
-            <ul class="list-group" id="menu" style="display: none;">
-                <a href="editModuleInfo.aspx?id=<%=courseID %>">
-                    <li class="list-group-item"><span class="glyphicon glyphicon-pencil"></span>&emsp;Edit Module
-                    </li>
-                </a>
-                <a href="#uploadModal" data-toggle="modal">
-                    <li class="list-group-item"><span class="glyphicon glyphicon-level-up"></span>&emsp;Upload Learning Materials
-                    </li>
-                </a>
-                <a href="createQuiz.aspx?id=<%=courseID%>">
-                    <li class="list-group-item"><span class="glyphicon glyphicon-book"></span>&emsp;Create Quiz
-                    </li>
-                </a>
-            </ul>
-        </div>
+                <ul class="list-group" id="menu" style="display: none;">
+                    <a href="editModuleInfo.aspx?id=<%=courseID %>">
+                        <li class="list-group-item"><span class="glyphicon glyphicon-pencil"></span>&emsp;Edit Module
+                        </li>
+                    </a>
+                    <a href="#uploadModal" data-toggle="modal">
+                        <li class="list-group-item"><span class="glyphicon glyphicon-level-up"></span>&emsp;Upload Learning Materials
+                        </li>
+                    </a>
+                    <a href="createQuiz.aspx?id=<%=courseID%>">
+                        <li class="list-group-item"><span class="glyphicon glyphicon-book"></span>&emsp;Create Quiz
+                        </li>
+                    </a>
+                </ul>
+            </div>
             <%} %>
             <div class="verticalLine"></div>
         </div>
@@ -187,8 +187,10 @@
 
                                     <hr />
                                 </div>
-                                <%foreach (Testimonial test in testimonials)
-                                    { %>
+                                <%if (testimonials.Count != 0)
+                                    {
+                                        foreach (Testimonial test in testimonials)
+                                        { %>
                                 <strong>
                                     <asp:Label ID="lblCommentTitle"><%= test.getTitle() %></asp:Label></strong>&emsp;
                                 <%  User user = (User)Session["currentUser"];
@@ -202,7 +204,16 @@
                                     <small><%= test.getStaffName()%></small>
                                 </blockquote>
                                 <hr />
-                                <%} %>
+                                <%}
+                                }
+                                else
+                                {
+                                %>
+                                <asp:Label runat="server" Text="There are no testimonials to be displayed"></asp:Label>
+                                <%
+
+                                    }
+                                %>
                             </div>
                         </div>
                     </div>
@@ -279,17 +290,37 @@
                         <%--One panel per quiz--%>
                         <div class="panel panel-primary">
                             <div class="panel-heading">
-                                <h3 class="panel-title"><asp:Label ID="lblQuizTitle" runat="server" text="Quiz Title Here"></asp:Label>
-                                    <asp:LinkButton ID="btnEdit" CssClass="label label-default pull-right" runat="server" Text=""><span class="glyphicon glyphicon-pencil"></span></asp:LinkButton>
+                                <h3 class="panel-title">
+                                    <asp:Label ID="lblQuizTitle" runat="server" Text="Quiz Title Here"></asp:Label>
+                                    <% int courseID = Convert.ToInt32(Request.QueryString["id"]); %>
+                                    <a href="editQuiz.aspx?id=<%=courseID%>" class="label label-default pull-right"><span class="glyphicon glyphicon-pencil"></span></a>
+                                    <%--GWEE: I need both courseid for navigation so maybe when you integrate pass both courseid and quizid?--%>
                                 </h3>
                             </div>
                             <div class="panel-body">
-                                <asp:Label ID="lblQuizDesc" runat="server" text="Quiz Description Here"></asp:Label>
-                                <br /><br />
+                                <asp:Label ID="lblQuizDesc" runat="server" Text="Quiz Description Here"></asp:Label>
+                                <br />
+                                <br />
                                 <div class="pull-right">
-                                <asp:Button ID="btnAttempt" runat="server" CssClass="btn btn-success btn-sm" Text="Attempt Quiz"/>&emsp;
-                                <asp:Button ID="btnResults" runat="server" CssClass="btn btn-success btn-sm" Text="View Results"/>
+                                    <asp:Button ID="btnAttempt" runat="server" CssClass="btn btn-success btn-sm" Text="Attempt Quiz" />&emsp;
                                 </div>
+                                <br />
+                                <hr />
+                                <%--IF ATTEMPT IS NOT 0, SHOW TABLE, OTHERWISE DON'T SHOW--%>
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>Attempt #</th>
+                                            <th>Date</th>
+                                            <th>Score</th>
+                                        </tr>
+                                    </thead>
+                                    <tr>
+                                        <td><a href="#">Attempt 1</a></td>
+                                        <td>22/8/17</td>
+                                        <td>3/3</td>
+                                    </tr>
+                                </table>
                             </div>
                         </div>
                     </div>

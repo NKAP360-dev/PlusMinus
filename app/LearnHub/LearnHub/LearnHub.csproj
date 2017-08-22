@@ -351,6 +351,13 @@
     <Compile Include="editModuleInfo.aspx.designer.cs">
       <DependentUpon>editModuleInfo.aspx</DependentUpon>
     </Compile>
+    <Compile Include="editQuiz.aspx.cs">
+      <DependentUpon>editQuiz.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="editQuiz.aspx.designer.cs">
+      <DependentUpon>editQuiz.aspx</DependentUpon>
+    </Compile>
     <Compile Include="emmaConfiguration.aspx.cs">
       <DependentUpon>emmaConfiguration.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -875,6 +882,7 @@
     <Content Include="datatable.aspx" />
     <Content Include="editCategories.aspx" />
     <Content Include="editModuleInfo.aspx" />
+    <Content Include="editQuiz.aspx" />
     <Content Include="emmaConfiguration.aspx" />
     <Content Include="errorPage.aspx" />
     <Content Include="favicon.ico" />

@@ -256,15 +256,6 @@ namespace LearnHub {
         protected global::System.Web.UI.WebControls.Label lblQuizTitle;
         
         /// <summary>
-        /// btnEdit control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton btnEdit;
-        
-        /// <summary>
         /// lblQuizDesc control.
         /// </summary>
         /// <remarks>
@@ -281,15 +272,6 @@ namespace LearnHub {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnAttempt;
-        
-        /// <summary>
-        /// btnResults control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnResults;
         
         /// <summary>
         /// uploadTitleInput control.
