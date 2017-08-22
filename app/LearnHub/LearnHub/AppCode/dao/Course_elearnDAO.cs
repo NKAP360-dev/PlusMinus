@@ -251,7 +251,7 @@ namespace LearnHub.AppCode.dao
                         toReturn.setPrerequisite(list); //retrieve arraylist of all prereq course_elearn objects
                     }
                     toReturn.setCategoryID((int)dr["categoryID"]);//7
-                    toReturn.setHoursAwarded((int)dr["hoursAwarded"]);
+                    toReturn.setHoursAwarded((double)dr["hoursAwarded"]);
                     if (!dr.IsDBNull(11))
                     {
                         toReturn.setTargetAudience((string)dr["targetAudience"]);
@@ -311,7 +311,7 @@ namespace LearnHub.AppCode.dao
                         toReturn.setPrerequisite(list); //retrieve arraylist of all prereq course_elearn objects
                     }
                     toReturn.setCategoryID((int)dr["categoryID"]);//7
-                    toReturn.setHoursAwarded((int)dr["hoursAwarded"]);
+                    toReturn.setHoursAwarded((double)dr["hoursAwarded"]);
                     if (!dr.IsDBNull(11))
                     {
                         toReturn.setTargetAudience((string)dr["targetAudience"]);
@@ -366,7 +366,7 @@ namespace LearnHub.AppCode.dao
                     toReturn.setStatus((string)dr["status"]);
                     toReturn.setDescription((string)dr["description"]);
                     toReturn.setCategoryID((int)dr["categoryID"]);
-                    toReturn.setHoursAwarded((int)dr["hoursAwarded"]);
+                    toReturn.setHoursAwarded((double)dr["hoursAwarded"]);
                     if (!dr.IsDBNull(11))
                     {
                         toReturn.setTargetAudience((string)dr["targetAudience"]);
@@ -427,7 +427,7 @@ namespace LearnHub.AppCode.dao
                     }
                     toReturn.setCategoryID((int)dr["categoryID"]);//7
                     toReturn.setCourseCreator(userDAO.getUserByID((string)dr["courseCreator"]));
-                    toReturn.setHoursAwarded((int)dr["hoursAwarded"]);
+                    toReturn.setHoursAwarded((double)dr["hoursAwarded"]);
                     if (!dr.IsDBNull(11))
                     {
                         toReturn.setTargetAudience((string)dr["targetAudience"]);

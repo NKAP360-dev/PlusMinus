@@ -1,4 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Masterpage.Master" AutoEventWireup="true" CodeBehind="accountSetting.aspx.cs" Inherits="LearnHub.accountSetting" %>
+<%@ Import Namespace="LearnHub.AppCode.dao" %>
+<%@ Import Namespace="LearnHub.AppCode.entity" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <style>
@@ -26,7 +28,7 @@
         <h1>Account Setting</h1>
         <div class="verticalLine"></div>
     </div>
-    <form class="form-horizontal" runat="server">
+    <form class="form-horizontal" runat="server" EnablePartialRendering="true">
         <div class="container">
             <div class="row">
                 <div class="col-md-3">
@@ -44,12 +46,12 @@
                     <div class="form-group">
                         <strong>
                             <asp:Label runat="server" CssClass="col-lg-3 control-label" Text="Username"></asp:Label></strong>
-                        <asp:Label ID="lblUsername" runat="server" CssClass="col-lg-6 control-label-left" Text="Username here"></asp:Label>
+                        <asp:Label ID="lblUsername" runat="server" CssClass="col-lg-6 control-label-left"><%=currentUser.getUserID() %></asp:Label>
                     </div>
                     <div class="form-group">
                         <strong>
                             <asp:Label runat="server" CssClass="col-lg-3 control-label" Text="Name"></asp:Label></strong>
-                        <asp:Label ID="lblName" runat="server" CssClass="col-lg-6 control-label-left" Text="Name here"></asp:Label>
+                        <asp:Label ID="lblName" runat="server" CssClass="col-lg-6 control-label-left"><%=currentUser.getName() %></asp:Label>
                     </div>
                     <div class="form-group">
                         <strong>
@@ -68,22 +70,22 @@
                      <div class="form-group">
                         <strong>
                             <asp:Label runat="server" CssClass="col-lg-3 control-label" Text="Email"></asp:Label></strong>
-                        <asp:Label ID="lblEmail" runat="server" CssClass="col-lg-6 control-label-left" Text="Email address here"></asp:Label>
+                        <asp:Label ID="lblEmail" runat="server" CssClass="col-lg-6 control-label-left"><%=currentUser.getEmail() %></asp:Label>
                     </div>
                     <div class="form-group">
                         <strong>
                             <asp:Label runat="server" CssClass="col-lg-3 control-label" Text="Department"></asp:Label></strong>
-                        <asp:Label ID="lblDepartment" runat="server" CssClass="col-lg-6 control-label-left" Text="Department name here"></asp:Label>
+                        <asp:Label ID="lblDepartment" runat="server" CssClass="col-lg-6 control-label-left"><%=currentUser.getDepartment() %></asp:Label>
                     </div>
                     <div class="form-group">
                         <strong>
                             <asp:Label runat="server" CssClass="col-lg-3 control-label" Text="Job Title"></asp:Label></strong>
-                        <asp:Label ID="lblJobTitle" runat="server" CssClass="col-lg-6 control-label-left" Text="Job title here"></asp:Label>
+                        <asp:Label ID="lblJobTitle" runat="server" CssClass="col-lg-6 control-label-left"><%=currentUser.getJobTitle() %></asp:Label>
                     </div>
                     <div class="form-group">
                         <div class="wrapper">
                             <br />
-                            <asp:Button ID="btnSave" runat="server" CssClass="btn btn-primary" Text="Save"/>
+                            <asp:Button ID="btnSave" runat="server" CssClass="btn btn-primary" Text="Save" OnClick="updateInfo_Click" UseSubmitBehavior="false"/>
                         </div>
                     </div>
                 </div>

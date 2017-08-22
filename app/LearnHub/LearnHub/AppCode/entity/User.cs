@@ -16,12 +16,15 @@ namespace LearnHub.AppCode.entity
         private string department;
         private string email;
         private DateTime start_Date;
+        private string add;
+        private string contact;
 
         public User()
         {
 
         }
-        public User(string uid, string name, string jobTitle, string jobCategory, string supervisor, string role, string department, string email, DateTime start_Date)
+        public User(string uid, string name, string jobTitle, string jobCategory, string supervisor, string role, string department, string email, DateTime start_Date
+            , string add, string contact)
         {
             this.uid = uid;
             this.name = name;
@@ -32,6 +35,16 @@ namespace LearnHub.AppCode.entity
             this.department = department;
             this.email = email;
             this.start_Date = start_Date;
+            this.add = add;
+            this.contact = contact;
+        }
+        public string getContact()
+        {
+            return contact;
+        }
+        public void setContact(string contact)
+        {
+            this.contact = contact;
         }
         public string getUserID()
         {
@@ -40,6 +53,14 @@ namespace LearnHub.AppCode.entity
         public void setUserID(string uid)
         {
             this.uid = uid;
+        }
+        public string getAddress()
+        {
+            return add;
+        }
+        public void setAddress(string add)
+        {
+            this.add = add;
         }
         public string getName()
         {

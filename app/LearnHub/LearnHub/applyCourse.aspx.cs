@@ -17,7 +17,7 @@ namespace LearnHub
         {
             if (Session["currentUser"] == null)
             {
-                Response.Redirect("/Login.aspx");
+                Response.Redirect("Login.aspx");
             } else
             {
                 User currentUser = (User)Session["currentUser"];

@@ -217,7 +217,7 @@
                     <span class="icon-bar"></span>
                 </button>
                 <img src="img/LearnHub2.png" alt="LHLogo" style="width: 59px; height: 59px;" />
-                <asp:HyperLink ID="HyperLink7" runat="server" CssClass="navbar-brand" NavigateUrl="~/Home.aspx">LearnHub</asp:HyperLink>
+                <asp:HyperLink ID="HyperLink7" runat="server" CssClass="navbar-brand" NavigateUrl="Home.aspx">LearnHub</asp:HyperLink>
             </div>
 
             <div class="navbar-collapse collapse" id="navigationbar" aria-expanded="false" style="height: 1px;">

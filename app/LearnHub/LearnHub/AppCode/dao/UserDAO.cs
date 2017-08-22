@@ -48,6 +48,8 @@ namespace LearnHub.AppCode.dao
                         toReturn.setDepartment("NA");
                     }
                     toReturn.setEmail((string)dr["email"]);
+                    toReturn.setContact((string)dr["contactNumber"]);
+                    toReturn.setAddress((string)dr["address"]);
                     toReturn.setStartDate(dr.GetDateTime(3));
                 }
                 dr.Close();
@@ -61,6 +63,37 @@ namespace LearnHub.AppCode.dao
                 conn.Close();
             }
             return toReturn;
+        }
+
+        public User updateInfo(string contact, string add, User user)
+        {
+            SqlConnection conn = new SqlConnection();
+            try
+            {
+                conn = new SqlConnection();
+                string connstr = ConfigurationManager.ConnectionStrings["DBConnectionString"].ToString();
+                conn.ConnectionString = connstr;
+                conn.Open();
+                SqlCommand comm = new SqlCommand();
+                comm.Connection = conn;
+                comm.CommandText =
+                    "update [User] set contactNumber=@contact, address=@add where userID = @userID";
+                comm.Parameters.AddWithValue("@contact", contact);
+                comm.Parameters.AddWithValue("@add", add);
+                comm.Parameters.AddWithValue("@userID", user.getUserID());
+                user.setAddress(add);
+                user.setContact(contact);
+                int rowsAffected = comm.ExecuteNonQuery();
+                return user;
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                conn.Close();
+            }
         }
 
         public List<User> getAllUsers()

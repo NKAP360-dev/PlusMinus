@@ -36,6 +36,8 @@ namespace LearnHub.AppCode.dao
                     toReturn.setJobCategory((string)dr["job_category"]);
                     toReturn.setEmail((string)dr["email"]);
                     toReturn.setStartDate(dr.GetDateTime(3));
+                    toReturn.setContact((string)dr["contactNumber"]);
+                    toReturn.setAddress((string)dr["address"]);
                     if (!dr.IsDBNull(6))
                     {
                         toReturn.setSupervisor((string)dr["supervisor"]);
