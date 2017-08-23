@@ -38,6 +38,7 @@ namespace LearnHub.AppCode.dao
                     toReturn.setStartDate(dr.GetDateTime(3));
                     toReturn.setContact((string)dr["contactNumber"]);
                     toReturn.setAddress((string)dr["address"]);
+                    //toReturn.setPasswordHashed((string)dr["password"]);
                     if (!dr.IsDBNull(6))
                     {
                         toReturn.setSupervisor((string)dr["supervisor"]);

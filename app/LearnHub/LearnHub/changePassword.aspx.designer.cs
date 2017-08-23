@@ -13,31 +13,31 @@ namespace LearnHub {
     public partial class changePassword {
         
         /// <summary>
-        /// txtContactNo control.
+        /// txtPassword_now control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtContactNo;
+        protected global::System.Web.UI.WebControls.TextBox txtPassword_now;
         
         /// <summary>
-        /// txtAddress control.
+        /// txtPassword_new control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtAddress;
+        protected global::System.Web.UI.WebControls.TextBox txtPassword_new;
         
         /// <summary>
-        /// TextBox1 control.
+        /// txtPassword_newConfirm control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox1;
+        protected global::System.Web.UI.WebControls.TextBox txtPassword_newConfirm;
         
         /// <summary>
         /// btnSave control.

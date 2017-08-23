@@ -10,6 +10,66 @@ namespace LearnHub.AppCode.dao
 {
     public class UserDAO
     {
+        public Boolean updatePassword(string password, User user)
+        {
+            SqlConnection conn = new SqlConnection();
+            Boolean done = false;
+            try
+            {
+                conn = new SqlConnection();
+                string connstr = ConfigurationManager.ConnectionStrings["DBConnectionString"].ToString();
+                conn.ConnectionString = connstr;
+                conn.Open();
+                SqlCommand comm = new SqlCommand();
+                comm.Connection = conn;
+                comm.CommandText =
+                    "update [User] set password=@pw where userID = @userid";
+                comm.Parameters.AddWithValue("@pw", password);
+                comm.Parameters.AddWithValue("@userid", user.getUserID());
+                int rowsAffected = comm.ExecuteNonQuery();
+                done = true;
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                conn.Close();
+            }
+            return done;
+        }
+        public string getPassword(string userID)
+        {
+            SqlConnection conn = new SqlConnection();
+            string toReturn = null;
+            try
+            {
+                conn = new SqlConnection();
+                string connstr = ConfigurationManager.ConnectionStrings["DBConnectionString"].ToString();
+                conn.ConnectionString = connstr;
+                conn.Open();
+                SqlCommand comm = new SqlCommand();
+                comm.Connection = conn;
+                comm.CommandText = "select password from [User] where userID=@userID";
+                comm.Parameters.AddWithValue("@userID", userID);
+                SqlDataReader dr = comm.ExecuteReader();
+                while (dr.Read())
+                {
+                   toReturn = (string)dr["password"];
+                }
+                dr.Close();
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                conn.Close();
+            }
+            return toReturn;
+        }
         public User getUserByID(string userID)
         {
             SqlConnection conn = new SqlConnection();

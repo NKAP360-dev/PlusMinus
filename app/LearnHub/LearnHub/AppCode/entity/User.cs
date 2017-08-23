@@ -18,6 +18,7 @@ namespace LearnHub.AppCode.entity
         private DateTime start_Date;
         private string add;
         private string contact;
+        //private string hashedpassword;
 
         public User()
         {
@@ -37,6 +38,7 @@ namespace LearnHub.AppCode.entity
             this.start_Date = start_Date;
             this.add = add;
             this.contact = contact;
+            //this.hashedpassword = hashedpassword;
         }
         public string getContact()
         {
