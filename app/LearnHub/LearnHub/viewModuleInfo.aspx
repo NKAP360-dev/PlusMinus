@@ -154,15 +154,16 @@
                     </div>
                     <div class="col-md-9">
                         <div class="panel panel-primary">
-                            
+
                             <div class="panel-heading">
                                 <h3 class="panel-title">Testimonial&emsp;<%  User user = (User)Session["currentUser"];
-                                if (user.getRole().Equals("superuser") || user.getDepartment().Equals("hr"))
-                                {%> <a href="javascript:void(0);" data-toggle="collapse" data-target="#addTestimonial"><span class="label label-default pull-right">
-                                    
+                                                                             if (user.getRole().Equals("superuser") || user.getDepartment().Equals("hr"))
+                                                                             {%> <a href="javascript:void(0);" data-toggle="collapse" data-target="#addTestimonial"><span class="label label-default pull-right">
+
                                     <span class="glyphicon glyphicon-pencil"></span></span></a>
-                            <%} %>
-                            </h3></div>
+                                    <%} %>
+                                </h3>
+                            </div>
                             <div class="panel-body">
                                 <div class="collapse" id="addTestimonial">
                                     <h4><strong>Add New Testimonial</strong></h4>
@@ -211,9 +212,9 @@
                                 </blockquote>
                                 <hr />
                                 <%}
-                                }
-                                else
-                                {
+                                    }
+                                    else
+                                    {
                                 %>
                                 <asp:Label runat="server" Text="There are no testimonials to be displayed"></asp:Label>
                                 <%
@@ -326,7 +327,7 @@
                                         </tr>
                                     </thead>
                                     <tr>
-                                        <td><a href="#">Attempt 1</a></td>
+                                        <td><a href="viewResults.aspx?id=<%=courseID%>">Attempt 1</a></td>
                                         <td>22/8/17</td>
                                         <td>3/3</td>
                                     </tr>
