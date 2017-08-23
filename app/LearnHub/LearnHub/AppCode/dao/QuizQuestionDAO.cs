@@ -58,10 +58,13 @@ namespace LearnHub.AppCode.dao
                 conn.Open();
                 SqlCommand comm = new SqlCommand();
                 comm.Connection = conn;
-                comm.CommandText = "Insert into [QuizQuestion] (quizID, question, correctAnserID) OUTPUT INSERTED.quizQuestionID VALUES (@quizID, @question, @correctAnswerID)";
+                comm.CommandText = "Insert into [QuizQuestion] (quizID, question, correctAnswerID) OUTPUT INSERTED.quizQuestionID VALUES (@quizID, @question, @correctAnswerID)";
                 comm.Parameters.AddWithValue("@quizID", qq.getQuiz().getQuizID());
                 comm.Parameters.AddWithValue("@question", qq.getQuestion());
-                comm.Parameters.AddWithValue("@correctAnswerID", qq.getQuizAnswer().getQuizAnswerID());
+                if (qq.getQuizAnswer() != null)
+                {
+                    comm.Parameters.AddWithValue("@correctAnswerID", qq.getQuizAnswer().getQuizAnswerID());
+                }
                 toReturn = (Int32)comm.ExecuteScalar();
             }
             catch (SqlException ex)
@@ -73,6 +76,33 @@ namespace LearnHub.AppCode.dao
                 conn.Close();
             }
             return toReturn;
+        }
+        public void updateCorrectAnswerID(int quizQuestionID, int answerID) // Update.
+        {
+            SqlConnection conn = new SqlConnection();
+
+            try
+            {
+                conn = new SqlConnection();
+                string connstr = ConfigurationManager.ConnectionStrings["DBConnectionString"].ToString();
+                conn.ConnectionString = connstr;
+                conn.Open();
+                SqlCommand comm = new SqlCommand();
+                comm.Connection = conn;
+                comm.CommandText =
+                    "Update [QuizQuestion] SET correctAnswerID=@correctAnswerID WHERE quizQuestionID=@quizQuestionID";
+                comm.Parameters.AddWithValue("@correctAnswerID", answerID);
+                comm.Parameters.AddWithValue("@quizQuestionID", quizQuestionID);
+                int rowsAffected = comm.ExecuteNonQuery();
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                conn.Close();
+            }
         }
     }
 }

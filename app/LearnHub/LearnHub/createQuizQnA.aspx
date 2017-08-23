@@ -79,28 +79,12 @@
                 <legend>Input quiz question and answers</legend>
                 <div class="form-group required">
                     <strong>
-                        <asp:Label runat="server" CssClass="col-lg-2 control-label" Text="Question">Question 1</asp:Label>
+                        <asp:Label ID="lblQuestionNumber" runat="server" CssClass="col-lg-2 control-label"></asp:Label>
                     </strong>
                     <div class="col-lg-9">
                         <asp:TextBox ID="txtQuizQuestion" CssClass="form-control" runat="server" placeholder="Quiz Question"></asp:TextBox>
                     </div>
                 </div>
-                <div class="form-group required">
-                    <strong>
-                        <asp:Label runat="server" CssClass="col-lg-2 control-label" Text="Answers"></asp:Label>
-                    </strong>
-                    <div class="col-lg-9">
-                        <asp:RadioButtonList ID="rblAnswers" runat="server">
-                            <asp:ListItem>&emsp;<input type="text" name="txtAnsOne"  size="50"></asp:ListItem>
-                            <asp:ListItem>&emsp;<input type="text" name="txtAnsTwo"  size="50"></asp:ListItem>
-                            <asp:ListItem>&emsp;<input type="text" name="txtAnsThree"  size="50"></asp:ListItem>
-                            <asp:ListItem>&emsp;<input type="text" name="txtAnsFour"  size="50"></asp:ListItem>
-                        </asp:RadioButtonList>
-                        <h6>Select to indicate correct answer for this question</h6>
-                    </div>
-                </div>
-
-                <h1>or</h1>
                 <div class="form-group required">
                     <strong>
                         <asp:Label runat="server" CssClass="col-lg-2 control-label" Text="Answers"></asp:Label>
@@ -118,10 +102,10 @@
                     </strong>
                     <div class="col-lg-3">
                         <asp:DropDownList ID="ddlCorrectAns" runat="server" CssClass="form-control">
-                            <asp:ListItem>Option 1</asp:ListItem>
-                            <asp:ListItem>Option 2</asp:ListItem>
-                            <asp:ListItem>Option 3</asp:ListItem>
-                            <asp:ListItem>Option 4</asp:ListItem>
+                            <asp:ListItem Value="1">Option 1</asp:ListItem>
+                            <asp:ListItem Value="2">Option 2</asp:ListItem>
+                            <asp:ListItem Value="3">Option 3</asp:ListItem>
+                            <asp:ListItem Value="4">Option 4</asp:ListItem>
 
                         </asp:DropDownList>
                     </div>
@@ -130,11 +114,11 @@
             <br />
             <br />
             <div class="wrapper">
-                <asp:Label ID="lblAddedMsg" CssClass="label label-success" runat="server"  Font-Size="Medium"> Question <1> has been added successfully</asp:Label>
+                <asp:Label ID="lblAddedMsg" CssClass="label label-success" runat="server"  Font-Size="Medium" Visible="false"></asp:Label>
             </div>
             <br />
             <div class="form-group wrapper">
-                <asp:Button ID="btnNewQn" runat="server" CssClass="btn btn-primary" Text="Add Question" />
+                <asp:Button ID="btnNewQn" runat="server" CssClass="btn btn-primary" Text="Add Question" onclick="btnNewQn_Click"/>
                 <button type="button" data-toggle="modal" data-target="#finishModal" class="btn btn-success">Finish</button>
             </div>
 
@@ -156,14 +140,14 @@
                              <label class="col-lg-3 control-label">Randomize question order</label>
                             <div class="col-lg-7">
                                 <asp:DropDownList ID="ddlRandomize" runat="server" CssClass="form-control">
-                                    <asp:ListItem>Randomize</asp:ListItem>
-                                    <asp:ListItem>In Order</asp:ListItem>
+                                    <asp:ListItem Value="y">Randomize</asp:ListItem>
+                                    <asp:ListItem Value="n">In Order</asp:ListItem>
                                 </asp:DropDownList>
                             </div>
 
                         </div>
                         <div class="wrapper">
-                            <asp:Button ID="btnConfirmSubmit" CssClass="btn btn-primary" runat="server" Text="Submit" />
+                            <asp:Button ID="btnConfirmSubmit" CssClass="btn btn-primary" runat="server" Text="Submit" OnClick="btnConfirmSubmit_Click" />
                             <asp:Button ID="btnCancel1" CssClass="btn btn-default" runat="server" class="close" data-dismiss="modal" Text="Cancel" OnClientClick="return false;" />
                             <br />
                         </div>
