@@ -544,6 +544,13 @@
     <Compile Include="deleteTestimonial.aspx.designer.cs">
       <DependentUpon>deleteTestimonial.aspx</DependentUpon>
     </Compile>
+    <Compile Include="deleteMaterial.aspx.cs">
+      <DependentUpon>deleteMaterial.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="deleteMaterial.aspx.designer.cs">
+      <DependentUpon>deleteMaterial.aspx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="accountSetting.aspx" />
@@ -946,6 +953,9 @@
     <Content Include="ckeditor\samples\toolbarconfigurator\lib\codemirror\LICENSE" />
     <Content Include="ckeditor\skins\moono-lisa\readme.md" />
     <Content Include="deleteTestimonial.aspx" />
+    <Content Include="deleteMaterial.aspx">
+      <BrowseToURL>~/deleteMaterial.aspx</BrowseToURL>
+    </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />

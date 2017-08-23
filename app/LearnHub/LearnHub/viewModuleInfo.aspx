@@ -154,9 +154,15 @@
                     </div>
                     <div class="col-md-9">
                         <div class="panel panel-primary">
+                            
                             <div class="panel-heading">
-                                <h3 class="panel-title">Testimonial&emsp; <a href="javascript:void(0);" data-toggle="collapse" data-target="#addTestimonial"><span class="label label-default pull-right"><span class="glyphicon glyphicon-pencil"></span></span></a></h3>
-                            </div>
+                                <h3 class="panel-title">Testimonial&emsp;<%  User user = (User)Session["currentUser"];
+                                if (user.getRole().Equals("superuser") || user.getDepartment().Equals("hr"))
+                                {%> <a href="javascript:void(0);" data-toggle="collapse" data-target="#addTestimonial"><span class="label label-default pull-right">
+                                    
+                                    <span class="glyphicon glyphicon-pencil"></span></span></a>
+                            <%} %>
+                            </h3></div>
                             <div class="panel-body">
                                 <div class="collapse" id="addTestimonial">
                                     <h4><strong>Add New Testimonial</strong></h4>
@@ -193,7 +199,7 @@
                                         { %>
                                 <strong>
                                     <asp:Label ID="lblCommentTitle"><%= test.getTitle() %></asp:Label></strong>&emsp;
-                                <%  User user = (User)Session["currentUser"];
+                                <%  
                                     if (user.getRole().Equals("superuser") || user.getDepartment().Equals("hr"))
                                     {%>
                                 <a href="deleteTestimonial.aspx?id=<%=test.getID() %>&cid=<%=current.getCourseID() %>" onclick="return confirm('Are you sure?')"><span class="label label-danger pull-right"><span class="glyphicon glyphicon-trash"></span></span></a></strong><br />
@@ -258,7 +264,11 @@
                             <div class="panel-heading">
                                 <h3 class="panel-title">
                                     <asp:Label ID="lblUploadTitle" runat="server"><%= title %></asp:Label>
-                                    <asp:LinkButton ID="LinkButton7" CssClass="label label-danger pull-right" runat="server" Text="" data-toggle="modal" href="#deleteMaterials"><span class="glyphicon glyphicon-trash"></span></asp:LinkButton>
+                                    <%  User user = (User)Session["currentUser"];
+                                        if (user.getRole().Equals("superuser") || user.getDepartment().Equals("hr"))
+                                        {%>
+                                    <a href="deleteMaterial.aspx?id=<%=current.getCourseID()%>&path=<%=strfile%>" onclick="return confirm('Are you sure?')"><span class="label label-danger pull-right"><span class="glyphicon glyphicon-trash"></span></span></a></strong><br />
+                                    <%} %>
                                 </h3>
                             </div>
                             <div class="panel-body">

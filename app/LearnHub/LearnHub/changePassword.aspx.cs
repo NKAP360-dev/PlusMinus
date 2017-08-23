@@ -45,7 +45,7 @@ namespace LearnHub
                 }
                 else
                 {
-                    Response.Redirect("askEmmaHelpQn.aspx");
+                    Response.Redirect("errorPage.aspx");
                 }
             }
             else
