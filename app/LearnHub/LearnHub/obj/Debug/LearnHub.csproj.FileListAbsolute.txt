@@ -199,6 +199,8 @@ C:\Users\Tan Ming Kwang\Desktop\School\FYP\Project\LearnHub\LearnHub\bin\Microso
 C:\Users\Tan Ming Kwang\Desktop\School\FYP\Project\LearnHub\LearnHub\obj\Debug\LearnHub.dll
 C:\Users\Tan Ming Kwang\Desktop\School\FYP\Project\LearnHub\LearnHub\obj\Debug\LearnHub.pdb
 C:\Users\Eugene Tan\PlusMinus\app\LearnHub\LearnHub\bin\CKEditor.NET.dll
+C:\Users\Eugene Tan\PlusMinus\app\LearnHub\LearnHub\obj\Debug\LearnHub.csprojResolveAssemblyReference.cache
+C:\Users\Tan Ming Kwang\Desktop\School\FYP\Project\LearnHub\LearnHub\obj\Debug\LearnHub.csprojResolveAssemblyReference.cache
 C:\Users\weilinggwee\plusminus\app\LearnHub\LearnHub\bin\ApplicationInsights.config
 C:\Users\weilinggwee\plusminus\app\LearnHub\LearnHub\bin\roslyn\csc.exe
 C:\Users\weilinggwee\plusminus\app\LearnHub\LearnHub\bin\roslyn\csc.exe.config
@@ -267,6 +269,3 @@ C:\Users\weilinggwee\plusminus\app\LearnHub\LearnHub\bin\Microsoft.AI.WindowsSer
 C:\Users\weilinggwee\plusminus\app\LearnHub\LearnHub\bin\Microsoft.AI.Web.xml
 C:\Users\weilinggwee\plusminus\app\LearnHub\LearnHub\obj\Debug\LearnHub.dll
 C:\Users\weilinggwee\plusminus\app\LearnHub\LearnHub\obj\Debug\LearnHub.pdb
-C:\Users\Eugene Tan\PlusMinus\app\LearnHub\LearnHub\obj\Debug\LearnHub.csprojResolveAssemblyReference.cache
-C:\Users\Tan Ming Kwang\Desktop\School\FYP\Project\LearnHub\LearnHub\obj\Debug\LearnHub.csprojResolveAssemblyReference.cache
-C:\Users\weilinggwee\plusminus\app\LearnHub\LearnHub\obj\Debug\LearnHub.csprojResolveAssemblyReference.cache

@@ -313,7 +313,7 @@
                                 <br />
                                 <br />
                                 <div class="pull-right">
-                                    <asp:Button ID="btnAttempt" runat="server" CssClass="btn btn-success btn-sm" Text="Attempt Quiz" />&emsp;
+                                    <a href="quiz.aspx?id=<%=courseID%>" class="btn btn-success btn-sm">Attempt Quiz</a>&nbsp; 
                                 </div>
                                 <br />
                                 <hr />

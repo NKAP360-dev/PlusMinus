@@ -425,6 +425,13 @@
       <DependentUpon>pendingApproval.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="quiz.aspx.cs">
+      <DependentUpon>quiz.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="quiz.aspx.designer.cs">
+      <DependentUpon>quiz.aspx</DependentUpon>
+    </Compile>
     <Compile Include="rejectionConfirmation.aspx.cs">
       <DependentUpon>rejectionConfirmation.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -916,6 +923,7 @@
     <Content Include="Logout.aspx" />
     <Content Include="manageCategories.aspx" />
     <Content Include="pendingApproval.aspx" />
+    <Content Include="quiz.aspx" />
     <Content Include="rejectionConfirmation.aspx" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
