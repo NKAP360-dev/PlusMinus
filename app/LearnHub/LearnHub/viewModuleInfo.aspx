@@ -157,7 +157,11 @@
 
                             <div class="panel-heading">
                                 <h3 class="panel-title">Testimonial&emsp;<%  User user = (User)Session["currentUser"];
-                                                                             if (user.getRole().Equals("superuser") || user.getDepartment().Equals("hr"))
+                                                                             if (user==null)
+                                                                             {
+
+                                                                             }
+                                                                             else if(user.getRole().Equals("superuser") || user.getDepartment().Equals("hr")) 
                                                                              {%> <a href="javascript:void(0);" data-toggle="collapse" data-target="#addTestimonial"><span class="label label-default pull-right">
 
                                     <span class="glyphicon glyphicon-pencil"></span></span></a>
@@ -200,8 +204,10 @@
                                         { %>
                                 <strong>
                                     <asp:Label ID="lblCommentTitle"><%= test.getTitle() %></asp:Label></strong>&emsp;
-                                <%  
-                                    if (user.getRole().Equals("superuser") || user.getDepartment().Equals("hr"))
+                                <% 
+                                    if(user == null) { 
+
+                                    }else if (user.getRole().Equals("superuser") || user.getDepartment().Equals("hr"))
                                     {%>
                                 <a href="deleteTestimonial.aspx?id=<%=test.getID() %>&cid=<%=current.getCourseID() %>" onclick="return confirm('Are you sure?')"><span class="label label-danger pull-right"><span class="glyphicon glyphicon-trash"></span></span></a></strong><br />
                                 <%} %>
@@ -266,7 +272,9 @@
                                 <h3 class="panel-title">
                                     <asp:Label ID="lblUploadTitle" runat="server"><%= title %></asp:Label>
                                     <%  User user = (User)Session["currentUser"];
-                                        if (user.getRole().Equals("superuser") || user.getDepartment().Equals("hr"))
+                                        if (user == null) {
+                                            Response.Redirect("login.aspx");
+                                        }else if (user.getRole().Equals("superuser") || user.getDepartment().Equals("hr"))
                                         {%>
                                     <a href="deleteMaterial.aspx?id=<%=current.getCourseID()%>&path=<%=strfile%>" onclick="return confirm('Are you sure?')"><span class="label label-danger pull-right"><span class="glyphicon glyphicon-trash"></span></span></a></strong><br />
                                     <%} %>
@@ -296,14 +304,19 @@
                         </div>
                     </div>
 
-
+                    
                     <div class="col-md-9">
                         <%--One panel per quiz--%>
                         <div class="panel panel-primary">
                             <div class="panel-heading">
                                 <h3 class="panel-title">
                                     <asp:Label ID="lblQuizTitle" runat="server" Text="Quiz Title Here"></asp:Label>
-                                    <% int courseID = Convert.ToInt32(Request.QueryString["id"]); %>
+                                    <% User user = (User)Session["currentUser"];
+                                        if (user == null)
+                                        {
+                                            Response.Redirect("login.aspx");
+                                        }
+                                        int courseID = Convert.ToInt32(Request.QueryString["id"]); %>
                                     <a href="editQuiz.aspx?id=<%=courseID%>" class="label label-default pull-right"><span class="glyphicon glyphicon-pencil"></span></a>
                                     <%--GWEE: I need both courseid for navigation so maybe when you integrate pass both courseid and quizid?--%>
                                 </h3>
