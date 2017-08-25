@@ -307,26 +307,26 @@
                     
                     <div class="col-md-9">
                         <%--One panel per quiz--%>
+                        <%
+                            int courseID = Convert.ToInt32(Request.QueryString["id"]);
+                            QuizDAO quizDAO = new QuizDAO();
+                            List<Quiz> allQuizzes = quizDAO.getAllQuizByCourseID(courseID);
+                            foreach (Quiz q in allQuizzes) {
+                        %>
                         <div class="panel panel-primary">
                             <div class="panel-heading">
                                 <h3 class="panel-title">
-                                    <asp:Label ID="lblQuizTitle" runat="server" Text="Quiz Title Here"></asp:Label>
-                                    <% User user = (User)Session["currentUser"];
-                                        if (user == null)
-                                        {
-                                            Response.Redirect("login.aspx");
-                                        }
-                                        int courseID = Convert.ToInt32(Request.QueryString["id"]); %>
-                                    <a href="editQuiz.aspx?id=<%=courseID%>" class="label label-default pull-right"><span class="glyphicon glyphicon-pencil"></span></a>
+                                    <% Response.Write(q.getTitle()); %>
+                                    <a href="editQuiz.aspx?id=<%=q.getQuizID()%>" class="label label-default pull-right"><span class="glyphicon glyphicon-pencil"></span></a>
                                     <%--GWEE: I need both courseid for navigation so maybe when you integrate pass both courseid and quizid?--%>
                                 </h3>
                             </div>
                             <div class="panel-body">
-                                <asp:Label ID="lblQuizDesc" runat="server" Text="Quiz Description Here"></asp:Label>
+                                <% Response.Write(q.getDescription()); %>
                                 <br />
                                 <br />
                                 <div class="pull-right">
-                                    <a href="quiz.aspx?id=<%=courseID%>" class="btn btn-success btn-sm">Attempt Quiz</a>&nbsp; 
+                                    <a href="quiz.aspx?id=<%=q.getQuizID()%>" class="btn btn-success btn-sm">Attempt Quiz</a>&nbsp; 
                                 </div>
                                 <br />
                                 <hr />
@@ -347,6 +347,9 @@
                                 </table>
                             </div>
                         </div>
+                        <%
+                        }
+                        %>
                     </div>
                 </div>
             </asp:Panel>

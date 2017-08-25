@@ -45,8 +45,11 @@
         <h1>Edit Quiz
              <% 
                  User currentUser = (User)Session["currentUser"];
-                 Course_elearnDAO ceDAO = new Course_elearnDAO();
-                 User courseCreator = ceDAO.get_course_by_id(courseID).getCourseCreator();
+                 QuizDAO quizDAO = new QuizDAO();
+                 String id_str = Request.QueryString["id"];
+                 int id_num = int.Parse(id_str);
+                 Quiz currentQuiz = quizDAO.getQuizByID(id_num);
+                 User courseCreator = currentQuiz.getMainCourse().getCourseCreator();
                  if (currentUser != null && (currentUser.getUserID() == courseCreator.getUserID() || currentUser.getRole().Equals("superuser")))
                  {
              %>
@@ -99,23 +102,19 @@
                      <div class="col-lg-5">
                          <div id="preq" class="collapse">
 
-                             <table class="table table-striped table-hover">
-                                 <thead>
-                                     <tr>
-                                         <th></th>
-                                         <th>Prequisite Quiz Name</th>
-                                         <th>Category</th>
-                                     </tr>
-                                 </thead>
-                                 <tbody>
-                                     <tr>
-                                         <td>
-                                             <asp:LinkButton ID="btnAdd" runat="server"><span class="glyphicon glyphicon-plus"></span></asp:LinkButton></td>
-                                         <td>I am not a gridview</td>
-                                         <td>Please replace me with gridview</td>
-                                     </tr>
-                                 </tbody>
-                             </table>
+                             <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:DBConnectionString %>">
+                        </asp:SqlDataSource>
+                        <asp:GridView ID="gvPrereq" runat="server" AutoGenerateColumns="False" DataKeyNames="quizID" AllowPaging="True" CssClass="table table-striped table-hover" GridLines="None" OnRowCommand="gvPrereq_RowCommand" EmptyDataText="There are no quizzes available to choose from.">
+                            <Columns>
+                                <asp:TemplateField>
+                                    <ItemTemplate>
+                                        <asp:LinkButton ID="btnAdd" runat="server" CausesValidation="false" CommandArgument='<%# Eval("quizID") %>'><span class="glyphicon glyphicon-plus"></span></asp:LinkButton>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                                <asp:BoundField DataField="title" HeaderText="Prerequisite Quiz Title" SortExpression="title" />
+                                <asp:BoundField DataField="quizID" Visible="False" />
+                            </Columns>
+                        </asp:GridView>
                              <h6><em>Click on "+" to select quiz as a prerequisite quiz</em></h6>
 
 
@@ -123,23 +122,25 @@
                          </div>
 
 
-                         <table class="table table-striped table-hover">
-                             <thead>
-                                 <tr>
-                                     <th></th>
-                                     <th>Prequisite Quiz Name</th>
-                                     <th>Category</th>
-                                 </tr>
-                             </thead>
-                             <tbody>
-                                 <tr>
-                                     <td>
-                                         <asp:LinkButton ID="btnRemove" runat="server"><span class="glyphicon glyphicon-minus"></span></asp:LinkButton></td>
-                                     <td>I am not a gridview</td>
-                                     <td>Please replace me with gridview</td>
-                                 </tr>
-                             </tbody>
-                         </table>
+                         <asp:SqlDataSource ID="SqlDataSourcePrereqCart" runat="server" ConnectionString="<%$ ConnectionStrings:DBConnectionString %>">
+                        </asp:SqlDataSource>
+                        <asp:GridView ID="gvPrereqCart" runat="server" CssClass="table table-striped table-hover" DataKeyNames="quizID" EmptyDataText="Please choose a prerequisite first" GridLines="None" AutoGenerateColumns="False" OnRowCommand="gvPrereqCart_RowCommand">
+                            <Columns>
+                                <asp:TemplateField>
+                                    <ItemTemplate>
+                                        <asp:LinkButton ID="btnRemove" runat="server" CausesValidation="false" CommandArgument='<%# Eval("quizID") %>'><span class="glyphicon glyphicon-minus"></span></asp:LinkButton>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                                <asp:TemplateField>
+                                    <ItemTemplate>
+                                        <input type="hidden" name="quizID" value='<%# Eval("quizID") %>' />
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                                <asp:BoundField DataField="title" HeaderText="Prerequisite Quiz Title" SortExpression="title" />
+                            </Columns>
+                            
+                        </asp:GridView>
+
                          <h6><em>Click on "Prerequisite Quiz Selection" to choose prerequisite quizzes</em></h6>
                      </div>
                  </div>
@@ -163,7 +164,9 @@
             </fieldset>
             <br /><br />
             <div class="wrapper">
-                  <asp:Button ID="btnConfirmSubmit" CssClass="btn btn-primary" runat="server" Text="Save" />
+                    <asp:Button ID="btnConfirmSubmit" CssClass="btn btn-primary" runat="server" Text="Save" onclick="btnConfirmSubmit_Click"/>
+                   <asp:Button ID="btnDeactivate" CssClass="btn btn-danger" runat="server" Text="Deactivate" onclick="btnDeactivate_Click"/>
+                   <asp:Button ID="btnActivate" CssClass="btn btn-success" runat="server" Text="Activate" onclick="btnActivate_Click"/>
             </div>
         </form>
     </div>
