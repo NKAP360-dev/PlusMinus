@@ -26,12 +26,14 @@
 
         $(function () {
             $('.input-daterange').datepicker({
+                format: 'dd/mm/yyyy',
                 autoclose: true
             });
         });
 
         $(function () {
             $('.input-group.date').datepicker({
+                format: 'dd/mm/yyyy',
                 calendarWeeks: true,
                 todayHighlight: true,
                 autoclose: true

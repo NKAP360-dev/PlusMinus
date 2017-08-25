@@ -42,8 +42,8 @@ namespace LearnHub
                         {
                             txtTargetAudience.Text = currentCourse.getTargetAudience().ToString();
                         }
-                        fromDateInput.Text = currentCourse.getStartDate().ToString("MM/dd/yyyy");
-                        toDateInput.Text = currentCourse.getExpiryDate().ToString("MM/dd/yyyy");
+                        fromDateInput.Text = currentCourse.getStartDate().ToString("dd/MM/yyyy");
+                        toDateInput.Text = currentCourse.getExpiryDate().ToString("dd/MM/yyyy");
 
                         //prerequisites
                         ArrayList allPrerequisites = currentCourse.getPrerequisite();
@@ -136,7 +136,10 @@ namespace LearnHub
 
             Course_elearnDAO ceDAO = new Course_elearnDAO();
             int courseID = Convert.ToInt32(Request.QueryString["id"]);
-            ceDAO.updateCourse(courseID, Convert.ToInt32(moduleType.SelectedValue), nameOfModuleInput.Text, descriptionModuleInput.Text, Convert.ToDouble(hoursInput.Text), DateTime.ParseExact(fromDateInput.Text, "MM/dd/yyyy", CultureInfo.InvariantCulture), DateTime.ParseExact(toDateInput.Text, "MM/dd/yyyy", CultureInfo.InvariantCulture));
+            //change to MM-dd-yyyy
+            string fromDate = fromDateInput.Text.Substring(3, 2) + "/" + fromDateInput.Text.Substring(0, 2) + "/" + fromDateInput.Text.Substring(6, 4);
+            string toDate = toDateInput.Text.Substring(3, 2) + "/" + toDateInput.Text.Substring(0, 2) + "/" + toDateInput.Text.Substring(6, 4);
+            ceDAO.updateCourse(courseID, Convert.ToInt32(moduleType.SelectedValue), nameOfModuleInput.Text, descriptionModuleInput.Text, Convert.ToDouble(hoursInput.Text), DateTime.ParseExact(fromDate, "MM/dd/yyyy", CultureInfo.InvariantCulture), DateTime.ParseExact(toDate, "MM/dd/yyyy", CultureInfo.InvariantCulture));
 
             //update prerequisites
             //delete all prereq first

@@ -77,10 +77,13 @@ namespace LearnHub
             Course_elearn c = null;
             string type = Request.QueryString["type"];
 
+            string fromDate = fromDateInput.Text.Substring(3, 2) + "/" + fromDateInput.Text.Substring(0, 2) + "/" + fromDateInput.Text.Substring(6, 4);
+            string toDate = toDateInput.Text.Substring(3, 2) + "/" + toDateInput.Text.Substring(0, 2) + "/" + toDateInput.Text.Substring(6, 4);
+
             if (check && moduleType.Text != "") // if no expiry date
             {
                 c = new Course_elearn(nameOfModuleInput.Text, user.getDepartment(), DateTime.Now,
-                    DateTime.ParseExact(fromDateInput.Text, "MM/dd/yyyy", CultureInfo.InvariantCulture), DateTime.ParseExact(toDateInput.Text, "MM/dd/yyyy", CultureInfo.InvariantCulture), "Open", descriptionModuleInput.Text, Convert.ToInt32(moduleType.SelectedValue), user, Convert.ToDouble(hoursInput.Text), txtTargetAudience.Text);
+                    DateTime.ParseExact(fromDate, "MM/dd/yyyy", CultureInfo.InvariantCulture), DateTime.ParseExact(toDate, "MM/dd/yyyy", CultureInfo.InvariantCulture), "Open", descriptionModuleInput.Text, Convert.ToInt32(moduleType.SelectedValue), user, Convert.ToDouble(hoursInput.Text), txtTargetAudience.Text);
             }
 
             //check pre req here 
