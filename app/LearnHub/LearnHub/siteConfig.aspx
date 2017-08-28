@@ -108,7 +108,7 @@
                     <br />
                     <br />
                     <div class="wrapper">
-                        <span style="font-size: 75px;" class="glyphicon glyphicon-menu-hamburger"></span>
+                        <span style="font-size: 75px;" class="glyphicon glyphicon-education"></span>
                         <h3>Manage Modules</h3>
                         <br />
                     </div>

@@ -66,8 +66,8 @@
                         <li class="list-group-item"><span class="glyphicon glyphicon-level-up"></span>&emsp;Upload Learning Materials
                         </li>
                     </a>
-                    <a href="createQuiz.aspx?id=<%=courseID%>">
-                        <li class="list-group-item"><span class="glyphicon glyphicon-book"></span>&emsp;Create Quiz
+                    <a href="manageQuiz.aspx?id=<%=courseID%>">
+                        <li class="list-group-item"><span class="glyphicon glyphicon-book"></span>&emsp;Manage Quizzes
                         </li>
                     </a>
                 </ul>

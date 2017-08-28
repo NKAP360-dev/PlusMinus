@@ -22,14 +22,14 @@
         }
     </script>
      <style>
-        .breadcrumb {
-            padding-top: 15px;
-            margin-bottom: 0px;
-            list-style: none;
-            background-color: white;
-            border-radius: 0px;
-        }
-    </style>
+         .breadcrumb {
+             padding-top: 15px;
+             margin-bottom: 0px;
+             list-style: none;
+             background-color: white;
+             border-radius: 0px;
+         }
+     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
      <ul class="breadcrumb">
@@ -38,7 +38,8 @@
         <%int courseID = Convert.ToInt32(Request.QueryString["id"]); %>
         <li><a href="viewModuleInfo.aspx?id=<%=courseID%>">
             <asp:Label ID="lblBreadcrumbCourseName" runat="server" Text="courseName"></asp:Label></a></li>
-        <li class="active">Create Quiz</li>
+        <li><a href="manageQuiz.aspx?id=<%=courseID%>">Manage Quizzes</a></li>
+         <li class="active">Create Quiz</li>
     </ul>
 
      <div class="container">
@@ -63,10 +64,10 @@
                     <li class="list-group-item"><span class="glyphicon glyphicon-level-up"></span>&emsp;Upload Learning Materials
                     </li>
                 </a>
-                <a href="createQuiz.aspx?id=<%=courseID%>">
-                    <li class="list-group-item"><span class="glyphicon glyphicon-book"></span>&emsp;Create Quiz
-                    </li>
-                </a>
+                    <a href="manageQuiz.aspx?id=<%=courseID%>">
+                        <li class="list-group-item"><span class="glyphicon glyphicon-book"></span>&emsp;Manage Quizzes
+                        </li>
+                    </a>
             </ul>
         </div>
         <%} %>

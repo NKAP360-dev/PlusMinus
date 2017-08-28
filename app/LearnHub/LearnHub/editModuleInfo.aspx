@@ -15,6 +15,19 @@
 
 
     <script type="text/javascript">
+        $(document).ready(function () {
+            $('#menu').hide();
+        });
+
+        function configuration() {
+            var x = document.getElementById('menu');
+            if (x.style.display === 'none') {
+                x.style.display = 'block';
+            } else {
+                x.style.display = 'none';
+            }
+        }
+
         $(function () {
             $('.input-daterange').datepicker({
                 format: 'dd/mm/yyyy',
@@ -240,7 +253,36 @@
 
 
     <div class="container">
-        <h1>Edit Module</h1>
+        <h1>Edit Module
+                         <% 
+ int courseID = Convert.ToInt32(Request.QueryString["id"]);
+                    User currentUser = (User)Session["currentUser"];
+                    Course_elearnDAO ceDAO = new Course_elearnDAO();
+                    User courseCreator = ceDAO.get_course_by_id(courseID).getCourseCreator();
+                    if (currentUser != null && (currentUser.getUserID() == courseCreator.getUserID() || currentUser.getRole().Equals("superuser")))
+                    {
+             %>
+
+            <a href="#" id="config" onclick="configuration()" class="btn btn-default pull-right"><span class="glyphicon glyphicon-option-horizontal"></span></a>
+
+        </h1>
+          <div class="configure">
+            <ul class="list-group" id="menu" style="display: none;">
+                <a href="editModuleInfo.aspx?id=<%=courseID %>">
+                    <li class="list-group-item"><span class="glyphicon glyphicon-pencil"></span>&emsp;Edit Module
+                    </li>
+                </a>
+                <a href="#uploadModal" data-toggle="modal">
+                    <li class="list-group-item"><span class="glyphicon glyphicon-level-up"></span>&emsp;Upload Learning Materials
+                    </li>
+                </a>
+                    <a href="manageQuiz.aspx?id=<%=courseID%>">
+                        <li class="list-group-item"><span class="glyphicon glyphicon-book"></span>&emsp;Manage Quizzes
+                        </li>
+                    </a>
+            </ul>
+        </div>
+        <%} %>
         <div class="verticalLine"></div>
     </div>
 
@@ -411,9 +453,12 @@
                                      If course status = deactivated, show activate button--%>
                         <%Course_elearnDAO ceDAO = new Course_elearnDAO();
                             Course_elearn currentCourse = ceDAO.get_course_by_id(Convert.ToInt32(Request.QueryString["id"]));
-                            if (currentCourse.getStatus().Equals("Open")){%>
+                            if (currentCourse.getStatus().Equals("Open"))
+                            {%>
                         <asp:Button ID="btnDeactivate" CssClass="btn btn-warning" runat="server" Text="Deactivate Module" data-toggle="modal" href="#deactivateModal" OnClientClick="return false;"/>
-                        <%}else{ %>
+                        <%}
+                        else
+                        { %>
                         <asp:Button ID="btnActivate" CssClass="btn btn-success" runat="server" Text="Activate Module" data-toggle="modal" href="#activateModal" OnClientClick="return false;" />
                     </div>
                     <%} %>

@@ -417,6 +417,13 @@
     <Compile Include="manageCategories.aspx.designer.cs">
       <DependentUpon>manageCategories.aspx</DependentUpon>
     </Compile>
+    <Compile Include="manageQuiz.aspx.cs">
+      <DependentUpon>manageQuiz.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="manageQuiz.aspx.designer.cs">
+      <DependentUpon>manageQuiz.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Masterpage.Master.cs">
       <DependentUpon>Masterpage.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -923,6 +930,7 @@
     <Content Include="Login.aspx" />
     <Content Include="Logout.aspx" />
     <Content Include="manageCategories.aspx" />
+    <Content Include="manageQuiz.aspx" />
     <Content Include="pendingApproval.aspx" />
     <Content Include="quiz.aspx" />
     <Content Include="rejectionConfirmation.aspx" />

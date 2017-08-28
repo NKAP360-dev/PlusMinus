@@ -36,9 +36,13 @@
     <ul class="breadcrumb">
         <li><a href="home.aspx">Home</a></li>
         <li><a href="viewAllModule.aspx">Modules</a></li>
-        <%int courseID = Convert.ToInt32(Request.QueryString["id"]); %>
+        <%
+            QuizDAO qDAO = new QuizDAO();
+            Quiz q = qDAO.getQuizByID(Convert.ToInt32(Request.QueryString["id"]));
+            int courseID = q.getMainCourse().getCourseID();%>
         <li><a href="viewModuleInfo.aspx?id=<%=courseID%>">
             <asp:Label ID="lblBreadcrumbCourseName" runat="server" Text="courseName"></asp:Label></a></li>
+        <li><a href="manageQuiz.aspx?id=<%=courseID%>">Manage Quizzes</a></li>
         <li class="active">Edit Quiz</li>
     </ul>
     <div class="container">
