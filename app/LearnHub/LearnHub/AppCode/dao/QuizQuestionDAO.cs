@@ -104,5 +104,43 @@ namespace LearnHub.AppCode.dao
                 conn.Close();
             }
         }
+        public List<QuizQuestion> getAllQuizQuestionByQuizID(int quizID)
+        {
+            SqlConnection conn = new SqlConnection();
+            List<QuizQuestion> toReturn = new List<QuizQuestion>();
+            try
+            {
+                conn = new SqlConnection();
+                string connstr = ConfigurationManager.ConnectionStrings["DBConnectionString"].ToString();
+                conn.ConnectionString = connstr;
+                conn.Open();
+                SqlCommand comm = new SqlCommand();
+                comm.Connection = conn;
+                comm.CommandText = "select * from [QuizQuestion] where quizID=@quizID";
+                comm.Parameters.AddWithValue("@quizID", quizID);
+                SqlDataReader dr = comm.ExecuteReader();
+                while (dr.Read())
+                {
+                    QuizQuestion qq = new QuizQuestion();
+                    qq.setQuizQuestionID((int)dr["quizQuestionID"]);
+                    qq.setQuestion((string)dr["question"]);
+                    QuizDAO qDAO = new QuizDAO();
+                    qq.setQuiz(qDAO.getQuizByID((int)dr["quizID"]));
+                    QuizAnswerDAO qaDAO = new QuizAnswerDAO();
+                    qq.setQuizAnswer(qaDAO.getCorrectQuizAnswerByID((int)dr["correctAnswerID"]));
+                    toReturn.Add(qq);
+                }
+                dr.Close();
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                conn.Close();
+            }
+            return toReturn;
+        }
     }
 }

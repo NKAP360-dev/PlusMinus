@@ -23,7 +23,7 @@ namespace LearnHub.AppCode.dao
                 conn.Open();
                 SqlCommand comm = new SqlCommand();
                 comm.Connection = conn;
-                comm.CommandText = "select * from [Quiz] where quizID=@quizID";
+                comm.CommandText = "select * from [Quiz] q inner join [Elearn_course] ec on q.elearn_courseID = ec.elearn_courseID where q.quizID=@quizID";
                 comm.Parameters.AddWithValue("@quizID", quizID);
                 SqlDataReader dr = comm.ExecuteReader();
                 while (dr.Read())
@@ -36,7 +36,40 @@ namespace LearnHub.AppCode.dao
                     toReturn.setRandomOrder((string)dr["randomOrder"]);
                     toReturn.setStatus((string)dr["status"]);
                     Course_elearnDAO ceDAO = new Course_elearnDAO();
-                    toReturn.setMainCourse(ceDAO.get_course_by_id((int)dr["elearn_courseID"]));
+                    //toReturn.setMainCourse(ceDAO.get_course_by_id((int)dr["elearn_courseID"]));
+
+                    Course_elearn course = new Course_elearn();
+                    UserDAO userDAO = new UserDAO();
+                    int cid = (int)dr["elearn_courseID"]; //1
+                    course.setCourseID(cid);
+                    course.setCourseName((string)dr["elearn_courseName"]); //2
+                    if (!dr.IsDBNull(4))
+                    {
+                        course.setCourseProvider((string)dr["elearn_courseProvider"]);
+                    };
+                    course.setStartDate((DateTime)dr["start_date"]);//3
+                    if (!dr.IsDBNull(4))
+                    {
+                        course.setExpiryDate((DateTime)dr["expiry_date"]);
+                    }
+                    course.setStatus((string)dr["status"]);//4
+                    //get the prereq
+                    course.setDescription((string)dr["description"]);//6
+                    course.setEntryDate((DateTime)dr["entry_date"]);
+                    ArrayList list = ceDAO.getPrereqOfCourse(cid);//5
+                    if (list != null)
+                    {
+                        course.setPrerequisite(list); //retrieve arraylist of all prereq course_elearn objects
+                    }
+                    course.setCategoryID((int)dr["categoryID"]);//7
+                    course.setCourseCreator(userDAO.getUserByID((string)dr["courseCreator"]));
+                    course.setHoursAwarded((double)dr["hoursAwarded"]);
+                    if (!dr.IsDBNull(11))
+                    {
+                        course.setTargetAudience((string)dr["targetAudience"]);
+                    }
+
+                    toReturn.setMainCourse(course);
                 }
                 dr.Close();
             }
@@ -95,7 +128,7 @@ namespace LearnHub.AppCode.dao
                 comm.Connection = conn;
                 comm.CommandText = "select * from Quiz q inner join " +
                     "(select prereq_quizID from QuizPrerequisite where quizID = @check) " +
-                    "as temp on q.quizID = temp.prereq_quizID;"; //get data of all courses that are prereqs
+                    "as temp on q.quizID = temp.prereq_quizID;";
                 comm.Parameters.AddWithValue("@check", quizID);
                 SqlDataReader dr = comm.ExecuteReader();
                 while (dr.Read())
@@ -109,7 +142,7 @@ namespace LearnHub.AppCode.dao
                     toReturn.setStatus((string)dr["status"]);
                     Course_elearnDAO ceDAO = new Course_elearnDAO();
                     toReturn.setMainCourse(ceDAO.get_course_by_id((int)dr["elearn_courseID"]));
-                    toReturn_list.Add(toReturn); //parse as course_elearn object to store and return in arraylist
+                    toReturn_list.Add(toReturn);
                 }
                 dr.Close();
             }

@@ -1,5 +1,6 @@
 ﻿using LearnHub.AppCode.entity;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data.SqlClient;
@@ -70,6 +71,84 @@ namespace LearnHub.AppCode.dao
                 comm.Parameters.AddWithValue("@quizResultHistoryID", qr.getQuizResultHistory().getQuizResultHistoryID());
                 comm.Parameters.AddWithValue("@dateSubmitted", qr.getDateSubmitted());
                 toReturn = (Int32)comm.ExecuteScalar();
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                conn.Close();
+            }
+            return toReturn;
+        }
+        public ArrayList getAllQuizResultByUserID(string userID)
+        {
+            SqlConnection conn = new SqlConnection();
+            ArrayList toReturn = new ArrayList();
+            try
+            {
+                conn = new SqlConnection();
+                string connstr = ConfigurationManager.ConnectionStrings["DBConnectionString"].ToString();
+                conn.ConnectionString = connstr;
+                conn.Open();
+                SqlCommand comm = new SqlCommand();
+                comm.Connection = conn;
+                comm.CommandText = "select * from [QuizResult] where userID=@userID";
+                comm.Parameters.AddWithValue("@userID", userID);
+                SqlDataReader dr = comm.ExecuteReader();
+                while (dr.Read())
+                {
+                    QuizResult qr = new QuizResult();
+                    UserDAO userDAO = new UserDAO();
+                    QuizDAO quizDAO = new QuizDAO();
+                    QuizResultHistoryDAO qrhDAO = new QuizResultHistoryDAO();
+                    qr.setQuizResultID((int)dr["quizResultID"]);
+                    qr.setUser(userDAO.getUserByID((string)dr["userID"]));
+                    qr.setQuiz(quizDAO.getQuizByID((int)dr["quizID"]));
+                    qr.setScore((int)dr["score"]);
+                    qr.setGrade((string)dr["grade"]);
+                    qr.setQuizResultHistory(qrhDAO.getQuizResultHistoryByID((int)dr["quizResultHistoryID"]));
+                    qr.setDateSubmitted(dr.GetDateTime(6));
+                    toReturn.Add(qr);
+                }
+                dr.Close();
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                conn.Close();
+            }
+            return toReturn;
+        }
+        public Boolean getQuizResultByUserIDandQuizID(String userID, int quizID)
+        {
+            Boolean toReturn = false;
+            SqlConnection conn = new SqlConnection();
+            try
+            {
+                conn = new SqlConnection();
+                string connstr = ConfigurationManager.ConnectionStrings["DBConnectionString"].ToString();
+                conn.ConnectionString = connstr;
+                conn.Open();
+                SqlCommand comm = new SqlCommand();
+                comm.Connection = conn;
+                comm.CommandText = "select * from [QuizResult] where userID=@userID and quizID=@quizID";
+                comm.Parameters.AddWithValue("@userID", userID);
+                comm.Parameters.AddWithValue("@quizID", quizID);
+                SqlDataReader dr = comm.ExecuteReader();
+                if (dr == null || !dr.HasRows)
+                {
+                    toReturn = false;
+                }
+                else
+                {
+                    toReturn = true;
+                }
+                dr.Close();
             }
             catch (SqlException ex)
             {

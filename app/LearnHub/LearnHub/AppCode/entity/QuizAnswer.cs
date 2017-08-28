@@ -23,6 +23,10 @@ namespace LearnHub.AppCode.entity
         {
             return quizAnswerID;
         }
+        public void setQuizAnswerID(int quizAnswerID)
+        {
+            this.quizAnswerID = quizAnswerID;
+        }
         public QuizQuestion getQuizQuestion()
         {
             return quizQuestion;

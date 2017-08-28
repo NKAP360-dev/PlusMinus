@@ -49,13 +49,15 @@
                                 </h3>
 
                                 <h4>Total Number of Questions: 
-                                    <asp:Label ID="lblTotalNumQn" runat="server" Text="10"></asp:Label>
+                                    <asp:Label ID="lblTotalNumQn" runat="server" Text=""></asp:Label>
                                 </h4>
 
                             </div>
                         </div>
                         <br />
-                        <asp:Label ID="lblQuizDesc" runat="server" Text="">Quiz Description here... blahblahblah.. <br /> Instruction: blahblah..</asp:Label>
+                        <asp:Label ID="lblQuizDesc" runat="server" Text="" />
+                        <br /> Instruction: Please select start to begin the quiz. Timer will begin when "Start Quiz" is pressed. Please do not leave the page until completion of quiz. All the best!
+                        <br />
                         <br />
                         <div class="wrapper">
                             <asp:LinkButton ID="btnStartQuiz" runat="server" OnClick="btnStartQuiz_Click" CssClass="btn btn-lg btn-primary"><span class="glyphicon glyphicon-chevron-right"></span> &nbsp;Start Quiz</asp:LinkButton>
@@ -73,9 +75,9 @@
                                 </h3>
 
                                 <h4>Question Number: 
-                                    <asp:Label ID="lblQnNum" Text="1" runat="server"></asp:Label>
+                                    <asp:Label ID="lblQnNum" Text="" runat="server"></asp:Label>
                                     /
-                                    <asp:Label ID="lblTotalQn" Text="10" runat="server"></asp:Label>
+                                    <asp:Label ID="lblTotalQn" Text="" runat="server"></asp:Label>
                                 </h4>
 
                             </div>
@@ -85,16 +87,12 @@
                             <tbody>
                                 <tr class="active">
                                     <td><strong>
-                                        <asp:Label ID="lblQuestion" runat="server">What is the nicest fruit on earth?</asp:Label></strong></td>
+                                        <asp:Label ID="lblQuestion" runat="server" Text=""/></strong></td>
 
                                 </tr>
                                 <tr>
                                     <td>
                                         <asp:RadioButtonList ID="rblAnswers" runat="server">
-                                            <asp:ListItem Text="Watermelon"></asp:ListItem>
-                                            <asp:ListItem Text="Pineapple"></asp:ListItem>
-                                            <asp:ListItem Text="Orange"></asp:ListItem>
-                                            <asp:ListItem Text="Apple"></asp:ListItem>
                                         </asp:RadioButtonList>
                                     </td>
                                 </tr>
@@ -103,8 +101,8 @@
                         <br />
                         <div class="pull-right">
                             <%--If got more qn, show btnNext, if last qn, show btnFinish--%>
-                        <asp:LinkButton ID="btnFinish" runat="server" CssClass="btn btn-primary"><span class="glyphicon glyphicon-glyphicon glyphicon-ok"></span> &nbsp;Finish Quiz</asp:LinkButton>
-                        <asp:LinkButton ID="btnNext" runat="server" CssClass="btn btn-primary"><span class="glyphicon glyphicon-chevron-right"></span> &nbsp;Next Question</asp:LinkButton>
+                        <asp:LinkButton ID="btnFinish" runat="server" CssClass="btn btn-primary" OnClick="btnFinish_Click"><span class="glyphicon glyphicon-glyphicon glyphicon-ok"></span> &nbsp;Finish Quiz</asp:LinkButton>
+                        <asp:LinkButton ID="btnNext" runat="server" CssClass="btn btn-primary" OnClick="btnNext_Click"><span class="glyphicon glyphicon-chevron-right"></span> &nbsp;Next Question</asp:LinkButton>
 
                         </div>
 

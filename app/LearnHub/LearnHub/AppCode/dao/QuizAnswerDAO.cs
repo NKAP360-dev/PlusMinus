@@ -44,6 +44,38 @@ namespace LearnHub.AppCode.dao
             }
             return toReturn;
         }
+        public QuizAnswer getCorrectQuizAnswerByID(int quizAnswerID)
+        {
+            SqlConnection conn = new SqlConnection();
+            QuizAnswer toReturn = null;
+            try
+            {
+                conn = new SqlConnection();
+                string connstr = ConfigurationManager.ConnectionStrings["DBConnectionString"].ToString();
+                conn.ConnectionString = connstr;
+                conn.Open();
+                SqlCommand comm = new SqlCommand();
+                comm.Connection = conn;
+                comm.CommandText = "select * from [QuizAnswer] where quizAnswerID=@quizAnswerID";
+                comm.Parameters.AddWithValue("@quizAnswerID", quizAnswerID);
+                SqlDataReader dr = comm.ExecuteReader();
+                while (dr.Read())
+                {
+                    toReturn = new QuizAnswer();
+                    toReturn.setAnswer((string)dr["answer"]);
+                }
+                dr.Close();
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                conn.Close();
+            }
+            return toReturn;
+        }
         public int createQuizAnswer(QuizAnswer qa) // Insert.
         {
             SqlConnection conn = null;
@@ -59,6 +91,40 @@ namespace LearnHub.AppCode.dao
                 comm.Parameters.AddWithValue("@quizQuestionID", qa.getQuizQuestion().getQuizQuestionID());
                 comm.Parameters.AddWithValue("@answer", qa.getAnswer());
                 toReturn = (Int32)comm.ExecuteScalar();
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                conn.Close();
+            }
+            return toReturn;
+        }
+        public List<QuizAnswer> getAllQuizAnswersByQuizQuestionID(int quizQuestionID)
+        {
+            SqlConnection conn = new SqlConnection();
+            List<QuizAnswer> toReturn = new List<QuizAnswer>();
+            try
+            {
+                conn = new SqlConnection();
+                string connstr = ConfigurationManager.ConnectionStrings["DBConnectionString"].ToString();
+                conn.ConnectionString = connstr;
+                conn.Open();
+                SqlCommand comm = new SqlCommand();
+                comm.Connection = conn;
+                comm.CommandText = "select * from [QuizAnswer] where quizQuestionID=@quizQuestionID";
+                comm.Parameters.AddWithValue("@quizQuestionID", quizQuestionID);
+                SqlDataReader dr = comm.ExecuteReader();
+                while (dr.Read())
+                {
+                    QuizAnswer qa = new QuizAnswer();
+                    qa.setQuizAnswerID((int)dr["quizAnswerID"]);
+                    qa.setAnswer((string)dr["answer"]);
+                    toReturn.Add(qa);
+                }
+                dr.Close();
             }
             catch (SqlException ex)
             {
