@@ -252,7 +252,7 @@ namespace LearnHub
             Response.Redirect("viewModuleInfo.aspx?id=" + currentQuiz.getMainCourse().getCourseID());
         }
 
-        protected void btnDeactivate_Click(object sender, EventArgs e)
+        protected void btnCfmDeactivate_Click(object sender, EventArgs e)
         {
             //to do validation
 
@@ -263,7 +263,7 @@ namespace LearnHub
             Response.Redirect("viewModuleInfo.aspx?id=" + currentQuiz.getMainCourse().getCourseID());
         }
 
-        protected void btnActivate_Click(object sender, EventArgs e)
+        protected void btnCfmActivate_Click(object sender, EventArgs e)
         {
             //to do validation
 

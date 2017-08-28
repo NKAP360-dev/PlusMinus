@@ -74,10 +74,10 @@
          <ul class="breadcrumb">
         <li><a href="home.aspx">Home</a></li>
               <li><a href="viewAllModule.aspx">Module</a></li>
-        <li class="active">View My Created Modules</li>
+        <li class="active">Manage Modules</li>
     </ul>
     <div class="container">
-        <h1>View My Created Modules
+        <h1>Manage Modules
                  <%
                  User currentUser = (User)Session["currentUser"];
                  if (currentUser != null && (currentUser.getRole().Equals("course creator") || currentUser.getRole().Equals("superuser")))
@@ -88,7 +88,7 @@
          <div class="configure">
             <ul class="list-group" id="menu" style="display: none;">
                 <a href="createModules.aspx">
-                    <li class="list-group-item"><span class="glyphicon glyphicon-book"></span>&emsp;Create New Modules
+                    <li class="list-group-item"><span class="glyphicon glyphicon-plus"></span>&emsp;Create New Modules
                     </li>
                 </a>
                 <a href="manageCategories.aspx">
@@ -96,7 +96,7 @@
                     </li>
                 </a>
                 <a href="viewCreatedModules.aspx">
-                    <li class="list-group-item"><span class="glyphicon glyphicon-search"></span>&emsp;View My Created Modules
+                    <li class="list-group-item"><span class="glyphicon glyphicon-book"></span>&emsp;Manage Modules
                     </li>
                 </a>
             </ul>

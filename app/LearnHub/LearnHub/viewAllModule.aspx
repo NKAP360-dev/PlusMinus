@@ -86,22 +86,22 @@
              %>
                 <a href="#" id="config" onclick="configuration()" class="btn btn-default pull-right"><span class="glyphicon glyphicon-option-horizontal"></span></a>
             </h1>
-            <div class="configure">
-                <ul class="list-group" id="menu" style="display: none;">
-                    <a href="createModules.aspx">
-                        <li class="list-group-item"><span class="glyphicon glyphicon-book"></span>&emsp;Create New Modules
-                        </li>
-                    </a>
-                    <a href="manageCategories.aspx">
-                        <li class="list-group-item"><span class="glyphicon glyphicon-bookmark"></span>&emsp;Manage Module Categories
-                        </li>
-                    </a>
-                    <a href="viewCreatedModules.aspx">
-                        <li class="list-group-item"><span class="glyphicon glyphicon-search"></span>&emsp;View My Created Modules
-                        </li>
-                    </a>
-                </ul>
-            </div>
+             <div class="configure">
+            <ul class="list-group" id="menu" style="display: none;">
+                <a href="createModules.aspx">
+                    <li class="list-group-item"><span class="glyphicon glyphicon-plus"></span>&emsp;Create New Modules
+                    </li>
+                </a>
+                <a href="manageCategories.aspx">
+                    <li class="list-group-item"><span class="glyphicon glyphicon-bookmark"></span>&emsp;Manage Module Categories
+                    </li>
+                </a>
+                <a href="viewCreatedModules.aspx">
+                    <li class="list-group-item"><span class="glyphicon glyphicon-book"></span>&emsp;Manage Modules
+                    </li>
+                </a>
+            </ul>
+        </div>
             <%
                 }
             %>

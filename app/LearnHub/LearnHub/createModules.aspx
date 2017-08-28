@@ -275,10 +275,10 @@
             %>
             <a href="#" id="config" onclick="configuration()" class="btn btn-default pull-right"><span class="glyphicon glyphicon-option-horizontal"></span></a>
         </h1>
-        <div class="configure">
+       <div class="configure">
             <ul class="list-group" id="menu" style="display: none;">
                 <a href="createModules.aspx">
-                    <li class="list-group-item"><span class="glyphicon glyphicon-book"></span>&emsp;Create New Modules
+                    <li class="list-group-item"><span class="glyphicon glyphicon-plus"></span>&emsp;Create New Modules
                     </li>
                 </a>
                 <a href="manageCategories.aspx">
@@ -286,15 +286,14 @@
                     </li>
                 </a>
                 <a href="viewCreatedModules.aspx">
-                    <li class="list-group-item"><span class="glyphicon glyphicon-search"></span>&emsp;View My Created Modules
+                    <li class="list-group-item"><span class="glyphicon glyphicon-book"></span>&emsp;Manage Modules
                     </li>
                 </a>
             </ul>
         </div>
         <%
             }
-        %>
-        </h1>
+        %>    
         <div class="verticalLine"></div>
     </div>
 
@@ -372,9 +371,9 @@
 
                     <div class="col-lg-5">
                         <div class="input-daterange input-group" id="datepicker">
-                            <asp:TextBox ID="fromDateInput" runat="server" CssClass="form-control" placeholder="MM/DD/YYYY"></asp:TextBox>
+                            <asp:TextBox ID="fromDateInput" runat="server" CssClass="form-control" placeholder="DD/MM/YYYY"></asp:TextBox>
                             <span class="input-group-addon">to</span>
-                            <asp:TextBox ID="toDateInput" runat="server" CssClass="form-control" placeholder="MM/DD/YYYY"></asp:TextBox>
+                            <asp:TextBox ID="toDateInput" runat="server" CssClass="form-control" placeholder="DD/MM/YYYY"></asp:TextBox>
                             <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i>
                             </span>
                         </div>

@@ -164,9 +164,84 @@
             </fieldset>
             <br /><br />
             <div class="wrapper">
-                    <asp:Button ID="btnConfirmSubmit" CssClass="btn btn-primary" runat="server" Text="Save" onclick="btnConfirmSubmit_Click"/>
-                   <asp:Button ID="btnDeactivate" CssClass="btn btn-danger" runat="server" Text="Deactivate" onclick="btnDeactivate_Click"/>
-                   <asp:Button ID="btnActivate" CssClass="btn btn-success" runat="server" Text="Activate" onclick="btnActivate_Click"/>
+                   <a href="#submitModal" data-toggle="modal" class="btn btn-primary">Save</a>
+                    <asp:Button ID="btnDeactivate" CssClass="btn btn-warning" runat="server" Text="Deactivate Quiz" data-toggle="modal" href="#deactivateModal" OnClientClick="return false;" />
+                    <asp:Button ID="btnActivate" CssClass="btn btn-success" runat="server" Text="Activate Quiz" data-toggle="modal" href="#activateModal" OnClientClick="return false;" />
+            </div>
+
+            <%--Modal for Submission Confirmation--%>
+            <div id="submitModal" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title"><b>Edit Quiz</b></h4>
+                        </div>
+                        <%--Modal Content--%>
+                        <div class="modal-body">
+                            <div class="wrapper">
+                                <h4>Are you sure you want to save? <br /> This will overwrite your existing information.</h4>
+                                <br />
+                                 <asp:Button ID="btnConfirmSubmit" CssClass="btn btn-primary" runat="server" Text="Save" onclick="btnConfirmSubmit_Click"/>
+                                 <asp:Button ID="btnCancel" CssClass="btn btn-default" runat="server" class="close" data-dismiss="modal" Text="Cancel" OnClientClick="return false;" />
+                                <br />
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <%--Modal for Deactivation Confirmation--%>
+            <div id="deactivateModal" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title"><b>Deactivate Quiz</b></h4>
+                        </div>
+                        <%--Modal Content--%>
+                        <div class="modal-body">
+                           <div class="wrapper">
+                                <h4>Are you sure you want to proceed?</h4>
+                                
+                                <h4 class="text-danger">This quiz will be deactivated and will no longer be visible to users!</h4>
+                                <br />
+                                <asp:Button ID="btnCfmDeactivate" CssClass="btn btn-warning" runat="server" Text="Deactivate" onclick="btnCfmDeactivate_Click"/>
+                                <asp:Button ID="btnCancel2" CssClass="btn btn-default" runat="server" class="close" data-dismiss="modal" Text="Cancel" OnClientClick="return false;" />
+
+                                <br />
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <%--Modal for Activation Confirmation--%>
+            <div id="activateModal" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title"><b>Activate Quiz</b></h4>
+                        </div>
+                        <%--Modal Content--%>
+                        <div class="modal-body">
+                           <div class="wrapper">
+                                <h4>Are you sure you want to proceed?</h4>
+                                
+                                <h4 class="text-danger">This quiz will be activated and appear visible to all users!</h4>
+                                <br />
+                                <asp:Button ID="btnCfmActivate" CssClass="btn btn-success" runat="server" Text="Activate" onclick="btnCfmActivate_Click"/>
+                                <asp:Button ID="Button2" CssClass="btn btn-default" runat="server" class="close" data-dismiss="modal" Text="Cancel" OnClientClick="return false;" />
+
+                                <br />
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
             </div>
         </form>
     </div>
