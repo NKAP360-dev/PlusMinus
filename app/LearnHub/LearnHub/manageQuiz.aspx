@@ -87,7 +87,8 @@
               <% 
                   User currentUser = (User)Session["currentUser"];
                   Course_elearnDAO ceDAO = new Course_elearnDAO();
-                  User courseCreator = ceDAO.get_course_by_id(courseID).getCourseCreator();
+                  Course_elearn currentCourse = ceDAO.get_course_by_id(courseID);
+                  User courseCreator = currentCourse.getCourseCreator();
                   if (currentUser != null && (currentUser.getUserID() == courseCreator.getUserID() || currentUser.getRole().Equals("superuser")))
                   {
               %>
@@ -127,16 +128,20 @@
                 </tr>
             </thead>
                 <tbody>
-                    <tr><td>hi</td>
-                    <td>active</td>
-                    <td>
-                        <a href="#" class="btn btn-info btn-sm"><span class="glyphicon glyphicon-pencil"></span></a>
-                        &nbsp;
-                        <%int courseID = Convert.ToInt32(Request.QueryString["id"]); %>
-                    <a href="overallQuizResult.aspx?id=<%=courseID %>" class="btn btn-warning btn-sm"><span class="glyphicon glyphicon-stats"></span></a>    
-                    
-                    </td></tr>
-
+                    <%
+                        QuizDAO quizDAO = new QuizDAO();
+                        int courseID = Convert.ToInt32(Request.QueryString["id"]);
+                        List<Quiz> allQuizzes = quizDAO.getAllQuizByCourseIDActiveAndInactive(courseID);
+                        foreach (Quiz q in allQuizzes)
+                        {
+                            Response.Write("<tr>");
+                            Response.Write($"<td>{q.getTitle()}</td>");
+                            Response.Write($"<td>{q.getStatus()}</td>");
+                            Response.Write($"<td><a href=\"editQuiz.aspx?id={q.getQuizID()}\" class=\"btn btn-info btn-sm\"><span class=\"glyphicon glyphicon-pencil\"></span></a></td>");
+                            Response.Write($"<td><a href=\"overallQuizResult.aspx?id={courseID}\" class=\"btn btn-warning btn-sm\"><span class=\"glyphicon glyphicon-stats\"></span></a></td>");
+                            Response.Write("</tr>");
+                        }
+                    %>
                 </tbody>
             </table>
         </form>
