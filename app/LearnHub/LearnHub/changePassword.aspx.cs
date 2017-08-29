@@ -20,39 +20,46 @@ namespace LearnHub
         }
         protected void submit_new_password(object sender, EventArgs e)
         {
-            UserDAO udao = new UserDAO();
-            User currentUser = (User)Session["currentUser"];
-            LoginDAO loginDAO = new LoginDAO();
-            string userSalt = loginDAO.getSalt(currentUser.getUserID());
-            string db_password_hashed = udao.getPassword(currentUser.getUserID());
-            string hashedPassword = Crypto.SHA256(userSalt + txtPassword_now.Text);
-            if (hashedPassword.Equals(db_password_hashed))
+            Page.Validate("ValidateForm");
+            if (!Page.IsValid)
             {
-                string pw = txtPassword_new.Text;
-                string compare = txtPassword_newConfirm.Text;
-                if (pw.Equals(compare))
+
+            }
+            else
+            {
+                UserDAO udao = new UserDAO();
+                User currentUser = (User)Session["currentUser"];
+                LoginDAO loginDAO = new LoginDAO();
+                string userSalt = loginDAO.getSalt(currentUser.getUserID());
+                string db_password_hashed = udao.getPassword(currentUser.getUserID());
+                string hashedPassword = Crypto.SHA256(userSalt + txtPassword_now.Text);
+                if (hashedPassword.Equals(db_password_hashed))
                 {
-                    string new_hashedPassword = Crypto.SHA256(userSalt + compare);
-                    Boolean isit = udao.updatePassword(new_hashedPassword, currentUser);
-                    if (isit)
+                    string pw = txtPassword_new.Text;
+                    string compare = txtPassword_newConfirm.Text;
+                    if (pw.Equals(compare))
                     {
-                        Response.Redirect("accountSetting.aspx");
+                        string new_hashedPassword = Crypto.SHA256(userSalt + compare);
+                        Boolean isit = udao.updatePassword(new_hashedPassword, currentUser);
+                        if (isit)
+                        {
+                            Response.Redirect("accountSetting.aspx");
+                        }
+                        else
+                        {
+                            Response.Redirect("Home.aspx");
+                        }
                     }
                     else
                     {
-                        Response.Redirect("Home.aspx");
+                        Response.Redirect("errorPage.aspx");
                     }
                 }
                 else
                 {
-                    Response.Redirect("errorPage.aspx");
+                    Response.Redirect("login.aspx");
                 }
             }
-            else
-            {
-                Response.Redirect("login.aspx");
-            }
-
         }
     }
 }

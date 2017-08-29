@@ -22,6 +22,15 @@ namespace LearnHub {
         protected global::System.Web.UI.WebControls.TextBox txtPassword_now;
         
         /// <summary>
+        /// rfv_txtPassword_now control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfv_txtPassword_now;
+        
+        /// <summary>
         /// txtPassword_new control.
         /// </summary>
         /// <remarks>
@@ -31,6 +40,15 @@ namespace LearnHub {
         protected global::System.Web.UI.WebControls.TextBox txtPassword_new;
         
         /// <summary>
+        /// rfv_txtPassword_new control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfv_txtPassword_new;
+        
+        /// <summary>
         /// txtPassword_newConfirm control.
         /// </summary>
         /// <remarks>
@@ -38,6 +56,15 @@ namespace LearnHub {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtPassword_newConfirm;
+        
+        /// <summary>
+        /// rfv_txtPassword_newConfirm control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfv_txtPassword_newConfirm;
         
         /// <summary>
         /// btnSave control.
