@@ -15,19 +15,6 @@
 
 
     <script type="text/javascript">
-        $(document).ready(function () {
-            $('#menu').hide();
-        });
-
-        function configuration() {
-            var x = document.getElementById('menu');
-            if (x.style.display === 'none') {
-                x.style.display = 'block';
-            } else {
-                x.style.display = 'none';
-            }
-        }
-
         $(function () {
             $('.input-daterange').datepicker({
                 format: 'dd/mm/yyyy',
@@ -233,7 +220,7 @@
 
         .breadcrumb {
             padding-top: 15px;
-            margin-bottom: 0px;
+            margin-bottom: 10px;
             list-style: none;
             background-color: white;
             border-radius: 0px;
@@ -253,7 +240,7 @@
 
 
     <div class="container">
-        <h1>Edit Module
+        <h1>Edit Module</h1>
                          <% 
  int courseID = Convert.ToInt32(Request.QueryString["id"]);
                     User currentUser = (User)Session["currentUser"];
@@ -261,27 +248,15 @@
                     User courseCreator = ceDAO.get_course_by_id(courseID).getCourseCreator();
                     if (currentUser != null && (currentUser.getUserID() == courseCreator.getUserID() || currentUser.getRole().Equals("superuser")))
                     {
-             %>
-
-            <a href="#" id="config" onclick="configuration()" class="btn btn-default pull-right"><span class="glyphicon glyphicon-option-horizontal"></span></a>
-
-        </h1>
-          <div class="configure">
-            <ul class="list-group" id="menu" style="display: none;">
-                <a href="editModuleInfo.aspx?id=<%=courseID %>">
-                    <li class="list-group-item"><span class="glyphicon glyphicon-pencil"></span>&emsp;Edit Module
-                    </li>
-                </a>
-                <a href="#uploadModal" data-toggle="modal">
-                    <li class="list-group-item"><span class="glyphicon glyphicon-level-up"></span>&emsp;Upload Learning Materials
-                    </li>
-                </a>
-                    <a href="manageQuiz.aspx?id=<%=courseID%>">
-                        <li class="list-group-item"><span class="glyphicon glyphicon-book"></span>&emsp;Manage Quizzes
-                        </li>
-                    </a>
-            </ul>
-        </div>
+             %>    
+         <div class="dropdown" style="float: right;">
+                <button class="dropbtn" onclick="return false;"><span class="glyphicon glyphicon-option-horizontal"></span></button>
+                <div class="dropdown-content" style="right: 0;">
+                    <a href="createModules.aspx"><span class="glyphicon glyphicon-plus"></span>&nbsp;&nbsp;Create New Modules</a>
+                    <a href="manageCategories.aspx"><span class="glyphicon glyphicon-bookmark"></span>&nbsp;&nbsp;Manage Module Categories</a>
+                    <a href="viewCreatedModules.aspx"><span class="glyphicon glyphicon-book"></span>&nbsp;&nbsp;Manage Modules</a>
+                </div>
+            </div>
         <%} %>
         <div class="verticalLine"></div>
     </div>

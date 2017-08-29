@@ -19,6 +19,10 @@
             padding-top: 50px;
         }
 
+        h1 {
+            display: inline;
+        }
+
         #content {
             padding-top: 121px;
             width: 100%;
@@ -171,7 +175,7 @@
 
         .breadcrumb {
             padding-top: 15px;
-            margin-bottom: 0px;
+            margin-bottom: 10px;
             list-style: none;
             background-color: white;
             border-radius: 0px;
@@ -195,6 +199,59 @@
             #myBtn:hover {
                 background-color: lightslategrey; /* Add a dark-grey background on hover */
             }
+
+
+        /* Dropdown Button */
+        .dropbtn {
+            background-color: #18bc9c;
+            color: white;
+            padding: 7px 10px 7px 10px;
+            font-size: 20px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        /* The container <div> - needed to position the dropdown content */
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        /* Dropdown Content (Hidden by Default) */
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 250px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+
+            /* Links inside the dropdown */
+            .dropdown-content a {
+                font-size: 16px;
+                color: black;
+                padding: 12px 16px;
+                text-decoration: none;
+                display: block;
+            }
+
+                /* Change color of dropdown links on hover */
+                .dropdown-content a:hover {
+                    background-color: #f1f1f1;
+                     text-decoration: none;
+                }
+
+        /* Show the dropdown menu on hover */
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        /* Change the background color of the dropdown button when the dropdown content is shown */
+        .dropdown:hover .dropbtn {
+            background-color: #419383;
+        }
     </style>
     <link href="~/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
@@ -250,7 +307,10 @@
     </asp:ContentPlaceHolder>
 </head>
 <body>
-    <button onclick="topFunction()" id="myBtn" title="Go to top"><span class="glyphicon glyphicon-menu-up"></span><br />TOP</button>
+    <button onclick="topFunction()" id="myBtn" title="Go to top">
+        <span class="glyphicon glyphicon-menu-up"></span>
+        <br />
+        TOP</button>
 
     <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
         <div class="container-fluid">
@@ -324,9 +384,9 @@
                                 <%User user_now = (User)Session["currentUser"];
                                     if (user_now != null)
                                     {
-                                        %>
-                                        <asp:HyperLink ID="HyperLink6" runat="server" NavigateUrl="accountSetting.aspx">Account Settings</asp:HyperLink></li>
-                                    <%} %>
+                                %>
+                                <asp:HyperLink ID="HyperLink6" runat="server" NavigateUrl="accountSetting.aspx">Account Settings</asp:HyperLink></li>
+                            <%} %>
                             <li>
                                 <asp:HyperLink ID="HyperLink10" runat="server">Contact Us</asp:HyperLink></li>
                             <li>

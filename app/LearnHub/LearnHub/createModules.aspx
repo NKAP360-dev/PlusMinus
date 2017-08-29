@@ -11,19 +11,6 @@
     <script src="/Scripts/footable.min.js"></script>
 
     <script type="text/javascript">
-        $(document).ready(function () {
-            $('#menu').hide();
-        });
-
-        function configuration() {
-            var x = document.getElementById('menu');
-            if (x.style.display === 'none') {
-                x.style.display = 'block';
-            } else {
-                x.style.display = 'none';
-            }
-        }
-
         $(function () {
             $('.input-daterange').datepicker({
                 format: 'dd/mm/yyyy',
@@ -72,18 +59,18 @@
             console.log("validateName");
             */
             //var input = document.getElementById("<%= nameOfModuleInput.ClientID %>").value;;
-            /*
-            var moduleExist = PageMethods.validateNameExists(input);
-            if (moduleExist == "true") {
-                console.log("no desc");
-                args.IsValid = true;
-            }
-            else {
-                console.log("Yes desc");
-                args.IsValid = false;
-            }
+        /*
+        var moduleExist = PageMethods.validateNameExists(input);
+        if (moduleExist == "true") {
+            console.log("no desc");
+            args.IsValid = true;
         }
-        */
+        else {
+            console.log("Yes desc");
+            args.IsValid = false;
+        }
+    }
+    */
 
         function ValidateHours(sender, args) {
             console.log("validateHours");
@@ -201,7 +188,7 @@
 
             console.log("Checkform");
             Page_ClientValidate('ValidateForm');
-            
+
             //Page_ClientValidate();
 
             if (!Page_IsValid) {
@@ -251,7 +238,7 @@
 
         .breadcrumb {
             padding-top: 15px;
-            margin-bottom: 0px;
+            margin-bottom: 10px;
             list-style: none;
             background-color: white;
             border-radius: 0px;
@@ -267,30 +254,23 @@
   </ul>
     
     <div class="container">   
-        <h1>Create Module
+        <h1>Create Module</h1>
              <%
                  User currentUser = (User)Session["currentUser"];
                  if (currentUser != null && (currentUser.getRole().Equals("course creator") || currentUser.getRole().Equals("superuser")))
                  {
             %>
-            <a href="#" id="config" onclick="configuration()" class="btn btn-default pull-right"><span class="glyphicon glyphicon-option-horizontal"></span></a>
-        </h1>
-       <div class="configure">
-            <ul class="list-group" id="menu" style="display: none;">
-                <a href="createModules.aspx">
-                    <li class="list-group-item"><span class="glyphicon glyphicon-plus"></span>&emsp;Create New Modules
-                    </li>
-                </a>
-                <a href="manageCategories.aspx">
-                    <li class="list-group-item"><span class="glyphicon glyphicon-bookmark"></span>&emsp;Manage Module Categories
-                    </li>
-                </a>
-                <a href="viewCreatedModules.aspx">
-                    <li class="list-group-item"><span class="glyphicon glyphicon-book"></span>&emsp;Manage Modules
-                    </li>
-                </a>
-            </ul>
-        </div>
+        
+
+         <div class="dropdown" style="float: right;">
+                <button class="dropbtn" onclick="return false;"><span class="glyphicon glyphicon-option-horizontal"></span></button>
+                <div class="dropdown-content" style="right: 0;">
+                    <a href="createModules.aspx"><span class="glyphicon glyphicon-plus"></span>&nbsp;&nbsp;Create New Modules</a>
+                    <a href="manageCategories.aspx"><span class="glyphicon glyphicon-bookmark"></span>&nbsp;&nbsp;Manage Module Categories</a>
+                    <a href="viewCreatedModules.aspx"><span class="glyphicon glyphicon-book"></span>&nbsp;&nbsp;Manage Modules</a>
+                </div>
+            </div>
+
         <%
             }
         %>    
