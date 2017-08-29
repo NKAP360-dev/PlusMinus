@@ -95,7 +95,7 @@
                     </tbody>
                 </table>
             </div>
-
+            <asp:ScriptManager ID="ScriptManagerCourse" runat="server" />
             <%--Modal for Feedback Settings--%>
             <div id="feedbackSettings" class="modal fade" role="dialog">
                 <div class="modal-dialog">
@@ -105,12 +105,14 @@
                             <h4 class="modal-title"><b>Feedback Notification Settings</b></h4>
                         </div>
                         <div class="modal-body">
+                            <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+                            <ContentTemplate>
                             <div class="form-group">
                                 <label class="col-lg-3 control-label">Email Settings</label>
                                 <div class="col-lg-7">
-                                    <asp:RadioButtonList ID="rdlEmail" runat="server" TextAlign="Right">
-                                        <asp:ListItem Value="y">&emsp;Enable</asp:ListItem>
-                                        <asp:ListItem Value="n">&emsp;Disable</asp:ListItem>
+                                    <asp:RadioButtonList ID="rdlEmail" runat="server" TextAlign="Right" OnSelectedIndexChanged="changeSelectedIndex" AutoPostBack="true">
+                                        <asp:ListItem Value="y" Text="Enable" Selected="True">&emsp;Enable</asp:ListItem>
+                                        <asp:ListItem Value="n" Text="Disable" Selected="False">&emsp;Disable</asp:ListItem>
                                     </asp:RadioButtonList>
                                 </div>
                             </div>
@@ -118,25 +120,30 @@
                                 <label class="col-lg-3 control-label">Email</label>
                                 <div class="col-lg-9">
                                     <asp:TextBox ID="txtEmail" CssClass="form-control" placeholder="Email Adress To Be Sent To" runat="server"></asp:TextBox>
+                                    <asp:RequiredFieldValidator ID="rfv_txtEmail" runat="server" ErrorMessage="Please enter an Email Address " ControlToValidate="txtEmail" ForeColor="Red" ValidationGroup="ValidateForm"></asp:RequiredFieldValidator>
                                 </div>
                             </div>
+                                </ContentTemplate>
+                                </asp:UpdatePanel>
                             <hr />
                             <h4><b>&emsp;SMTP Configuration</b></h4>
                             <div class="form-group required">
                                 <label class="col-lg-3 control-label">Username</label>
                                 <div class="col-lg-9">
                                     <asp:TextBox ID="txtSMTPUser" CssClass="form-control" placeholder="SMTP Email Username" runat="server"></asp:TextBox>
+                                    <asp:RequiredFieldValidator ID="rfv_txtSMTPUser" runat="server" ErrorMessage="Please enter a Username" ControlToValidate="txtSMTPUser" ForeColor="Red" ValidationGroup="ValidateForm"></asp:RequiredFieldValidator>
                                 </div>
                             </div>
                             <div class="form-group required">
                                 <label class="col-lg-3 control-label">Password</label>
                                 <div class="col-lg-9">
                                     <asp:TextBox ID="txtSMTPPassword" CssClass="form-control" placeholder="SMTP Email Password" runat="server"></asp:TextBox>
+                                    <asp:RequiredFieldValidator ID="rfv_txtSMTPPassword" runat="server" ErrorMessage="Please enter a Password" ControlToValidate="txtSMTPPassword" ForeColor="Red" ValidationGroup="ValidateForm"></asp:RequiredFieldValidator>
                                 </div>
                             </div>
                             <br />
                             <div class="wrapper">
-                                <asp:Button ID="btnConfirmSave" CssClass="btn btn-primary" runat="server" Text="Save" OnClick="btnConfirmSave_Click"/>
+                                <asp:Button ID="btnConfirmSave" CssClass="btn btn-primary" runat="server" Text="Save" OnClick="btnConfirmSave_Click" ValidationGroup="ValidateForm"/>
                                 <asp:Button ID="btnCancel1" CssClass="btn btn-default" runat="server" class="close" data-dismiss="modal" Text="Cancel" OnClientClick="return false;" />
                             </div>
                             <br />

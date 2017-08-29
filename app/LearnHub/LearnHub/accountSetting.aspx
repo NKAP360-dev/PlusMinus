@@ -58,6 +58,7 @@
                             <asp:Label runat="server" CssClass="col-lg-3 control-label" Text="Contact No"></asp:Label></strong>
                         <div class="col-lg-6">
                             <asp:TextBox ID="txtContactNo" runat="server" CssClass="form-control" placeholder="Contact No"></asp:TextBox>
+                            <asp:RequiredFieldValidator ID="rfv_txtContactNo" runat="server" ErrorMessage="Please enter a Contact Number" ControlToValidate="txtContactNo" ForeColor="Red" ValidationGroup="ValidateForm"></asp:RequiredFieldValidator>
                         </div>
                     </div>
                     <div class="form-group">
@@ -65,6 +66,7 @@
                             <asp:Label runat="server" CssClass="col-lg-3 control-label" Text="Address"></asp:Label></strong>
                         <div class="col-lg-6">
                             <asp:TextBox ID="txtAddress" runat="server" CssClass="form-control" placeholder="Address"></asp:TextBox>
+                            <asp:RequiredFieldValidator ID="rfv_txtAddress" runat="server" ErrorMessage="Please enter an Address" ControlToValidate="txtAddress" ForeColor="Red" ValidationGroup="ValidateForm"></asp:RequiredFieldValidator>
                         </div>
                     </div>
                      <div class="form-group">
@@ -85,7 +87,7 @@
                     <div class="form-group">
                         <div class="wrapper">
                             <br />
-                            <asp:Button ID="btnSave" runat="server" CssClass="btn btn-primary" Text="Save" OnClick="updateInfo_Click" UseSubmitBehavior="false"/>
+                            <asp:Button ID="btnSave" runat="server" CssClass="btn btn-primary" Text="Save" OnClick="updateInfo_Click" UseSubmitBehavior="false" ValidationGroup="ValidateForm"/>
                         </div>
                     </div>
                 </div>

@@ -25,10 +25,18 @@ namespace LearnHub
         }
         protected void updateInfo_Click(object sender, EventArgs e)
         {
-            UserDAO udao = new UserDAO();
-            currentUser = (User)Session["currentUser"];
-            User user = udao.updateInfo(txtContactNo.Text, txtAddress.Text, currentUser);
-            Response.Redirect("Home.aspx");
+            Page.Validate("ValidateForm");
+            if (!Page.IsValid)
+            {
+
+            }
+            else
+            {
+                UserDAO udao = new UserDAO();
+                currentUser = (User)Session["currentUser"];
+                User user = udao.updateInfo(txtContactNo.Text, txtAddress.Text, currentUser);
+                Response.Redirect("Home.aspx");
+            }
         }
     }
 }

@@ -22,6 +22,20 @@
             }
         }
 
+        function ValidateTestimonial(sender, args) {
+            //console.log("validateModuleDesc");
+            var testimonial = document.getElementById("<%= CKEditorControl2.ClientID %>").value;
+            //console.log("moduledesc" + moduleDescription);
+            if (testimonial == "") {
+                //console.log("no desc");
+                args.IsValid = false;
+            }
+            else {
+                //console.log("Yes desc");
+                args.IsValid = true;
+            }
+        }
+
     </script>
     <style>
         .breadcrumb {
@@ -175,22 +189,25 @@
                                         <div class="form-group">
                                             <div class="col-lg-12">
                                                 <asp:TextBox ID="txtTestimonial" runat="server" CssClass="form-control" placeholder="Title"></asp:TextBox>
+                                                <asp:RequiredFieldValidator ID="rfv_txtTestimonial" runat="server" ErrorMessage="Please enter a Title" ControlToValidate="txtTestimonial" ForeColor="Red" ValidationGroup="ValidateForm"></asp:RequiredFieldValidator>
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <div class="col-lg-12">
                                                 <CKEditor:CKEditorControl ID="CKEditorControl2" runat="server">
                                                 </CKEditor:CKEditorControl>
+                                                <asp:CustomValidator ID="cv_testimonial" runat="server" EnableClientScript="true" ErrorMessage="Please input a Testimonial" ClientValidationFunction="ValidateTestimonial" ForeColor="Red" ValidationGroup="ValidateForm"></asp:CustomValidator>
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <div class="col-lg-12">
                                                 <asp:TextBox ID="txtByWho" runat="server" CssClass="form-control" placeholder="Name"></asp:TextBox>
+                                                <asp:RequiredFieldValidator ID="rfv_txtByWho" runat="server" ErrorMessage="Please enter a Name" ControlToValidate="txtByWho" ForeColor="Red" ValidationGroup="ValidateForm"></asp:RequiredFieldValidator>
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <div class="col-lg-10">
-                                                <asp:Button ID="cfmSubmit" CssClass="btn btn-primary" runat="server" Text="Submit" OnClick="submitTestimonial_Click" CausesValidation="false" />
+                                                <asp:Button ID="cfmSubmit" CssClass="btn btn-primary" runat="server" Text="Submit" OnClick="submitTestimonial_Click" ValidationGroup="ValidateForm" />
                                             </div>
                                         </div>
 
