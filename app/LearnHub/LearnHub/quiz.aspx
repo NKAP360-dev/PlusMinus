@@ -30,7 +30,7 @@
         <div class="container">
             <h1>Attempt Quiz</h1>
             <h4>
-                <asp:Label ID="lblQuizTitle" runat="server" Text="Washing Hands Part One"></asp:Label></h4>
+                <asp:Label ID="lblQuizTitle" runat="server" Text=""></asp:Label></h4>
             <div class="verticalLine">
             </div>
         </div>

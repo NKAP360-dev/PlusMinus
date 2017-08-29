@@ -37,8 +37,8 @@ namespace LearnHub.AppCode.dao
                     toReturn.setQuiz(quizDAO.getQuizByID((int)dr["quizID"]));
                     toReturn.setScore((int)dr["score"]);
                     toReturn.setGrade((string)dr["grade"]);
-                    toReturn.setQuizResultHistory(qrhDAO.getQuizResultHistoryByID((int)dr["quizResultHistoryID"]));
-                    toReturn.setDateSubmitted(dr.GetDateTime(6));
+                    toReturn.setDateSubmitted(dr.GetDateTime(5));
+                    toReturn.setAttempt((int)dr["attempt"]);
                 }
                 dr.Close();
             }
@@ -52,7 +52,7 @@ namespace LearnHub.AppCode.dao
             }
             return toReturn;
         }
-        public int createQuizResult(QuizResult qr) // Insert.
+        public int createQuizResult(string userID, int quizID, int score, string grade, DateTime dateSubmitted, int attempt) // Insert.
         {
             SqlConnection conn = null;
             int toReturn = 0;
@@ -63,13 +63,13 @@ namespace LearnHub.AppCode.dao
                 conn.Open();
                 SqlCommand comm = new SqlCommand();
                 comm.Connection = conn;
-                comm.CommandText = "Insert into [QuizResult] (userID, quizID, score, grade, quizResultHistoryID, dateSubmitted) OUTPUT INSERTED.quizResultID VALUES (@userID, @quizID, @score, @grade, @quizResultHistoryID, @dateSubmitted)";
-                comm.Parameters.AddWithValue("@userID", qr.getUser().getUserID());
-                comm.Parameters.AddWithValue("@quizID", qr.getQuiz().getQuizID());
-                comm.Parameters.AddWithValue("@score", qr.getScore());
-                comm.Parameters.AddWithValue("@grade", qr.getGrade());
-                comm.Parameters.AddWithValue("@quizResultHistoryID", qr.getQuizResultHistory().getQuizResultHistoryID());
-                comm.Parameters.AddWithValue("@dateSubmitted", qr.getDateSubmitted());
+                comm.CommandText = "Insert into [QuizResult] (userID, quizID, score, grade, dateSubmitted, attempt) OUTPUT INSERTED.quizResultID VALUES (@userID, @quizID, @score, @grade, @dateSubmitted, @attempt)";
+                comm.Parameters.AddWithValue("@userID", userID);
+                comm.Parameters.AddWithValue("@quizID", quizID);
+                comm.Parameters.AddWithValue("@score", score);
+                comm.Parameters.AddWithValue("@grade", grade);
+                comm.Parameters.AddWithValue("@dateSubmitted", dateSubmitted);
+                comm.Parameters.AddWithValue("@attempt", attempt);
                 toReturn = (Int32)comm.ExecuteScalar();
             }
             catch (SqlException ex)
@@ -108,8 +108,8 @@ namespace LearnHub.AppCode.dao
                     qr.setQuiz(quizDAO.getQuizByID((int)dr["quizID"]));
                     qr.setScore((int)dr["score"]);
                     qr.setGrade((string)dr["grade"]);
-                    qr.setQuizResultHistory(qrhDAO.getQuizResultHistoryByID((int)dr["quizResultHistoryID"]));
-                    qr.setDateSubmitted(dr.GetDateTime(6));
+                    qr.setDateSubmitted(dr.GetDateTime(5));
+                    qr.setAttempt((int)dr["attempt"]);
                     toReturn.Add(qr);
                 }
                 dr.Close();
@@ -147,6 +147,49 @@ namespace LearnHub.AppCode.dao
                 else
                 {
                     toReturn = true;
+                }
+                dr.Close();
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                conn.Close();
+            }
+            return toReturn;
+        }
+        public List<QuizResult> getQuizResultAttemptsByQuizIDandUserID(int quizID, string userID)
+        {
+            SqlConnection conn = new SqlConnection();
+            List<QuizResult> toReturn = new List<QuizResult>();
+            try
+            {
+                conn = new SqlConnection();
+                string connstr = ConfigurationManager.ConnectionStrings["DBConnectionString"].ToString();
+                conn.ConnectionString = connstr;
+                conn.Open();
+                SqlCommand comm = new SqlCommand();
+                comm.Connection = conn;
+                comm.CommandText = "select * from [QuizResult] where quizID=@quizID and userID=@userID order by attempt";
+                comm.Parameters.AddWithValue("@quizID", quizID);
+                comm.Parameters.AddWithValue("@userID", userID);
+                SqlDataReader dr = comm.ExecuteReader();
+                while (dr.Read())
+                {
+                    QuizResult qr = new QuizResult();
+                    UserDAO userDAO = new UserDAO();
+                    QuizDAO quizDAO = new QuizDAO();
+                    QuizResultHistoryDAO qrhDAO = new QuizResultHistoryDAO();
+                    qr.setQuizResultID((int)dr["quizResultID"]);
+                    qr.setUser(userDAO.getUserByID((string)dr["userID"]));
+                    qr.setQuiz(quizDAO.getQuizByID((int)dr["quizID"]));
+                    qr.setScore((int)dr["score"]);
+                    qr.setGrade((string)dr["grade"]);
+                    qr.setDateSubmitted(dr.GetDateTime(5));
+                    qr.setAttempt((int)dr["attempt"]);
+                    toReturn.Add(qr);
                 }
                 dr.Close();
             }

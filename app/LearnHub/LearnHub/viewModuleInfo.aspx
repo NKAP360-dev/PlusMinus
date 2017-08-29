@@ -314,16 +314,24 @@
                         <%--One panel per quiz--%>
                         <%
                             int courseID = Convert.ToInt32(Request.QueryString["id"]);
+                            User currentUser = (User)Session["currentUser"];
                             QuizDAO quizDAO = new QuizDAO();
+                            QuizResultDAO qrDAO = new QuizResultDAO();
+                            QuizQuestionDAO qqDAO = new QuizQuestionDAO();
                             List<Quiz> allQuizzes = quizDAO.getAllQuizByCourseID(courseID);
                             foreach (Quiz q in allQuizzes) {
                         %>
                         <div class="panel panel-primary">
                             <div class="panel-heading">
                                 <h3 class="panel-title">
-                                    <% Response.Write(q.getTitle()); %>
+                                    <% 
+                                        Response.Write(q.getTitle());
+                                        Course_elearnDAO ceDAO = new Course_elearnDAO();
+                                        User courseCreator = ceDAO.get_course_by_id(courseID).getCourseCreator();
+                                        if (currentUser != null && (currentUser.getUserID() == courseCreator.getUserID() || currentUser.getRole().Equals("superuser"))) { 
+                                    %>
                                     <a href="editQuiz.aspx?id=<%=q.getQuizID()%>" class="label label-default pull-right"><span class="glyphicon glyphicon-pencil"></span></a>
-                                    <%--GWEE: I need both courseid for navigation so maybe when you integrate pass both courseid and quizid?--%>
+                                    <% } %>
                                 </h3>
                             </div>
                             <div class="panel-body">
@@ -335,21 +343,28 @@
                                 </div>
                                 <br />
                                 <hr />
-                                <%--IF ATTEMPT IS NOT 0, SHOW TABLE, OTHERWISE DON'T SHOW--%>
-                                <table class="table table-striped">
-                                    <thead>
-                                        <tr>
-                                            <th>Attempt #</th>
-                                            <th>Date</th>
-                                            <th>Score</th>
-                                        </tr>
-                                    </thead>
-                                    <tr>
-                                        <td><a href="viewResults.aspx?id=<%=courseID%>">Attempt 1</a></td>
-                                        <td>22/8/17</td>
-                                        <td>3/3</td>
-                                    </tr>
-                                </table>
+                                <%
+                                    List<QuizResult> allAttempts = qrDAO.getQuizResultAttemptsByQuizIDandUserID(q.getQuizID(), currentUser.getUserID());
+                                    if (allAttempts.Count > 0)
+                                    {
+                                        Response.Write("<table class=\"table table-striped\">");
+                                        Response.Write("<thead><tr>");
+                                        Response.Write("<th>Attempt #</th>");
+                                        Response.Write("<th>Date</th>");
+                                        Response.Write("<th>Score</th></tr></thead>");
+
+                                        foreach (QuizResult qr in allAttempts)
+                                        {
+                                            List<QuizQuestion> allQuestions = qqDAO.getAllQuizQuestionByQuizID(qr.getQuiz().getQuizID());
+                                            Response.Write("<tr>");
+                                            Response.Write($"<td><a href=\"viewResults.aspx?id={qr.getQuizResultID()}\">Attempt {qr.getAttempt()}</a></td>");
+                                            Response.Write($"<td>{qr.getDateSubmitted().ToString("dd/MM/yyyy")}</td>");
+                                            Response.Write($"<td>{qr.getScore()}/{allQuestions.Count}</td>");
+                                            Response.Write("</tr>");
+                                        }
+                                        Response.Write("</table>");
+                                    }
+                                %>
                             </div>
                         </div>
                         <%

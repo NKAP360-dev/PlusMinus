@@ -12,19 +12,19 @@ namespace LearnHub.AppCode.entity
         private Quiz quiz;
         private int score;
         private string grade;
-        private QuizResultHistory quizResultHistory;
         private DateTime dateSubmitted;
+        private int attempt;
 
         public QuizResult() { }
-        public QuizResult(int quizResultID, User user, Quiz quiz, int score, string grade, QuizResultHistory quizResultHistory, DateTime dateSubmitted)
+        public QuizResult(int quizResultID, User user, Quiz quiz, int score, string grade, QuizResultHistory quizResultHistory, DateTime dateSubmitted, int attempt)
         {
             this.quizResultID = quizResultID;
             this.user = user;
             this.quiz = quiz;
             this.score = score;
             this.grade = grade;
-            this.quizResultHistory = quizResultHistory;
             this.dateSubmitted = dateSubmitted;
+            this.attempt = attempt;
         }
         public int getQuizResultID()
         {
@@ -66,14 +66,6 @@ namespace LearnHub.AppCode.entity
         {
             this.grade = grade;
         }
-        public QuizResultHistory getQuizResultHistory()
-        {
-            return quizResultHistory;
-        }
-        public void setQuizResultHistory(QuizResultHistory quizResultHistory)
-        {
-            this.quizResultHistory = quizResultHistory;
-        }
         public DateTime getDateSubmitted()
         {
             return dateSubmitted;
@@ -81,6 +73,14 @@ namespace LearnHub.AppCode.entity
         public void setDateSubmitted(DateTime dateSubmitted)
         {
             this.dateSubmitted = dateSubmitted;
+        }
+        public int getAttempt()
+        {
+            return attempt;
+        }
+        public void setAttempt(int attempt)
+        {
+            this.attempt = attempt;
         }
     }
 }

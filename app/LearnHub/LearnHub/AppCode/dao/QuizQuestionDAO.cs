@@ -142,5 +142,37 @@ namespace LearnHub.AppCode.dao
             }
             return toReturn;
         }
+        public Boolean checkIfAnswerCorrect(int quizQuestionID, int correctAnswerID)
+        {
+            SqlConnection conn = new SqlConnection();
+            Boolean toReturn = false;
+            try
+            {
+                conn = new SqlConnection();
+                string connstr = ConfigurationManager.ConnectionStrings["DBConnectionString"].ToString();
+                conn.ConnectionString = connstr;
+                conn.Open();
+                SqlCommand comm = new SqlCommand();
+                comm.Connection = conn;
+                comm.CommandText = "select * from [QuizQuestion] where quizQuestionID=@quizQuestionID and correctAnswerID=@correctAnswerID";
+                comm.Parameters.AddWithValue("@quizQuestionID", quizQuestionID);
+                comm.Parameters.AddWithValue("@correctAnswerID", correctAnswerID);
+                SqlDataReader dr = comm.ExecuteReader();
+                while (dr.Read())
+                {
+                    toReturn = true;
+                }
+                dr.Close();
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                conn.Close();
+            }
+            return toReturn;
+        }
     }
 }

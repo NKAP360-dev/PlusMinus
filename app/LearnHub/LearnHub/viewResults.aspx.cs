@@ -13,10 +13,39 @@ namespace LearnHub
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            Course_elearnDAO cdao = new Course_elearnDAO();
-            String id_str = Request.QueryString["id"];
-            int id_num = int.Parse(id_str);
-            lblBreadcrumbCourseName.Text = cdao.get_course_by_id(id_num).getCourseName();
+            QuizResultDAO qrDAO = new QuizResultDAO();
+            QuizQuestionDAO qqDAO = new QuizQuestionDAO();
+            int quizResultID = Convert.ToInt32(Request.QueryString["id"]);
+            QuizResult currentQuizResult = qrDAO.getQuizResultByID(quizResultID);
+            Quiz currentQuiz = currentQuizResult.getQuiz();
+            User currentUser = (User)Session["currentUser"];
+            List<QuizQuestion> allQuestions = qqDAO.getAllQuizQuestionByQuizID(currentQuiz.getQuizID());
+            if (currentUser == null)
+            {
+                Response.Redirect("Login.aspx");
+            }
+            else if (currentQuizResult.getUser().getUserID() != currentUser.getUserID() && !currentUser.getRole().Equals("superuser"))
+            {
+                Response.Redirect("errorPage.aspx");
+            }
+            else
+            {
+                lblBreadcrumbCourseName.Text = currentQuiz.getMainCourse().getCourseName();
+                lblScore.Text = currentQuizResult.getScore() + "/" + allQuestions.Count;
+                lblAttemptNo.Text = currentQuizResult.getAttempt().ToString();
+                lblQuizDate.Text = currentQuizResult.getDateSubmitted().ToString("dd/MM/yyyy");
+                string grade = currentQuizResult.getGrade();
+                if (grade.Equals("pass"))
+                {
+                    lblStatusPass.Visible = true;
+                    lblStatusFail.Visible = false;
+                }
+                else
+                {
+                    lblStatusPass.Visible = false;
+                    lblStatusFail.Visible = true;
+                }
+            }
         }
     }
 }

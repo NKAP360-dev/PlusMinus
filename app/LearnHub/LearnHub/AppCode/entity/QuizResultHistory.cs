@@ -7,24 +7,26 @@ namespace LearnHub.AppCode.entity
 {
     public class QuizResultHistory
     {
-        private int quizResultHistoryID;
+        private string userID;
         private QuizQuestion question;
         private QuizAnswer answer;
+        private int attempt;
+        private int quizID;
 
         public QuizResultHistory() { }
-        public QuizResultHistory(int quizResultHistoryID, QuizQuestion question, QuizAnswer answer)
+        public QuizResultHistory(string userID, QuizQuestion question, QuizAnswer answer)
         {
-            this.quizResultHistoryID = quizResultHistoryID;
+            this.userID = userID;
             this.question = question;
             this.answer = answer;
         }
-        public int getQuizResultHistoryID()
+        public string getUserID()
         {
-            return quizResultHistoryID;
+            return userID;
         }
-        public void setQuizResultHistoryID(int quizResultHistoryID)
+        public void setUserID(string userID)
         {
-            this.quizResultHistoryID = quizResultHistoryID;
+            this.userID = userID;
         }
         public QuizQuestion getQuestion()
         {
@@ -41,6 +43,22 @@ namespace LearnHub.AppCode.entity
         public void setAnswer(QuizAnswer answer)
         {
             this.answer = answer;
+        }
+        public int getAttempt()
+        {
+            return attempt;
+        }
+        public void setAttempt(int attempt)
+        {
+            this.attempt = attempt;
+        }
+        public int getQuizID()
+        {
+            return quizID;
+        }
+        public void setQuizID(int quizID)
+        {
+            this.quizID = quizID;
         }
     }
 }
