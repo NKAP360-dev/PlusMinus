@@ -61,13 +61,21 @@ namespace LearnHub
         }
         protected void submitTestimonial_Click(object sender, EventArgs e)
         {
-            string byWho = txtByWho.Text;
-            string quote = CKEditorControl2.Text;
-            string title = txtTestimonial.Text;
-            TestimonialDAO tdao = new TestimonialDAO();
-            Boolean res = tdao.create_testimonial(new Testimonial(byWho, quote, (User)Session["currentUser"], current, title));
-            int courseID = Convert.ToInt32(Request.QueryString["id"]);
-            Response.Redirect("viewModuleInfo.aspx?id=" + courseID);
+            Page.Validate("ValidateForm");
+            if (!Page.IsValid)
+            {
+                
+            }
+            else
+            {
+				string byWho = txtByWho.Text;
+				string quote = CKEditorControl2.Text;
+				string title = txtTestimonial.Text;
+				TestimonialDAO tdao = new TestimonialDAO();
+				Boolean res = tdao.create_testimonial(new Testimonial(byWho, quote, (User)Session["currentUser"], current, title));
+				int courseID = Convert.ToInt32(Request.QueryString["id"]);
+				Response.Redirect("viewModuleInfo.aspx?id=" + courseID);
+			}
         }
         protected void moduleInfo_Click(object sender, EventArgs e)
         {

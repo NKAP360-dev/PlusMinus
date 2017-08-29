@@ -46,6 +46,7 @@
                             <asp:Label runat="server" CssClass="col-lg-4 control-label" Text="Current Password"></asp:Label></strong>
                         <div class="col-lg-6">
                             <asp:TextBox ID="txtPassword_now" runat="server" CssClass="form-control" placeholder="Current Password" TextMode="Password"></asp:TextBox>
+                            <asp:RequiredFieldValidator ID="rfv_txtPassword_now" runat="server" ErrorMessage="Please enter your Current Password" ControlToValidate="txtPassword_now" ForeColor="Red" ValidationGroup="ValidateForm"></asp:RequiredFieldValidator>
                         </div>
                     </div>
                     <div class="form-group">
@@ -53,6 +54,7 @@
                             <asp:Label runat="server" CssClass="col-lg-4 control-label" Text="New Password"></asp:Label></strong>
                         <div class="col-lg-6">
                             <asp:TextBox ID="txtPassword_new" runat="server" CssClass="form-control" placeholder="New Password" TextMode="Password"></asp:TextBox>
+                            <asp:RequiredFieldValidator ID="rfv_txtPassword_new" runat="server" ErrorMessage="Please enter a New Password" ControlToValidate="txtPassword_new" ForeColor="Red" ValidationGroup="ValidateForm"></asp:RequiredFieldValidator>
                         </div>
                     </div>
                     <div class="form-group">
@@ -60,6 +62,7 @@
                             <asp:Label runat="server" CssClass="col-lg-4 control-label" Text="Re-type New Password"></asp:Label></strong>
                         <div class="col-lg-6">
                             <asp:TextBox ID="txtPassword_newConfirm" runat="server" CssClass="form-control" placeholder="Re-type Password" TextMode="Password"></asp:TextBox>
+                            <asp:RequiredFieldValidator ID="rfv_txtPassword_newConfirm" runat="server" ErrorMessage="Please enter your Password Again" ControlToValidate="txtPassword_newConfirm" ForeColor="Red" ValidationGroup="ValidateForm"></asp:RequiredFieldValidator>
                         </div>
                     </div>
                     <div class="form-group">
@@ -68,7 +71,7 @@
                     <div class="form-group">
                         <div class="wrapper">
                             <br />
-                            <asp:Button ID="btnSave" runat="server" CssClass="btn btn-primary" Text="Save" OnClick="submit_new_password"/>
+                            <asp:Button ID="btnSave" runat="server" CssClass="btn btn-primary" Text="Save" OnClick="submit_new_password" ValidationGroup="ValidateForm"/>
                         </div>
                     </div>
                 </div>

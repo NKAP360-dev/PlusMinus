@@ -187,13 +187,20 @@ namespace LearnHub
         protected void btnCreate_Click(object sender, EventArgs e)
         {
             //to do validations
+            Page.Validate("ValidateForm");
+            if (!Page.IsValid)
+            {
 
-            int courseID = Convert.ToInt32(Request.QueryString["id"]);
-            List<string> part1 = new List<string>();
-            part1.Add(txtQuizTitle.Text);
-            part1.Add(txtQuizDesc.Text);
-            Session["createQuiz1"] = part1;
-            Response.Redirect("createQuizQnA.aspx?id="+courseID);
+            }
+            else
+            {
+                int courseID = Convert.ToInt32(Request.QueryString["id"]);
+                List<string> part1 = new List<string>();
+                part1.Add(txtQuizTitle.Text);
+                part1.Add(txtQuizDesc.Text);
+                Session["createQuiz1"] = part1;
+                Response.Redirect("createQuizQnA.aspx?id=" + courseID);
+            }
         }
     }
 }

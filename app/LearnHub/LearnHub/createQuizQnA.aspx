@@ -83,6 +83,7 @@
                     </strong>
                     <div class="col-lg-9">
                         <asp:TextBox ID="txtQuizQuestion" CssClass="form-control" runat="server" placeholder="Quiz Question"></asp:TextBox>
+                        <asp:RequiredFieldValidator ID="rfv_txtQuizQuestion" runat="server" ErrorMessage="Please enter the Question" ControlToValidate="txtQuizQuestion" ForeColor="Red" ValidationGroup="ValidateForm"></asp:RequiredFieldValidator>
                     </div>
                 </div>
                 <div class="form-group required">
@@ -91,9 +92,13 @@
                     </strong>
                     <div class="col-lg-6">
                         <asp:TextBox ID="txtOptionOne" runat="server" CssClass="form-control" placeholder="Option 1"></asp:TextBox><br />
+                        <asp:RequiredFieldValidator ID="rfv_txtOptionOne" runat="server" ErrorMessage="Please enter the first option" ControlToValidate="txtOptionOne" ForeColor="Red" ValidationGroup="ValidateForm"></asp:RequiredFieldValidator>
                         <asp:TextBox ID="txtOptionTwo" runat="server" CssClass="form-control" placeholder="Option 2"></asp:TextBox><br />
+                        <asp:RequiredFieldValidator ID="rfv_txtOptionTwo" runat="server" ErrorMessage="Please enter the second option" ControlToValidate="txtOptionTwo" ForeColor="Red" ValidationGroup="ValidateForm"></asp:RequiredFieldValidator>
                         <asp:TextBox ID="txtOptionThree" runat="server" CssClass="form-control" placeholder="Option 3"></asp:TextBox><br />
+                        <asp:RequiredFieldValidator ID="rfv_txtOptionThree" runat="server" ErrorMessage="Please enter the third option" ControlToValidate="txtOptionThree" ForeColor="Red" ValidationGroup="ValidateForm"></asp:RequiredFieldValidator>
                         <asp:TextBox ID="txtOptionFour" runat="server" CssClass="form-control" placeholder="Option 4"></asp:TextBox><br />
+                        <asp:RequiredFieldValidator ID="rfv_txtOptionFour" runat="server" ErrorMessage="Please enter the fourth option" ControlToValidate="txtOptionFour" ForeColor="Red" ValidationGroup="ValidateForm"></asp:RequiredFieldValidator>
                     </div>
                 </div>
                 <div class="form-group required">
@@ -118,7 +123,7 @@
             </div>
             <br />
             <div class="form-group wrapper">
-                <asp:Button ID="btnNewQn" runat="server" CssClass="btn btn-primary" Text="Add Question" onclick="btnNewQn_Click"/>
+                <asp:Button ID="btnNewQn" runat="server" CssClass="btn btn-primary" Text="Add Question" onclick="btnNewQn_Click" ValidationGroup="ValidateForm"/>
                 <button type="button" data-toggle="modal" data-target="#finishModal" class="btn btn-success">Finish</button>
             </div>
 
