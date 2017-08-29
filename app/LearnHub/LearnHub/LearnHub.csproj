@@ -954,6 +954,26 @@
     <Content Include="viewAllModule.aspx" />
     <Content Include="viewApprovedTRF.aspx" />
     <Content Include="viewCreatedModules.aspx" />
+    <Content Include="ViewerJS\compatibility.js" />
+    <Content Include="ViewerJS\example.local.css" />
+    <Content Include="ViewerJS\images\kogmbh.png" />
+    <Content Include="ViewerJS\images\nlnet.png" />
+    <Content Include="ViewerJS\images\texture.png" />
+    <Content Include="ViewerJS\images\toolbarButton-download.png" />
+    <Content Include="ViewerJS\images\toolbarButton-fullscreen.png" />
+    <Content Include="ViewerJS\images\toolbarButton-menuArrows.png" />
+    <Content Include="ViewerJS\images\toolbarButton-pageDown.png" />
+    <Content Include="ViewerJS\images\toolbarButton-pageUp.png" />
+    <Content Include="ViewerJS\images\toolbarButton-presentation.png" />
+    <Content Include="ViewerJS\images\toolbarButton-zoomIn.png" />
+    <Content Include="ViewerJS\images\toolbarButton-zoomOut.png" />
+    <Content Include="ViewerJS\index.html" />
+    <Content Include="ViewerJS\pdf.js" />
+    <Content Include="ViewerJS\pdf.worker.js" />
+    <Content Include="ViewerJS\pdfjsversion.js" />
+    <Content Include="ViewerJS\text_layer_builder.js" />
+    <Content Include="ViewerJS\ui_utils.js" />
+    <Content Include="ViewerJS\webodf.js" />
     <Content Include="viewModuleInfo.aspx" />
     <Content Include="viewResults.aspx" />
     <Content Include="WebForm1.aspx" />
@@ -1005,6 +1025,11 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="ViewerJS\Data\22\Step1.rtf" />
+    <Content Include="ViewerJS\Data\22\Wash hands 2.pptx" />
+    <Content Include="ViewerJS\Data\22\Wash hands part 3.pdf" />
+    <Content Include="ViewerJS\Data\23\Managing people at work.pptx" />
+    <Content Include="ViewerJS\test.docx" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -1012,6 +1037,10 @@
     <Folder Include="Data\" />
     <Folder Include="fonts\" />
     <Folder Include="Models\" />
+    <Folder Include="ViewerJS\Data\27\" />
+    <Folder Include="ViewerJS\Data\28\" />
+    <Folder Include="ViewerJS\Data\29\" />
+    <Folder Include="ViewerJS\Data\30\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

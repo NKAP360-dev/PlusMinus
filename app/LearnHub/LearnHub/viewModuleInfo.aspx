@@ -286,8 +286,13 @@
                                 <asp:Label ID="lblUploadDescription" runat="server"><%= desc %></asp:Label>
                                 <br />
                                 <br />
-                                <% string var = dir + "/" + Path.GetFileName(strfile); %>
-                                <a href="<%=var %>" download><%=Path.GetFileName(strfile) %></a><br />
+                                <% string var = dir + "/" + Path.GetFileName(strfile);
+                                    if (Path.GetExtension(var).Equals(".pdf")){
+                                        var = "ViewerJS/#../" + dir + "/" + Path.GetFileName(strfile);%>
+                                        <a href="<%=var %>"><%=Path.GetFileName(strfile) %></a><br />     
+                                <% } else {%>
+                                        <a href="<%=var %>" download><%=Path.GetFileName(strfile) %></a><br />
+                                <%} %>
                             </div>
                         </div>
                         <%} %>
