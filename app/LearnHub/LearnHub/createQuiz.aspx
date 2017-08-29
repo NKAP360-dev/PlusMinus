@@ -20,18 +20,6 @@
                 x.style.display = 'none';
             }
         }
-        function ValidateQuizDescription(sender, args) {
-            console.log("validateModuleDesc");
-            var quizDescription = document.getElementById("<%= txtQuizDesc.ClientID %>").value;
-            if (quizDescription == "") {
-                console.log("no desc");
-                args.IsValid = false;
-            }
-            else {
-                console.log("Yes desc");
-                args.IsValid = true;
-            }
-        }
     </script>
      <style>
          .breadcrumb {
@@ -94,7 +82,6 @@
                         <asp:Label runat="server" CssClass="col-lg-2 control-label" Text="Title of Quiz"></asp:Label></strong>
                     <div class="col-lg-5">
                         <asp:TextBox ID="txtQuizTitle" CssClass="form-control" runat="server" placeholder="Title of Quiz"></asp:TextBox>
-                        <asp:RequiredFieldValidator ID="rfv_txtQuizTitle" runat="server" ErrorMessage="Please enter a Title" ControlToValidate="txtQuizTitle" ForeColor="Red" ValidationGroup="ValidateForm"></asp:RequiredFieldValidator>
                     </div>
                 </div>
                 <div class="form-group required">
@@ -102,7 +89,6 @@
                         <asp:Label runat="server" CssClass="col-lg-2 control-label" Text="Description of Quiz"></asp:Label></strong>
                     <div class="col-lg-5">
                         <CKEditor:CKEditorControl ID="txtQuizDesc" runat="server"></CKEditor:CKEditorControl>
-                        <asp:CustomValidator ID="cv_txtQuizDesc" runat="server" EnableClientScript="true" ErrorMessage="Please input a Quiz Description" ClientValidationFunction="ValidateQuizDescription" ForeColor="Red" ValidationGroup="ValidateForm"></asp:CustomValidator>
                     </div>
                 </div>
                 <%-- Preq --%>
@@ -159,7 +145,7 @@
                 <div class="form-group wrapper">
                     <%--int courseID = Convert.ToInt32(Request.QueryString["id"]); %>
                     <a href="createQuizQnA.aspx?id=<%=courseID%>" class="btn btn-primary">Next</a>--%>
-                    <asp:Button ID="btnCreate" runat="server" CssClass="btn btn-primary" Text="Next" OnClick="btnCreate_Click" ValidationGroup ="ValidateForm"/>
+                    <asp:Button ID="btnCreate" runat="server" CssClass="btn btn-primary" Text="Next" OnClick="btnCreate_Click" />
                     
                 </div>
             </fieldset>

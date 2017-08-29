@@ -49,28 +49,20 @@ namespace LearnHub
 
         protected void btnConfirmSave_Click(object sender, EventArgs e)
         {
-            Page.Validate("ValidateForm");
-            if (!Page.IsValid)
-            {
-
-            }
-            else
-            {
-                ChatBotFeedbackSettingsDAO cbfsDAO = new ChatBotFeedbackSettingsDAO();
-                cbfsDAO.updateSettings(rdlEmail.SelectedValue, txtEmail.Text, txtSMTPUser.Text, txtSMTPPassword.Text);
-                /*
-                string message = "Saved.";
-                System.Text.StringBuilder sb = new System.Text.StringBuilder();
-                sb.Append("<script type = 'text/javascript'>");
-                sb.Append("window.onload=function(){");
-                sb.Append("alert('");
-                sb.Append(message);
-                sb.Append("')};");
-                sb.Append("</script>");
-                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", sb.ToString());
-                */
-                lblSaveSuccess.Visible = true;
-            }
+            ChatBotFeedbackSettingsDAO cbfsDAO = new ChatBotFeedbackSettingsDAO();
+            cbfsDAO.updateSettings(rdlEmail.SelectedValue, txtEmail.Text, txtSMTPUser.Text, txtSMTPPassword.Text);
+            /*
+            string message = "Saved.";
+            System.Text.StringBuilder sb = new System.Text.StringBuilder();
+            sb.Append("<script type = 'text/javascript'>");
+            sb.Append("window.onload=function(){");
+            sb.Append("alert('");
+            sb.Append(message);
+            sb.Append("')};");
+            sb.Append("</script>");
+            ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", sb.ToString());
+            */
+            lblSaveSuccess.Visible = true;
         }
     }
 }

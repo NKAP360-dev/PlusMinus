@@ -31,15 +31,6 @@ namespace LearnHub {
         protected global::System.Web.UI.WebControls.TextBox txtQuizTitle;
         
         /// <summary>
-        /// rfv_txtQuizTitle control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfv_txtQuizTitle;
-        
-        /// <summary>
         /// txtQuizDesc control.
         /// </summary>
         /// <remarks>
@@ -47,15 +38,6 @@ namespace LearnHub {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::CKEditor.NET.CKEditorControl txtQuizDesc;
-        
-        /// <summary>
-        /// cv_txtQuizDesc control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.CustomValidator cv_txtQuizDesc;
         
         /// <summary>
         /// SqlDataSource1 control.

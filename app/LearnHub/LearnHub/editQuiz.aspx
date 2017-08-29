@@ -21,38 +21,6 @@
                 x.style.display = 'none';
             }
         }
-
-        function ValidateQuizDescription(sender, args) {
-            console.log("validateModuleDesc");
-            var quizDescription = document.getElementById("<%= txtQuizDesc.ClientID %>").value;
-            if (quizDescription == "") {
-                console.log("no desc");
-                args.IsValid = false;
-            }
-            else {
-                console.log("Yes desc");
-                args.IsValid = true;
-            }
-        }
-
-        function checkForm_Clicked(source, args) {
-
-            Page_ClientValidate('ValidateForm');
-            //Page_ClientValidate();
-
-            if (!Page_IsValid) {
-                document.getElementById('<%= lblErrorMsgFinal.ClientID %>').style.display = 'inherit';
-                document.getElementById('<%= lblErrorMsgFinal.ClientID %>').innerHTML = "You have not filled up all of the required fields";
-                //Page_ClientValidate('summaryGroup');
-                document.getElementById('<%= btnConfirmSubmit.ClientID %>').disabled = true;
-                console.log("The end");
-            }
-            else {
-                document.getElementById('<%= lblErrorMsgFinal.ClientID %>').innerHTML = "";
-                document.getElementById('<%= btnConfirmSubmit.ClientID %>').disabled = false;
-            }
-            return false;
-        }
     </script>
     <style>
         .breadcrumb {
@@ -121,7 +89,6 @@
                         <asp:Label runat="server" CssClass="col-lg-2 control-label" Text="Title of Quiz"></asp:Label></strong>
                     <div class="col-lg-5">
                         <asp:TextBox ID="txtQuizTitle" CssClass="form-control" runat="server" placeholder="Title of Quiz"></asp:TextBox>
-                        <asp:RequiredFieldValidator ID="rfv_txtQuizTitle" runat="server" ErrorMessage="Please enter a Quiz Title" ControlToValidate="txtQuizTitle" ForeColor="Red" ValidationGroup="ValidateForm"></asp:RequiredFieldValidator>
                     </div>
                 </div>
                 <div class="form-group required">
@@ -129,7 +96,6 @@
                         <asp:Label runat="server" CssClass="col-lg-2 control-label" Text="Description of Quiz"></asp:Label></strong>
                     <div class="col-lg-5">
                         <CKEditor:CKEditorControl ID="txtQuizDesc" runat="server"></CKEditor:CKEditorControl>
-                        <asp:CustomValidator ID="cv_txtQuizDesc" runat="server" EnableClientScript="true" ErrorMessage="Please input a Quiz Description" ClientValidationFunction="ValidateQuizDescription" ForeColor="Red" ValidationGroup="ValidateForm"></asp:CustomValidator>
                     </div>
                 </div>
                 <%-- Preq --%>
@@ -187,7 +153,6 @@
                     <label class="col-lg-2 control-label">No. of correct answers needed to pass</label>
                     <div class="col-lg-5">
                         <asp:TextBox ID="txtNumCorrectAns" runat="server" CssClass="form-control"></asp:TextBox>
-                        <asp:RequiredFieldValidator ID="rfv_txtNumCorrectAns" runat="server" ErrorMessage="Please enter the number of correct answers" ControlToValidate="txtNumCorrectAns" ForeColor="Red" ValidationGroup="ValidateForm"></asp:RequiredFieldValidator>
                     </div>
                 </div>
                 <div class="form-group required">
@@ -203,14 +168,9 @@
             </fieldset>
             <br /><br />
             <div class="wrapper">
-                    <%--<a href="#submitModal" data-toggle="modal" class="btn btn-primary">Save</a>--%>
-                    <asp:Button ID="submitBtn" CssClass="btn btn-primary" runat="server" Text="Save" data-toggle="modal" OnClientClick="return checkForm_Clicked()" href="#submitModal" CausesValidation="True" UseSubmitBehavior="False" />
+                   <a href="#submitModal" data-toggle="modal" class="btn btn-primary">Save</a>
                     <asp:Button ID="btnDeactivate" CssClass="btn btn-warning" runat="server" Text="Deactivate Quiz" data-toggle="modal" href="#deactivateModal" OnClientClick="return false;" />
                     <asp:Button ID="btnActivate" CssClass="btn btn-success" runat="server" Text="Activate Quiz" data-toggle="modal" href="#activateModal" OnClientClick="return false;" />
-
-                <asp:Button ID="Button1" CssClass="btn btn-primary" runat="server" Text="Save" onclick="btnConfirmSubmit_Click" ValidationGroup="ValidateForm"/>
-                   <asp:Button ID="Button3" CssClass="btn btn-danger" runat="server" Text="Deactivate" onclick="btnDeactivate_Click" ValidationGroup="ValidateForm"/>
-                   <asp:Button ID="Button4" CssClass="btn btn-success" runat="server" Text="Activate" onclick="btnActivate_Click" ValidationGroup="ValidateForm"/>
             </div>
 
             <%--Modal for Submission Confirmation--%>
@@ -225,8 +185,6 @@
                         <div class="modal-body">
                             <div class="wrapper">
                                 <h4>Are you sure you want to save? <br /> This will overwrite your existing information.</h4>
-                                <br />
-                                <asp:Label ID="lblErrorMsgFinal" runat="server" CssClass="text-danger" Visible="True"></asp:Label>
                                 <br />
                                  <asp:Button ID="btnConfirmSubmit" CssClass="btn btn-primary" runat="server" Text="Save" onclick="btnConfirmSubmit_Click"/>
                                  <asp:Button ID="btnCancel" CssClass="btn btn-default" runat="server" class="close" data-dismiss="modal" Text="Cancel" OnClientClick="return false;" />

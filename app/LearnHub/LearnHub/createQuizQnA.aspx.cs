@@ -50,68 +50,61 @@ namespace LearnHub
         {
 
             //to do validation
-            Page.Validate("ValidateForm");
-            if (!Page.IsValid)
-            {
 
+            List<QuizQuestion> allQuestions = (List<QuizQuestion>)Session["allQuestions"];
+            QuizQuestion newQuestion = new QuizQuestion();
+            newQuestion.setQuestion(txtQuizQuestion.Text);
+
+            QuizAnswer answer1 = new QuizAnswer();
+            answer1.setAnswer(txtOptionOne.Text);
+
+            QuizAnswer answer2 = new QuizAnswer();
+            answer2.setAnswer(txtOptionTwo.Text);
+
+            QuizAnswer answer3 = new QuizAnswer();
+            answer3.setAnswer(txtOptionThree.Text);
+
+            QuizAnswer answer4 = new QuizAnswer();
+            answer4.setAnswer(txtOptionFour.Text);
+
+            List<QuizAnswer> allAnswers = new List<QuizAnswer>();
+            allAnswers.Add(answer1);
+            allAnswers.Add(answer2);
+            allAnswers.Add(answer3);
+            allAnswers.Add(answer4);
+
+            newQuestion.setAllAnswers(allAnswers);
+
+            if (ddlCorrectAns.SelectedValue.Equals("1"))
+            {
+                newQuestion.setQuizAnswer(answer1);
+            }
+            else if(ddlCorrectAns.SelectedValue.Equals("2"))
+            {
+                newQuestion.setQuizAnswer(answer2);
+            }
+            else if (ddlCorrectAns.SelectedValue.Equals("3"))
+            {
+                newQuestion.setQuizAnswer(answer3);
             }
             else
             {
-                List<QuizQuestion> allQuestions = (List<QuizQuestion>)Session["allQuestions"];
-                QuizQuestion newQuestion = new QuizQuestion();
-                newQuestion.setQuestion(txtQuizQuestion.Text);
-
-                QuizAnswer answer1 = new QuizAnswer();
-                answer1.setAnswer(txtOptionOne.Text);
-
-                QuizAnswer answer2 = new QuizAnswer();
-                answer2.setAnswer(txtOptionTwo.Text);
-
-                QuizAnswer answer3 = new QuizAnswer();
-                answer3.setAnswer(txtOptionThree.Text);
-
-                QuizAnswer answer4 = new QuizAnswer();
-                answer4.setAnswer(txtOptionFour.Text);
-
-                List<QuizAnswer> allAnswers = new List<QuizAnswer>();
-                allAnswers.Add(answer1);
-                allAnswers.Add(answer2);
-                allAnswers.Add(answer3);
-                allAnswers.Add(answer4);
-
-                newQuestion.setAllAnswers(allAnswers);
-
-                if (ddlCorrectAns.SelectedValue.Equals("1"))
-                {
-                    newQuestion.setQuizAnswer(answer1);
-                }
-                else if (ddlCorrectAns.SelectedValue.Equals("2"))
-                {
-                    newQuestion.setQuizAnswer(answer2);
-                }
-                else if (ddlCorrectAns.SelectedValue.Equals("3"))
-                {
-                    newQuestion.setQuizAnswer(answer3);
-                }
-                else
-                {
-                    newQuestion.setQuizAnswer(answer4);
-                }
-
-                allQuestions.Add(newQuestion);
-                Session["allQuestions"] = allQuestions;
-                int counter = (int)Session["questionNumber"];
-                lblAddedMsg.Text = $"Question {counter++} has been added successfully.";
-                lblAddedMsg.Visible = true;
-                Session["questionNumber"] = counter;
-                txtQuizQuestion.Text = "";
-                txtNumCorrectAns.Text = "";
-                txtOptionOne.Text = "";
-                txtOptionTwo.Text = "";
-                txtOptionThree.Text = "";
-                txtOptionFour.Text = "";
-                lblQuestionNumber.Text = "Question " + counter;
+                newQuestion.setQuizAnswer(answer4);
             }
+
+            allQuestions.Add(newQuestion);
+            Session["allQuestions"] = allQuestions;
+            int counter = (int)Session["questionNumber"];
+            lblAddedMsg.Text = $"Question {counter++} has been added successfully.";
+            lblAddedMsg.Visible = true;
+            Session["questionNumber"] = counter;
+            txtQuizQuestion.Text = "";
+            txtNumCorrectAns.Text = "";
+            txtOptionOne.Text = "";
+            txtOptionTwo.Text = "";
+            txtOptionThree.Text = "";
+            txtOptionFour.Text = "";
+            lblQuestionNumber.Text = "Question " + counter;
         }
 
         protected void btnConfirmSubmit_Click(object sender, EventArgs e)

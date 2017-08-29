@@ -112,15 +112,6 @@ namespace LearnHub {
         protected global::System.Web.UI.WebControls.TextBox txtTestimonial;
         
         /// <summary>
-        /// rfv_txtTestimonial control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfv_txtTestimonial;
-        
-        /// <summary>
         /// CKEditorControl2 control.
         /// </summary>
         /// <remarks>
@@ -130,15 +121,6 @@ namespace LearnHub {
         protected global::CKEditor.NET.CKEditorControl CKEditorControl2;
         
         /// <summary>
-        /// cv_testimonial control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.CustomValidator cv_testimonial;
-        
-        /// <summary>
         /// txtByWho control.
         /// </summary>
         /// <remarks>
@@ -146,15 +128,6 @@ namespace LearnHub {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtByWho;
-        
-        /// <summary>
-        /// rfv_txtByWho control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfv_txtByWho;
         
         /// <summary>
         /// cfmSubmit control.

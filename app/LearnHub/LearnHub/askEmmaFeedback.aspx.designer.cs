@@ -22,24 +22,6 @@ namespace LearnHub {
         protected global::System.Web.UI.WebControls.Label lblSaveSuccess;
         
         /// <summary>
-        /// ScriptManagerCourse control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.ScriptManager ScriptManagerCourse;
-        
-        /// <summary>
-        /// UpdatePanel1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdatePanel1;
-        
-        /// <summary>
         /// rdlEmail control.
         /// </summary>
         /// <remarks>
@@ -58,15 +40,6 @@ namespace LearnHub {
         protected global::System.Web.UI.WebControls.TextBox txtEmail;
         
         /// <summary>
-        /// rfv_txtEmail control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfv_txtEmail;
-        
-        /// <summary>
         /// txtSMTPUser control.
         /// </summary>
         /// <remarks>
@@ -76,15 +49,6 @@ namespace LearnHub {
         protected global::System.Web.UI.WebControls.TextBox txtSMTPUser;
         
         /// <summary>
-        /// rfv_txtSMTPUser control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfv_txtSMTPUser;
-        
-        /// <summary>
         /// txtSMTPPassword control.
         /// </summary>
         /// <remarks>
@@ -92,15 +56,6 @@ namespace LearnHub {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtSMTPPassword;
-        
-        /// <summary>
-        /// rfv_txtSMTPPassword control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfv_txtSMTPPassword;
         
         /// <summary>
         /// btnConfirmSave control.

@@ -40,15 +40,6 @@ namespace LearnHub {
         protected global::System.Web.UI.WebControls.TextBox txtQuizQuestion;
         
         /// <summary>
-        /// rfv_txtQuizQuestion control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfv_txtQuizQuestion;
-        
-        /// <summary>
         /// txtOptionOne control.
         /// </summary>
         /// <remarks>
@@ -56,15 +47,6 @@ namespace LearnHub {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtOptionOne;
-        
-        /// <summary>
-        /// rfv_txtOptionOne control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfv_txtOptionOne;
         
         /// <summary>
         /// txtOptionTwo control.
@@ -76,15 +58,6 @@ namespace LearnHub {
         protected global::System.Web.UI.WebControls.TextBox txtOptionTwo;
         
         /// <summary>
-        /// rfv_txtOptionTwo control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfv_txtOptionTwo;
-        
-        /// <summary>
         /// txtOptionThree control.
         /// </summary>
         /// <remarks>
@@ -94,15 +67,6 @@ namespace LearnHub {
         protected global::System.Web.UI.WebControls.TextBox txtOptionThree;
         
         /// <summary>
-        /// rfv_txtOptionThree control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfv_txtOptionThree;
-        
-        /// <summary>
         /// txtOptionFour control.
         /// </summary>
         /// <remarks>
@@ -110,15 +74,6 @@ namespace LearnHub {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtOptionFour;
-        
-        /// <summary>
-        /// rfv_txtOptionFour control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfv_txtOptionFour;
         
         /// <summary>
         /// ddlCorrectAns control.
