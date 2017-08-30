@@ -15,10 +15,10 @@
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-           <ul class="breadcrumb">
-  <li><a href="home.aspx">Home</a></li>
-  <li class="active">Configuration Settings</li>
-  </ul>
+    <ul class="breadcrumb">
+        <li><a href="home.aspx">Home</a></li>
+        <li class="active">Configuration Settings</li>
+    </ul>
 
     <div class="container">
         <h1>Configuration Settings</h1>
@@ -26,7 +26,7 @@
     </div>
     <div class="container">
         <div class="row">
-            <h3><span class="glyphicon glyphicon-chevron-right"></span>&emsp;Training Request Forms (Not In Use)</h3>
+            <h3><span class="glyphicon glyphicon-menu-right"></span>&emsp;Training Request Forms (Not In Use)</h3>
             <a href="#formModal" data-toggle="modal">
                 <div class="col-md-3 btn-default">
                     <br />
@@ -80,7 +80,37 @@
     <br />
     <div class="container">
         <div class="row">
-            <h3><span class="glyphicon glyphicon-chevron-right"></span>&emsp;Module Configuration</h3>
+            <h3><span class="glyphicon glyphicon-menu-right"></span>&emsp;Account and Users</h3>
+            <a href="manageUsers.aspx">
+                <div class="col-md-3 btn-info">
+                    <br />
+                    <br />
+                    <div class="wrapper">
+                        <span style="font-size: 75px;" class="glyphicon glyphicon-user"></span>
+                        <br />
+                        <h3>Manage Users</h3>
+                        <br />
+                    </div>
+                </div>
+            </a>
+            <a href="createAccess.aspx">
+                <div class="col-md-3 btn-info">
+                    <br />
+                    <br />
+                    <div class="wrapper">
+                        <span style="font-size: 75px;" class="glyphicon glyphicon-lock"></span>
+                        <br />
+                        <h3>Create Account</h3>
+                        <br />
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+    <br />
+    <div class="container">
+        <div class="row">
+            <h3><span class="glyphicon glyphicon-menu-right"></span>&emsp;Modules</h3>
             <a href="createModules.aspx">
                 <div class="col-md-3 btn-primary">
                     <br />
@@ -119,7 +149,7 @@
     <br />
     <div class="container">
         <div class="row">
-            <h3><span class="glyphicon glyphicon-chevron-right"></span>&emsp;Emma Configuration</h3>
+            <h3><span class="glyphicon glyphicon-menu-right"></span>&emsp;Ask Emma</h3>
             <a href="askEmmaAddAns.aspx">
                 <div class="col-md-3 btn-success">
                     <br />

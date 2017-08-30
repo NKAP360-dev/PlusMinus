@@ -309,6 +309,13 @@
     </Compile>
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="AppCode\dao\Course_elearnDAO.cs" />
+    <Compile Include="createAccess.aspx.cs">
+      <DependentUpon>createAccess.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="createAccess.aspx.designer.cs">
+      <DependentUpon>createAccess.aspx</DependentUpon>
+    </Compile>
     <Compile Include="createModules.aspx.cs">
       <DependentUpon>createModules.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -416,6 +423,13 @@
     </Compile>
     <Compile Include="manageQuiz.aspx.designer.cs">
       <DependentUpon>manageQuiz.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="manageUsers.aspx.cs">
+      <DependentUpon>manageUsers.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="manageUsers.aspx.designer.cs">
+      <DependentUpon>manageUsers.aspx</DependentUpon>
     </Compile>
     <Compile Include="Masterpage.Master.cs">
       <DependentUpon>Masterpage.Master</DependentUpon>
@@ -897,6 +911,7 @@
     <Content Include="ckeditor\skins\moono-lisa\images\refresh.png" />
     <Content Include="ckeditor\skins\moono-lisa\images\spinner.gif" />
     <Content Include="ckeditor\styles.js" />
+    <Content Include="createAccess.aspx" />
     <Content Include="createModules.aspx" />
     <Content Include="createQuiz.aspx" />
     <Content Include="createQuizQnA.aspx" />
@@ -923,6 +938,7 @@
     <Content Include="Logout.aspx" />
     <Content Include="manageCategories.aspx" />
     <Content Include="manageQuiz.aspx" />
+    <Content Include="manageUsers.aspx" />
     <Content Include="overallQuizResult.aspx" />
     <Content Include="pendingApproval.aspx" />
     <Content Include="quiz.aspx" />
