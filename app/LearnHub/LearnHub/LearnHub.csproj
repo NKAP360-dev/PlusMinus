@@ -330,13 +330,6 @@
     <Compile Include="createQuizQnA.aspx.designer.cs">
       <DependentUpon>createQuizQnA.aspx</DependentUpon>
     </Compile>
-    <Compile Include="datatable.aspx.cs">
-      <DependentUpon>datatable.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="datatable.aspx.designer.cs">
-      <DependentUpon>datatable.aspx</DependentUpon>
-    </Compile>
     <Compile Include="deleteMaterial.aspx.cs">
       <DependentUpon>deleteMaterial.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -522,13 +515,6 @@
     </Compile>
     <Compile Include="uploadDownloadTest.aspx.designer.cs">
       <DependentUpon>uploadDownloadTest.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="uploadLearningMaterials.aspx.cs">
-      <DependentUpon>uploadLearningMaterials.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="uploadLearningMaterials.aspx.designer.cs">
-      <DependentUpon>uploadLearningMaterials.aspx</DependentUpon>
     </Compile>
     <Compile Include="viewAllModule.aspx.cs">
       <DependentUpon>viewAllModule.aspx</DependentUpon>
@@ -914,7 +900,6 @@
     <Content Include="createModules.aspx" />
     <Content Include="createQuiz.aspx" />
     <Content Include="createQuizQnA.aspx" />
-    <Content Include="datatable.aspx" />
     <Content Include="deleteMaterial.aspx" />
     <Content Include="editCategories.aspx" />
     <Content Include="editModuleInfo.aspx" />
@@ -958,7 +943,6 @@
     <Content Include="trfApplicationStatus.aspx" />
     <Content Include="TRFapproval.aspx" />
     <Content Include="uploadDownloadTest.aspx" />
-    <Content Include="uploadLearningMaterials.aspx" />
     <Content Include="viewAllModule.aspx" />
     <Content Include="viewApprovedTRF.aspx" />
     <Content Include="viewCreatedModules.aspx" />

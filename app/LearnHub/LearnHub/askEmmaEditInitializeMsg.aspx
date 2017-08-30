@@ -6,7 +6,7 @@
     <style>
         .breadcrumb {
             padding-top: 15px;
-            margin-bottom: 0px;
+            margin-bottom: 10px;
             list-style: none;
             background-color: white;
             border-radius: 0px;

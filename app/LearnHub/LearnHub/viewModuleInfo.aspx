@@ -9,19 +9,6 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <script>
-        $(document).ready(function () {
-            $('#menu').hide();
-        });
-
-        function configuration() {
-            var x = document.getElementById('menu');
-            if (x.style.display === 'none') {
-                x.style.display = 'block';
-            } else {
-                x.style.display = 'none';
-            }
-        }
-
         function ValidateTestimonial(sender, args) {
             //console.log("validateModuleDesc");
             var testimonial = document.getElementById("<%= CKEditorControl2.ClientID %>").value;
@@ -40,7 +27,7 @@
     <style>
         .breadcrumb {
             padding-top: 15px;
-            margin-bottom: 0px;
+            margin-bottom: 10px;
             list-style: none;
             background-color: white;
             border-radius: 0px;
@@ -56,8 +43,7 @@
     </ul>
     <form class="form-horizontal" runat="server">
         <div class="container">
-            <h1>
-                <asp:Label ID="lblCourseNameHeader" runat="server" Text="courseName"></asp:Label>
+            <h1><asp:Label ID="lblCourseNameHeader" runat="server" Text="courseName"></asp:Label></h1>
                 <% 
                     int courseID = Convert.ToInt32(Request.QueryString["id"]);
                     User currentUser = (User)Session["currentUser"];
@@ -66,25 +52,14 @@
                     if (currentUser != null && (currentUser.getUserID() == courseCreator.getUserID() || currentUser.getRole().Equals("superuser")))
                     {
                 %>
-
-                <a href="#" id="config" onclick="configuration()" class="btn btn-default pull-right"><span class="glyphicon glyphicon-option-horizontal"></span></a>
-
-            </h1>
-            <div class="configure">
-                <ul class="list-group" id="menu" style="display: none;">
-                    <a href="editModuleInfo.aspx?id=<%=courseID %>">
-                        <li class="list-group-item"><span class="glyphicon glyphicon-pencil"></span>&emsp;Edit Module
-                        </li>
-                    </a>
-                    <a href="#uploadModal" data-toggle="modal">
-                        <li class="list-group-item"><span class="glyphicon glyphicon-level-up"></span>&emsp;Upload Learning Materials
-                        </li>
-                    </a>
-                    <a href="manageQuiz.aspx?id=<%=courseID%>">
-                        <li class="list-group-item"><span class="glyphicon glyphicon-book"></span>&emsp;Manage Quizzes
-                        </li>
-                    </a>
-                </ul>
+            
+           <div class="dropdown" style="float: right;">
+                <button class="dropbtn" onclick="return false;"><span class="glyphicon glyphicon-option-horizontal"></span></button>
+                <div class="dropdown-content" style="right: 0;">
+                    <a href="editModuleInfo.aspx?id=<%=courseID %>"><span class="glyphicon glyphicon-pencil"></span>&nbsp;&nbsp;Edit Module</a>
+                    <a href="#uploadModal" data-toggle="modal"><span class="glyphicon glyphicon-level-up"></span>&nbsp;&nbsp;Upload Learning Materials</a>
+                    <a href="manageQuiz.aspx?id=<%=courseID%>"><span class="glyphicon glyphicon-book"></span>&nbsp;&nbsp;Manage Quizzes</a>
+                </div>
             </div>
             <%} %>
             <div class="verticalLine"></div>

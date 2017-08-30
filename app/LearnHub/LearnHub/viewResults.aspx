@@ -9,7 +9,7 @@
     <style>
         .breadcrumb {
             padding-top: 15px;
-            margin-bottom: 0px;
+            margin-bottom: 10px;
             list-style: none;
             background-color: white;
             border-radius: 0px;
@@ -121,9 +121,6 @@
                     </tbody>
                 </table>
             <br /><br />
-            <div class="pull-right">
-                <button type="button" onclick="javascript:history.back()" class="btn btn-primary"><span class="glyphicon glyphicon-chevron-left"></span>&nbsp;Back to Quiz Attempts</button>
-            </div>
         </div>
     </form>
 </asp:Content>

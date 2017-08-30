@@ -9,7 +9,7 @@
     <style>
         .breadcrumb {
             padding-top: 15px;
-            margin-bottom: 0px;
+            margin-bottom: 10px;
             list-style: none;
             background-color: white;
             border-radius: 0px;
@@ -21,7 +21,10 @@
         <ul class="breadcrumb">
             <li><a href="home.aspx">Home</a></li>
             <li><a href="viewAllModule.aspx">Modules</a></li>
-            <%int courseID = Convert.ToInt32(Request.QueryString["id"]); %>
+            <% QuizDAO qDAO = new QuizDAO();
+                int quizID = Convert.ToInt32(Request.QueryString["id"]);
+                Quiz q = qDAO.getQuizByID(quizID);
+                int courseID = q.getMainCourse().getCourseID();%>
             <li><a href="viewModuleInfo.aspx?id=<%=courseID%>">
                 <asp:Label ID="lblBreadcrumbCourseName" runat="server" Text="courseName"></asp:Label></a></li>
             <li class="active">Attempt Quiz</li>
@@ -56,7 +59,8 @@
                         </div>
                         <br />
                         <asp:Label ID="lblQuizDesc" runat="server" Text="" />
-                        <br /> Instruction: Please select start to begin the quiz. Timer will begin when "Start Quiz" is pressed. Please do not leave the page until completion of quiz. All the best!
+                        <br />
+                        Instruction: Please select start to begin the quiz. Timer will begin when "Start Quiz" is pressed. Please do not leave the page until completion of quiz. All the best!
                         <br />
                         <br />
                         <div class="wrapper">
@@ -87,7 +91,7 @@
                             <tbody>
                                 <tr class="active">
                                     <td><strong>
-                                        <asp:Label ID="lblQuestion" runat="server" Text=""/></strong></td>
+                                        <asp:Label ID="lblQuestion" runat="server" Text="" /></strong></td>
 
                                 </tr>
                                 <tr>
@@ -101,8 +105,8 @@
                         <br />
                         <div class="pull-right">
                             <%--If got more qn, show btnNext, if last qn, show btnFinish--%>
-                        <asp:LinkButton ID="btnFinish" runat="server" CssClass="btn btn-primary" OnClick="btnFinish_Click"><span class="glyphicon glyphicon-glyphicon glyphicon-ok"></span> &nbsp;Finish Quiz</asp:LinkButton>
-                        <asp:LinkButton ID="btnNext" runat="server" CssClass="btn btn-primary" OnClick="btnNext_Click"><span class="glyphicon glyphicon-chevron-right"></span> &nbsp;Next Question</asp:LinkButton>
+                            <asp:LinkButton ID="btnFinish" runat="server" CssClass="btn btn-primary" OnClick="btnFinish_Click"><span class="glyphicon glyphicon-glyphicon glyphicon-ok"></span> &nbsp;Finish Quiz</asp:LinkButton>
+                            <asp:LinkButton ID="btnNext" runat="server" CssClass="btn btn-primary" OnClick="btnNext_Click"><span class="glyphicon glyphicon-chevron-right"></span> &nbsp;Next Question</asp:LinkButton>
 
                         </div>
 

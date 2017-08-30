@@ -7,24 +7,29 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <script>
+        var unsaved = true;
+
+        function unsavedFalse() {
+            unsaved = false;
+        }
+
         $(document).ready(function () {
-            $('#menu').hide();
+            function unloadPage() {
+                if (unsaved) {
+                    return "You have unsaved changes on this page. Do you want to leave this page and discard your changes or stay on this page?";
+                }
+            }
+
+            window.onbeforeunload = unloadPage;
         });
 
-        function configuration() {
-            var x = document.getElementById('menu');
-            if (x.style.display === 'none') {
-                x.style.display = 'block';
-            } else {
-                x.style.display = 'none';
-            }
-        }
+        
 
     </script>
     <style>
         .breadcrumb {
             padding-top: 15px;
-            margin-bottom: 0px;
+            margin-bottom: 10px;
             list-style: none;
             background-color: white;
             border-radius: 0px;
@@ -43,7 +48,7 @@
     </ul>
 
     <div class="container">
-        <h1>Create Question and Answers
+        <h1>Create Question and Answers</h1>
              <% 
                  User currentUser = (User)Session["currentUser"];
                  Course_elearnDAO ceDAO = new Course_elearnDAO();
@@ -52,24 +57,15 @@
                  {
              %>
 
-            <a href="#" id="config" onclick="configuration()" class="btn btn-default pull-right"><span class="glyphicon glyphicon-option-horizontal"></span></a>
-        </h1>
-        <div class="configure">
-            <ul class="list-group" id="menu" style="display: none;">
-                <a href="editModuleInfo.aspx?id=<%=courseID %>">
-                    <li class="list-group-item"><span class="glyphicon glyphicon-pencil"></span>&emsp;Edit Module
-                    </li>
-                </a>
-                <a href="#uploadModal" data-toggle="modal">
-                    <li class="list-group-item"><span class="glyphicon glyphicon-level-up"></span>&emsp;Upload Learning Materials
-                    </li>
-                </a>
-                <a href="createQuiz.aspx?id=<%=courseID%>">
-                    <li class="list-group-item"><span class="glyphicon glyphicon-book"></span>&emsp;Create Quiz
-                    </li>
-                </a>
-            </ul>
-        </div>
+           <div class="dropdown" style="float: right;">
+                <button class="dropbtn" onclick="return false;"><span class="glyphicon glyphicon-option-horizontal"></span></button>
+                <div class="dropdown-content" style="right: 0;">
+                    <a href="editModuleInfo.aspx?id=<%=courseID %>"><span class="glyphicon glyphicon-pencil"></span>&nbsp;&nbsp;Edit Module</a>
+                    <a href="#uploadModal" data-toggle="modal"><span class="glyphicon glyphicon-level-up"></span>&nbsp;&nbsp;Upload Learning Materials</a>
+                    <a href="manageQuiz.aspx?id=<%=courseID%>"><span class="glyphicon glyphicon-book"></span>&nbsp;&nbsp;Manage Quizzes</a>
+                </div>
+            </div>
+
         <%} %>
         <div class="verticalLine"></div>
     </div>
@@ -123,8 +119,8 @@
             </div>
             <br />
             <div class="form-group wrapper">
-                <asp:Button ID="btnNewQn" runat="server" CssClass="btn btn-primary" Text="Add Question" onclick="btnNewQn_Click" ValidationGroup="ValidateForm"/>
-                <button type="button" data-toggle="modal" data-target="#finishModal" class="btn btn-success">Finish</button>
+                <asp:Button ID="btnNewQn" runat="server" CssClass="btn btn-primary" Text="Add Question" OnClientClick="unsavedFalse()" onclick="btnNewQn_Click" ValidationGroup="ValidateForm"/>
+                <button type="button" data-toggle="modal" data-target="#finishModal" class="btn btn-success" onclick="unsavedFalse()">Finish</button>
             </div>
 
             <div id="finishModal" class="modal fade" role="dialog">
