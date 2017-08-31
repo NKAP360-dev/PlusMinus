@@ -365,6 +365,13 @@
     <Compile Include="editQuiz.aspx.designer.cs">
       <DependentUpon>editQuiz.aspx</DependentUpon>
     </Compile>
+    <Compile Include="editUsers.aspx.cs">
+      <DependentUpon>editUsers.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="editUsers.aspx.designer.cs">
+      <DependentUpon>editUsers.aspx</DependentUpon>
+    </Compile>
     <Compile Include="learnyConfiguration.aspx.cs">
       <DependentUpon>learnyConfiguration.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -919,6 +926,7 @@
     <Content Include="editCategories.aspx" />
     <Content Include="editModuleInfo.aspx" />
     <Content Include="editQuiz.aspx" />
+    <Content Include="editUsers.aspx" />
     <Content Include="learnyConfiguration.aspx" />
     <Content Include="errorPage.aspx" />
     <Content Include="favicon.ico" />

@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Masterpage.Master" AutoEventWireup="true" CodeBehind="createAccess.aspx.cs" Inherits="LearnHub.createAccess" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Masterpage.Master" AutoEventWireup="true" CodeBehind="editUsers.aspx.cs" Inherits="LearnHub.editUsers" %>
 
 <%@ Import Namespace="LearnHub.AppCode.dao" %>
 <%@ Import Namespace="LearnHub.AppCode.entity" %>
@@ -15,14 +15,14 @@
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <ul class="breadcrumb">
+        <ul class="breadcrumb">
         <li><a href="home.aspx">Home</a></li>
         <li><a href="siteConfig.aspx">Configuration Settings</a></li>
         <li><a href="manageUsers.aspx">Manage Users</a></li>
-        <li class="active">Create Users</li>
+        <li class="active">Edit Users</li>
     </ul>
     <div class="container">
-        <h1>Create Users</h1>
+        <h1>Edit User</h1>
         <% 
             User currentUser = (User)Session["currentUser"];
             if (currentUser != null && currentUser.getRole().Equals("superuser"))
@@ -45,7 +45,7 @@
     <div class="container">
         <form class="form-horizontal" runat="server" enablepartialrendering="true">
             <fieldset>
-            <legend>Input information for new user</legend>
+            <legend>Edit information for current user</legend>
                 <h4>Account Information</h4>
             <div class="form-group required">
                 <strong>
@@ -128,7 +128,7 @@
             <div class="form-group">
                 <div class="wrapper">
                     <br />
-                        <asp:Button ID="btnSubmit" CssClass="btn btn-primary" runat="server" Text="Create User" data-toggle="modal" href="#submitModal" OnClientClick="return false" UseSubmitBehavior="False" />
+                        <asp:Button ID="btnSubmit" CssClass="btn btn-primary" runat="server" Text="Save" data-toggle="modal" href="#submitModal" OnClientClick="return false" UseSubmitBehavior="False" />
                 </div>
             </div>
                 </fieldset>
@@ -139,7 +139,7 @@
                         <div class="modal-content">
                             <div class="modal-header">
                                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                <h4 class="modal-title"><b>Create new user</b></h4>
+                                <h4 class="modal-title"><b>Edit user information</b></h4>
                             </div>
                             <%--Modal Content--%>
                             <div class="modal-body">
@@ -158,7 +158,6 @@
                 </div>
         </form>
     </div>
-
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder2" runat="server">
 </asp:Content>

@@ -28,7 +28,7 @@
         <h1>Account Setting</h1>
         <div class="verticalLine"></div>
     </div>
-    <form class="form-horizontal" runat="server" EnablePartialRendering="true">
+    <form class="form-horizontal" runat="server">
         <div class="container">
             <div class="row">
                 <div class="col-md-3">

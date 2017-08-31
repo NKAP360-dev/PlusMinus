@@ -10,7 +10,7 @@
 namespace LearnHub {
     
     
-    public partial class createAccess {
+    public partial class editUsers {
         
         /// <summary>
         /// txtUsername control.
