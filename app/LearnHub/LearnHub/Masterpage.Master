@@ -321,64 +321,47 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <img src="img/LearnHub2.png" alt="LHLogo" style="width: 59px; height: 59px;" />
-                <asp:HyperLink ID="HyperLink7" runat="server" CssClass="navbar-brand" NavigateUrl="Home.aspx">LearnHub</asp:HyperLink>
+                <strong><asp:HyperLink ID="HyperLink7" runat="server" CssClass="navbar-brand" NavigateUrl="Home.aspx">LearnHub</asp:HyperLink></strong>
             </div>
 
             <div class="navbar-collapse collapse" id="navigationbar" aria-expanded="false" style="height: 1px;">
 
-                <%--Tab 1: Learning Policies and Procedures--%>
+                <%--Tab 1: Courses--%>
                 <ul class="nav navbar-nav">
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Learning Policies<span class="caret"></span></a>
-                        <ul class="dropdown-menu" role="menu">
-                            <li>
-                                <asp:HyperLink ID="shortTermLink" runat="server">Short term courses</asp:HyperLink></li>
-                            <li>
-                                <asp:HyperLink ID="sponEduLink" runat="server">Sponsorship/Education</asp:HyperLink></li>
-                            <li class="divider"></li>
-                            <li>
-                                <asp:HyperLink ID="trfLink" runat="server" NavigateUrl="trainingRequestFormPage.aspx">Training Request Forms</asp:HyperLink></li>
-                        </ul>
-                    </li>
-                </ul>
-
-                <%--Tab 2: Module--%>
-                <ul class="nav navbar-nav">
-                    <li class="dropdown">
-                        <a href="viewAllModule.aspx" class="dropdown-toggle" role="button" aria-expanded="false">Modules</a>
+                        <a href="viewAllModule.aspx" class="dropdown-toggle" role="button" aria-expanded="false">Courses</a>
 
                     </li>
                 </ul>
 
-                <%--Tab 3: Resource--%>
+                <%--Tab 2: Resource--%>
                 <ul class="nav navbar-nav">
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Resource <span class="caret"></span></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Resources<span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
                             <li>
-                                <asp:HyperLink ID="HyperLink8" runat="server">On Job Training</asp:HyperLink></li>
+                                <asp:HyperLink ID="HyperLink8" runat="server">Training Calendar</asp:HyperLink></li>
                             <li>
-                                <asp:HyperLink ID="HyperLink9" runat="server">Sharing Through Experiences</asp:HyperLink></li>
+                                <asp:HyperLink ID="HyperLink9" runat="server">Useful Information</asp:HyperLink></li>
                             <li>
-                                <asp:HyperLink ID="HyperLink2" runat="server">Training Calendar</asp:HyperLink></li>
+                                <asp:HyperLink ID="HyperLink2" runat="server">Useful Links</asp:HyperLink></li>
 
                         </ul>
                     </li>
                 </ul>
 
-                <%--Tab 4: Reports--%>
+                <%--Tab 3: Reports--%>
                 <ul class="nav navbar-nav">
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" role="button" aria-expanded="false">E-Reports</a>
+                        <a href="#" class="dropdown-toggle" role="button" aria-expanded="false">Reports</a>
 
                     </li>
                 </ul>
 
-                <%--Tab 5: Help/Support--%>
+                <%--Tab 4: Support--%>
                 <ul class="nav navbar-nav">
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Support <span class="caret"></span></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Support<span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
                             <li>
                                 <%User user_now = (User)Session["currentUser"];
@@ -389,9 +372,6 @@
                             <%} %>
                             <li>
                                 <asp:HyperLink ID="HyperLink10" runat="server">Contact Us</asp:HyperLink></li>
-                            <li>
-                                <asp:HyperLink ID="HyperLink11" runat="server">Useful Links</asp:HyperLink></li>
-
                         </ul>
                     </li>
                 </ul>
@@ -434,7 +414,7 @@
                 %>
                 <ul class="nav navbar-nav navbar-right">
                     <li>
-                        <asp:HyperLink ID="profile" runat="server">
+                        <asp:HyperLink ID="profile" runat="server" NavigateUrl="~/accountSetting.aspx">
                             <%
                                 User currentUser = (User)Session["currentUser"];
                                 string username = currentUser.getName();
@@ -528,10 +508,10 @@
         <%}
             }%>
         <button type="button" class="btn btn-primary btn-sm pull-right" data-toggle="modal" data-target="#emmaModal"><span class="glyphicon glyphicon-question-sign"></span></button>
-        <button type="button" class="btn btn-primary btn-sm" data-toggle="collapse" data-target="#emmaContainer"><span class="glyphicon glyphicon-comment"></span>&emsp;Ask Emma</button>
+        <button type="button" class="btn btn-primary btn-sm" data-toggle="collapse" data-target="#emmaContainer"><span class="glyphicon glyphicon-comment"></span>&emsp;Ask Learny</button>
     </div>
 
-    <%--Modal for Emma Instructions--%>
+    <%--Modal for Learny Instructions--%>
     <%
         ChatBotInstructionDAO cbiDAO = new ChatBotInstructionDAO();
         ChatBotInstruction instruction = cbiDAO.getInstruction();
@@ -564,9 +544,8 @@
             &nbsp;
        <br />
             <a href="#">About Us</a> &nbsp;&nbsp;|&nbsp;&nbsp; 
-            <a href="#">Terms and Condition</a> &nbsp;&nbsp;|&nbsp;&nbsp;  
             <a href="#">Sitemap</a>
-
+<br />
 
         </footer>
     </div>

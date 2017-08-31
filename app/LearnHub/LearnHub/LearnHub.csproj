@@ -230,75 +230,75 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="askEmmaAddAns.aspx.cs">
-      <DependentUpon>askEmmaAddAns.aspx</DependentUpon>
+    <Compile Include="askLearnyAddAns.aspx.cs">
+      <DependentUpon>askLearnyAddAns.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="askEmmaAddAns.aspx.designer.cs">
-      <DependentUpon>askEmmaAddAns.aspx</DependentUpon>
+    <Compile Include="askLearnyAddAns.aspx.designer.cs">
+      <DependentUpon>askLearnyAddAns.aspx</DependentUpon>
     </Compile>
-    <Compile Include="askEmmaAddIntent.aspx.cs">
-      <DependentUpon>askEmmaAddIntent.aspx</DependentUpon>
+    <Compile Include="askLearnyAddIntent.aspx.cs">
+      <DependentUpon>askLearnyAddIntent.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="askEmmaAddIntent.aspx.designer.cs">
-      <DependentUpon>askEmmaAddIntent.aspx</DependentUpon>
+    <Compile Include="askLearnyAddIntent.aspx.designer.cs">
+      <DependentUpon>askLearnyAddIntent.aspx</DependentUpon>
     </Compile>
-    <Compile Include="askEmmaEditAns.aspx.cs">
-      <DependentUpon>askEmmaEditAns.aspx</DependentUpon>
+    <Compile Include="askLearnyEditAns.aspx.cs">
+      <DependentUpon>askLearnyEditAns.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="askEmmaEditAns.aspx.designer.cs">
-      <DependentUpon>askEmmaEditAns.aspx</DependentUpon>
+    <Compile Include="askLearnyEditAns.aspx.designer.cs">
+      <DependentUpon>askLearnyEditAns.aspx</DependentUpon>
     </Compile>
-    <Compile Include="askEmmaEditInitializeMsg.aspx.cs">
-      <DependentUpon>askEmmaEditInitializeMsg.aspx</DependentUpon>
+    <Compile Include="askLearnyEditInitializeMsg.aspx.cs">
+      <DependentUpon>askLearnyEditInitializeMsg.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="askEmmaEditInitializeMsg.aspx.designer.cs">
-      <DependentUpon>askEmmaEditInitializeMsg.aspx</DependentUpon>
+    <Compile Include="askLearnyEditInitializeMsg.aspx.designer.cs">
+      <DependentUpon>askLearnyEditInitializeMsg.aspx</DependentUpon>
     </Compile>
-    <Compile Include="askEmmaEditIntent.aspx.cs">
-      <DependentUpon>askEmmaEditIntent.aspx</DependentUpon>
+    <Compile Include="askLearnyEditIntent.aspx.cs">
+      <DependentUpon>askLearnyEditIntent.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="askEmmaEditIntent.aspx.designer.cs">
-      <DependentUpon>askEmmaEditIntent.aspx</DependentUpon>
+    <Compile Include="askLearnyEditIntent.aspx.designer.cs">
+      <DependentUpon>askLearnyEditIntent.aspx</DependentUpon>
     </Compile>
-    <Compile Include="askEmmaFeedback.aspx.cs">
-      <DependentUpon>askEmmaFeedback.aspx</DependentUpon>
+    <Compile Include="askLearnyFeedback.aspx.cs">
+      <DependentUpon>askLearnyFeedback.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="askEmmaFeedback.aspx.designer.cs">
-      <DependentUpon>askEmmaFeedback.aspx</DependentUpon>
+    <Compile Include="askLearnyFeedback.aspx.designer.cs">
+      <DependentUpon>askLearnyFeedback.aspx</DependentUpon>
     </Compile>
-    <Compile Include="askEmmaHelpQn.aspx.cs">
-      <DependentUpon>askEmmaHelpQn.aspx</DependentUpon>
+    <Compile Include="askLearnyHelpQn.aspx.cs">
+      <DependentUpon>askLearnyHelpQn.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="askEmmaHelpQn.aspx.designer.cs">
-      <DependentUpon>askEmmaHelpQn.aspx</DependentUpon>
+    <Compile Include="askLearnyHelpQn.aspx.designer.cs">
+      <DependentUpon>askLearnyHelpQn.aspx</DependentUpon>
     </Compile>
-    <Compile Include="askEmmaInitializeMsg.aspx.cs">
-      <DependentUpon>askEmmaInitializeMsg.aspx</DependentUpon>
+    <Compile Include="askLearnyInitializeMsg.aspx.cs">
+      <DependentUpon>askLearnyInitializeMsg.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="askEmmaInitializeMsg.aspx.designer.cs">
-      <DependentUpon>askEmmaInitializeMsg.aspx</DependentUpon>
+    <Compile Include="askLearnyInitializeMsg.aspx.designer.cs">
+      <DependentUpon>askLearnyInitializeMsg.aspx</DependentUpon>
     </Compile>
-    <Compile Include="askEmmaInstruction.aspx.cs">
-      <DependentUpon>askEmmaInstruction.aspx</DependentUpon>
+    <Compile Include="askLearnyInstruction.aspx.cs">
+      <DependentUpon>askLearnyInstruction.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="askEmmaInstruction.aspx.designer.cs">
-      <DependentUpon>askEmmaInstruction.aspx</DependentUpon>
+    <Compile Include="askLearnyInstruction.aspx.designer.cs">
+      <DependentUpon>askLearnyInstruction.aspx</DependentUpon>
     </Compile>
-    <Compile Include="askEmmaEditHelp.aspx.cs">
-      <DependentUpon>askEmmaEditHelp.aspx</DependentUpon>
+    <Compile Include="askLearnyEditHelp.aspx.cs">
+      <DependentUpon>askLearnyEditHelp.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="askEmmaEditHelp.aspx.designer.cs">
-      <DependentUpon>askEmmaEditHelp.aspx</DependentUpon>
+    <Compile Include="askLearnyEditHelp.aspx.designer.cs">
+      <DependentUpon>askLearnyEditHelp.aspx</DependentUpon>
     </Compile>
     <Compile Include="changePassword.aspx.cs">
       <DependentUpon>changePassword.aspx</DependentUpon>
@@ -365,12 +365,12 @@
     <Compile Include="editQuiz.aspx.designer.cs">
       <DependentUpon>editQuiz.aspx</DependentUpon>
     </Compile>
-    <Compile Include="emmaConfiguration.aspx.cs">
-      <DependentUpon>emmaConfiguration.aspx</DependentUpon>
+    <Compile Include="learnyConfiguration.aspx.cs">
+      <DependentUpon>learnyConfiguration.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="emmaConfiguration.aspx.designer.cs">
-      <DependentUpon>emmaConfiguration.aspx</DependentUpon>
+    <Compile Include="learnyConfiguration.aspx.designer.cs">
+      <DependentUpon>learnyConfiguration.aspx</DependentUpon>
     </Compile>
     <Compile Include="errorPage.aspx.cs">
       <DependentUpon>errorPage.aspx</DependentUpon>
@@ -585,16 +585,16 @@
     <Content Include="applyCourse.aspx" />
     <Content Include="approvalConfirmation.aspx" />
     <Content Include="approvedTRF.aspx" />
-    <Content Include="askEmmaAddAns.aspx" />
-    <Content Include="askEmmaAddIntent.aspx" />
-    <Content Include="askEmmaEditAns.aspx" />
-    <Content Include="askEmmaEditInitializeMsg.aspx" />
-    <Content Include="askEmmaEditIntent.aspx" />
-    <Content Include="askEmmaFeedback.aspx" />
-    <Content Include="askEmmaHelpQn.aspx" />
-    <Content Include="askEmmaInitializeMsg.aspx" />
-    <Content Include="askEmmaInstruction.aspx" />
-    <Content Include="askEmmaEditHelp.aspx" />
+    <Content Include="askLearnyAddAns.aspx" />
+    <Content Include="askLearnyAddIntent.aspx" />
+    <Content Include="askLearnyEditAns.aspx" />
+    <Content Include="askLearnyEditInitializeMsg.aspx" />
+    <Content Include="askLearnyEditIntent.aspx" />
+    <Content Include="askLearnyFeedback.aspx" />
+    <Content Include="askLearnyHelpQn.aspx" />
+    <Content Include="askLearnyInitializeMsg.aspx" />
+    <Content Include="askLearnyInstruction.aspx" />
+    <Content Include="askLearnyEditHelp.aspx" />
     <Content Include="bootstrap\css\bootstrap-responsive.css" />
     <Content Include="bootstrap\css\bootstrap-responsive.min.css" />
     <Content Include="bootstrap\css\bootstrap.css" />
@@ -919,7 +919,7 @@
     <Content Include="editCategories.aspx" />
     <Content Include="editModuleInfo.aspx" />
     <Content Include="editQuiz.aspx" />
-    <Content Include="emmaConfiguration.aspx" />
+    <Content Include="learnyConfiguration.aspx" />
     <Content Include="errorPage.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="filledTRF.aspx" />

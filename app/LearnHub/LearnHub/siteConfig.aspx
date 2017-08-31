@@ -19,11 +19,12 @@
         <li><a href="home.aspx">Home</a></li>
         <li class="active">Configuration Settings</li>
     </ul>
-
+    
     <div class="container">
         <h1>Configuration Settings</h1>
         <div class="verticalLine"></div>
     </div>
+    <%-- 
     <div class="container">
         <div class="row">
             <h3><span class="glyphicon glyphicon-menu-right"></span>&emsp;Training Request Forms (Not In Use)</h3>
@@ -77,6 +78,7 @@
             </a>
         </div>
     </div>
+        --%>
     <br />
     <div class="container">
         <div class="row">
@@ -149,8 +151,8 @@
     <br />
     <div class="container">
         <div class="row">
-            <h3><span class="glyphicon glyphicon-menu-right"></span>&emsp;Ask Emma</h3>
-            <a href="askEmmaAddAns.aspx">
+            <h3><span class="glyphicon glyphicon-menu-right"></span>&emsp;Ask Learny</h3>
+            <a href="askLearnyAddAns.aspx">
                 <div class="col-md-3 btn-success">
                     <br />
                     <br />
@@ -162,7 +164,7 @@
                     </div>
                 </div>
             </a>
-            <a href="askEmmaAddIntent.aspx">
+            <a href="askLearnyAddIntent.aspx">
                 <div class="col-md-3 btn-success">
                     <br />
                     <br />
@@ -174,7 +176,7 @@
                     </div>
                 </div>
             </a>
-            <a href="askEmmaInitializeMsg.aspx">
+            <a href="askLearnyInitializeMsg.aspx">
                 <div class="col-md-3 btn-success">
                     <br />
                     <br />
@@ -186,7 +188,7 @@
                     </div>
                 </div>
             </a>
-            <a href="askEmmaHelpQn.aspx">
+            <a href="askLearnyHelpQn.aspx">
                 <div class="col-md-3 btn-success">
                     <br />
                     <br />
@@ -200,19 +202,19 @@
             </a>
         </div>
         <div class="row">
-            <a href="askEmmaFeedback.aspx">
+            <a href="askLearnyFeedback.aspx">
                 <div class="col-md-3 btn-success">
                     <br />
                     <br />
                     <div class="wrapper">
                         <span style="font-size: 75px;" class="glyphicon glyphicon-thumbs-up"></span>
                         <br />
-                        <h3>Emma's Feedback</h3>
+                        <h3>Feedback</h3>
                         <br />
                     </div>
                 </div>
             </a>
-            <a href="askEmmaInstruction.aspx">
+            <a href="askLearnyInstruction.aspx">
                 <div class="col-md-3 btn-success">
                     <br />
                     <br />
