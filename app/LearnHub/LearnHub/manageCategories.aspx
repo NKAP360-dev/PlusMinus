@@ -51,12 +51,12 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
        <ul class="breadcrumb">
   <li><a href="home.aspx">Home</a></li>
-  <li><a href="viewAllModule.aspx">Modules</a></li>
-  <li class="active">Manage Module Category</li>
+  <li><a href="viewAllModule.aspx">Courses</a></li>
+  <li class="active">Manage Course Category</li>
   </ul>
 
     <div class="container">
-        <h1>Module Category&nbsp;
+        <h1>Course Category&nbsp;
                         <button type="button" data-toggle="collapse" data-target="#addForm" class="btn btn-success"><span class="glyphicon glyphicon-plus"></span>&nbsp; New</button>
         </h1>
             <%
@@ -68,9 +68,9 @@
          <div class="dropdown" style="float: right;">
                 <button class="dropbtn" onclick="return false;"><span class="glyphicon glyphicon-option-horizontal"></span></button>
                 <div class="dropdown-content" style="right: 0;">
-                    <a href="createModules.aspx"><span class="glyphicon glyphicon-plus"></span>&nbsp;&nbsp;Create New Modules</a>
-                    <a href="manageCategories.aspx"><span class="glyphicon glyphicon-bookmark"></span>&nbsp;&nbsp;Manage Module Categories</a>
-                    <a href="viewCreatedModules.aspx"><span class="glyphicon glyphicon-book"></span>&nbsp;&nbsp;Manage Modules</a>
+                    <a href="createModules.aspx"><span class="glyphicon glyphicon-plus"></span>&nbsp;&nbsp;Create New Courses</a>
+                    <a href="manageCategories.aspx"><span class="glyphicon glyphicon-bookmark"></span>&nbsp;&nbsp;Manage Course Categories</a>
+                    <a href="viewCreatedModules.aspx"><span class="glyphicon glyphicon-book"></span>&nbsp;&nbsp;Manage Courses</a>
                 </div>
             </div>
         <%
@@ -111,7 +111,7 @@
             <table class="table table-striped table-hover" id="catTable" data-paging="true" data-sorting="true" data-filtering="true">
                 <thead>
                     <tr>
-                        <th id="categories" width="80%">Current Module Categories</th>
+                        <th id="categories" width="80%">Current Course Categories</th>
                         <th id="status" width="10%">Status</th>
                         <th data-filterable="false" data-sortable="false" width="10%"></th>
                     </tr>
@@ -140,7 +140,7 @@
                     <div class="modal-content">
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal">&times;</button>
-                            <h4 class="modal-title"><b>Create New Module Category</b></h4>
+                            <h4 class="modal-title"><b>Create New Course Category</b></h4>
                         </div>
                         <div class="modal-body">
                             <div class="wrapper">

@@ -49,6 +49,15 @@ namespace LearnHub {
         protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSourceCourseCategory;
         
         /// <summary>
+        /// ddlCourseType control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlCourseType;
+        
+        /// <summary>
         /// nameOfModuleLabel control.
         /// </summary>
         /// <remarks>
@@ -103,6 +112,24 @@ namespace LearnHub {
         protected global::System.Web.UI.WebControls.CustomValidator cv_descriptionModuleInput;
         
         /// <summary>
+        /// Label1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label1;
+        
+        /// <summary>
+        /// txtTargetAudience control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtTargetAudience;
+        
+        /// <summary>
         /// hoursLabel control.
         /// </summary>
         /// <remarks>
@@ -146,24 +173,6 @@ namespace LearnHub {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.CustomValidator cv_hoursInput;
-        
-        /// <summary>
-        /// Label1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label1;
-        
-        /// <summary>
-        /// txtTargetAudience control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtTargetAudience;
         
         /// <summary>
         /// dateLabel control.

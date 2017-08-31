@@ -54,7 +54,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <ul class="breadcrumb">
         <li><a href="home.aspx">Home</a></li>
-        <li><a href="viewAllModule.aspx">Modules</a></li>
+        <li><a href="viewAllModule.aspx">Courses</a></li>
         <%
             QuizDAO qDAO = new QuizDAO();
             Quiz q = qDAO.getQuizByID(Convert.ToInt32(Request.QueryString["id"]));

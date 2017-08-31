@@ -231,16 +231,16 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <ul class="breadcrumb">
         <li><a href="home.aspx">Home</a></li>
-        <li><a href="viewAllModule.aspx">Modules</a></li>
+        <li><a href="viewAllModule.aspx">Courses</a></li>
         <li><a href="viewModuleInfo.aspx?id=<%=Request.QueryString["id"]%>">
             <asp:Label ID="lblBreadcrumbCourseName" runat="server" Text="courseName"></asp:Label></a></li>
-        <li class="active">Edit Module</li>
+        <li class="active">Edit Course</li>
 
     </ul>
 
 
     <div class="container">
-        <h1>Edit Module</h1>
+        <h1>Edit Course</h1>
                          <% 
  int courseID = Convert.ToInt32(Request.QueryString["id"]);
                     User currentUser = (User)Session["currentUser"];
@@ -252,9 +252,9 @@
          <div class="dropdown" style="float: right;">
                 <button class="dropbtn" onclick="return false;"><span class="glyphicon glyphicon-option-horizontal"></span></button>
                 <div class="dropdown-content" style="right: 0;">
-                    <a href="createModules.aspx"><span class="glyphicon glyphicon-plus"></span>&nbsp;&nbsp;Create New Modules</a>
-                    <a href="manageCategories.aspx"><span class="glyphicon glyphicon-bookmark"></span>&nbsp;&nbsp;Manage Module Categories</a>
-                    <a href="viewCreatedModules.aspx"><span class="glyphicon glyphicon-book"></span>&nbsp;&nbsp;Manage Modules</a>
+                    <a href="createModules.aspx"><span class="glyphicon glyphicon-plus"></span>&nbsp;&nbsp;Create New Courses</a>
+                    <a href="manageCategories.aspx"><span class="glyphicon glyphicon-bookmark"></span>&nbsp;&nbsp;Manage Course Categories</a>
+                    <a href="viewCreatedModules.aspx"><span class="glyphicon glyphicon-book"></span>&nbsp;&nbsp;Manage Courses</a>
                 </div>
             </div>
         <%} %>
@@ -264,35 +264,54 @@
     <div class="container">
         <form class="form-horizontal" runat="server">
             <fieldset>
-                <legend>Edit current module information </legend>
+                <legend>Edit current course information </legend>
                 <div class="form-group required">
                     <strong>
                         <%--Compulsory/Leadership/Professional--%>
-                        <asp:Label ID="moduleTypeLabel" runat="server" CssClass="col-lg-2 control-label" Text="Module Category"></asp:Label></strong>
+                        <asp:Label ID="moduleTypeLabel" runat="server" CssClass="col-lg-2 control-label" Text="Course Category"></asp:Label></strong>
                     <div class="col-lg-5">
                         <asp:DropDownList ID="moduleType" runat="server" CssClass="form-control" placeholder="Choose Category *" DataSourceID="SqlDataSourceCourseCategory" DataTextField="category" DataValueField="categoryID"></asp:DropDownList>
                         <asp:SqlDataSource ID="SqlDataSourceCourseCategory" runat="server" ConnectionString="<%$ ConnectionStrings:DBConnectionString %>" SelectCommand="SELECT * FROM [Elearn_courseCategory]"></asp:SqlDataSource>
                     </div>
                 </div>
-
+                <br />
+                 <div class="form-group required">
+                    <strong><asp:Label runat="server" CssClass="col-lg-2 control-label" Text="Course Type"></asp:Label></strong>
+                    <div class="col-lg-5">
+                        <asp:DropDownList ID="ddlCourseType" runat="server" CssClass="form-control">
+                            <asp:ListItem Text="Classroom Learning"></asp:ListItem>
+                             <asp:ListItem Text="Online Learning"></asp:ListItem>
+                        </asp:DropDownList>
+                    </div>
+                </div>
+                <br />
                 <div class="form-group required">
                     <strong>
-                        <asp:Label ID="nameOfModuleLabel" runat="server" CssClass="col-lg-2 control-label" Text="Name of Module"></asp:Label></strong>
+                        <asp:Label ID="nameOfModuleLabel" runat="server" CssClass="col-lg-2 control-label" Text="Name of Course"></asp:Label></strong>
                     <div class="col-lg-5">
-                        <asp:TextBox ID="nameOfModuleInput" runat="server" CssClass="form-control" placeholder="Module Name"></asp:TextBox>
-                        <asp:RequiredFieldValidator ID="rfv_nameOfModuleInput" runat="server" ErrorMessage="Please enter a Module Name" ControlToValidate="nameOfModuleInput" ForeColor="Red" ValidationGroup="ValidateForm"></asp:RequiredFieldValidator>
+                        <asp:TextBox ID="nameOfModuleInput" runat="server" CssClass="form-control" placeholder="Course Name"></asp:TextBox>
+                        <asp:RequiredFieldValidator ID="rfv_nameOfModuleInput" runat="server" ErrorMessage="Please enter a Course Name" ControlToValidate="nameOfModuleInput" ForeColor="Red" ValidationGroup="ValidateForm"></asp:RequiredFieldValidator>
                     </div>
                 </div>
 
                 <div class="form-group required">
                     <strong>
-                        <asp:Label ID="descriptionModuleLabel" runat="server" CssClass="col-lg-2 control-label" Text="Description of Module"></asp:Label></strong>
+                        <asp:Label ID="descriptionModuleLabel" runat="server" CssClass="col-lg-2 control-label" Text="Description of Course"></asp:Label></strong>
                     <div class="col-lg-5">
                         <%--<asp:TextBox ID="descriptionModuleInput" TextMode="multiline" Columns="50" Rows="5" runat="server" CssClass="form-control" placeholder="Enter module description"></asp:TextBox>--%>
                         <CKEditor:CKEditorControl ID="descriptionModuleInput" runat="server"></CKEditor:CKEditorControl>
-                        <asp:CustomValidator ID="cv_descriptionModuleInput" runat="server" EnableClientScript="true" ErrorMessage="Please input a Module Description" ClientValidationFunction="ValidateModuleDescription" ForeColor="Red" ValidationGroup="ValidateForm"></asp:CustomValidator>
+                        <asp:CustomValidator ID="cv_descriptionModuleInput" runat="server" EnableClientScript="true" ErrorMessage="Please input a Course Description" ClientValidationFunction="ValidateModuleDescription" ForeColor="Red" ValidationGroup="ValidateForm"></asp:CustomValidator>
                     </div>
                 </div>
+
+                <div class="form-group">
+                    <strong>
+                        <asp:Label ID="Label1" runat="server" CssClass="col-lg-2 control-label" Text="Target Audience"></asp:Label></strong>
+                    <div class="col-lg-5">
+                        <asp:TextBox ID="txtTargetAudience" runat="server" CssClass="form-control" placeholder="Target Audience"></asp:TextBox>
+                    </div>
+                </div>
+                <br />
 
                 <div class="form-group required">
                     <strong>
@@ -307,14 +326,6 @@
                         <asp:CustomValidator ID="cv_hoursInputFormat" runat="server" EnableClientScript="true" ErrorMessage="Please enter hours in either whole number or with only one decimal place e.g (15.5)" ClientValidationFunction="ValidateHoursFormat" ForeColor="Red" ValidationGroup="ValidateForm"></asp:CustomValidator>
                         <br />
                         <asp:CustomValidator ID="cv_hoursInput" runat="server" EnableClientScript="true" ErrorMessage="Please enter a value between 0.0 and 100000.0" ClientValidationFunction="ValidateHours" ForeColor="Red" ValidationGroup="ValidateForm"></asp:CustomValidator>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <strong>
-                        <asp:Label ID="Label1" runat="server" CssClass="col-lg-2 control-label" Text="Target Audience"></asp:Label></strong>
-                    <div class="col-lg-5">
-                        <asp:TextBox ID="txtTargetAudience" runat="server" CssClass="form-control" placeholder="Target Audience"></asp:TextBox>
                     </div>
                 </div>
 
@@ -370,7 +381,7 @@
                 <%--Preq--%>
                 <div class="form-group">
                     <strong>
-                         <a href="javascript:void(0);" class="col-lg-2 control-label" data-toggle="collapse" data-target="#preq"">Module Prerequisite Selection </a></strong>
+                         <a href="javascript:void(0);" class="col-lg-2 control-label" data-toggle="collapse" data-target="#preq"">Course Prerequisite Selection </a></strong>
 
                     <div class="col-lg-5">
                         <div id="preq" class="collapse">
@@ -383,13 +394,13 @@
                                         <asp:LinkButton ID="btnAdd" runat="server" CausesValidation="false" CommandArgument='<%# Eval("elearn_courseID") %>'><span class="glyphicon glyphicon-plus"></span></asp:LinkButton>
                                     </ItemTemplate>
                                 </asp:TemplateField>
-                                <asp:BoundField DataField="elearn_courseName" HeaderText="Module Name" SortExpression="elearn_courseName" />
+                                <asp:BoundField DataField="elearn_courseName" HeaderText="Course Name" SortExpression="elearn_courseName" />
                                 <asp:BoundField DataField="category" HeaderText="Category" SortExpression="category" />
                                 <asp:BoundField DataField="elearn_courseID" Visible="False" />
                                 <asp:HyperLinkField DataNavigateUrlFields="elearn_courseID" DataNavigateUrlFormatString="viewModuleInfo.aspx?id={0}" Target="_blank" Text="View Details" />
                             </Columns>
                         </asp:GridView>
-                            <h6><em>Click on "+" to select module as a prerequisite module</em></h6>
+                            <h6><em>Click on "+" to select course as a prerequisite course</em></h6>
 
 
                             <br />
@@ -415,7 +426,7 @@
                             </Columns>
                             
                         </asp:GridView>
-                        <h6><em>Click on "Module Prerequisite Selection" to choose prerequisite modules</em></h6>
+                        <h6><em>Click on "Course Prerequisite Selection" to choose prerequisite courses</em></h6>
                     </div>
                 </div>
 
@@ -430,11 +441,11 @@
                             Course_elearn currentCourse = ceDAO.get_course_by_id(Convert.ToInt32(Request.QueryString["id"]));
                             if (currentCourse.getStatus().Equals("Open"))
                             {%>
-                        <asp:Button ID="btnDeactivate" CssClass="btn btn-warning" runat="server" Text="Deactivate Module" data-toggle="modal" href="#deactivateModal" OnClientClick="return false;"/>
+                        <asp:Button ID="btnDeactivate" CssClass="btn btn-warning" runat="server" Text="Deactivate Course" data-toggle="modal" href="#deactivateModal" OnClientClick="return false;"/>
                         <%}
                         else
                         { %>
-                        <asp:Button ID="btnActivate" CssClass="btn btn-success" runat="server" Text="Activate Module" data-toggle="modal" href="#activateModal" OnClientClick="return false;" />
+                        <asp:Button ID="btnActivate" CssClass="btn btn-success" runat="server" Text="Activate Course" data-toggle="modal" href="#activateModal" OnClientClick="return false;" />
                     </div>
                     <%} %>
                 </div>
@@ -471,12 +482,12 @@
                         <div class="modal-content panel-warning">
                             <div class="modal-header">
                                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                <h4 class="modal-title"><b>Deactivate this module</b></h4>
+                                <h4 class="modal-title"><b>Deactivate this course</b></h4>
                             </div>
                             <%--Modal Content--%>
                             <div class="modal-body">
                                 <div class="wrapper">
-                                    <h4>Are you sure you want to deactivate this module?</h4>
+                                    <h4>Are you sure you want to deactivate this course?</h4>
                                     <br />
                                     <asp:Button ID="btnCfmDeactivate" CssClass="btn btn-warning" runat="server" Text="Deactivate" OnClick="btnCfmDeactivate_Click" CausesValidation="false" />
                                     <asp:Button ID="Button2" CssClass="btn btn-default" runat="server" class="close" data-dismiss="modal" Text="Go Back" />
@@ -494,12 +505,12 @@
                         <div class="modal-content panel-warning">
                             <div class="modal-header">
                                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                <h4 class="modal-title"><b>Activate this module</b></h4>
+                                <h4 class="modal-title"><b>Activate this course</b></h4>
                             </div>
                             <%--Modal Content--%>
                             <div class="modal-body">
                                 <div class="wrapper">
-                                    <h4>Are you sure you want to activate this module?</h4>
+                                    <h4>Are you sure you want to activate this course?</h4>
                                     <br />
                                     <asp:Button ID="btnCfmActivate" CssClass="btn btn-success" runat="server" Text="Activate" OnClick ="cfmActivate_Click" CausesValidation="false"/>
                                     <asp:Button ID="Button5" CssClass="btn btn-default" runat="server" class="close" data-dismiss="modal" Text="Go Back" />

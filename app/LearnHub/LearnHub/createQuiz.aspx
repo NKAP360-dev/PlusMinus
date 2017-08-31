@@ -34,7 +34,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
      <ul class="breadcrumb">
         <li><a href="home.aspx">Home</a></li>
-        <li><a href="viewAllModule.aspx">Modules</a></li>
+        <li><a href="viewAllModule.aspx">Courses</a></li>
         <%int courseID = Convert.ToInt32(Request.QueryString["id"]); %>
         <li><a href="viewModuleInfo.aspx?id=<%=courseID%>">
             <asp:Label ID="lblBreadcrumbCourseName" runat="server" Text="courseName"></asp:Label></a></li>

@@ -31,12 +31,12 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
            <ul class="breadcrumb">
   <li><a href="home.aspx">Home</a></li>
-  <li><a href="viewAllModule.aspx">Modules</a></li>
-<li><a href="manageCategory.aspx">Manage Module Category</a></li>
-  <li class="active">Edit Module Category</li>
+  <li><a href="viewAllModule.aspx">Courses</a></li>
+<li><a href="manageCategory.aspx">Manage Course Category</a></li>
+  <li class="active">Edit Course Category</li>
   </ul>
     <div class="container">
-        <h1>Edit Module Category</h1>
+        <h1>Edit Course Category</h1>
 
             <%
                 User currentUser = (User)Session["currentUser"];
@@ -47,9 +47,9 @@
         <div class="dropdown" style="float: right;">
                 <button class="dropbtn" onclick="return false;"><span class="glyphicon glyphicon-option-horizontal"></span></button>
                 <div class="dropdown-content" style="right: 0;">
-                    <a href="createModules.aspx"><span class="glyphicon glyphicon-plus"></span>&nbsp;&nbsp;Create New Modules</a>
-                    <a href="manageCategories.aspx"><span class="glyphicon glyphicon-bookmark"></span>&nbsp;&nbsp;Manage Module Categories</a>
-                    <a href="viewCreatedModules.aspx"><span class="glyphicon glyphicon-book"></span>&nbsp;&nbsp;Manage Modules</a>
+                    <a href="createModules.aspx"><span class="glyphicon glyphicon-plus"></span>&nbsp;&nbsp;Create New Courses</a>
+                    <a href="manageCategories.aspx"><span class="glyphicon glyphicon-bookmark"></span>&nbsp;&nbsp;Manage Course Categories</a>
+                    <a href="viewCreatedModules.aspx"><span class="glyphicon glyphicon-book"></span>&nbsp;&nbsp;Manage Courses</a>
                 </div>
             </div>
         <%

@@ -60,11 +60,11 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
          <ul class="breadcrumb">
         <li><a href="home.aspx">Home</a></li>
-              <li><a href="viewAllModule.aspx">Module</a></li>
-        <li class="active">Manage Modules</li>
+              <li><a href="viewAllModule.aspx">Courses</a></li>
+        <li class="active">Manage Courses</li>
     </ul>
     <div class="container">
-        <h1>Manage Modules</h1>
+        <h1>Manage Courses</h1>
                  <%
                  User currentUser = (User)Session["currentUser"];
                  if (currentUser != null && (currentUser.getRole().Equals("course creator") || currentUser.getRole().Equals("superuser")))
@@ -75,9 +75,9 @@
         <div class="dropdown" style="float: right;">
                 <button class="dropbtn" onclick="return false;"><span class="glyphicon glyphicon-option-horizontal"></span></button>
                 <div class="dropdown-content" style="right: 0;">
-                    <a href="createModules.aspx"><span class="glyphicon glyphicon-plus"></span>&nbsp;&nbsp;Create New Modules</a>
-                    <a href="manageCategories.aspx"><span class="glyphicon glyphicon-bookmark"></span>&nbsp;&nbsp;Manage Module Categories</a>
-                    <a href="viewCreatedModules.aspx"><span class="glyphicon glyphicon-book"></span>&nbsp;&nbsp;Manage Modules</a>
+                    <a href="createModules.aspx"><span class="glyphicon glyphicon-plus"></span>&nbsp;&nbsp;Create New Courses</a>
+                    <a href="manageCategories.aspx"><span class="glyphicon glyphicon-bookmark"></span>&nbsp;&nbsp;Manage Course Categories</a>
+                    <a href="viewCreatedModules.aspx"><span class="glyphicon glyphicon-book"></span>&nbsp;&nbsp;Manage Courses</a>
                 </div>
             </div>
 
@@ -99,9 +99,9 @@
         <table class="table table-striped table-hover" data-paging="true" data-sorting="true" data-filtering="true">
                         <thead>
                             <tr>
-                                <th>Module Name</th>
-                                <th>Module Category</th>
-                                <th data-breakpoints="xs sm">Module Provider</th>
+                                <th>Course Name</th>
+                                <th>Course Category</th>
+                                <th data-breakpoints="xs sm">Course Provider</th>
                                 <th data-breakpoints="xs sm">Start Date</th>
                                 <th data-breakpoints="xs sm">End Date</th>
                                 <th data-filterable="false" data-sortable="false"></th>
@@ -129,7 +129,7 @@
                 }
                 else
                 {
-                    Response.Write("<h3>You have not created any modules</h3>");
+                    Response.Write("<h3>You have not created any courses</h3>");
                 }
             %>
             </form>

@@ -37,7 +37,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <ul class="breadcrumb">
         <li><a href="home.aspx">Home</a></li>
-        <li><a href="viewAllModule.aspx">Modules</a></li>
+        <li><a href="viewAllModule.aspx">Courses</a></li>
         <li class="active">
             <asp:Label ID="lblBreadcrumbCourseName" runat="server" Text="courseName"></asp:Label></li>
     </ul>
@@ -56,7 +56,7 @@
            <div class="dropdown" style="float: right;">
                 <button class="dropbtn" onclick="return false;"><span class="glyphicon glyphicon-option-horizontal"></span></button>
                 <div class="dropdown-content" style="right: 0;">
-                    <a href="editModuleInfo.aspx?id=<%=courseID %>"><span class="glyphicon glyphicon-pencil"></span>&nbsp;&nbsp;Edit Module</a>
+                    <a href="editModuleInfo.aspx?id=<%=courseID %>"><span class="glyphicon glyphicon-pencil"></span>&nbsp;&nbsp;Edit Course</a>
                     <a href="#uploadModal" data-toggle="modal"><span class="glyphicon glyphicon-level-up"></span>&nbsp;&nbsp;Upload Learning Materials</a>
                     <a href="manageQuiz.aspx?id=<%=courseID%>"><span class="glyphicon glyphicon-book"></span>&nbsp;&nbsp;Manage Quizzes</a>
                 </div>
@@ -69,7 +69,7 @@
             <div class="row">
                 <div class="col-md-3">
                     <div class="wrapper">
-                        <h4><strong><span class="glyphicon glyphicon-search">&emsp;</span>View Module Information</strong></h4>
+                        <h4><strong><span class="glyphicon glyphicon-search">&emsp;</span>View Course Information</strong></h4>
                     </div>
                 </div>
             </div>
@@ -77,7 +77,7 @@
                 <div class="row">
                     <div class="col-md-3">
                         <div class="list-group">
-                            <asp:LinkButton ID="LinkButton1" runat="server" class="list-group-item active" OnClick="moduleInfo_Click"><span class="glyphicon glyphicon-info-sign" CausesValidation="false"></span>&emsp;Module Info&emsp;</asp:LinkButton>
+                            <asp:LinkButton ID="LinkButton1" runat="server" class="list-group-item active" OnClick="moduleInfo_Click"  CausesValidation="false"><span class="glyphicon glyphicon-info-sign"></span>&emsp;Course Info&emsp;</asp:LinkButton>
                             <asp:LinkButton ID="LinkButton2" runat="server" class="list-group-item" OnClick="learningMat_Click" CausesValidation="false">Learning Materials &emsp;</asp:LinkButton>
                             <asp:LinkButton ID="LinkButton3" runat="server" class="list-group-item" OnClick="quizzes_Click" CausesValidation="false">Quizzes &emsp;</asp:LinkButton>
                         </div>
@@ -228,7 +228,7 @@
                 <div class="row">
                     <div class="col-md-3">
                         <div class="list-group">
-                            <asp:LinkButton ID="LinkButton4" runat="server" class="list-group-item" OnClick="moduleInfo_Click" CausesValidation="false">Module Info&emsp;</asp:LinkButton>
+                            <asp:LinkButton ID="LinkButton4" runat="server" class="list-group-item" OnClick="moduleInfo_Click" CausesValidation="false">Course Info&emsp;</asp:LinkButton>
                             <asp:LinkButton ID="LinkButton5" runat="server" class="list-group-item active" OnClick="learningMat_Click" CausesValidation="false"><span class="glyphicon glyphicon-folder-open"></span>&emsp;Learning Materials &emsp;</asp:LinkButton>
                             <asp:LinkButton ID="LinkButton6" runat="server" class="list-group-item" OnClick="quizzes_Click" CausesValidation="false">Quizzes &emsp;</asp:LinkButton>
 
@@ -295,7 +295,7 @@
                 <div class="row">
                     <div class="col-md-3">
                         <div class="list-group">
-                            <asp:LinkButton ID="LinkButton8" runat="server" class="list-group-item" OnClick="moduleInfo_Click" CausesValidation="false">Module Info</asp:LinkButton>
+                            <asp:LinkButton ID="LinkButton8" runat="server" class="list-group-item" OnClick="moduleInfo_Click" CausesValidation="false">Course Info</asp:LinkButton>
                             <asp:LinkButton ID="LinkButton9" runat="server" class="list-group-item" OnClick="learningMat_Click" CausesValidation="false">Learning Materials</asp:LinkButton>
                             <asp:LinkButton ID="LinkButton10" runat="server" class="list-group-item active" OnClick="quizzes_Click" CausesValidation="false"><span class="glyphicon glyphicon-education"></span>&emsp;Quizzes</asp:LinkButton>
                         </div>
@@ -334,11 +334,12 @@
                                     <a href="quiz.aspx?id=<%=q.getQuizID()%>" class="btn btn-success btn-sm">Attempt Quiz</a>&nbsp; 
                                 </div>
                                 <br />
-                                <hr />
+                                
                                 <%
                                     List<QuizResult> allAttempts = qrDAO.getQuizResultAttemptsByQuizIDandUserID(q.getQuizID(), currentUser.getUserID());
                                     if (allAttempts.Count > 0)
                                     {
+                                        Response.Write("<br/><hr />");
                                         Response.Write("<table class=\"table table-striped\">");
                                         Response.Write("<thead><tr>");
                                         Response.Write("<th>Attempt #</th>");

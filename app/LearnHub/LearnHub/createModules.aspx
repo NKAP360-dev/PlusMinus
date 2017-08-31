@@ -249,12 +249,12 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
    <ul class="breadcrumb">
   <li><a href="home.aspx">Home</a></li>
-  <li><a href="viewAllModule.aspx">Modules</a></li>
-  <li class="active">Create Module</li>
+  <li><a href="viewAllModule.aspx">Courses</a></li>
+  <li class="active">Create Course</li>
   </ul>
     
     <div class="container">   
-        <h1>Create Module</h1>
+        <h1>Create Course</h1>
              <%
                  User currentUser = (User)Session["currentUser"];
                  if (currentUser != null && (currentUser.getRole().Equals("course creator") || currentUser.getRole().Equals("superuser")))
@@ -265,9 +265,9 @@
          <div class="dropdown" style="float: right;">
                 <button class="dropbtn" onclick="return false;"><span class="glyphicon glyphicon-option-horizontal"></span></button>
                 <div class="dropdown-content" style="right: 0;">
-                    <a href="createModules.aspx"><span class="glyphicon glyphicon-plus"></span>&nbsp;&nbsp;Create New Modules</a>
-                    <a href="manageCategories.aspx"><span class="glyphicon glyphicon-bookmark"></span>&nbsp;&nbsp;Manage Module Categories</a>
-                    <a href="viewCreatedModules.aspx"><span class="glyphicon glyphicon-book"></span>&nbsp;&nbsp;Manage Modules</a>
+                    <a href="createModules.aspx"><span class="glyphicon glyphicon-plus"></span>&nbsp;&nbsp;Create New Courses</a>
+                    <a href="manageCategories.aspx"><span class="glyphicon glyphicon-bookmark"></span>&nbsp;&nbsp;Manage Course Categories</a>
+                    <a href="viewCreatedModules.aspx"><span class="glyphicon glyphicon-book"></span>&nbsp;&nbsp;Manage Courses</a>
                 </div>
             </div>
 
@@ -282,11 +282,11 @@
             <asp:ScriptManager ID="ScriptManager1" runat="server" EnablePageMethods="true">
 </asp:ScriptManager>
             <fieldset>
-                <legend>Input new module information </legend>
+                <legend>Input new course information </legend>
                 <div class="form-group required">
                     <strong>
                         <%--Compulsory/Leadership/Professional--%>
-                        <asp:Label ID="moduleTypeLabel" runat="server" CssClass="col-lg-2 control-label" Text="Module Category"></asp:Label></strong>
+                        <asp:Label ID="moduleTypeLabel" runat="server" CssClass="col-lg-2 control-label" Text="Course Category"></asp:Label></strong>
                     <div class="col-lg-5">
                         <asp:DropDownList ID="moduleType" runat="server" CssClass="form-control" placeholder="Choose Category *" DataSourceID="SqlDataSourceCourseCategory" DataTextField="category" DataValueField="categoryID" AppendDataBoundItems="True">
                             <asp:ListItem Text="--Select--" Selected="true" Value="0"></asp:ListItem>
@@ -297,11 +297,22 @@
                 </div>
 
                 <div class="form-group required">
-                    <strong>
-                        <asp:Label ID="nameOfModuleLabel" runat="server" CssClass="col-lg-2 control-label" Text="Name of Module"></asp:Label></strong>
+                    <strong><asp:Label runat="server" CssClass="col-lg-2 control-label" Text="Course Type"></asp:Label></strong>
                     <div class="col-lg-5">
-                        <asp:TextBox ID="nameOfModuleInput" runat="server" CssClass="form-control" placeholder="Module Name"></asp:TextBox>
-                        <asp:RequiredFieldValidator ID="rfv_nameOfModuleInput" runat="server" ErrorMessage="Please enter a Module Name" ControlToValidate="nameOfModuleInput" ForeColor="Red" ValidationGroup="ValidateForm"></asp:RequiredFieldValidator>
+                        <asp:DropDownList ID="ddlCourseType" runat="server" CssClass="form-control">
+                            <asp:ListItem Text="--Select--" Selected="true" Value="0"></asp:ListItem>
+                            <asp:ListItem Text="Classroom Learning"></asp:ListItem>
+                             <asp:ListItem Text="Online Learning"></asp:ListItem>
+                        </asp:DropDownList>
+                    </div>
+                </div>
+
+                <div class="form-group required">
+                    <strong>
+                        <asp:Label ID="nameOfModuleLabel" runat="server" CssClass="col-lg-2 control-label" Text="Name of Course"></asp:Label></strong>
+                    <div class="col-lg-5">
+                        <asp:TextBox ID="nameOfModuleInput" runat="server" CssClass="form-control" placeholder="Course Name"></asp:TextBox>
+                        <asp:RequiredFieldValidator ID="rfv_nameOfModuleInput" runat="server" ErrorMessage="Please enter a Course Name" ControlToValidate="nameOfModuleInput" ForeColor="Red" ValidationGroup="ValidateForm"></asp:RequiredFieldValidator>
                         <br />
                         <%--<asp:CustomValidator ID="cv_nameOfModuleInput" runat="server" ClientValidationFunction="ValidateNameAlreadyExists" ErrorMessage="This module already exists! Please input another Name." ForeColor="Red"  ValidationGroup="ValidateForm" EnableClientScript="true"></asp:CustomValidator>--%>
                         
@@ -310,14 +321,23 @@
 
                 <div class="form-group required">
                     <strong>
-                        <asp:Label ID="descriptionModuleLabel" runat="server" CssClass="col-lg-2 control-label" Text="Description of Module"></asp:Label></strong>
+                        <asp:Label ID="descriptionModuleLabel" runat="server" CssClass="col-lg-2 control-label" Text="Description of Course"></asp:Label></strong>
                     <div class="col-lg-5">
                         <%--<asp:TextBox ID="descriptionModuleInput" TextMode="multiline" Columns="50" Rows="5" runat="server" CssClass="form-control" placeholder="Enter module description"></asp:TextBox>--%>
                         <CKEditor:CKEditorControl ID="descriptionModuleInput" runat="server"></CKEditor:CKEditorControl>
-                        <asp:CustomValidator ID="cv_descriptionModuleInput" runat="server" EnableClientScript="true" ErrorMessage="Please input a Module Description" ClientValidationFunction="ValidateModuleDescription" ForeColor="Red" ValidationGroup="ValidateForm"></asp:CustomValidator>
+                        <asp:CustomValidator ID="cv_descriptionModuleInput" runat="server" EnableClientScript="true" ErrorMessage="Please input a Course Description" ClientValidationFunction="ValidateModuleDescription" ForeColor="Red" ValidationGroup="ValidateForm"></asp:CustomValidator>
                     </div>
                     
                 </div>
+
+                   <div class="form-group">
+                    <strong>
+                        <asp:Label ID="Label1" runat="server" CssClass="col-lg-2 control-label" Text="Target Audience"></asp:Label></strong>
+                        <div class="col-lg-5">
+                            <asp:TextBox ID="txtTargetAudience" runat="server" CssClass="form-control" placeholder="Target Audience"></asp:TextBox>
+                        </div>
+                </div>
+                <br />
 
                 <div class="form-group required">
                     <strong>
@@ -328,20 +348,14 @@
                             <span class="input-group-addon">hours </span>
                         </div>
                         <asp:RequiredFieldValidator ID="rfv_hoursInput" runat="server" ErrorMessage="Please Input the Number of Learning Hours" ControlToValidate="hoursInput" ForeColor="Red" ValidationGroup="ValidateForm"></asp:RequiredFieldValidator>
-                        <br />    
+                         <br />
                         <asp:CustomValidator ID="cv_hoursInputFormat" runat="server" EnableClientScript="true" ErrorMessage="Please enter hours in either whole number or with only one decimal place e.g (15.5)" ClientValidationFunction="ValidateHoursFormat" ForeColor="Red" ValidationGroup="ValidateForm"></asp:CustomValidator>
                         <br />
                         <asp:CustomValidator ID="cv_hoursInput" runat="server" EnableClientScript="true" ErrorMessage="Please enter a value between 0.0 and 100000.0" ClientValidationFunction="ValidateHours" ForeColor="Red" ValidationGroup="ValidateForm"></asp:CustomValidator>
-                    </div>
+
+                    </div>                                      
                 </div>
 
-                <div class="form-group">
-                    <strong>
-                        <asp:Label ID="Label1" runat="server" CssClass="col-lg-2 control-label" Text="Target Audience"></asp:Label></strong>
-                        <div class="col-lg-5">
-                            <asp:TextBox ID="txtTargetAudience" runat="server" CssClass="form-control" placeholder="Target Audience"></asp:TextBox>
-                        </div>
-                </div>
 
                 <%--Date--%>
                 
@@ -357,11 +371,11 @@
                             <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i>
                             </span>
                         </div>
-                        <asp:RequiredFieldValidator ID="rfv_fromDateInput" ControlToValidate="fromDateInput" runat="server" ErrorMessage="Please enter the Start Date of the Module" ForeColor="Red" ValidationGroup="ValidateForm" />
+                        <asp:RequiredFieldValidator ID="rfv_fromDateInput" ControlToValidate="fromDateInput" runat="server" ErrorMessage="Please enter the Start Date of the Course" ForeColor="Red" ValidationGroup="ValidateForm" />
                         <br />
-                        <asp:RequiredFieldValidator ID="rfv_toDateInput" ControlToValidate="toDateInput" runat="server" ErrorMessage="Please enter the End Date of the Module" ForeColor="Red" ValidationGroup="ValidateForm" />
+                        <asp:RequiredFieldValidator ID="rfv_toDateInput" ControlToValidate="toDateInput" runat="server" ErrorMessage="Please enter the End Date of the Course" ForeColor="Red" ValidationGroup="ValidateForm" />
                         <br />
-                        <asp:CustomValidator ID="cv_dateInput" runat="server" ClientValidationFunction="compareDates" ErrorMessage="Please enter a Module Start Date that is Before the Module End Date." ForeColor="Red" ValidationGroup="ValidateForm"></asp:CustomValidator>
+                        <asp:CustomValidator ID="cv_dateInput" runat="server" ClientValidationFunction="compareDates" ErrorMessage="Please enter a Course Start Date that is Before the Course End Date." ForeColor="Red" ValidationGroup="ValidateForm"></asp:CustomValidator>
                      </div>
                     <br />
 
@@ -371,7 +385,7 @@
                 <%--Preq--%>
                 <div class="form-group">
                     <strong>
-                         <a href="javascript:void(0);" class="col-lg-2 control-label" data-toggle="collapse" data-target="#preq"">Module Prerequisite Selection </a></strong>
+                         <a href="javascript:void(0);" class="col-lg-2 control-label" data-toggle="collapse" data-target="#preq"">Course Prerequisite Selection </a></strong>
                 
                     <div class="col-lg-5">
                         <div id="preq" class="collapse">
@@ -384,13 +398,13 @@
                                         <asp:LinkButton ID="btnAdd" runat="server" CausesValidation="false" CommandArgument='<%# Eval("elearn_courseID") %>'><span class="glyphicon glyphicon-plus"></span></asp:LinkButton>
                                     </ItemTemplate>
                                 </asp:TemplateField>
-                                <asp:BoundField DataField="elearn_courseName" HeaderText="Module Name" SortExpression="elearn_courseName" />
+                                <asp:BoundField DataField="elearn_courseName" HeaderText="Course Name" SortExpression="elearn_courseName" />
                                 <asp:BoundField DataField="category" HeaderText="Category" SortExpression="category" />
                                 <asp:BoundField DataField="elearn_courseID" Visible="False" />
                                 <asp:HyperLinkField DataNavigateUrlFields="elearn_courseID" DataNavigateUrlFormatString="viewModuleInfo.aspx?id={0}" Target="_blank" Text="View Details" />
                             </Columns>
                         </asp:GridView>
-                          <h6><em>Click on "+" to select module as a prerequisite module</em></h6>
+                          <h6><em>Click on "+" to select course as a prerequisite course</em></h6>
 
 
                             <br />
@@ -432,7 +446,7 @@
                     </tr>
                     </tbody>
                     </table>--%>
-                       <h6><em>Click on "Module Prerequisite Selection" to choose prerequisite modules</em></h6>
+                       <h6><em>Click on "Course Prerequisite Selection" to choose prerequisite courses</em></h6>
                     </div>
                     </div>
                 
@@ -474,7 +488,7 @@
                         <div class="modal-content">
                             <div class="modal-header">
                                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                <h4 class="modal-title"><b>Create new module</b></h4>
+                                <h4 class="modal-title"><b>Create new course</b></h4>
                             </div>
                             <%--Modal Content--%>
                             <div class="modal-body">

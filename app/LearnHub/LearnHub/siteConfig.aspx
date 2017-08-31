@@ -112,14 +112,14 @@
     <br />
     <div class="container">
         <div class="row">
-            <h3><span class="glyphicon glyphicon-menu-right"></span>&emsp;Modules</h3>
+            <h3><span class="glyphicon glyphicon-menu-right"></span>&emsp;Courses</h3>
             <a href="createModules.aspx">
                 <div class="col-md-3 btn-primary">
                     <br />
                     <br />
                     <div class="wrapper">
                         <span style="font-size: 75px;" class="glyphicon glyphicon-apple"></span>
-                        <h3>Create Module</h3>
+                        <h3>Create Course</h3>
                         <br />
                     </div>
                 </div>
@@ -130,7 +130,7 @@
                     <br />
                     <div class="wrapper">
                         <span style="font-size: 75px;" class="glyphicon glyphicon-menu-hamburger"></span>
-                        <h3>Module Categories</h3>
+                        <h3>Course Categories</h3>
                         <br />
                     </div>
                 </div>
@@ -141,7 +141,7 @@
                     <br />
                     <div class="wrapper">
                         <span style="font-size: 75px;" class="glyphicon glyphicon-education"></span>
-                        <h3>Manage Modules</h3>
+                        <h3>Manage Courses</h3>
                         <br />
                     </div>
                 </div>

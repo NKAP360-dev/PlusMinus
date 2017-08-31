@@ -39,7 +39,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <ul class="breadcrumb">
         <li><a href="home.aspx">Home</a></li>
-        <li><a href="viewAllModule.aspx">Modules</a></li>
+        <li><a href="viewAllModule.aspx">Courses</a></li>
         <%int courseID = Convert.ToInt32(Request.QueryString["id"]); %>
         <li><a href="viewModuleInfo.aspx?id=<%=courseID%>">
             <asp:Label ID="lblBreadcrumbCourseName" runat="server" Text="courseName"></asp:Label></a></li>
@@ -145,8 +145,39 @@
                                     <asp:ListItem Value="n">In Order</asp:ListItem>
                                 </asp:DropDownList>
                             </div>
-
                         </div>
+                        <br />
+                         <div class="form-group required">
+                             <label class="col-lg-3 control-label">Randomize answers order</label>
+                            <div class="col-lg-7">
+                                <asp:DropDownList ID="ddlRandomizeAns" runat="server" CssClass="form-control">
+                                    <asp:ListItem Value="y">Randomize</asp:ListItem>
+                                    <asp:ListItem Value="n">In Order</asp:ListItem>
+                                </asp:DropDownList>
+                            </div>
+                        </div>
+                         <div class="form-group required">
+                             <label class="col-lg-3 control-label">Allow Multiple Quiz Attempts</label>
+                            <div class="col-lg-7">
+                                <asp:RadioButtonList ID="rdlAttempt" runat="server">
+                                    <asp:ListItem Value="y">&nbsp;Unlimited</asp:ListItem>
+                                    <asp:ListItem Value="n">&nbsp;Limited</asp:ListItem>
+                                </asp:RadioButtonList>
+                                <asp:TextBox ID="txtNoOfAttempt" runat="server" CssClass="form-control" placeholder="If limited, Number of Attempts"></asp:TextBox>
+                            </div>
+                        </div>
+                        <br />
+                         <div class="form-group required">
+                             <label class="col-lg-3 control-label">Display Quiz Answers</label>
+                            <div class="col-lg-7">
+                                <asp:DropDownList ID="DropDownList1" runat="server" CssClass="form-control">
+                                    <asp:ListItem Value="1">Always</asp:ListItem>
+                                    <asp:ListItem Value="2">After Passing Quiz</asp:ListItem>
+                                    <asp:ListItem Value="3">Never</asp:ListItem>
+                                </asp:DropDownList>
+                            </div>
+                        </div>
+
                         <div class="wrapper">
                             <asp:Button ID="btnConfirmSubmit" CssClass="btn btn-primary" runat="server" Text="Submit" OnClick="btnConfirmSubmit_Click" />
                             <asp:Button ID="btnCancel1" CssClass="btn btn-default" runat="server" class="close" data-dismiss="modal" Text="Cancel" OnClientClick="return false;" />

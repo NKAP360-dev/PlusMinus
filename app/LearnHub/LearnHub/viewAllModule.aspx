@@ -60,11 +60,11 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <ul class="breadcrumb">
         <li><a href="home.aspx">Home</a></li>
-        <li class="active">Modules</li>
+        <li class="active">Courses</li>
     </ul>
     <form id="form1" runat="server">
         <div class="container">
-            <h1>View Modules</h1>
+            <h1>View Courses</h1>
 
              <%
                  User currentUser = (User)Session["currentUser"];
@@ -76,9 +76,9 @@
             <div class="dropdown" style="float: right;">
                 <button class="dropbtn" onclick="return false;"><span class="glyphicon glyphicon-option-horizontal"></span></button>
                 <div class="dropdown-content" style="right: 0;">
-                    <a href="createModules.aspx"><span class="glyphicon glyphicon-plus"></span>&nbsp;&nbsp;Create New Modules</a>
-                    <a href="manageCategories.aspx"><span class="glyphicon glyphicon-bookmark"></span>&nbsp;&nbsp;Manage Module Categories</a>
-                    <a href="viewCreatedModules.aspx"><span class="glyphicon glyphicon-book"></span>&nbsp;&nbsp;Manage Modules</a>
+                    <a href="createModules.aspx"><span class="glyphicon glyphicon-plus"></span>&nbsp;&nbsp;Create New Courses</a>
+                    <a href="manageCategories.aspx"><span class="glyphicon glyphicon-bookmark"></span>&nbsp;&nbsp;Manage Course Categories</a>
+                    <a href="viewCreatedModules.aspx"><span class="glyphicon glyphicon-book"></span>&nbsp;&nbsp;Manage Courses</a>
                 </div>
             </div>
 
@@ -93,7 +93,7 @@
                 <div class="col-md-3">
                     <div class="list-group">
                         <div class="wrapper">
-                            <h4><strong><span class="glyphicon glyphicon-search">&emsp;</span>View Training Types</strong></h4>
+                            <h4><strong><span class="glyphicon glyphicon-search">&emsp;</span>View Course Types</strong></h4>
                         </div>
                         <asp:SqlDataSource ID="SqlDataSourceCourseCategory" runat="server" ConnectionString="<%$ ConnectionStrings:DBConnectionString %>" SelectCommand="SELECT * FROM [Elearn_courseCategory] WHERE status = 'active' "></asp:SqlDataSource>
                         <asp:ListView runat="server" DataSourceID="SqlDataSourceCourseCategory" DataTextField="category,categoryID">
@@ -108,11 +108,11 @@
                         <asp:Label ID="lblModuleCategory" runat="server" Text="Choose a category from the left"></asp:Label></h2>
                     <p>
                         <asp:SqlDataSource ID="SqlDataSourceCourse" runat="server" ConnectionString="<%$ ConnectionStrings:DBConnectionString %>"></asp:SqlDataSource>
-                        <asp:GridView ID="gvCourse" runat="server" CssClass="footable table table-striped table-hover" data-paging="true" data-sorting="true" data-filtering="true" GridLines="None" AutoGenerateColumns="false" EmptyDataText="There are no modules available to choose from.">
+                        <asp:GridView ID="gvCourse" runat="server" CssClass="footable table table-striped table-hover" data-paging="true" data-sorting="true" data-filtering="true" GridLines="None" AutoGenerateColumns="false" EmptyDataText="There are no courses available to choose from.">
                             <Columns>
-                                <asp:BoundField DataField="elearn_courseName" HeaderText="Module Name" SortExpression="elearn_courseName" />
-                                <asp:BoundField DataField="elearn_courseProvider" HeaderText="Module Provider" SortExpression="elearn_courseProvider" />
-                                <asp:BoundField DataField="hoursAwarded" HeaderText="Hours Awarded" SortExpression="hoursAwarded" />
+                                <asp:BoundField DataField="elearn_courseName" HeaderText="Course Name" SortExpression="elearn_courseName" />
+                                <asp:BoundField DataField="elearn_courseProvider" HeaderText="Course Provider" SortExpression="elearn_courseProvider" />
+                                <asp:BoundField DataField="hoursAwarded" HeaderText="Learning Hours" SortExpression="hoursAwarded" />
                                 <asp:HyperLinkField DataNavigateUrlFields="elearn_courseID" DataNavigateUrlFormatString="viewModuleInfo.aspx?id={0}" Text="View Details" />
                             </Columns>
                         </asp:GridView>

@@ -5,6 +5,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <link href="https://fonts.googleapis.com/css?family=Martel:900" rel="stylesheet"/>
     <style>
         body {
             background-color: #18bc9c !important;
@@ -12,6 +14,7 @@
 
         h1 {
             color: white !important;
+            font-family: 'Martel', serif !important;
         }
 
         .wrapper {
@@ -76,27 +79,32 @@
             padding: 10px;
             font-size: 18px;
         }
+
+        .logo {
+                        max-width: 500px;
+            margin: auto;
+            text-align: center;
+        }
     </style>
     <title>Login - LearnHub</title>
     <link href="bootstrap/css/bootstrap.css" rel="stylesheet" />
 </head>
 <body>
-    
 
-     <div class="container">
+
+    <div class="container">
         <div class="row">
             <div class="col-lg-4"></div>
             <div class="col-lg-4">
                 <div class="wrapper">
                     <form id="form1" runat="server">
 
-                        <h1 class="text-center login-title"><a href="Home.aspx">
-                            <img src="img/LearnHub2.png" alt="LHLogo" style="width: 65px; height: 65px;" /></a>&nbsp;LearnHub&nbsp;&nbsp;&nbsp;</h1>
+                        <h1 class="text-center login-title">LearnHub</h1>
                         <br />
                         <div class="card">
 
                             <fieldset>
-                                <div class="header"><strong>L O G I N</strong></div>
+                                <div class="header"><a href="Home.aspx"><span class="glyphicon glyphicon-home"></span></a>&emsp;<strong>L O G I N</strong></div>
                                 <br />
                                 <div class="inner">
                                     <div class="form-group">
@@ -161,6 +169,10 @@
                                 </div>
                             </fieldset>
                         </div>
+                        <br />
+                        <div class="logo">
+                        <img src="img/amkthk.png" alt="LHLogo" style="width: 165px; height: 117px;" />
+                        </div>
                     </form>
                 </div>
             </div>
@@ -168,7 +180,7 @@
         </div>
     </div>
 
-    
+
 </body>
 
 <script src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'></script>
