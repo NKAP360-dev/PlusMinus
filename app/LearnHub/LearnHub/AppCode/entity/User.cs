@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Collections;
 
 namespace LearnHub.AppCode.entity
 {
@@ -12,7 +13,7 @@ namespace LearnHub.AppCode.entity
         private string jobTitle;
         private string jobCategory;
         private string supervisor;
-        private string role;
+        private ArrayList roles;
         private string department;
         private string email;
         private DateTime start_Date;
@@ -24,7 +25,7 @@ namespace LearnHub.AppCode.entity
         {
 
         }
-        public User(string uid, string name, string jobTitle, string jobCategory, string supervisor, string role, string department, string email, DateTime start_Date
+        public User(string uid, string name, string jobTitle, string jobCategory, string supervisor, ArrayList roles, string department, string email, DateTime start_Date
             , string add, string contact)
         {
             this.uid = uid;
@@ -32,7 +33,7 @@ namespace LearnHub.AppCode.entity
             this.jobTitle = jobTitle;
             this.jobCategory = jobCategory;
             this.supervisor = supervisor;
-            this.role = role;
+            this.roles = roles;
             this.department = department;
             this.email = email;
             this.start_Date = start_Date;
@@ -96,13 +97,13 @@ namespace LearnHub.AppCode.entity
         {
             this.supervisor = supervisor;
         }
-        public string getRole()
+        public ArrayList getRoles()
         {
-            return role;
+            return roles;
         }
-        public void setRole(string role)
+        public void setRoles(ArrayList roles)
         {
-            this.role = role;
+            this.roles = roles;
         }
         public string getDepartment()
         {

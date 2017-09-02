@@ -20,7 +20,15 @@ namespace LearnHub
             else
             {
                 User currentUser = (User)Session["currentUser"];
-                if (!currentUser.getRole().Equals("superuser"))
+                Boolean superuser = false;
+                foreach (string s in currentUser.getRoles())
+                {
+                    if (s.Equals("superuser"))
+                    {
+                        superuser = true;
+                    }
+                }
+                if (!superuser)
                 {
                     Response.Redirect("errorPage.aspx");
                 }

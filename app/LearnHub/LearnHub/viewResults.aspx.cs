@@ -20,11 +20,19 @@ namespace LearnHub
             Quiz currentQuiz = currentQuizResult.getQuiz();
             User currentUser = (User)Session["currentUser"];
             List<QuizQuestion> allQuestions = qqDAO.getAllQuizQuestionByQuizID(currentQuiz.getQuizID());
+            Boolean superuser = false;
+            foreach (string s in currentUser.getRoles())
+            {
+                if (s.Equals("superuser"))
+                {
+                    superuser = true;
+                }
+            }
             if (currentUser == null)
             {
                 Response.Redirect("Login.aspx");
             }
-            else if (currentQuizResult.getUser().getUserID() != currentUser.getUserID() && !currentUser.getRole().Equals("superuser"))
+            else if (currentQuizResult.getUser().getUserID() != currentUser.getUserID() && !superuser)
             {
                 Response.Redirect("errorPage.aspx");
             }

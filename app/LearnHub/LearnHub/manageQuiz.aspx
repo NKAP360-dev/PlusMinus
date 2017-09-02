@@ -76,7 +76,16 @@
                   Course_elearnDAO ceDAO = new Course_elearnDAO();
                   Course_elearn currentCourse = ceDAO.get_course_by_id(courseID);
                   User courseCreator = currentCourse.getCourseCreator();
-                  if (currentUser != null && (currentUser.getUserID() == courseCreator.getUserID() || currentUser.getRole().Equals("superuser")))
+                  Boolean superuser = false;
+                  foreach (string s in currentUser.getRoles())
+                  {
+                      if (s.Equals("superuser"))
+                      {
+                          superuser = true;
+                          return;
+                      }
+                  }
+                  if (currentUser != null && (currentUser.getUserID() == courseCreator.getUserID() || superuser))
                   {
               %>
             <a href="createQuiz.aspx?id=<%=courseID%>" class="btn btn-success">Add New Quiz</a>

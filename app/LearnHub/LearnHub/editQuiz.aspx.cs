@@ -27,7 +27,20 @@ namespace LearnHub
                 Quiz currentQuiz = quizDAO.getQuizByID(id_num);
                 Course_elearn currentCourse = currentQuiz.getMainCourse();
                 lblBreadcrumbCourseName.Text = currentQuiz.getMainCourse().getCourseName();
-                if (currentUser.getUserID() != currentCourse.getCourseCreator().getUserID() && !(currentUser.getRole().Equals("course creator") || currentUser.getRole().Equals("superuser")))
+                Boolean superuser = false;
+                Boolean course_creator = false;
+                foreach (string s in currentUser.getRoles())
+                {
+                    if (s.Equals("superuser"))
+                    {
+                        superuser = true;
+                    }
+                    else if (s.Equals("course creator"))
+                    {
+                        course_creator = true;
+                    }
+                }
+                if (currentUser.getUserID() != currentCourse.getCourseCreator().getUserID() && !(superuser || course_creator))
                 {
                     Response.Redirect("errorPage.aspx");
                 }

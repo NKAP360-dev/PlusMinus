@@ -25,7 +25,20 @@ namespace LearnHub
                 User currentUser = (User)Session["currentUser"];
                 Course_elearnDAO ceDAO = new Course_elearnDAO();
                 Course_elearn currentCourse = ceDAO.get_course_by_id(Convert.ToInt32(Request.QueryString["id"]));
-                if (currentUser.getUserID() != currentCourse.getCourseCreator().getUserID() && !(currentUser.getRole().Equals("course creator") || currentUser.getRole().Equals("superuser")))
+                Boolean superuser = false;
+                Boolean course_creator = false;
+                foreach (string s in currentUser.getRoles())
+                {
+                    if (s.Equals("superuser"))
+                    {
+                        superuser = true;
+                    }
+                    else if (s.Equals("course creator"))
+                    {
+                        course_creator = true;
+                    }
+                }
+                if (currentUser.getUserID() != currentCourse.getCourseCreator().getUserID() && !(superuser || course_creator))
                 {
                     Response.Redirect("errorPage.aspx");
                 }

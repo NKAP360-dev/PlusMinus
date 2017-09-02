@@ -5,6 +5,7 @@
 <%@ Import Namespace="System.Data" %>
 <%@ Import Namespace="LearnHub.AppCode.dao" %>
 <%@ Import Namespace="LearnHub.AppCode.entity" %>
+<%@ Import Namespace="System.Collections" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <script>
@@ -46,9 +47,18 @@
         <h1>Create Quiz</h1>
              <% 
                  User currentUser = (User)Session["currentUser"];
+                 ArrayList roles = currentUser.getRoles();
                  Course_elearnDAO ceDAO = new Course_elearnDAO();
                  User courseCreator = ceDAO.get_course_by_id(courseID).getCourseCreator();
-                 if (currentUser != null && (currentUser.getUserID() == courseCreator.getUserID() || currentUser.getRole().Equals("superuser")))
+                 Boolean correct = false;
+                 foreach (string s in roles)
+                 {
+                     if (s.Equals("superuser"))
+                     {
+                         correct = true;                       
+                     }
+                 }
+                 if (currentUser != null && (currentUser.getUserID() == courseCreator.getUserID() || correct))
                  {
              %>
 

@@ -6,6 +6,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Web;
+using System.Collections;
 
 namespace LearnHub.AppCode.dao
 {
@@ -15,6 +16,7 @@ namespace LearnHub.AppCode.dao
         {
             SqlConnection conn = new SqlConnection();
             User toReturn = new User();
+            UserDAO uDao = new UserDAO();
             try
             {
                 conn = new SqlConnection();
@@ -47,7 +49,8 @@ namespace LearnHub.AppCode.dao
                     {
                         toReturn.setSupervisor("NA");
                     }
-                    toReturn.setRole((string)dr["role"]);
+                    ArrayList roles = uDao.getRolesByID(userID);
+                    toReturn.setRoles(roles);
                     if (!dr.IsDBNull(8))
                     {
                         toReturn.setDepartment((string)dr["dept_name"]);

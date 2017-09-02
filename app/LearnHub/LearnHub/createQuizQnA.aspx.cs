@@ -18,12 +18,25 @@ namespace LearnHub
             {
                 Response.Redirect("Login.aspx");
             }
-            else if (!currentUser.getRole().Equals("course creator") && !currentUser.getRole().Equals("superuser"))
-            {
-                Response.Redirect("errorPage.aspx");
-            }
             else
             {
+                Boolean superuser = false;
+                Boolean course_creator = false;
+                foreach (string s in currentUser.getRoles())
+                {
+                    if (s.Equals("superuser"))
+                    {
+                        superuser = true;
+                    }
+                    else if (s.Equals("course creator"))
+                    {
+                        course_creator = true;
+                    }
+                }
+                if (!superuser || !course_creator)
+                {
+                    Response.Redirect("errorPage.aspx");
+                }
                 if (!IsPostBack)
                 {
                     Course_elearnDAO cdao = new Course_elearnDAO();

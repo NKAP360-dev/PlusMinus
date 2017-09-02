@@ -49,7 +49,15 @@
                     User currentUser = (User)Session["currentUser"];
                     Course_elearnDAO ceDAO = new Course_elearnDAO();
                     User courseCreator = ceDAO.get_course_by_id(courseID).getCourseCreator();
-                    if (currentUser != null && (currentUser.getUserID() == courseCreator.getUserID() || currentUser.getRole().Equals("superuser")))
+                    superuser = false;
+                    foreach(string s in currentUser.getRoles())
+                    {
+                        if (s.Equals("superuser"))
+                        {
+                            superuser = true;
+                        }
+                    }
+                    if (currentUser != null && (currentUser.getUserID() == courseCreator.getUserID() || superuser))
                     {
                 %>
             
@@ -150,7 +158,7 @@
                                                                              {
 
                                                                              }
-                                                                             else if(user.getRole().Equals("superuser") || user.getDepartment().Equals("hr")) 
+                                                                             else if(superuser || user.getDepartment().Equals("hr")) 
                                                                              {%> <a href="javascript:void(0);" data-toggle="collapse" data-target="#addTestimonial"><span class="label label-default pull-right">
 
                                     <span class="glyphicon glyphicon-pencil"></span></span></a>
@@ -199,7 +207,7 @@
                                 <% 
                                     if(user == null) { 
 
-                                    }else if (user.getRole().Equals("superuser") || user.getDepartment().Equals("hr"))
+                                    }else if (superuser || user.getDepartment().Equals("hr"))
                                     {%>
                                 <a href="deleteTestimonial.aspx?id=<%=test.getID() %>&cid=<%=current.getCourseID() %>" onclick="return confirm('Are you sure?')"><span class="label label-danger pull-right"><span class="glyphicon glyphicon-trash"></span></span></a></strong><br />
                                 <%} %>
@@ -266,7 +274,7 @@
                                     <%  User user = (User)Session["currentUser"];
                                         if (user == null) {
                                             Response.Redirect("login.aspx");
-                                        }else if (user.getRole().Equals("superuser") || user.getDepartment().Equals("hr"))
+                                        }else if (superuser || user.getDepartment().Equals("hr"))
                                         {%>
                                     <a href="deleteMaterial.aspx?id=<%=current.getCourseID()%>&path=<%=strfile%>" onclick="return confirm('Are you sure?')"><span class="label label-danger pull-right"><span class="glyphicon glyphicon-trash"></span></span></a></strong><br />
                                     <%} %>
@@ -320,7 +328,7 @@
                                         Response.Write(q.getTitle());
                                         Course_elearnDAO ceDAO = new Course_elearnDAO();
                                         User courseCreator = ceDAO.get_course_by_id(courseID).getCourseCreator();
-                                        if (currentUser != null && (currentUser.getUserID() == courseCreator.getUserID() || currentUser.getRole().Equals("superuser"))) { 
+                                        if (currentUser != null && (currentUser.getUserID() == courseCreator.getUserID() || superuser)) { 
                                     %>
                                     <a href="editQuiz.aspx?id=<%=q.getQuizID()%>" class="label label-default pull-right"><span class="glyphicon glyphicon-pencil"></span></a>
                                     <% } %>

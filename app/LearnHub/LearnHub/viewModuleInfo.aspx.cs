@@ -22,6 +22,7 @@ namespace LearnHub
         protected Course_elearn current;
         protected ArrayList testimonials;
         protected Testimonial deleteThis;
+        protected Boolean superuser;
         protected void Page_Load(object sender, EventArgs e)
         {
             //Response.Write(DateTime.Now.ToShortDateString());

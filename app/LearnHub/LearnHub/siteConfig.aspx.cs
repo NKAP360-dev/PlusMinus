@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using LearnHub.AppCode.entity;
 
 namespace LearnHub
 {
@@ -11,7 +12,19 @@ namespace LearnHub
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            User currentUser = (User)Session["currentUser"];
+            Boolean superuser = false;
+            foreach (string s in currentUser.getRoles())
+            {
+                if (s.Equals("superuser"))
+                {
+                    superuser = true;
+                }
+            }
+            if (!superuser)
+            {
+                Response.Redirect("errorPage.aspx");
+            }
         }
     }
 }

@@ -5,6 +5,7 @@ using System.Configuration;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
+using System.Collections;
 
 namespace LearnHub.AppCode.dao
 {
@@ -99,7 +100,8 @@ namespace LearnHub.AppCode.dao
                     {
                         toReturn.setSupervisor("NA");
                     }
-                    toReturn.setRole((string)dr["role"]);
+                    ArrayList roles = getRolesByID(userID);
+                    toReturn.setRoles(roles); // need new method here to call roles table and populate this entity's arraylist variable
                     if (!dr.IsDBNull(8))
                     {
                         toReturn.setDepartment((string)dr["dept_name"]);
@@ -111,6 +113,38 @@ namespace LearnHub.AppCode.dao
                     toReturn.setContact((string)dr["contactNumber"]);
                     toReturn.setAddress((string)dr["address"]);
                     toReturn.setStartDate(dr.GetDateTime(3));
+                }
+                dr.Close();
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                conn.Close();
+            }
+            return toReturn;
+        }
+
+        public ArrayList getRolesByID(string userID)
+        {
+            SqlConnection conn = new SqlConnection();
+            ArrayList toReturn = new ArrayList();
+            try
+            {
+                conn = new SqlConnection();
+                string connstr = ConfigurationManager.ConnectionStrings["DBConnectionString"].ToString();
+                conn.ConnectionString = connstr;
+                conn.Open();
+                SqlCommand comm = new SqlCommand();
+                comm.Connection = conn;
+                comm.CommandText = "select role from User_roles where userID=@userID";
+                comm.Parameters.AddWithValue("@userID", userID);
+                SqlDataReader dr = comm.ExecuteReader();
+                while (dr.Read())
+                {
+                    toReturn.Add((string)dr["role"]);
                 }
                 dr.Close();
             }
@@ -175,7 +209,8 @@ namespace LearnHub.AppCode.dao
                 {
                     u = new User();
                     u = new User();
-                    u.setUserID((string)dr["userID"]);
+                    string userID = ((string)dr["userID"]);
+                    u.setUserID(userID);
                     u.setName((string)dr["name"]);
                     u.setJobTitle((string)dr["job_title"]);
                     u.setJobCategory((string)dr["job_category"]);
@@ -186,7 +221,8 @@ namespace LearnHub.AppCode.dao
                     {
                         u.setSupervisor("NA");
                     }
-                    u.setRole((string)dr["role"]);
+                    ArrayList roles = getRolesByID(userID);
+                    u.setRoles(roles);
                     u.setDepartment((string)dr["dept_name"]);
                     u.setEmail((string)dr["email"]);
                     u.setStartDate(dr.GetDateTime(3));
@@ -224,7 +260,8 @@ namespace LearnHub.AppCode.dao
                 while (dr.Read())
                 {
                     toReturn = new User();
-                    toReturn.setUserID((string)dr["userID"]);
+                    string userID = ((string)dr["userID"]);
+                    toReturn.setUserID(userID);
                     toReturn.setName((string)dr["name"]);
                     toReturn.setJobTitle((string)dr["job_title"]);
                     toReturn.setJobCategory((string)dr["job_category"]);
@@ -235,7 +272,8 @@ namespace LearnHub.AppCode.dao
                     {
                         toReturn.setSupervisor("NA");
                     }
-                    toReturn.setRole((string)dr["role"]);
+                    ArrayList roles = getRolesByID(userID);
+                    toReturn.setRoles(roles);
                     toReturn.setDepartment((string)dr["dept_name"]);
                     toReturn.setEmail((string)dr["email"]);
                     toReturn.setStartDate(dr.GetDateTime(3));
@@ -308,7 +346,8 @@ namespace LearnHub.AppCode.dao
                 while (dr.Read())
                 {
                     toReturn = new User();
-                    toReturn.setUserID((string)dr["userID"]);
+                    string userID = ((string)dr["userID"]);
+                    toReturn.setUserID(userID);
                     toReturn.setName((string)dr["name"]);
                     toReturn.setJobTitle((string)dr["job_title"]);
                     toReturn.setJobCategory((string)dr["job_category"]);
@@ -320,7 +359,8 @@ namespace LearnHub.AppCode.dao
                     {
                         toReturn.setSupervisor("NA");
                     }
-                    toReturn.setRole((string)dr["role"]);
+                    ArrayList roles = getRolesByID(userID);
+                    toReturn.setRoles(roles);
                     toReturn.setDepartment((string)dr["dept_name"]);
                     toReturn.setEmail((string)dr["email"]);
                     toReturn.setStartDate(dr.GetDateTime(3));
@@ -355,7 +395,8 @@ namespace LearnHub.AppCode.dao
                 while (dr.Read())
                 {
                     toReturn = new User();
-                    toReturn.setUserID((string)dr["userID"]);
+                    string userID = ((string)dr["userID"]);
+                    toReturn.setUserID(userID);
                     toReturn.setName((string)dr["name"]);
                     toReturn.setJobTitle((string)dr["job_title"]);
                     toReturn.setJobCategory((string)dr["job_category"]);
@@ -367,7 +408,8 @@ namespace LearnHub.AppCode.dao
                     {
                         toReturn.setSupervisor("NA");
                     }
-                    toReturn.setRole((string)dr["role"]);
+                    ArrayList roles = getRolesByID(userID);
+                    toReturn.setRoles(roles);
                     toReturn.setDepartment((string)dr["dept_name"]);
                     toReturn.setEmail((string)dr["email"]);
                     toReturn.setStartDate(dr.GetDateTime(3));
@@ -404,7 +446,9 @@ namespace LearnHub.AppCode.dao
                 {
                     u = new User();
                     u = new User();
-                    u.setUserID((string)dr["userID"]);
+                    string userID = ((string)dr["userID"]);
+                    u.setUserID(userID);
+                    //u.setUserID((string)dr["userID"]);
                     u.setName((string)dr["name"]);
                     u.setJobTitle((string)dr["job_title"]);
                     u.setJobCategory((string)dr["job_category"]);
@@ -416,7 +460,8 @@ namespace LearnHub.AppCode.dao
                     {
                         u.setSupervisor("NA");
                     }
-                    u.setRole((string)dr["role"]);
+                    ArrayList roles = getRolesByID(userID);
+                    u.setRoles(roles);
                     u.setDepartment((string)dr["dept_name"]);
                     u.setEmail((string)dr["email"]);
                     u.setStartDate(dr.GetDateTime(3));
