@@ -319,16 +319,20 @@
                             QuizResultDAO qrDAO = new QuizResultDAO();
                             QuizQuestionDAO qqDAO = new QuizQuestionDAO();
                             List<Quiz> allQuizzes = quizDAO.getAllQuizByCourseID(courseID);
-                            foreach (Quiz q in allQuizzes) {
+                            if (currentUser != null)
+                            {
+                                foreach (Quiz q in allQuizzes)
+                                {
                         %>
                         <div class="panel panel-primary">
                             <div class="panel-heading">
                                 <h3 class="panel-title">
                                     <% 
-                                        Response.Write(q.getTitle());
-                                        Course_elearnDAO ceDAO = new Course_elearnDAO();
-                                        User courseCreator = ceDAO.get_course_by_id(courseID).getCourseCreator();
-                                        if (currentUser != null && (currentUser.getUserID() == courseCreator.getUserID() || superuser)) { 
+                                    Response.Write(q.getTitle());
+                                    Course_elearnDAO ceDAO = new Course_elearnDAO();
+                                    User courseCreator = ceDAO.get_course_by_id(courseID).getCourseCreator();
+                                    if (currentUser != null && (currentUser.getUserID() == courseCreator.getUserID() || superuser))
+                                    {
                                     %>
                                     <a href="editQuiz.aspx?id=<%=q.getQuizID()%>" class="label label-default pull-right"><span class="glyphicon glyphicon-pencil"></span></a>
                                     <% } %>
@@ -338,12 +342,29 @@
                                 <% Response.Write(q.getDescription()); %>
                                 <br />
                                 <br />
+                                <%
+                                    if (q.getMultipleAttempts().Equals("n"))
+                                    {
+                                        int numOfAttempts = qrDAO.getNumberOfAttempts(currentUser.getUserID(), q.getQuizID());
+                                        if (numOfAttempts < q.getNumberOfAttempts())
+                                        {
+                                            %>
+                                            <div class="pull-right">
+                                                <a href="quiz.aspx?id=<%=q.getQuizID()%>" class="btn btn-success btn-sm">Attempt Quiz</a>&nbsp; 
+                                            </div>
+                                             <br />
+                                <%
+                                        }
+                                    }
+                                    else
+                                    {
+                                %>
                                 <div class="pull-right">
                                     <a href="quiz.aspx?id=<%=q.getQuizID()%>" class="btn btn-success btn-sm">Attempt Quiz</a>&nbsp; 
                                 </div>
                                 <br />
                                 
-                                <%
+                                <%}
                                     List<QuizResult> allAttempts = qrDAO.getQuizResultAttemptsByQuizIDandUserID(q.getQuizID(), currentUser.getUserID());
                                     if (allAttempts.Count > 0)
                                     {
@@ -357,8 +378,29 @@
                                         foreach (QuizResult qr in allAttempts)
                                         {
                                             List<QuizQuestion> allQuestions = qqDAO.getAllQuizQuestionByQuizID(qr.getQuiz().getQuizID());
+                                            string displayAnswer = q.getDisplayAnswer();
                                             Response.Write("<tr>");
-                                            Response.Write($"<td><a href=\"viewResults.aspx?id={qr.getQuizResultID()}\">Attempt {qr.getAttempt()}</a></td>");
+                                            if (displayAnswer.Equals("always"))
+                                            {
+                                                Response.Write($"<td><a href=\"viewResults.aspx?id={qr.getQuizResultID()}\">Attempt {qr.getAttempt()}</a></td>");
+                                            }
+                                            else if (displayAnswer.Equals("never"))
+                                            {
+                                                //TO CHANGE REDIRECT LINK
+                                                Response.Write($"<td><a href=\"viewResults.aspx?id={qr.getQuizResultID()}\">Attempt {qr.getAttempt()}</a></td>");
+                                            }
+                                            else
+                                            {
+                                                Boolean checkIfUserPassQuiz = qrDAO.checkIfUserPassQuiz(currentUser.getUserID(), q.getQuizID());
+                                                if (checkIfUserPassQuiz)
+                                                {
+                                                    Response.Write($"<td><a href=\"viewResults.aspx?id={qr.getQuizResultID()}\">Attempt {qr.getAttempt()}</a></td>");
+                                                }
+                                                else
+                                                {
+                                                    Response.Write($"<td><a href=\"viewMyResult.aspx?id={qr.getQuizResultID()}\">Attempt {qr.getAttempt()}</a></td>");
+                                                }
+                                            }
                                             Response.Write($"<td>{qr.getDateSubmitted().ToString("dd/MM/yyyy")}</td>");
                                             Response.Write($"<td>{qr.getScore()}/{allQuestions.Count}</td>");
                                             Response.Write("</tr>");
@@ -369,7 +411,12 @@
                             </div>
                         </div>
                         <%
-                        }
+                                }
+                            }
+                            else
+                            {
+                                Response.Write("Please login to attempt quiz.");
+                            }
                         %>
                     </div>
                 </div>

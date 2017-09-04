@@ -58,9 +58,23 @@
                             </div>
                         </div>
                         <br />
+                        <b>Description:</b>
+                        <br />
                         <asp:Label ID="lblQuizDesc" runat="server" Text="" />
                         <br />
-                        Instruction: Please select start to begin the quiz. Timer will begin when "Start Quiz" is pressed. Please do not leave the page until completion of quiz. All the best!
+                        <b>Passing requirements:</b>
+                        <br />
+                        <asp:Label ID="lblPassingReq" runat="server" Text="" />
+                        <br />
+                        <br />
+                        <b>Instruction:</b>
+                        <br />
+                        Please select start to begin the quiz. Timer will begin when "Start Quiz" is pressed. Please do not leave the page until completion of quiz. All the best!
+                        <br />
+                        <br />
+                        <b>Maximum attempt:</b>
+                        <br />
+                        <asp:Label ID="lblMaxAttempt" runat="server" Text="" />
                         <br />
                         <br />
                         <div class="wrapper">

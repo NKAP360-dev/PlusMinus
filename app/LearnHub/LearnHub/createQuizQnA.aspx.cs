@@ -198,6 +198,17 @@ namespace LearnHub
             {
                 newQuiz.setRandomOrder("n");
             }
+            newQuiz.setTimeLimit(Convert.ToInt32(txtTimeLimit.Text));
+            if (rdlAttempt.SelectedValue.Equals("y"))
+            {
+                newQuiz.setMultipleAttempts("y");
+            }
+            else
+            {
+                newQuiz.setMultipleAttempts("n");
+            }
+            newQuiz.setNumberOfAttempts(Convert.ToInt32(txtNoOfAttempt.Text));
+            newQuiz.setDisplayAnswer(ddlDisplayAnswer.SelectedValue);
 
             int quizID = quizDAO.createQuiz(newQuiz);
 

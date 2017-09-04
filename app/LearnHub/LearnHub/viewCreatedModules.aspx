@@ -67,7 +67,20 @@
         <h1>Manage Courses</h1>
                  <%
                  User currentUser = (User)Session["currentUser"];
-                 if (currentUser != null && (currentUser.getRole().Equals("course creator") || currentUser.getRole().Equals("superuser")))
+                 Boolean superuser = false;
+                 Boolean course_creator = false;
+                 foreach (string s in currentUser.getRoles())
+                 {
+                    if (s.Equals("superuser"))
+                    {
+                        superuser = true;
+                    }
+                    else if (s.Equals("course creator"))
+                    {
+                        course_creator = true;
+                    }
+                 }
+                 if (currentUser != null && (course_creator || superuser))
                  {
              %>
         

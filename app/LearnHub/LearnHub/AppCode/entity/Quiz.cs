@@ -14,9 +14,13 @@ namespace LearnHub.AppCode.entity
         private int passingGrade;
         private string status;
         private string randomOrder;
+        private int timeLimit;
+        private string multipleAttempts;
+        private int numberOfAttempts;
+        private string displayAnswer;
 
         public Quiz() { }
-        public Quiz (int quizID, Course_elearn mainCourse, string title, string description, int passingGrade, string status, string randomOrder)
+        public Quiz(int quizID, Course_elearn mainCourse, string title, string description, int passingGrade, string status, string randomOrder)
         {
             this.quizID = quizID;
             this.mainCourse = mainCourse;
@@ -81,6 +85,38 @@ namespace LearnHub.AppCode.entity
         public void setRandomOrder(string randomOrder)
         {
             this.randomOrder = randomOrder;
+        }
+        public int getTimeLimit()
+        {
+            return timeLimit;
+        }
+        public void setTimeLimit(int timeLimit)
+        {
+            this.timeLimit = timeLimit;
+        }
+        public string getMultipleAttempts()
+        {
+            return multipleAttempts;
+        }
+        public void setMultipleAttempts(string multipleAttempts)
+        {
+            this.multipleAttempts = multipleAttempts;
+        }
+        public int getNumberOfAttempts()
+        {
+            return numberOfAttempts;
+        }
+        public void setNumberOfAttempts(int numberOfAttempts)
+        {
+            this.numberOfAttempts = numberOfAttempts;
+        }
+        public string getDisplayAnswer()
+        {
+            return displayAnswer;
+        }
+        public void setDisplayAnswer(string displayAnswer)
+        {
+            this.displayAnswer = displayAnswer;
         }
     }
 }

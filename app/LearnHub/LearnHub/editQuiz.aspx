@@ -73,7 +73,15 @@
             int id_num = int.Parse(id_str);
             Quiz currentQuiz = quizDAO.getQuizByID(id_num);
             User courseCreator = currentQuiz.getMainCourse().getCourseCreator();
-            if (currentUser != null && (currentUser.getUserID() == courseCreator.getUserID() || currentUser.getRole().Equals("superuser")))
+            Boolean superuser = false;
+                foreach (string s in currentUser.getRoles())
+                {
+                    if (s.Equals("superuser"))
+                    {
+                        superuser = true;
+                    }
+                }
+            if (currentUser != null && (currentUser.getUserID() == courseCreator.getUserID() || superuser))
             {
         %>
         <div class="dropdown" style="float: right;">

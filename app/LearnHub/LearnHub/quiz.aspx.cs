@@ -47,6 +47,18 @@ namespace LearnHub
                         lblQnNum.Text = "1";
                         lblTotalQn.Text = allQuestions.Count.ToString();
                         lblTotalNumQn.Text = allQuestions.Count.ToString();
+                        lblPassingReq.Text = currentQuiz.getPassingGrade().ToString() + "/" + allQuestions.Count.ToString();
+                        string multipleAttempt = currentQuiz.getMultipleAttempts();
+                        if (multipleAttempt.Equals("n"))
+                        {
+                            int attempts = currentQuiz.getNumberOfAttempts();
+                            lblMaxAttempt.Text = attempts + " times";
+                        }
+                        else
+                        {
+                            lblMaxAttempt.Text = "No limit";
+                        }
+                        
                         if (currentQuiz.getRandomOrder().Equals("y"))
                         {
                             //Random rand = new Random();
@@ -87,7 +99,12 @@ namespace LearnHub
 
             panelQuiz.Visible = true;
             panelStartQuiz.Visible = false;
-            btnFinish.Visible = false;
+
+            if (remainingQuestions.Count == 1)
+            {
+                btnFinish.Visible = true;
+                btnNext.Visible = false;
+            }
 
         }
         protected Boolean checkIfCompletedAllPrerequisite(string userID, int quizID)
@@ -176,11 +193,13 @@ namespace LearnHub
             int quizID = Convert.ToInt32(Request.QueryString["id"]);
             User currentUser = (User)Session["currentUser"];
             //handle current question and answer
+            QuizDAO quizDAO = new QuizDAO();
             QuizResultDAO qrDAO = new QuizResultDAO();
             QuizResultHistory currentAnswer = new QuizResultHistory();
             QuizResultHistoryDAO qrhDAO = new QuizResultHistoryDAO();
             QuizQuestionDAO qqDAO = new QuizQuestionDAO();
             QuizQuestion currentQuestion = (QuizQuestion)Session["previousQuestion"];
+            Quiz currentQuiz = quizDAO.getQuizByID(quizID);
             QuizAnswer currentSelectedAnswer = new QuizAnswer(Convert.ToInt32(rblAnswers.SelectedValue), currentQuestion, rblAnswers.SelectedItem.Text);
             int attempt = qrhDAO.getAttemptForQuiz(currentQuestion.getQuizQuestionID());
             attempt++;
@@ -211,7 +230,28 @@ namespace LearnHub
 
             //insert QuizResult
             int quizResultID = qrDAO.createQuizResult(currentUser.getUserID(), quizID, userScore, grade, currentDate, attempt);
-            Response.Redirect("viewResults.aspx?id=" + quizResultID);
+
+            string displayAnswer = currentQuiz.getDisplayAnswer();
+            if (displayAnswer.Equals("always"))
+            {
+                Response.Redirect("viewResults.aspx?id=" + quizResultID);
+            }
+            else if (displayAnswer.Equals("never"))
+            {
+                //Response.Redirect("viewResults.aspx?id=" + quizResultID);
+                Response.Redirect("Home.aspx");
+            }
+            else
+            {
+                if (grade.Equals("pass"))
+                {
+                    Response.Redirect("viewResults.aspx?id=" + quizResultID);
+                }
+                else
+                {
+                    Response.Redirect("viewMyResult.aspx?id=" + quizResultID);
+                }
+            }
         }
         protected int calculateScore(List<QuizResultHistory> userAnswers)
         {

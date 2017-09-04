@@ -35,6 +35,10 @@ namespace LearnHub.AppCode.dao
                     toReturn.setPassingGrade((int)dr["passingGrade"]);
                     toReturn.setRandomOrder((string)dr["randomOrder"]);
                     toReturn.setStatus((string)dr["status"]);
+                    toReturn.setTimeLimit((int)dr["timeLimit"]);
+                    toReturn.setMultipleAttempts((string)dr["multipleAttempts"]);
+                    toReturn.setNumberOfAttempts((int)dr["numberOfAttempts"]);
+                    toReturn.setDisplayAnswer((string)dr["displayAnswer"]);
                     Course_elearnDAO ceDAO = new Course_elearnDAO();
                     //toReturn.setMainCourse(ceDAO.get_course_by_id((int)dr["elearn_courseID"]));
 
@@ -94,13 +98,17 @@ namespace LearnHub.AppCode.dao
                 conn.Open();
                 SqlCommand comm = new SqlCommand();
                 comm.Connection = conn;
-                comm.CommandText = "Insert into [Quiz] (elearn_courseID, title, description, passingGrade, randomOrder, status) OUTPUT INSERTED.quizID VALUES (@elearn_courseID, @title, @description, @passingGrade, @randomOrder, @status)";
+                comm.CommandText = "Insert into [Quiz] (elearn_courseID, title, description, passingGrade, randomOrder, status, timeLimit, multipleAttempts, numberOfAttempts, displayAnswer) OUTPUT INSERTED.quizID VALUES (@elearn_courseID, @title, @description, @passingGrade, @randomOrder, @status, @timeLimit, @multipleAttempts, @numberOfAttempts, @displayAnswer)";
                 comm.Parameters.AddWithValue("@elearn_courseID", q.getMainCourse().getCourseID());
                 comm.Parameters.AddWithValue("@title", q.getTitle());
                 comm.Parameters.AddWithValue("@description", q.getDescription());
                 comm.Parameters.AddWithValue("@passingGrade", q.getPassingGrade());
                 comm.Parameters.AddWithValue("@randomOrder", q.getRandomOrder());
                 comm.Parameters.AddWithValue("@status", q.getStatus());
+                comm.Parameters.AddWithValue("@timeLimit", q.getTimeLimit());
+                comm.Parameters.AddWithValue("@multipleAttempts", q.getMultipleAttempts());
+                comm.Parameters.AddWithValue("@numberOfAttempts", q.getNumberOfAttempts());
+                comm.Parameters.AddWithValue("@displayAnswer", q.getDisplayAnswer());
                 toReturn = (Int32)comm.ExecuteScalar();
             }
             catch (SqlException ex)
@@ -142,6 +150,10 @@ namespace LearnHub.AppCode.dao
                     toReturn.setStatus((string)dr["status"]);
                     Course_elearnDAO ceDAO = new Course_elearnDAO();
                     toReturn.setMainCourse(ceDAO.get_course_by_id((int)dr["elearn_courseID"]));
+                    toReturn.setTimeLimit((int)dr["timeLimit"]);
+                    toReturn.setMultipleAttempts((string)dr["multipleAttempts"]);
+                    toReturn.setNumberOfAttempts((int)dr["numberOfAttempts"]);
+                    toReturn.setDisplayAnswer((string)dr["displayAnswer"]);
                     toReturn_list.Add(toReturn);
                 }
                 dr.Close();
@@ -243,6 +255,10 @@ namespace LearnHub.AppCode.dao
                     q.setStatus((string)dr["status"]);
                     Course_elearnDAO ceDAO = new Course_elearnDAO();
                     q.setMainCourse(ceDAO.get_course_by_id((int)dr["elearn_courseID"]));
+                    q.setTimeLimit((int)dr["timeLimit"]);
+                    q.setMultipleAttempts((string)dr["multipleAttempts"]);
+                    q.setNumberOfAttempts((int)dr["numberOfAttempts"]);
+                    q.setDisplayAnswer((string)dr["displayAnswer"]);
 
                     toReturn.Add(q);
                 }
@@ -258,7 +274,7 @@ namespace LearnHub.AppCode.dao
             }
             return toReturn;
         }
-        public void updateQuiz(int quizID, string title, string description, int passingGrade, string randomOrder) // Update.
+        public void updateQuiz(int quizID, string title, string description, int passingGrade, string randomOrder, int timeLimit, string multipleAttempts, int numberOfAttempts, string displayAnswer) // Update.
         {
             SqlConnection conn = new SqlConnection();
 
@@ -271,11 +287,15 @@ namespace LearnHub.AppCode.dao
                 SqlCommand comm = new SqlCommand();
                 comm.Connection = conn;
                 comm.CommandText =
-                    "Update [Quiz] SET title=@title, description=@description, passingGrade=@passingGrade, randomOrder=@randomOrder where quizID=@quizID";
+                    "Update [Quiz] SET title=@title, description=@description, passingGrade=@passingGrade, randomOrder=@randomOrder, timeLimit=@timeLimit, multipleAttempts=@multipleAttempts, numberOfAttempts=@numberOfAttempts, displayAnswer=@displayAnswer where quizID=@quizID";
                 comm.Parameters.AddWithValue("@title", title);
                 comm.Parameters.AddWithValue("@description", description);
                 comm.Parameters.AddWithValue("@passingGrade", passingGrade);
                 comm.Parameters.AddWithValue("@randomOrder", randomOrder);
+                comm.Parameters.AddWithValue("@timeLimit", timeLimit);
+                comm.Parameters.AddWithValue("@multipleAttempts", multipleAttempts);
+                comm.Parameters.AddWithValue("@numberOfAttempts", numberOfAttempts);
+                comm.Parameters.AddWithValue("@displayAnswer", displayAnswer);
                 comm.Parameters.AddWithValue("@quizID", quizID);
                 int rowsAffected = comm.ExecuteNonQuery();
             }
@@ -365,6 +385,10 @@ namespace LearnHub.AppCode.dao
                     q.setStatus((string)dr["status"]);
                     Course_elearnDAO ceDAO = new Course_elearnDAO();
                     q.setMainCourse(ceDAO.get_course_by_id((int)dr["elearn_courseID"]));
+                    q.setTimeLimit((int)dr["timeLimit"]);
+                    q.setMultipleAttempts((string)dr["multipleAttempts"]);
+                    q.setNumberOfAttempts((int)dr["numberOfAttempts"]);
+                    q.setDisplayAnswer((string)dr["displayAnswer"]);
 
                     toReturn.Add(q);
                 }

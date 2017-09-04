@@ -257,7 +257,15 @@
                     User currentUser = (User)Session["currentUser"];
                     Course_elearnDAO ceDAO = new Course_elearnDAO();
                     User courseCreator = ceDAO.get_course_by_id(courseID).getCourseCreator();
-                    if (currentUser != null && (currentUser.getUserID() == courseCreator.getUserID() || currentUser.getRole().Equals("superuser")))
+                    Boolean superuser = false;
+                    foreach (string s in currentUser.getRoles())
+                    {
+                        if (s.Equals("superuser"))
+                        {
+                            superuser = true;
+                        }
+                    }
+                    if (currentUser != null && (currentUser.getUserID() == courseCreator.getUserID() || superuser))
                     {
              %>    
          <div class="dropdown" style="float: right;">

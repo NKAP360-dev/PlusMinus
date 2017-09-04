@@ -53,7 +53,15 @@
                  User currentUser = (User)Session["currentUser"];
                  Course_elearnDAO ceDAO = new Course_elearnDAO();
                  User courseCreator = ceDAO.get_course_by_id(courseID).getCourseCreator();
-                 if (currentUser != null && (currentUser.getUserID() == courseCreator.getUserID() || currentUser.getRole().Equals("superuser")))
+                 Boolean superuser = false;
+                foreach (string s in currentUser.getRoles())
+                {
+                    if (s.Equals("superuser"))
+                    {
+                        superuser = true;
+                    }
+                }
+                 if (currentUser != null && (currentUser.getUserID() == courseCreator.getUserID() || superuser))
                  {
              %>
 
@@ -147,12 +155,9 @@
                         </div>
                         <br />
                          <div class="form-group required">
-                             <label class="col-lg-3 control-label">Randomize answers order</label>
+                             <label class="col-lg-3 control-label">Time Limit</label>
                             <div class="col-lg-7">
-                                <asp:DropDownList ID="ddlRandomizeAns" runat="server" CssClass="form-control">
-                                    <asp:ListItem Value="y">Randomize</asp:ListItem>
-                                    <asp:ListItem Value="n">In Order</asp:ListItem>
-                                </asp:DropDownList>
+                                <asp:TextBox ID="txtTimeLimit" runat="server" CssClass="form-control" placeholder="Time Limit in seconds" TextMode="Number"></asp:TextBox>
                             </div>
                         </div>
                          <div class="form-group required">
@@ -162,17 +167,17 @@
                                     <asp:ListItem Value="y">&nbsp;Unlimited</asp:ListItem>
                                     <asp:ListItem Value="n">&nbsp;Limited</asp:ListItem>
                                 </asp:RadioButtonList>
-                                <asp:TextBox ID="txtNoOfAttempt" runat="server" CssClass="form-control" placeholder="If limited, Number of Attempts"></asp:TextBox>
+                                <asp:TextBox ID="txtNoOfAttempt" runat="server" CssClass="form-control" placeholder="If limited, Number of Attempts" TextMode="Number"></asp:TextBox>
                             </div>
                         </div>
                         <br />
                          <div class="form-group required">
                              <label class="col-lg-3 control-label">Display Quiz Answers</label>
                             <div class="col-lg-7">
-                                <asp:DropDownList ID="DropDownList1" runat="server" CssClass="form-control">
-                                    <asp:ListItem Value="1">Always</asp:ListItem>
-                                    <asp:ListItem Value="2">After Passing Quiz</asp:ListItem>
-                                    <asp:ListItem Value="3">Never</asp:ListItem>
+                                <asp:DropDownList ID="ddlDisplayAnswer" runat="server" CssClass="form-control">
+                                    <asp:ListItem Value="always">Always</asp:ListItem>
+                                    <asp:ListItem Value="afterpass">After Passing Quiz</asp:ListItem>
+                                    <asp:ListItem Value="never">Never</asp:ListItem>
                                 </asp:DropDownList>
                             </div>
                         </div>

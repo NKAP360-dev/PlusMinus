@@ -166,13 +166,13 @@ namespace LearnHub {
         protected global::System.Web.UI.WebControls.DropDownList ddlRandomize;
         
         /// <summary>
-        /// ddlRandomizeAns control.
+        /// txtTimeLimit control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlRandomizeAns;
+        protected global::System.Web.UI.WebControls.TextBox txtTimeLimit;
         
         /// <summary>
         /// rdlAttempt control.
@@ -193,13 +193,13 @@ namespace LearnHub {
         protected global::System.Web.UI.WebControls.TextBox txtNoOfAttempt;
         
         /// <summary>
-        /// DropDownList1 control.
+        /// ddlDisplayAnswer control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DropDownList1;
+        protected global::System.Web.UI.WebControls.DropDownList ddlDisplayAnswer;
         
         /// <summary>
         /// btnConfirmSubmit control.

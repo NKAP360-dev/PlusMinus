@@ -203,5 +203,68 @@ namespace LearnHub.AppCode.dao
             }
             return toReturn;
         }
+        public Boolean checkIfUserPassQuiz(String userID, int quizID)
+        {
+            Boolean toReturn = false;
+            SqlConnection conn = new SqlConnection();
+            try
+            {
+                conn = new SqlConnection();
+                string connstr = ConfigurationManager.ConnectionStrings["DBConnectionString"].ToString();
+                conn.ConnectionString = connstr;
+                conn.Open();
+                SqlCommand comm = new SqlCommand();
+                comm.Connection = conn;
+                comm.CommandText = "select * from [QuizResult] where userID=@userID and quizID=@quizID and grade='pass'";
+                comm.Parameters.AddWithValue("@userID", userID);
+                comm.Parameters.AddWithValue("@quizID", quizID);
+                SqlDataReader dr = comm.ExecuteReader();
+                if (dr == null || !dr.HasRows)
+                {
+                    toReturn = false;
+                }
+                else
+                {
+                    toReturn = true;
+                }
+                dr.Close();
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                conn.Close();
+            }
+            return toReturn;
+        }
+        public int getNumberOfAttempts(string userID, int quizID)
+        {
+            SqlConnection conn = new SqlConnection();
+            int toReturn = -1;
+            try
+            {
+                conn = new SqlConnection();
+                string connstr = ConfigurationManager.ConnectionStrings["DBConnectionString"].ToString();
+                conn.ConnectionString = connstr;
+                conn.Open();
+                SqlCommand comm = new SqlCommand();
+                comm.Connection = conn;
+                comm.CommandText = "select count(*) from [QuizResult] where userID=@userID and quizID=@quizID";
+                comm.Parameters.AddWithValue("@userID", userID);
+                comm.Parameters.AddWithValue("@quizID", quizID);
+                toReturn = (Int32)comm.ExecuteScalar();
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                conn.Close();
+            }
+            return toReturn;
+        }
     }
 }

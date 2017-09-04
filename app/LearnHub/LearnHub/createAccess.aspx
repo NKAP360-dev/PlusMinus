@@ -25,7 +25,15 @@
         <h1>Create Users</h1>
         <% 
             User currentUser = (User)Session["currentUser"];
-            if (currentUser != null && currentUser.getRole().Equals("superuser"))
+            Boolean superuser = false;
+                foreach (string s in currentUser.getRoles())
+                {
+                    if (s.Equals("superuser"))
+                    {
+                        superuser = true;
+                    }
+                }
+            if (currentUser != null && superuser)
             {
         %>
 

@@ -249,7 +249,8 @@ namespace LearnHub
             {
                 randomOrder = "n";
             }
-            quizDAO.updateQuiz(id, txtQuizTitle.Text, txtQuizDesc.Text, Convert.ToInt32(txtNumCorrectAns.Text), randomOrder);
+            //TO UNCOMMENT THE BELOW LINE FOR EDIT
+            //quizDAO.updateQuiz(id, txtQuizTitle.Text, txtQuizDesc.Text, Convert.ToInt32(txtNumCorrectAns.Text), randomOrder);
 
             //update prerequisites
 

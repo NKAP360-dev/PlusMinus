@@ -70,7 +70,7 @@
     </ul>
 
     <div class="container">
-        <h1>Manage Quizzes
+        <h1>Manage Quizzes</h1>
               <% 
                   User currentUser = (User)Session["currentUser"];
                   Course_elearnDAO ceDAO = new Course_elearnDAO();
@@ -89,7 +89,7 @@
                   {
               %>
             <a href="createQuiz.aspx?id=<%=courseID%>" class="btn btn-success">Add New Quiz</a>
-        </h1>
+        
          <div class="dropdown" style="float: right;">
                 <button class="dropbtn" onclick="return false;"><span class="glyphicon glyphicon-option-horizontal"></span></button>
                 <div class="dropdown-content" style="right: 0;">

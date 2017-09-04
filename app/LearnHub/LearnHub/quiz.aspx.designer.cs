@@ -85,6 +85,24 @@ namespace LearnHub {
         protected global::System.Web.UI.WebControls.Label lblQuizDesc;
         
         /// <summary>
+        /// lblPassingReq control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblPassingReq;
+        
+        /// <summary>
+        /// lblMaxAttempt control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblMaxAttempt;
+        
+        /// <summary>
         /// btnStartQuiz control.
         /// </summary>
         /// <remarks>
