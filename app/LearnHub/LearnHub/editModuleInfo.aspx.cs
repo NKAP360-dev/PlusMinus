@@ -97,6 +97,7 @@ namespace LearnHub
                         SqlDataSourcePrereqCart.SelectCommand = sqlQuery;
                         gvPrereqCart.DataSource = SqlDataSourcePrereqCart;
                         gvPrereqCart.DataBind();
+                        Session["currentMod"] = nameOfModuleInput.Text;
                     }
                 }
             }
@@ -283,6 +284,38 @@ namespace LearnHub
                 }
             }
             return toReturn;
+        }
+
+        protected void validateNameExists(Object source, EventArgs args)
+        {
+            System.Diagnostics.Debug.WriteLine("VALIDATENAMEEXISTS");
+            String input = nameOfModuleInput.Text;
+            Course_elearnDAO course_elearnDAO = new Course_elearnDAO();
+            if (course_elearnDAO.checkModuleNameExists(input))
+            {
+                if ((String)Session["currentMod"] == input)
+                {
+                    System.Diagnostics.Debug.WriteLine("modulenamedoesnotexist");
+                    //lbl_nameValidate.Visible = false;
+                    lbl_nameValidate.Attributes.Add("style", "display:none");
+                    lbl_nameValidate.Text = "";
+                }
+                else
+                {
+                    System.Diagnostics.Debug.WriteLine("modulenameexists");
+                    //lbl_nameValidate.Visible = true;
+                    lbl_nameValidate.Attributes.Add("style", "display:unset");
+                    lbl_nameValidate.Text = "This module already exists! Please input another Name.";
+                }
+
+            }
+            else
+            {
+                System.Diagnostics.Debug.WriteLine("modulenamedoesnotexist");
+                //lbl_nameValidate.Visible = false;
+                lbl_nameValidate.Attributes.Add("style", "display:none");
+                lbl_nameValidate.Text = "";
+            }
         }
     }
 }

@@ -185,8 +185,19 @@
                 console.log("The end");
             }
             else {
-                document.getElementById('<%= lblErrorMsgFinal.ClientID %>').innerHTML = "";
-                document.getElementById('<%= cfmSubmit.ClientID %>').disabled = false;
+                if (document.getElementById('<%= lbl_nameValidate.ClientID %>').innerHTML == "") {
+                    console.log("no error");
+                    document.getElementById('<%= lblErrorMsgFinal.ClientID %>').innerHTML = "";
+                    document.getElementById('<%= cfmSubmit.ClientID %>').disabled = false;
+                }
+                else {
+                    console.log(" error");
+                    document.getElementById('<%= lblErrorMsgFinal.ClientID %>').style.display = 'inherit';
+                    document.getElementById('<%= lblErrorMsgFinal.ClientID %>').innerHTML = "You have not filled up all of the required fields";
+                    //Page_ClientValidate('summaryGroup');
+                    document.getElementById('<%= cfmSubmit.ClientID %>').disabled = true;
+                }
+
             }
             return false;
         }
@@ -282,6 +293,7 @@
                             <asp:ListItem Text="Classroom Learning"></asp:ListItem>
                              <asp:ListItem Text="Online Learning"></asp:ListItem>
                         </asp:DropDownList>
+                        <asp:RequiredFieldValidator ID="rfv_ddlCourseType" runat="server" ControlToValidate="ddlCourseType" ErrorMessage="Please select a Course Type" InitialValue="0" ForeColor="Red" ValidationGroup="ValidateForm" EnableClientScript="True"></asp:RequiredFieldValidator>
                     </div>
                 </div>
                 <br />
@@ -289,8 +301,9 @@
                     <strong>
                         <asp:Label ID="nameOfModuleLabel" runat="server" CssClass="col-lg-2 control-label" Text="Name of Course"></asp:Label></strong>
                     <div class="col-lg-5">
-                        <asp:TextBox ID="nameOfModuleInput" runat="server" CssClass="form-control" placeholder="Course Name"></asp:TextBox>
+                        <asp:TextBox ID="nameOfModuleInput" runat="server" CssClass="form-control" placeholder="Course Name" AutoPostBack="True" OnTextChanged="validateNameExists"></asp:TextBox>
                         <asp:RequiredFieldValidator ID="rfv_nameOfModuleInput" runat="server" ErrorMessage="Please enter a Course Name" ControlToValidate="nameOfModuleInput" ForeColor="Red" ValidationGroup="ValidateForm"></asp:RequiredFieldValidator>
+                        <asp:Label ID="lbl_nameValidate" runat="server" Text="" ForeColor="Red"></asp:Label>
                     </div>
                 </div>
 

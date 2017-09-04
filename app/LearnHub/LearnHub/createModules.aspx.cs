@@ -82,56 +82,64 @@ namespace LearnHub
         }
         protected void submitBtn_Click(object sender, EventArgs e)
         {
-            Course_elearnDAO cdao = new Course_elearnDAO();
-            //int id_int = Convert.ToInt32(id.Text);
-            Boolean check = true;
-            User user = (User)Session["currentUser"];
-            Course_elearn c = null;
-            string type = Request.QueryString["type"];
-
-            string fromDate = fromDateInput.Text.Substring(3, 2) + "/" + fromDateInput.Text.Substring(0, 2) + "/" + fromDateInput.Text.Substring(6, 4);
-            string toDate = toDateInput.Text.Substring(3, 2) + "/" + toDateInput.Text.Substring(0, 2) + "/" + toDateInput.Text.Substring(6, 4);
-
-            if (check && moduleType.Text != "") // if no expiry date
+            Page.Validate("ValidateForm");
+            if (!Page.IsValid)
             {
-                c = new Course_elearn(nameOfModuleInput.Text, user.getDepartment(), DateTime.Now,
-                    DateTime.ParseExact(fromDate, "MM/dd/yyyy", CultureInfo.InvariantCulture), DateTime.ParseExact(toDate, "MM/dd/yyyy", CultureInfo.InvariantCulture), "Open", descriptionModuleInput.Text, Convert.ToInt32(moduleType.SelectedValue), user, Convert.ToDouble(hoursInput.Text), txtTargetAudience.Text);
+
             }
-
-            //check pre req here 
-            //pull pre req from model, check the course object here before creating the entry in the database
-            /*List<int> allSelectedID = new List<int>();
-            int counter = 0;
-            foreach (GridViewRow row in gvPrereq.Rows)
+            else
             {
-                CheckBox chkRow = (row.Cells[0].FindControl("chkboxPrereq") as CheckBox);
-                if (chkRow.Checked)
+                Course_elearnDAO cdao = new Course_elearnDAO();
+                //int id_int = Convert.ToInt32(id.Text);
+                Boolean check = true;
+                User user = (User)Session["currentUser"];
+                Course_elearn c = null;
+                string type = Request.QueryString["type"];
+
+                string fromDate = fromDateInput.Text.Substring(3, 2) + "/" + fromDateInput.Text.Substring(0, 2) + "/" + fromDateInput.Text.Substring(6, 4);
+                string toDate = toDateInput.Text.Substring(3, 2) + "/" + toDateInput.Text.Substring(0, 2) + "/" + toDateInput.Text.Substring(6, 4);
+
+                if (check && moduleType.Text != "") // if no expiry date
                 {
-                    int prereqID = Convert.ToInt32(gvPrereq.DataKeys[counter].Value.ToString());
-                    allSelectedID.Add(prereqID);
+                    c = new Course_elearn(nameOfModuleInput.Text, user.getDepartment(), DateTime.Now,
+                        DateTime.ParseExact(fromDate, "MM/dd/yyyy", CultureInfo.InvariantCulture), DateTime.ParseExact(toDate, "MM/dd/yyyy", CultureInfo.InvariantCulture), "Open", descriptionModuleInput.Text, Convert.ToInt32(moduleType.SelectedValue), user, Convert.ToDouble(hoursInput.Text), txtTargetAudience.Text);
                 }
-                counter++;
-            }*/
 
-            //create the course object 
-            //now insert into database by calling DAO
+                //check pre req here 
+                //pull pre req from model, check the course object here before creating the entry in the database
+                /*List<int> allSelectedID = new List<int>();
+                int counter = 0;
+                foreach (GridViewRow row in gvPrereq.Rows)
+                {
+                    CheckBox chkRow = (row.Cells[0].FindControl("chkboxPrereq") as CheckBox);
+                    if (chkRow.Checked)
+                    {
+                        int prereqID = Convert.ToInt32(gvPrereq.DataKeys[counter].Value.ToString());
+                        allSelectedID.Add(prereqID);
+                    }
+                    counter++;
+                }*/
 
-            Course_elearnDAO cDao = new Course_elearnDAO();
-            Course_elearn res = cDao.create_elearnCourse(c);
-            Course_elearn course_with_id = cDao.get_course_by_name(res);
-            List<int> prereqIDlist = (List<int>)Session["selectedPrereq"];
-            int id = course_with_id.getCourseID();
+                //create the course object 
+                //now insert into database by calling DAO
 
-            foreach (int prereqID in prereqIDlist)
-            {
-                cDao.insertPrerequisite(id, prereqID);
+                Course_elearnDAO cDao = new Course_elearnDAO();
+                Course_elearn res = cDao.create_elearnCourse(c);
+                Course_elearn course_with_id = cDao.get_course_by_name(res);
+                List<int> prereqIDlist = (List<int>)Session["selectedPrereq"];
+                int id = course_with_id.getCourseID();
+
+                foreach (int prereqID in prereqIDlist)
+                {
+                    cDao.insertPrerequisite(id, prereqID);
+                }
+
+                //create dir
+                string file = "~/Data/";
+                string add = Server.MapPath(file) + id;
+                Directory.CreateDirectory(add);
+                Response.Redirect("viewModuleInfo.aspx?id=" + id);
             }
-
-            //create dir
-            string file = "~/Data/";
-            string add = Server.MapPath(file) + id;
-            Directory.CreateDirectory(add);
-            Response.Redirect("viewModuleInfo.aspx?id=" + id);
         }
 
         protected void gvPrereq_RowCommand(object sender, GridViewCommandEventArgs e)
@@ -244,24 +252,25 @@ namespace LearnHub
             }
             return toReturn;
         }
-        [System.Web.Services.WebMethod]
-        public static Boolean validateNameExists(String input)
+        protected void validateNameExists(Object source, EventArgs args)
         {
 
             System.Diagnostics.Debug.WriteLine("VALIDATENAMEEXISTS");
-            //String input = nameOfModuleInput.Text;
+            String input = nameOfModuleInput.Text;
             Course_elearnDAO course_elearnDAO = new Course_elearnDAO();
             if (course_elearnDAO.checkModuleNameExists(input))
             {
                 System.Diagnostics.Debug.WriteLine("modulenameexists");
-                //args.IsValid = false;
-                return false;
+                //lbl_nameValidate.Visible = true;
+                lbl_nameValidate.Attributes.Add("style", "display:unset");
+                lbl_nameValidate.Text = "This module already exists! Please input another Name.";
             }
             else
             {
                 System.Diagnostics.Debug.WriteLine("modulenamedoesnotexist");
-                //args.IsValid = true;
-                return true;
+                //lbl_nameValidate.Visible = false;
+                lbl_nameValidate.Attributes.Add("style", "display:none");
+                lbl_nameValidate.Text = "";
             }
         }
     }
