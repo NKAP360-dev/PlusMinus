@@ -11,6 +11,179 @@ namespace LearnHub.AppCode.dao
 {
     public class UserDAO
     {
+        public Boolean update_user(User u, string password, string salt, ArrayList roles)
+        {
+            SqlConnection conn = new SqlConnection();
+            Boolean toReturn = false;
+            try
+            {
+                conn = new SqlConnection();
+                string connstr = ConfigurationManager.ConnectionStrings["DBConnectionString"].ToString();
+                conn.ConnectionString = connstr;
+                conn.Open();
+                SqlCommand comm = new SqlCommand();
+                comm.Connection = conn;
+                comm.CommandText = "update [User] set userID=@userID, name=@name , password=@password, " +
+                    "start_Date=@date, job_category=@category, job_title=@job_title, supervisor='S1234567C', role='user', dept_name=@dept_name, " +
+                    "contactNumber=@contact, address=@add, salt=@salt, email=@email where userID=@userID1";
+                comm.Parameters.AddWithValue("@userID", u.getUserID());
+                comm.Parameters.AddWithValue("@name", u.getName());
+                comm.Parameters.AddWithValue("@password", password);
+                comm.Parameters.AddWithValue("@date", u.getStartDate());
+                comm.Parameters.AddWithValue("@category", u.getJobCategory());
+                comm.Parameters.AddWithValue("@job_title", u.getJobTitle());
+                comm.Parameters.AddWithValue("@supervisor", u.getSupervisor());
+                comm.Parameters.AddWithValue("@dept_name", u.getDepartment());
+                comm.Parameters.AddWithValue("@contact", u.getContact());
+                comm.Parameters.AddWithValue("@add", u.getAddress());
+                comm.Parameters.AddWithValue("@salt", salt);
+                comm.Parameters.AddWithValue("@email", u.getEmail());
+                comm.Parameters.AddWithValue("@userID1", u.getUserID());
+                int rowsAffected = comm.ExecuteNonQuery();
+                //need new method to create pre-requisities here to store in seperate table (pre-req table)
+                add_role(u, roles);
+                toReturn = true;
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                conn.Close();
+            }
+            return toReturn;
+        }
+        public Boolean delete_user(User u)
+        {
+            SqlConnection conn = new SqlConnection();
+            Boolean toReturn = false;
+            try
+            {
+                conn = new SqlConnection();
+                string connstr = ConfigurationManager.ConnectionStrings["DBConnectionString"].ToString();
+                conn.ConnectionString = connstr;
+                conn.Open();
+                SqlCommand comm = new SqlCommand();
+                comm.Connection = conn;
+                comm.CommandText = "delete from [User] where userID=@userID";
+                comm.Parameters.AddWithValue("@userID", u.getUserID());
+                int rowsAffected = comm.ExecuteNonQuery();
+                //need new method to create pre-requisities here to store in seperate table (pre-req table)
+                toReturn = true;
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                conn.Close();
+            }
+            return toReturn;
+        }
+        public Boolean delete_roles_of_user(User u)
+        {
+            SqlConnection conn = new SqlConnection();
+            Boolean toReturn = false;
+            try
+            {
+                conn = new SqlConnection();
+                string connstr = ConfigurationManager.ConnectionStrings["DBConnectionString"].ToString();
+                conn.ConnectionString = connstr;
+                conn.Open();
+                SqlCommand comm = new SqlCommand();
+                comm.Connection = conn;
+                comm.CommandText = "delete from [User_roles] where userID=@userID";
+                comm.Parameters.AddWithValue("@userID", u.getUserID());
+                int rowsAffected = comm.ExecuteNonQuery();
+                //need new method to create pre-requisities here to store in seperate table (pre-req table)
+                toReturn = true;
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                conn.Close();
+            }
+            return toReturn;
+        }
+        public Boolean add_role(User u, ArrayList arr)
+        {
+            SqlConnection conn = new SqlConnection();
+            Boolean toReturn = false;
+            foreach(string s in arr)
+            {
+                try
+                {
+                    conn = new SqlConnection();
+                    string connstr = ConfigurationManager.ConnectionStrings["DBConnectionString"].ToString();
+                    conn.ConnectionString = connstr;
+                    conn.Open();
+                    SqlCommand comm = new SqlCommand();
+                    comm.Connection = conn;
+                    comm.CommandText = "INSERT INTO [User_roles] (userID, role) VALUES(@userID, @role)";
+                    comm.Parameters.AddWithValue("@userID", u.getUserID());
+                    comm.Parameters.AddWithValue("@role", s);
+                    int rowsAffected = comm.ExecuteNonQuery();
+                    //need new method to create pre-requisities here to store in seperate table (pre-req table)
+                    toReturn = true;
+                }
+                catch (SqlException ex)
+                {
+                    throw ex;
+                }
+                finally
+                {
+                    conn.Close();
+                }
+            }
+            return toReturn;
+        }
+        public Boolean create_user_elearn(User u, string password, string salt)
+        {
+            SqlConnection conn = new SqlConnection();
+            Boolean toReturn = false;
+            try
+            {
+                conn = new SqlConnection();
+                string connstr = ConfigurationManager.ConnectionStrings["DBConnectionString"].ToString();
+                conn.ConnectionString = connstr;
+                conn.Open();
+                SqlCommand comm = new SqlCommand();
+                comm.Connection = conn;
+                comm.CommandText = "INSERT INTO [User] (userID, name , password, start_Date, job_category, job_title," +
+                                    "supervisor, role, dept_name, contactNumber, address, salt, email)" +
+                                    "VALUES(@userID, @name, @password, @start_date, @job_category, @job_title, @supervisor, 'user', @dept, @contact, @address, @salt, @email)";
+                comm.Parameters.AddWithValue("@userID", u.getUserID());
+                comm.Parameters.AddWithValue("@name", u.getName());
+                comm.Parameters.AddWithValue("@password", password);
+                comm.Parameters.AddWithValue("@start_date", u.getStartDate());
+                comm.Parameters.AddWithValue("@job_category", u.getJobCategory());
+                comm.Parameters.AddWithValue("@job_title", u.getJobTitle());
+                comm.Parameters.AddWithValue("@supervisor", u.getSupervisor());
+                comm.Parameters.AddWithValue("@dept", u.getDepartment());
+                comm.Parameters.AddWithValue("@contact", u.getContact());
+                comm.Parameters.AddWithValue("@address", u.getAddress());
+                comm.Parameters.AddWithValue("@salt", salt);
+                comm.Parameters.AddWithValue("@email", u.getEmail());
+                int rowsAffected = comm.ExecuteNonQuery();
+                //need new method to create pre-requisities here to store in seperate table (pre-req table)
+                toReturn = true;
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                conn.Close();
+            }
+            return toReturn;
+        }
+
         public Boolean updatePassword(string password, User user)
         {
             SqlConnection conn = new SqlConnection();

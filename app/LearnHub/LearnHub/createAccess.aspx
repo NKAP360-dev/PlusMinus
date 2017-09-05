@@ -127,9 +127,9 @@
                     <asp:Label runat="server" CssClass="col-lg-2 control-label" Text="Roles"></asp:Label></strong>
                 <div class="col-lg-5">
                     <asp:CheckBoxList ID="cblRoles" runat="server">
-                        <asp:ListItem>Course Creator</asp:ListItem>
-                        <asp:ListItem>Superuser</asp:ListItem>
-                        <asp:ListItem>blahblah</asp:ListItem>
+                        <asp:ListItem>course Creator</asp:ListItem>
+                        <asp:ListItem>superuser</asp:ListItem>
+                        <asp:ListItem>user</asp:ListItem>
                     </asp:CheckBoxList>
                 </div>
             </div>
@@ -155,7 +155,7 @@
                                     <h4>Are you sure you want to submit?</h4>
                                     <br />
                                     <br />
-                                    <asp:Button ID="btnCfmSubmit" CssClass="btn btn-primary" runat="server" Text="Submit" />
+                                    <asp:Button ID="btnCfmSubmit" CssClass="btn btn-primary" runat="server" Text="Submit"  OnClick = "submit_Click"  />
                                     <asp:Button ID="Button2" CssClass="btn btn-default" runat="server" class="close" data-dismiss="modal" Text="Go Back" />
                                     <br />
                                 </div>

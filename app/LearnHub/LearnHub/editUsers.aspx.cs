@@ -4,6 +4,10 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using LearnHub.AppCode.dao;
+using LearnHub.AppCode.entity;
+using System.Collections;
+using System.Web.Helpers;
 
 namespace LearnHub
 {
@@ -11,7 +15,64 @@ namespace LearnHub
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (Session["currentUser"] == null)
+            {
+                Response.Redirect("Login.aspx");
+            }
         }
-    }
+        protected void submit_Click(object sender, EventArgs e)
+        {
+            if (Session["currentUser"] == null)
+            {
+                Response.Redirect("Login.aspx");
+            }
+            else
+            {
+                User u = (User)Session["currentUser"];
+                //delete current entry and re-enter new details. 
+                //delete from [User_roles] where userID
+                UserDAO udao = new UserDAO();
+
+                //delete from [User] where userID='eugene'
+
+                //now create user again
+                string user = txtUsername.Text;
+
+                User getThis = udao.getUserByID(user);
+                //need some fields like job category, who is the supervisor, job startdate
+                //hash password here first 
+                Boolean ans_roles = udao.delete_roles_of_user(getThis);
+                if (!ans_roles)
+                {
+                    Response.Redirect("editUsers.aspx");
+                }
+                //create user object to parse into new_entry method
+                string pass = txtPassword.Text;
+                string name = txtName.Text;
+                string contact = txtContactNo.Text;
+                string address = txtAddress.Text;
+                string email = txtEmail.Text;
+                string dept = txtDept.Text;
+                string jobtitle = txtJobTitle.Text;
+                ArrayList roles = new ArrayList();
+                foreach (ListItem item in cblRoles.Items)
+                {
+                    if (item.Selected)
+                        roles.Add(item.Value);
+                }
+                string salt = Crypto.GenerateSalt();// generate salt of user
+                string password_hashed = Crypto.SHA256(salt + pass);
+                User create = new User(user, name, jobtitle, "Staff", "S1234567C", roles, dept, email, DateTime.Now, address, contact);
+                Boolean done = udao.update_user(create, password_hashed, salt, roles);
+                if (done)
+                {
+                    Response.Redirect("home.aspx");
+                }
+                else
+                {
+                    Response.Redirect("editUsers.aspx");
+                }
+            }
+        }
+    }   
 }
