@@ -154,7 +154,7 @@
                                 <div class="wrapper">
                                     <h4>Are you sure you want to submit?</h4>
                                     <br />
-                                    <br />
+                                    
                                     <asp:Button ID="btnCfmSubmit" CssClass="btn btn-primary" runat="server" Text="Submit"  OnClick = "submit_Click"  />
                                     <asp:Button ID="Button2" CssClass="btn btn-default" runat="server" class="close" data-dismiss="modal" Text="Go Back" />
                                     <br />

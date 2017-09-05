@@ -111,7 +111,7 @@
                     <td><%=u.getDepartment() %></td>
                     <td><%=u.getContact() %></td>
                     <td><%=u.getEmail() %></td>
-                    <td width="10%"><a href="editUsers.aspx?userID=<%=u.getUserID() %>" class="btn btn-info btn-sm"><span class="glyphicon glyphicon-pencil"></span></a></td>
+                    <td width="10%"><a href="editUsers.aspx?userID=<%=u.getUserID() %>" class="btn btn-info btn-sm pull-right"><span class="glyphicon glyphicon-pencil"></span></a></td>
                 </tr>
                 <%} %>
             </tbody>

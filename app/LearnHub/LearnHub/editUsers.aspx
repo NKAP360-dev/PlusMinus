@@ -137,7 +137,10 @@
                 <div class="wrapper">
                     <br />
                         <asp:Button ID="btnSubmit" CssClass="btn btn-primary" runat="server" Text="Save" data-toggle="modal" href="#submitModal" OnClientClick="return false" UseSubmitBehavior="False" />
-                </div>
+                        <asp:Button ID="btnDeactivate" CssClass="btn btn-warning" runat="server" Text="Deactivate" data-toggle="modal" href="#deactivateModal" OnClientClick="return false" UseSubmitBehavior="False" />
+                        <asp:Button ID="btnActivate" CssClass="btn btn-success" runat="server" Text="Activate" data-toggle="modal" href="#activateModal" OnClientClick="return false" UseSubmitBehavior="False" />
+
+                    </div>
             </div>
                 </fieldset>
 
@@ -154,9 +157,57 @@
                                 <div class="wrapper">
                                     <h4>Are you sure you want to submit?</h4>
                                     <br />
-                                    <br />
+                                    
                                     <asp:Button ID="btnCfmSubmit" CssClass="btn btn-primary" runat="server" Text="Submit" OnClick ="submit_Click" />
                                     <asp:Button ID="Button2" CssClass="btn btn-default" runat="server" class="close" data-dismiss="modal" Text="Go Back" />
+                                    <br />
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+             <%--Modal for Deactivation Confirmation--%>
+                <div id="deactivateModal" class="modal fade" role="dialog">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title"><b>Deactivate user </b></h4>
+                            </div>
+                            <%--Modal Content--%>
+                            <div class="modal-body">
+                                <div class="wrapper">
+                                    <h4>Are you sure you want to deactivate this user? <br /><br />They will not be able to access their accounts until it is re-activated.</h4>
+                                    <br />
+                                    
+                                    <asp:Button ID="btnCfmDeactivate" CssClass="btn btn-warning" runat="server" Text="Deactivate"/>
+                                    <asp:Button ID="Button3" CssClass="btn btn-default" runat="server" class="close" data-dismiss="modal" Text="Go Back" />
+                                    <br />
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            <%--Modal for Activation Confirmation--%>
+                <div id="activateModal" class="modal fade" role="dialog">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title"><b>Activate user </b></h4>
+                            </div>
+                            <%--Modal Content--%>
+                            <div class="modal-body">
+                                <div class="wrapper">
+                                    <h4>Are you sure you want to activate this user?</h4>
+                                    <br />
+                                    
+                                    <asp:Button ID="btnCfmActivate" CssClass="btn btn-success" runat="server" Text="Activate"/>
+                                    <asp:Button ID="Button5" CssClass="btn btn-default" runat="server" class="close" data-dismiss="modal" Text="Go Back" />
                                     <br />
                                 </div>
                             </div>
