@@ -181,8 +181,36 @@
                             <asp:ListItem>In Order</asp:ListItem>
                         </asp:DropDownList>
                     </div>
-
                 </div>
+                <br />
+                <div class="form-group required">
+                             <label class="col-lg-2 control-label">Time Limit (seconds)</label>
+                            <div class="col-lg-5">
+                                <asp:TextBox ID="txtTimeLimit" runat="server" CssClass="form-control" placeholder="Time Limit in Seconds" TextMode="Number" min="0"></asp:TextBox>
+                            </div>
+                        </div>
+                        <br/>
+                         <div class="form-group required">
+                             <label class="col-lg-2 control-label">Allow Multiple Quiz Attempts</label>
+                            <div class="col-lg-5">
+                                <asp:RadioButtonList ID="rdlAttempt" runat="server">
+                                    <asp:ListItem Value="y">&nbsp;Unlimited</asp:ListItem>
+                                    <asp:ListItem Value="n">&nbsp;Limited</asp:ListItem>
+                                </asp:RadioButtonList>
+                                <asp:TextBox ID="txtNoOfAttempt" runat="server" CssClass="form-control" placeholder="If Limited, Number of Attempts" TextMode="Number" min="0"></asp:TextBox>
+                            </div>
+                        </div>
+                        <br />
+                         <div class="form-group required">
+                             <label class="col-lg-2 control-label">Display Quiz Answers</label>
+                            <div class="col-lg-5">
+                                <asp:DropDownList ID="ddlDisplayAnswer" runat="server" CssClass="form-control">
+                                    <asp:ListItem Value="always">Always</asp:ListItem>
+                                    <asp:ListItem Value="afterpass">After Passing Quiz</asp:ListItem>
+                                    <asp:ListItem Value="never">Never</asp:ListItem>
+                                </asp:DropDownList>
+                            </div>
+                        </div>
             </fieldset>
             <br /><br />
             <div class="wrapper">

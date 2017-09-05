@@ -155,11 +155,12 @@
                         </div>
                         <br />
                          <div class="form-group required">
-                             <label class="col-lg-3 control-label">Time Limit</label>
+                             <label class="col-lg-3 control-label">Time Limit (seconds)</label>
                             <div class="col-lg-7">
-                                <asp:TextBox ID="txtTimeLimit" runat="server" CssClass="form-control" placeholder="Time Limit in seconds" TextMode="Number"></asp:TextBox>
+                                <asp:TextBox ID="txtTimeLimit" runat="server" CssClass="form-control" placeholder="Time Limit in Seconds" TextMode="Number" min="0"></asp:TextBox>
                             </div>
                         </div>
+                        <br/>
                          <div class="form-group required">
                              <label class="col-lg-3 control-label">Allow Multiple Quiz Attempts</label>
                             <div class="col-lg-7">
@@ -167,7 +168,7 @@
                                     <asp:ListItem Value="y">&nbsp;Unlimited</asp:ListItem>
                                     <asp:ListItem Value="n">&nbsp;Limited</asp:ListItem>
                                 </asp:RadioButtonList>
-                                <asp:TextBox ID="txtNoOfAttempt" runat="server" CssClass="form-control" placeholder="If limited, Number of Attempts" TextMode="Number"></asp:TextBox>
+                                <asp:TextBox ID="txtNoOfAttempt" runat="server" CssClass="form-control" placeholder="If Limited, Number of Attempts" TextMode="Number" min="0"></asp:TextBox>
                             </div>
                         </div>
                         <br />

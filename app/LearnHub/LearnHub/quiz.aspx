@@ -48,7 +48,7 @@
                             <div class="row">
 
                                 <h3>Time left: 
-                                     <asp:Label ID="lblTimerDisplay" runat="server" Text="" ></asp:Label>
+                                     <asp:Label ID="lblTimerDisplay" runat="server" Text=""></asp:Label>
                                 </h3>
 
                                 <h4>Total Number of Questions: 
@@ -78,7 +78,7 @@
                         <br />
                         <br />
                         <div class="wrapper">
-                            <asp:LinkButton ID="btnStartQuiz" runat="server" OnClick="btnStartQuiz_Click" CssClass="btn btn-lg btn-primary"><span class="glyphicon glyphicon-chevron-right"></span> &nbsp;Start Quiz</asp:LinkButton>
+                            <asp:LinkButton ID="btnStartQuiz" runat="server" OnClick="btnStartQuiz_Click" CssClass="btn btn-lg btn-primary"><span class="glyphicon glyphicon-menu-right"></span> &nbsp;Start Quiz</asp:LinkButton>
 
                         </div>
 
@@ -89,7 +89,7 @@
                             <div class="row">
 
                                 <h3>Time left: 
-                                    <asp:Label ID="lblTimer" runat="server" Text="" ></asp:Label>
+                                    <asp:Label ID="lblTimer" runat="server" Text=""></asp:Label>
                                     <asp:Timer ID="Timer1" runat="server" Interval="1000" OnTick="Timer1_Tick"></asp:Timer>
                                 </h3>
 
@@ -125,6 +125,29 @@
 
                         </div>
 
+                    </asp:Panel>
+                    <%--****NEW PANEL****--%>
+                    <asp:Panel ID="panelTimesUp" runat="server" Visible="false">
+                        <div class="wrapper">
+                            <h3>Time left: 
+                                     <asp:Label ID="lblTimesUp" runat="server" Text="00:00:00" ForeColor="red"></asp:Label>
+                            </h3>
+                            <br />
+                            <h1>Quiz has ended!</h1>
+                            <br />
+                            <br />
+                            <br />
+                            <%--If unlimited attempts or still have attempts left, show button and Visible=True for panelStartQuiz--%>
+                            <asp:LinkButton ID="btnRestartQuiz" runat="server" CssClass="btn btn-lg btn-primary">Re-attempt Quiz</asp:LinkButton><br />
+                            <br />
+                            <asp:LinkButton ID="btnViewResults" runat="server" CssClass="pull-right">View Results&nbsp;<span class="glyphicon glyphicon-menu-right"></span></asp:LinkButton>
+                            <% QuizDAO qDAO = new QuizDAO();
+                                int quizID = Convert.ToInt32(Request.QueryString["id"]);
+                                Quiz q = qDAO.getQuizByID(quizID);
+                                int courseID = q.getMainCourse().getCourseID();%>
+                            <a href="viewModuleInfo.aspx?id=<%=courseID%>" class="pull-left"><span class="glyphicon glyphicon-menu-left"></span>&nbsp;Back to Course</a>
+
+                        </div>
                     </asp:Panel>
                 </ContentTemplate>
                 <Triggers>

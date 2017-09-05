@@ -53,74 +53,88 @@
                 <strong>Quiz Score:</strong>&nbsp; 
                 <asp:Label ID="lblScore" runat="server" CssClass="label label-default" Font-Size="Large" Text="" />
             </div>
-            <br />
-            <br />
-            <br />
-            <table class="table">
-                <tbody>
-                    <%
-                        User currentUser = (User)Session["currentUser"];
-                        QuizResultDAO qrDAO = new QuizResultDAO();
-                        QuizDAO quizDAO = new QuizDAO();
-                        QuizQuestionDAO qqDAO = new QuizQuestionDAO();
-                        QuizAnswerDAO qaDAO = new QuizAnswerDAO();
-                        QuizResultHistoryDAO qrhDAO = new QuizResultHistoryDAO();
-                        int quizResultID = Convert.ToInt32(Request.QueryString["id"]);
-                        QuizResult currentQuizResult = qrDAO.getQuizResultByID(quizResultID);
-                        Quiz currentQuiz = currentQuizResult.getQuiz();
-                        List<QuizQuestion> allQuestions = qqDAO.getAllQuizQuestionByQuizID(currentQuiz.getQuizID());
-                        int counter = 1;
 
-                        foreach(QuizQuestion question in allQuestions)
-                        {
-                            Boolean userCorrect = false;
-                            List<QuizAnswer> allAnswers = qaDAO.getAllQuizAnswersByQuizQuestionID(question.getQuizQuestionID());
+            <asp:Panel ID="panelViewResults" runat="server" Visible="false">
+                <br />
+                <br />
+                <br />
+                <table class="table">
+                    <tbody>
+                        <%
+                            User currentUser = (User)Session["currentUser"];
+                            QuizResultDAO qrDAO = new QuizResultDAO();
+                            QuizDAO quizDAO = new QuizDAO();
+                            QuizQuestionDAO qqDAO = new QuizQuestionDAO();
+                            QuizAnswerDAO qaDAO = new QuizAnswerDAO();
+                            QuizResultHistoryDAO qrhDAO = new QuizResultHistoryDAO();
+                            int quizResultID = Convert.ToInt32(Request.QueryString["id"]);
+                            QuizResult currentQuizResult = qrDAO.getQuizResultByID(quizResultID);
+                            Quiz currentQuiz = currentQuizResult.getQuiz();
+                            List<QuizQuestion> allQuestions = qqDAO.getAllQuizQuestionByQuizID(currentQuiz.getQuizID());
+                            int counter = 1;
 
-                            Response.Write("<tr class=\"active\">");
-                            Response.Write($"<td><strong>Question {counter++} </strong></td></tr>");
-                            Response.Write($"<tr><td>{question.getQuestion()}</td></tr>");
-                            Response.Write("<tr><td><asp:RadioButtonList ID=\"rblAnswers\" runat=\"server\">");
-                            foreach (QuizAnswer possibleAnswer in allAnswers)
+                            foreach (QuizQuestion question in allQuestions)
                             {
-                                int userAnswerID = qrhDAO.getAllQuizAnswerIDByQuizIDandAttemptandQuestionIDandUserID(currentQuizResult.getAttempt(), currentQuiz.getQuizID(), question.getQuizQuestionID(), currentUser.getUserID());
-                                Response.Write("<tr><td><label style=\"color: ");
-                                if (possibleAnswer.getAnswer().Equals(question.getQuizAnswer().getAnswer()))
+                                Boolean userCorrect = false;
+                                List<QuizAnswer> allAnswers = qaDAO.getAllQuizAnswersByQuizQuestionID(question.getQuizQuestionID());
+
+                                Response.Write("<tr class=\"active\">");
+                                Response.Write($"<td><strong>Question {counter++} </strong></td></tr>");
+                                Response.Write($"<tr><td>{question.getQuestion()}</td></tr>");
+                                Response.Write("<tr><td><asp:RadioButtonList ID=\"rblAnswers\" runat=\"server\">");
+                                foreach (QuizAnswer possibleAnswer in allAnswers)
                                 {
-                                    Response.Write($"lightseagreen\"><input type=\"radio\" name=\"answers{counter}\"");
-                                    
+                                    int userAnswerID = qrhDAO.getAllQuizAnswerIDByQuizIDandAttemptandQuestionIDandUserID(currentQuizResult.getAttempt(), currentQuiz.getQuizID(), question.getQuizQuestionID(), currentUser.getUserID());
+                                    Response.Write("<tr><td><label style=\"color: ");
+                                    if (possibleAnswer.getAnswer().Equals(question.getQuizAnswer().getAnswer()))
+                                    {
+                                        Response.Write($"lightseagreen\"><input type=\"radio\" name=\"answers{counter}\"");
+
+                                        if (possibleAnswer.getQuizAnswerID() == userAnswerID)
+                                        {
+                                            userCorrect = true;
+                                        }
+                                    }
+                                    else
+                                    {
+                                        Response.Write($"tomato\"><input type=\"radio\" name=\"answers{counter}\"");
+                                    }
                                     if (possibleAnswer.getQuizAnswerID() == userAnswerID)
                                     {
-                                        userCorrect = true;
+                                        Response.Write(" checked=\"\" disabled>");
                                     }
+                                    else
+                                    {
+                                        Response.Write("disabled>");
+                                    }
+                                    Response.Write($"{possibleAnswer.getAnswer()}</label>");
+                                }
+                                Response.Write("</td></tr>");
+                                if (userCorrect)
+                                {
+                                    Response.Write("<tr class=\"pull-right\"><td>Score: 1/1</td></tr>");
                                 }
                                 else
                                 {
-                                    Response.Write($"tomato\"><input type=\"radio\" name=\"answers{counter}\"");
+                                    Response.Write("<tr class=\"pull-right\"><td>Score: 0/1</td></tr>");
                                 }
-                                if (possibleAnswer.getQuizAnswerID() == userAnswerID)
-                                {
-                                    Response.Write(" checked=\"\" disabled>");
-                                }
-                                else
-                                {
-                                    Response.Write("disabled>");
-                                }
-                                Response.Write($"{possibleAnswer.getAnswer()}</label>");
                             }
-                            Response.Write("</td></tr>");
-                            if (userCorrect)
-                            {
-                                Response.Write("<tr class=\"pull-right\"><td>Score: 1/1</td></tr>");
-                            }
-                            else
-                            {
-                                Response.Write("<tr class=\"pull-right\"><td>Score: 0/1</td></tr>");
-                            }
-                        }
                         %>
                     </tbody>
                 </table>
-            <br /><br />
+            </asp:Panel>
+            <%--****NEW PANEL****--%>
+            <asp:Panel ID="panelNoResults" runat="server" Visible="true">
+                <br /><br />
+                <div class="alert alert-dismissible alert-warning">
+                    <h4><b>There are no answers available for this quiz.</b></h4>
+                    <p>
+                        <span class="glyphicon glyphicon-info-sign"></span>&nbsp;
+                        Course creator might have disabled viewing of answers for this quiz!
+                    </p>
+                </div>
+
+            </asp:Panel>
         </div>
     </form>
 </asp:Content>
