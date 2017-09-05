@@ -11,6 +11,62 @@ namespace LearnHub.AppCode.dao
 {
     public class UserDAO
     {
+        public Boolean update_status_deactivate(string id)
+        {
+            SqlConnection conn = new SqlConnection();
+            Boolean toReturn = false;
+            try
+            {
+                conn = new SqlConnection();
+                string connstr = ConfigurationManager.ConnectionStrings["DBConnectionString"].ToString();
+                conn.ConnectionString = connstr;
+                conn.Open();
+                SqlCommand comm = new SqlCommand();
+                comm.Connection = conn;
+                comm.CommandText = "update [User] set status='Inactive' where userID=@userID";
+                comm.Parameters.AddWithValue("@userID", id);
+                int rowsAffected = comm.ExecuteNonQuery();
+                //need new method to create pre-requisities here to store in seperate table (pre-req table)
+                toReturn = true;
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                conn.Close();
+            }
+            return toReturn;
+        }
+        public Boolean update_status_activate(string id)
+        {
+            SqlConnection conn = new SqlConnection();
+            Boolean toReturn = false;
+            try
+            {
+                conn = new SqlConnection();
+                string connstr = ConfigurationManager.ConnectionStrings["DBConnectionString"].ToString();
+                conn.ConnectionString = connstr;
+                conn.Open();
+                SqlCommand comm = new SqlCommand();
+                comm.Connection = conn;
+                comm.CommandText = "update [User] set status='Active' where userID=@userID";
+                comm.Parameters.AddWithValue("@userID", id);
+                int rowsAffected = comm.ExecuteNonQuery();
+                //need new method to create pre-requisities here to store in seperate table (pre-req table)
+                toReturn = true;
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                conn.Close();
+            }
+            return toReturn;
+        }
         public Boolean update_user(User u, string password, string salt, ArrayList roles)
         {
             SqlConnection conn = new SqlConnection();
@@ -155,8 +211,8 @@ namespace LearnHub.AppCode.dao
                 SqlCommand comm = new SqlCommand();
                 comm.Connection = conn;
                 comm.CommandText = "INSERT INTO [User] (userID, name , password, start_Date, job_category, job_title," +
-                                    "supervisor, role, dept_name, contactNumber, address, salt, email)" +
-                                    "VALUES(@userID, @name, @password, @start_date, @job_category, @job_title, @supervisor, 'user', @dept, @contact, @address, @salt, @email)";
+                                    "supervisor, role, dept_name, contactNumber, address, salt, email, status)" +
+                                    "VALUES(@userID, @name, @password, @start_date, @job_category, @job_title, @supervisor, 'user', @dept, @contact, @address, @salt, @email, @status)";
                 comm.Parameters.AddWithValue("@userID", u.getUserID());
                 comm.Parameters.AddWithValue("@name", u.getName());
                 comm.Parameters.AddWithValue("@password", password);
@@ -169,6 +225,7 @@ namespace LearnHub.AppCode.dao
                 comm.Parameters.AddWithValue("@address", u.getAddress());
                 comm.Parameters.AddWithValue("@salt", salt);
                 comm.Parameters.AddWithValue("@email", u.getEmail());
+                comm.Parameters.AddWithValue("@status", u.getStatus());
                 int rowsAffected = comm.ExecuteNonQuery();
                 //need new method to create pre-requisities here to store in seperate table (pre-req table)
                 toReturn = true;
@@ -286,6 +343,8 @@ namespace LearnHub.AppCode.dao
                     toReturn.setContact((string)dr["contactNumber"]);
                     toReturn.setAddress((string)dr["address"]);
                     toReturn.setStartDate(dr.GetDateTime(3));
+                    toReturn.setStatus((string)dr["status"]);
+
                 }
                 dr.Close();
             }
@@ -401,7 +460,7 @@ namespace LearnHub.AppCode.dao
                     u.setDepartment((string)dr["dept_name"]);
                     u.setEmail((string)dr["email"]);
                     u.setStartDate(dr.GetDateTime(3));
-
+                    u.setStatus((string)dr["status"]);
                     toReturn.Add(u);
                 }
                 dr.Close();
@@ -452,6 +511,7 @@ namespace LearnHub.AppCode.dao
                     toReturn.setDepartment((string)dr["dept_name"]);
                     toReturn.setEmail((string)dr["email"]);
                     toReturn.setStartDate(dr.GetDateTime(3));
+                    toReturn.setStatus((string)dr["status"]);
                 }
                 dr.Close();
             }

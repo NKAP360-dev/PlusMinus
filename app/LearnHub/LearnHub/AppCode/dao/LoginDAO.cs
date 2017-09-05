@@ -32,32 +32,37 @@ namespace LearnHub.AppCode.dao
                 while (dr.Read())
                 {
                     toReturn = new User();
-                    toReturn.setUserID((string)dr["userID"]);
-                    toReturn.setName((string)dr["name"]);
-                    toReturn.setJobTitle((string)dr["job_title"]);
-                    toReturn.setJobCategory((string)dr["job_category"]);
-                    toReturn.setEmail((string)dr["email"]);
-                    toReturn.setStartDate(dr.GetDateTime(3));
-                    toReturn.setContact((string)dr["contactNumber"]);
-                    toReturn.setAddress((string)dr["address"]);
-                    //toReturn.setPasswordHashed((string)dr["password"]);
-                    if (!dr.IsDBNull(6))
+                    string validation = (string)dr["status"];
+                    if (validation.Equals("Active"))
                     {
-                        toReturn.setSupervisor((string)dr["supervisor"]);
-                    }
-                    else
-                    {
-                        toReturn.setSupervisor("NA");
-                    }
-                    ArrayList roles = uDao.getRolesByID(userID);
-                    toReturn.setRoles(roles);
-                    if (!dr.IsDBNull(8))
-                    {
-                        toReturn.setDepartment((string)dr["dept_name"]);
-                    }
-                    else
-                    {
-                        toReturn.setDepartment("NA");
+                        toReturn.setUserID((string)dr["userID"]);
+                        toReturn.setName((string)dr["name"]);
+                        toReturn.setJobTitle((string)dr["job_title"]);
+                        toReturn.setJobCategory((string)dr["job_category"]);
+                        toReturn.setEmail((string)dr["email"]);
+                        toReturn.setStartDate(dr.GetDateTime(3));
+                        toReturn.setContact((string)dr["contactNumber"]);
+                        toReturn.setAddress((string)dr["address"]);
+                        //toReturn.setPasswordHashed((string)dr["password"]);
+                        if (!dr.IsDBNull(6))
+                        {
+                            toReturn.setSupervisor((string)dr["supervisor"]);
+                        }
+                        else
+                        {
+                            toReturn.setSupervisor("NA");
+                        }
+                        ArrayList roles = uDao.getRolesByID(userID);
+                        toReturn.setRoles(roles);
+                        if (!dr.IsDBNull(8))
+                        {
+                            toReturn.setDepartment((string)dr["dept_name"]);
+                        }
+                        else
+                        {
+                            toReturn.setDepartment("NA");
+                        }
+                        //toReturn.setStatus((string)dr["status"]);
                     }
                 }
                 dr.Close();

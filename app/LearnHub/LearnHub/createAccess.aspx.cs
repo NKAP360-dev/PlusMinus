@@ -39,7 +39,7 @@ namespace LearnHub
             string salt = Crypto.GenerateSalt();// generate salt of user
             string password_hashed = Crypto.SHA256(salt + pass);
             //password hashed now create user 
-            User u = new User(user, name, jobtitle, "Staff", "S1234567C", roles, dept, email, DateTime.Now, address, contact);
+            User u = new User(user, name, jobtitle, "Staff", "S1234567C", roles, dept, email, DateTime.Now, address, contact, "Active");
             UserDAO udao = new UserDAO();
             Boolean res = udao.create_user_elearn(u, password_hashed, salt);
             Boolean res_role = udao.add_role(u, roles);

@@ -13,6 +13,7 @@ namespace LearnHub
 {
     public partial class editUsers : System.Web.UI.Page
     {
+        protected User toChange;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (Session["currentUser"] == null)
@@ -44,7 +45,7 @@ namespace LearnHub
                     {
                         Response.Redirect("errorPage.aspx");
                     }
-                    User toChange = udao.getUserByID(userID);
+                    toChange = udao.getUserByID(userID);
                     ArrayList roles = udao.getRolesByID(userID);
                     txtUsername.Text = toChange.getUserID();
                     txtName.Text = toChange.getName();
@@ -108,16 +109,36 @@ namespace LearnHub
                 }
                 string salt = Crypto.GenerateSalt();// generate salt of user
                 string password_hashed = Crypto.SHA256(salt + pass);
-                User create = new User(user, name, jobtitle, "Staff", "S1234567C", roles, dept, email, DateTime.Now, address, contact);
+                User create = new User(user, name, jobtitle, "Staff", "S1234567C", roles, dept, email, DateTime.Now, address, contact, getThis.getStatus());
                 Boolean done = udao.update_user(create, password_hashed, salt, roles);
                 if (done)
                 {
-                    Response.Redirect("home.aspx");
+                    Response.Redirect("manageUsers.aspx");
                 }
                 else
                 {
                     Response.Redirect("editUsers.aspx");
                 }
+            }
+        }
+        protected void deactivate_Click(object sender, EventArgs e)
+        {
+            UserDAO udao = new UserDAO();
+            string userID = Request.QueryString["userID"];
+            Boolean suc = udao.update_status_deactivate(userID);
+            if (suc)
+            {
+                Response.Redirect("editUsers.aspx?userID=" + userID);
+            }
+        }
+        protected void activate_Click(object sender, EventArgs e)
+        {
+            UserDAO udao = new UserDAO();
+            string userID = Request.QueryString["userID"];
+            Boolean suc = udao.update_status_activate(userID);
+            if (suc)
+            {
+                Response.Redirect("editUsers.aspx?userID=" + userID);
             }
         }
     }   

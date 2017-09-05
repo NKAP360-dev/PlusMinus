@@ -19,6 +19,7 @@ namespace LearnHub.AppCode.entity
         private DateTime start_Date;
         private string add;
         private string contact;
+        private string status;
         //private string hashedpassword;
 
         public User()
@@ -26,7 +27,7 @@ namespace LearnHub.AppCode.entity
 
         }
         public User(string uid, string name, string jobTitle, string jobCategory, string supervisor, ArrayList roles, string department, string email, DateTime start_Date
-            , string add, string contact)
+            , string add, string contact, string status)
         {
             this.uid = uid;
             this.name = name;
@@ -39,7 +40,15 @@ namespace LearnHub.AppCode.entity
             this.start_Date = start_Date;
             this.add = add;
             this.contact = contact;
-            //this.hashedpassword = hashedpassword;
+            this.status = status;
+        }
+        public string getStatus()
+        {
+            return status;
+        }
+        public void setStatus(string status)
+        {
+            this.status = status;
         }
         public string getContact()
         {

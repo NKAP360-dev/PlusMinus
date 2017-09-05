@@ -137,9 +137,11 @@
                 <div class="wrapper">
                     <br />
                         <asp:Button ID="btnSubmit" CssClass="btn btn-primary" runat="server" Text="Save" data-toggle="modal" href="#submitModal" OnClientClick="return false" UseSubmitBehavior="False" />
+                        <%if (toChange.getStatus().Equals("Active")) { %>
                         <asp:Button ID="btnDeactivate" CssClass="btn btn-warning" runat="server" Text="Deactivate" data-toggle="modal" href="#deactivateModal" OnClientClick="return false" UseSubmitBehavior="False" />
+                        <%} else { %>
                         <asp:Button ID="btnActivate" CssClass="btn btn-success" runat="server" Text="Activate" data-toggle="modal" href="#activateModal" OnClientClick="return false" UseSubmitBehavior="False" />
-
+                        <%} %>
                     </div>
             </div>
                 </fieldset>
@@ -167,7 +169,7 @@
 
                     </div>
                 </div>
-
+            
              <%--Modal for Deactivation Confirmation--%>
                 <div id="deactivateModal" class="modal fade" role="dialog">
                     <div class="modal-dialog">
@@ -182,7 +184,7 @@
                                     <h4>Are you sure you want to deactivate this user? <br /><br />They will not be able to access their accounts until it is re-activated.</h4>
                                     <br />
                                     
-                                    <asp:Button ID="btnCfmDeactivate" CssClass="btn btn-warning" runat="server" Text="Deactivate"/>
+                                    <asp:Button ID="btnCfmDeactivate" CssClass="btn btn-warning" runat="server" Text="Deactivate" OnClick="deactivate_Click"/>
                                     <asp:Button ID="Button3" CssClass="btn btn-default" runat="server" class="close" data-dismiss="modal" Text="Go Back" />
                                     <br />
                                 </div>
@@ -191,7 +193,6 @@
 
                     </div>
                 </div>
-
             <%--Modal for Activation Confirmation--%>
                 <div id="activateModal" class="modal fade" role="dialog">
                     <div class="modal-dialog">
@@ -206,7 +207,7 @@
                                     <h4>Are you sure you want to activate this user?</h4>
                                     <br />
                                     
-                                    <asp:Button ID="btnCfmActivate" CssClass="btn btn-success" runat="server" Text="Activate"/>
+                                    <asp:Button ID="btnCfmActivate" CssClass="btn btn-success" runat="server" Text="Activate" OnClick ="activate_Click"/>
                                     <asp:Button ID="Button5" CssClass="btn btn-default" runat="server" class="close" data-dismiss="modal" Text="Go Back" />
                                     <br />
                                 </div>
