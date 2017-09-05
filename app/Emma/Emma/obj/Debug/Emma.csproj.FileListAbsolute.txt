@@ -82,3 +82,45 @@ C:\Users\Eugene Tan\PlusMinus\app\Emma\Emma\bin\zh-hans\Microsoft.Bot.Builder.re
 C:\Users\Eugene Tan\PlusMinus\app\Emma\Emma\obj\Debug\Emma.csprojResolveAssemblyReference.cache
 C:\Users\Eugene Tan\PlusMinus\app\Emma\Emma\obj\Debug\Bot Application.dll
 C:\Users\Eugene Tan\PlusMinus\app\Emma\Emma\obj\Debug\Bot Application.pdb
+\\Mac\Home\Documents\SMU\Year 3.1\FYP\GitHub\PlusMinus\app\Emma\Emma\bin\Bot Application.dll.config
+\\Mac\Home\Documents\SMU\Year 3.1\FYP\GitHub\PlusMinus\app\Emma\Emma\bin\Bot Application.dll
+\\Mac\Home\Documents\SMU\Year 3.1\FYP\GitHub\PlusMinus\app\Emma\Emma\bin\Bot Application.pdb
+\\Mac\Home\Documents\SMU\Year 3.1\FYP\GitHub\PlusMinus\app\Emma\Emma\bin\Autofac.dll
+\\Mac\Home\Documents\SMU\Year 3.1\FYP\GitHub\PlusMinus\app\Emma\Emma\bin\Chronic.dll
+\\Mac\Home\Documents\SMU\Year 3.1\FYP\GitHub\PlusMinus\app\Emma\Emma\bin\Microsoft.Bot.Builder.Autofac.dll
+\\Mac\Home\Documents\SMU\Year 3.1\FYP\GitHub\PlusMinus\app\Emma\Emma\bin\Microsoft.Bot.Builder.dll
+\\Mac\Home\Documents\SMU\Year 3.1\FYP\GitHub\PlusMinus\app\Emma\Emma\bin\Microsoft.Bot.Connector.dll
+\\Mac\Home\Documents\SMU\Year 3.1\FYP\GitHub\PlusMinus\app\Emma\Emma\bin\Microsoft.IdentityModel.Protocol.Extensions.dll
+\\Mac\Home\Documents\SMU\Year 3.1\FYP\GitHub\PlusMinus\app\Emma\Emma\bin\Microsoft.Rest.ClientRuntime.dll
+\\Mac\Home\Documents\SMU\Year 3.1\FYP\GitHub\PlusMinus\app\Emma\Emma\bin\Microsoft.WindowsAzure.Configuration.dll
+\\Mac\Home\Documents\SMU\Year 3.1\FYP\GitHub\PlusMinus\app\Emma\Emma\bin\Newtonsoft.Json.dll
+\\Mac\Home\Documents\SMU\Year 3.1\FYP\GitHub\PlusMinus\app\Emma\Emma\bin\System.IdentityModel.Tokens.Jwt.dll
+\\Mac\Home\Documents\SMU\Year 3.1\FYP\GitHub\PlusMinus\app\Emma\Emma\bin\System.Net.Http.Formatting.dll
+\\Mac\Home\Documents\SMU\Year 3.1\FYP\GitHub\PlusMinus\app\Emma\Emma\bin\System.Web.Http.dll
+\\Mac\Home\Documents\SMU\Year 3.1\FYP\GitHub\PlusMinus\app\Emma\Emma\bin\System.Web.Http.WebHost.dll
+\\Mac\Home\Documents\SMU\Year 3.1\FYP\GitHub\PlusMinus\app\Emma\Emma\bin\Autofac.xml
+\\Mac\Home\Documents\SMU\Year 3.1\FYP\GitHub\PlusMinus\app\Emma\Emma\bin\Microsoft.Bot.Builder.xml
+\\Mac\Home\Documents\SMU\Year 3.1\FYP\GitHub\PlusMinus\app\Emma\Emma\bin\Microsoft.Bot.Builder.Autofac.xml
+\\Mac\Home\Documents\SMU\Year 3.1\FYP\GitHub\PlusMinus\app\Emma\Emma\bin\Microsoft.Bot.Connector.xml
+\\Mac\Home\Documents\SMU\Year 3.1\FYP\GitHub\PlusMinus\app\Emma\Emma\bin\Microsoft.IdentityModel.Protocol.Extensions.xml
+\\Mac\Home\Documents\SMU\Year 3.1\FYP\GitHub\PlusMinus\app\Emma\Emma\bin\Microsoft.WindowsAzure.Configuration.xml
+\\Mac\Home\Documents\SMU\Year 3.1\FYP\GitHub\PlusMinus\app\Emma\Emma\bin\Newtonsoft.Json.xml
+\\Mac\Home\Documents\SMU\Year 3.1\FYP\GitHub\PlusMinus\app\Emma\Emma\bin\System.IdentityModel.Tokens.Jwt.xml
+\\Mac\Home\Documents\SMU\Year 3.1\FYP\GitHub\PlusMinus\app\Emma\Emma\bin\System.Net.Http.Formatting.xml
+\\Mac\Home\Documents\SMU\Year 3.1\FYP\GitHub\PlusMinus\app\Emma\Emma\bin\System.Web.Http.xml
+\\Mac\Home\Documents\SMU\Year 3.1\FYP\GitHub\PlusMinus\app\Emma\Emma\bin\System.Web.Http.WebHost.xml
+\\Mac\Home\Documents\SMU\Year 3.1\FYP\GitHub\PlusMinus\app\Emma\Emma\bin\ar\Microsoft.Bot.Builder.resources.dll
+\\Mac\Home\Documents\SMU\Year 3.1\FYP\GitHub\PlusMinus\app\Emma\Emma\bin\cs\Microsoft.Bot.Builder.resources.dll
+\\Mac\Home\Documents\SMU\Year 3.1\FYP\GitHub\PlusMinus\app\Emma\Emma\bin\de-dE\Microsoft.Bot.Builder.resources.dll
+\\Mac\Home\Documents\SMU\Year 3.1\FYP\GitHub\PlusMinus\app\Emma\Emma\bin\en\Microsoft.Bot.Builder.resources.dll
+\\Mac\Home\Documents\SMU\Year 3.1\FYP\GitHub\PlusMinus\app\Emma\Emma\bin\es\Microsoft.Bot.Builder.resources.dll
+\\Mac\Home\Documents\SMU\Year 3.1\FYP\GitHub\PlusMinus\app\Emma\Emma\bin\fa\Microsoft.Bot.Builder.resources.dll
+\\Mac\Home\Documents\SMU\Year 3.1\FYP\GitHub\PlusMinus\app\Emma\Emma\bin\fr\Microsoft.Bot.Builder.resources.dll
+\\Mac\Home\Documents\SMU\Year 3.1\FYP\GitHub\PlusMinus\app\Emma\Emma\bin\it\Microsoft.Bot.Builder.resources.dll
+\\Mac\Home\Documents\SMU\Year 3.1\FYP\GitHub\PlusMinus\app\Emma\Emma\bin\ja\Microsoft.Bot.Builder.resources.dll
+\\Mac\Home\Documents\SMU\Year 3.1\FYP\GitHub\PlusMinus\app\Emma\Emma\bin\nl\Microsoft.Bot.Builder.resources.dll
+\\Mac\Home\Documents\SMU\Year 3.1\FYP\GitHub\PlusMinus\app\Emma\Emma\bin\ru\Microsoft.Bot.Builder.resources.dll
+\\Mac\Home\Documents\SMU\Year 3.1\FYP\GitHub\PlusMinus\app\Emma\Emma\bin\zh-hans\Microsoft.Bot.Builder.resources.dll
+\\Mac\Home\Documents\SMU\Year 3.1\FYP\GitHub\PlusMinus\app\Emma\Emma\obj\Debug\Emma.csprojResolveAssemblyReference.cache
+\\Mac\Home\Documents\SMU\Year 3.1\FYP\GitHub\PlusMinus\app\Emma\Emma\obj\Debug\Bot Application.dll
+\\Mac\Home\Documents\SMU\Year 3.1\FYP\GitHub\PlusMinus\app\Emma\Emma\obj\Debug\Bot Application.pdb

@@ -901,5 +901,126 @@ namespace Emma.Dialogs
 
             context.Wait(MessageReceived);
         }
+
+        //Start of new intents******
+        [LuisIntent("learning hours enquiry")]
+        public async Task LearningHoursEnquiry(IDialogContext context, LuisResult result)
+        {
+            List<ChatBotAnswer> possibleAns = cbaDAO.getChatBotAnswerByIntent("learning hours enquiry");
+
+            if (possibleAns.Count > 0)
+            {
+                Random rdm = new Random();
+                int r = rdm.Next(possibleAns.Count);
+                await context.PostAsync($"{possibleAns[r].answer}");
+            }
+            else
+            {
+                await context.PostAsync($"I do not have the answer to your questions just yet.");
+            }
+
+
+            context.Wait(MessageReceived);
+        }
+
+        [LuisIntent("change password enquiry")]
+        public async Task ChangePasswordEnquiry(IDialogContext context, LuisResult result)
+        {
+            List<ChatBotAnswer> possibleAns = cbaDAO.getChatBotAnswerByIntent("change password enquiry");
+
+            if (possibleAns.Count > 0)
+            {
+                Random rdm = new Random();
+                int r = rdm.Next(possibleAns.Count);
+                await context.PostAsync($"{possibleAns[r].answer}");
+            }
+            else
+            {
+                await context.PostAsync($"I do not have the answer to your questions just yet.");
+            }
+
+
+            context.Wait(MessageReceived);
+        }
+
+        [LuisIntent("quiz results enquiry")]
+        public async Task QuizResultsEnquiry(IDialogContext context, LuisResult result)
+        {
+            List<ChatBotAnswer> possibleAns = cbaDAO.getChatBotAnswerByIntent("quiz results enquiry");
+
+            if (possibleAns.Count > 0)
+            {
+                Random rdm = new Random();
+                int r = rdm.Next(possibleAns.Count);
+                await context.PostAsync($"{possibleAns[r].answer}");
+            }
+            else
+            {
+                await context.PostAsync($"I do not have the answer to your questions just yet.");
+            }
+
+
+            context.Wait(MessageReceived);
+        }
+
+        [LuisIntent("progress report enquiry")]
+        public async Task ProgressReportEnquiry(IDialogContext context, LuisResult result)
+        {
+            List<ChatBotAnswer> possibleAns = cbaDAO.getChatBotAnswerByIntent("progress report enquiry");
+
+            if (possibleAns.Count > 0)
+            {
+                Random rdm = new Random();
+                int r = rdm.Next(possibleAns.Count);
+                await context.PostAsync($"{possibleAns[r].answer}");
+            }
+            else
+            {
+                await context.PostAsync($"I do not have the answer to your questions just yet.");
+            }
+
+
+            context.Wait(MessageReceived);
+        }
+
+        [LuisIntent("personal information enquiry")]
+        public async Task PersonalInformationEnquiry(IDialogContext context, LuisResult result)
+        {
+            List<ChatBotAnswer> possibleAns = cbaDAO.getChatBotAnswerByIntent("personal information enquiry");
+
+            if (possibleAns.Count > 0)
+            {
+                Random rdm = new Random();
+                int r = rdm.Next(possibleAns.Count);
+                await context.PostAsync($"{possibleAns[r].answer}");
+            }
+            else
+            {
+                await context.PostAsync($"I do not have the answer to your questions just yet.");
+            }
+
+
+            context.Wait(MessageReceived);
+        }
+
+        [LuisIntent("quiz attempt enquiry")]
+        public async Task QuizAttemptEnquiry(IDialogContext context, LuisResult result)
+        {
+            List<ChatBotAnswer> possibleAns = cbaDAO.getChatBotAnswerByIntent("quiz attempt enquiry");
+
+            if (possibleAns.Count > 0)
+            {
+                Random rdm = new Random();
+                int r = rdm.Next(possibleAns.Count);
+                await context.PostAsync($"{possibleAns[r].answer}");
+            }
+            else
+            {
+                await context.PostAsync($"I do not have the answer to your questions just yet.");
+            }
+
+
+            context.Wait(MessageReceived);
+        }
     }
 }
