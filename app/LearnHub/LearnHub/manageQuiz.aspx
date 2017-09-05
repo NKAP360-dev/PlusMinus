@@ -82,7 +82,6 @@
                       if (s.Equals("superuser"))
                       {
                           superuser = true;
-                          return;
                       }
                   }
                   if (currentUser != null && (currentUser.getUserID() == courseCreator.getUserID() || superuser))
@@ -122,7 +121,7 @@
                             Response.Write($"<td>{q.getTitle()}</td>");
                             Response.Write($"<td>{q.getStatus()}</td>");
                             Response.Write($"<td><a href=\"editQuiz.aspx?id={q.getQuizID()}\" class=\"btn btn-info btn-sm\"><span class=\"glyphicon glyphicon-pencil\"></span></a></td>");
-                            Response.Write($"<td><a href=\"overallQuizResult.aspx?id={courseID}\" class=\"btn btn-warning btn-sm\"><span class=\"glyphicon glyphicon-stats\"></span></a></td>");
+                            Response.Write($"<td><a href=\"overallQuizResult.aspx?id={q.getQuizID()}\" class=\"btn btn-warning btn-sm\"><span class=\"glyphicon glyphicon-stats\"></span></a></td>");
                             Response.Write("</tr>");
                         }
                     %>

@@ -40,10 +40,12 @@ namespace LearnHub
                 if (!IsPostBack)
                 {
 
+                    QuizDAO quizDAO = new QuizDAO();
                     Course_elearnDAO cdao = new Course_elearnDAO();
-                    string id_str = Request.QueryString["id"];
-                    int id_num = int.Parse(id_str);
-                    lblBreadcrumbCourseName.Text = cdao.get_course_by_id(id_num).getCourseName();
+                    int quizID = Convert.ToInt32(Request.QueryString["id"]);
+                    Quiz currentQuiz = quizDAO.getQuizByID(quizID);
+                    int courseID = currentQuiz.getMainCourse().getCourseID();
+                    lblBreadcrumbCourseName.Text = cdao.get_course_by_id(courseID).getCourseName();
                 }
             }
         }

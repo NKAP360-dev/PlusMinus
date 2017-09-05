@@ -67,6 +67,15 @@ namespace LearnHub {
         protected global::System.Web.UI.WebControls.Panel panelStartQuiz;
         
         /// <summary>
+        /// lblTimerDisplay control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblTimerDisplay;
+        
+        /// <summary>
         /// lblTotalNumQn control.
         /// </summary>
         /// <remarks>
@@ -119,6 +128,24 @@ namespace LearnHub {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Panel panelQuiz;
+        
+        /// <summary>
+        /// lblTimer control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblTimer;
+        
+        /// <summary>
+        /// Timer1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.Timer Timer1;
         
         /// <summary>
         /// lblQnNum control.

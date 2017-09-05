@@ -67,22 +67,24 @@
             <h1>View Courses</h1>
 
              <%
-                 User currentUser = (User)Session["currentUser"];
-                 Boolean superuser = false;
-                 Boolean course_creator = false;
-                 foreach (string s in currentUser.getRoles())
-                 {
-                    if (s.Equals("superuser"))
-                    {
-                        superuser = true;
-                    }
-                    else if (s.Equals("course creator"))
-                    {
-                        course_creator = true;
-                    }
-                 }
-                 if (currentUser != null && (course_creator || superuser))
-                 {
+    User currentUser = (User)Session["currentUser"];
+    Boolean superuser = false;
+    Boolean course_creator = false;
+    if (currentUser != null)
+    {
+        foreach (string s in currentUser.getRoles())
+        {
+            if (s.Equals("superuser"))
+            {
+                superuser = true;
+            }
+            else if (s.Equals("course creator"))
+            {
+                course_creator = true;
+            }
+        }
+        if (currentUser != null && (course_creator || superuser))
+        {
              %>
             
 
@@ -96,7 +98,8 @@
             </div>
 
             <%
-                }
+        }
+    }
             %>
             <div class="verticalLine"></div>
         </div>

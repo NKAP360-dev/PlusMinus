@@ -50,15 +50,17 @@
                     Course_elearnDAO ceDAO = new Course_elearnDAO();
                     User courseCreator = ceDAO.get_course_by_id(courseID).getCourseCreator();
                     superuser = false;
-                    foreach(string s in currentUser.getRoles())
+                    if (currentUser != null)
                     {
-                        if (s.Equals("superuser"))
+                        foreach (string s in currentUser.getRoles())
                         {
-                            superuser = true;
+                            if (s.Equals("superuser"))
+                            {
+                                superuser = true;
+                            }
                         }
-                    }
-                    if (currentUser != null && (currentUser.getUserID() == courseCreator.getUserID() || superuser))
-                    {
+                        if (currentUser != null && (currentUser.getUserID() == courseCreator.getUserID() || superuser))
+                        {
                 %>
             
            <div class="dropdown" style="float: right;">
@@ -69,7 +71,8 @@
                     <a href="manageQuiz.aspx?id=<%=courseID%>"><span class="glyphicon glyphicon-book"></span>&nbsp;&nbsp;Manage Quizzes</a>
                 </div>
             </div>
-            <%} %>
+            <%}
+    }%>
             <div class="verticalLine"></div>
         </div>
 
@@ -273,7 +276,7 @@
                                     <asp:Label ID="lblUploadTitle" runat="server"><%= title %></asp:Label>
                                     <%  User user = (User)Session["currentUser"];
                                         if (user == null) {
-                                            Response.Redirect("login.aspx");
+                                            //Response.Redirect("login.aspx");
                                         }else if (superuser || user.getDepartment().Equals("hr"))
                                         {%>
                                     <a href="deleteMaterial.aspx?id=<%=current.getCourseID()%>&path=<%=strfile%>" onclick="return confirm('Are you sure?')"><span class="label label-danger pull-right"><span class="glyphicon glyphicon-trash"></span></span></a></strong><br />

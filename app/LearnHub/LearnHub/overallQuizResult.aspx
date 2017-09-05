@@ -74,9 +74,12 @@
         <div class="container">
             <h1>Overall Quiz Statistics</h1>
              <% 
+                 QuizDAO quizDAO = new QuizDAO();
+                int quizID = Convert.ToInt32(Request.QueryString["id"]);
+                Quiz currentQuiz = quizDAO.getQuizByID(quizID);
+                int courseID = currentQuiz.getMainCourse().getCourseID();
                  User currentUser = (User)Session["currentUser"];
                  Course_elearnDAO ceDAO = new Course_elearnDAO();
-                 int courseID = Convert.ToInt32(Request.QueryString["id"]);
                  User courseCreator = ceDAO.get_course_by_id(courseID).getCourseCreator();
                  Boolean superuser = false;
                  foreach (string s in currentUser.getRoles())
@@ -110,17 +113,32 @@
            <thead>
                 <tr>
                     <th>User</th>
+                    <th>Quiz Title</th>
                     <th>Score</th>
                     <th>Grade</th>
                     <th>Date Submitted</th>
+                    <th>Attempt</th>
+                    <th data-filterable="false" data-sortable="false" width="10%"></th>
                 </tr>
             </thead>
                 <tbody>
                     <%--Link to viewResults.aspx--%>
-                    <tr><td><a href="#">Rafid</a></td>
-                        <td>0/10</td>
-                           
-                    </tr>
+                    <%
+                        QuizResultDAO qrDAO = new QuizResultDAO();
+                        ArrayList allResult = qrDAO.getAllQuizResultByQuizID(quizID);
+                        foreach (QuizResult qr in allResult)
+                        {
+                            Response.Write("<tr>");
+                            Response.Write($"<td>{qr.getUser().getName()}</td>");
+                            Response.Write($"<td>{qr.getQuiz().getTitle()}</td>");
+                            Response.Write($"<td>{qr.getScore()}</td>");
+                            Response.Write($"<td>{qr.getGrade()}</td>");
+                            Response.Write($"<td>{qr.getDateSubmitted().ToString("dd/MM/yyyy")}</td>");
+                            Response.Write($"<td>{qr.getAttempt()}</td>");
+                            Response.Write($"<td><a href=\"viewResults.aspx?id={qr.getQuizResultID()}\" class=\"btn btn-info btn-sm pull-right\">View Details</a></td>");
+                            Response.Write("</tr>");
+                        }
+                    %>
                 </tbody>
            </table>
         </div>

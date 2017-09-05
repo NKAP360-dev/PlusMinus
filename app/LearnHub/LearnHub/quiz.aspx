@@ -48,7 +48,7 @@
                             <div class="row">
 
                                 <h3>Time left: 
-                                    00:00
+                                     <asp:Label ID="lblTimerDisplay" runat="server" Text="" ></asp:Label>
                                 </h3>
 
                                 <h4>Total Number of Questions: 
@@ -89,7 +89,8 @@
                             <div class="row">
 
                                 <h3>Time left: 
-                                    00:00
+                                    <asp:Label ID="lblTimer" runat="server" Text="" ></asp:Label>
+                                    <asp:Timer ID="Timer1" runat="server" Interval="1000" OnTick="Timer1_Tick"></asp:Timer>
                                 </h3>
 
                                 <h4>Question Number: 

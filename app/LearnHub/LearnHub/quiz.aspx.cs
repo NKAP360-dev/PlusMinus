@@ -48,6 +48,11 @@ namespace LearnHub
                         lblTotalQn.Text = allQuestions.Count.ToString();
                         lblTotalNumQn.Text = allQuestions.Count.ToString();
                         lblPassingReq.Text = currentQuiz.getPassingGrade().ToString() + "/" + allQuestions.Count.ToString();
+                        TimeSpan timeLeft = TimeSpan.FromSeconds(currentQuiz.getTimeLimit());
+                        lblTimer.Text = timeLeft.ToString(@"hh\:mm\:ss");
+                        lblTimerDisplay.Text = timeLeft.ToString(@"hh\:mm\:ss");
+                        //lblTimer.Text = currentQuiz.getTimeLimit().ToString();
+                        //lblTimerDisplay.Text = currentQuiz.getTimeLimit().ToString();
                         string multipleAttempt = currentQuiz.getMultipleAttempts();
                         if (multipleAttempt.Equals("n"))
                         {
@@ -80,6 +85,11 @@ namespace LearnHub
 
         protected void btnStartQuiz_Click(object sender, EventArgs e)
         {
+            QuizDAO quizDAO = new QuizDAO();
+            String id_str = Request.QueryString["id"];
+            int id_num = int.Parse(id_str);
+            Quiz currentQuiz = quizDAO.getQuizByID(id_num);
+
             List<QuizResultHistory> userAnswers = new List<QuizResultHistory>();
             Session["userAnswers"] = userAnswers;
 
@@ -88,15 +98,13 @@ namespace LearnHub
             Session["previousQuestion"] = currentQuestion;
             QuizAnswerDAO qaDAO = new QuizAnswerDAO();
             List<QuizAnswer> currentPossibleAnswers = qaDAO.getAllQuizAnswersByQuizQuestionID(currentQuestion.getQuizQuestionID());
-            
+            Session["timeLeft"] = DateTime.Now.AddSeconds(currentQuiz.getTimeLimit());
             lblQuestion.Text = currentQuestion.getQuestion();
             foreach(QuizAnswer qa in currentPossibleAnswers)
             {
                 rblAnswers.Items.Add(new ListItem(qa.getAnswer(), qa.getQuizAnswerID().ToString()));
             }
             
-            //to start timer
-
             panelQuiz.Visible = true;
             panelStartQuiz.Visible = false;
 
@@ -104,6 +112,11 @@ namespace LearnHub
             {
                 btnFinish.Visible = true;
                 btnNext.Visible = false;
+            }
+            else
+            {
+                btnFinish.Visible = false;
+                btnNext.Visible = true;
             }
 
         }
@@ -201,7 +214,8 @@ namespace LearnHub
             QuizQuestion currentQuestion = (QuizQuestion)Session["previousQuestion"];
             Quiz currentQuiz = quizDAO.getQuizByID(quizID);
             QuizAnswer currentSelectedAnswer = new QuizAnswer(Convert.ToInt32(rblAnswers.SelectedValue), currentQuestion, rblAnswers.SelectedItem.Text);
-            int attempt = qrhDAO.getAttemptForQuiz(currentQuestion.getQuizQuestionID());
+            //int attempt = qrhDAO.getAttemptForQuiz(currentQuestion.getQuizQuestionID());
+            int attempt = qrDAO.getAttemptForQuiz(quizID);
             attempt++;
             currentAnswer.setAttempt(attempt);
             currentAnswer.setUserID(currentUser.getUserID());
@@ -275,6 +289,58 @@ namespace LearnHub
                 return true;
             }
             return false;
+        }
+
+        protected void Timer1_Tick(object sender, EventArgs e)
+        {
+            TimeSpan timeLeft = new TimeSpan();
+            if (Session["timeLeft"] != null)
+            {
+                timeLeft = (DateTime)Session["timeLeft"] - DateTime.Now;
+                if (timeLeft.Hours <= 0 && timeLeft.Minutes <= 0 && timeLeft.Seconds <= 0)
+                {
+                    lblTimer.Text = "Times up!";
+                    lblTimerDisplay.Text = "Times up!";
+                    panelQuiz.Visible = false;
+                    panelStartQuiz.Visible = true;
+
+                    //insert attempt
+                    int quizID = Convert.ToInt32(Request.QueryString["id"]);
+                    User currentUser = (User)Session["currentUser"];
+                    QuizResultDAO qrDAO = new QuizResultDAO();
+                    QuizResultHistoryDAO qrhDAO = new QuizResultHistoryDAO();
+                    List<QuizResultHistory> userAnswers = (List<QuizResultHistory>)Session["userAnswers"];
+                    QuizQuestion currentQuestion = (QuizQuestion)Session["previousQuestion"];
+                    int attempt = qrDAO.getAttemptForQuiz(quizID);
+                    attempt++;
+
+                    //to calculate score
+                    int userScore = calculateScore(userAnswers);
+
+                    //to get all other details needed to insert to QuizResult
+                    string grade = "fail";
+                    if (checkIfUserPass(quizID, userScore))
+                    {
+                        grade = "pass";
+                    }
+                    DateTime currentDate = DateTime.Now.Date;
+
+                    //insert quizResultHistory
+                    foreach (QuizResultHistory qrh in userAnswers)
+                    {
+                        qrhDAO.createQuizResultHistory(qrh);
+                    }
+
+                    //insert QuizResult
+                    int quizResultID = qrDAO.createQuizResult(currentUser.getUserID(), quizID, userScore, grade, currentDate, attempt);
+
+                }
+                else
+                {
+                    //lblTimer.Text = timeLeft.Seconds.ToString();
+                    lblTimer.Text = timeLeft.ToString(@"hh\:mm\:ss");
+                }
+            }
         }
     }
 }
