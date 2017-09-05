@@ -387,7 +387,7 @@ namespace LearnHub.AppCode.dao
                     u.setName((string)dr["name"]);
                     u.setJobTitle((string)dr["job_title"]);
                     u.setJobCategory((string)dr["job_category"]);
-                    if (!dr.IsDBNull(5))
+                    if (!DBNull.Value.Equals(dr["supervisor"]))
                     {
                         u.setSupervisor((string)dr["supervisor"]);
                     } else
@@ -396,6 +396,8 @@ namespace LearnHub.AppCode.dao
                     }
                     ArrayList roles = getRolesByID(userID);
                     u.setRoles(roles);
+                    u.setContact((string)dr["contactNumber"]);
+                    u.setAddress((string)dr["address"]);
                     u.setDepartment((string)dr["dept_name"]);
                     u.setEmail((string)dr["email"]);
                     u.setStartDate(dr.GetDateTime(3));

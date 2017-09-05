@@ -19,6 +19,52 @@ namespace LearnHub
             {
                 Response.Redirect("Login.aspx");
             }
+            else
+            {
+                User currentUser = (User)Session["currentUser"];
+                Boolean superuser = false;
+                foreach (string s in currentUser.getRoles())
+                {
+                    if (s.Equals("superuser"))
+                    {
+                        superuser = true;
+                    }
+                }
+
+                if (!superuser)
+                {
+                    Response.Redirect("errorPage.aspx");
+                }
+
+                if (!IsPostBack)
+                {
+                    UserDAO udao = new UserDAO();
+                    string userID = Request.QueryString["userID"];
+                    if(userID == null || userID.Equals(""))
+                    {
+                        Response.Redirect("errorPage.aspx");
+                    }
+                    User toChange = udao.getUserByID(userID);
+                    ArrayList roles = udao.getRolesByID(userID);
+                    txtUsername.Text = toChange.getUserID();
+                    txtName.Text = toChange.getName();
+                    txtAddress.Text = toChange.getAddress();
+                    txtContactNo.Text = toChange.getContact();
+                    txtDept.Text = toChange.getDepartment();
+                    txtJobTitle.Text = toChange.getJobTitle();
+                    txtEmail.Text = toChange.getEmail();
+                    foreach (ListItem item in cblRoles.Items)
+                    {
+                        foreach(string s in roles)
+                        {
+                            if (item.Value.Equals(s))
+                            {
+                                item.Selected = true;
+                            }
+                        }
+                    }
+                }
+            }
         }
         protected void submit_Click(object sender, EventArgs e)
         {

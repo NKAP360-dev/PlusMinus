@@ -45,11 +45,11 @@ namespace LearnHub
             Boolean res_role = udao.add_role(u, roles);
             if (res)
             {
-                Response.Redirect("Home.aspx");
+                Response.Redirect("manageUsers.aspx");
             }
             else
             {
-                Response.Redirect("Login.aspx");
+                Response.Redirect("home.aspx");
             }
         }
 

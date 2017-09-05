@@ -11,6 +11,7 @@ namespace LearnHub
 {
     public partial class manageUsers : System.Web.UI.Page
     {
+        protected List<User> all_users;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (Session["currentUser"] == null)
@@ -32,6 +33,9 @@ namespace LearnHub
                 {
                     Response.Redirect("errorPage.aspx");
                 }
+                UserDAO udao = new UserDAO();
+                all_users = udao.getAllUsers();
+
             }
         }
     }

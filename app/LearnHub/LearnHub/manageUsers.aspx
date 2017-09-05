@@ -104,13 +104,16 @@
                 </tr>
             </thead>
             <tbody>
+                <%foreach (User u in all_users)
+                    { %>
                 <tr>
-                    <td>Rafid</td>
-                    <td>HR</td>
-                    <td>999</td>
-                    <td>@</td>
-                    <td width="10%"><a href="editUsers.aspx" class="btn btn-info btn-sm"><span class="glyphicon glyphicon-pencil"></span></a></td>
+                    <td><%=u.getName() %></td>
+                    <td><%=u.getDepartment() %></td>
+                    <td><%=u.getContact() %></td>
+                    <td><%=u.getEmail() %></td>
+                    <td width="10%"><a href="editUsers.aspx?userID=<%=u.getUserID() %>" class="btn btn-info btn-sm"><span class="glyphicon glyphicon-pencil"></span></a></td>
                 </tr>
+                <%} %>
             </tbody>
         </table>
     </div>

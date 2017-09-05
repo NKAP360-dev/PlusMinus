@@ -127,7 +127,7 @@
                     <asp:Label runat="server" CssClass="col-lg-2 control-label" Text="Roles"></asp:Label></strong>
                 <div class="col-lg-5">
                     <asp:CheckBoxList ID="cblRoles" runat="server">
-                        <asp:ListItem>course Creator</asp:ListItem>
+                        <asp:ListItem>course creator</asp:ListItem>
                         <asp:ListItem>superuser</asp:ListItem>
                         <asp:ListItem>user</asp:ListItem>
                     </asp:CheckBoxList>
