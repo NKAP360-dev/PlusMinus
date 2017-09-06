@@ -445,6 +445,13 @@
     <Compile Include="Masterpage.Master.designer.cs">
       <DependentUpon>Masterpage.Master</DependentUpon>
     </Compile>
+    <Compile Include="noResult.aspx.cs">
+      <DependentUpon>noResult.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="noResult.aspx.designer.cs">
+      <DependentUpon>noResult.aspx</DependentUpon>
+    </Compile>
     <Compile Include="overallQuizResult.aspx.cs">
       <DependentUpon>overallQuizResult.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -954,6 +961,7 @@
     <Content Include="manageCategories.aspx" />
     <Content Include="manageQuiz.aspx" />
     <Content Include="manageUsers.aspx" />
+    <Content Include="noResult.aspx" />
     <Content Include="overallQuizResult.aspx" />
     <Content Include="pendingApproval.aspx" />
     <Content Include="quiz.aspx" />

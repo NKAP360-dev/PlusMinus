@@ -123,18 +123,6 @@
                     </tbody>
                 </table>
             </asp:Panel>
-            <%--****NEW PANEL****
-            <asp:Panel ID="panelNoResults" runat="server" Visible="true">
-                <br /><br />
-                <div class="alert alert-dismissible alert-warning">
-                    <h4><b>There are no answers available for this quiz.</b></h4>
-                    <p>
-                        <span class="glyphicon glyphicon-info-sign"></span>&nbsp;
-                        Course creator might have disabled viewing of answers for this quiz!
-                    </p>
-                </div>
-
-            </asp:Panel>--%>
         </div>
     </form>
 </asp:Content>

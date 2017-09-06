@@ -19,7 +19,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <ul class="breadcrumb">
         <li><a href="home.aspx">Home</a></li>
-        <li><a href="viewAllModule.aspx">Modules</a></li>
+        <li><a href="viewAllModule.aspx">Courses</a></li>
         <%
             QuizResultDAO qrDAO = new QuizResultDAO();
             int quizResultID = Convert.ToInt32(Request.QueryString["id"]);
@@ -117,24 +117,12 @@
                             else
                             {
                                 Response.Write("<tr class=\"pull-right\"><td>Score: 0/1</td></tr>");
-                            }*/
+                            }*/                
                         }
                         %>
                     </tbody>
                 </table>
             </asp:Panel>
-            <%--****NEW PANEL****
-            <asp:Panel ID="panelNoResults" runat="server" Visible="false">
-                <br /><br />
-                <div class="alert alert-dismissible alert-warning">
-                    <h4><b>There are no answers available for this quiz.</b></h4>
-                    <p>
-                        <span class="glyphicon glyphicon-info-sign"></span>&nbsp;
-                        Course creator might have disabled viewing of answers for this quiz!
-                    </p>
-                </div>
-
-            </asp:Panel>--%>
         </div>
     </form>
 </asp:Content>
