@@ -100,6 +100,7 @@ namespace LearnHub
             List<QuizAnswer> currentPossibleAnswers = qaDAO.getAllQuizAnswersByQuizQuestionID(currentQuestion.getQuizQuestionID());
             Session["timeLeft"] = DateTime.Now.AddSeconds(currentQuiz.getTimeLimit());
             lblQuestion.Text = currentQuestion.getQuestion();
+            rblAnswers.Items.Clear();
             foreach(QuizAnswer qa in currentPossibleAnswers)
             {
                 rblAnswers.Items.Add(new ListItem(qa.getAnswer(), qa.getQuizAnswerID().ToString()));
@@ -302,7 +303,8 @@ namespace LearnHub
                     lblTimer.Text = "Times up!";
                     lblTimerDisplay.Text = "Times up!";
                     panelQuiz.Visible = false;
-                    panelStartQuiz.Visible = true;
+                    panelStartQuiz.Visible = false;
+                    panelTimesUp.Visible = true;
 
                     //insert attempt
                     int quizID = Convert.ToInt32(Request.QueryString["id"]);
@@ -333,12 +335,79 @@ namespace LearnHub
 
                     //insert QuizResult
                     int quizResultID = qrDAO.createQuizResult(currentUser.getUserID(), quizID, userScore, grade, currentDate, attempt);
+                    Session["timesUpResultID"] = quizResultID;
 
+                    //check if user can reattempt quiz
+                    QuizResult currentResult = qrDAO.getQuizResultByID(quizResultID);
+                    Quiz currentQuiz = currentResult.getQuiz();
+                    if (currentQuiz.getMultipleAttempts().Equals("n"))
+                    {
+                        int numOfAttempts = qrDAO.getNumberOfAttempts(currentUser.getUserID(), currentQuiz.getQuizID());
+                        if (numOfAttempts >= currentQuiz.getNumberOfAttempts())
+                        {
+                            btnRestartQuiz.Visible = false;
+                        }
+                    }
                 }
                 else
                 {
                     //lblTimer.Text = timeLeft.Seconds.ToString();
                     lblTimer.Text = timeLeft.ToString(@"hh\:mm\:ss");
+                }
+            }
+        }
+
+        protected void btnRestartQuiz_Click(object sender, EventArgs e)
+        {
+            QuizDAO quizDAO = new QuizDAO();
+            Quiz currentQuiz = quizDAO.getQuizByID(Convert.ToInt32(Request.QueryString["id"]));
+            int questionCounter = 1;
+            Session["questionCounter"] = questionCounter;
+            lblQnNum.Text = Session["questionCounter"].ToString();
+            QuizQuestionDAO qqDAO = new QuizQuestionDAO();
+            List<QuizQuestion> allQuestions = qqDAO.getAllQuizQuestionByQuizID(currentQuiz.getQuizID());
+            if (currentQuiz.getRandomOrder().Equals("y"))
+            {
+                Session["remainingQuestions"] = randomize(allQuestions);
+            }
+            else
+            {
+                Session["remainingQuestions"] = allQuestions;
+            }
+
+            panelQuiz.Visible = false;
+            panelStartQuiz.Visible = true;
+            panelTimesUp.Visible = false;
+        }
+
+        protected void btnViewResults_Click(object sender, EventArgs e)
+        {
+            QuizResultDAO qrDAO = new QuizResultDAO();
+            QuizDAO quizDAO = new QuizDAO();
+            Quiz currentQuiz = quizDAO.getQuizByID(Convert.ToInt32(Request.QueryString["id"]));
+            User currentUser = (User)Session["currentUser"];
+
+            int quizResultID = (int)Session["timesUpResultID"];
+            string displayAnswer = currentQuiz.getDisplayAnswer();
+            if (displayAnswer.Equals("always"))
+            {
+                Response.Redirect("viewResults.aspx?id=" + quizResultID);
+            }
+            else if (displayAnswer.Equals("never"))
+            {
+                //Response.Redirect("viewResults.aspx?id=" + quizResultID);
+                Response.Redirect("Home.aspx");
+            }
+            else
+            {
+                Boolean checkIfUserPassQuiz = qrDAO.checkIfUserPassQuiz(currentUser.getUserID(), currentQuiz.getQuizID());
+                if (checkIfUserPassQuiz)
+                {
+                    Response.Redirect("viewResults.aspx?id=" + quizResultID);
+                }
+                else
+                {
+                    Response.Redirect("viewMyResult.aspx?id=" + quizResultID);
                 }
             }
         }

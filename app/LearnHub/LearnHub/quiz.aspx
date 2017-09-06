@@ -138,9 +138,9 @@
                             <br />
                             <br />
                             <%--If unlimited attempts or still have attempts left, show button and Visible=True for panelStartQuiz--%>
-                            <asp:LinkButton ID="btnRestartQuiz" runat="server" CssClass="btn btn-lg btn-primary">Re-attempt Quiz</asp:LinkButton><br />
+                            <asp:LinkButton ID="btnRestartQuiz" runat="server" CssClass="btn btn-lg btn-primary" OnClick="btnRestartQuiz_Click">Re-attempt Quiz</asp:LinkButton><br />
                             <br />
-                            <asp:LinkButton ID="btnViewResults" runat="server" CssClass="pull-right">View Results&nbsp;<span class="glyphicon glyphicon-menu-right"></span></asp:LinkButton>
+                            <asp:LinkButton ID="btnViewResults" runat="server" CssClass="pull-right" OnClick="btnViewResults_Click">View Results&nbsp;<span class="glyphicon glyphicon-menu-right"></span></asp:LinkButton>
                             <% QuizDAO qDAO = new QuizDAO();
                                 int quizID = Convert.ToInt32(Request.QueryString["id"]);
                                 Quiz q = qDAO.getQuizByID(quizID);
