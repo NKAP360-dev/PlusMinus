@@ -51,8 +51,6 @@ namespace LearnHub
                         TimeSpan timeLeft = TimeSpan.FromSeconds(currentQuiz.getTimeLimit());
                         lblTimer.Text = timeLeft.ToString(@"hh\:mm\:ss");
                         lblTimerDisplay.Text = timeLeft.ToString(@"hh\:mm\:ss");
-                        //lblTimer.Text = currentQuiz.getTimeLimit().ToString();
-                        //lblTimerDisplay.Text = currentQuiz.getTimeLimit().ToString();
                         string multipleAttempt = currentQuiz.getMultipleAttempts();
                         if (multipleAttempt.Equals("n"))
                         {
@@ -66,8 +64,6 @@ namespace LearnHub
                         
                         if (currentQuiz.getRandomOrder().Equals("y"))
                         {
-                            //Random rand = new Random();
-                            //var result = allQuestions.OrderBy(item => rand.Next());
                             Session["remainingQuestions"] = randomize(allQuestions);
                         }
                         else
@@ -253,8 +249,7 @@ namespace LearnHub
             }
             else if (displayAnswer.Equals("never"))
             {
-                //Response.Redirect("viewResults.aspx?id=" + quizResultID);
-                Response.Redirect("Home.aspx");
+                Response.Redirect("noResult.aspx?id=" + quizResultID);
             }
             else
             {
@@ -395,8 +390,7 @@ namespace LearnHub
             }
             else if (displayAnswer.Equals("never"))
             {
-                //Response.Redirect("viewResults.aspx?id=" + quizResultID);
-                Response.Redirect("Home.aspx");
+                Response.Redirect("noResult.aspx?id=" + quizResultID);
             }
             else
             {

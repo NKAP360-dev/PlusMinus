@@ -389,8 +389,7 @@
                                             }
                                             else if (displayAnswer.Equals("never"))
                                             {
-                                                //TO CHANGE REDIRECT LINK
-                                                Response.Write($"<td><a href=\"viewResults.aspx?id={qr.getQuizResultID()}\">Attempt {qr.getAttempt()}</a></td>");
+                                                Response.Write($"<td><a href=\"noResult.aspx?id={qr.getQuizResultID()}\">Attempt {qr.getAttempt()}</a></td>");
                                             }
                                             else
                                             {
