@@ -190,16 +190,24 @@
                             </div>
                         </div>
                         <br/>
-                         <div class="form-group required">
+                        <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
+                        <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+                            <ContentTemplate>
+                                <div class="form-group required">
                              <label class="col-lg-2 control-label">Allow Multiple Quiz Attempts</label>
                             <div class="col-lg-5">
-                                <asp:RadioButtonList ID="rdlAttempt" runat="server">
+                                <asp:RadioButtonList ID="rdlAttempt" runat="server" AutoPostBack="True" OnSelectedIndexChanged="rdlAttempt_SelectedIndexChanged">
                                     <asp:ListItem Value="y">&nbsp;Unlimited</asp:ListItem>
                                     <asp:ListItem Value="n">&nbsp;Limited</asp:ListItem>
                                 </asp:RadioButtonList>
                                 <asp:TextBox ID="txtNoOfAttempt" runat="server" CssClass="form-control" placeholder="If Limited, Number of Attempts" TextMode="Number" min="0"></asp:TextBox>
                             </div>
                         </div>
+                            </ContentTemplate>
+                            <Triggers>
+                                <asp:AsyncPostBackTrigger ControlID="rdlAttempt" />
+                            </Triggers>
+                        </asp:UpdatePanel>
                         <br />
                          <div class="form-group required">
                              <label class="col-lg-2 control-label">Display Quiz Answers</label>

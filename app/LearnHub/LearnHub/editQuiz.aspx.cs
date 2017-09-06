@@ -51,6 +51,20 @@ namespace LearnHub
                         txtQuizTitle.Text = currentQuiz.getTitle();
                         txtQuizDesc.Text = currentQuiz.getDescription();
                         txtNumCorrectAns.Text = currentQuiz.getPassingGrade().ToString();
+                        txtTimeLimit.Text = currentQuiz.getTimeLimit().ToString();
+                        rdlAttempt.SelectedValue = currentQuiz.getMultipleAttempts();
+                        ddlDisplayAnswer.SelectedValue = currentQuiz.getDisplayAnswer();
+                        if (currentQuiz.getMultipleAttempts().Equals("y"))
+                        {
+                            txtNoOfAttempt.Text = "";
+                            txtNoOfAttempt.Enabled = false;
+                        }
+                        else
+                        {
+                            txtNoOfAttempt.Text = currentQuiz.getNumberOfAttempts().ToString();
+                            txtNoOfAttempt.Enabled = true;
+                        }
+
                         if (currentQuiz.getRandomOrder().Equals("y"))
                         {
                             ddlRandomize.SelectedIndex = 0;
@@ -249,8 +263,13 @@ namespace LearnHub
             {
                 randomOrder = "n";
             }
-            //TO UNCOMMENT THE BELOW LINE FOR EDIT
-            //quizDAO.updateQuiz(id, txtQuizTitle.Text, txtQuizDesc.Text, Convert.ToInt32(txtNumCorrectAns.Text), randomOrder);
+
+            int noOfAttempt = 0;
+            if (rdlAttempt.SelectedValue.Equals("n"))
+            {
+                noOfAttempt = Convert.ToInt32(txtNoOfAttempt.Text);
+            }
+            quizDAO.updateQuiz(id, txtQuizTitle.Text, txtQuizDesc.Text, Convert.ToInt32(txtNumCorrectAns.Text), randomOrder, Convert.ToInt32(txtTimeLimit.Text), rdlAttempt.SelectedValue, noOfAttempt, ddlDisplayAnswer.SelectedValue);
 
             //update prerequisites
 
@@ -286,6 +305,19 @@ namespace LearnHub
             Quiz currentQuiz = quizDAO.getQuizByID(id);
             quizDAO.updateQuizStatus(id, "active");
             Response.Redirect("viewModuleInfo.aspx?id=" + currentQuiz.getMainCourse().getCourseID());
+        }
+
+        protected void rdlAttempt_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (rdlAttempt.SelectedValue.Equals("n"))
+            {
+                txtNoOfAttempt.Enabled = true;
+            }
+            else
+            {
+                txtNoOfAttempt.Enabled = false;
+                txtNoOfAttempt.Text = "";
+            }
         }
     }
 }

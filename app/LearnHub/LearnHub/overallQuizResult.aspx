@@ -117,7 +117,7 @@
                     <th>Score</th>
                     <th>Grade</th>
                     <th>Date Submitted</th>
-                    <th>Attempt</th>
+                    <th>Attempt #</th>
                     <th data-filterable="false" data-sortable="false" width="10%"></th>
                 </tr>
             </thead>
