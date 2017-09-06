@@ -54,7 +54,7 @@
                 <asp:Label ID="lblScore" runat="server" CssClass="label label-default" Font-Size="Large" Text="" />
             </div>
 
-            <asp:Panel ID="panelViewResults" runat="server" Visible="false">
+            <asp:Panel ID="panelViewResults" runat="server">
                 <br />
                 <br />
                 <br />
@@ -123,7 +123,7 @@
                     </tbody>
                 </table>
             </asp:Panel>
-            <%--****NEW PANEL****--%>
+            <%--****NEW PANEL****
             <asp:Panel ID="panelNoResults" runat="server" Visible="true">
                 <br /><br />
                 <div class="alert alert-dismissible alert-warning">
@@ -134,7 +134,7 @@
                     </p>
                 </div>
 
-            </asp:Panel>
+            </asp:Panel>--%>
         </div>
     </form>
 </asp:Content>
