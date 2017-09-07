@@ -353,7 +353,7 @@
                 <%--Tab 3: Reports--%>
                 <ul class="nav navbar-nav">
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" role="button" aria-expanded="false">Reports</a>
+                        <a href="progressReport.aspx" class="dropdown-toggle" role="button" aria-expanded="false">Reports</a>
 
                     </li>
                 </ul>

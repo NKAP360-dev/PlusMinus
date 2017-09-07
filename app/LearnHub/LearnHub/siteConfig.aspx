@@ -107,6 +107,30 @@
                     </div>
                 </div>
             </a>
+            <a href="progressFeedback.aspx">
+                <div class="col-md-3 btn-info">
+                    <br />
+                    <br />
+                    <div class="wrapper">
+                        <span style="font-size: 75px;" class="glyphicon glyphicon-comment"></span>
+                        <br />
+                        <h3>Progress Feedback</h3>
+                        <br />
+                    </div>
+                </div>
+            </a>
+            <a href="suggestCourses.aspx">
+                <div class="col-md-3 btn-info">
+                    <br />
+                    <br />
+                    <div class="wrapper">
+                        <span style="font-size: 75px;" class="glyphicon glyphicon-hand-right"></span>
+                        <br />
+                        <h3>Suggest Courses</h3>
+                        <br />
+                    </div>
+                </div>
+            </a>
         </div>
     </div>
     <br />

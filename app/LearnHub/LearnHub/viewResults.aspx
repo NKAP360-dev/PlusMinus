@@ -51,7 +51,9 @@
                 <asp:Label ID="lblStatusPass" runat="server" CssClass="label label-success" Font-Size="Large" Visible="false">Pass</asp:Label>
                 <asp:Label ID="lblStatusFail" runat="server" CssClass="label label-danger" Font-Size="Large" Visible="false">Fail</asp:Label>&emsp;
                 <strong>Quiz Score:</strong>&nbsp; 
-                <asp:Label ID="lblScore" runat="server" CssClass="label label-default" Font-Size="Large" Text="" />
+                <asp:Label ID="lblScore" runat="server" CssClass="label label-default" Font-Size="Large" Text="" />&emsp;
+                <strong>%:</strong>&nbsp;
+                <asp:Label ID="lblPercent" runat="server" CssClass="label label-successs" Font-Size="Large" Text="45%" />
             </div>
 
             <asp:Panel ID="panelViewResults" runat="server">

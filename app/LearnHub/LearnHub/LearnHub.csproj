@@ -466,6 +466,20 @@
     <Compile Include="pendingApproval.aspx.designer.cs">
       <DependentUpon>pendingApproval.aspx</DependentUpon>
     </Compile>
+    <Compile Include="progressFeedback.aspx.cs">
+      <DependentUpon>progressFeedback.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="progressFeedback.aspx.designer.cs">
+      <DependentUpon>progressFeedback.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="progressReport.aspx.cs">
+      <DependentUpon>progressReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="progressReport.aspx.designer.cs">
+      <DependentUpon>progressReport.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="quiz.aspx.cs">
       <DependentUpon>quiz.aspx</DependentUpon>
@@ -494,6 +508,13 @@
     </Compile>
     <Compile Include="submitTRF.aspx.designer.cs">
       <DependentUpon>submitTRF.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="suggestCourses.aspx.cs">
+      <DependentUpon>suggestCourses.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="suggestCourses.aspx.designer.cs">
+      <DependentUpon>suggestCourses.aspx</DependentUpon>
     </Compile>
     <Compile Include="TestCipher.aspx.cs">
       <DependentUpon>TestCipher.aspx</DependentUpon>
@@ -557,6 +578,20 @@
     </Compile>
     <Compile Include="viewApprovedTRF.aspx.designer.cs">
       <DependentUpon>viewApprovedTRF.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="viewCompletedCourse.aspx.cs">
+      <DependentUpon>viewCompletedCourse.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="viewCompletedCourse.aspx.designer.cs">
+      <DependentUpon>viewCompletedCourse.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="viewCompletedQuiz.aspx.cs">
+      <DependentUpon>viewCompletedQuiz.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="viewCompletedQuiz.aspx.designer.cs">
+      <DependentUpon>viewCompletedQuiz.aspx</DependentUpon>
     </Compile>
     <Compile Include="viewCreatedModules.aspx.cs">
       <DependentUpon>viewCreatedModules.aspx</DependentUpon>
@@ -964,6 +999,8 @@
     <Content Include="noResult.aspx" />
     <Content Include="overallQuizResult.aspx" />
     <Content Include="pendingApproval.aspx" />
+    <Content Include="progressFeedback.aspx" />
+    <Content Include="progressReport.aspx" />
     <Content Include="quiz.aspx" />
     <Content Include="rejectionConfirmation.aspx" />
     <Content Include="Scripts\bootstrap.js" />
@@ -975,6 +1012,7 @@
     <Content Include="Scripts\footable.min.js" />
     <Content Include="siteConfig.aspx" />
     <Content Include="submitTRF.aspx" />
+    <Content Include="suggestCourses.aspx" />
     <Content Include="TestCipher.aspx" />
     <Content Include="TestHash.aspx" />
     <Content Include="testIndividualRouting.aspx" />
@@ -984,6 +1022,8 @@
     <Content Include="uploadDownloadTest.aspx" />
     <Content Include="viewAllModule.aspx" />
     <Content Include="viewApprovedTRF.aspx" />
+    <Content Include="viewCompletedCourse.aspx" />
+    <Content Include="viewCompletedQuiz.aspx" />
     <Content Include="viewCreatedModules.aspx" />
     <Content Include="viewModuleInfo.aspx" />
     <Content Include="viewMyResult.aspx" />
