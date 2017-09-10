@@ -19,7 +19,7 @@
         <li><a href="home.aspx">Home</a></li>
         <li class="active">Configuration Settings</li>
     </ul>
-    
+
     <div class="container">
         <h1>Configuration Settings</h1>
         <div class="verticalLine"></div>
@@ -78,7 +78,7 @@
             </a>
         </div>
     </div>
-        --%>
+    --%>
     <br />
     <div class="container">
         <div class="row">
@@ -107,8 +107,28 @@
                     </div>
                 </div>
             </a>
+
+        </div>
+    </div>
+    <br />
+    <div class="container">
+        <div class="row">
+            <h3><span class="glyphicon glyphicon-menu-right"></span>&emsp;Progress Reports </h3>
+            <a href=".aspx">
+                <div class="col-md-3 btn-warning">
+                    <br />
+                    <br />
+                    <div class="wrapper">
+                        <span style="font-size: 75px;" class="glyphicon glyphicon-stats"></span>
+                        <br />
+                        <h3>Manage Progress</h3>
+                        <br />
+                    </div>
+                </div>
+            </a>
+
             <a href="progressFeedback.aspx">
-                <div class="col-md-3 btn-info">
+                <div class="col-md-3 btn-warning">
                     <br />
                     <br />
                     <div class="wrapper">
@@ -120,7 +140,7 @@
                 </div>
             </a>
             <a href="suggestCourses.aspx">
-                <div class="col-md-3 btn-info">
+                <div class="col-md-3 btn-warning">
                     <br />
                     <br />
                     <div class="wrapper">
@@ -137,6 +157,17 @@
     <div class="container">
         <div class="row">
             <h3><span class="glyphicon glyphicon-menu-right"></span>&emsp;Courses</h3>
+            <a href="viewCreatedModules.aspx">
+                <div class="col-md-3 btn-primary">
+                    <br />
+                    <br />
+                    <div class="wrapper">
+                        <span style="font-size: 75px;" class="glyphicon glyphicon-education"></span>
+                        <h3>Manage Courses</h3>
+                        <br />
+                    </div>
+                </div>
+            </a>
             <a href="createModules.aspx">
                 <div class="col-md-3 btn-primary">
                     <br />
@@ -155,17 +186,6 @@
                     <div class="wrapper">
                         <span style="font-size: 75px;" class="glyphicon glyphicon-menu-hamburger"></span>
                         <h3>Course Categories</h3>
-                        <br />
-                    </div>
-                </div>
-            </a>
-            <a href="viewCreatedModules.aspx">
-                <div class="col-md-3 btn-primary">
-                    <br />
-                    <br />
-                    <div class="wrapper">
-                        <span style="font-size: 75px;" class="glyphicon glyphicon-education"></span>
-                        <h3>Manage Courses</h3>
                         <br />
                     </div>
                 </div>
