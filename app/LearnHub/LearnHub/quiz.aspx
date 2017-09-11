@@ -79,7 +79,6 @@
                         <br />
                         <div class="wrapper">
                             <asp:LinkButton ID="btnStartQuiz" runat="server" OnClick="btnStartQuiz_Click" CssClass="btn btn-lg btn-primary"><span class="glyphicon glyphicon-menu-right"></span> &nbsp;Start Quiz</asp:LinkButton><br /><br />
-                             <asp:Label ID="lblmaxAttemptMsg" runat="server" CssClass="label label-danger" Font-Size="Large" Visible="false">You have exceeded the number of attempts available!</asp:Label>
                         </div>
 
 

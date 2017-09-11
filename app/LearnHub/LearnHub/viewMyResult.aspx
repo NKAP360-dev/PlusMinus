@@ -53,7 +53,7 @@
                 <strong>Quiz Score:</strong>&nbsp; 
                 <asp:Label ID="lblScore" runat="server" CssClass="label label-default" Font-Size="Large" Text="" />&emsp;
                 <strong>%:</strong>&nbsp;
-                <asp:Label ID="lblPercent" runat="server" CssClass="label label-successs" Font-Size="Large" Text="" />
+                <asp:Label ID="lblPercent" runat="server" CssClass="label label-success" Font-Size="Large" Text="" />
             </div>
             
             <asp:Panel ID="panelViewResults" runat="server">
@@ -124,6 +124,11 @@
                         %>
                     </tbody>
                 </table>
+
+                <% 
+                    int courseID = currentQuiz.getMainCourse().getCourseID();%>
+                <a href="viewModuleInfo.aspx?id=<%=courseID%>" class="pull-left"><span class="glyphicon glyphicon-menu-left"></span>&nbsp;Back to Course</a>
+
             </asp:Panel>
         </div>
     </form>

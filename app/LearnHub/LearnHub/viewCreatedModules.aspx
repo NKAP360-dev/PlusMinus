@@ -117,6 +117,7 @@
                                 <th data-breakpoints="xs sm">Course Provider</th>
                                 <th data-breakpoints="xs sm">Start Date</th>
                                 <th data-breakpoints="xs sm">End Date</th>
+                                <th data-breakpoints="xs sm">Status</th>
                                 <th data-filterable="false" data-sortable="false"></th>
 
                             </tr>
@@ -132,6 +133,7 @@
                                     Response.Write($"<td>{ce.getCourseProvider()}</td>");
                                     Response.Write($"<td>{ce.getStartDate().ToString("dd/MM/yyyy")}</td>");
                                     Response.Write($"<td>{ce.getExpiryDate().ToString("dd/MM/yyyy")}</td>");
+                                    Response.Write($"<td>{ce.getStatus()}</td>");
                                     Response.Write("<td><a href=\"editModuleInfo.aspx?id=" + ce.getCourseID() + "\" class=\"btn btn-info btn-sm pull-right\"><span class=\"glyphicon glyphicon-pencil\"></span></a></td>");
                                     Response.Write("</tr>");
                                 }

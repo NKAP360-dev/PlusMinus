@@ -362,7 +362,7 @@
                                         {
                                             %>
                                             <div class="pull-right">
-                                                <h5>You have used up all your attempts</h5>&nbsp; 
+                                                 <asp:Label ID="lblAttemptMsg" runat="server" CssClass="label label-danger" Font-Size="Small" Text="You have used up all your attempts" />&nbsp;
                                             </div>
                                              <br />
                                             <%

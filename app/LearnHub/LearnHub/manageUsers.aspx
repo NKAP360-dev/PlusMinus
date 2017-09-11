@@ -100,6 +100,7 @@
                     <th>Department</th>
                     <th>Contact No</th>
                     <th>Email</th>
+                    <th>Status</th>
                     <th data-filterable="false" data-sortable="false"></th>
                 </tr>
             </thead>
@@ -111,6 +112,7 @@
                     <td><%=u.getDepartment() %></td>
                     <td><%=u.getContact() %></td>
                     <td><%=u.getEmail() %></td>
+                    <td><%=u.getStatus() %></td>
                     <td width="10%"><a href="editUsers.aspx?userID=<%=u.getUserID() %>" class="btn btn-info btn-sm pull-right"><span class="glyphicon glyphicon-pencil"></span></a></td>
                 </tr>
                 <%} %>
