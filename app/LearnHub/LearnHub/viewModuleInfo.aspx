@@ -358,6 +358,15 @@
                                              <br />
                                 <%
                                         }
+                                        else
+                                        {
+                                            %>
+                                            <div class="pull-right">
+                                                <h5>You have used up all your attempts</h5>&nbsp; 
+                                            </div>
+                                             <br />
+                                            <%
+                                        }
                                     }
                                     else
                                     {

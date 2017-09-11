@@ -40,6 +40,8 @@ namespace LearnHub
             {
                 lblBreadcrumbCourseName.Text = currentQuiz.getMainCourse().getCourseName();
                 lblScore.Text = currentQuizResult.getScore() + "/" + allQuestions.Count;
+                double percentage = (Convert.ToDouble(currentQuizResult.getScore()) / allQuestions.Count) * 100;
+                lblPercent.Text = Math.Round(percentage, 2).ToString() + "%";
                 lblAttemptNo.Text = currentQuizResult.getAttempt().ToString();
                 lblQuizDate.Text = currentQuizResult.getDateSubmitted().ToString("dd/MM/yyyy");
                 string grade = currentQuizResult.getGrade();

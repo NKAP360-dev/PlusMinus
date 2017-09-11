@@ -43,6 +43,7 @@ namespace LearnHub
                         lblQuizDesc.Text = currentQuiz.getDescription();
                         lblQuizTitle.Text = currentQuiz.getTitle();
                         QuizQuestionDAO qqDAO = new QuizQuestionDAO();
+                        QuizResultDAO qrDAO = new QuizResultDAO();
                         List<QuizQuestion> allQuestions = qqDAO.getAllQuizQuestionByQuizID(currentQuiz.getQuizID());
                         lblQnNum.Text = "1";
                         lblTotalQn.Text = allQuestions.Count.ToString();
@@ -56,6 +57,12 @@ namespace LearnHub
                         {
                             int attempts = currentQuiz.getNumberOfAttempts();
                             lblMaxAttempt.Text = attempts + " times";
+                            int numOfAttempts = qrDAO.getNumberOfAttempts(currentUser.getUserID(), currentQuiz.getQuizID());
+                            if (numOfAttempts > currentQuiz.getNumberOfAttempts())
+                            {
+                                btnStartQuiz.Visible = false;
+                                lblmaxAttemptMsg.Visible = true;
+                            }
                         }
                         else
                         {
@@ -359,6 +366,9 @@ namespace LearnHub
             int questionCounter = 1;
             Session["questionCounter"] = questionCounter;
             lblQnNum.Text = Session["questionCounter"].ToString();
+            TimeSpan timeLeft = TimeSpan.FromSeconds(currentQuiz.getTimeLimit());
+            lblTimer.Text = timeLeft.ToString(@"hh\:mm\:ss");
+            lblTimerDisplay.Text = timeLeft.ToString(@"hh\:mm\:ss");
             QuizQuestionDAO qqDAO = new QuizQuestionDAO();
             List<QuizQuestion> allQuestions = qqDAO.getAllQuizQuestionByQuizID(currentQuiz.getQuizID());
             if (currentQuiz.getRandomOrder().Equals("y"))
