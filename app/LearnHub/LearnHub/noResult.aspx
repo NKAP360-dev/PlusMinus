@@ -53,7 +53,7 @@
                 <strong>Quiz Score:</strong>&nbsp; 
                 <asp:Label ID="lblScore" runat="server" CssClass="label label-default" Font-Size="Large" Text="" />&emsp;
                 <strong>%:</strong>&nbsp;
-                <asp:Label ID="lblPercent" runat="server" CssClass="label label-successs" Font-Size="Large" Text="" />
+                <asp:Label ID="lblPercent" runat="server" CssClass="label label-success" Font-Size="Large" Text="" />
             </div>
 
             <br />

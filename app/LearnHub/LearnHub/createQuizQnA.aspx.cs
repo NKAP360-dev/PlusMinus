@@ -156,15 +156,15 @@ namespace LearnHub
 
             newQuestion.setAllAnswers(allAnswersForLastQn);
 
-            if (ddlCorrectAns.SelectedValue.Equals(1))
+            if (ddlCorrectAns.SelectedValue.Equals("1"))
             {
                 newQuestion.setQuizAnswer(answer1);
             }
-            else if (ddlCorrectAns.SelectedValue.Equals(2))
+            else if (ddlCorrectAns.SelectedValue.Equals("2"))
             {
                 newQuestion.setQuizAnswer(answer2);
             }
-            else if (ddlCorrectAns.SelectedValue.Equals(3))
+            else if (ddlCorrectAns.SelectedValue.Equals("3"))
             {
                 newQuestion.setQuizAnswer(answer3);
             }
