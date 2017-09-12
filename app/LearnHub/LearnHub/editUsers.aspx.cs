@@ -51,7 +51,7 @@ namespace LearnHub
                     txtName.Text = toChange.getName();
                     txtAddress.Text = toChange.getAddress();
                     txtContactNo.Text = toChange.getContact();
-                    txtDept.Text = toChange.getDepartment();
+                    //txtDept.Text = toChange.getDepartment();
                     txtJobTitle.Text = toChange.getJobTitle();
                     txtEmail.Text = toChange.getEmail();
                     foreach (ListItem item in cblRoles.Items)
@@ -94,12 +94,12 @@ namespace LearnHub
                     Response.Redirect("editUsers.aspx");
                 }
                 //create user object to parse into new_entry method
-                string pass = txtPassword.Text;
+                //string pass = txtPassword.Text;
                 string name = txtName.Text;
                 string contact = txtContactNo.Text;
                 string address = txtAddress.Text;
                 string email = txtEmail.Text;
-                string dept = txtDept.Text;
+                //string dept = txtDept.Text;
                 string jobtitle = txtJobTitle.Text;
                 ArrayList roles = new ArrayList();
                 foreach (ListItem item in cblRoles.Items)
@@ -108,9 +108,10 @@ namespace LearnHub
                         roles.Add(item.Value);
                 }
                 string salt = Crypto.GenerateSalt();// generate salt of user
-                string password_hashed = Crypto.SHA256(salt + pass);
-                User create = new User(user, name, jobtitle, "Staff", "S1234567C", roles, dept, email, DateTime.Now, address, contact, getThis.getStatus());
-                Boolean done = udao.update_user(create, password_hashed, salt, roles);
+                //string password_hashed = Crypto.SHA256(salt + pass);
+                //User create = new User(user, name, jobtitle, "Staff", "S1234567C", roles, dept, email, DateTime.Now, address, contact, getThis.getStatus());
+                //Boolean done = udao.update_user(create, password_hashed, salt, roles);
+                Boolean done = true; //to prevent error
                 if (done)
                 {
                     Response.Redirect("manageUsers.aspx");

@@ -62,20 +62,7 @@
                     <asp:TextBox ID="txtUsername" runat="server" CssClass="form-control" placeholder="Username"></asp:TextBox>
                 </div>
             </div>
-                <div class="form-group required">
-                <strong>
-                    <asp:Label runat="server" CssClass="col-lg-2 control-label" Text="Password"></asp:Label></strong>
-                <div class="col-lg-5">
-                    <asp:TextBox ID="txtPassword" runat="server" CssClass="form-control" placeholder="Password"></asp:TextBox>
-                </div>
-            </div>
-                <div class="form-group required">
-                <strong>
-                    <asp:Label runat="server" CssClass="col-lg-2 control-label" Text="Re-enter Password"></asp:Label></strong>
-                <div class="col-lg-5">
-                    <asp:TextBox ID="txtPassword2" runat="server" CssClass="form-control" placeholder="Re-enter Password"></asp:TextBox>
-                </div>
-            </div>
+
                 <br />
                 <h4>User Information</h4>
             <div class="form-group required">
@@ -110,7 +97,9 @@
                 <strong>
                     <asp:Label runat="server" CssClass="col-lg-2 control-label" Text="Department"></asp:Label></strong>
                 <div class="col-lg-5">
-                    <asp:TextBox ID="txtDept" runat="server" CssClass="form-control" placeholder="Department"></asp:TextBox>
+                    <asp:DropDownList ID="lblDept" runat="server" CssClass="form-control">
+                        <asp:ListItem>Dept</asp:ListItem>
+                    </asp:DropDownList>
                 </div>
             </div>
             <div class="form-group required">
@@ -118,6 +107,15 @@
                     <asp:Label runat="server" CssClass="col-lg-2 control-label" Text="Job Title"></asp:Label></strong>
                 <div class="col-lg-5">
                     <asp:TextBox ID="txtJobTitle" runat="server" CssClass="form-control" placeholder="Job Title"></asp:TextBox>
+                </div>
+            </div>
+                <div class="form-group required">
+                <strong>
+                    <asp:Label runat="server" CssClass="col-lg-2 control-label" Text="Supervisor"></asp:Label></strong>
+                <div class="col-lg-5">
+                    <asp:DropDownList ID="ddlSup" runat="server" CssClass="form-control">
+                        <asp:ListItem>sup</asp:ListItem>
+                    </asp:DropDownList>
                 </div>
             </div>
                 <br />

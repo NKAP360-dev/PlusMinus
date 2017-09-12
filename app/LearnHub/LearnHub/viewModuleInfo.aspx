@@ -401,7 +401,8 @@
                                         Response.Write("<thead><tr>");
                                         Response.Write("<th>Attempt #</th>");
                                         Response.Write("<th>Date</th>");
-                                        Response.Write("<th>Score</th></tr></thead>");
+                                        Response.Write("<th>Score</th>");
+                                        Response.Write("<th>Status</th></tr></thead>");
 
                                         foreach (QuizResult qr in allAttempts)
                                         {
@@ -430,6 +431,7 @@
                                             }
                                             Response.Write($"<td>{qr.getDateSubmitted().ToString("dd/MM/yyyy")}</td>");
                                             Response.Write($"<td>{qr.getScore()}/{allQuestions.Count}</td>");
+                                            Response.Write($"<td>{qr.getGrade()}</td>");
                                             Response.Write("</tr>");
                                         }
                                         Response.Write("</table>");

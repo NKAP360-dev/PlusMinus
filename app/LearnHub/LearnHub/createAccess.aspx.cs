@@ -25,7 +25,7 @@ namespace LearnHub
             string contact = txtContactNo.Text;
             string address = txtAddress.Text;
             string email = txtEmail.Text;
-            string dept = txtDept.Text;
+            //string dept = txtDept.Text;
             string jobtitle = txtJobTitle.Text;
             ArrayList roles = new ArrayList();
             foreach (ListItem item in cblRoles.Items)
@@ -39,10 +39,11 @@ namespace LearnHub
             string salt = Crypto.GenerateSalt();// generate salt of user
             string password_hashed = Crypto.SHA256(salt + pass);
             //password hashed now create user 
-            User u = new User(user, name, jobtitle, "Staff", "S1234567C", roles, dept, email, DateTime.Now, address, contact, "Active");
+            //User u = new User(user, name, jobtitle, "Staff", "S1234567C", roles, dept, email, DateTime.Now, address, contact, "Active");
             UserDAO udao = new UserDAO();
-            Boolean res = udao.create_user_elearn(u, password_hashed, salt);
-            Boolean res_role = udao.add_role(u, roles);
+            //Boolean res = udao.create_user_elearn(u, password_hashed, salt);
+            //Boolean res_role = udao.add_role(u, roles);
+            Boolean res = true;
             if (res)
             {
                 Response.Redirect("manageUsers.aspx");
