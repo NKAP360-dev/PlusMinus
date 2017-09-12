@@ -143,6 +143,7 @@
     <None Include="Properties\PublishProfiles\Emma20170816023946 - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\Emma20170816023947 - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\Emma20170816025821 - Web Deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\Emma20170911022619 - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\LearnHub20170731061614 - Web Deploy.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
