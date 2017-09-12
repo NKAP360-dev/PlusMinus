@@ -21,6 +21,7 @@ namespace LearnHub.AppCode.entity
         private User courseCreator;
         private double hoursAwarded;
         private string targetAudience;
+        private string courseType;
 
         public Course_elearn()
         {
@@ -28,7 +29,7 @@ namespace LearnHub.AppCode.entity
         }
         public Course_elearn(string courseName, string provider, DateTime entry_date,
             DateTime startDate, DateTime endDate,  string status,
-            string desc, int categoryID, User courseCreator, double hoursAwarded, string targetAudience)
+            string desc, int categoryID, User courseCreator, double hoursAwarded, string targetAudience, string courseType)
         {
             //no need id, with entry date and expiry date
             this.courseName = courseName;
@@ -43,11 +44,12 @@ namespace LearnHub.AppCode.entity
             this.courseCreator = courseCreator;
             this.hoursAwarded = hoursAwarded;
             this.targetAudience = targetAudience;
+            this.courseType = courseType;
         }
 
         public Course_elearn(int courseID, string courseName, string provider,
             DateTime startDate, string status,
-            string desc, ArrayList prereq, int categoryID)
+            string desc, ArrayList prereq, int categoryID, string courseType)
         {
             //no exp date only
             this.courseID = courseID;
@@ -57,10 +59,11 @@ namespace LearnHub.AppCode.entity
             this.description = desc;
             this.prerequisite = prereq; // so if no pre req put as null value for default. 
             this.categoryID = categoryID; // professional, leadership or compulsory
+            this.courseType = courseType;
         }
         public Course_elearn(int courseID, string courseName, string provider,
             DateTime startDate, string status,
-            string desc, int categoryID)
+            string desc, int categoryID, string courseType)
         {
             //no exp date, no prereq and no prov
             this.courseID = courseID;
@@ -69,10 +72,11 @@ namespace LearnHub.AppCode.entity
             this.status = status;
             this.description = desc;
             this.categoryID = categoryID; // professional, leadership or compulsory
+            this.courseType = courseType;
         }
         public Course_elearn(int courseID, string courseName,
             DateTime startDate, DateTime endDate, string status,
-            string desc, ArrayList prereq, int categoryID)
+            string desc, ArrayList prereq, int categoryID, string courseType)
         {
             //no provider only
             this.courseID = courseID;
@@ -83,10 +87,11 @@ namespace LearnHub.AppCode.entity
             this.description = desc;
             this.prerequisite = prereq; // so if no pre req put as null value for default. 
             this.categoryID = categoryID; // professional, leadership or compulsory
+            this.courseType = courseType;
         }
         public Course_elearn(int courseID, string courseName, string provider,
             DateTime startDate, DateTime endDate, string status,
-            string desc, int categoryID)
+            string desc, int categoryID, string courseType)
         {
             //no prereq only
             this.courseID = courseID;
@@ -97,11 +102,12 @@ namespace LearnHub.AppCode.entity
             this.status = status;
             this.description = desc;
             this.categoryID = categoryID; // professional, leadership or compulsory
+            this.courseType = courseType;
         }
 
         public Course_elearn(int courseID, string courseName,
             string courseProvider, DateTime startDate, DateTime endDate,
-            string status, string desc, ArrayList prereq, int categoryID)
+            string status, string desc, ArrayList prereq, int categoryID, string courseType)
         {
             //with provider and endDate
             this.courseID = courseID;
@@ -113,6 +119,7 @@ namespace LearnHub.AppCode.entity
             this.description = desc;
             this.prerequisite = prereq;  // so if no pre req put as null value for default. 
             this.categoryID = categoryID;
+            this.courseType = courseType;
         }
 
         public DateTime getEntryDate()
@@ -219,6 +226,14 @@ namespace LearnHub.AppCode.entity
         public void setTargetAudience(string targetAudience)
         {
             this.targetAudience = targetAudience;
+        }
+        public string getCourseType()
+        {
+            return courseType;
+        }
+        public void setCourseType(string courseType)
+        {
+            this.courseType = courseType;
         }
     }
 }

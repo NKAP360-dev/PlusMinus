@@ -322,20 +322,20 @@
                         <asp:RequiredFieldValidator ID="rfv_moduleType" runat="server" ControlToValidate="moduleType" ErrorMessage="Please select a Category" InitialValue="0" ForeColor="Red" ValidationGroup="ValidateForm"></asp:RequiredFieldValidator>
                     </div>
                 </div>
-
+                <asp:UpdatePanel ID="updatePanelCourseType" runat="server">
+                    <ContentTemplate>
                 <div class="form-group required">
                     <strong><asp:Label runat="server" CssClass="col-lg-2 control-label" Text="Course Type"></asp:Label></strong>
                     <div class="col-lg-5">
-                        <asp:DropDownList ID="ddlCourseType" runat="server" CssClass="form-control">
+                        <asp:DropDownList ID="ddlCourseType" runat="server" CssClass="form-control" AutoPostBack="True" OnSelectedIndexChanged="ddlCourseType_SelectedIndexChanged">
                             <asp:ListItem Text="--Select--" Selected="true" Value="0"></asp:ListItem>
-                            <asp:ListItem Text="Classroom Learning"></asp:ListItem>
-                             <asp:ListItem Text="Online Learning"></asp:ListItem>
+                            <asp:ListItem Text="Classroom Learning" Value="Classroom Learning"></asp:ListItem>
+                             <asp:ListItem Text="Online Learning" Value="Online Learning"></asp:ListItem>
                         </asp:DropDownList>
                         <asp:RequiredFieldValidator ID="rfv_ddlCourseType" runat="server" ControlToValidate="ddlCourseType" ErrorMessage="Please select a Course Type" InitialValue="0" ForeColor="Red" ValidationGroup="ValidateForm" EnableClientScript="True"></asp:RequiredFieldValidator>
                     </div>
                 </div>
-                <asp:UpdatePanel ID="namePanel" runat="server">
-                    <ContentTemplate>
+                
                         <div class="form-group required">
                             <strong>
                                 <asp:Label ID="nameOfModuleLabel" runat="server" CssClass="col-lg-2 control-label" Text="Name of Course"></asp:Label></strong>
@@ -347,8 +347,7 @@
                                 <asp:Label ID="lbl_nameValidate" runat="server" Text="" ForeColor="Red"></asp:Label>
                             </div>
                         </div>
-                    </ContentTemplate>
-                </asp:UpdatePanel>
+                    
 
                 <div class="form-group required">
                     <strong>
@@ -375,7 +374,7 @@
                         <asp:Label ID="hoursLabel" runat="server" CssClass="col-lg-2 control-label" Text="Learning Hours"></asp:Label></strong>
                     <div class="col-lg-5">
                         <div class="input-group">
-                            <asp:TextBox ID="hoursInput" runat="server" CssClass="form-control" placeholder="No. of Hours"></asp:TextBox>
+                            <asp:TextBox ID="hoursInput" runat="server" CssClass="form-control" placeholder="No. of Hours" TextMode="Number"></asp:TextBox>
                             <span class="input-group-addon">hours </span>
                         </div>
                         <asp:RequiredFieldValidator ID="rfv_hoursInput" runat="server" ErrorMessage="Please Input the Number of Learning Hours" ControlToValidate="hoursInput" ForeColor="Red" ValidationGroup="ValidateForm"></asp:RequiredFieldValidator>
@@ -383,37 +382,12 @@
                         <asp:CustomValidator ID="cv_hoursInputFormat" runat="server" EnableClientScript="true" ErrorMessage="Please enter hours in either whole number or with only one decimal place e.g (15.5)" ClientValidationFunction="ValidateHoursFormat" ForeColor="Red" ValidationGroup="ValidateForm"></asp:CustomValidator>
                         <br />
                         <asp:CustomValidator ID="cv_hoursInput" runat="server" EnableClientScript="true" ErrorMessage="Please enter a value between 0.0 and 100000.0" ClientValidationFunction="ValidateHours" ForeColor="Red" ValidationGroup="ValidateForm"></asp:CustomValidator>
-
                     </div>                                      
                 </div>
-
-
-                <%--Date--%>
-                
-                <div class="form-group required">
-                    <strong>
-                        <asp:Label ID="dateLabel" runat="server" CssClass="col-lg-2 control-label" Text="Date to Display"></asp:Label></strong>
-
-                    <div class="col-lg-5">
-                        <div class="input-daterange input-group" id="datepicker">
-                            <asp:TextBox ID="fromDateInput" runat="server" CssClass="form-control" placeholder="DD/MM/YYYY"></asp:TextBox>
-                            <span class="input-group-addon">to</span>
-                            <asp:TextBox ID="toDateInput" runat="server" CssClass="form-control" placeholder="DD/MM/YYYY"></asp:TextBox>
-                            <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i>
-                            </span>
-                        </div>
-                        <asp:RequiredFieldValidator ID="rfv_fromDateInput" ControlToValidate="fromDateInput" runat="server" ErrorMessage="Please enter the Start Date of the Course" ForeColor="Red" ValidationGroup="ValidateForm" />
-                        <br />
-                        <asp:RequiredFieldValidator ID="rfv_toDateInput" ControlToValidate="toDateInput" runat="server" ErrorMessage="Please enter the End Date of the Course" ForeColor="Red" ValidationGroup="ValidateForm" />
-                        <br />
-                        <asp:CustomValidator ID="cv_dateInput" runat="server" ClientValidationFunction="compareDates" ErrorMessage="Please enter a Course Start Date that is Before the Course End Date." ForeColor="Red" ValidationGroup="ValidateForm"></asp:CustomValidator>
-                     </div>
-                    <br />
-
-                </div>
-                
-
                 <%--Preq--%>
+                        <asp:Panel runat="server" ID="panelPrereq">
+
+                        
                 <div class="form-group">
                     <strong>
                          <a href="javascript:void(0);" class="col-lg-2 control-label" data-toggle="collapse" data-target="#preq"">Course Prerequisite Selection </a></strong>
@@ -478,9 +452,38 @@
                     </tbody>
                     </table>--%>
                        <h6><em>Click on "Course Prerequisite Selection" to choose prerequisite courses</em></h6>
+                        </asp:Panel>
                     </div>
                     </div>
+                </ContentTemplate>
+                    <Triggers>
+                        <asp:AsyncPostBackTrigger ControlID="ddlCourseType" EventName="SelectedIndexChanged" />
+                    </Triggers>
+                </asp:UpdatePanel>
+
+                <%--Date--%>
                 
+                <div class="form-group required">
+                    <strong>
+                        <asp:Label ID="dateLabel" runat="server" CssClass="col-lg-2 control-label" Text="Date to Display"></asp:Label></strong>
+
+                    <div class="col-lg-5">
+                        <div class="input-daterange input-group" id="datepicker">
+                            <asp:TextBox ID="fromDateInput" runat="server" CssClass="form-control" placeholder="DD/MM/YYYY"></asp:TextBox>
+                            <span class="input-group-addon">to</span>
+                            <asp:TextBox ID="toDateInput" runat="server" CssClass="form-control" placeholder="DD/MM/YYYY"></asp:TextBox>
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i>
+                            </span>
+                        </div>
+                        <asp:RequiredFieldValidator ID="rfv_fromDateInput" ControlToValidate="fromDateInput" runat="server" ErrorMessage="Please enter the Start Date of the Course" ForeColor="Red" ValidationGroup="ValidateForm" />
+                        <br />
+                        <asp:RequiredFieldValidator ID="rfv_toDateInput" ControlToValidate="toDateInput" runat="server" ErrorMessage="Please enter the End Date of the Course" ForeColor="Red" ValidationGroup="ValidateForm" />
+                        <br />
+                        <asp:CustomValidator ID="cv_dateInput" runat="server" ClientValidationFunction="compareDates" ErrorMessage="Please enter a Course Start Date that is Before the Course End Date." ForeColor="Red" ValidationGroup="ValidateForm"></asp:CustomValidator>
+                     </div>
+                    <br />
+
+                </div>
 
                 <%-- No external vendors based on latest requirement as of 24th July
                 <div class="form-group">

@@ -160,8 +160,8 @@ namespace LearnHub.AppCode.dao
                 SqlCommand comm = new SqlCommand();
                 comm.Connection = conn;
                 comm.CommandText = "insert into [Elearn_course] " +
-                    "(elearn_courseName, elearn_courseProvider, entry_date, start_date, expiry_date, status, description, categoryID, courseCreator, hoursAwarded, targetAudience) " +
-                    "values (@cName, @provider, Convert(datetime, @entry, 103), convert(datetime,@time,103), Convert(datetime,@expiry,103), @status, @desc, @category, @courseCreator, @hoursAwarded, @targetAudience)";
+                    "(elearn_courseName, elearn_courseProvider, entry_date, start_date, expiry_date, status, description, categoryID, courseCreator, hoursAwarded, targetAudience, courseType) " +
+                    "values (@cName, @provider, Convert(datetime, @entry, 103), convert(datetime,@time,103), Convert(datetime,@expiry,103), @status, @desc, @category, @courseCreator, @hoursAwarded, @targetAudience, @courseType)";
                 comm.Parameters.AddWithValue("@cName", course.getCourseName());
                 if (course.getCourseProvider() != null)
                 {
@@ -195,6 +195,7 @@ namespace LearnHub.AppCode.dao
                 comm.Parameters.AddWithValue("@courseCreator", course.getCourseCreator().getUserID());
                 comm.Parameters.AddWithValue("@hoursAwarded", course.getHoursAwarded());
                 comm.Parameters.AddWithValue("@targetAudience", course.getTargetAudience());
+                comm.Parameters.AddWithValue("@courseType", course.getCourseType());
                 int rowsAffected = comm.ExecuteNonQuery();                
                 //need new method to create pre-requisities here to store in seperate table (pre-req table)
                 toReturn = course;
@@ -256,6 +257,7 @@ namespace LearnHub.AppCode.dao
                     {
                         toReturn.setTargetAudience((string)dr["targetAudience"]);
                     }
+                    toReturn.setCourseType((string)dr["courseType"]);
                     toReturn_list.Add(toReturn); //add to arraylist to return of all courses related to given category
                 }
                 dr.Close();
@@ -371,6 +373,7 @@ namespace LearnHub.AppCode.dao
                     {
                         toReturn.setTargetAudience((string)dr["targetAudience"]);
                     }
+                    toReturn.setCourseType((string)dr["courseType"]);
                     toReturn_list.Add(toReturn); //parse as course_elearn object to store and return in arraylist
                 }
                 dr.Close();
@@ -432,6 +435,7 @@ namespace LearnHub.AppCode.dao
                     {
                         toReturn.setTargetAudience((string)dr["targetAudience"]);
                     }
+                    toReturn.setCourseType((string)dr["courseType"]);
                 }
                 dr.Close();
             }
@@ -490,6 +494,7 @@ namespace LearnHub.AppCode.dao
                     {
                         toReturn.setTargetAudience((string)dr["targetAudience"]);
                     }
+                    toReturn.setCourseType((string)dr["courseType"]);
                 }
                 dr.Close();
             }
@@ -617,6 +622,7 @@ namespace LearnHub.AppCode.dao
                     {
                         toReturn.setTargetAudience((string)dr["targetAudience"]);
                     }
+                    toReturn.setCourseType((string)dr["courseType"]);
                     toReturn_list.Add(toReturn); //add to arraylist to return of all courses related to given category
                 }
                 dr.Close();

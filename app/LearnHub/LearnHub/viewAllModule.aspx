@@ -129,6 +129,7 @@
                                 <asp:BoundField DataField="elearn_courseName" HeaderText="Course Name" SortExpression="elearn_courseName" />
                                 <asp:BoundField DataField="elearn_courseProvider" HeaderText="Course Provider" SortExpression="elearn_courseProvider" />
                                 <asp:BoundField DataField="hoursAwarded" HeaderText="Learning Hours" SortExpression="hoursAwarded" />
+                                <asp:BoundField DataField="courseType" HeaderText="Course Type" SortExpression="courseType" />
                                 <asp:HyperLinkField DataNavigateUrlFields="elearn_courseID" DataNavigateUrlFormatString="viewModuleInfo.aspx?id={0}" Text="View Details" />
                             </Columns>
                         </asp:GridView>
