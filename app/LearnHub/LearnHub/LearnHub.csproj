@@ -424,6 +424,13 @@
     <Compile Include="manageCategories.aspx.designer.cs">
       <DependentUpon>manageCategories.aspx</DependentUpon>
     </Compile>
+    <Compile Include="manageProgress.aspx.cs">
+      <DependentUpon>manageProgress.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="manageProgress.aspx.designer.cs">
+      <DependentUpon>manageProgress.aspx</DependentUpon>
+    </Compile>
     <Compile Include="manageQuiz.aspx.cs">
       <DependentUpon>manageQuiz.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -487,6 +494,13 @@
     </Compile>
     <Compile Include="quiz.aspx.designer.cs">
       <DependentUpon>quiz.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="quizSummary.aspx.cs">
+      <DependentUpon>quizSummary.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="quizSummary.aspx.designer.cs">
+      <DependentUpon>quizSummary.aspx</DependentUpon>
     </Compile>
     <Compile Include="rejectionConfirmation.aspx.cs">
       <DependentUpon>rejectionConfirmation.aspx</DependentUpon>
@@ -994,6 +1008,7 @@
     <Content Include="Login.aspx" />
     <Content Include="Logout.aspx" />
     <Content Include="manageCategories.aspx" />
+    <Content Include="manageProgress.aspx" />
     <Content Include="manageQuiz.aspx" />
     <Content Include="manageUsers.aspx" />
     <Content Include="noResult.aspx" />
@@ -1002,6 +1017,7 @@
     <Content Include="progressFeedback.aspx" />
     <Content Include="progressReport.aspx" />
     <Content Include="quiz.aspx" />
+    <Content Include="quizSummary.aspx" />
     <Content Include="rejectionConfirmation.aspx" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />

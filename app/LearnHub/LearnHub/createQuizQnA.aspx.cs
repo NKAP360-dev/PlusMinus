@@ -236,8 +236,7 @@ namespace LearnHub
                 }
              }
 
-            //redirect back to viewModuleInfo.aspx
-            Response.Redirect($"viewModuleInfo.aspx?id={currentCourse.getCourseID()}");
+            Response.Redirect($"quizSummary.aspx?id={currentCourse.getCourseID()}");
         }
     }
 }

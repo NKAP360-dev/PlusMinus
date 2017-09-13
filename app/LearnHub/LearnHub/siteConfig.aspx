@@ -114,7 +114,7 @@
     <div class="container">
         <div class="row">
             <h3><span class="glyphicon glyphicon-menu-right"></span>&emsp;Progress Reports </h3>
-            <a href=".aspx">
+            <a href="manageProgress.aspx">
                 <div class="col-md-3 btn-warning">
                     <br />
                     <br />
