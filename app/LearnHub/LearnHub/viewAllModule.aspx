@@ -40,12 +40,18 @@
             background-color: white;
             border-radius: 0px;
         }
+
+        .coursesBanner img {
+            border-radius: 5px;
+            max-height: 300px;
+            max-width: 700px;
+        }
     </style>
     <link href="/Scripts/footable.bootstrap.min.css" rel="stylesheet" />
     <script src="/Scripts/footable.min.js"></script>
     <script>
         jQuery(function ($) {
-            $('.table').footable({
+            $('[id*=gvCourse]').footable({
                 "paging": {
                     "size": 10 <%--Change how many rows per page--%>
                 },
@@ -66,27 +72,27 @@
         <div class="container">
             <h1>View Courses</h1>
 
-             <%
-    User currentUser = (User)Session["currentUser"];
-    Boolean superuser = false;
-    Boolean course_creator = false;
-    if (currentUser != null)
-    {
-        foreach (string s in currentUser.getRoles())
-        {
-            if (s.Equals("superuser"))
-            {
-                superuser = true;
-            }
-            else if (s.Equals("course creator"))
-            {
-                course_creator = true;
-            }
-        }
-        if (currentUser != null && (course_creator || superuser))
-        {
-             %>
-            
+            <%
+                User currentUser = (User)Session["currentUser"];
+                Boolean superuser = false;
+                Boolean course_creator = false;
+                if (currentUser != null)
+                {
+                    foreach (string s in currentUser.getRoles())
+                    {
+                        if (s.Equals("superuser"))
+                        {
+                            superuser = true;
+                        }
+                        else if (s.Equals("course creator"))
+                        {
+                            course_creator = true;
+                        }
+                    }
+                    if (currentUser != null && (course_creator || superuser))
+                    {
+            %>
+
 
             <div class="dropdown" style="float: right;">
                 <button class="dropbtn" onclick="return false;"><span class="glyphicon glyphicon-option-horizontal"></span></button>
@@ -98,8 +104,8 @@
             </div>
 
             <%
-        }
-    }
+                    }
+                }
             %>
             <div class="verticalLine"></div>
         </div>
@@ -109,7 +115,7 @@
                 <div class="col-md-3">
                     <div class="list-group">
                         <div class="wrapper">
-                            <h4><strong><span class="glyphicon glyphicon-search">&emsp;</span>View Course Types</strong></h4>
+                            <h4><strong><span class="glyphicon glyphicon-education">&emsp;</span>Course Categories</strong></h4>
                         </div>
                         <asp:SqlDataSource ID="SqlDataSourceCourseCategory" runat="server" ConnectionString="<%$ ConnectionStrings:DBConnectionString %>" SelectCommand="SELECT * FROM [Elearn_courseCategory] WHERE status = 'active' "></asp:SqlDataSource>
                         <asp:ListView runat="server" DataSourceID="SqlDataSourceCourseCategory" DataTextField="category,categoryID">
@@ -120,8 +126,12 @@
                     </div>
                 </div>
                 <div class="col-md-9">
+                    <br />
+                    <div class="coursesBanner wrapper">
+                        <img src="img/courses.png" style='width:100%;' border="0"/>
+                    </div>
                     <h2>
-                        <asp:Label ID="lblModuleCategory" runat="server" Text="Choose a category from the left"></asp:Label></h2>
+                        <asp:Label ID="lblModuleCategory" runat="server"></asp:Label></h2>
                     <p>
                         <asp:SqlDataSource ID="SqlDataSourceCourse" runat="server" ConnectionString="<%$ ConnectionStrings:DBConnectionString %>"></asp:SqlDataSource>
                         <asp:GridView ID="gvCourse" runat="server" CssClass="footable table table-striped table-hover" data-paging="true" data-sorting="true" data-filtering="true" GridLines="None" AutoGenerateColumns="false" EmptyDataText="There are no courses available to choose from.">

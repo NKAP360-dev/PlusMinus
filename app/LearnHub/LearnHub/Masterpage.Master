@@ -344,8 +344,7 @@
                             <li>
                         <a href="usefulInfo.aspx" class="dropdown-toggle" role="button" aria-expanded="false">Useful Information</a>
                             <li>
-                                <asp:HyperLink ID="HyperLink2" runat="server">Useful Links</asp:HyperLink></li>
-
+                                <a href="usefulLinks.aspx" class="dropdown-toggle" role="button" aria-expanded="false">Useful Links</a>
                         </ul>
                     </li>
                 </ul>
@@ -371,7 +370,7 @@
                                 <asp:HyperLink ID="HyperLink6" runat="server" NavigateUrl="accountSetting.aspx">Account Settings</asp:HyperLink></li>
                             <%} %>
                             <li>
-                                <asp:HyperLink ID="HyperLink10" runat="server">Contact Us</asp:HyperLink></li>
+                                <asp:HyperLink ID="HyperLink10" runat="server" NavigateUrl="contactUs.aspx">Contact Us</asp:HyperLink></li>
                         </ul>
                     </li>
                 </ul>

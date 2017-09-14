@@ -64,7 +64,9 @@
         <li class="active">Manage Courses</li>
     </ul>
     <div class="container">
-        <h1>Manage Courses</h1>
+        <h1>Manage Courses
+         <a href="createModules.aspx" class="btn btn-success">Add New Courses</a>
+        </h1>
                  <%
                  User currentUser = (User)Session["currentUser"];
                  Boolean superuser = false;

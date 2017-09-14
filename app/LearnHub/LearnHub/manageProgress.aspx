@@ -90,7 +90,7 @@
                 <tbody>
                     <tr><td>Rafid</td>
                         <td>Nursing</td>
-                        <td><a href="progressReport.aspx" class="btn btn-info"><span class="glyphicon glyphicon-search"></span></a></td>
+                        <td><a href="progressReport.aspx" class="btn btn-sm btn-info"><span class="glyphicon glyphicon-search"></span></a></td>
                     </tr>
                     </tbody>
             </table></form>

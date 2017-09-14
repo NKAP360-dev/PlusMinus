@@ -314,6 +314,13 @@
     <Compile Include="changePassword.aspx.designer.cs">
       <DependentUpon>changePassword.aspx</DependentUpon>
     </Compile>
+    <Compile Include="contactUs.aspx.cs">
+      <DependentUpon>contactUs.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="contactUs.aspx.designer.cs">
+      <DependentUpon>contactUs.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="AppCode\dao\Course_elearnDAO.cs" />
     <Compile Include="createAccess.aspx.cs">
@@ -372,6 +379,13 @@
     <Compile Include="editCategories.aspx.designer.cs">
       <DependentUpon>editCategories.aspx</DependentUpon>
     </Compile>
+    <Compile Include="editContactUs.aspx.cs">
+      <DependentUpon>editContactUs.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="editContactUs.aspx.designer.cs">
+      <DependentUpon>editContactUs.aspx</DependentUpon>
+    </Compile>
     <Compile Include="editModuleInfo.aspx.cs">
       <DependentUpon>editModuleInfo.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -385,6 +399,13 @@
     </Compile>
     <Compile Include="editQuiz.aspx.designer.cs">
       <DependentUpon>editQuiz.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="editUsefulLinks.aspx.cs">
+      <DependentUpon>editUsefulLinks.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="editUsefulLinks.aspx.designer.cs">
+      <DependentUpon>editUsefulLinks.aspx</DependentUpon>
     </Compile>
     <Compile Include="editUsers.aspx.cs">
       <DependentUpon>editUsers.aspx</DependentUpon>
@@ -452,6 +473,13 @@
     <Compile Include="manageCategories.aspx.designer.cs">
       <DependentUpon>manageCategories.aspx</DependentUpon>
     </Compile>
+    <Compile Include="manageContactUs.aspx.cs">
+      <DependentUpon>manageContactUs.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="manageContactUs.aspx.designer.cs">
+      <DependentUpon>manageContactUs.aspx</DependentUpon>
+    </Compile>
     <Compile Include="manageProgress.aspx.cs">
       <DependentUpon>manageProgress.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -465,6 +493,13 @@
     </Compile>
     <Compile Include="manageQuiz.aspx.designer.cs">
       <DependentUpon>manageQuiz.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="manageUsefulLinks.aspx.cs">
+      <DependentUpon>manageUsefulLinks.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="manageUsefulLinks.aspx.designer.cs">
+      <DependentUpon>manageUsefulLinks.aspx</DependentUpon>
     </Compile>
     <Compile Include="manageUsers.aspx.cs">
       <DependentUpon>manageUsers.aspx</DependentUpon>
@@ -613,6 +648,13 @@
     </Compile>
     <Compile Include="usefulInfo.aspx.designer.cs">
       <DependentUpon>usefulInfo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="usefulLinks.aspx.cs">
+      <DependentUpon>usefulLinks.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="usefulLinks.aspx.designer.cs">
+      <DependentUpon>usefulLinks.aspx</DependentUpon>
     </Compile>
     <Compile Include="viewAllArticles.aspx.cs">
       <DependentUpon>viewAllArticles.aspx</DependentUpon>
@@ -1024,6 +1066,7 @@
     <Content Include="ckeditor\skins\moono-lisa\images\refresh.png" />
     <Content Include="ckeditor\skins\moono-lisa\images\spinner.gif" />
     <Content Include="ckeditor\styles.js" />
+    <Content Include="contactUs.aspx" />
     <Content Include="createAccess.aspx" />
     <Content Include="createArticle.aspx" />
     <Content Include="createModules.aspx" />
@@ -1032,8 +1075,10 @@
     <Content Include="deleteMaterial.aspx" />
     <Content Include="editArticle.aspx" />
     <Content Include="editCategories.aspx" />
+    <Content Include="editContactUs.aspx" />
     <Content Include="editModuleInfo.aspx" />
     <Content Include="editQuiz.aspx" />
+    <Content Include="editUsefulLinks.aspx" />
     <Content Include="editUsers.aspx" />
     <Content Include="learnyConfiguration.aspx" />
     <Content Include="errorPage.aspx" />
@@ -1054,8 +1099,10 @@
     <Content Include="Logout.aspx" />
     <Content Include="manageArticles.aspx" />
     <Content Include="manageCategories.aspx" />
+    <Content Include="manageContactUs.aspx" />
     <Content Include="manageProgress.aspx" />
     <Content Include="manageQuiz.aspx" />
+    <Content Include="manageUsefulLinks.aspx" />
     <Content Include="manageUsers.aspx" />
     <Content Include="noResult.aspx" />
     <Content Include="overallQuizResult.aspx" />
@@ -1083,6 +1130,7 @@
     <Content Include="TRFapproval.aspx" />
     <Content Include="uploadDownloadTest.aspx" />
     <Content Include="usefulInfo.aspx" />
+    <Content Include="usefulLinks.aspx" />
     <Content Include="viewAllArticles.aspx" />
     <Content Include="viewAllModule.aspx" />
     <Content Include="viewApprovedTRF.aspx" />

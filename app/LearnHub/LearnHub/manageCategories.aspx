@@ -57,7 +57,7 @@
 
     <div class="container">
         <h1>Course Category&nbsp;
-                        <button type="button" data-toggle="collapse" data-target="#addForm" class="btn btn-success"><span class="glyphicon glyphicon-plus"></span>&nbsp; New</button>
+                        <button type="button" data-toggle="collapse" data-target="#addForm" class="btn btn-success">Add New Category</button>
         </h1>
             <%
                 User currentUser = (User)Session["currentUser"];

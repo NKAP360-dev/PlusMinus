@@ -28,7 +28,9 @@ namespace LearnHub
             SqlDataSourceCourse.SelectCommand = $"SELECT * FROM [Elearn_course] WHERE categoryID = {value} and status='Open' and start_date<=getDate() and expiry_date>=getDate()";
             gvCourse.DataSource = SqlDataSourceCourse;
             gvCourse.DataBind();
+
             gvCourse.UseAccessibleHeader = true;
+
             if (gvCourse.Rows.Count > 0)
             {
                 gvCourse.HeaderRow.TableSection = TableRowSection.TableHeader;

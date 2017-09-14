@@ -156,9 +156,9 @@
     <br />
     <div class="container">
         <div class="row">
-        <h3><span class="glyphicon glyphicon-menu-right"></span>&emsp;Useful Information / Articles</h3>
+        <h3><span class="glyphicon glyphicon-menu-right"></span>&emsp;Resources</h3>
             <a href="manageArticles.aspx">
-                <div class="col-md-3 btn-primary">
+                <div class="col-md-3 btn-default">
                     <br />
                     <br />
                     <div class="wrapper">
@@ -169,7 +169,7 @@
                 </div>
             </a>
             <a href="createArticle.aspx">
-                <div class="col-md-3 btn-primary">
+                <div class="col-md-3 btn-default">
                     <br />
                     <br />
                     <div class="wrapper">
@@ -179,6 +179,28 @@
                     </div>
                 </div>
             </a>
+            <a href="manageUsefulLinks.aspx">
+                <div class="col-md-3 btn-default">
+                    <br />
+                    <br />
+                    <div class="wrapper">
+                        <span style="font-size: 75px;" class="glyphicon glyphicon-globe"></span>
+                        <h3>Manage Links</h3>
+                        <br />
+                    </div>
+                </div>
+            </a>
+            <a href="manageContactUs.aspx">
+                <div class="col-md-3 btn-default">
+                    <br />
+                    <br />
+                    <div class="wrapper">
+                        <span style="font-size: 75px;" class="glyphicon glyphicon-earphone"></span>
+                        <h3>Manage Contact Us</h3>
+                        <br />
+                    </div>
+                </div>
+                </a>
         </div>
     </div>
     <br />
