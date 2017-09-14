@@ -342,7 +342,7 @@
                             <li>
                                 <asp:HyperLink ID="HyperLink8" runat="server">Training Calendar</asp:HyperLink></li>
                             <li>
-                                <asp:HyperLink ID="HyperLink9" runat="server">Useful Information</asp:HyperLink></li>
+                        <a href="usefulInfo.aspx" class="dropdown-toggle" role="button" aria-expanded="false">Useful Information</a>
                             <li>
                                 <asp:HyperLink ID="HyperLink2" runat="server">Useful Links</asp:HyperLink></li>
 

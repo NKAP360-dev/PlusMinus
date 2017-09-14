@@ -156,6 +156,34 @@
     <br />
     <div class="container">
         <div class="row">
+        <h3><span class="glyphicon glyphicon-menu-right"></span>&emsp;Useful Information / Articles</h3>
+            <a href="manageArticles.aspx">
+                <div class="col-md-3 btn-primary">
+                    <br />
+                    <br />
+                    <div class="wrapper">
+                        <span style="font-size: 75px;" class="glyphicon glyphicon-duplicate"></span>
+                        <h3>Manage Articles</h3>
+                        <br />
+                    </div>
+                </div>
+            </a>
+            <a href="createArticle.aspx">
+                <div class="col-md-3 btn-primary">
+                    <br />
+                    <br />
+                    <div class="wrapper">
+                        <span style="font-size: 75px;" class="glyphicon glyphicon-pencil"></span>
+                        <h3>Create Article</h3>
+                        <br />
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+    <br />
+    <div class="container">
+        <div class="row">
             <h3><span class="glyphicon glyphicon-menu-right"></span>&emsp;Courses</h3>
             <a href="viewCreatedModules.aspx">
                 <div class="col-md-3 btn-primary">

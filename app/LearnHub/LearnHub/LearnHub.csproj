@@ -230,6 +230,13 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="article.aspx.cs">
+      <DependentUpon>article.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="article.aspx.designer.cs">
+      <DependentUpon>article.aspx</DependentUpon>
+    </Compile>
     <Compile Include="askLearnyAddAns.aspx.cs">
       <DependentUpon>askLearnyAddAns.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -316,6 +323,13 @@
     <Compile Include="createAccess.aspx.designer.cs">
       <DependentUpon>createAccess.aspx</DependentUpon>
     </Compile>
+    <Compile Include="createArticle.aspx.cs">
+      <DependentUpon>createArticle.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="createArticle.aspx.designer.cs">
+      <DependentUpon>createArticle.aspx</DependentUpon>
+    </Compile>
     <Compile Include="createModules.aspx.cs">
       <DependentUpon>createModules.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -343,6 +357,13 @@
     </Compile>
     <Compile Include="deleteMaterial.aspx.designer.cs">
       <DependentUpon>deleteMaterial.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="editArticle.aspx.cs">
+      <DependentUpon>editArticle.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="editArticle.aspx.designer.cs">
+      <DependentUpon>editArticle.aspx</DependentUpon>
     </Compile>
     <Compile Include="editCategories.aspx.cs">
       <DependentUpon>editCategories.aspx</DependentUpon>
@@ -416,6 +437,13 @@
     </Compile>
     <Compile Include="Logout.aspx.designer.cs">
       <DependentUpon>Logout.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="manageArticles.aspx.cs">
+      <DependentUpon>manageArticles.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="manageArticles.aspx.designer.cs">
+      <DependentUpon>manageArticles.aspx</DependentUpon>
     </Compile>
     <Compile Include="manageCategories.aspx.cs">
       <DependentUpon>manageCategories.aspx</DependentUpon>
@@ -579,6 +607,20 @@
     <Compile Include="uploadDownloadTest.aspx.designer.cs">
       <DependentUpon>uploadDownloadTest.aspx</DependentUpon>
     </Compile>
+    <Compile Include="usefulInfo.aspx.cs">
+      <DependentUpon>usefulInfo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="usefulInfo.aspx.designer.cs">
+      <DependentUpon>usefulInfo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="viewAllArticles.aspx.cs">
+      <DependentUpon>viewAllArticles.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="viewAllArticles.aspx.designer.cs">
+      <DependentUpon>viewAllArticles.aspx</DependentUpon>
+    </Compile>
     <Compile Include="viewAllModule.aspx.cs">
       <DependentUpon>viewAllModule.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -655,6 +697,7 @@
     <Content Include="applyCourse.aspx" />
     <Content Include="approvalConfirmation.aspx" />
     <Content Include="approvedTRF.aspx" />
+    <Content Include="article.aspx" />
     <Content Include="askLearnyAddAns.aspx" />
     <Content Include="askLearnyAddIntent.aspx" />
     <Content Include="askLearnyEditAns.aspx" />
@@ -982,10 +1025,12 @@
     <Content Include="ckeditor\skins\moono-lisa\images\spinner.gif" />
     <Content Include="ckeditor\styles.js" />
     <Content Include="createAccess.aspx" />
+    <Content Include="createArticle.aspx" />
     <Content Include="createModules.aspx" />
     <Content Include="createQuiz.aspx" />
     <Content Include="createQuizQnA.aspx" />
     <Content Include="deleteMaterial.aspx" />
+    <Content Include="editArticle.aspx" />
     <Content Include="editCategories.aspx" />
     <Content Include="editModuleInfo.aspx" />
     <Content Include="editQuiz.aspx" />
@@ -1007,6 +1052,7 @@
     <Content Include="img\smu.png" />
     <Content Include="Login.aspx" />
     <Content Include="Logout.aspx" />
+    <Content Include="manageArticles.aspx" />
     <Content Include="manageCategories.aspx" />
     <Content Include="manageProgress.aspx" />
     <Content Include="manageQuiz.aspx" />
@@ -1036,6 +1082,8 @@
     <Content Include="trfApplicationStatus.aspx" />
     <Content Include="TRFapproval.aspx" />
     <Content Include="uploadDownloadTest.aspx" />
+    <Content Include="usefulInfo.aspx" />
+    <Content Include="viewAllArticles.aspx" />
     <Content Include="viewAllModule.aspx" />
     <Content Include="viewApprovedTRF.aspx" />
     <Content Include="viewCompletedCourse.aspx" />
