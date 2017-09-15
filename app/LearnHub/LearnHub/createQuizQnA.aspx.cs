@@ -202,12 +202,13 @@ namespace LearnHub
             if (rdlAttempt.SelectedValue.Equals("y"))
             {
                 newQuiz.setMultipleAttempts("y");
+                newQuiz.setNumberOfAttempts(0);
             }
             else
             {
                 newQuiz.setMultipleAttempts("n");
+                newQuiz.setNumberOfAttempts(Convert.ToInt32(txtNoOfAttempt.Text));
             }
-            newQuiz.setNumberOfAttempts(Convert.ToInt32(txtNoOfAttempt.Text));
             newQuiz.setDisplayAnswer(ddlDisplayAnswer.SelectedValue);
 
             int quizID = quizDAO.createQuiz(newQuiz);
@@ -236,7 +237,7 @@ namespace LearnHub
                 }
              }
 
-            Response.Redirect($"quizSummary.aspx?id={currentCourse.getCourseID()}");
+            Response.Redirect($"quizSummary.aspx?id={quizID}");
         }
     }
 }

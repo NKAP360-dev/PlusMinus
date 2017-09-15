@@ -32,9 +32,11 @@
             <h1>Summary</h1>
             <% 
                 User currentUser = (User)Session["currentUser"];
-                Course_elearnDAO ceDAO = new Course_elearnDAO();
-                int courseID = Convert.ToInt32(Request.QueryString["id"]);
-                User courseCreator = ceDAO.get_course_by_id(courseID).getCourseCreator();
+                QuizDAO quizDAO = new QuizDAO();
+                int quizID = Convert.ToInt32(Request.QueryString["id"]);
+                Quiz currentQuiz = quizDAO.getQuizByID(quizID);
+                Course_elearn currentCourse = currentQuiz.getMainCourse();
+                User courseCreator = currentCourse.getCourseCreator();
                 Boolean superuser = false;
                 foreach (string s in currentUser.getRoles())
                 {
@@ -50,8 +52,8 @@
             <div class="dropdown" style="float: right;">
                 <button class="dropbtn" onclick="return false;"><span class="glyphicon glyphicon-option-horizontal"></span></button>
                 <div class="dropdown-content" style="right: 0;">
-                    <a href="manageQuiz.aspx?id=<%=courseID%>"><span class="glyphicon glyphicon-book"></span>&nbsp;&nbsp;Manage Quizzes</a>
-                    <a href="createQuiz.aspx?id=<%=courseID%>"><span class="glyphicon glyphicon-plus"></span>&nbsp;&nbsp;Add New Quiz</a>
+                    <a href="manageQuiz.aspx?id=<%=currentCourse.getCourseID()%>"><span class="glyphicon glyphicon-book"></span>&nbsp;&nbsp;Manage Quizzes</a>
+                    <a href="createQuiz.aspx?id=<%=currentCourse.getCourseID()%>"><span class="glyphicon glyphicon-plus"></span>&nbsp;&nbsp;Add New Quiz</a>
                 </div>
             </div>
 
@@ -61,33 +63,47 @@
         <div class="container">
             <h2>Quiz has been created</h2>
             <br />
-            <%--Output question and answers--%>
+
             <table class="table">
                 <tbody>
-                    <tr class="active">
-                        <td><strong>Question {counter++}</strong></td>
-                    </tr>
-                    <tr>
-                        <td>Is watermelon good?</td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <asp:RadioButtonList ID="rblAnswers" runat="server">
-                                <asp:ListItem>yes</asp:ListItem>
-                                <asp:ListItem>no</asp:ListItem>
-                            </asp:RadioButtonList></td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div class="pull-right">
-                                Correct Answer: Yes <%--either show option no. or direct ans, whatever is doable--%>
-                            </div>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+            <%
+                QuizResultDAO qrDAO = new QuizResultDAO();
+                QuizQuestionDAO qqDAO = new QuizQuestionDAO();
+                QuizAnswerDAO qaDAO = new QuizAnswerDAO();
+                QuizResultHistoryDAO qrhDAO = new QuizResultHistoryDAO();
+                List<QuizQuestion> allQuestions = qqDAO.getAllQuizQuestionByQuizID(currentQuiz.getQuizID());
+                int counter = 1;    
 
-            <a href="viewModuleInfo.aspx?id=<%=courseID%>" class="pull-left"><span class="glyphicon glyphicon-menu-left"></span>&nbsp;Back to Course</a>
+                foreach (QuizQuestion question in allQuestions)
+                {
+                    List<QuizAnswer> allAnswers = qaDAO.getAllQuizAnswersByQuizQuestionID(question.getQuizQuestionID());
+
+                    Response.Write("<tr class=\"active\">");
+                    Response.Write($"<td><strong>Question {counter++} </strong></td></tr>");
+                    Response.Write($"<tr><td>{question.getQuestion()}</td></tr>");
+                    Response.Write("<tr><td><asp:RadioButtonList ID=\"rblAnswers\" runat=\"server\">");
+                    foreach (QuizAnswer possibleAnswer in allAnswers)
+                    {
+                        Response.Write("<tr><td><label");
+                        if (possibleAnswer.getAnswer().Equals(question.getQuizAnswer().getAnswer()))
+                        {
+                            Response.Write($" style=\"color: lightseagreen\"><input type=\"radio\" name=\"answers{counter}\"");
+                        }
+                        else
+                        {
+                            Response.Write($"><input type=\"radio\" name=\"answers{counter}\"");
+                        }
+                        Response.Write("disabled>");
+                        Response.Write($"{possibleAnswer.getAnswer()}</label>");
+                    }
+                    Response.Write("</td></tr>");
+                    Response.Write($"<tr class=\"pull-right\"><td>Correct Answer: {question.getQuizAnswer().getAnswer()}</td></tr>");
+                }
+            %>
+                    </tbody>
+                </table>
+
+            <a href="viewModuleInfo.aspx?id=<%=currentCourse.getCourseID()%>" class="pull-left"><span class="glyphicon glyphicon-menu-left"></span>&nbsp;Back to Course</a>
 
         </div>
     </form>
