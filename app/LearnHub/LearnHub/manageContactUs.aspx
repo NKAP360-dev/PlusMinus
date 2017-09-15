@@ -63,7 +63,7 @@
 
     <div class="container">
         <h1>Manage Contact Us
-        <button type="button" data-toggle="collapse" data-target="#addForm" class="btn btn-success">Add New</button>
+        <button type="button" data-toggle="collapse" data-target="#addForm" class="btn btn-success">Add New Contacts</button>
         </h1>
         <div class="verticalLine"></div>
     </div>

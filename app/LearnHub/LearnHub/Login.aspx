@@ -152,7 +152,7 @@
 
                                             <p>
                                                 <br />
-                                                <a href="#">Forgot your password?</a>
+                                                <a href="forgotPassword.aspx">Forgot your password?</a>
                                             </p>
                                             <p>
                                                 <br />
