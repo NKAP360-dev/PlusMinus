@@ -61,5 +61,66 @@ namespace LearnHub
                 }
             }
         }
+
+        protected void ValidateCurrPass(object sender, ServerValidateEventArgs args)
+        {
+            String input = txtPassword_now.Text;
+            UserDAO userdao = new UserDAO();
+            User user = (User)Session["currentUser"];
+            String currentPass = userdao.getPassword(user.getUserID());
+            LoginDAO loginDAO = new LoginDAO();
+            var userSalt = loginDAO.getSalt(user.getUserID());
+            var hashedPasword = Crypto.SHA256(userSalt + input);
+            User currentUser = loginDAO.login(user.getUserID(), hashedPasword);
+            if (currentUser.getUserID() == null)
+            {
+                System.Diagnostics.Debug.WriteLine("args false");
+                args.IsValid = false;
+            }
+            else
+            {
+                System.Diagnostics.Debug.WriteLine("args true");
+                args.IsValid = true;
+            }
+        }
+        protected void ValidateSamePass(object sender, ServerValidateEventArgs args)
+        {
+            String input = txtPassword_new.Text;
+            UserDAO userdao = new UserDAO();
+            User user = (User)Session["currentUser"];
+            String currentPass = userdao.getPassword(user.getUserID());
+            LoginDAO loginDAO = new LoginDAO();
+            var userSalt = loginDAO.getSalt(user.getUserID());
+            var hashedPasword = Crypto.SHA256(userSalt + input);
+            User currentUser = loginDAO.login(user.getUserID(), hashedPasword);
+            if (currentUser.getUserID() != null)
+            {
+                System.Diagnostics.Debug.WriteLine("args false");
+                args.IsValid = false;
+            }
+            else
+            {
+                System.Diagnostics.Debug.WriteLine("args true");
+                args.IsValid = true;
+            }
+        }
+
+        protected void ValidateMatchPass(object sender, ServerValidateEventArgs args)
+        {
+            String first = txtPassword_new.Text;
+            String second = txtPassword_newConfirm.Text;
+            if (first.Equals(second))
+            {
+                System.Diagnostics.Debug.WriteLine("args true");
+                args.IsValid = true;
+            }
+            else
+            {
+                
+                System.Diagnostics.Debug.WriteLine("args false");
+                args.IsValid = false;
+
+            }
+        }
     }
 }

@@ -46,7 +46,8 @@
                             <asp:Label runat="server" CssClass="col-lg-4 control-label" Text="Current Password"></asp:Label></strong>
                         <div class="col-lg-6">
                             <asp:TextBox ID="txtPassword_now" runat="server" CssClass="form-control" placeholder="Current Password" TextMode="Password"></asp:TextBox>
-                            <asp:RequiredFieldValidator ID="rfv_txtPassword_now" runat="server" ErrorMessage="Please enter your Current Password" ControlToValidate="txtPassword_now" ForeColor="Red" ValidationGroup="ValidateForm"></asp:RequiredFieldValidator>
+                            <asp:RequiredFieldValidator ID="rfv_txtPassword_now" runat="server" ErrorMessage="Please enter your Current Password" ControlToValidate="txtPassword_now" ForeColor="Red" ValidationGroup="ValidateForm" Display="Dynamic"></asp:RequiredFieldValidator>
+                            <asp:CustomValidator ID="cv_currPass" runat="server" ErrorMessage="Please enter the correct current password" OnServerValidate="ValidateCurrPass" ForeColor="Red" ValidationGroup="ValidateForm" Display="Dynamic"></asp:CustomValidator>
                         </div>
                     </div>
                     <div class="form-group">
@@ -54,7 +55,9 @@
                             <asp:Label runat="server" CssClass="col-lg-4 control-label" Text="New Password"></asp:Label></strong>
                         <div class="col-lg-6">
                             <asp:TextBox ID="txtPassword_new" runat="server" CssClass="form-control" placeholder="New Password" TextMode="Password"></asp:TextBox>
-                            <asp:RequiredFieldValidator ID="rfv_txtPassword_new" runat="server" ErrorMessage="Please enter a New Password" ControlToValidate="txtPassword_new" ForeColor="Red" ValidationGroup="ValidateForm"></asp:RequiredFieldValidator>
+                            <asp:RequiredFieldValidator ID="rfv_txtPassword_new" runat="server" ErrorMessage="Please enter a New Password" ControlToValidate="txtPassword_new" ForeColor="Red" ValidationGroup="ValidateForm" Display="Dynamic"></asp:RequiredFieldValidator>
+                            <asp:CustomValidator ID="cv_SamePass" runat="server" ErrorMessage="Please enter a password that is different from your current password" OnServerValidate="ValidateSamePass" ForeColor="Red" ValidationGroup="ValidateForm" Display="Dynamic"></asp:CustomValidator>
+                            <asp:RegularExpressionValidator Display = "Dynamic" ControlToValidate = "txtPassword_new" ID="regv_txtPassword_new" ValidationExpression = "^[\s\S]{8,}$" runat="server" ErrorMessage="Minimum 8 characters required." ForeColor="Red"></asp:RegularExpressionValidator>
                         </div>
                     </div>
                     <div class="form-group">
@@ -62,7 +65,8 @@
                             <asp:Label runat="server" CssClass="col-lg-4 control-label" Text="Re-type New Password"></asp:Label></strong>
                         <div class="col-lg-6">
                             <asp:TextBox ID="txtPassword_newConfirm" runat="server" CssClass="form-control" placeholder="Re-type Password" TextMode="Password"></asp:TextBox>
-                            <asp:RequiredFieldValidator ID="rfv_txtPassword_newConfirm" runat="server" ErrorMessage="Please enter your Password Again" ControlToValidate="txtPassword_newConfirm" ForeColor="Red" ValidationGroup="ValidateForm"></asp:RequiredFieldValidator>
+                            <asp:RequiredFieldValidator ID="rfv_txtPassword_newConfirm" runat="server" ErrorMessage="Please enter your Password Again" ControlToValidate="txtPassword_newConfirm" ForeColor="Red" ValidationGroup="ValidateForm" Display="Dynamic"></asp:RequiredFieldValidator>
+                            <asp:CustomValidator ID="cv_matchPass" runat="server" ErrorMessage="Please re-enter the same password" OnServerValidate="ValidateMatchPass" ForeColor="Red" ValidationGroup="ValidateForm" Display="Dynamic"></asp:CustomValidator>
                         </div>
                     </div>
                     <div class="form-group">

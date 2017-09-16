@@ -31,6 +31,15 @@ namespace LearnHub {
         protected global::System.Web.UI.WebControls.RequiredFieldValidator rfv_txtPassword_now;
         
         /// <summary>
+        /// cv_currPass control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CustomValidator cv_currPass;
+        
+        /// <summary>
         /// txtPassword_new control.
         /// </summary>
         /// <remarks>
@@ -49,6 +58,24 @@ namespace LearnHub {
         protected global::System.Web.UI.WebControls.RequiredFieldValidator rfv_txtPassword_new;
         
         /// <summary>
+        /// cv_SamePass control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CustomValidator cv_SamePass;
+        
+        /// <summary>
+        /// regv_txtPassword_new control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator regv_txtPassword_new;
+        
+        /// <summary>
         /// txtPassword_newConfirm control.
         /// </summary>
         /// <remarks>
@@ -65,6 +92,15 @@ namespace LearnHub {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator rfv_txtPassword_newConfirm;
+        
+        /// <summary>
+        /// cv_matchPass control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CustomValidator cv_matchPass;
         
         /// <summary>
         /// btnSave control.
