@@ -781,5 +781,65 @@ namespace LearnHub.AppCode.dao
                 conn.Close();
             }
         }
+        public ArrayList getAllCourses()
+        {
+            SqlConnection conn = new SqlConnection();
+            ArrayList toReturn_list = new ArrayList();
+            Course_elearn toReturn = null;
+            try
+            {
+                conn = new SqlConnection();
+                string connstr = ConfigurationManager.ConnectionStrings["DBConnectionString"].ToString();
+                conn.ConnectionString = connstr;
+                conn.Open();
+                SqlCommand comm = new SqlCommand();
+                comm.Connection = conn;
+                comm.CommandText = "select * " +
+                    "from [Elearn_course]";
+                SqlDataReader dr = comm.ExecuteReader();
+                while (dr.Read())
+                {
+                    toReturn = new Course_elearn();
+                    int cid = (int)dr["elearn_courseID"]; //1
+                    toReturn.setCourseID(cid);
+                    toReturn.setCourseName((string)dr["elearn_courseName"]); //2
+                    if (!dr.IsDBNull(4))
+                    {
+                        toReturn.setCourseProvider((string)dr["elearn_courseProvider"]);
+                    };
+                    toReturn.setStartDate((DateTime)dr["start_date"]);//3
+                    if (!dr.IsDBNull(4))
+                    {
+                        toReturn.setExpiryDate((DateTime)dr["expiry_date"]);
+                    }
+                    toReturn.setStatus((string)dr["status"]);//4
+                    //get the prereq
+                    toReturn.setDescription((string)dr["description"]);//6
+                    ArrayList list = getPrereqOfCourse(cid);//5
+                    if (list != null)
+                    {
+                        toReturn.setPrerequisite(list); //retrieve arraylist of all prereq course_elearn objects
+                    }
+                    toReturn.setCategoryID((int)dr["categoryID"]);//7
+                    toReturn.setHoursAwarded((double)dr["hoursAwarded"]);
+                    if (!dr.IsDBNull(11))
+                    {
+                        toReturn.setTargetAudience((string)dr["targetAudience"]);
+                    }
+                    toReturn.setCourseType((string)dr["courseType"]);
+                    toReturn_list.Add(toReturn); //add to arraylist to return of all courses related to given category
+                }
+                dr.Close();
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                conn.Close();
+            }
+            return toReturn_list;
+        }
     }
 }

@@ -73,21 +73,122 @@
         <table class="table table-striped table-hover" data-paging="true" data-sorting="true" data-filtering="true">
             <thead>
                 <tr>
-                    <th width="80%">Quiz Title</th>
+                    <th width="50%">Quiz Title</th>
+                    <th>Course Name</th>
                     <th>Score</th> <%--take highest of all attempt--%>
                     <th>Result</th> <%--pass/fail--%>
                     <th data-filterable="false" data-sortable="false"></th>
                 </tr>
             </thead>
                 <tbody>
-                    <tr><td>wash hand quiz 1</td>
-                        <td>2</td>
-                        <td>                <asp:Label ID="lblStatusPass" runat="server" CssClass="label label-success" Font-Size="Medium" Visible="true">Pass</asp:Label>
-                <asp:Label ID="lblStatusFail" runat="server" CssClass="label label-danger" Font-Size="Medium" Visible="false">Fail</asp:Label>&emsp;
-</td>
-                        <td><a href="#" class="btn btn-success btn-sm"><span class="glyphicon glyphicon-search"></span></a></td>
-                        <%--viewMyResult or noResult depending on quiz configuration--%>
-                    </tr>
+
+                    <%
+                        User currentUser = (User)Session["currentUser"];
+                        QuizDAO quizDAO = new QuizDAO();
+                        QuizResultDAO qrDAO = new QuizResultDAO();
+                        QuizQuestionDAO qqDAO = new QuizQuestionDAO();
+                        List<Quiz> allQuiz = quizDAO.getAllQuiz();
+                        foreach (Quiz currentQuiz in allQuiz)
+                        {
+                            if (qrDAO.getAttemptForQuiz(currentQuiz.getQuizID(), currentUser.getUserID()) != 0)
+                            {
+                                Response.Write("<tr>");
+                                Response.Write($"<td>{currentQuiz.getTitle()}</td>");
+                                Response.Write($"<td>{currentQuiz.getMainCourse().getCourseName()}</td>");
+                                ArrayList allResultForQuiz = qrDAO.getAllQuizResultByQuizID(currentQuiz.getQuizID());
+                                List<QuizQuestion> allQuestions = qqDAO.getAllQuizQuestionByQuizID(currentQuiz.getQuizID());
+                                string displayAnswer = currentQuiz.getDisplayAnswer();
+                                if (allResultForQuiz.Count > 1)
+                                {
+                                    //retrieve highest score of the attempts
+                                    QuizResult highestAttempt = null;
+                                    foreach (QuizResult checkAttempt in allResultForQuiz)
+                                    {
+                                        if (highestAttempt == null)
+                                        {
+                                            highestAttempt = checkAttempt;
+                                        }
+                                        else
+                                        {
+                                            if (checkAttempt.getScore() > highestAttempt.getScore())
+                                            {
+                                                highestAttempt = checkAttempt;
+                                            }
+                                        }
+                                    }
+
+                                    //display attempt
+                                    Response.Write($"<td>{highestAttempt.getScore()}/{allQuestions.Count}</td>");
+                                    if (highestAttempt.getGrade().Equals("pass"))
+                                    {
+                                        Response.Write("<td><span style=\"font-size: 10pt\" class=\"label label-success\">Pass</span></td>");
+                                    }
+                                    else
+                                    {
+                                        Response.Write("<td><span style=\"font-size: 10pt\" class=\"label label-danger\">Pass</span></td>");
+                                    }
+
+                                    //display result page
+                                    if (displayAnswer.Equals("always"))
+                                    {
+                                        Response.Write($"<td><a href=\"viewResults.aspx?id={highestAttempt.getQuizResultID()}\" class=\"btn btn-success btn-sm\"><span class=\"glyphicon glyphicon-search\"></span></a></td>");
+                                    }
+                                    else if (displayAnswer.Equals("never"))
+                                    {
+                                        Response.Write($"<td><a href=\"noResult.aspx?id={highestAttempt.getQuizResultID()}\" class=\"btn btn-success btn-sm\"><span class=\"glyphicon glyphicon-search\"></span></a></td>");
+                                    }
+                                    else
+                                    {
+                                        if (highestAttempt.getGrade().Equals("pass"))
+                                        {
+                                            Response.Write($"<td><a href=\"viewResults.aspx?id={highestAttempt.getQuizResultID()}\" class=\"btn btn-success btn-sm\"><span class=\"glyphicon glyphicon-search\"></span></a></td>");
+                                        }
+                                        else
+                                        {
+                                            Response.Write($"<td><a href=\"viewMyResult.aspx?id={highestAttempt.getQuizResultID()}\" class=\"btn btn-success btn-sm\"><span class=\"glyphicon glyphicon-search\"></span></a></td>");
+                                        }
+                                    }
+                                }
+                                else
+                                {
+                                    //only attempt
+                                    QuizResult onlyResult = (QuizResult)allResultForQuiz[0];
+                                    Response.Write($"<td>{onlyResult.getScore()}/{allQuestions.Count}</td>");
+                                    if (onlyResult.getGrade().Equals("pass"))
+                                    {
+                                        Response.Write("<td><span style=\"font-size: 10pt\" class=\"label label-success\">Pass</span></td>");
+                                    }
+                                    else
+                                    {
+                                        Response.Write("<td><span style=\"font-size: 10pt\" class=\"label label-danger\">Pass</span></td>");
+                                    }
+
+                                    //display result page
+                                    if (displayAnswer.Equals("always"))
+                                    {
+                                        Response.Write($"<td><a href=\"viewResults.aspx?id={onlyResult.getQuizResultID()}\" class=\"btn btn-success btn-sm\"><span class=\"glyphicon glyphicon-search\"></span></a></td>");
+                                    }
+                                    else if (displayAnswer.Equals("never"))
+                                    {
+                                        Response.Write($"<td><a href=\"noResult.aspx?id={onlyResult.getQuizResultID()}\" class=\"btn btn-success btn-sm\"><span class=\"glyphicon glyphicon-search\"></span></a></td>");
+                                    }
+                                    else
+                                    {
+                                        if (onlyResult.getGrade().Equals("pass"))
+                                        {
+                                            Response.Write($"<td><a href=\"viewResults.aspx?id={onlyResult.getQuizResultID()}\" class=\"btn btn-success btn-sm\"><span class=\"glyphicon glyphicon-search\"></span></a></td>");
+                                        }
+                                        else
+                                        {
+                                            Response.Write($"<td><a href=\"viewMyResult.aspx?id={onlyResult.getQuizResultID()}\" class=\"btn btn-success btn-sm\"><span class=\"glyphicon glyphicon-search\"></span></a></td>");
+                                        }
+                                    }
+                                }
+
+                                Response.Write("</tr>");
+                            }
+                        }
+                    %>
                     
                 </tbody>
             </table>

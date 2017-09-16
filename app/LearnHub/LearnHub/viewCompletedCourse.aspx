@@ -75,12 +75,25 @@
                     <th data-filterable="false" data-sortable="false"></th>
                 </tr>
             </thead>
-                <tbody>
-                    <tr><td>wash hand</td>
-                        <td>2</td>
-                        <td><a href="viewModuleInfo.aspx" class="btn btn-success btn-sm"><span class="glyphicon glyphicon-search"></span></a></td>
-                    </tr>
-                    
+            <tbody>
+            <%
+                List<int> allCompletedCourseID = (List<int>)Session["allCompletedCourseID"];
+                User currentUser = (User)Session["currentUser"];
+                Course_elearnDAO ceDAO = new Course_elearnDAO();
+                QuizResultDAO qrDAO = new QuizResultDAO();
+                foreach (int courseID in allCompletedCourseID)
+                {
+                    Course_elearn currentCourse = ceDAO.get_course_by_id(courseID);
+
+                    //count number of quizzes completed for each course
+                    int numOfQuizCompleted = qrDAO.getNumberOfPassQuizByUserIDandCourseID(currentUser.getUserID(), courseID);
+                    Response.Write($"<tr>");
+                    Response.Write($"<td>{currentCourse.getCourseName()}</td>");
+                    Response.Write($"<td>{numOfQuizCompleted}</td>");
+                    Response.Write($"<td><a href=\"viewModuleInfo.aspx?id={courseID}\" class=\"btn btn-success btn-sm\"><span class=\"glyphicon glyphicon-search\"></span></a></td>");
+                    Response.Write($"</tr>");
+                }
+            %>
                 </tbody>
             </table>
         </form>

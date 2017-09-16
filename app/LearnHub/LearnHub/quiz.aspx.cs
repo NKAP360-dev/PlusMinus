@@ -219,7 +219,7 @@ namespace LearnHub
             Quiz currentQuiz = quizDAO.getQuizByID(quizID);
             QuizAnswer currentSelectedAnswer = new QuizAnswer(Convert.ToInt32(rblAnswers.SelectedValue), currentQuestion, rblAnswers.SelectedItem.Text);
             //int attempt = qrhDAO.getAttemptForQuiz(currentQuestion.getQuizQuestionID());
-            int attempt = qrDAO.getAttemptForQuiz(quizID);
+            int attempt = qrDAO.getAttemptForQuiz(quizID, currentUser.getUserID());
             attempt++;
             currentAnswer.setAttempt(attempt);
             currentAnswer.setUserID(currentUser.getUserID());
@@ -315,7 +315,7 @@ namespace LearnHub
                     QuizResultHistoryDAO qrhDAO = new QuizResultHistoryDAO();
                     List<QuizResultHistory> userAnswers = (List<QuizResultHistory>)Session["userAnswers"];
                     QuizQuestion currentQuestion = (QuizQuestion)Session["previousQuestion"];
-                    int attempt = qrDAO.getAttemptForQuiz(quizID);
+                    int attempt = qrDAO.getAttemptForQuiz(quizID, currentUser.getUserID());
                     attempt++;
 
                     //to calculate score

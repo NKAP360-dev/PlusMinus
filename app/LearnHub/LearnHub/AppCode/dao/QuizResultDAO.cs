@@ -239,7 +239,7 @@ namespace LearnHub.AppCode.dao
             }
             return toReturn;
         }
-        public int getAttemptForQuiz(int quizID)
+        public int getAttemptForQuiz(int quizID, string userID)
         {
             SqlConnection conn = new SqlConnection();
             int toReturn = 0;
@@ -251,8 +251,9 @@ namespace LearnHub.AppCode.dao
                 conn.Open();
                 SqlCommand comm = new SqlCommand();
                 comm.Connection = conn;
-                comm.CommandText = "select count(*) from [QuizResult] where quizID=@quizID";
+                comm.CommandText = "select count(*) from [QuizResult] where quizID=@quizID and userID=@userID";
                 comm.Parameters.AddWithValue("@quizID", quizID);
+                comm.Parameters.AddWithValue("@userID", userID);
                 toReturn = (Int32)comm.ExecuteScalar();
             }
             catch (SqlException ex)
@@ -322,6 +323,59 @@ namespace LearnHub.AppCode.dao
                 comm.CommandText = "select count(*) from [QuizResult] where userID=@userID and quizID=@quizID";
                 comm.Parameters.AddWithValue("@userID", userID);
                 comm.Parameters.AddWithValue("@quizID", quizID);
+                toReturn = (Int32)comm.ExecuteScalar();
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                conn.Close();
+            }
+            return toReturn;
+        }
+        public int getNumberOfPassQuiz(string userID)
+        {
+            SqlConnection conn = new SqlConnection();
+            int toReturn = -1;
+            try
+            {
+                conn = new SqlConnection();
+                string connstr = ConfigurationManager.ConnectionStrings["DBConnectionString"].ToString();
+                conn.ConnectionString = connstr;
+                conn.Open();
+                SqlCommand comm = new SqlCommand();
+                comm.Connection = conn;
+                comm.CommandText = "select count(DISTINCT quizID) from [QuizResult] where userID=@userID and grade='pass'";
+                comm.Parameters.AddWithValue("@userID", userID);
+                toReturn = (Int32)comm.ExecuteScalar();
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                conn.Close();
+            }
+            return toReturn;
+        }
+        public int getNumberOfPassQuizByUserIDandCourseID(string userID, int courseID)
+        {
+            SqlConnection conn = new SqlConnection();
+            int toReturn = -1;
+            try
+            {
+                conn = new SqlConnection();
+                string connstr = ConfigurationManager.ConnectionStrings["DBConnectionString"].ToString();
+                conn.ConnectionString = connstr;
+                conn.Open();
+                SqlCommand comm = new SqlCommand();
+                comm.Connection = conn;
+                comm.CommandText = "select count(DISTINCT qr.quizID) from [QuizResult] qr inner join [Quiz] q on qr.quizID = q.quizID where qr.userID=@userID and qr.grade='pass' and q.elearn_courseID=@courseID";
+                comm.Parameters.AddWithValue("@userID", userID);
+                comm.Parameters.AddWithValue("@courseID", courseID);
                 toReturn = (Int32)comm.ExecuteScalar();
             }
             catch (SqlException ex)

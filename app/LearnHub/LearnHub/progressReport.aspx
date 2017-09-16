@@ -53,7 +53,7 @@
                                         <td><span style="font-size: 75px; color: lightskyblue;" class="glyphicon glyphicon-book "></span>
                                         </td>
                                         <td style="text-align: right">
-                                            <asp:Label ID="lblCourseNumber" class="h1" runat="server" Text="49"></asp:Label></td>
+                                            <asp:Label ID="lblCourseNumber" class="h1" runat="server" Text=""></asp:Label></td>
                                         <td style="text-align: right"><span style="font-size: 75px; opacity: 0.0;" class="glyphicon glyphicon-book "></span>
                                             <br />
                                             <a href="viewCompletedCourse.aspx"><span class="glyphicon glyphicon-menu-right"></span>&nbsp;View Courses</a>
@@ -75,7 +75,7 @@
                                         <td><span style="font-size: 75px; color: lightskyblue;" class="glyphicon glyphicon-check"></span>
                                         </td>
                                         <td style="text-align: right">
-                                            <asp:Label ID="Label1" class="h1" runat="server" Text="49"></asp:Label></td>
+                                            <asp:Label ID="lblQuizNumber" class="h1" runat="server" Text=""></asp:Label></td>
                                         <td style="text-align: right"><span style="font-size: 75px; opacity: 0.0;" class="glyphicon glyphicon-check"></span>
                                             <br />
                                             <a href="viewCompletedQuiz.aspx"><span class="glyphicon glyphicon-menu-right"></span>&nbsp;View Quizzes</a>

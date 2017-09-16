@@ -404,5 +404,49 @@ namespace LearnHub.AppCode.dao
             }
             return toReturn;
         }
+        public List<Quiz> getAllQuiz()
+        {
+            SqlConnection conn = new SqlConnection();
+            List<Quiz> toReturn = new List<Quiz>();
+            try
+            {
+                conn = new SqlConnection();
+                string connstr = ConfigurationManager.ConnectionStrings["DBConnectionString"].ToString();
+                conn.ConnectionString = connstr;
+                conn.Open();
+                SqlCommand comm = new SqlCommand();
+                comm.Connection = conn;
+                comm.CommandText = "select * from [Quiz]";
+                SqlDataReader dr = comm.ExecuteReader();
+                while (dr.Read())
+                {
+                    Quiz q = new Quiz();
+                    q.setQuizID((int)dr["quizID"]);
+                    q.setTitle((string)dr["title"]);
+                    q.setDescription((string)dr["description"]);
+                    q.setPassingGrade((int)dr["passingGrade"]);
+                    q.setRandomOrder((string)dr["randomOrder"]);
+                    q.setStatus((string)dr["status"]);
+                    Course_elearnDAO ceDAO = new Course_elearnDAO();
+                    q.setMainCourse(ceDAO.get_course_by_id((int)dr["elearn_courseID"]));
+                    q.setTimeLimit((int)dr["timeLimit"]);
+                    q.setMultipleAttempts((string)dr["multipleAttempts"]);
+                    q.setNumberOfAttempts((int)dr["numberOfAttempts"]);
+                    q.setDisplayAnswer((string)dr["displayAnswer"]);
+
+                    toReturn.Add(q);
+                }
+                dr.Close();
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                conn.Close();
+            }
+            return toReturn;
+        }
     }
 }
