@@ -134,7 +134,7 @@
                         <asp:Label runat="server" CssClass="col-lg-2 control-label" Text="Address"></asp:Label></strong>
                     <div class="col-lg-5">
                         <asp:TextBox ID="txtAddress" runat="server" CssClass="form-control" placeholder="Address"></asp:TextBox>
-                        <asp:RequiredFieldValidator ID="rfv_txtAddress" runat="server" ErrorMessage="Please input a Contact Number" ControlToValidate="txtContactNo" ForeColor="Red" ValidationGroup="ValidateForm" Display="Dynamic"></asp:RequiredFieldValidator>
+                        <asp:RequiredFieldValidator ID="rfv_txtAddress" runat="server" ErrorMessage="Please input an Address" ControlToValidate="txtAddress" ForeColor="Red" ValidationGroup="ValidateForm" Display="Dynamic"></asp:RequiredFieldValidator>
                     </div>
                 </div>
                 <div class="form-group required">
@@ -159,7 +159,7 @@
                         <asp:Label runat="server" CssClass="col-lg-2 control-label" Text="Job Title"></asp:Label></strong>
                     <div class="col-lg-5">
                         <asp:TextBox ID="txtJobTitle" runat="server" CssClass="form-control" placeholder="Job Title"></asp:TextBox>
-                        <asp:RequiredFieldValidator ID="rfv_txtJobTitle" runat="server" ErrorMessage="Please input a Job Title" ControlToValidate="txtEmail" ForeColor="Red" ValidationGroup="ValidateForm" Display="Dynamic"></asp:RequiredFieldValidator>
+                        <asp:RequiredFieldValidator ID="rfv_txtJobTitle" runat="server" ErrorMessage="Please input a Job Title" ControlToValidate="txtJobTitle" ForeColor="Red" ValidationGroup="ValidateForm" Display="Dynamic"></asp:RequiredFieldValidator>
                     </div>
                 </div>
                 <div class="form-group required">
