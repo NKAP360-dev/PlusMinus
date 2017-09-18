@@ -15,18 +15,34 @@ namespace LearnHub
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            
+            DeptDAO depdao = new DeptDAO();
+            List<Department> deps = depdao.getAllDepartment();
+            foreach (Department d in deps)
+            {
+                lblDept.Items.Add(d.getDeptName());
+            }
+            UserDAO udao = new UserDAO();
+
+            ArrayList sups = udao.get_supervisors();
+            foreach (User supervisor in sups)
+            {
+                ddlSup.Items.Add(supervisor.getName());
+            }
+
         }
         protected void submit_Click(object sender, EventArgs e)
         {
+            UserDAO udao = new UserDAO();
             string user = txtUsername.Text;
             string pass = txtPassword.Text;
             string name = txtName.Text;
             string contact = txtContactNo.Text;
             string address = txtAddress.Text;
             string email = txtEmail.Text;
-            //string dept = txtDept.Text;
+            string dept = lblDept.SelectedValue;
             string jobtitle = txtJobTitle.Text;
+            string supervisor = ddlSup.SelectedValue;
+            string supid = udao.getUserByName(supervisor).getUserID();
             ArrayList roles = new ArrayList();
             foreach (ListItem item in cblRoles.Items)
             {
@@ -39,11 +55,10 @@ namespace LearnHub
             string salt = Crypto.GenerateSalt();// generate salt of user
             string password_hashed = Crypto.SHA256(salt + pass);
             //password hashed now create user 
-            //User u = new User(user, name, jobtitle, "Staff", "S1234567C", roles, dept, email, DateTime.Now, address, contact, "Active");
-            UserDAO udao = new UserDAO();
-            //Boolean res = udao.create_user_elearn(u, password_hashed, salt);
-            //Boolean res_role = udao.add_role(u, roles);
-            Boolean res = true;
+            User u = new User(user, name, jobtitle, "Staff", supid, roles, dept, email, DateTime.Now, address, contact, "Active");
+            Boolean res = udao.create_user_elearn(u, password_hashed, salt);
+            Boolean res_role = udao.add_role(u, roles);
+            //Boolean res = true;
             if (res)
             {
                 Response.Redirect("manageUsers.aspx");
@@ -53,6 +68,7 @@ namespace LearnHub
                 Response.Redirect("home.aspx");
             }
         }
+
         protected void ValidateMatchPass(object sender, ServerValidateEventArgs args)
         {
             String first = txtPassword.Text;

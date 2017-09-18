@@ -1,6 +1,16 @@
 ﻿<%@ Page Language="C#" Debug="true" AutoEventWireup="true" CodeBehind="forgotPassword.aspx.cs" Inherits="LearnHub.forgotPassword" %>
 
 <!DOCTYPE html>
+<%@ Import Namespace="System.IO" %>
+<%@ Import Namespace="System.Data" %>
+<%@ Import Namespace="LearnHub.AppCode.dao" %>
+<%@ Import Namespace="LearnHub.AppCode.entity" %>
+<%@ Import Namespace="System.Web.Helpers" %>
+<%@ Import Namespace="System.Data" %>
+<%@ Import Namespace="System.Windows" %>
+<%@ Import Namespace="System.Net" %>
+<%@ Import Namespace="System.Net.Mail" %>
+<%@ Import Namespace="System.Collections" %>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
@@ -98,10 +108,6 @@
                     <form id="form1" runat="server">
                         <h1 class="text-center login-title">LearnHub</h1>
                         <br />
-                        <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
-                        <asp:UpdatePanel ID="UpdatePanel1" runat="server">
-                            <ContentTemplate>
-                                <asp:Panel ID="panelUpdate" runat="server" Visible="true">
                                     <div class="card">
                                         <fieldset>
                                             <div class="header">&emsp;<strong>F O R G O T &nbsp; P A S S W O R D </strong></div>
@@ -124,74 +130,6 @@
                                             </div>
                                         </fieldset>
                                     </div>
-                                </asp:Panel>
-                                <asp:Panel ID="panelMsg" runat="server" Visible="false">
-                                    <div class="card">
-                                        <fieldset>
-                                            <div class="header">&emsp;<strong>F O R G O T &nbsp; P A S S W O R D </strong></div>
-                                            <div class="inner">
-                                                <div class="form-group">
-                                                    <h3>Successful!</h3><br />
-                                                    <img src="img/checked.png" style="width: 75px; height: 75px;" border="0"/><br />
-                                                   <br /><br />
-                                                    <p>You will receive your new password shortly</p>
-                                                    <br />
-                                                    <div class="form-group text-center">
-                                                        <asp:LinkButton ID="btnReceive" runat="server" CssClass="btn btn-primary" OnClick="btnReceive_Click"><span><strong>I have received!</strong></span></asp:LinkButton><br />
-                                                    </div>
-                                                    <br />
-                                                </div>
-                                            </div>
-                                        </fieldset>
-                                    </div>
-                                </asp:Panel>                            
-                            </ContentTemplate>
-                            <Triggers>
-                                <asp:AsyncPostBackTrigger ControlID="btnRequest" />
-                            </Triggers>
-                        </asp:UpdatePanel>
-                        <asp:UpdatePanel ID="UpdatePanel2" runat="server">
-                            <ContentTemplate>
-                                <asp:Panel ID="panelReset" runat="server" Visible="false">
-                                    <div class="card">
-                                        <fieldset>
-                                            <div class="header">&emsp;<strong>R E S E T &nbsp; P A S S W O R D </strong></div>
-                                            <br />
-                                            <div class="inner">
-                                                <div class="form-group">
-                                                    <p>Enter the password that was sent to your email address</p>
-                                                    <div class="input-group">
-                                                        <asp:TextBox ID="txtPassword" runat="server" TextMode="Password" CssClass="form-control" placeholder="Generated Password"></asp:TextBox>
-                                                        <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
-                                                    </div>
-                                                    <br />
-                                                    <hr />
-                                                    <p>Enter your new password</p>
-                                                    <div class="input-group">
-                                                        <asp:TextBox ID="txtNewPassword" runat="server" TextMode="Password" CssClass="form-control" placeholder="New Password"></asp:TextBox>
-                                                        <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
-                                                    </div>
-                                                    <br />
-                                                    <div class="input-group">
-                                                        <asp:TextBox ID="txtNewPassword2" runat="server" TextMode="Password" CssClass="form-control" placeholder="Confirm New Password"></asp:TextBox>
-                                                        <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
-                                                    </div>
-                                                    <br />
-                                                    <br />
-                                                    <div class="form-group text-center">
-                                                        <asp:LinkButton ID="btnSave" runat="server" CssClass="btn btn-primary"><span><strong>Save New Password</strong></span></asp:LinkButton><br />
-                                                    </div>
-                                                    <br />
-                                                </div>
-                                            </div>
-                                        </fieldset>
-                                    </div>
-                                </asp:Panel>
-                            </ContentTemplate>
-                            <Triggers>
-                                <asp:AsyncPostBackTrigger ControlID="btnReceive" />
-                            </Triggers>
-                        </asp:UpdatePanel>
                         <br />
                         <div class="logo">
                             <img src="img/amkthk.png" alt="LHLogo" style="width: 165px; height: 117px;" />

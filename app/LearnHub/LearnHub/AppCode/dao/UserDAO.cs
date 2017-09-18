@@ -67,6 +67,49 @@ namespace LearnHub.AppCode.dao
             }
             return toReturn;
         }
+        public Boolean update_user_without_password(User u, ArrayList roles)
+        {
+            SqlConnection conn = new SqlConnection();
+            Boolean toReturn = false;
+            try
+            {
+                conn = new SqlConnection();
+                string connstr = ConfigurationManager.ConnectionStrings["DBConnectionString"].ToString();
+                conn.ConnectionString = connstr;
+                conn.Open();
+                SqlCommand comm = new SqlCommand();
+                comm.Connection = conn;
+                comm.CommandText = "update [User] set userID=@userID, name=@name , " +
+                    "start_Date=@date, job_category=@category, job_title=@job_title, supervisor=@supervisor, role='user', dept_name=@dept_name, " +
+                    "contactNumber=@contact, address=@add, email=@email where userID=@userID1";
+                comm.Parameters.AddWithValue("@userID", u.getUserID());
+                comm.Parameters.AddWithValue("@name", u.getName());
+                //comm.Parameters.AddWithValue("@password", password);
+                comm.Parameters.AddWithValue("@date", u.getStartDate());
+                comm.Parameters.AddWithValue("@category", u.getJobCategory());
+                comm.Parameters.AddWithValue("@job_title", u.getJobTitle());
+                comm.Parameters.AddWithValue("@supervisor", u.getSupervisor());
+                comm.Parameters.AddWithValue("@dept_name", u.getDepartment());
+                comm.Parameters.AddWithValue("@contact", u.getContact());
+                comm.Parameters.AddWithValue("@add", u.getAddress());
+                //comm.Parameters.AddWithValue("@salt", salt);
+                comm.Parameters.AddWithValue("@email", u.getEmail());
+                comm.Parameters.AddWithValue("@userID1", u.getUserID());
+                int rowsAffected = comm.ExecuteNonQuery();
+                //need new method to create pre-requisities here to store in seperate table (pre-req table)
+                add_role(u, roles);
+                toReturn = true;
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                conn.Close();
+            }
+            return toReturn;
+        }
         public Boolean update_user(User u, string password, string salt, ArrayList roles)
         {
             SqlConnection conn = new SqlConnection();
@@ -170,7 +213,7 @@ namespace LearnHub.AppCode.dao
         {
             SqlConnection conn = new SqlConnection();
             Boolean toReturn = false;
-            foreach(string s in arr)
+            foreach (string s in arr)
             {
                 try
                 {
@@ -287,7 +330,7 @@ namespace LearnHub.AppCode.dao
                 SqlDataReader dr = comm.ExecuteReader();
                 while (dr.Read())
                 {
-                   toReturn = (string)dr["password"];
+                    toReturn = (string)dr["password"];
                 }
                 dr.Close();
             }
@@ -326,7 +369,8 @@ namespace LearnHub.AppCode.dao
                     if (!dr.IsDBNull(6))
                     {
                         toReturn.setSupervisor((string)dr["supervisor"]);
-                    } else
+                    }
+                    else
                     {
                         toReturn.setSupervisor("NA");
                     }
@@ -335,7 +379,8 @@ namespace LearnHub.AppCode.dao
                     if (!dr.IsDBNull(8))
                     {
                         toReturn.setDepartment((string)dr["dept_name"]);
-                    } else
+                    }
+                    else
                     {
                         toReturn.setDepartment("NA");
                     }
@@ -358,7 +403,185 @@ namespace LearnHub.AppCode.dao
             }
             return toReturn;
         }
+        public User getUserByName(string name)
+        {
+            SqlConnection conn = new SqlConnection();
+            User toReturn = null;
+            try
+            {
+                conn = new SqlConnection();
+                string connstr = ConfigurationManager.ConnectionStrings["DBConnectionString"].ToString();
+                conn.ConnectionString = connstr;
+                conn.Open();
+                SqlCommand comm = new SqlCommand();
+                comm.Connection = conn;
+                comm.CommandText = "select * from [User] where name = @name";
+                comm.Parameters.AddWithValue("@name", name);
+                SqlDataReader dr = comm.ExecuteReader();
+                while (dr.Read())
+                {
+                    toReturn = new User();
+                    string userid = (string)dr["userID"];
+                    toReturn.setUserID(userid);
+                    toReturn.setName((string)dr["name"]);
+                    toReturn.setJobTitle((string)dr["job_title"]);
+                    toReturn.setJobCategory((string)dr["job_category"]);
+                    if (!dr.IsDBNull(6))
+                    {
+                        toReturn.setSupervisor((string)dr["supervisor"]);
+                    }
+                    else
+                    {
+                        toReturn.setSupervisor("NA");
+                    }
+                    ArrayList roles = getRolesByID(userid);
+                    toReturn.setRoles(roles); // need new method here to call roles table and populate this entity's arraylist variable
+                    if (!dr.IsDBNull(8))
+                    {
+                        toReturn.setDepartment((string)dr["dept_name"]);
+                    }
+                    else
+                    {
+                        toReturn.setDepartment("NA");
+                    }
+                    toReturn.setEmail((string)dr["email"]);
+                    toReturn.setContact((string)dr["contactNumber"]);
+                    toReturn.setAddress((string)dr["address"]);
+                    toReturn.setStartDate(dr.GetDateTime(3));
+                    toReturn.setStatus((string)dr["status"]);
 
+                }
+                dr.Close();
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                conn.Close();
+            }
+            return toReturn;
+        }
+        public ArrayList get_supervisors()
+        {
+            SqlConnection conn = new SqlConnection();
+            ArrayList arr = new ArrayList();
+            try
+            {
+                User toReturn = null;
+                conn = new SqlConnection();
+                string connstr = ConfigurationManager.ConnectionStrings["DBConnectionString"].ToString();
+                conn.ConnectionString = connstr;
+                conn.Open();
+                SqlCommand comm = new SqlCommand();
+                comm.Connection = conn;
+                comm.CommandText = "select * from [User] where job_category <> 'staff'";
+                SqlDataReader dr = comm.ExecuteReader();
+                while (dr.Read())
+                {
+                    toReturn = new User();
+                    toReturn.setUserID((string)dr["userID"]);
+                    toReturn.setName((string)dr["name"]);
+                    toReturn.setJobTitle((string)dr["job_title"]);
+                    toReturn.setJobCategory((string)dr["job_category"]);
+                    if (!dr.IsDBNull(6))
+                    {
+                        toReturn.setSupervisor((string)dr["supervisor"]);
+                    }
+                    else
+                    {
+                        toReturn.setSupervisor("NA");
+                    }
+                    //ArrayList roles = getRolesByID(userID);
+                    //toReturn.setRoles(roles); // need new method here to call roles table and populate this entity's arraylist variable
+                    if (!dr.IsDBNull(8))
+                    {
+                        toReturn.setDepartment((string)dr["dept_name"]);
+                    }
+                    else
+                    {
+                        toReturn.setDepartment("NA");
+                    }
+                    toReturn.setEmail((string)dr["email"]);
+                    toReturn.setContact((string)dr["contactNumber"]);
+                    toReturn.setAddress((string)dr["address"]);
+                    toReturn.setStartDate(dr.GetDateTime(3));
+                    toReturn.setStatus((string)dr["status"]);
+                    arr.Add(toReturn);
+                }
+                dr.Close();
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                conn.Close();
+            }
+            return arr;
+        }
+        public User getUserByEmail(string email)
+        {
+            SqlConnection conn = new SqlConnection();
+            User toReturn = null;
+            try
+            {
+                conn = new SqlConnection();
+                string connstr = ConfigurationManager.ConnectionStrings["DBConnectionString"].ToString();
+                conn.ConnectionString = connstr;
+                conn.Open();
+                SqlCommand comm = new SqlCommand();
+                comm.Connection = conn;
+                comm.CommandText = "select * from [User] where email=@email";
+                comm.Parameters.AddWithValue("@email", email);
+                SqlDataReader dr = comm.ExecuteReader();
+                while (dr.Read())
+                {
+                    toReturn = new User();
+                    string userID = ((string)dr["userID"]);
+                    toReturn.setUserID(userID);
+                    toReturn.setName((string)dr["name"]);
+                    toReturn.setJobTitle((string)dr["job_title"]);
+                    toReturn.setJobCategory((string)dr["job_category"]);
+                    if (!dr.IsDBNull(6))
+                    {
+                        toReturn.setSupervisor((string)dr["supervisor"]);
+                    }
+                    else
+                    {
+                        toReturn.setSupervisor("NA");
+                    }
+                    ArrayList roles = getRolesByID(userID);
+                    toReturn.setRoles(roles); // need new method here to call roles table and populate this entity's arraylist variable
+                    if (!dr.IsDBNull(8))
+                    {
+                        toReturn.setDepartment((string)dr["dept_name"]);
+                    }
+                    else
+                    {
+                        toReturn.setDepartment("NA");
+                    }
+                    toReturn.setEmail((string)dr["email"]);
+                    toReturn.setContact((string)dr["contactNumber"]);
+                    toReturn.setAddress((string)dr["address"]);
+                    toReturn.setStartDate(dr.GetDateTime(3));
+                    toReturn.setStatus((string)dr["status"]);
+
+                }
+                dr.Close();
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                conn.Close();
+            }
+            return toReturn;
+        }
         public ArrayList getRolesByID(string userID)
         {
             SqlConnection conn = new SqlConnection();
@@ -449,7 +672,8 @@ namespace LearnHub.AppCode.dao
                     if (!DBNull.Value.Equals(dr["supervisor"]))
                     {
                         u.setSupervisor((string)dr["supervisor"]);
-                    } else
+                    }
+                    else
                     {
                         u.setSupervisor("NA");
                     }
@@ -502,7 +726,8 @@ namespace LearnHub.AppCode.dao
                     if (!dr.IsDBNull(5))
                     {
                         toReturn.setSupervisor((string)dr["supervisor"]);
-                    } else
+                    }
+                    else
                     {
                         toReturn.setSupervisor("NA");
                     }
@@ -548,7 +773,7 @@ namespace LearnHub.AppCode.dao
                 comm.Parameters.AddWithValue("@userID", userID);
                 SqlDataReader dr = comm.ExecuteReader();
                 while (dr.Read())
-                { 
+                {
                     toReturn = (string)dr["supervisor"];
                 }
                 dr.Close();

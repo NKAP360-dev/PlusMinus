@@ -79,7 +79,6 @@ C:\Users\Eugene Tan\PlusMinus\app\Emma\Emma\bin\ja\Microsoft.Bot.Builder.resourc
 C:\Users\Eugene Tan\PlusMinus\app\Emma\Emma\bin\nl\Microsoft.Bot.Builder.resources.dll
 C:\Users\Eugene Tan\PlusMinus\app\Emma\Emma\bin\ru\Microsoft.Bot.Builder.resources.dll
 C:\Users\Eugene Tan\PlusMinus\app\Emma\Emma\bin\zh-hans\Microsoft.Bot.Builder.resources.dll
-C:\Users\Eugene Tan\PlusMinus\app\Emma\Emma\obj\Debug\Emma.csprojResolveAssemblyReference.cache
 C:\Users\Eugene Tan\PlusMinus\app\Emma\Emma\obj\Debug\Bot Application.dll
 C:\Users\Eugene Tan\PlusMinus\app\Emma\Emma\obj\Debug\Bot Application.pdb
 \\Mac\Home\Documents\SMU\Year 3.1\FYP\GitHub\PlusMinus\app\Emma\Emma\bin\Bot Application.dll.config
