@@ -113,6 +113,7 @@
                                     <td>
                                         <asp:RadioButtonList ID="rblAnswers" runat="server">
                                         </asp:RadioButtonList>
+                                        <asp:RequiredFieldValidator ID="rfv_rblAnswers" runat="server" ErrorMessage="Please select an answer" ControlToValidate="rblAnswers" ForeColor="Red" ValidationGroup="ValidateForm" Display="Dynamic"></asp:RequiredFieldValidator>
                                     </td>
                                 </tr>
                             </tbody>
