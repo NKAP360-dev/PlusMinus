@@ -23,6 +23,10 @@
             }
         }
 
+        function showModal() {
+            $('#uploadModal').modal('show');
+        }
+
     </script>
     <style>
         .breadcrumb {
@@ -469,7 +473,8 @@
                             <div class="col-lg-12">
                                 <p>
                                     <asp:TextBox ID="uploadTitleInput" runat="server" CssClass="form-control" placeholder="Enter Upload Title"></asp:TextBox>
-                                    <asp:RequiredFieldValidator ID="rfv_uploadTitleInput" runat="server" ErrorMessage="Please enter a Title" ControlToValidate="uploadTitleInput" ForeColor="Red"></asp:RequiredFieldValidator>
+                                    <asp:RequiredFieldValidator ID="rfv_uploadTitleInput" runat="server" ErrorMessage="Please enter a Title" ControlToValidate="uploadTitleInput" ForeColor="Red" Display="Dynamic"></asp:RequiredFieldValidator>
+                                    <asp:CustomValidator ID="cv_uploadTitleInput" runat="server" ErrorMessage="This title already exists! Please enter a different title" OnServerValidate="checkTitleExists" ForeColor="Red" ValidationGroup="ValidateForm" Display="Dynamic"></asp:CustomValidator>
                                 </p>
                                 <br />
                             </div>
@@ -480,14 +485,14 @@
                             <div class="col-lg-12">
                                 <p>
                                     <asp:TextBox ID="uploadDescriptionInput" TextMode="multiline" Columns="50" Rows="5" runat="server" CssClass="form-control" placeholder="Enter Upload Description"></asp:TextBox>
-                                    <asp:RequiredFieldValidator ID="rfv_uploadDescriptionInput" runat="server" ErrorMessage="Please enter a Description" ControlToValidate="uploadDescriptionInput" ForeColor="Red"></asp:RequiredFieldValidator>
+                                    <asp:RequiredFieldValidator ID="rfv_uploadDescriptionInput" runat="server" ErrorMessage="Please enter a Description" ControlToValidate="uploadDescriptionInput" ForeColor="Red" Display="Dynamic"></asp:RequiredFieldValidator>
                                 </p>
                                 <br />
                             </div>
                         </div>
                         <%--Positioning for buttons--%>
                         <asp:FileUpload ID="FileUpload1" runat="server" />
-                        <asp:RequiredFieldValidator ID="rfv_FileUpload1" runat="server" ErrorMessage="Please select an item to upload!" ControlToValidate="FileUpload1" ForeColor="Red"></asp:RequiredFieldValidator>
+                        <asp:RequiredFieldValidator ID="rfv_FileUpload1" runat="server" ErrorMessage="Please select an item to upload!" ControlToValidate="FileUpload1" ForeColor="Red" Display="Dynamic"></asp:RequiredFieldValidator>
                         <br />
 
                         <div class="modal-footer">

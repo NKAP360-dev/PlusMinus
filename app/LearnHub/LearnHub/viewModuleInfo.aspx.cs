@@ -100,19 +100,26 @@ namespace LearnHub
 
         protected void upload_click(object sender, EventArgs e)
         {
-            if (FileUpload1.HasFile)
+            Page.Validate("ValidateForm");
+            if (!Page.IsValid)
             {
-                int coursedir = current.getCourseID();
-                string fileName = FileUpload1.FileName;
-                string filepath = "~/Data/" + coursedir + "/";
-                FileUpload1.PostedFile
-                    .SaveAs(Server.MapPath(filepath) + fileName);
-                string totalpath1 = Server.MapPath(filepath) + fileName;
-                Course_elearnDAO cdao = new Course_elearnDAO();
-                Upload u = new Upload(current, DateTime.Now, uploadTitleInput.Text, uploadDescriptionInput.Text, totalpath1);
-                Upload upload_succ = cdao.upload_entry(u);
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "showModal();", true);
             }
-            
+            else
+            {
+                if (FileUpload1.HasFile)
+                {
+                    int coursedir = current.getCourseID();
+                    string fileName = FileUpload1.FileName;
+                    string filepath = "~/Data/" + coursedir + "/";
+                    FileUpload1.PostedFile
+                        .SaveAs(Server.MapPath(filepath) + fileName);
+                    string totalpath1 = Server.MapPath(filepath) + fileName;
+                    Course_elearnDAO cdao = new Course_elearnDAO();
+                    Upload u = new Upload(current, DateTime.Now, uploadTitleInput.Text, uploadDescriptionInput.Text, totalpath1);
+                    Upload upload_succ = cdao.upload_entry(u);
+                }
+            }
         }
 
         protected void GridView1_RowCommand(object sender,
@@ -134,6 +141,35 @@ namespace LearnHub
             Course_elearnDAO ceDAO = new Course_elearnDAO();
             //ceDAO.updateCourseTargetAudience(courseID, txtTargetAudience.Text);
             Response.Redirect("viewModuleInfo.aspx?id=" + courseID);
+        }
+
+        protected void checkTitleExists(object sender, ServerValidateEventArgs args)
+        {
+            String input = uploadTitleInput.Text;
+            Boolean checker = false;
+            Course_elearnDAO cdao = new Course_elearnDAO();
+            ArrayList list = cdao.get_uploaded_content_by_id(current);
+            string dir = "Data/" + current.getCourseID();
+            foreach (string strfile in Directory.GetFiles(Server.MapPath(dir)))
+            {
+                foreach (Upload u in list)
+                {
+                    if (u.getTitle().Equals(input))
+                    {
+                        checker = true;
+                    }
+                }
+            }
+            if (checker)
+            {
+                System.Diagnostics.Debug.WriteLine("args false");
+                args.IsValid = false;
+            }
+            else
+            {
+                System.Diagnostics.Debug.WriteLine("args true");
+                args.IsValid = true;
+            }
         }
     }
 }

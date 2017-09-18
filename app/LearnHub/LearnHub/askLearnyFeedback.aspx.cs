@@ -72,5 +72,18 @@ namespace LearnHub
                 lblSaveSuccess.Visible = true;
             }
         }
+        protected void changeSelectedIndex(object sender, EventArgs e)
+        {
+            if (rdlEmail.SelectedItem.Value == ("y"))
+            {
+                txtEmail.Enabled = true;
+                rfv_txtEmail.Enabled = true;
+            }
+            else
+            {
+                txtEmail.Enabled = false;
+                rfv_txtEmail.Enabled = false;
+            }
+        }
     }
 }
