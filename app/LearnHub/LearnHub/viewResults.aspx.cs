@@ -32,7 +32,7 @@ namespace LearnHub
             {
                 Response.Redirect("Login.aspx");
             }
-            else if (currentQuizResult.getUser().getUserID() != currentUser.getUserID() && !superuser)
+            else if (currentQuizResult.getUser().getUserID() != currentUser.getUserID() && !superuser && currentQuizResult.getUser().getSupervisor() != currentUser.getUserID())
             {
                 Response.Redirect("errorPage.aspx");
             }

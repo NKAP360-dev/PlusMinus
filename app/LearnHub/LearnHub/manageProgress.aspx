@@ -71,8 +71,8 @@
                  <div class="dropdown" style="float: right;">
                 <button class="dropbtn" onclick="return false;"><span class="glyphicon glyphicon-option-horizontal"></span></button>
                 <div class="dropdown-content" style="right: 0;">
-                    <a href="suggestCourse.aspx>"><span class="glyphicon glyphicon-comment"></span>&nbsp;&nbsp;Suggest Courses</a>
-                    <a href="progressFeedback.aspx>"><span class="glyphicon glyphicon-hand-right"></span>&nbsp;&nbsp;Provide Progress Feedback</a>
+                    <a href="suggestCourse.aspx"><span class="glyphicon glyphicon-comment"></span>&nbsp;&nbsp;Suggest Courses</a>
+                    <a href="progressFeedback.aspx"><span class="glyphicon glyphicon-hand-right"></span>&nbsp;&nbsp;Provide Progress Feedback</a>
                 </div>
             </div>
         <div class="verticalLine"></div>
@@ -88,10 +88,19 @@
                 </tr>
             </thead>
                 <tbody>
-                    <tr><td>Rafid</td>
-                        <td>Nursing</td>
-                        <td><a href="progressReport.aspx" class="btn btn-sm btn-info"><span class="glyphicon glyphicon-search"></span></a></td>
-                    </tr>
+                    <%
+                        UserDAO userDAO = new UserDAO();
+                        User currentUser = (User)Session["currentUser"];
+                        List<User> allUserOfDept = userDAO.getAllUsersBySubordinate(currentUser.getUserID());
+                        foreach (User u in allUserOfDept)
+                        {
+                            Response.Write($"<tr>");
+                            Response.Write($"<td>{u.getName()}</td>");
+                            Response.Write($"<td>{u.getDepartment()}</td>");
+                            Response.Write($"<td><a href=\"progressReports.aspx?id={u.getUserID()}\" class=\"btn btn-sm btn-info\"><span class=\"glyphicon glyphicon-search\"></span></a></td>");
+                            Response.Write($"</tr>");
+                        }
+                    %>
                     </tbody>
             </table></form>
     </div>

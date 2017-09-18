@@ -543,6 +543,13 @@
     <Compile Include="progressFeedback.aspx.designer.cs">
       <DependentUpon>progressFeedback.aspx</DependentUpon>
     </Compile>
+    <Compile Include="progressReports.aspx.cs">
+      <DependentUpon>progressReports.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="progressReports.aspx.designer.cs">
+      <DependentUpon>progressReports.aspx</DependentUpon>
+    </Compile>
     <Compile Include="progressReport.aspx.cs">
       <DependentUpon>progressReport.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -677,12 +684,26 @@
     <Compile Include="viewApprovedTRF.aspx.designer.cs">
       <DependentUpon>viewApprovedTRF.aspx</DependentUpon>
     </Compile>
+    <Compile Include="viewCompletedCourses.aspx.cs">
+      <DependentUpon>viewCompletedCourses.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="viewCompletedCourses.aspx.designer.cs">
+      <DependentUpon>viewCompletedCourses.aspx</DependentUpon>
+    </Compile>
     <Compile Include="viewCompletedCourse.aspx.cs">
       <DependentUpon>viewCompletedCourse.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="viewCompletedCourse.aspx.designer.cs">
       <DependentUpon>viewCompletedCourse.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="viewCompletedQuizzes.aspx.cs">
+      <DependentUpon>viewCompletedQuizzes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="viewCompletedQuizzes.aspx.designer.cs">
+      <DependentUpon>viewCompletedQuizzes.aspx</DependentUpon>
     </Compile>
     <Compile Include="viewCompletedQuiz.aspx.cs">
       <DependentUpon>viewCompletedQuiz.aspx</DependentUpon>
@@ -1115,6 +1136,7 @@
     <Content Include="overallQuizResult.aspx" />
     <Content Include="pendingApproval.aspx" />
     <Content Include="progressFeedback.aspx" />
+    <Content Include="progressReports.aspx" />
     <Content Include="progressReport.aspx" />
     <Content Include="quiz.aspx" />
     <Content Include="quizSummary.aspx" />
@@ -1141,7 +1163,9 @@
     <Content Include="viewAllArticles.aspx" />
     <Content Include="viewAllModule.aspx" />
     <Content Include="viewApprovedTRF.aspx" />
+    <Content Include="viewCompletedCourses.aspx" />
     <Content Include="viewCompletedCourse.aspx" />
+    <Content Include="viewCompletedQuizzes.aspx" />
     <Content Include="viewCompletedQuiz.aspx" />
     <Content Include="viewCreatedModules.aspx" />
     <Content Include="viewModuleInfo.aspx" />
