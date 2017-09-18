@@ -110,7 +110,7 @@
                             <div class="form-group">
                                 <label class="col-lg-3 control-label">Email Settings</label>
                                 <div class="col-lg-7">
-                                    <asp:RadioButtonList ID="rdlEmail" runat="server" TextAlign="Right">
+                                    <asp:RadioButtonList ID="rdlEmail" runat="server" TextAlign="Right" OnSelectedIndexChanged="changeSelectedIndex" AutoPostBack="true">
                                         <asp:ListItem Value="y" Text="Enable" Selected="True">&emsp;Enable</asp:ListItem>
                                         <asp:ListItem Value="n" Text="Disable" Selected="False">&emsp;Disable</asp:ListItem>
                                     </asp:RadioButtonList>
