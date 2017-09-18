@@ -53,6 +53,46 @@ namespace LearnHub
                 Response.Redirect("home.aspx");
             }
         }
+        protected void ValidateMatchPass(object sender, ServerValidateEventArgs args)
+        {
+            String first = txtPassword.Text;
+            String second = txtPassword2.Text;
+            if (first.Equals(second))
+            {
+                System.Diagnostics.Debug.WriteLine("args true");
+                args.IsValid = true;
+            }
+            else
+            {
 
+                System.Diagnostics.Debug.WriteLine("args false");
+                args.IsValid = false;
+
+            }
+        }
+        protected void checkCheckBoxes(object sender, EventArgs e)
+        {
+            String value = null;
+            foreach (ListItem checkBox in cblRoles.Items)
+            {
+                if (checkBox.Selected == true)
+                {
+                    value = checkBox.Value;
+
+                    if (value == "superuser")
+                    {
+                        cblRoles.Items[0].Enabled = false;
+                        cblRoles.Items[0].Selected = false;
+                        cblRoles.Items[2].Enabled = false;
+                        cblRoles.Items[2].Selected = false;
+                    }
+                    else
+                    {
+                        cblRoles.Items[0].Enabled = true;
+                        cblRoles.Items[2].Enabled = true;
+                    }
+                }
+            }
+        }
     }
 }
