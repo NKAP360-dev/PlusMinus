@@ -23,7 +23,7 @@ namespace LearnHub
             {
                 UserDAO userDAO = new UserDAO();
                 User user = userDAO.getUserByID((String)Request.QueryString["id"]);
-                if (user.getSupervisor().Equals(currentUser.getUserID()))
+                if (user.getSupervisor().Equals(currentUser.getUserID()) || currentUser.getRoles().Contains("superuser"))
                 {
                     QuizResultDAO qrDAO = new QuizResultDAO();
                     lblUsername.Text = user.getName();

@@ -841,5 +841,90 @@ namespace LearnHub.AppCode.dao
             }
             return toReturn_list;
         }
+        public List<int> getAllSuggestedCoursesByUserID(string userID)
+        {
+            SqlConnection conn = new SqlConnection();
+            List<int> toReturn = new List<int>();
+            try
+            {
+                conn = new SqlConnection();
+                string connstr = ConfigurationManager.ConnectionStrings["DBConnectionString"].ToString();
+                conn.ConnectionString = connstr;
+                conn.Open();
+                SqlCommand comm = new SqlCommand();
+                comm.Connection = conn;
+                comm.CommandText = "select elearn_courseID from [SuggestedCourses] where userID=@userID";
+                comm.Parameters.AddWithValue("@userID", userID);
+                SqlDataReader dr = comm.ExecuteReader();
+                while (dr.Read())
+                {
+                    toReturn.Add((int)dr["elearn_courseID"]);
+                }
+                dr.Close();
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                conn.Close();
+            }
+            return toReturn;
+        }
+        public void deleteSuggestedCoursesByUserID(string userID)
+        {
+            SqlConnection conn = new SqlConnection();
+            try
+            {
+                conn = new SqlConnection();
+                string connstr = ConfigurationManager.ConnectionStrings["DBConnectionString"].ToString();
+                conn.ConnectionString = connstr;
+                conn.Open();
+                SqlCommand comm = new SqlCommand();
+                comm.Connection = conn;
+                comm.CommandText = "DELETE FROM [SuggestedCourses] WHERE userID=@userID";
+                comm.Parameters.AddWithValue("@userID", userID);
+                comm.ExecuteNonQuery();
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+        public Boolean insertSuggestedCourses(int courseID, string userID)
+        {
+            SqlConnection conn = new SqlConnection();
+            Boolean toReturn = false;
+            try
+            {
+                conn = new SqlConnection();
+                string connstr = ConfigurationManager.ConnectionStrings["DBConnectionString"].ToString();
+                conn.ConnectionString = connstr;
+                conn.Open();
+                SqlCommand comm = new SqlCommand();
+                comm.Connection = conn;
+                comm.CommandText = "insert into [SuggestedCourses] "
+                                    + "(userID, elearn_courseID)"
+                                    + "values(@userID, @courseID)";
+                comm.Parameters.AddWithValue("@userID", userID);
+                comm.Parameters.AddWithValue("@courseID", courseID);
+                int rowsAffected = comm.ExecuteNonQuery();
+                toReturn = true;
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                conn.Close();
+            }
+            return toReturn;
+        }
     }
 }

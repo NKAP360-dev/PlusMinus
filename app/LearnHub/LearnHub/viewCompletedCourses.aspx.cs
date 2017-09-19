@@ -22,7 +22,7 @@ namespace LearnHub
             {
                 UserDAO userDAO = new UserDAO();
                 User user = userDAO.getUserByID((String)Request.QueryString["id"]);
-                if (!user.getSupervisor().Equals(currentUser.getUserID()))
+                if (!currentUser.getRoles().Contains("superuser") && !user.getSupervisor().Equals(currentUser.getUserID()))
                 {
                     Response.Redirect("errorPage.aspx");
                 }

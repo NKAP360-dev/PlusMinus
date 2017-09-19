@@ -13,17 +13,24 @@ namespace LearnHub
         protected void Page_Load(object sender, EventArgs e)
         {
             User currentUser = (User)Session["currentUser"];
-            Boolean superuser = false;
-            foreach (string s in currentUser.getRoles())
+            if (currentUser == null)
             {
-                if (s.Equals("superuser"))
-                {
-                    superuser = true;
-                }
+                Response.Redirect("Login.aspx");
             }
-            if (!superuser)
+            else
             {
-                Response.Redirect("errorPage.aspx");
+                Boolean superuser = false;
+                foreach (string s in currentUser.getRoles())
+                {
+                    if (s.Equals("superuser"))
+                    {
+                        superuser = true;
+                    }
+                }
+                if (!superuser)
+                {
+                    Response.Redirect("errorPage.aspx");
+                }
             }
         }
     }

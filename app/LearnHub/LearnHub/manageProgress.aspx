@@ -91,7 +91,15 @@
                     <%
                         UserDAO userDAO = new UserDAO();
                         User currentUser = (User)Session["currentUser"];
-                        List<User> allUserOfDept = userDAO.getAllUsersBySubordinate(currentUser.getUserID());
+                        List<User> allUserOfDept = null;
+                        if (currentUser.getRoles().Contains("superuser"))
+                        {
+                            allUserOfDept = userDAO.getAllUsers();
+                        }
+                        else
+                        {
+                            allUserOfDept = userDAO.getAllUsersBySubordinate(currentUser.getUserID());
+                        }
                         foreach (User u in allUserOfDept)
                         {
                             Response.Write($"<tr>");
