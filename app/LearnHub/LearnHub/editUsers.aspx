@@ -109,7 +109,7 @@
                 <strong>
                     <asp:Label runat="server" CssClass="col-lg-2 control-label" Text="Contact No"></asp:Label></strong>
                 <div class="col-lg-5">
-                    <asp:TextBox ID="txtContactNo" runat="server" CssClass="form-control" placeholder="Contact No"></asp:TextBox>
+                    <asp:TextBox ID="txtContactNo" runat="server" CssClass="form-control" placeholder="Contact No" TextMode="Number"></asp:TextBox>
                     <asp:RequiredFieldValidator ID="rfv_txtContactNo" runat="server" ErrorMessage="Please input a Contact Number" ControlToValidate="txtContactNo" ForeColor="Red" ValidationGroup="ValidateForm" Display="Dynamic"></asp:RequiredFieldValidator>
                 </div>
             </div>
