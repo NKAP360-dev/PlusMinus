@@ -378,7 +378,21 @@
                 <%--Tab 6: Configuration--%>
                 <%
                     User u = (User)Session["currentUser"];
-                    if (u != null && u.getDepartment().Equals("hr"))
+                    Boolean succ = false;
+                    if (u != null)
+                    {
+                        ArrayList arr = u.getRoles();
+                        
+                        foreach(string role in arr)
+                        {
+                            if (role.Equals("superuser"))
+                            {
+                                succ = true;
+                            }
+                        }
+                    }
+                    
+                    if (u != null && u.getDepartment().Equals("hr") || succ)
                     {
                 %>
                 <ul class="nav navbar-nav">
