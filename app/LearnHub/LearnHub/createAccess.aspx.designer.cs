@@ -76,13 +76,13 @@ namespace LearnHub {
         protected global::System.Web.UI.WebControls.RequiredFieldValidator rfv_txtPassword2;
         
         /// <summary>
-        /// cv_matchPass control.
+        /// comp_matchPass control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CustomValidator cv_matchPass;
+        protected global::System.Web.UI.WebControls.CompareValidator comp_matchPass;
         
         /// <summary>
         /// txtName control.

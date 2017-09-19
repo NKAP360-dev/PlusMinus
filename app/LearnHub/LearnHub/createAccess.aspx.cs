@@ -69,25 +69,12 @@ namespace LearnHub
             }
         }
 
-        protected void ValidateMatchPass(object sender, ServerValidateEventArgs args)
-        {
-            String first = txtPassword.Text;
-            String second = txtPassword2.Text;
-            if (first.Equals(second))
-            {
-                System.Diagnostics.Debug.WriteLine("args true");
-                args.IsValid = true;
-            }
-            else
-            {
-
-                System.Diagnostics.Debug.WriteLine("args false");
-                args.IsValid = false;
-
-            }
-        }
         protected void checkCheckBoxes(object sender, EventArgs e)
         {
+            string Password = txtPassword.Text;
+            txtPassword.Attributes.Add("value", Password);
+            string Password2 = txtPassword2.Text;
+            txtPassword2.Attributes.Add("value", Password2);
             String value = null;
             foreach (ListItem checkBox in cblRoles.Items)
             {

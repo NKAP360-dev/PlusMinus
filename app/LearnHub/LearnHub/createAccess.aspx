@@ -108,7 +108,7 @@
                     <div class="col-lg-5">
                         <asp:TextBox ID="txtPassword2" runat="server" CssClass="form-control" placeholder="Re-enter Password" TextMode="Password"></asp:TextBox>
                         <asp:RequiredFieldValidator ID="rfv_txtPassword2" runat="server" ErrorMessage="Please input a password" ControlToValidate="txtPassword2" ForeColor="Red" ValidationGroup="ValidateForm" Display="Dynamic"></asp:RequiredFieldValidator>
-                        <asp:CustomValidator ID="cv_matchPass" runat="server" ErrorMessage="Please re-enter the same password" OnServerValidate="ValidateMatchPass" ForeColor="Red" ValidationGroup="ValidateForm" Display="Dynamic"></asp:CustomValidator>
+                        <asp:CompareValidator ID="comp_matchPass" runat="server" ErrorMessage="Please re-enter the same password" ControlToCompare="txtPassword" ControlToValidate="txtPassword2" Operator="Equal" ValidationGroup="ValidateForm" Display="Dynamic" ForeColor="Red"></asp:CompareValidator>
                     </div>
                 </div>
                 <br />
@@ -188,7 +188,7 @@
                 <div class="form-group">
                     <div class="wrapper">
                         <br />
-                        <asp:Button ID="btnSubmit" CssClass="btn btn-primary" runat="server" Text="Create User" data-toggle="modal" href="#submitModal" OnClientClick="return checkForm_Clicked()" UseSubmitBehavior="False" />
+                        <asp:Button ID="btnSubmit" CssClass="btn btn-primary" runat="server" Text="Create User" data-toggle="modal" href="#submitModal" OnClientClick="return checkForm_Clicked()" UseSubmitBehavior="False" ValidationGroup="ValidateForm" />
                     </div>
                 </div>
             </fieldset>
