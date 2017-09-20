@@ -40,6 +40,10 @@ namespace LearnHub
             string address = txtAddress.Text;
             string email = txtEmail.Text;
             string dept = lblDept.SelectedValue;
+            if (dept.Equals("HR"))
+            {
+                dept = "hr";
+            }
             string jobtitle = txtJobTitle.Text;
             string supervisor = ddlSup.SelectedValue;
             string supid = udao.getUserByName(supervisor).getUserID();

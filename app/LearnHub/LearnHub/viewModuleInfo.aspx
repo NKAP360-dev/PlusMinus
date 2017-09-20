@@ -270,35 +270,40 @@
                     <div class="col-md-9">
                         <%--Each panel for one upload--%>
                         <%
-                            Course_elearnDAO cdao = new Course_elearnDAO();
-                            ArrayList list = cdao.get_uploaded_content_by_id(current);%>
+    User currentUser = (User)Session["currentUser"];
+    if (currentUser != null)
+    {
+        Course_elearnDAO cdao = new Course_elearnDAO();
+        ArrayList list = cdao.get_uploaded_content_by_id(current);%>
                         <%
-                            string dir = "Data/" + current.getCourseID();
-                            foreach (string strfile in Directory.GetFiles(Server.MapPath(dir)))
-                            {
-                                //Response.Write(strfile);
-                                title = null;
-                                desc = null;
-                                date = DateTime.Now;
-                                foreach (Upload u in list)
-                                {
-                                    //Response.Write(u.getServerPath());
-                                    if (u.getServerPath() != null && u.getServerPath().Equals(strfile))
-                                    {
-                                        title = u.getTitle();
-                                        desc = u.getDesc();
-                                        date = u.getDate();
-                                    }
-                                }%>
+    string dir = "Data/" + current.getCourseID();
+    foreach (string strfile in Directory.GetFiles(Server.MapPath(dir)))
+    {
+        //Response.Write(strfile);
+        title = null;
+        desc = null;
+        date = DateTime.Now;
+        foreach (Upload u in list)
+        {
+            //Response.Write(u.getServerPath());
+            if (u.getServerPath() != null && u.getServerPath().Equals(strfile))
+            {
+                title = u.getTitle();
+                desc = u.getDesc();
+                date = u.getDate();
+            }
+        }%>
                         <div class="panel panel-primary">
                             <div class="panel-heading">
                                 <h3 class="panel-title">
                                     <asp:Label ID="lblUploadTitle" runat="server"><%= title %></asp:Label>
                                     <%  User user = (User)Session["currentUser"];
-                                        if (user == null) {
-                                            //Response.Redirect("login.aspx");
-                                        }else if (superuser || user.getDepartment().Equals("hr"))
-                                        {%>
+    if (user == null)
+    {
+        //Response.Redirect("login.aspx");
+    }
+    else if (superuser || user.getDepartment().Equals("hr"))
+    {%>
                                     <a href="deleteMaterial.aspx?id=<%=current.getCourseID()%>&path=<%=strfile%>" onclick="return confirm('Are you sure?')"><span class="label label-danger pull-right"><span class="glyphicon glyphicon-trash"></span></span></a></strong><br />
                                     <%} %>
                                 </h3>
@@ -310,15 +315,23 @@
                                 <br />
                                 <br />
                                 <% string var = dir + "/" + Path.GetFileName(strfile);
-                                    if (Path.GetExtension(var).Equals(".pdf")){
-                                        var = "ViewerJS/#../" + dir + "/" + Path.GetFileName(strfile);%>
+    if (Path.GetExtension(var).Equals(".pdf"))
+    {
+        var = "ViewerJS/#../" + dir + "/" + Path.GetFileName(strfile);%>
                                         <a href="<%=var %>"><%=Path.GetFileName(strfile) %></a><br />     
-                                <% } else {%>
+                                <% }
+    else
+    {%>
                                         <a href="<%=var %>" download><%=Path.GetFileName(strfile) %></a><br />
                                 <%} %>
                             </div>
                         </div>
-                        <%} %>
+                        <%
+        }
+    } else {
+                            Response.Write("Please login to view learning materials.");
+                            }
+                                %>
                     </div>
                 </div>
             </asp:Panel>
