@@ -153,7 +153,7 @@ namespace Emma.Dialogs
         [LuisIntent("eligibility enquiry")]
         public async Task EligibilityEnquiry(IDialogContext context, LuisResult result)
         {
-            List<ChatBotAnswer> possibleAns = cbaDAO.getChatBotAnswerByIntent("eligible enquiry");
+            List<ChatBotAnswer> possibleAns = cbaDAO.getChatBotAnswerByIntent("eligibility enquiry");
             EntityRecommendation rec;
             if (result.TryFindEntity("eligibilityCondition", out rec))
             {
@@ -219,43 +219,7 @@ namespace Emma.Dialogs
             }
             context.Wait(MessageReceived);
         }
-
-        [LuisIntent("trf definition enquiry")]
-        public async Task TRFDefinitionEnquiry(IDialogContext context, LuisResult result)
-        {
-            List<ChatBotAnswer> possibleAns = cbaDAO.getChatBotAnswerByIntent("trf definition enquiry");
-            if (possibleAns.Count > 0)
-            {
-                Random rdm = new Random();
-                int r = rdm.Next(possibleAns.Count);
-
-                await context.PostAsync($"{possibleAns[r].answer}");
-            }
-            else
-            {
-                await context.PostAsync($"I am unable to process your request now.");
-            }
-            context.Wait(MessageReceived);
-        }
-
-        [LuisIntent("sponsorship form definition enquiry")]
-        public async Task SponsorshipFormDefinitionEnquiry(IDialogContext context, LuisResult result)
-        {
-            List<ChatBotAnswer> possibleAns = cbaDAO.getChatBotAnswerByIntent("sponsorship form definition enquiry");
-            if (possibleAns.Count > 0)
-            {
-                Random rdm = new Random();
-                int r = rdm.Next(possibleAns.Count);
-
-                await context.PostAsync($"{possibleAns[r].answer}");
-            }
-            else
-            {
-                await context.PostAsync($"I am unable to process your request now.");
-            }
-            context.Wait(MessageReceived);
-        }
-
+      
         [LuisIntent("msp bond requirements enquiry")]
         public async Task MSPBondRequirementsEnquiry(IDialogContext context, LuisResult result)
         {
@@ -296,24 +260,6 @@ namespace Emma.Dialogs
         public async Task ApplicationHelpEnquiry(IDialogContext context, LuisResult result)
         {
             List<ChatBotAnswer> possibleAns = cbaDAO.getChatBotAnswerByIntent("application help enquiry");
-            if (possibleAns.Count > 0)
-            {
-                Random rdm = new Random();
-                int r = rdm.Next(possibleAns.Count);
-
-                await context.PostAsync($"{possibleAns[r].answer}");
-            }
-            else
-            {
-                await context.PostAsync($"I am unable to process your request now.");
-            }
-            context.Wait(MessageReceived);
-        }
-
-        [LuisIntent("application status enquiry")]
-        public async Task ApplicationStatusEnquiry(IDialogContext context, LuisResult result)
-        {
-            List<ChatBotAnswer> possibleAns = cbaDAO.getChatBotAnswerByIntent("application status enquiry");
             if (possibleAns.Count > 0)
             {
                 Random rdm = new Random();
@@ -593,25 +539,7 @@ namespace Emma.Dialogs
 
             context.Wait(MessageReceived);
         }
-        [LuisIntent("course catalog enquiry")]
-        public async Task CourseCatalogEnquiry(IDialogContext context, LuisResult result)
-        {
-            List<ChatBotAnswer> possibleAns = cbaDAO.getChatBotAnswerByIntent("course catalog enquiry");
-
-            if (possibleAns.Count > 0)
-            {
-                Random rdm = new Random();
-                int r = rdm.Next(possibleAns.Count);
-                await context.PostAsync($"{possibleAns[r].answer}");
-            }
-            else
-            {
-                await context.PostAsync($"I do not have the answer to your questions just yet.");
-            }
-
-
-            context.Wait(MessageReceived);
-        }
+        
         [LuisIntent("sponsorship application status enquiry")]
         public async Task SponsorshipApplicationStatusEnquiry(IDialogContext context, LuisResult result)
         {
@@ -787,25 +715,7 @@ namespace Emma.Dialogs
             }
             context.Wait(MessageReceived);
         }
-        [LuisIntent("course completion submission material enquiry")]
-        public async Task CourseCompletionSubmissionMaterialEnquiry(IDialogContext context, LuisResult result)
-        {
-            List<ChatBotAnswer> possibleAns = cbaDAO.getChatBotAnswerByIntent("course completion submission material enquiry");
-
-            if (possibleAns.Count > 0)
-            {
-                Random rdm = new Random();
-                int r = rdm.Next(possibleAns.Count);
-                await context.PostAsync($"{possibleAns[r].answer}");
-            }
-            else
-            {
-                await context.PostAsync($"I do not have the answer to your questions just yet.");
-            }
-
-
-            context.Wait(MessageReceived);
-        }
+  
         [LuisIntent("reimbursement enquiry")]
         public async Task ReimbursementEnquiry(IDialogContext context, LuisResult result)
         {
