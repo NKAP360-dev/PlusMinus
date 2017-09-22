@@ -32,7 +32,7 @@ namespace LearnHub
                     if (s.Equals("superuser"))
                     {
                         superuser = true;
-                    }else if(s.Equals("course creator"))
+                    }else if(s.Equals("     course creator"))
                     {
                         course_creator = true;
                     }

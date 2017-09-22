@@ -40,10 +40,6 @@ namespace LearnHub
             string address = txtAddress.Text;
             string email = txtEmail.Text;
             string dept = lblDept.SelectedValue;
-            if (dept.Equals("HR"))
-            {
-                dept = "hr";
-            }
             string jobtitle = txtJobTitle.Text;
             string supervisor = ddlSup.SelectedValue;
             string supid = udao.getUserByName(supervisor).getUserID();
@@ -59,7 +55,7 @@ namespace LearnHub
             string salt = Crypto.GenerateSalt();// generate salt of user
             string password_hashed = Crypto.SHA256(salt + pass);
             //password hashed now create user 
-            User u = new User(user, name, jobtitle, "Staff", supid, roles, dept, email, DateTime.Now, address, contact, "Active");
+            User u = new User(user, name, jobtitle, "Staff", supid, roles, dept.ToLower(), email, DateTime.Now, address, contact, "Active");
             Boolean res = udao.create_user_elearn(u, password_hashed, salt);
             Boolean res_role = udao.add_role(u, roles);
             //Boolean res = true;

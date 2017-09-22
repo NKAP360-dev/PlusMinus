@@ -68,7 +68,7 @@
                             <h4>This article will be published. Are you sure you want to proceed?</h4>
                             <br />
                             
-                            <asp:Button ID="cfmSubmit" CssClass="btn btn-primary" runat="server" Text="Create"/>
+                            <asp:Button ID="cfmSubmit" CssClass="btn btn-primary" runat="server" Text="Create" OnClick="cfmSubmit_Click"/>
                             <asp:Button ID="Button2" CssClass="btn btn-default" runat="server" class="close" data-dismiss="modal" Text="Cancel" OnClientClick="return false;" />
 
                             <br />

@@ -13,5 +13,9 @@ namespace LearnHub
         {
 
         }
+        protected void deactivate_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

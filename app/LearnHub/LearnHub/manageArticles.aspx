@@ -81,16 +81,23 @@
                     <th width="80%">Title</th>
                     <th>Date Posted</th>
                     <th data-filterable="false" data-sortable="false"></th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
+                <%ArticleDAO adao = new ArticleDAO();
+                        ArrayList a = adao.getArticles();
+                        foreach (Article article in a)
+                        {
+                            %>
                 <tr>
-                    <td>What is the best fruit on earth?</td>
-                    <td>14/9/17</td>
-                    <td><a href="editArticle.aspx" class="btn btn-sm btn-info"><span class="glyphicon glyphicon-pencil"></span></a>
-                <asp:LinkButton ID="btnDelete" CssClass="btn btn-sm btn-danger" runat="server" data-toggle="modal" href="#deleteModal" OnClientClick="$('#myModal').modal();  return false;" UseSubmitBehavior="False"><span class="glyphicon glyphicon-trash"></span></asp:LinkButton>
-                    </td>
+                    <td><%=article.article_name %></td>
+                    <td><%= article.upload_datetime%></td>
+                    <td><a href="editArticle.aspx?id=<%=article.article_id %>" class="btn btn-sm btn-info"><span class="glyphicon glyphicon-pencil"></span></a></td><td>
+                        <a href="deleteArticle.aspx?id=<%=article.article_id %>" onclick="return confirm('Are you sure?')"><span class="btn btn-sm btn-danger"><span class="glyphicon glyphicon-trash"></span></span></a></strong><br />
+                </td>
                 </tr>
+                <%} %>
             </tbody>
         </table>
          </div>
@@ -107,7 +114,7 @@
                             <h4>Are you sure you want to delete?</h4>
                             <br />
                             
-                            <asp:Button ID="cfmDelete" CssClass="btn btn-danger" runat="server" Text="Delete"/>
+                            <asp:Button ID="cfmDelete" CssClass="btn btn-danger" runat="server" Text="Delete" href="deleteArticle.aspx/id=<%=article.article_id %>"/>
                             <asp:Button ID="Button2" CssClass="btn btn-default" runat="server" class="close" data-dismiss="modal" Text="Cancel" OnClientClick="return false;" />
 
                             <br />
