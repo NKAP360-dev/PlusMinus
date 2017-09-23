@@ -154,32 +154,16 @@ namespace Emma.Dialogs
         public async Task EligibilityEnquiry(IDialogContext context, LuisResult result)
         {
             List<ChatBotAnswer> possibleAns = cbaDAO.getChatBotAnswerByIntent("eligibility enquiry");
-            EntityRecommendation rec;
-            if (result.TryFindEntity("eligibilityCondition", out rec))
+            if (possibleAns.Count > 0)
             {
-                string condition = rec.Entity;
-                Boolean checkIfAnswered = false;
-                if (possibleAns.Count > 0)
-                {
-                    foreach (ChatBotAnswer cba in possibleAns)
-                    {
-                        if (cba.entityName != null && cba.entityName.ToLower().Contains(condition))
-                        {
-                            checkIfAnswered = true;
-                            await context.PostAsync($"{cba.answer}");
-                            break;
-                        }
-                    }
+                Random rdm = new Random();
+                int r = rdm.Next(possibleAns.Count);
 
-                    if (!checkIfAnswered)
-                    {
-                        await context.PostAsync($"I am unable to check for eligibility at this moment.");
-                    }
-                }
+                await context.PostAsync($"{possibleAns[r].answer}");
             }
             else
             {
-                await context.PostAsync($"Registered staffs are eligible to apply for courses.");
+                await context.PostAsync($"I am unable to process your enquiry");
             }
             context.Wait(MessageReceived);
         }
