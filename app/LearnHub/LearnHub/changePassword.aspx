@@ -41,7 +41,7 @@
                 </div>
                 <div class="col-md-9">
                     <br />
-                    <div class="form-group">
+                    <div class="form-group required">
                         <strong>
                             <asp:Label runat="server" CssClass="col-lg-4 control-label" Text="Current Password"></asp:Label></strong>
                         <div class="col-lg-6">
@@ -50,7 +50,7 @@
                             <asp:CustomValidator ID="cv_currPass" runat="server" ErrorMessage="Please enter the correct current password" OnServerValidate="ValidateCurrPass" ForeColor="Red" ValidationGroup="ValidateForm" Display="Dynamic"></asp:CustomValidator>
                         </div>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group required">
                         <strong>
                             <asp:Label runat="server" CssClass="col-lg-4 control-label" Text="New Password"></asp:Label></strong>
                         <div class="col-lg-6">
@@ -60,7 +60,7 @@
                             <asp:RegularExpressionValidator Display = "Dynamic" ControlToValidate = "txtPassword_new" ID="regv_txtPassword_new" ValidationExpression = "^[\s\S]{8,}$" runat="server" ErrorMessage="Minimum 8 characters required." ForeColor="Red"></asp:RegularExpressionValidator>
                         </div>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group required">
                         <strong>
                             <asp:Label runat="server" CssClass="col-lg-4 control-label" Text="Re-type New Password"></asp:Label></strong>
                         <div class="col-lg-6">
@@ -70,7 +70,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <h6> <asp:Label runat="server" CssClass="control-label text-muted" Text="Password must include at least 8 characters, inclusive of numerical and special..blahblah password rules"></asp:Label></h6>
+                        <h6> <asp:Label runat="server" CssClass="control-label text-muted" Text="Password must include at least 8 characters, inclusive of 1 upper case letter, 1 lower case letter, 1 numerical character and 1 special character."></asp:Label></h6>
                     </div>
                     <div class="form-group">
                         <div class="wrapper">

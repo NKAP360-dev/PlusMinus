@@ -20,10 +20,12 @@
     <ul class="breadcrumb">
         <li><a href="home.aspx">Home</a></li>
         <li><a href="viewAllModule.aspx">Courses</a></li>
-        <%int courseID = Convert.ToInt32(Request.QueryString["id"]); %>
-        <li><a href="viewModuleInfo.aspx?id=<%=courseID%>">
-            <asp:Label ID="lblBreadcrumbCourseName" runat="server" Text="courseName"></asp:Label></a></li>
-        <li><a href="createQuiz.aspx?id=<%=courseID%>">Create Quiz</a></li>
+        <%int quizID = Convert.ToInt32(Request.QueryString["id"]);
+            QuizDAO qDAO = new QuizDAO();
+            %>
+        <li><a href="viewModuleInfo.aspx?id=<%=qDAO.getQuizByID(quizID).getMainCourse().getCourseID()%>">
+            <%=qDAO.getQuizByID(quizID).getMainCourse().getCourseName()%></a></li>
+        <li><a href="createQuiz.aspx?id=<%=qDAO.getQuizByID(quizID).getMainCourse().getCourseID()%>">Create Quiz</a></li>
         <li class="active">Questions and Answers</li>
     </ul>
 

@@ -17,12 +17,20 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <ul class="breadcrumb">
         <li><a href="home.aspx">Home</a></li>
-        <li><a href="siteConfig.aspx">Configuration Settings</a></li>
+        <li><a href="progressReport.aspx">Progress Report</a></li>
+        <li><a href="manageProgress.aspx">Manage Progress Report</a></li>
         <li class="active">Suggest Courses</li>
     </ul>
 
     <div class="container">
         <h1>Suggest Courses</h1>
+          <div class="dropdown" style="float: right;">
+                <button class="dropbtn" onclick="return false;"><span class="glyphicon glyphicon-option-horizontal"></span></button>
+                <div class="dropdown-content" style="right: 0;">
+                    <a href="manageProgress.aspx"><span class="glyphicon glyphicon-duplicate"></span>&nbsp&nbsp; Manage Progress Reports</a>
+                    <a href="suggestCourses.aspx"><span class="glyphicon glyphicon-comment"></span>&nbsp;&nbsp;Suggest Courses</a>
+                </div>
+            </div>
         <div class="verticalLine"></div>
         <form class="form-horizontal" runat="server">
             <fieldset>

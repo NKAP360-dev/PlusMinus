@@ -27,6 +27,7 @@ namespace LearnHub
                 {
                     QuizResultDAO qrDAO = new QuizResultDAO();
                     lblUsername.Text = user.getName();
+                    lblUsernameBC.Text = user.getName();
                     int numOfCourseComplete = checkNumberOfCourseUserComplete(user.getUserID());
                     lblCourseNumber.Text = numOfCourseComplete.ToString();
                     lblQuizNumber.Text = qrDAO.getNumberOfPassQuiz(user.getUserID()).ToString();

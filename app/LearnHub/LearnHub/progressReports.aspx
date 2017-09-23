@@ -1,5 +1,9 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Masterpage.Master" AutoEventWireup="true" CodeBehind="progressReports.aspx.cs" Inherits="LearnHub.progressReports" %>
 
+
+<%@ Register Assembly="CKEditor.NET" Namespace="CKEditor.NET" TagPrefix="CKEditor" %>
+
+
 <%@ Import Namespace="System.IO" %>
 <%@ Import Namespace="System.Data" %>
 <%@ Import Namespace="LearnHub.AppCode.dao" %>
@@ -24,20 +28,25 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <ul class="breadcrumb">
         <li><a href="home.aspx">Home</a></li>
-        <li class="active">Progress Report</li>
+        <li><a href="progressReport.aspx">Progress Report</a></li>
+        <li><a href="manageProgress.aspx">Manage Progress Report</a></li>
+        <li class="active"><asp:Label ID="lblUsernameBC" runat="server" Text="username"></asp:Label> - Progress Report</li>
     </ul>
 
     <form runat="server" class="form-horizontal">
         <% string userID = (String)Request.QueryString["id"]; %>
         <div class="container">
-            <h1>My Progress Report</h1>
+            <h1><asp:Label ID="lblUsername" runat="server" Text="username"></asp:Label> - Progress Report</h1>
+            <div class="dropdown" style="float: right;">
+                <button class="dropbtn" onclick="return false;"><span class="glyphicon glyphicon-option-horizontal"></span></button>
+                <div class="dropdown-content" style="right: 0;">
+                    <a href="manageProgress.aspx"><span class="glyphicon glyphicon-duplicate"></span>&nbsp&nbsp; Manage Progress Reports</a>
+                    <a href="suggestCourses.aspx"><span class="glyphicon glyphicon-comment"></span>&nbsp;&nbsp;Suggest Courses</a>
+                </div>
+            </div>
             <div class="verticalLine"></div>
             <br />
-            <div class="row">
-                <h1>Hi, 
-                        <asp:Label ID="lblUsername" runat="server" Text="username"></asp:Label>
-                </h1>
-            </div>
+           
             <br />
             <br />
             <div class="row">
@@ -46,7 +55,7 @@
                         <div class="row">
                             <div class="wrapper">
                                 <h4>
-                                    <label class="control-label">TOTAL NUMBER OF COURSE COMPLETED</label></h4>
+                                    <label class="control-label">TOTAL NUMBER OF COURSES COMPLETED</label></h4>
                             </div>
                             <table class="table">
                                 <tbody>
@@ -68,7 +77,7 @@
                         <div class="row">
                             <div class="wrapper">
                                 <h4>
-                                    <label class="control-label">TOTAL NUMBER OF QUIZ COMPLETED</label></h4>
+                                    <label class="control-label">TOTAL NUMBER OF QUIZZES COMPLETED</label></h4>
                             </div>
                             <table class="table">
                                 <tbody>
@@ -101,10 +110,47 @@
                     <div class="row">
                         <div class="panel panel-primary">
                             <div class="panel-heading">
-                                <h3 class="panel-title">Feedback</h3>
+                                <h3 class="panel-title">Feedback<a href="javascript:void(0);" data-toggle="collapse" data-target="#addFeedback"><span class="label label-default pull-right">
+
+                                    <span class="glyphicon glyphicon-pencil"></span></span></a></h3>
                             </div>
                             <div class="panel-body">
-                                Panel content
+                                <div class="collapse" id="addFeedback">
+                                    <h4><strong>Add New Feedback</strong></h4>
+                                    <fieldset>
+                                        <div class="form-group">
+                                            <div class="col-lg-12">
+                                                <asp:TextBox ID="txtFeedback" runat="server" CssClass="form-control" placeholder="Feedback"></asp:TextBox>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-lg-12">
+                                                <CKEditor:CKEditorControl ID="CKEditorControl2" runat="server">
+                                                </CKEditor:CKEditorControl>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-lg-12">
+                                                <asp:TextBox ID="txtByWho" runat="server" CssClass="form-control" placeholder="Name"></asp:TextBox>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-lg-10">
+                                                <asp:Button ID="cfmSubmit" CssClass="btn btn-primary" runat="server" Text="Submit"/>
+                                            </div>
+                                        </div>
+
+                                    </fieldset>
+
+                                    <hr />
+                                </div>
+                                <h5><b>title</b><a href="#"><span class="label label-danger pull-right"><span class="glyphicon glyphicon-trash"></span></span></a></h5>
+                                feedback 1 content
+                                <br /><h5 class ="pull-right">By: who</h5><br />
+                                <hr />
+                                <h5><b>title</b><a href="#"><span class="label label-danger pull-right"><span class="glyphicon glyphicon-trash"></span></span></a></h5>
+                                feedback 2 content
+                                <br /><h5 class ="pull-right">By: who</h5><br />
                             </div>
                         </div>
                     </div>
@@ -122,7 +168,7 @@
                                 </div>
                             </div>
                         </a>
-                        <a href="#">
+                        <a href="usefulInfo.aspx">
                             <div class="col-lg-12 btn-warning">
                                 <br />
                                 <br />
@@ -133,6 +179,7 @@
                                 </div>
                             </div>
                         </a>
+                       
                         <%--<a href="accountSetting.aspx">
                             <div class="col-lg-12 btn-info">
                                 <br />

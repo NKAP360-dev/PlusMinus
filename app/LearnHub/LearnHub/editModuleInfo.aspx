@@ -297,7 +297,7 @@
                  <div class="form-group required">
                     <strong><asp:Label runat="server" CssClass="col-lg-2 control-label" Text="Course Type"></asp:Label></strong>
                     <div class="col-lg-5">
-                        <asp:DropDownList ID="ddlCourseType" runat="server" CssClass="form-control">
+                        <asp:DropDownList ID="ddlCourseType" disabled="" runat="server" CssClass="form-control">
                             <asp:ListItem Text="Classroom Learning"></asp:ListItem>
                              <asp:ListItem Text="Online Learning"></asp:ListItem>
                         </asp:DropDownList>

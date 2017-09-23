@@ -33,7 +33,7 @@
             <div class="verticalLine"></div>
             <br />
             <div class="row">
-                <h1>Hi, 
+                <h1>&nbsp;Hi, 
                         <asp:Label ID="lblUsername" runat="server" Text="username"></asp:Label>
                 </h1>
             </div>
@@ -45,7 +45,7 @@
                         <div class="row">
                             <div class="wrapper">
                                 <h4>
-                                    <label class="control-label">TOTAL NUMBER OF COURSE COMPLETED</label></h4>
+                                    <label class="control-label">TOTAL NUMBER OF COURSES COMPLETED</label></h4>
                             </div>
                             <table class="table">
                                 <tbody>
@@ -67,7 +67,7 @@
                         <div class="row">
                             <div class="wrapper">
                                 <h4>
-                                    <label class="control-label">TOTAL NUMBER OF QUIZ COMPLETED</label></h4>
+                                    <label class="control-label">TOTAL NUMBER OF QUIZZES COMPLETED</label></h4>
                             </div>
                             <table class="table">
                                 <tbody>
@@ -121,7 +121,7 @@
                                 </div>
                             </div>
                         </a>
-                        <a href="#">
+                        <a href="usefulInfo.aspx">
                             <div class="col-lg-12 btn-warning">
                                 <br />
                                 <br />
@@ -143,7 +143,17 @@
                                 </div>
                             </div>
                         </a>
-                        
+                         <a href="manageProgress.aspx">
+                              <div class="col-lg-12 btn-primary">
+                                <br />
+                                <br />
+                                <div class="wrapper">
+                                    <span style="font-size: 30px;" class="glyphicon glyphicon-duplicate"></span>
+                                    <h4>Subordinate's Progress Report</h4>
+                                    <br />
+                                </div>
+                            </div>
+                        </a>
                     </div>
                 </div>
             </div>

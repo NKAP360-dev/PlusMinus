@@ -164,6 +164,7 @@
                                     <br />
                                             --%>
                                             <asp:Label ID="lblErrorMsgUse" runat="server" CssClass="text-danger" Visible="false"></asp:Label>
+                                            <asp:Label ID="lblUserInactive" runat="server" CssClass="text-danger" Visible="false">The account that you are signing in to is currently inactive. Please contact your administrator for assistance.</asp:Label>
                                         </div>
                                     </div>
                                 </div>

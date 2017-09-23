@@ -63,11 +63,15 @@
     <ul class="breadcrumb">
         <li><a href="home.aspx">Home</a></li>
         <li><a href="progressReport.aspx">Progress Report</a></li>
-        <li class="active">My Completed Quizzes</li>
+        <li><a href="manageProgress.aspx">Manage Progress Report</a></li>
+        <%UserDAO userDAO = new UserDAO();
+                User user = userDAO.getUserByID((String)Request.QueryString["id"]); %>
+        <li><a href="progressReports.aspx?id=<%=user.getUserID()%>"><%=user.getName() %> - Progress Report</a></li>
+        <li class="active"><%=user.getName() %> - Completed Quizzes</li>
     </ul>
 
     <div class="container">
-        <h1>My Completed Quizzes</h1>
+        <h1><%=user.getName() %> -  Completed Quizzes</h1>
         <div class="verticalLine"></div>
           <form runat="server">
         <table class="table table-striped table-hover" data-paging="true" data-sorting="true" data-filtering="true">

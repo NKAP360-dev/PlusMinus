@@ -25,7 +25,7 @@
   <li class="active">Account Settings</li>
   </ul>
     <div class="container">
-        <h1>Account Setting</h1>
+        <h1>Account Settings</h1>
         <div class="verticalLine"></div>
     </div>
     <form class="form-horizontal" runat="server">
@@ -53,7 +53,8 @@
                             <asp:Label runat="server" CssClass="col-lg-3 control-label" Text="Name"></asp:Label></strong>
                         <asp:Label ID="lblName" runat="server" CssClass="col-lg-6 control-label-left"><%=currentUser.getName() %></asp:Label>
                     </div>
-                    <div class="form-group">
+                    <br />
+                    <div class="form-group required">
                         <strong>
                             <asp:Label runat="server" CssClass="col-lg-3 control-label" Text="Contact No"></asp:Label></strong>
                         <div class="col-lg-6">
@@ -61,7 +62,7 @@
                             <asp:RequiredFieldValidator ID="rfv_txtContactNo" runat="server" ErrorMessage="Please enter a Contact Number" ControlToValidate="txtContactNo" ForeColor="Red" ValidationGroup="ValidateForm"></asp:RequiredFieldValidator>
                         </div>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group required">
                         <strong>
                             <asp:Label runat="server" CssClass="col-lg-3 control-label" Text="Address"></asp:Label></strong>
                         <div class="col-lg-6">

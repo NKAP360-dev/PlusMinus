@@ -113,49 +113,6 @@
     <br />
     <div class="container">
         <div class="row">
-            <h3><span class="glyphicon glyphicon-menu-right"></span>&emsp;Progress Reports </h3>
-            <a href="manageProgress.aspx">
-                <div class="col-md-3 btn-warning">
-                    <br />
-                    <br />
-                    <div class="wrapper">
-                        <span style="font-size: 75px;" class="glyphicon glyphicon-stats"></span>
-                        <br />
-                        <h3>Manage Progress</h3>
-                        <br />
-                    </div>
-                </div>
-            </a>
-
-            <a href="progressFeedback.aspx">
-                <div class="col-md-3 btn-warning">
-                    <br />
-                    <br />
-                    <div class="wrapper">
-                        <span style="font-size: 75px;" class="glyphicon glyphicon-comment"></span>
-                        <br />
-                        <h3>Progress Feedback</h3>
-                        <br />
-                    </div>
-                </div>
-            </a>
-            <a href="suggestCourses.aspx">
-                <div class="col-md-3 btn-warning">
-                    <br />
-                    <br />
-                    <div class="wrapper">
-                        <span style="font-size: 75px;" class="glyphicon glyphicon-hand-right"></span>
-                        <br />
-                        <h3>Suggest Courses</h3>
-                        <br />
-                    </div>
-                </div>
-            </a>
-        </div>
-    </div>
-    <br />
-    <div class="container">
-        <div class="row">
         <h3><span class="glyphicon glyphicon-menu-right"></span>&emsp;Resources</h3>
             <a href="manageArticles.aspx">
                 <div class="col-md-3 btn-default">
