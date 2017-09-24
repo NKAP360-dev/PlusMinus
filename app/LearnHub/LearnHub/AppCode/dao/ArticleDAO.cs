@@ -13,6 +13,34 @@ namespace LearnHub.AppCode.dao
 {
     public class ArticleDAO
     {
+        public void updateArticle(Article a) // Update.
+        {
+            SqlConnection conn = new SqlConnection();
+
+            try
+            {
+                conn = new SqlConnection();
+                string connstr = ConfigurationManager.ConnectionStrings["DBConnectionString"].ToString();
+                conn.ConnectionString = connstr;
+                conn.Open();
+                SqlCommand comm = new SqlCommand();
+                comm.Connection = conn;
+                comm.CommandText =
+                    "Update [Articles] SET article_name=@name, article_body=@body WHERE article_id = @id";
+                comm.Parameters.AddWithValue("@name", a.article_name);
+                comm.Parameters.AddWithValue("@body", a.article_body);
+                comm.Parameters.AddWithValue("@id", a.article_id);
+                int rowsAffected = comm.ExecuteNonQuery();
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
         public Article getArticleById(int id)
         {
             SqlConnection conn = new SqlConnection();
