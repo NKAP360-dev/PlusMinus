@@ -79,10 +79,15 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td><a href="https://plusminuslife.wordpress.com/">https://plusminuslife.wordpress.com/</a></td>
-                    <td>for a dose of positivity in your life</td>
-                </tr>
+                 <%  LinkDAO ldao = new LinkDAO();
+                        ArrayList arr = ldao.getLinks();
+                        foreach (Link link in arr)
+                        {%>
+                    <tr>
+                        <td><a href="<%=link.link_path %>"><%=link.link_path %>/</a></td>
+                        <td><%=link.description %></td>
+                    </tr>
+                    <%} %>
             </tbody>
         </table>
         </div>
