@@ -2,6 +2,7 @@
 
 <%@ Import Namespace="System.IO" %>
 <%@ Import Namespace="System.Data" %>
+<%@ Import Namespace="System.Collections" %>
 <%@ Import Namespace="LearnHub.AppCode.dao" %>
 <%@ Import Namespace="LearnHub.AppCode.entity" %>
 
@@ -108,13 +109,17 @@
                     </tr>
                 </thead>
                 <tbody>
+                    <%  LinkDAO ldao = new LinkDAO();
+                        ArrayList arr = ldao.getLinks();
+                        foreach (Link link in arr)
+                        {%>
                     <tr>
-                        <td><a href="https://plusminuslife.wordpress.com/">https://plusminuslife.wordpress.com/</a></td>
-                        <td>for a dose of positivity in your life</td>
-                        <td><a href="editUsefulLinks.aspx" class="btn btn-sm btn-info"><span class="glyphicon glyphicon-pencil"></span></a>
-                            <a href="#deleteModal" data-toggle="modal" class="btn btn-sm btn-danger"><span class="glyphicon glyphicon-trash"></span></a>
-
+                        <td><a href="<%=link.link_path %>"><%=link.link_path %>/</a></td>
+                        <td><%=link.description %></td>
+                        <td><a href="editUsefulLinks.aspx?id=<%=link.link_id %>" class="btn btn-sm btn-info"><span class="glyphicon glyphicon-pencil"></span></a>
+                            <a href="deleteLink.aspx?id=<%=link.link_id %>" onclick="return confirm('Are you sure?')" data-toggle="modal" class="btn btn-sm btn-danger"><span class="glyphicon glyphicon-trash"></span></a>
                     </tr>
+                    <%} %>
                 </tbody>
             </table>
         </div>
@@ -131,7 +136,7 @@
                         <div class="wrapper">
                             <h4>Are you sure you want to submit?</h4>
                             <br />
-                            <asp:Button ID="btnConfirmSubmit" CssClass="btn btn-primary" runat="server" Text="Submit"/>
+                            <asp:Button ID="btnConfirmSubmit" CssClass="btn btn-primary" runat="server" Text="Submit" OnClick="btnSubmit_Click"/>
                             <asp:Button ID="btnCancel1" CssClass="btn btn-default" runat="server" class="close" data-dismiss="modal" Text="Cancel" OnClientClick="return false;" />
 
                             <br />
