@@ -150,6 +150,8 @@
     <Compile Include="accountSetting.aspx.designer.cs">
       <DependentUpon>accountSetting.aspx</DependentUpon>
     </Compile>
+    <Compile Include="AppCode\dao\ContactDAO.cs" />
+    <Compile Include="AppCode\dao\LinkDAO.cs" />
     <Compile Include="AppCode\dao\ArticleDAO.cs" />
     <Compile Include="AppCode\dao\BondDAO.cs" />
     <Compile Include="AppCode\dao\ChatBotFeedbackDAO.cs" />
@@ -177,6 +179,8 @@
     <Compile Include="AppCode\dao\WorkflowApproverDAO.cs" />
     <Compile Include="AppCode\dao\WorkflowSubDAO.cs" />
     <Compile Include="AppCode\dao\WorkflowDAO.cs" />
+    <Compile Include="AppCode\entity\Contact.cs" />
+    <Compile Include="AppCode\entity\Link.cs" />
     <Compile Include="AppCode\entity\Article.cs" />
     <Compile Include="AppCode\entity\Bonds.cs" />
     <Compile Include="AppCode\entity\ChatBotAnswer.cs" />
@@ -359,6 +363,20 @@
     </Compile>
     <Compile Include="createQuizQnA.aspx.designer.cs">
       <DependentUpon>createQuizQnA.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="deleteContact.aspx.cs">
+      <DependentUpon>deleteContact.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="deleteContact.aspx.designer.cs">
+      <DependentUpon>deleteContact.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="deleteLink.aspx.cs">
+      <DependentUpon>deleteLink.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="deleteLink.aspx.designer.cs">
+      <DependentUpon>deleteLink.aspx</DependentUpon>
     </Compile>
     <Compile Include="deleteArticle.aspx.cs">
       <DependentUpon>deleteArticle.aspx</DependentUpon>
@@ -1102,6 +1120,8 @@
     <Content Include="createModules.aspx" />
     <Content Include="createQuiz.aspx" />
     <Content Include="createQuizQnA.aspx" />
+    <Content Include="deleteContact.aspx" />
+    <Content Include="deleteLink.aspx" />
     <Content Include="deleteArticle.aspx" />
     <Content Include="deleteMaterial.aspx" />
     <Content Include="editArticle.aspx" />

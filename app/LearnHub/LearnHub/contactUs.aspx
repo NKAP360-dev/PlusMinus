@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Masterpage.Master" AutoEventWireup="true" CodeBehind="contactUs.aspx.cs" Inherits="LearnHub.contactUs" %>
+﻿    <%@ Page Title="" Language="C#" MasterPageFile="~/Masterpage.Master" AutoEventWireup="true" CodeBehind="contactUs.aspx.cs" Inherits="LearnHub.contactUs" %>
 
 <%@ Import Namespace="System.IO" %>
 <%@ Import Namespace="System.Data" %>
@@ -84,9 +84,17 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    
-                </tr>
+                <% ContactDAO ldao = new ContactDAO();
+                             ArrayList arr = ldao.getContacts();
+                             foreach (Contact con in arr)
+                             {%>
+                        <tr>
+                            <td><%=con.name %></td>
+                            <td><%=con.department %></td>
+                            <td><%=con.email %></td>
+                            <td><%=con.remarks %></td>      
+                        </tr>
+                        <%} %>
             </tbody>
         </table>
         </div>

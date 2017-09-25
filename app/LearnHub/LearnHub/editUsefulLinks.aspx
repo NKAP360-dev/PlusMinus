@@ -76,7 +76,7 @@
                         <div class="wrapper">
                                 <h4>Are you sure you want to save your changes and overwrite the current useful link details?</h4>
                             <br />
-                            <asp:Button ID="btnConfirmSubmit" CssClass="btn btn-primary" runat="server" Text="Save Changes"/>
+                            <asp:Button ID="btnConfirmSubmit" CssClass="btn btn-primary" runat="server" Text="Save Changes" OnClick="btnSave_Click"/>
                             <asp:Button ID="btnCancel1" CssClass="btn btn-default" runat="server" class="close" data-dismiss="modal" Text="Cancel" OnClientClick="return false;" />
 
                             <br />

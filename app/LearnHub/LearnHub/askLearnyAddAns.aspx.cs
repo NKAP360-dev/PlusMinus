@@ -17,7 +17,7 @@ namespace LearnHub
         {
             if (Session["currentUser"] == null)
             {
-                Response.Redirect("/Login.aspx");
+                Response.Redirect("Login.aspx");
             }
             else
             {
@@ -27,7 +27,7 @@ namespace LearnHub
 
                     if (!currentUser.getDepartment().Equals("hr"))
                     {
-                        Response.Redirect("/errorPage.aspx");
+                        Response.Redirect("errorPage.aspx");
                     }
                 }
             }
