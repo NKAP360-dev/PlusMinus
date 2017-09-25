@@ -73,18 +73,11 @@
                 </tr>
             </thead>
             <tbody>
-                 <%ArticleDAO adao = new ArticleDAO();
-                     ArrayList a = adao.getArticles();
-                     foreach (Article article in a)
-                     {
-                            %>
-               
                 <tr>
-                    <td><%= article.article_name %></td>
-                    <td><%= article.upload_datetime.ToShortDateString() %></td>
-                    <td><a href="article.aspx?id=<%=article.article_id %>" class="btn btn-sm btn-info"><span class="glyphicon glyphicon-search"></span></a></td>
+                    <td>What is the best fruit on earth?</td>
+                    <td>14/9/17</td>
+                    <td><a href="article.aspx" class="btn btn-sm btn-info"><span class="glyphicon glyphicon-search"></span></a></td>
                 </tr>
-                <%} %>
             </tbody>
         </table>
 
