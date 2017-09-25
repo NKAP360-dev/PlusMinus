@@ -103,6 +103,15 @@ namespace LearnHub {
         protected global::System.Web.UI.WebControls.Button btnSubmit;
         
         /// <summary>
+        /// lblErrorMsgFinal control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblErrorMsgFinal;
+        
+        /// <summary>
         /// cfmSubmit control.
         /// </summary>
         /// <remarks>

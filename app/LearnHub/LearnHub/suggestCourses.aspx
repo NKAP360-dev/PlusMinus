@@ -13,6 +13,24 @@
             border-radius: 0px;
         }
     </style>
+    <script type="text/javascript">
+        function checkForm_Clicked(source, args) {
+            if (<%=gvCourseCart.Rows.Count%> == 0) {
+                console.log("cart equal zero");
+                document.getElementById('<%= lblErrorMsgFinal.ClientID %>').style.display = 'inherit';
+                document.getElementById('<%= lblErrorMsgFinal.ClientID %>').innerHTML = "You have not filled up all of the required fields";
+                document.getElementById('<%= cfmSubmit.ClientID %>').disabled = true;
+                
+            }
+            else {
+                console.log("cart more than one");
+                document.getElementById('<%= lblErrorMsgFinal.ClientID %>').innerHTML = "";
+                document.getElementById('<%= cfmSubmit.ClientID %>').disabled = false;
+            }
+            return false;
+        }
+
+        </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <ul class="breadcrumb">
@@ -114,7 +132,7 @@
                 </asp:Panel>
             </fieldset>
             <div class="form-group wrapper">
-                <asp:Button ID="btnSubmit" CssClass="btn btn-primary" runat="server" Text="Submit" data-toggle="modal" href="#submitModal" OnClientClick="$('#myModal').modal();  return false;" UseSubmitBehavior="False" />
+                <asp:Button ID="btnSubmit" CssClass="btn btn-primary" runat="server" Text="Submit" data-toggle="modal" href="#submitModal" OnClientClick="$('#myModal').modal();  return checkForm_Clicked();" UseSubmitBehavior="False" />
             </div>
             <div id="submitModal" class="modal fade" role="dialog">
                 <div class="modal-dialog">
@@ -127,7 +145,8 @@
                             <div class="wrapper">
                                 <h4>Are you sure you want to submit the current list of Suggested Courses?</h4>
                                 <br />
-
+                                <asp:Label ID="lblErrorMsgFinal" runat="server" CssClass="text-danger" Visible="True"></asp:Label>
+                                <br />
                                 <asp:Button ID="cfmSubmit" CssClass="btn btn-primary" runat="server" Text="Submit" OnClick="cfmSubmit_Click" />
                                 <asp:Button ID="Button2" CssClass="btn btn-default" runat="server" class="close" data-dismiss="modal" Text="Cancel" OnClientClick="return false;" />
 
