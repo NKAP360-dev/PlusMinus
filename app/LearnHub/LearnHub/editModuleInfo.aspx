@@ -298,8 +298,8 @@
                     <strong><asp:Label runat="server" CssClass="col-lg-2 control-label" Text="Course Type"></asp:Label></strong>
                     <div class="col-lg-5">
                         <asp:DropDownList ID="ddlCourseType" disabled="" runat="server" CssClass="form-control">
-                            <asp:ListItem Text="Classroom Learning"></asp:ListItem>
-                             <asp:ListItem Text="Online Learning"></asp:ListItem>
+                            <asp:ListItem Text="Classroom Learning" Value="Classroom Learning"></asp:ListItem>
+                             <asp:ListItem Text="Online Learning" Value="Online Learning"></asp:ListItem>
                         </asp:DropDownList>
                         <asp:RequiredFieldValidator ID="rfv_ddlCourseType" runat="server" ControlToValidate="ddlCourseType" ErrorMessage="Please select a Course Type" InitialValue="0" ForeColor="Red" ValidationGroup="ValidateForm" EnableClientScript="True"></asp:RequiredFieldValidator>
                     </div>
@@ -460,7 +460,7 @@
                                      If course status = deactivated, show activate button--%>
                         <%Course_elearnDAO ceDAO = new Course_elearnDAO();
                             Course_elearn currentCourse = ceDAO.get_course_by_id(Convert.ToInt32(Request.QueryString["id"]));
-                            if (currentCourse.getStatus().Equals("Open"))
+                            if (currentCourse.getStatus().Equals("active"))
                             {%>
                         <asp:Button ID="btnDeactivate" CssClass="btn btn-warning" runat="server" Text="Deactivate Course" data-toggle="modal" href="#deactivateModal" OnClientClick="return false;"/>
                         <%}

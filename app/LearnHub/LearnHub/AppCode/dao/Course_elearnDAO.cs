@@ -26,7 +26,7 @@ namespace LearnHub.AppCode.dao
                 SqlCommand comm = new SqlCommand();
                 comm.Connection = conn;
                 comm.CommandText =
-                    "Update [Elearn_course] SET status='Open' WHERE elearn_courseID=@courseID";
+                    "Update [Elearn_course] SET status='active' WHERE elearn_courseID=@courseID";
                 comm.Parameters.AddWithValue("@courseID", courseID);
                 int rowsAffected = comm.ExecuteNonQuery();
             }
@@ -225,7 +225,7 @@ namespace LearnHub.AppCode.dao
                 SqlCommand comm = new SqlCommand();
                 comm.Connection = conn;
                 comm.CommandText = "select * " +
-                    "from [Elearn_course] where status = 'Open' and categoryID = @cat and start_date<=getDate()";
+                    "from [Elearn_course] where status = 'active' and categoryID = @cat and start_date<=getDate()";
                 comm.Parameters.AddWithValue("@cat", categoryID);
                 SqlDataReader dr = comm.ExecuteReader();
                 while (dr.Read())
@@ -592,7 +592,7 @@ namespace LearnHub.AppCode.dao
                 SqlCommand comm = new SqlCommand();
                 comm.Connection = conn;
                 comm.CommandText = "select * " +
-                    "from [Elearn_course] where status = 'Open' and start_date<=getDate()";
+                    "from [Elearn_course] where status = 'active' and start_date<=getDate()";
                 SqlDataReader dr = comm.ExecuteReader();
                 while (dr.Read())
                 {

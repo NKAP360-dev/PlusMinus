@@ -47,6 +47,7 @@ namespace LearnHub
                     if (!IsPostBack)
                     {
                         moduleType.SelectedValue = currentCourse.getCategoryID().ToString();
+                        ddlCourseType.SelectedValue = currentCourse.getCourseType();
                         nameOfModuleInput.Text = currentCourse.getCourseName();
                         lblBreadcrumbCourseName.Text = currentCourse.getCourseName();
                         descriptionModuleInput.Text = currentCourse.getDescription();
@@ -72,11 +73,11 @@ namespace LearnHub
                         var sqlQueryCourseList = "";
                         if (itemIDs.Length > 0)
                         {
-                            sqlQueryCourseList = String.Format("SELECT * FROM [Elearn_course] ec INNER JOIN [Elearn_courseCategory] ecc ON ec.categoryID = ecc.categoryID WHERE ec.status='Open' and ec.start_date <= getDate() and ec.elearn_courseID NOT IN ({0}) and ec.elearn_courseID != " + currentCourse.getCourseID(), itemIDs);
+                            sqlQueryCourseList = String.Format("SELECT * FROM [Elearn_course] ec INNER JOIN [Elearn_courseCategory] ecc ON ec.categoryID = ecc.categoryID WHERE ec.status='active' and ec.start_date <= getDate() and ec.elearn_courseID NOT IN ({0}) and ec.elearn_courseID != " + currentCourse.getCourseID(), itemIDs);
                         }
                         else
                         {
-                            sqlQueryCourseList = "SELECT * FROM [Elearn_course] ec INNER JOIN [Elearn_courseCategory] ecc ON ec.categoryID = ecc.categoryID WHERE ec.status='Open' and ec.start_date <= getDate() and ec.elearn_courseID != " + currentCourse.getCourseID();
+                            sqlQueryCourseList = "SELECT * FROM [Elearn_course] ec INNER JOIN [Elearn_courseCategory] ecc ON ec.categoryID = ecc.categoryID WHERE ec.status='active' and ec.start_date <= getDate() and ec.elearn_courseID != " + currentCourse.getCourseID();
                         }
                         SqlDataSource1.SelectCommand = sqlQueryCourseList;
                         gvPrereq.DataSource = SqlDataSource1;
@@ -108,18 +109,7 @@ namespace LearnHub
             Course_elearn currentCourse = ceDAO.get_course_by_id(Convert.ToInt32(Request.QueryString["id"]));
             ceDAO.deactivateCourse(Convert.ToInt32(Request.QueryString["id"]));
             int cat = currentCourse.getCategoryID();
-            if (cat == 1)
-            {
-                Response.Redirect($"viewAllModule.aspx?module=compulsory");
-            }
-            else if (cat == 2)
-            {
-                Response.Redirect($"viewAllModule.aspx?module=leadership");
-            }
-            else
-            {
-                Response.Redirect($"viewAllModule.aspx?module=professional");
-            }
+            Response.Redirect($"viewAllModule.aspx");
 
         }
 
@@ -129,18 +119,7 @@ namespace LearnHub
             Course_elearn currentCourse = ceDAO.get_course_by_id(Convert.ToInt32(Request.QueryString["id"]));
             ceDAO.activateCourse(Convert.ToInt32(Request.QueryString["id"]));
             int cat = currentCourse.getCategoryID();
-            if (cat == 1)
-            {
-                Response.Redirect($"viewAllModule.aspx?module=compulsory");
-            }
-            else if (cat == 2)
-            {
-                Response.Redirect($"viewAllModule.aspx?module=leadership");
-            }
-            else
-            {
-                Response.Redirect($"viewAllModule.aspx?module=professional");
-            }
+            Response.Redirect($"viewAllModule.aspx");
 
         }
 
@@ -154,7 +133,6 @@ namespace LearnHub
             string fromDate = fromDateInput.Text.Substring(3, 2) + "/" + fromDateInput.Text.Substring(0, 2) + "/" + fromDateInput.Text.Substring(6, 4);
             string toDate = toDateInput.Text.Substring(3, 2) + "/" + toDateInput.Text.Substring(0, 2) + "/" + toDateInput.Text.Substring(6, 4);
             ceDAO.updateCourse(courseID, Convert.ToInt32(moduleType.SelectedValue), nameOfModuleInput.Text, descriptionModuleInput.Text, Convert.ToDouble(hoursInput.Text), DateTime.ParseExact(fromDate, "MM/dd/yyyy", CultureInfo.InvariantCulture), DateTime.ParseExact(toDate, "MM/dd/yyyy", CultureInfo.InvariantCulture));
-
             //update prerequisites
             //delete all prereq first
             ceDAO.deletePrerequisitesByCourseID(courseID);
@@ -203,11 +181,11 @@ namespace LearnHub
             var sqlQueryCourseList = "";
             if (itemIDs.Length > 0)
             {
-                sqlQueryCourseList = String.Format("SELECT * FROM [Elearn_course] ec INNER JOIN [Elearn_courseCategory] ecc ON ec.categoryID = ecc.categoryID WHERE ec.status='Open' and ec.start_date <= getDate() and ec.elearn_courseID NOT IN ({0}) and ec.elearn_courseID != " + currentCourse.getCourseID(), itemIDs);
+                sqlQueryCourseList = String.Format("SELECT * FROM [Elearn_course] ec INNER JOIN [Elearn_courseCategory] ecc ON ec.categoryID = ecc.categoryID WHERE ec.status='active' and ec.start_date <= getDate() and ec.elearn_courseID NOT IN ({0}) and ec.elearn_courseID != " + currentCourse.getCourseID(), itemIDs);
             }
             else
             {
-                sqlQueryCourseList = "SELECT * FROM [Elearn_course] ec INNER JOIN [Elearn_courseCategory] ecc ON ec.categoryID = ecc.categoryID WHERE ec.status='Open' and ec.start_date <= getDate() and ec.elearn_courseID != " + currentCourse.getCourseID();
+                sqlQueryCourseList = "SELECT * FROM [Elearn_course] ec INNER JOIN [Elearn_courseCategory] ecc ON ec.categoryID = ecc.categoryID WHERE ec.status='active' and ec.start_date <= getDate() and ec.elearn_courseID != " + currentCourse.getCourseID();
             }
             SqlDataSource1.SelectCommand = sqlQueryCourseList;
             gvPrereq.DataSource = SqlDataSource1;
@@ -241,11 +219,11 @@ namespace LearnHub
             var sqlQueryCourseList = "";
             if (itemIDs.Length > 0)
             {
-                sqlQueryCourseList = String.Format("SELECT * FROM [Elearn_course] ec INNER JOIN [Elearn_courseCategory] ecc ON ec.categoryID = ecc.categoryID WHERE ec.status='Open' and ec.start_date <= getDate() and ec.elearn_courseID NOT IN ({0}) and ec.elearn_courseID != " + currentCourse.getCourseID(), itemIDs);
+                sqlQueryCourseList = String.Format("SELECT * FROM [Elearn_course] ec INNER JOIN [Elearn_courseCategory] ecc ON ec.categoryID = ecc.categoryID WHERE ec.status='active' and ec.start_date <= getDate() and ec.elearn_courseID NOT IN ({0}) and ec.elearn_courseID != " + currentCourse.getCourseID(), itemIDs);
             }
             else
             {
-                sqlQueryCourseList = "SELECT * FROM [Elearn_course] ec INNER JOIN [Elearn_courseCategory] ecc ON ec.categoryID = ecc.categoryID WHERE ec.status='Open' and ec.start_date <= getDate() and ec.elearn_courseID != " + currentCourse.getCourseID();
+                sqlQueryCourseList = "SELECT * FROM [Elearn_course] ec INNER JOIN [Elearn_courseCategory] ecc ON ec.categoryID = ecc.categoryID WHERE ec.status='active' and ec.start_date <= getDate() and ec.elearn_courseID != " + currentCourse.getCourseID();
             }
             SqlDataSource1.SelectCommand = sqlQueryCourseList;
             gvPrereq.DataSource = SqlDataSource1;
