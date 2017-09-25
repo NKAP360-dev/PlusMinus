@@ -136,7 +136,7 @@ namespace LearnHub.AppCode.dao
                 conn.Open();
                 SqlCommand comm = new SqlCommand();
                 comm.Connection = conn;
-                comm.CommandText = "select * from [QuizResult] where userID=@userID and quizID=@quizID";
+                comm.CommandText = "select * from [QuizResult] where userID=@userID and quizID=@quizID and grade='pass'";
                 comm.Parameters.AddWithValue("@userID", userID);
                 comm.Parameters.AddWithValue("@quizID", quizID);
                 SqlDataReader dr = comm.ExecuteReader();
