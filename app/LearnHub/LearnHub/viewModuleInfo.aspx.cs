@@ -112,12 +112,19 @@ namespace LearnHub
                     int coursedir = current.getCourseID();
                     string fileName = FileUpload1.FileName;
                     string filepath = "~/Data/" + coursedir + "/";
-                    FileUpload1.PostedFile
+                    string FileExtension = fileName.Substring(fileName.LastIndexOf('.') + 1).ToLower();
+                    if (FileExtension.Equals("pdf") || FileExtension.Equals("jpeg") || FileExtension.Equals("png") || FileExtension.Equals("doc")
+                        || FileExtension.Equals("docx") || FileExtension.Equals("xlsx") || FileExtension.Equals("csv") || FileExtension.Equals("xlsm")
+                        || FileExtension.Equals("mp3") || FileExtension.Equals("mp4") || FileExtension.Equals("avi") || FileExtension.Equals("m4a") 
+                        || FileExtension.Equals("zip")|| FileExtension.Equals("rar")|| FileExtension.Equals("ppt"))
+                    {
+                        FileUpload1.PostedFile
                         .SaveAs(Server.MapPath(filepath) + fileName);
-                    string totalpath1 = Server.MapPath(filepath) + fileName;
-                    Course_elearnDAO cdao = new Course_elearnDAO();
-                    Upload u = new Upload(current, DateTime.Now, uploadTitleInput.Text, uploadDescriptionInput.Text, totalpath1);
-                    Upload upload_succ = cdao.upload_entry(u);
+                        string totalpath1 = Server.MapPath(filepath) + fileName;
+                        Course_elearnDAO cdao = new Course_elearnDAO();
+                        Upload u = new Upload(current, DateTime.Now, uploadTitleInput.Text, uploadDescriptionInput.Text, totalpath1);
+                        Upload upload_succ = cdao.upload_entry(u);
+                    }
                 }
             }
         }
