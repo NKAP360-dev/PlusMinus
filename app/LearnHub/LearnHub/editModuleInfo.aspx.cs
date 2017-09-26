@@ -69,15 +69,28 @@ namespace LearnHub
                         Session["selectedPrereq"] = prereqIDlist;
                         var itemIDs = string.Join(",", ((IList<int>)Session["selectedPrereq"]).ToArray());
 
+                        //postrequisites
+                        List<int> postReqIDList = getAllPostRequisiteCourses(currentCourse.getCourseID());
+                        List<int> postReqIDListNoDup = new List<int>();
+                        foreach (int postreqID in postReqIDList)
+                        {
+                            if (!postReqIDListNoDup.Contains(postreqID) && postReqIDList.Contains(postreqID))
+                            {
+                                postReqIDListNoDup.Add(postreqID);
+                            }
+                        }
+                        Session["selectedPostreq"] = postReqIDListNoDup;
+                        var itemIDs2 = string.Join(",", ((IList<int>)Session["selectedPostreq"]).ToArray());
+
                         //to load course list
                         var sqlQueryCourseList = "";
                         if (itemIDs.Length > 0)
                         {
-                            sqlQueryCourseList = String.Format("SELECT * FROM [Elearn_course] ec INNER JOIN [Elearn_courseCategory] ecc ON ec.categoryID = ecc.categoryID WHERE ec.status='active' and ec.start_date <= getDate() and ec.elearn_courseID NOT IN ({0}) and ec.elearn_courseID != " + currentCourse.getCourseID(), itemIDs);
+                            sqlQueryCourseList = String.Format("SELECT * FROM [Elearn_course] ec INNER JOIN [Elearn_courseCategory] ecc ON ec.categoryID = ecc.categoryID WHERE ec.status='active' and ec.start_date <= getDate() and ec.elearn_courseID NOT IN ({0}) and ec.elearn_courseID NOT IN ({1}) and ec.courseType='Online Learning' and ec.elearn_courseID != " + currentCourse.getCourseID(), itemIDs, itemIDs2);
                         }
                         else
                         {
-                            sqlQueryCourseList = "SELECT * FROM [Elearn_course] ec INNER JOIN [Elearn_courseCategory] ecc ON ec.categoryID = ecc.categoryID WHERE ec.status='active' and ec.start_date <= getDate() and ec.elearn_courseID != " + currentCourse.getCourseID();
+                            sqlQueryCourseList = String.Format("SELECT * FROM [Elearn_course] ec INNER JOIN [Elearn_courseCategory] ecc ON ec.categoryID = ecc.categoryID WHERE ec.status='active' and ec.start_date <= getDate() and ec.courseType='Online Learning' and ec.elearn_courseID NOT IN ({0}) and ec.elearn_courseID != " + currentCourse.getCourseID(), itemIDs2);
                         }
                         SqlDataSource1.SelectCommand = sqlQueryCourseList;
                         gvPrereq.DataSource = SqlDataSource1;
@@ -177,15 +190,17 @@ namespace LearnHub
             prereqIDlist.Add(id);
             Session["selectedPrereq"] = prereqIDlist;
             var itemIDs = string.Join(",", ((IList<int>)Session["selectedPrereq"]).ToArray());
+            
+            var itemIDs2 = string.Join(",", ((IList<int>)Session["selectedPostreq"]).ToArray());
 
             var sqlQueryCourseList = "";
             if (itemIDs.Length > 0)
             {
-                sqlQueryCourseList = String.Format("SELECT * FROM [Elearn_course] ec INNER JOIN [Elearn_courseCategory] ecc ON ec.categoryID = ecc.categoryID WHERE ec.status='active' and ec.start_date <= getDate() and ec.elearn_courseID NOT IN ({0}) and ec.elearn_courseID != " + currentCourse.getCourseID(), itemIDs);
+                sqlQueryCourseList = String.Format("SELECT * FROM [Elearn_course] ec INNER JOIN [Elearn_courseCategory] ecc ON ec.categoryID = ecc.categoryID WHERE ec.status='active' and ec.start_date <= getDate() and ec.elearn_courseID NOT IN ({0}) and ec.elearn_courseID NOT IN ({1}) and ec.courseType='Online Learning' and ec.elearn_courseID != " + currentCourse.getCourseID(), itemIDs, itemIDs2);
             }
             else
             {
-                sqlQueryCourseList = "SELECT * FROM [Elearn_course] ec INNER JOIN [Elearn_courseCategory] ecc ON ec.categoryID = ecc.categoryID WHERE ec.status='active' and ec.start_date <= getDate() and ec.elearn_courseID != " + currentCourse.getCourseID();
+                sqlQueryCourseList = String.Format("SELECT * FROM [Elearn_course] ec INNER JOIN [Elearn_courseCategory] ecc ON ec.categoryID = ecc.categoryID WHERE ec.status='active' and ec.start_date <= getDate() and ec.courseType='Online Learning' and ec.elearn_courseID NOT IN ({0}) and ec.elearn_courseID != " + currentCourse.getCourseID(), itemIDs2);
             }
             SqlDataSource1.SelectCommand = sqlQueryCourseList;
             gvPrereq.DataSource = SqlDataSource1;
@@ -216,14 +231,16 @@ namespace LearnHub
             Session["selectedPrereq"] = prereqIDlist;
             var itemIDs = string.Join(",", ((IList<int>)Session["selectedPrereq"]).ToArray());
 
+            var itemIDs2 = string.Join(",", ((IList<int>)Session["selectedPostreq"]).ToArray());
+
             var sqlQueryCourseList = "";
             if (itemIDs.Length > 0)
             {
-                sqlQueryCourseList = String.Format("SELECT * FROM [Elearn_course] ec INNER JOIN [Elearn_courseCategory] ecc ON ec.categoryID = ecc.categoryID WHERE ec.status='active' and ec.start_date <= getDate() and ec.elearn_courseID NOT IN ({0}) and ec.elearn_courseID != " + currentCourse.getCourseID(), itemIDs);
+                sqlQueryCourseList = String.Format("SELECT * FROM [Elearn_course] ec INNER JOIN [Elearn_courseCategory] ecc ON ec.categoryID = ecc.categoryID WHERE ec.status='active' and ec.start_date <= getDate() and ec.elearn_courseID NOT IN ({0}) and ec.elearn_courseID NOT IN ({1}) and ec.courseType='Online Learning' and ec.elearn_courseID != " + currentCourse.getCourseID(), itemIDs, itemIDs2);
             }
             else
             {
-                sqlQueryCourseList = "SELECT * FROM [Elearn_course] ec INNER JOIN [Elearn_courseCategory] ecc ON ec.categoryID = ecc.categoryID WHERE ec.status='active' and ec.start_date <= getDate() and ec.elearn_courseID != " + currentCourse.getCourseID();
+                sqlQueryCourseList = String.Format("SELECT * FROM [Elearn_course] ec INNER JOIN [Elearn_courseCategory] ecc ON ec.categoryID = ecc.categoryID WHERE ec.status='active' and ec.start_date <= getDate() and ec.courseType='Online Learning' and ec.elearn_courseID NOT IN ({0}) and ec.elearn_courseID != " + currentCourse.getCourseID(), itemIDs2);
             }
             SqlDataSource1.SelectCommand = sqlQueryCourseList;
             gvPrereq.DataSource = SqlDataSource1;
@@ -294,6 +311,26 @@ namespace LearnHub
                 lbl_nameValidate.Attributes.Add("style", "display:none");
                 lbl_nameValidate.Text = "";
             }
+        }
+
+        protected List<int> getAllPostRequisiteCourses(int courseID)
+        {
+            List<int> toReturn = new List<int>();
+            Course_elearnDAO ceDAO = new Course_elearnDAO();
+            List<int> currentPostRequisite = ceDAO.getAllCourseLinkedToPrerequisite(courseID);
+            foreach (int currentCourseID in currentPostRequisite)
+            {
+                toReturn.Add(currentCourseID);
+                List<int> innerList = getAllPostRequisiteCourses(currentCourseID);
+                if (innerList.Count > 0)
+                {
+                    foreach (int innerListCourseID in innerList)
+                    {
+                        toReturn.Add(innerListCourseID);
+                    }
+                }
+            }
+            return toReturn;
         }
     }
 }

@@ -1,5 +1,4 @@
 ﻿using LearnHub.AppCode.dao;
-using LearnHub.AppCode.entity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,38 +12,32 @@ namespace LearnHub
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            Panel1.Visible = false;
-            lblError.Visible = false;
+
         }
 
-        protected void btnSubmit_Click(object sender, EventArgs e)
+        protected void Button1_Click(object sender, EventArgs e)
         {
-            string userInput = TextBox1.Text;
-            UserDAO userDAO = new UserDAO();
-            User searchUser = userDAO.getUserByID(userInput);
-            if (searchUser != null)
-            {
-                Panel1.Visible = true;
-                lblName.Text = searchUser.getName();
-                lblJobTitle.Text = searchUser.getJobTitle();
-            } else
-            {
-                lblError.Visible = true;
-                lblError.Text = "Unable to find user";
-            }
+            List<int> check = getAllPostRequisiteCourses(Convert.ToInt32(TextBox1.Text));
+            Label1.Text = check.ToString();
         }
-
-        protected void btnCheck_Click(object sender, EventArgs e)
+        protected List<int> getAllPostRequisiteCourses(int courseID)
         {
-            TNFDAO tnfDAO = new TNFDAO();
-            Boolean check = tnfDAO.checkIfUserAppliedCourse(txtUserID.Text, Convert.ToInt32(txtCourseID.Text));
-            if (check)
+            List<int> toReturn = new List<int>();
+            Course_elearnDAO ceDAO = new Course_elearnDAO();
+            List<int> currentPostRequisite = ceDAO.getAllCourseLinkedToPrerequisite(courseID);
+            foreach (int currentCourseID in currentPostRequisite)
             {
-                lblCheck.Text = "Exist";
-            } else
-            {
-                lblCheck.Text = "Not exist";
+                toReturn.Add(currentCourseID);
+                List<int> innerList = getAllPostRequisiteCourses(currentCourseID);
+                if (innerList.Count > 0)
+                {
+                    foreach(int innerListCourseID in innerList)
+                    {
+                        toReturn.Add(innerListCourseID);
+                    }
+                }
             }
+            return toReturn;
         }
     }
 }

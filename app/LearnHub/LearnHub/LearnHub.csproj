@@ -751,13 +751,6 @@
     <Compile Include="viewResults.aspx.designer.cs">
       <DependentUpon>viewResults.aspx</DependentUpon>
     </Compile>
-    <Compile Include="WebForm1.aspx.cs">
-      <DependentUpon>WebForm1.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="WebForm1.aspx.designer.cs">
-      <DependentUpon>WebForm1.aspx</DependentUpon>
-    </Compile>
     <Compile Include="deleteTestimonial.aspx.cs">
       <DependentUpon>deleteTestimonial.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -771,6 +764,13 @@
     </Compile>
     <Compile Include="forgotPassword.aspx.designer.cs">
       <DependentUpon>forgotPassword.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebForm1.aspx.cs">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebForm1.aspx.designer.cs">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -1183,7 +1183,6 @@
     <Content Include="viewModuleInfo.aspx" />
     <Content Include="viewMyResult.aspx" />
     <Content Include="viewResults.aspx" />
-    <Content Include="WebForm1.aspx" />
     <Content Include="bootstrap\fonts\glyphicons-halflings-regular.eot" />
     <Content Include="bootstrap\fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="bootstrap\fonts\glyphicons-halflings-regular.woff" />
@@ -1206,6 +1205,7 @@
     <Content Include="ckeditor\skins\moono-lisa\readme.md" />
     <Content Include="deleteTestimonial.aspx" />
     <Content Include="forgotPassword.aspx" />
+    <Content Include="WebForm1.aspx" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
