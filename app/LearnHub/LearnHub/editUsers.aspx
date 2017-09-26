@@ -160,7 +160,7 @@
                     <asp:Label runat="server" CssClass="col-lg-2 control-label" Text="Roles"></asp:Label></strong>
                 <div class="col-lg-5">
                     <asp:CheckBoxList ID="cblRoles" runat="server" AutoPostBack="True" OnSelectedIndexChanged="checkCheckBoxes">
-                            <asp:ListItem Value="courseCreator">course creator</asp:ListItem>
+                            <asp:ListItem Value="course creator">course creator</asp:ListItem>
                             <asp:ListItem Value="superuser">superuser</asp:ListItem>
                             <asp:ListItem Value="user">user</asp:ListItem>
                         </asp:CheckBoxList>

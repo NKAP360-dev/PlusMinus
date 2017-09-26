@@ -64,7 +64,7 @@
                                 superuser = true;
                             }
                         }
-                        if (currentUser != null && (currentUser.getUserID() == courseCreator.getUserID() || superuser))
+                        if (currentUser != null && (currentUser.getUserID().Equals(courseCreator.getUserID()) || superuser))
                         {
                 %>
             
