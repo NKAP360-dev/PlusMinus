@@ -25,7 +25,7 @@ namespace LearnHub
             CourseCategory cc = cecDAO.getCategoryByID(Convert.ToInt32(value));
             lblModuleCategory.Text = cc.category + " Courses";
 
-            SqlDataSourceCourse.SelectCommand = $"SELECT * FROM [Elearn_course] WHERE categoryID = {value} and status='Open' and start_date<=getDate() and expiry_date>=getDate()";
+            SqlDataSourceCourse.SelectCommand = $"SELECT * FROM [Elearn_course] WHERE categoryID = {value} and status='active' and start_date<=getDate() and expiry_date>=getDate()";
             gvCourse.DataSource = SqlDataSourceCourse;
             gvCourse.DataBind();
 

@@ -32,50 +32,53 @@ namespace LearnHub
                     if (s.Equals("superuser"))
                     {
                         superuser = true;
-                    }else if(s.Equals("     course creator"))
+                    }else if(s.Equals("course creator"))
                     {
                         course_creator = true;
                     }
                 }
-                if(!superuser || !course_creator)
+                if (superuser || course_creator)
+                {
+                    if (!IsPostBack)
+                    {
+                        List<int> prereqIDlist = new List<int>();
+                        Session["selectedPrereq"] = prereqIDlist;
+                        var itemIDs = string.Join(",", ((IList<int>)Session["selectedPrereq"]).ToArray());
+
+                        //to load course list
+                        var sqlQueryCourseList = "";
+                        if (itemIDs.Length > 0)
+                        {
+                            sqlQueryCourseList = String.Format("SELECT * FROM [Elearn_course] ec INNER JOIN [Elearn_courseCategory] ecc ON ec.categoryID = ecc.categoryID WHERE ec.status='active' and ec.start_date <= getDate() and ec.elearn_courseID NOT IN ({0}) and ec.courseType='Online Learning'", itemIDs);
+                        }
+                        else
+                        {
+                            sqlQueryCourseList = "SELECT * FROM [Elearn_course] ec INNER JOIN [Elearn_courseCategory] ecc ON ec.categoryID = ecc.categoryID WHERE ec.status='active' and ec.start_date <= getDate() and ec.courseType='Online Learning'";
+                        }
+                        SqlDataSource1.SelectCommand = sqlQueryCourseList;
+                        gvPrereq.DataSource = SqlDataSource1;
+                        gvPrereq.DataBind();
+
+                        //to load prereq cart
+
+                        var sqlQuery = "";
+                        if (itemIDs.Length > 0)
+                        {
+                            sqlQuery = String.Format("SELECT * FROM [Elearn_course] WHERE [elearn_courseID] IN ({0})", itemIDs);
+                        }
+                        else
+                        {
+                            sqlQuery = "SELECT * FROM [Elearn_course] WHERE [elearn_courseID] = -1";
+                        }
+
+                        SqlDataSourcePrereqCart.SelectCommand = sqlQuery;
+                        gvPrereqCart.DataSource = SqlDataSourcePrereqCart;
+                        gvPrereqCart.DataBind();
+                    }
+                }
+                else
                 {
                     Response.Redirect("errorPage.aspx");
-                }
-                if (!IsPostBack)
-                {
-                    List<int> prereqIDlist = new List<int>();
-                    Session["selectedPrereq"] = prereqIDlist;
-                    var itemIDs = string.Join(",", ((IList<int>)Session["selectedPrereq"]).ToArray());
-
-                    //to load course list
-                    var sqlQueryCourseList = "";
-                    if (itemIDs.Length > 0)
-                    {
-                        sqlQueryCourseList = String.Format("SELECT * FROM [Elearn_course] ec INNER JOIN [Elearn_courseCategory] ecc ON ec.categoryID = ecc.categoryID WHERE ec.status='Open' and ec.start_date <= getDate() and ec.elearn_courseID NOT IN ({0}) and ec.courseType='Online Learning'", itemIDs);
-                    }
-                    else
-                    {
-                        sqlQueryCourseList = "SELECT * FROM [Elearn_course] ec INNER JOIN [Elearn_courseCategory] ecc ON ec.categoryID = ecc.categoryID WHERE ec.status='Open' and ec.start_date <= getDate() and ec.courseType='Online Learning'";
-                    }
-                    SqlDataSource1.SelectCommand = sqlQueryCourseList;
-                    gvPrereq.DataSource = SqlDataSource1;
-                    gvPrereq.DataBind();
-
-                    //to load prereq cart
-
-                    var sqlQuery = "";
-                    if (itemIDs.Length > 0)
-                    {
-                        sqlQuery = String.Format("SELECT * FROM [Elearn_course] WHERE [elearn_courseID] IN ({0})", itemIDs);
-                    }
-                    else
-                    {
-                        sqlQuery = "SELECT * FROM [Elearn_course] WHERE [elearn_courseID] = -1";
-                    }
-
-                    SqlDataSourcePrereqCart.SelectCommand = sqlQuery;
-                    gvPrereqCart.DataSource = SqlDataSourcePrereqCart;
-                    gvPrereqCart.DataBind();
                 }
             }
 
@@ -102,7 +105,7 @@ namespace LearnHub
                 if (check && moduleType.Text != "") // if no expiry date
                 {
                     c = new Course_elearn(nameOfModuleInput.Text, user.getDepartment(), DateTime.Now,
-                        DateTime.ParseExact(fromDate, "MM/dd/yyyy", CultureInfo.InvariantCulture), DateTime.ParseExact(toDate, "MM/dd/yyyy", CultureInfo.InvariantCulture), "Open", descriptionModuleInput.Text, Convert.ToInt32(moduleType.SelectedValue), user, Convert.ToDouble(hoursInput.Text), txtTargetAudience.Text, ddlCourseType.SelectedValue);
+                        DateTime.ParseExact(fromDate, "MM/dd/yyyy", CultureInfo.InvariantCulture), DateTime.ParseExact(toDate, "MM/dd/yyyy", CultureInfo.InvariantCulture), "active", descriptionModuleInput.Text, Convert.ToInt32(moduleType.SelectedValue), user, Convert.ToDouble(hoursInput.Text), txtTargetAudience.Text, ddlCourseType.SelectedValue);
                 }
 
                 //check pre req here 
@@ -177,11 +180,11 @@ namespace LearnHub
             var sqlQueryCourseList = "";
             if (itemIDs.Length > 0)
             {
-                sqlQueryCourseList = String.Format("SELECT * FROM [Elearn_course] ec INNER JOIN [Elearn_courseCategory] ecc ON ec.categoryID = ecc.categoryID WHERE ec.status='Open' and ec.start_date <= getDate() and ec.elearn_courseID NOT IN ({0}) and ec.courseType='Online Learning'", itemIDs);
+                sqlQueryCourseList = String.Format("SELECT * FROM [Elearn_course] ec INNER JOIN [Elearn_courseCategory] ecc ON ec.categoryID = ecc.categoryID WHERE ec.status='active' and ec.start_date <= getDate() and ec.elearn_courseID NOT IN ({0}) and ec.courseType='Online Learning'", itemIDs);
             }
             else
             {
-                sqlQueryCourseList = "SELECT * FROM [Elearn_course] ec INNER JOIN [Elearn_courseCategory] ecc ON ec.categoryID = ecc.categoryID WHERE ec.status='Open' and ec.start_date <= getDate() and ec.courseType='Online Learning'";
+                sqlQueryCourseList = "SELECT * FROM [Elearn_course] ec INNER JOIN [Elearn_courseCategory] ecc ON ec.categoryID = ecc.categoryID WHERE ec.status='active' and ec.start_date <= getDate() and ec.courseType='Online Learning'";
             }
             SqlDataSource1.SelectCommand = sqlQueryCourseList;
             gvPrereq.DataSource = SqlDataSource1;
@@ -214,11 +217,11 @@ namespace LearnHub
             var sqlQueryCourseList = "";
             if (itemIDs.Length > 0)
             {
-                sqlQueryCourseList = String.Format("SELECT * FROM [Elearn_course] ec INNER JOIN [Elearn_courseCategory] ecc ON ec.categoryID = ecc.categoryID WHERE ec.status='Open' and ec.start_date <= getDate() and ec.elearn_courseID NOT IN ({0}) and ec.courseType='Online Learning'", itemIDs);
+                sqlQueryCourseList = String.Format("SELECT * FROM [Elearn_course] ec INNER JOIN [Elearn_courseCategory] ecc ON ec.categoryID = ecc.categoryID WHERE ec.status='active' and ec.start_date <= getDate() and ec.elearn_courseID NOT IN ({0}) and ec.courseType='Online Learning'", itemIDs);
             }
             else
             {
-                sqlQueryCourseList = "SELECT * FROM [Elearn_course] ec INNER JOIN [Elearn_courseCategory] ecc ON ec.categoryID = ecc.categoryID WHERE ec.status='Open' and ec.start_date <= getDate() and ec.courseType='Online Learning'";
+                sqlQueryCourseList = "SELECT * FROM [Elearn_course] ec INNER JOIN [Elearn_courseCategory] ecc ON ec.categoryID = ecc.categoryID WHERE ec.status='active' and ec.start_date <= getDate() and ec.courseType='Online Learning'";
             }
             SqlDataSource1.SelectCommand = sqlQueryCourseList;
             gvPrereq.DataSource = SqlDataSource1;

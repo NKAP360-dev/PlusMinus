@@ -267,25 +267,28 @@
     <div class="container">   
         <h1>Create Course</h1>
              <%
-                    User currentUser = (User)Session["currentUser"];
-                    Boolean superuser = false;
-                    Boolean course_creator = false;
-                    foreach(string s in currentUser.getRoles())
-                    {
-                        if (s.Equals("superuser"))
-                        {
-                            superuser = true;
-                        }else if(s.Equals("course creator"))
-                        {
-                            course_creator = true;
-                        }
-                    }
-                    if(!superuser || !course_creator)
-                    {
-                        Response.Redirect("errorPage.aspx");
-                    }
-                    if (currentUser != null && (course_creator || superuser))
-                    {
+                 User currentUser = (User)Session["currentUser"];
+                 Boolean superuser = false;
+                 Boolean course_creator = false;
+                 foreach(string s in currentUser.getRoles())
+                 {
+                     if (s.Equals("superuser"))
+                     {
+                         superuser = true;
+                     }else if(s.Equals("course creator"))
+                     {
+                         course_creator = true;
+                     }
+                 }
+                 if(!course_creator)
+                 {
+                     if (!superuser)
+                     {
+                         Response.Redirect("errorPage.aspx");
+                     }
+                 }
+                 if (currentUser != null && (course_creator || superuser))
+                 {
             %>
         
 

@@ -143,12 +143,24 @@
                                     ArrayList allPrereq = ceDAO.getPrereqOfCourse(courseID);
                                     if (allPrereq.Count > 0)
                                     {
+                                        Boolean checkDisplay = false;
                                         Response.Write("<ul>");
                                         foreach (Course_elearn ce in allPrereq)
                                         {
-                                            Response.Write($"<li><a href=\"viewModuleInfo.aspx?id={ce.getCourseID()}\">{ce.getCourseName()}</a></li>");
+                                            if (ce.getStatus().Equals("active") && (ce.getStartDate() <= DateTime.Now.Date && ce.getExpiryDate() >= DateTime.Now.Date))
+                                            {
+                                                checkDisplay = true;
+                                                Response.Write($"<li><a href=\"viewModuleInfo.aspx?id={ce.getCourseID()}\">{ce.getCourseName()}</a></li>");
+                                            }
                                         }
+                                        
                                         Response.Write("</ul>");
+                                        if (!checkDisplay)
+                                        {
+                                            Response.Write("-");
+                                            Response.Write("<br />");
+                                            Response.Write("<br />");
+                                        }
                                     }
                                     else
                                     {

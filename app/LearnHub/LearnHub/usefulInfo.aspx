@@ -31,32 +31,57 @@
     <form runat="server" class="form-horizontal">
         <div class="container">
             <div class="col-lg-9">
-                 <%ArticleDAO adao = new ArticleDAO();
-                     ArrayList a = adao.getArticles();
-                     foreach (Article article in a)
-                     {
-                            %>
-               
                 <div class="panel panel-default">
                     <div class="panel-body">
-                        <h1><%=article.article_name %> </h1>
+                        <h1>What is the best fruit on earth? </h1>
                         <hr />
-                        <p><%=article.article_body %></p>
+                        <p>
+                            <img src="https://i0.wp.com/media.boingboing.net/wp-content/uploads/2015/07/watermelon-shark.jpg?fit=620%2C414" /></p>
+                        <p>
+                            Helps You Hydrate<br />
+Drinking water is an important way to keep your body hydrated.
+                            <br />
+However, eating foods that have a high water content can also help.
+                            <br />
+Interestingly, watermelon is 92% water (1).
+                            <br />
+A high water content is one of the reasons that fruits and vegetables help you feel full. The combination of water and fiber means you're eating a good volume of food without a lot of calories.
+                        </p>
+                        <br />
+                        <div class="pull-right">
+                            <%-- PLEASE READ:
+                                Not sure if should have Read More? How to determine what will be previewed if have? Can remove if troublesome/not feasible to implement--%>
+                            <a href="article.aspx"><span class="glyphicon glyphicon-menu-right"></span>&nbsp; Read More</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <h1>title </h1>
+                        <hr />
+                        <p>body</p>
                         <br />
                          <div class="pull-right">
-                            <a href="article.aspx?id=<%=article.article_id %>"><span class="glyphicon glyphicon-menu-right"></span>&nbsp; Read More</a>
+                            <a href="article.aspx"><span class="glyphicon glyphicon-menu-right"></span>&nbsp; Read More</a>
                         </div>
 
                     </div>
                 </div>
-                <%} %>
-                
+
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <h1>title </h1>
+                        <hr />
+                        <p>body</p>
+                        <br />
+                         <div class="pull-right">
+                            <a href="article.aspx"><span class="glyphicon glyphicon-menu-right"></span>&nbsp; Read More</a>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <%
-                ArrayList a1 = adao.getArticles();
-                foreach (Article article in a1)
-                {
-                            %>
+
             <div class="col-lg-3">
                 <div class="panel panel-default">
                     <div class="panel-body">
@@ -64,7 +89,8 @@
                         <h4><strong>Recent Posts</strong></h4>
                         <hr />
                         <ul>
-                            <li><a href="article.aspx?id<%=article.article_id %>"><%=article.article_name %></a></li>
+                            <li><a href="article.aspx">What is the best fruit on earth?</a></li>
+                            <li>2</li>
                         </ul>
                         <br />
                         <br />
@@ -74,7 +100,7 @@
                     </div>
                 </div>
             </div>
-            <%} %>
+
         </div>
 
     </form>

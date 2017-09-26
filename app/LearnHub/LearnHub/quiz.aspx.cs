@@ -128,12 +128,40 @@ namespace LearnHub
         {
             QuizDAO quizDAO = new QuizDAO();
             QuizResultDAO qrDAO = new QuizResultDAO();
+            Course_elearnDAO ceDAO = new Course_elearnDAO();
+            Quiz currentQuiz = quizDAO.getQuizByID(quizID);
+            Course_elearn currentCourse = currentQuiz.getMainCourse();
+
+            //check user completed all prereq course's quizzes
+            ArrayList allPrereqCourses = ceDAO.getPrereqOfCourse(currentCourse.getCourseID());
+            if (allPrereqCourses.Count > 0)
+            {
+                foreach (Course_elearn ce in allPrereqCourses)
+                {
+                    if (ce.getStatus().Equals("active") && (ce.getStartDate() <= DateTime.Now.Date && ce.getExpiryDate() >= DateTime.Now.Date))
+                    {
+                        List<Quiz> allQuizzes = quizDAO.getAllQuizByCourseID(ce.getCourseID());
+                        foreach (Quiz innerQuiz in allQuizzes)
+                        {
+                            if (!qrDAO.getQuizResultByUserIDandQuizID(userID, innerQuiz.getQuizID()))
+                            {
+                                return false;
+                            }
+                        }
+                    }
+                }
+            }
+
+            //if all prereq courses cleared, to check current quiz's prereqs
             ArrayList allPrerequisites = quizDAO.getPrereqOfQuiz(quizID);
             foreach (Quiz prereq in allPrerequisites)
             {
-                if (!qrDAO.getQuizResultByUserIDandQuizID(userID, prereq.getQuizID()))
+                if (currentCourse.getStatus().Equals("active") && (currentCourse.getStartDate() <= DateTime.Now.Date && currentCourse.getExpiryDate() >= DateTime.Now.Date))
                 {
-                    return false;
+                    if (!qrDAO.getQuizResultByUserIDandQuizID(userID, prereq.getQuizID()))
+                    {
+                        return false;
+                    }
                 }
             }
             return true;
