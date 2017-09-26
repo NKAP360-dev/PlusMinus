@@ -23,7 +23,38 @@
             window.onbeforeunload = unloadPage;
         });
 
-        
+        function openModal() {
+            console.log("openModal");
+            $("#finishModal").modal();
+        }
+
+        function checkForm_Clicked(source, args) {
+
+            console.log("Checkform");
+            Page_ClientValidate('ValidateForm');
+
+
+            if (!Page_IsValid) {
+                console.log("Not valid");
+                document.getElementById('<%=rfv_txtNumCorrectAns.ClientID%>').Enabled = false;
+                document.getElementById('<%=rfv_txtTimeLimit.ClientID%>').Enabled = false;
+            }
+            else {
+
+                //$find("#finishModal").show();
+                $("#finishModal").modal();
+                console.log("VALID");
+                document.getElementById('<%=rfv_txtNumCorrectAns.ClientID%>').Enabled = true;
+                document.getElementById('<%=rfv_txtTimeLimit.ClientID%>').Enabled = true;
+                if (document.getElementById('<%=rfv_txtNumCorrectAns.ClientID%>').enabled = true) {
+                    console.log("its enabled");
+                }
+                else {
+                    console.log("its NOT enabled");
+                }
+            }
+            return false;
+        }
 
     </script>
     <style>
@@ -142,6 +173,7 @@
                                 <label class="col-lg-3 control-label">No. of correct answers needed to pass</label>
                                 <div class="col-lg-7">
                                    <asp:TextBox ID="txtNumCorrectAns" runat="server" CssClass="form-control"></asp:TextBox>
+                                    <asp:RequiredFieldValidator ID="rfv_txtNumCorrectAns" runat="server" ErrorMessage="Please enter the number of Correct Answers" ControlToValidate="txtNumCorrectAns" ForeColor="Red" ValidationGroup="ValidateFormTwo" Display="Dynamic"></asp:RequiredFieldValidator>
                                 </div>
                             </div>
                         <div class="form-group required">
@@ -158,17 +190,20 @@
                              <label class="col-lg-3 control-label">Time Limit (seconds)</label>
                             <div class="col-lg-7">
                                 <asp:TextBox ID="txtTimeLimit" runat="server" CssClass="form-control" placeholder="Time Limit in Seconds" TextMode="Number" min="0"></asp:TextBox>
+                                <asp:RequiredFieldValidator ID="rfv_txtTimeLimit" runat="server" ErrorMessage="Please enter the Time Limit" ControlToValidate="txtTimeLimit" ForeColor="Red" ValidationGroup="ValidateFormTwo" Display="Dynamic"></asp:RequiredFieldValidator>
                             </div>
                         </div>
                         <br/>
                          <div class="form-group required">
                              <label class="col-lg-3 control-label">Allow Multiple Quiz Attempts</label>
                             <div class="col-lg-7">
-                                <asp:RadioButtonList ID="rdlAttempt" runat="server">
-                                    <asp:ListItem Value="y">&nbsp;Unlimited</asp:ListItem>
-                                    <asp:ListItem Value="n">&nbsp;Limited</asp:ListItem>
+                                <asp:RadioButtonList ID="rdlAttempt" runat="server" OnSelectedIndexChanged="RadioButtonList_OnSelectedIndexChange" AutoPostBack="true">
+                                    <asp:ListItem Value="unlimited">&nbsp;Unlimited</asp:ListItem>
+                                    <asp:ListItem Value="limited">&nbsp;Limited</asp:ListItem>
                                 </asp:RadioButtonList>
+                                <asp:RequiredFieldValidator ID="rfv_rdlAttempt" runat="server" ErrorMessage="Please select the attempt type" ControlToValidate="rdlAttempt" ForeColor="Red" ValidationGroup="ValidateFormTwo" Display="Dynamic"></asp:RequiredFieldValidator>
                                 <asp:TextBox ID="txtNoOfAttempt" runat="server" CssClass="form-control" placeholder="If Limited, Number of Attempts" TextMode="Number" min="0"></asp:TextBox>
+                                <asp:RequiredFieldValidator ID="rfv_txtNoOfAttempt" runat="server" ErrorMessage="Please input the number of attempts" ControlToValidate="txtNoOfAttempt" ForeColor="Red" ValidationGroup="ValidateFormTwo" Display="Dynamic" Enabled="False"></asp:RequiredFieldValidator>
                             </div>
                         </div>
                         <br />

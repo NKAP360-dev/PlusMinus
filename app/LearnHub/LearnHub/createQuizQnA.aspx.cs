@@ -57,6 +57,11 @@ namespace LearnHub
                     lblAddedMsg.Visible = false;
                 }
             }
+            if (Page.IsPostBack)
+            {
+                // reshow
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "openModal();", true);
+            }
         }
 
         protected void btnNewQn_Click(object sender, EventArgs e)
@@ -130,114 +135,155 @@ namespace LearnHub
         protected void btnConfirmSubmit_Click(object sender, EventArgs e)
         {
             //to do validation
-
-            //add the last question
-            List<QuizQuestion> allQuestions = (List<QuizQuestion>)Session["allQuestions"];
-            QuizQuestion newQuestion = new QuizQuestion();
-            newQuestion.setQuestion(txtQuizQuestion.Text);
-
-            QuizAnswer answer1 = new QuizAnswer();
-            answer1.setAnswer(txtOptionOne.Text);
-
-            QuizAnswer answer2 = new QuizAnswer();
-            answer2.setAnswer(txtOptionTwo.Text);
-
-            QuizAnswer answer3 = new QuizAnswer();
-            answer3.setAnswer(txtOptionThree.Text);
-
-            QuizAnswer answer4 = new QuizAnswer();
-            answer4.setAnswer(txtOptionFour.Text);
-
-            List<QuizAnswer> allAnswersForLastQn = new List<QuizAnswer>();
-            allAnswersForLastQn.Add(answer1);
-            allAnswersForLastQn.Add(answer2);
-            allAnswersForLastQn.Add(answer3);
-            allAnswersForLastQn.Add(answer4);
-
-            newQuestion.setAllAnswers(allAnswersForLastQn);
-
-            if (ddlCorrectAns.SelectedValue.Equals("1"))
+            Page.Validate("ValidateFormTwo");
+            if (!Page.IsValid)
             {
-                newQuestion.setQuizAnswer(answer1);
-            }
-            else if (ddlCorrectAns.SelectedValue.Equals("2"))
-            {
-                newQuestion.setQuizAnswer(answer2);
-            }
-            else if (ddlCorrectAns.SelectedValue.Equals("3"))
-            {
-                newQuestion.setQuizAnswer(answer3);
+
             }
             else
             {
-                newQuestion.setQuizAnswer(answer4);
-            }
+                //add the last question
+                List<QuizQuestion> allQuestions = (List<QuizQuestion>)Session["allQuestions"];
+                QuizQuestion newQuestion = new QuizQuestion();
+                newQuestion.setQuestion(txtQuizQuestion.Text);
 
-            allQuestions.Add(newQuestion);
+                QuizAnswer answer1 = new QuizAnswer();
+                answer1.setAnswer(txtOptionOne.Text);
 
-            QuizDAO quizDAO = new QuizDAO();
-            QuizAnswerDAO qaDAO = new QuizAnswerDAO();
-            QuizQuestionDAO qqDAO = new QuizQuestionDAO();
-            Course_elearnDAO ceDAO = new Course_elearnDAO();
+                QuizAnswer answer2 = new QuizAnswer();
+                answer2.setAnswer(txtOptionTwo.Text);
 
-            Course_elearn currentCourse = ceDAO.get_course_by_id(Convert.ToInt32(Request.QueryString["id"]));
+                QuizAnswer answer3 = new QuizAnswer();
+                answer3.setAnswer(txtOptionThree.Text);
 
-            //create quiz
-            List<string> part1 = (List<string>)Session["createQuiz1"];
-            Quiz newQuiz = new Quiz();
-            newQuiz.setTitle(part1[0]);
-            newQuiz.setDescription(part1[1]);
-            newQuiz.setMainCourse(currentCourse);
-            newQuiz.setPassingGrade(Convert.ToInt32(txtNumCorrectAns.Text));
-            newQuiz.setStatus("active");
-            if (ddlRandomize.SelectedValue.Equals("y"))
-            {
-                newQuiz.setRandomOrder("y");
-            }
-            else
-            {
-                newQuiz.setRandomOrder("n");
-            }
-            newQuiz.setTimeLimit(Convert.ToInt32(txtTimeLimit.Text));
-            if (rdlAttempt.SelectedValue.Equals("y"))
-            {
-                newQuiz.setMultipleAttempts("y");
-                newQuiz.setNumberOfAttempts(0);
-            }
-            else
-            {
-                newQuiz.setMultipleAttempts("n");
-                newQuiz.setNumberOfAttempts(Convert.ToInt32(txtNoOfAttempt.Text));
-            }
-            newQuiz.setDisplayAnswer(ddlDisplayAnswer.SelectedValue);
+                QuizAnswer answer4 = new QuizAnswer();
+                answer4.setAnswer(txtOptionFour.Text);
 
-            int quizID = quizDAO.createQuiz(newQuiz);
+                List<QuizAnswer> allAnswersForLastQn = new List<QuizAnswer>();
+                allAnswersForLastQn.Add(answer1);
+                allAnswersForLastQn.Add(answer2);
+                allAnswersForLastQn.Add(answer3);
+                allAnswersForLastQn.Add(answer4);
 
-            //add prerequisites
-            List<int> prereqIDlist = (List<int>)Session["selectedPrereq"];
-            foreach (int prereqID in prereqIDlist)
-            {
-                quizDAO.insertPrerequisite(quizID, prereqID);
-            }
+                newQuestion.setAllAnswers(allAnswersForLastQn);
 
-            //create question and answer
-            foreach (QuizQuestion question in allQuestions) {
-                question.setQuiz(quizDAO.getQuizByID(quizID));
-                int questionID = qqDAO.createQuizQuestion(question);
-                QuizQuestion currentQuestion = qqDAO.getQuizQuestionByID(questionID);
-                List<QuizAnswer> allAnswers = question.getAllAnswers();
-                foreach (QuizAnswer answer in allAnswers)
+                if (ddlCorrectAns.SelectedValue.Equals("1"))
                 {
-                    answer.setQuizQuestion(currentQuestion);
-                    int answerID = qaDAO.createQuizAnswer(answer);
-                    if (question.getQuizAnswer().getAnswer().Equals(answer.getAnswer()))
+                    newQuestion.setQuizAnswer(answer1);
+                }
+                else if (ddlCorrectAns.SelectedValue.Equals("2"))
+                {
+                    newQuestion.setQuizAnswer(answer2);
+                }
+                else if (ddlCorrectAns.SelectedValue.Equals("3"))
+                {
+                    newQuestion.setQuizAnswer(answer3);
+                }
+                else
+                {
+                    newQuestion.setQuizAnswer(answer4);
+                }
+
+                allQuestions.Add(newQuestion);
+
+                QuizDAO quizDAO = new QuizDAO();
+                QuizAnswerDAO qaDAO = new QuizAnswerDAO();
+                QuizQuestionDAO qqDAO = new QuizQuestionDAO();
+                Course_elearnDAO ceDAO = new Course_elearnDAO();
+
+                Course_elearn currentCourse = ceDAO.get_course_by_id(Convert.ToInt32(Request.QueryString["id"]));
+
+                //create quiz
+                List<string> part1 = (List<string>)Session["createQuiz1"];
+                Quiz newQuiz = new Quiz();
+                newQuiz.setTitle(part1[0]);
+                newQuiz.setDescription(part1[1]);
+                newQuiz.setMainCourse(currentCourse);
+                newQuiz.setPassingGrade(Convert.ToInt32(txtNumCorrectAns.Text));
+                newQuiz.setStatus("active");
+                if (ddlRandomize.SelectedValue.Equals("y"))
+                {
+                    newQuiz.setRandomOrder("y");
+                }
+                else
+                {
+                    newQuiz.setRandomOrder("n");
+                }
+                newQuiz.setTimeLimit(Convert.ToInt32(txtTimeLimit.Text));
+                if (rdlAttempt.SelectedValue.Equals("y"))
+                {
+                    newQuiz.setMultipleAttempts("y");
+                    newQuiz.setNumberOfAttempts(0);
+                }
+                else
+                {
+                    newQuiz.setMultipleAttempts("n");
+                    newQuiz.setNumberOfAttempts(Convert.ToInt32(txtNoOfAttempt.Text));
+                }
+                newQuiz.setDisplayAnswer(ddlDisplayAnswer.SelectedValue);
+
+                int quizID = quizDAO.createQuiz(newQuiz);
+
+                //add prerequisites
+                List<int> prereqIDlist = (List<int>)Session["selectedPrereq"];
+                foreach (int prereqID in prereqIDlist)
+                {
+                    quizDAO.insertPrerequisite(quizID, prereqID);
+                }
+
+                //create question and answer
+                foreach (QuizQuestion question in allQuestions)
+                {
+                    question.setQuiz(quizDAO.getQuizByID(quizID));
+                    int questionID = qqDAO.createQuizQuestion(question);
+                    QuizQuestion currentQuestion = qqDAO.getQuizQuestionByID(questionID);
+                    List<QuizAnswer> allAnswers = question.getAllAnswers();
+                    foreach (QuizAnswer answer in allAnswers)
                     {
-                        qqDAO.updateCorrectAnswerID(questionID, answerID);
+                        answer.setQuizQuestion(currentQuestion);
+                        int answerID = qaDAO.createQuizAnswer(answer);
+                        if (question.getQuizAnswer().getAnswer().Equals(answer.getAnswer()))
+                        {
+                            qqDAO.updateCorrectAnswerID(questionID, answerID);
+                        }
                     }
                 }
-             }
 
-            Response.Redirect($"quizSummary.aspx?id={quizID}");
+                Response.Redirect($"quizSummary.aspx?id={quizID}");
+            }
         }
+        protected void checkForm(object sender, EventArgs e)
+        {
+            Page.Validate("ValidateForm2");
+            System.Diagnostics.Debug.WriteLine("checkForm");
+            if (!Page.IsValid)
+            {
+                //rfv_txtNumCorrectAns.Enabled = false;
+                //rfv_txtTimeLimit.Enabled = false;
+                //rfv_rdlAttempt.Enabled = false;
+            }
+            else
+            {
+                //rfv_txtNumCorrectAns.Enabled = true;
+                //rfv_txtTimeLimit.Enabled = true;
+                //rfv_rdlAttempt.Enabled = true;
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "openModal();", true);
+            }
+        }
+
+        protected void RadioButtonList_OnSelectedIndexChange(object sender, EventArgs e)
+        {
+            if(rdlAttempt.SelectedValue == "unlimited")
+            {
+                txtNoOfAttempt.Enabled = false;
+                rfv_txtNoOfAttempt.Enabled = false;
+            }
+            else
+            {
+                txtNoOfAttempt.Enabled = true;
+                rfv_txtNoOfAttempt.Enabled = true;
+            }
+        }
+
     }
 }

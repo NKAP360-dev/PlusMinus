@@ -157,6 +157,15 @@ namespace LearnHub {
         protected global::System.Web.UI.WebControls.TextBox txtNumCorrectAns;
         
         /// <summary>
+        /// rfv_txtNumCorrectAns control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfv_txtNumCorrectAns;
+        
+        /// <summary>
         /// ddlRandomize control.
         /// </summary>
         /// <remarks>
@@ -175,6 +184,15 @@ namespace LearnHub {
         protected global::System.Web.UI.WebControls.TextBox txtTimeLimit;
         
         /// <summary>
+        /// rfv_txtTimeLimit control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfv_txtTimeLimit;
+        
+        /// <summary>
         /// rdlAttempt control.
         /// </summary>
         /// <remarks>
@@ -184,6 +202,15 @@ namespace LearnHub {
         protected global::System.Web.UI.WebControls.RadioButtonList rdlAttempt;
         
         /// <summary>
+        /// rfv_rdlAttempt control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfv_rdlAttempt;
+        
+        /// <summary>
         /// txtNoOfAttempt control.
         /// </summary>
         /// <remarks>
@@ -191,6 +218,15 @@ namespace LearnHub {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtNoOfAttempt;
+        
+        /// <summary>
+        /// rfv_txtNoOfAttempt control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfv_txtNoOfAttempt;
         
         /// <summary>
         /// ddlDisplayAnswer control.

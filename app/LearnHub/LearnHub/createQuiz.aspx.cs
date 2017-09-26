@@ -207,12 +207,31 @@ namespace LearnHub
             }
             else
             {
-                int courseID = Convert.ToInt32(Request.QueryString["id"]);
-                List<string> part1 = new List<string>();
-                part1.Add(txtQuizTitle.Text);
-                part1.Add(txtQuizDesc.Text);
-                Session["createQuiz1"] = part1;
-                Response.Redirect("createQuizQnA.aspx?id=" + courseID);
+                String input = txtQuizTitle.Text;
+                QuizDAO quizdao = new QuizDAO();
+                List<Quiz> quizList = quizdao.getAllQuiz();
+                Boolean checker = false;
+                foreach(Quiz curr in quizList)
+                {
+                    if(curr.getTitle() == input)
+                    {
+                        checker = true;
+                    }
+                }
+                if (checker == true)
+                {
+                    lbl_duplicateTitle.Text = "This Quiz title already exists! Please enter another one!";
+                }
+                else
+                {
+                    lbl_duplicateTitle.Text = "";
+                    int courseID = Convert.ToInt32(Request.QueryString["id"]);
+                    List<string> part1 = new List<string>();
+                    part1.Add(txtQuizTitle.Text);
+                    part1.Add(txtQuizDesc.Text);
+                    Session["createQuiz1"] = part1;
+                    Response.Redirect("createQuizQnA.aspx?id=" + courseID);
+                }
             }
         }
     }

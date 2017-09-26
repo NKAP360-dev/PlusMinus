@@ -21,6 +21,8 @@
                 args.IsValid = true;
             }
         }
+
+
     </script>
      <style>
          .breadcrumb {
@@ -82,7 +84,8 @@
                         <asp:Label runat="server" CssClass="col-lg-2 control-label" Text="Title of Quiz"></asp:Label></strong>
                     <div class="col-lg-5">
                         <asp:TextBox ID="txtQuizTitle" CssClass="form-control" runat="server" placeholder="Title of Quiz"></asp:TextBox>
-                        <asp:RequiredFieldValidator ID="rfv_txtQuizTitle" runat="server" ErrorMessage="Please enter a Title" ControlToValidate="txtQuizTitle" ForeColor="Red" ValidationGroup="ValidateForm"></asp:RequiredFieldValidator>
+                        <asp:RequiredFieldValidator ID="rfv_txtQuizTitle" runat="server" ErrorMessage="Please enter a Title" ControlToValidate="txtQuizTitle" ForeColor="Red" ValidationGroup="ValidateForm" Display="Dynamic"></asp:RequiredFieldValidator>
+                        <asp:Label ID="lbl_duplicateTitle" runat="server" CssClass="text-danger" Visible="True"></asp:Label>
                     </div>
                 </div>
                 <div class="form-group required">
