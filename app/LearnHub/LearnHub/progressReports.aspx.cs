@@ -70,5 +70,32 @@ namespace LearnHub
             Session["allCompletedCourseID"] = allCompletedCourseID;
             return counter;
         }
+
+        protected void cfmSubmit_Click(object sender, EventArgs e)
+        {
+            //to do validations
+            if (txtFeedback.Text.Equals("") || CKEditorControl2.Text.Equals(""))
+            {
+                lblErrorMsg.Text = "Please enter your title or feedback.";
+                lblErrorMsg.Visible = true;
+            }
+            else
+            {
+                SupervisorFeedbackDAO sfDAO = new SupervisorFeedbackDAO();
+                UserDAO userDAO = new UserDAO();
+                User currentUser = (User)Session["currentUser"];
+                User userTo = userDAO.getUserByID((String)Request.QueryString["id"]);
+                SupervisorFeedback sf = new SupervisorFeedback();
+                sf.title = txtFeedback.Text;
+                sf.feedback = CKEditorControl2.Text;
+                sf.userFrom = currentUser;
+                sf.userTo = userTo;
+                sf.dateSubmitted = DateTime.Now;
+
+                sfDAO.createFeedback(sf);
+                Response.Redirect("progressReports.aspx?id=" + userTo.getUserID());
+
+            }
+        }
     }
 }

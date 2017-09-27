@@ -166,6 +166,7 @@
     <Compile Include="AppCode\dao\QuizQuestionDAO.cs" />
     <Compile Include="AppCode\dao\QuizResultDAO.cs" />
     <Compile Include="AppCode\dao\QuizResultHistoryDAO.cs" />
+    <Compile Include="AppCode\dao\SupervisorFeedbackDAO.cs" />
     <Compile Include="AppCode\dao\TestimonialDAO.cs" />
     <Compile Include="AppCode\dao\Course_elearnCategoryDAO.cs" />
     <Compile Include="AppCode\dao\DeptDAO.cs" />
@@ -194,6 +195,7 @@
     <Compile Include="AppCode\entity\QuizQuestion.cs" />
     <Compile Include="AppCode\entity\QuizResult.cs" />
     <Compile Include="AppCode\entity\QuizResultHistory.cs" />
+    <Compile Include="AppCode\entity\SupervisorFeedback.cs" />
     <Compile Include="AppCode\entity\Testimonial.cs" />
     <Compile Include="AppCode\entity\CourseCategory.cs" />
     <Compile Include="AppCode\entity\Upload.cs" />
@@ -391,6 +393,13 @@
     </Compile>
     <Compile Include="deleteMaterial.aspx.designer.cs">
       <DependentUpon>deleteMaterial.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="deleteSupervisorFeedback.aspx.cs">
+      <DependentUpon>deleteSupervisorFeedback.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="deleteSupervisorFeedback.aspx.designer.cs">
+      <DependentUpon>deleteSupervisorFeedback.aspx</DependentUpon>
     </Compile>
     <Compile Include="editArticle.aspx.cs">
       <DependentUpon>editArticle.aspx</DependentUpon>
@@ -1124,6 +1133,7 @@
     <Content Include="deleteLink.aspx" />
     <Content Include="deleteArticle.aspx" />
     <Content Include="deleteMaterial.aspx" />
+    <Content Include="deleteSupervisorFeedback.aspx" />
     <Content Include="editArticle.aspx" />
     <Content Include="editCategories.aspx" />
     <Content Include="editContactUs.aspx" />

@@ -67,15 +67,6 @@ namespace LearnHub {
         protected global::CKEditor.NET.CKEditorControl CKEditorControl2;
         
         /// <summary>
-        /// txtByWho control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtByWho;
-        
-        /// <summary>
         /// cfmSubmit control.
         /// </summary>
         /// <remarks>
@@ -83,5 +74,14 @@ namespace LearnHub {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button cfmSubmit;
+        
+        /// <summary>
+        /// lblErrorMsg control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblErrorMsg;
     }
 }

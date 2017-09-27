@@ -103,7 +103,24 @@
                                 <h3 class="panel-title">List of Suggested Courses</h3>
                             </div>
                             <div class="panel-body">
-                                Panel content
+                                <%
+                                    Course_elearnDAO ceDAO = new Course_elearnDAO();
+                                    List<int> allSuggestedCourseID = ceDAO.getAllSuggestedCoursesByUserID(userID);
+                                    if (allSuggestedCourseID.Count > 0)
+                                    {
+                                        Response.Write("<ul>");
+                                        foreach (int courseID in allSuggestedCourseID)
+                                        {
+                                            Course_elearn currentCourse = ceDAO.get_course_by_id(courseID);
+                                            Response.Write($"<li><a href=\"viewModuleInfo.aspx?id={courseID}\">{currentCourse.getCourseName()}</a></li>");
+                                        }
+                                        Response.Write("</ul>");
+                                    }
+                                    else
+                                    {
+                                        Response.Write("There are no suggested courses available.");
+                                    }
+                                %>
                             </div>
                         </div>
                     </div>
@@ -130,13 +147,8 @@
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <div class="col-lg-12">
-                                                <asp:TextBox ID="txtByWho" runat="server" CssClass="form-control" placeholder="Name"></asp:TextBox>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
                                             <div class="col-lg-10">
-                                                <asp:Button ID="cfmSubmit" CssClass="btn btn-primary" runat="server" Text="Submit"/>
+                                                <asp:Button ID="cfmSubmit" CssClass="btn btn-primary" runat="server" Text="Submit" OnClick="cfmSubmit_Click"/>
                                             </div>
                                         </div>
 
@@ -144,13 +156,38 @@
 
                                     <hr />
                                 </div>
-                                <h5><b>title</b><a href="#"><span class="label label-danger pull-right"><span class="glyphicon glyphicon-trash"></span></span></a></h5>
-                                feedback 1 content
-                                <br /><h5 class ="pull-right">By: who</h5><br />
-                                <hr />
-                                <h5><b>title</b><a href="#"><span class="label label-danger pull-right"><span class="glyphicon glyphicon-trash"></span></span></a></h5>
-                                feedback 2 content
-                                <br /><h5 class ="pull-right">By: who</h5><br />
+                                <asp:Label ID="lblErrorMsg" runat="server" Visible="false" ForeColor="Red"></asp:Label>
+                                <%
+                                    User currentUser = (User)Session["currentUser"];
+                                    SupervisorFeedbackDAO sfDAO = new SupervisorFeedbackDAO();
+                                    List<SupervisorFeedback> allFeedbacks = sfDAO.getAllUserFeedback(userID);
+                                    int counter = 1;
+                                    if (allFeedbacks.Count < 1)
+                                    {
+                                        Response.Write("There are no feedbacks available.");
+                                    }
+                                    else
+                                    {
+                                        foreach (SupervisorFeedback sf in allFeedbacks)
+                                        {
+                                            Response.Write($"<h5><b>{sf.title}</b>");
+                                            if (sf.userFrom.getUserID().Equals(currentUser.getUserID()))
+                                            {
+                                                Response.Write($"<a href=\"deleteSupervisorFeedback.aspx?id={sf.feedbackID}&ud={sf.userTo.getUserID()}\"><span class=\"label label-danger pull-right\"><span class=\"glyphicon glyphicon-trash\"></span></span></a>");
+                                            }
+                                            Response.Write("</h5>");
+                                            Response.Write(sf.feedback);
+                                            Response.Write($"<br /><h5 class=\"pull-right\">By: {sf.userFrom.getName()}</h5><br />");
+
+                                            if (counter != allFeedbacks.Count)
+                                            {
+                                                Response.Write("<hr />");
+                                            }
+                                            counter++;
+                                        }
+                                    }
+
+                                %>
                             </div>
                         </div>
                     </div>
