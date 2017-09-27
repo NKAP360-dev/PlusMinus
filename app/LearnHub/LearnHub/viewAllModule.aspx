@@ -47,8 +47,8 @@
             max-width: 700px;
         }
     </style>
-    <link href="/Scripts/footable.bootstrap.min.css" rel="stylesheet" />
-    <script src="/Scripts/footable.min.js"></script>
+    <link href="Scripts/footable.bootstrap.min.css" rel="stylesheet" />
+    <script src="Scripts/footable.min.js"></script>
     <script>
         jQuery(function ($) {
             $('[id*=gvCourse]').footable({

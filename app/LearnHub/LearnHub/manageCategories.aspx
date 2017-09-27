@@ -4,8 +4,8 @@
 <%@ Import Namespace="LearnHub.AppCode.dao" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    <link href="/Scripts/footable.bootstrap.min.css" rel="stylesheet" />
-    <script src="/Scripts/footable.min.js"></script>
+    <link href="Scripts/footable.bootstrap.min.css" rel="stylesheet" />
+    <script src="Scripts/footable.min.js"></script>
     <script>
         jQuery(function ($) {
             $('.table').footable({

@@ -37,8 +37,8 @@
             border-radius: 0px;
         }
     </style>
-    <link href="/Scripts/footable.bootstrap.min.css" rel="stylesheet" />
-    <script src="/Scripts/footable.min.js"></script>
+    <link href="Scripts/footable.bootstrap.min.css" rel="stylesheet" />
+    <script src="Scripts/footable.min.js"></script>
     <script>
         jQuery(function ($) {
             $('.table').footable({

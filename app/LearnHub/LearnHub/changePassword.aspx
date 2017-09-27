@@ -75,7 +75,9 @@
                     <div class="form-group">
                         <div class="wrapper">
                             <br />
-                            <asp:Button ID="btnSave" runat="server" CssClass="btn btn-primary" Text="Save" OnClick="submit_new_password" ValidationGroup="ValidateForm"/>
+                            <asp:Button ID="btnSave" runat="server" CssClass="btn btn-primary" Text="Save" OnClick="submit_new_password" ValidationGroup="ValidateForm"/><br /><br />
+                            <%--To be implemented--%>
+                            <asp:Label ID="lblPasswordSaved" runat="server" CssClass="label label-success" Text="Password has been changed successfully!" Font-Size="Medium"></asp:Label>
                         </div>
                     </div>
                 </div>

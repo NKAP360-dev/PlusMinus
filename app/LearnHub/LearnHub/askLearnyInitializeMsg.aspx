@@ -102,19 +102,6 @@
         $(document).ready(function () {
             $("[data-toggle='tooltip']").tooltip();
         });
-
-        jQuery(function ($) {
-            $('.table').footable({
-                "paging": {
-                    "size": 1 <%--Change how many rows per page--%>
-                },
-                "filtering": {
-                    "position": "left"
-                }
-            });
-        });
-
-
     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">

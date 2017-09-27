@@ -6,8 +6,8 @@
 <%@ Import Namespace="Emma.Entity" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    <link href="/Scripts/footable.bootstrap.min.css" rel="stylesheet" />
-    <script src="/Scripts/footable.min.js"></script>
+    <link href="Scripts/footable.bootstrap.min.css" rel="stylesheet" />
+    <script src="Scripts/footable.min.js"></script>
     <script>
 
         $(document).ready(function () {

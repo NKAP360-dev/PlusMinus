@@ -6,8 +6,8 @@
 <%@ Import Namespace="LearnHub.AppCode.entity" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    <link href="/Scripts/footable.bootstrap.min.css" rel="stylesheet" />
-    <script src="/Scripts/footable.min.js"></script>
+    <link href="Scripts/footable.bootstrap.min.css" rel="stylesheet" />
+    <script src="Scripts/footable.min.js"></script>
 
     <style>
         .breadcrumb {
