@@ -61,25 +61,29 @@
             text-decoration: none;
         }
     </style>
-    <script>
-        $('.highlightsBtn').click(function () {
-            $(".highlightsBtn").removeClass("linkStyle");
-            $(this).addClass("linkStyleActive");
-            $(".eventsBtn").removeClass("linkStyleActive");
-            $(".eventsBtn").addClass("linkStyle");
-            $(".eventsPanel").hide();
-            $("highlightsPanel").show();
-
+    <script type="text/javascript">
+        $(window).on('load', function () {
+            $('#myModal').modal('show');
         });
 
-        $('.eventsBtn').click(function () {
-            $(".eventsBtn").removeClass("linkStyle");
-            $(this).addClass("linkStyleActive");
-            $(".highlightsBtn").removeClass("linkStyleActive");
-            $(".highlightsBtn").addClass("linkStyle");
-            $(".eventsPanel").show();
-            $("highlightsPanel").hide();
-        });
+            $('.highlightsBtn').click(function () {
+                $(".highlightsBtn").removeClass("linkStyle");
+                $(this).addClass("linkStyleActive");
+                $(".eventsBtn").removeClass("linkStyleActive");
+                $(".eventsBtn").addClass("linkStyle");
+                $(".eventsPanel").hide();
+                $("highlightsPanel").show();
+
+            });
+
+            $('.eventsBtn').click(function () {
+                $(".eventsBtn").removeClass("linkStyle");
+                $(this).addClass("linkStyleActive");
+                $(".highlightsBtn").removeClass("linkStyleActive");
+                $(".highlightsBtn").addClass("linkStyle");
+                $(".eventsPanel").show();
+                $("highlightsPanel").hide();
+            });
 
     </script>
 
@@ -133,123 +137,150 @@
         <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
         <asp:UpdatePanel ID="eventsHighlightPanel" runat="server">
             <ContentTemplate>
-            <asp:Panel ID="highlightsPanel" runat="server" Visible="true">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-4">
-                            <div class="well">
-                                <h2>Highlights</h2>
-                                <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh.</p>
-                                <div class="newsFooter"><span class="glyphicon glyphicon-chevron-right"></span>View More</div>
-                            </div>
+                <asp:Panel ID="highlightsPanel" runat="server" Visible="true">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="well">
+                                    <h2>Highlights</h2>
+                                    <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh.</p>
+                                    <div class="newsFooter"><span class="glyphicon glyphicon-chevron-right"></span>View More</div>
+                                </div>
 
-                        </div>
-                        <div class="col-md-4">
-                            <div class="well">
-                                <h2>Highlights </h2>
-                                <p>Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. Lorem ipsum dolor.</p>
-                                <div class="newsFooter"><span class="glyphicon glyphicon-chevron-right"></span>View More</div>
                             </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="well">
-                                <h2>Highlights</h2>
-                                <p>Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh.</p>
-                                <div class="newsFooter"><span class="glyphicon glyphicon-chevron-right"></span>View More</div>
+                            <div class="col-md-4">
+                                <div class="well">
+                                    <h2>Highlights </h2>
+                                    <p>Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. Lorem ipsum dolor.</p>
+                                    <div class="newsFooter"><span class="glyphicon glyphicon-chevron-right"></span>View More</div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="well">
+                                    <h2>Highlights</h2>
+                                    <p>Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh.</p>
+                                    <div class="newsFooter"><span class="glyphicon glyphicon-chevron-right"></span>View More</div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <br />
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-4">
-                            <div class="well">
-                                <h2>Highlights</h2>
-                                <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh.</p>
-                                <div class="newsFooter"><span class="glyphicon glyphicon-chevron-right"></span>View More</div>
-                            </div>
+                    <br />
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="well">
+                                    <h2>Highlights</h2>
+                                    <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh.</p>
+                                    <div class="newsFooter"><span class="glyphicon glyphicon-chevron-right"></span>View More</div>
+                                </div>
 
-                        </div>
-                        <div class="col-md-4">
-                            <div class="well">
-                                <h2>Highlights </h2>
-                                <p>Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. Lorem ipsum dolor.</p>
-                                <div class="newsFooter"><span class="glyphicon glyphicon-chevron-right"></span>View More</div>
                             </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="well">
-                                <h2>Highlights</h2>
-                                <p>Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh.</p>
-                                <div class="newsFooter"><span class="glyphicon glyphicon-chevron-right"></span>View More</div>
+                            <div class="col-md-4">
+                                <div class="well">
+                                    <h2>Highlights </h2>
+                                    <p>Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. Lorem ipsum dolor.</p>
+                                    <div class="newsFooter"><span class="glyphicon glyphicon-chevron-right"></span>View More</div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="well">
+                                    <h2>Highlights</h2>
+                                    <p>Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh.</p>
+                                    <div class="newsFooter"><span class="glyphicon glyphicon-chevron-right"></span>View More</div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </asp:Panel>
-            <asp:Panel ID="eventsPanel" runat="server" Visible="false">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-4">
-                            <div class="well">
-                                <h2>Events</h2>
-                                <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh.</p>
-                                <div class="newsFooter"><span class="glyphicon glyphicon-chevron-right"></span>View More</div>
-                            </div>
+                </asp:Panel>
+                <asp:Panel ID="eventsPanel" runat="server" Visible="false">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="well">
+                                    <h2>Events</h2>
+                                    <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh.</p>
+                                    <div class="newsFooter"><span class="glyphicon glyphicon-chevron-right"></span>View More</div>
+                                </div>
 
-                        </div>
-                        <div class="col-md-4">
-                            <div class="well">
-                                <h2>Events</h2>
-                                <p>Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. Lorem ipsum dolor.</p>
-                                <div class="newsFooter"><span class="glyphicon glyphicon-chevron-right"></span>View More</div>
                             </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="well">
-                                <h2>Events</h2>
-                                <p>Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh.</p>
-                                <div class="newsFooter"><span class="glyphicon glyphicon-chevron-right"></span>View More</div>
+                            <div class="col-md-4">
+                                <div class="well">
+                                    <h2>Events</h2>
+                                    <p>Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. Lorem ipsum dolor.</p>
+                                    <div class="newsFooter"><span class="glyphicon glyphicon-chevron-right"></span>View More</div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="well">
+                                    <h2>Events</h2>
+                                    <p>Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh.</p>
+                                    <div class="newsFooter"><span class="glyphicon glyphicon-chevron-right"></span>View More</div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <br />
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-4">
-                            <div class="well">
-                                <h2>Events</h2>
-                                <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh.</p>
-                                <div class="newsFooter"><span class="glyphicon glyphicon-chevron-right"></span>View More</div>
-                            </div>
+                    <br />
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="well">
+                                    <h2>Events</h2>
+                                    <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh.</p>
+                                    <div class="newsFooter"><span class="glyphicon glyphicon-chevron-right"></span>View More</div>
+                                </div>
 
-                        </div>
-                        <div class="col-md-4">
-                            <div class="well">
-                                <h2>Events</h2>
-                                <p>Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. Lorem ipsum dolor.</p>
-                                <div class="newsFooter"><span class="glyphicon glyphicon-chevron-right"></span>View More</div>
                             </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="well">
-                                <h2>Events</h2>
-                                <p>Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh.</p>
-                                <div class="newsFooter"><span class="glyphicon glyphicon-chevron-right"></span>View More</div>
+                            <div class="col-md-4">
+                                <div class="well">
+                                    <h2>Events</h2>
+                                    <p>Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. Lorem ipsum dolor.</p>
+                                    <div class="newsFooter"><span class="glyphicon glyphicon-chevron-right"></span>View More</div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="well">
+                                    <h2>Events</h2>
+                                    <p>Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh.</p>
+                                    <div class="newsFooter"><span class="glyphicon glyphicon-chevron-right"></span>View More</div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </asp:Panel>
+                </asp:Panel>
             </ContentTemplate>
-             <Triggers>
+            <Triggers>
                 <%--MK pls help mi
               <asp:AsyncPostBackTrigger ControlID="eventsHighlightPanel" EventName="SelectedIndexChanged" />
-                    --%>
-             </Triggers>
+                --%>
+            </Triggers>
         </asp:UpdatePanel>
+
+        <!-- Modal-->
+        <div class="container">
+            <div class="modal" id="myModal">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            <h4 class="modal-title"><b>U N D E R &nbsp; C O N S T R U C T I O N</b></h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="wrapper"><img src="img/barrier.png" style='width: 30%;' border="0"/>
+                                <h3 class="text-danger">This page is currently still under construction!</h3>
+                                <p>You may still navigate around but not everything is working as it should be. <br /> Team PlusMinus is trying their best to get everything
+                                    up as soon as possible!
+                                </p>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <div class="wrapper">
+                            <button type="button" class="btn btn-warning" data-dismiss="modal">Got it!</button>
+                                </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
     </form>
 </asp:Content>
