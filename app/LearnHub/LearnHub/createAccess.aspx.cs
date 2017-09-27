@@ -69,33 +69,14 @@ namespace LearnHub
             }
         }
 
+        /*
         protected void checkCheckBoxes(object sender, EventArgs e)
         {
             string Password = txtPassword.Text;
             txtPassword.Attributes.Add("value", Password);
             string Password2 = txtPassword2.Text;
             txtPassword2.Attributes.Add("value", Password2);
-            String value = null;
-            foreach (ListItem checkBox in cblRoles.Items)
-            {
-                if (checkBox.Selected == true)
-                {
-                    value = checkBox.Value;
-
-                    if (value == "superuser")
-                    {
-                        cblRoles.Items[0].Enabled = false;
-                        cblRoles.Items[0].Selected = false;
-                        cblRoles.Items[2].Enabled = false;
-                        cblRoles.Items[2].Selected = false;
-                    }
-                    else
-                    {
-                        cblRoles.Items[0].Enabled = true;
-                        cblRoles.Items[2].Enabled = true;
-                    }
-                }
-            }
         }
+        */
     }
 }

@@ -179,29 +179,6 @@ namespace LearnHub
                 Response.Redirect("editUsers.aspx?userID=" + userID);
             }
         }
-        protected void checkCheckBoxes(object sender, EventArgs e)
-        {
-            String value = null;
-            foreach (ListItem checkBox in cblRoles.Items)
-            {
-                if (checkBox.Selected == true)
-                {
-                    value = checkBox.Value;
-
-                    if (value == "superuser")
-                    {
-                        cblRoles.Items[0].Enabled = false;
-                        cblRoles.Items[0].Selected = false;
-                        cblRoles.Items[2].Enabled = false;
-                        cblRoles.Items[2].Selected = false;
-                    }
-                    else
-                    {
-                        cblRoles.Items[0].Enabled = true;
-                        cblRoles.Items[2].Enabled = true;
-                    }
-                }
-            }
-        }
+        
     }   
 }
