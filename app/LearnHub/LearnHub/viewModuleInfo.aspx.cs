@@ -116,7 +116,8 @@ namespace LearnHub
                     if (FileExtension.Equals("pdf") || FileExtension.Equals("jpeg") || FileExtension.Equals("png") || FileExtension.Equals("doc")
                         || FileExtension.Equals("docx") || FileExtension.Equals("xlsx") || FileExtension.Equals("csv") || FileExtension.Equals("xlsm")
                         || FileExtension.Equals("mp3") || FileExtension.Equals("mp4") || FileExtension.Equals("avi") || FileExtension.Equals("m4a") 
-                        || FileExtension.Equals("zip")|| FileExtension.Equals("rar")|| FileExtension.Equals("ppt"))
+                        || FileExtension.Equals("zip")|| FileExtension.Equals("rar")|| FileExtension.Equals("ppt") || FileExtension.Equals("jpg") ||
+                            FileExtension.Equals("pptx"))
                     {
                         FileUpload1.PostedFile
                         .SaveAs(Server.MapPath(filepath) + fileName);

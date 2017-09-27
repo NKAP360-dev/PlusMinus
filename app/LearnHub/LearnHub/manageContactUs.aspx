@@ -4,6 +4,7 @@
 <%@ Import Namespace="System.Data" %>
 <%@ Import Namespace="LearnHub.AppCode.dao" %>
 <%@ Import Namespace="LearnHub.AppCode.entity" %>
+<%@ Import Namespace="System.Collections" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link href="Scripts/footable.bootstrap.min.css" rel="stylesheet" />
@@ -124,15 +125,20 @@
                         </tr>
                     </thead>
                     <tbody>
+                        <% ContactDAO ldao = new ContactDAO();
+                             ArrayList arr = ldao.getContacts();
+                             foreach (Contact con in arr)
+                             {%>
                         <tr>
-                            <td>Rafid</td>
-                            <td>Nursing</td>
-                            <td>rafida@amk.com</td>
-                            <td>buggy</td>
-                            <td><a href="editContactUs.aspx" class="btn btn-sm btn-info"><span class="glyphicon glyphicon-pencil"></span></a>
-                                <a href="#deleteModal" data-toggle="modal" class="btn btn-sm btn-danger"><span class="glyphicon glyphicon-trash"></span></a>
+                            <td><%=con.name %></td>
+                            <td><%=con.department %></td>
+                            <td><%=con.email %></td>
+                            <td><%=con.remarks %></td>      
+                            <td><a href="editContactUs.aspx?id=<%=con.contact_id %>" class="btn btn-sm btn-info"><span class="glyphicon glyphicon-pencil"></span></a>
+                                <a href="deleteContact.aspx?id=<%=con.contact_id %>" onclick="return confirm('Are you sure?')" data-toggle="modal" class="btn btn-sm btn-danger"><span class="glyphicon glyphicon-trash" ></span></a>
                             </td>
                         </tr>
+                        <%} %>
                     </tbody>
                 </table>
         </div>
@@ -149,7 +155,7 @@
                         <div class="wrapper">
                             <h4>Are you sure you want to submit?</h4>
                             <br />
-                            <asp:Button ID="btnConfirmSubmit" CssClass="btn btn-primary" runat="server" Text="Submit"/>
+                            <asp:Button ID="btnConfirmSubmit" CssClass="btn btn-primary" runat="server" Text="Submit" OnClick="btnCreate_Click"/>
                             <asp:Button ID="btnCancel1" CssClass="btn btn-default" runat="server" class="close" data-dismiss="modal" Text="Cancel" OnClientClick="return false;" />
 
                             <br />

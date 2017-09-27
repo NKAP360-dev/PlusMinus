@@ -78,7 +78,7 @@
                             <div class="wrapper">
                                 <h4>Are you sure you want to save your changes and overwrite the current contact details?</h4>
                                 <br />
-                                <asp:Button ID="btnConfirmSubmit" CssClass="btn btn-primary" runat="server" Text="Save Changes" />
+                                 <asp:Button ID="btnConfirmSubmit" CssClass="btn btn-primary" runat="server" Text="Save Changes" OnClick="btnEdit_Click"/>
                                 <asp:Button ID="btnCancel1" CssClass="btn btn-default" runat="server" class="close" data-dismiss="modal" Text="Cancel" OnClientClick="return false;" />
 
                                 <br />
