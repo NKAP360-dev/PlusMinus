@@ -499,7 +499,7 @@
                                 <p>
                                     <asp:TextBox ID="uploadTitleInput" runat="server" CssClass="form-control" placeholder="Enter Upload Title"></asp:TextBox>
                                     <asp:RequiredFieldValidator ID="rfv_uploadTitleInput" runat="server" ErrorMessage="Please enter a Title" ControlToValidate="uploadTitleInput" ForeColor="Red" Display="Dynamic"></asp:RequiredFieldValidator>
-                                    <asp:CustomValidator ID="cv_uploadTitleInput" runat="server" ErrorMessage="This title already exists! Please enter a different title" OnServerValidate="checkTitleExists" ForeColor="Red" ValidationGroup="ValidateForm" Display="Dynamic"></asp:CustomValidator>
+                                    <asp:CustomValidator ID="cv_uploadTitleInput" runat="server" ErrorMessage="This title already exists! Please enter a different title" OnServerValidate="checkTitleExists" ForeColor="Red" ValidationGroup="ValidateForm2" Display="Dynamic"></asp:CustomValidator>
                                 </p>
                                 <br />
                             </div>

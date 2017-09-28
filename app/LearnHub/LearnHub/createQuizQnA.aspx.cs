@@ -57,11 +57,12 @@ namespace LearnHub
                     lblAddedMsg.Visible = false;
                 }
             }
+            /*
             if (Page.IsPostBack)
             {
                 // reshow
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "openModal();", true);
-            }
+            }*/
         }
 
         protected void btnNewQn_Click(object sender, EventArgs e)
@@ -210,7 +211,7 @@ namespace LearnHub
                     newQuiz.setRandomOrder("n");
                 }
                 newQuiz.setTimeLimit(Convert.ToInt32(txtTimeLimit.Text));
-                if (rdlAttempt.SelectedValue.Equals("y"))
+                if (rdlAttempt.SelectedValue.Equals("unlimited"))
                 {
                     newQuiz.setMultipleAttempts("y");
                     newQuiz.setNumberOfAttempts(0);

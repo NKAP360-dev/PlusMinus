@@ -78,7 +78,7 @@
                     <div class="form-group">
                         <strong>
                             <asp:Label runat="server" CssClass="col-lg-3 control-label" Text="Department"></asp:Label></strong>
-                        <asp:Label ID="lblDepartment" runat="server" CssClass="col-lg-6 control-label-left"><%=currentUser.getDepartment() %></asp:Label>
+                        <asp:Label ID="lblDepartment" runat="server" CssClass="col-lg-6 control-label-left"><%=System.Globalization.CultureInfo.CurrentCulture.TextInfo.ToTitleCase(currentUser.getAddress().ToLower()) %></asp:Label>
                     </div>
                     <div class="form-group">
                         <strong>

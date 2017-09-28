@@ -995,5 +995,95 @@ namespace LearnHub.AppCode.dao
             }
             return toReturn;
         }
+        public Boolean checkIfUserIsSupervisor(string userID)
+        {
+            SqlConnection conn = new SqlConnection();
+            Boolean toReturn = false;
+            try
+            {
+                conn = new SqlConnection();
+                string connstr = ConfigurationManager.ConnectionStrings["DBConnectionString"].ToString();
+                conn.ConnectionString = connstr;
+                conn.Open();
+                SqlCommand comm = new SqlCommand();
+                comm.Connection = conn;
+                comm.CommandText = "select * from [User] where supervisor=@userID";
+                comm.Parameters.AddWithValue("@userID", userID);
+                SqlDataReader dr = comm.ExecuteReader();
+                if (dr == null || !dr.HasRows)
+                {
+                    toReturn = false;
+                }
+                else
+                {
+                    toReturn = true;
+                }
+                dr.Close();
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                conn.Close();
+            }
+            return toReturn;
+        }
+        public List<User> getAllUsersByDept(string deptName)
+        {
+            List<User> toReturn = new List<User>();
+            SqlConnection conn = new SqlConnection();
+            User u = null;
+            try
+            {
+                conn = new SqlConnection();
+                string connstr = ConfigurationManager.ConnectionStrings["DBConnectionString"].ToString();
+                conn.ConnectionString = connstr;
+                conn.Open();
+                SqlCommand comm = new SqlCommand();
+                comm.Connection = conn;
+                comm.CommandText = "select * from [User] where dept_name=@deptName";
+                comm.Parameters.AddWithValue("@deptName", deptName);
+                SqlDataReader dr = comm.ExecuteReader();
+                while (dr.Read())
+                {
+                    u = new User();
+                    u = new User();
+                    string userID = ((string)dr["userID"]);
+                    u.setUserID(userID);
+                    u.setName((string)dr["name"]);
+                    u.setJobTitle((string)dr["job_title"]);
+                    u.setJobCategory((string)dr["job_category"]);
+                    if (!DBNull.Value.Equals(dr["supervisor"]))
+                    {
+                        u.setSupervisor((string)dr["supervisor"]);
+                    }
+                    else
+                    {
+                        u.setSupervisor("NA");
+                    }
+                    ArrayList roles = getRolesByID(userID);
+                    u.setRoles(roles);
+                    u.setContact((string)dr["contactNumber"]);
+                    u.setAddress((string)dr["address"]);
+                    u.setDepartment((string)dr["dept_name"]);
+                    u.setEmail((string)dr["email"]);
+                    u.setStartDate(dr.GetDateTime(3));
+                    u.setStatus((string)dr["status"]);
+                    toReturn.Add(u);
+                }
+                dr.Close();
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                conn.Close();
+            }
+            return toReturn;
+        }
     }
 }

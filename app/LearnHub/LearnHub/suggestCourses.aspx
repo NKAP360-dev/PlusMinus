@@ -4,6 +4,20 @@
 <%@ Import Namespace="LearnHub.AppCode.dao" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <link href="Scripts/footable.bootstrap.min.css" rel="stylesheet" />
+    <script src="Scripts/footable.min.js"></script>
+    <script>
+        jQuery(function ($) {
+            $('[id*=gvCourses]').footable({
+                "paging": {
+                    "size": 10 <%--Change how many rows per page--%>
+                },
+                "filtering": {
+                    "position": "left"
+                }
+            });
+        });
+    </script>
     <style>
         .breadcrumb {
             padding-top: 15px;
@@ -11,6 +25,29 @@
             list-style: none;
             background-color: white;
             border-radius: 0px;
+        }
+
+        .pagination li > a,
+        .pagination li > span,
+        .pagination li > a:focus, .pagination .disabled > a,
+        .pagination .disabled > a:hover,
+        .pagination .disabled > a:focus,
+        .pagination .disabled > span {
+            background-color: white;
+            color: black;
+        }
+
+            .pagination li > a:hover {
+                background-color: #96a8ba;
+            }
+
+        .pagination > .active > a,
+        .pagination > .active > span,
+        .pagination > .active > a:hover,
+        .pagination > .active > span:hover,
+        .pagination > .active > a:focus,
+        .pagination > .active > span:focus {
+            background-color: #576777;
         }
     </style>
     <script type="text/javascript">
@@ -53,29 +90,30 @@
         <form class="form-horizontal" runat="server">
             <fieldset>
                 <legend>Choose up to 5 Courses</legend>
-                <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
-                <asp:UpdatePanel ID="UpdatePanel1" runat="server">
-                    <ContentTemplate>
+                        <%--
                 <div class="form-group required">
                     <strong>
                         <asp:Label runat="server" CssClass="col-lg-1 control-label" Text="User"></asp:Label></strong>
                     <div class="col-lg-5">
-                        <%--Choose which user to suggest courses for, after choosing from ddl, the current course suggested will be displayed below, hence the updatepanel--%>
+                        <%--Choose which user to suggest courses for, after choosing from ddl, the current course suggested will be displayed below, hence the updatepanel
                         <asp:DropDownList ID="ddlSelectUser" CssClass="form-control" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlSelectUser_SelectedIndexChanged">
                         </asp:DropDownList>
                     </div>
-                    <%--Open new window and link to user's progress report--%>
+                    
+                    <%--Open new window and link to user's progress report
                     <div class="col-lg-6">
                         <asp:LinkButton ID="btnViewReport" CssClass="btn btn-info" runat="server"><span class="glyphicon glyphicon-search"></span>&nbsp; View Progress Report</asp:LinkButton>
                     </div>
                 </div>
+                        <br />
+                        --%>
                         <div class="form-group">
                             <strong>
                                 <asp:Label runat="server" CssClass="col-lg-1 control-label" Text="List of Courses Available"></asp:Label></strong>
                             <div class="col-lg-5">
                                 <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:DBConnectionString %>">
                         </asp:SqlDataSource>
-                        <asp:GridView ID="gvCourses" runat="server" AutoGenerateColumns="False" DataKeyNames="elearn_courseID,categoryID1" AllowPaging="True" CssClass="table table-striped table-hover" GridLines="None" OnRowCommand="gvCourses_RowCommand" EmptyDataText="There are no courses available to choose from.">
+                        <asp:GridView ID="gvCourses" runat="server" AutoGenerateColumns="False" DataKeyNames="elearn_courseID,categoryID1" AllowPaging="False" data-sorting="true" data-filtering="true" CssClass="footable table table-striped table-hover" data-paging="true" GridLines="None" OnRowCommand="gvCourses_RowCommand" EmptyDataText="There are no courses available to choose from.">
                             <Columns>
                                 <asp:TemplateField>
                                     <ItemTemplate>
@@ -119,11 +157,6 @@
                             </div>
 
                         </div>
-                    </ContentTemplate>
-                    <Triggers>
-                        <asp:AsyncPostBackTrigger ControlID="ddlSelectUser" EventName="SelectedIndexChanged" />
-                    </Triggers>
-                </asp:UpdatePanel>
                 <asp:Panel ID="panelError" runat="server" Visible="false">
                     <div class="alert alert-warning alert-dismissible" role="alert">
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>

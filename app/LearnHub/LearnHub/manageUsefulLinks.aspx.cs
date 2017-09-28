@@ -36,7 +36,7 @@ namespace LearnHub
             User currentUser = (User)Session["currentUser"];
             string link = txtLink.Text;
             string desc = txtDesc.Text;
-            Link createThis = new Link(link, desc, currentUser, DateTime.Now, "Active");
+            Link createThis = new Link("http://"+link, desc, currentUser, DateTime.Now, "Active");
             LinkDAO linkdao = new LinkDAO();
             int succ = linkdao.createLink(createThis);
             if (succ > 0)

@@ -79,9 +79,12 @@
         <div class="verticalLine"></div>
     </div>
 
-
     <div class="container">
         <form class="form-horizontal" runat="server" enablepartialrendering="true">
+    <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
+    <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+        <ContentTemplate>
+            
             <fieldset>
                 <legend>Input information for new user</legend>
                 <h4>Account Information</h4>
@@ -149,7 +152,7 @@
                     <strong>
                         <asp:Label runat="server" CssClass="col-lg-2 control-label" Text="Department"></asp:Label></strong>
                     <div class="col-lg-5">
-                        <asp:DropDownList ID="lblDept" runat="server" CssClass="form-control">
+                        <asp:DropDownList ID="lblDept" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="lblDept_SelectedIndexChanged">
                             <asp:ListItem>--select--</asp:ListItem>
                         </asp:DropDownList>
                     </div>
@@ -178,7 +181,7 @@
                         <asp:Label runat="server" CssClass="col-lg-2 control-label" Text="Roles"></asp:Label></strong>
                     <div class="col-lg-5">
                         <asp:CheckBoxList ID="cblRoles" runat="server">
-                            <asp:ListItem Value="courseCreator">course creator</asp:ListItem>
+                            <asp:ListItem Value="course creator">course creator</asp:ListItem>
                             <asp:ListItem Value="superuser">superuser</asp:ListItem>
                             <asp:ListItem Value="user">user</asp:ListItem>
                         </asp:CheckBoxList>
@@ -217,6 +220,12 @@
 
                 </div>
             </div>
+        </ContentTemplate>
+        <Triggers>
+            <asp:AsyncPostBackTrigger ControlID="lblDept" EventName="SelectedIndexChanged" />
+        </Triggers>
+    </asp:UpdatePanel>
+    
         </form>
     </div>
 

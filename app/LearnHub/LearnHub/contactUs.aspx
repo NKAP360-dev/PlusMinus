@@ -76,22 +76,25 @@
             <br />
              <table class="table table-striped table-hover" data-paging="true" data-sorting="true" data-filtering="true">
             <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Department</th>
+                    <th>Email</th>
+                    <th>Remarks</th>
+                </tr>
+            </thead>
+            <tbody>
                 <% ContactDAO ldao = new ContactDAO();
                              ArrayList arr = ldao.getContacts();
                              foreach (Contact con in arr)
                              {%>
                         <tr>
                             <td><%=con.name %></td>
-                            <td><%=con.department %></td>
+                            <td><%=System.Globalization.CultureInfo.CurrentCulture.TextInfo.ToTitleCase(con.department.ToLower()) %></td>
                             <td><%=con.email %></td>
                             <td><%=con.remarks %></td>      
                         </tr>
                         <%} %>
-            </thead>
-            <tbody>
-                <tr>
-                    
-                </tr>
             </tbody>
         </table>
         </div>

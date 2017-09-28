@@ -158,7 +158,7 @@
             <br />
             <div class="form-group wrapper">
                 <asp:Button ID="btnNewQn" runat="server" CssClass="btn btn-primary" Text="Add Question" OnClientClick="unsavedFalse()" onclick="btnNewQn_Click" ValidationGroup="ValidateForm"/>
-                <button type="button" data-toggle="modal" data-target="#finishModal" class="btn btn-success" onclick="unsavedFalse()">Finish</button>
+                <button type="button" data-toggle="modal" data-target="#finishModal" class="btn btn-success">Finish</button>
             </div>
 
             <div id="finishModal" class="modal fade" role="dialog">
@@ -194,7 +194,10 @@
                             </div>
                         </div>
                         <br/>
-                         <div class="form-group required">
+                        <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
+                        <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+                            <ContentTemplate>
+                                <div class="form-group required">
                              <label class="col-lg-3 control-label">Allow Multiple Quiz Attempts</label>
                             <div class="col-lg-7">
                                 <asp:RadioButtonList ID="rdlAttempt" runat="server" OnSelectedIndexChanged="RadioButtonList_OnSelectedIndexChange" AutoPostBack="true">
@@ -206,6 +209,12 @@
                                 <asp:RequiredFieldValidator ID="rfv_txtNoOfAttempt" runat="server" ErrorMessage="Please input the number of attempts" ControlToValidate="txtNoOfAttempt" ForeColor="Red" ValidationGroup="ValidateFormTwo" Display="Dynamic" Enabled="False"></asp:RequiredFieldValidator>
                             </div>
                         </div>
+                            </ContentTemplate>
+                            <Triggers>
+                                <asp:AsyncPostBackTrigger ControlID="rdlAttempt" EventName="SelectedIndexChanged" />
+                            </Triggers>
+                        </asp:UpdatePanel>
+                         
                         <br />
                          <div class="form-group required">
                              <label class="col-lg-3 control-label">Display Quiz Answers</label>

@@ -1141,6 +1141,10 @@
     <Content Include="editQuiz.aspx" />
     <Content Include="editUsefulLinks.aspx" />
     <Content Include="editUsers.aspx" />
+    <Content Include="img\barrier.png" />
+    <Content Include="img\checked.png" />
+    <Content Include="img\contactus.png" />
+    <Content Include="img\courses.png" />
     <Content Include="learnyConfiguration.aspx" />
     <Content Include="errorPage.aspx" />
     <Content Include="favicon.ico" />

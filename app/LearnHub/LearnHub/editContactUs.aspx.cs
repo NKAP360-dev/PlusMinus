@@ -41,7 +41,7 @@ using LearnHub.AppCode.entity;
                     ContactDAO adao = new ContactDAO();
                     a = adao.getContactById(id_num);
                     txtName.Text = a.name;
-                    txtDepartment.Text = a.department;
+                    txtDepartment.Text = System.Globalization.CultureInfo.CurrentCulture.TextInfo.ToTitleCase(a.department.ToLower());
                     txtEmail.Text = a.email;
                     txtRemarks.Text = a.remarks;
                 }
@@ -61,7 +61,7 @@ using LearnHub.AppCode.entity;
             DateTime start = article.upload_datetime;
             User u = article.user;
             string status = article.status;
-            Contact toChange = new Contact(id_edit, name, dept, u, start, status, email, remarks);
+            Contact toChange = new Contact(id_edit, name, dept.ToLower(), u, start, status, email, remarks);
             adao.updateContact(toChange);
             Response.Redirect("manageContactUs.aspx");
         }

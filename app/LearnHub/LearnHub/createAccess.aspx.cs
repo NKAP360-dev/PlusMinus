@@ -15,20 +15,22 @@ namespace LearnHub
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            DeptDAO depdao = new DeptDAO();
-            List<Department> deps = depdao.getAllDepartment();
-            foreach (Department d in deps)
+            if (!IsPostBack)
             {
-                lblDept.Items.Add(d.getDeptName());
-            }
-            UserDAO udao = new UserDAO();
+                DeptDAO depdao = new DeptDAO();
+                List<Department> deps = depdao.getAllDepartment();
+                foreach (Department d in deps)
+                {
+                    lblDept.Items.Add(new ListItem(System.Globalization.CultureInfo.CurrentCulture.TextInfo.ToTitleCase(d.getDeptName().ToLower()), d.getDeptName()));
+                }
+                UserDAO udao = new UserDAO();
 
-            ArrayList sups = udao.get_supervisors();
-            foreach (User supervisor in sups)
-            {
-                ddlSup.Items.Add(supervisor.getName());
+                ArrayList sups = udao.get_supervisors();
+                foreach (User supervisor in sups)
+                {
+                    ddlSup.Items.Add(supervisor.getName());
+                }
             }
-
         }
         protected void submit_Click(object sender, EventArgs e)
         {
@@ -66,6 +68,18 @@ namespace LearnHub
             else
             {
                 Response.Redirect("home.aspx");
+            }
+        }
+
+        protected void lblDept_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string departmentName = lblDept.SelectedValue;
+            UserDAO userDAO = new UserDAO();
+            List<User> allSupervisorForDept = userDAO.getAllUsersByDept(departmentName);
+            ddlSup.Items.Clear();
+            foreach (User u in allSupervisorForDept)
+            {
+                ddlSup.Items.Add(new ListItem(u.getName(), u.getName()));
             }
         }
 

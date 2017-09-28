@@ -33,12 +33,20 @@ namespace LearnHub
                 if (currentUser.getUserID() == null)
                 {
                     lblErrorMsgUse.Visible = true;
+                    lblUserInactive.Visible = false;
                     lblErrorMsgUse.Text = "Invalid username/password.";
                 } else
                 {
-                    Session["currentUser"] = currentUser;
-                    //to redirect
-                    Response.Redirect("Home.aspx");
+                    if (currentUser.getStatus().Equals("Active"))
+                    {
+                        Session["currentUser"] = currentUser;
+                        //to redirect
+                        Response.Redirect("Home.aspx");
+                    }
+                    else
+                    {
+                        lblUserInactive.Visible = true;
+                    }
                 }
             }
             else if (txtUsernameVal.Text != "" && txtPasswordVal.Text != "")
@@ -51,6 +59,7 @@ namespace LearnHub
                 if (currentUser.getUserID() == null)
                 {
                     lblErrorMsgUse.Visible = true;
+                    lblUserInactive.Visible = false;
                     lblErrorMsgUse.Text = "Invalid username/password.";
                 }
                 else
@@ -65,6 +74,7 @@ namespace LearnHub
                 System.Diagnostics.Debug.WriteLine("C");
                 //Response.Redirect("google.com");
                 lblErrorMsgUse.Visible = true;
+                lblUserInactive.Visible = false;
                 lblErrorMsgUse.Text = "Invalid username/password.";
             }
             else if (txtPassword.Text != "")
@@ -72,6 +82,7 @@ namespace LearnHub
                 System.Diagnostics.Debug.WriteLine("D");
                 //Response.Redirect("yahoo.com");
                 lblErrorMsgUse.Visible = true;
+                lblUserInactive.Visible = false;
                 lblErrorMsgUse.Text = "Invalid username/password.";
             }
             else

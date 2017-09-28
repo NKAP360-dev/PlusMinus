@@ -59,6 +59,13 @@ namespace LearnHub
                         gvPrereq.DataSource = SqlDataSource1;
                         gvPrereq.DataBind();
 
+                        gvPrereq.UseAccessibleHeader = true;
+
+                        if (gvPrereq.Rows.Count > 0)
+                        {
+                            gvPrereq.HeaderRow.TableSection = TableRowSection.TableHeader;
+                        }
+
                         //to load prereq cart
 
                         var sqlQuery = "";
@@ -190,6 +197,13 @@ namespace LearnHub
             gvPrereq.DataSource = SqlDataSource1;
             gvPrereq.DataBind();
 
+            gvPrereq.UseAccessibleHeader = true;
+
+            if (gvPrereq.Rows.Count > 0)
+            {
+                gvPrereq.HeaderRow.TableSection = TableRowSection.TableHeader;
+            }
+
             var sqlQuery = String.Format("SELECT * FROM [Elearn_course] WHERE [elearn_courseID] IN ({0})", itemIDs);
 
             SqlDataSourcePrereqCart.SelectCommand = sqlQuery;
@@ -226,6 +240,13 @@ namespace LearnHub
             SqlDataSource1.SelectCommand = sqlQueryCourseList;
             gvPrereq.DataSource = SqlDataSource1;
             gvPrereq.DataBind();
+
+            gvPrereq.UseAccessibleHeader = true;
+
+            if (gvPrereq.Rows.Count > 0)
+            {
+                gvPrereq.HeaderRow.TableSection = TableRowSection.TableHeader;
+            }
 
             var sqlQuery = "";
             if (itemIDs.Length > 0)

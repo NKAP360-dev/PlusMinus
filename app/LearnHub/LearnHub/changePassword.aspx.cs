@@ -16,7 +16,8 @@ namespace LearnHub
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            lblErrorMsg.Visible = false;
+            lblPasswordSaved.Visible = false;
         }
         protected void submit_new_password(object sender, EventArgs e)
         {
@@ -43,16 +44,19 @@ namespace LearnHub
                         Boolean isit = udao.updatePassword(new_hashedPassword, currentUser);
                         if (isit)
                         {
-                            Response.Redirect("accountSetting.aspx");
+                            lblErrorMsg.Visible = false;
+                            lblPasswordSaved.Visible = true;
                         }
                         else
                         {
-                            Response.Redirect("Home.aspx");
+                            lblErrorMsg.Visible = true;
+                            lblErrorMsg.Text = "An error occurred while saving";
                         }
                     }
                     else
                     {
-                        Response.Redirect("errorPage.aspx");
+                        lblErrorMsg.Visible = true;
+                        lblErrorMsg.Text = "Passwords do not match";
                     }
                 }
                 else

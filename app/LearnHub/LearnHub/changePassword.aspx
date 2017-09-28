@@ -77,7 +77,8 @@
                             <br />
                             <asp:Button ID="btnSave" runat="server" CssClass="btn btn-primary" Text="Save" OnClick="submit_new_password" ValidationGroup="ValidateForm"/><br /><br />
                             <%--To be implemented--%>
-                            <asp:Label ID="lblPasswordSaved" runat="server" CssClass="label label-success" Text="Password has been changed successfully!" Font-Size="Medium"></asp:Label>
+                            <asp:Label ID="lblErrorMsg" runat="server" CssClass="label label-warning" Text="" Font-Size="Medium" Visible="false"></asp:Label>
+                            <asp:Label ID="lblPasswordSaved" runat="server" CssClass="label label-success" Text="Password has been changed successfully!" Font-Size="Medium" Visible="false"></asp:Label>
                         </div>
                     </div>
                 </div>

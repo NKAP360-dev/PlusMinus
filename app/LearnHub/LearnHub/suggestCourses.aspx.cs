@@ -24,25 +24,9 @@ namespace LearnHub
                 if (!IsPostBack)
                 {
                     UserDAO userDAO = new UserDAO();
-                    List<User> usersToDisplayInDDL = null;
-                    if (currentUser.getRoles().Contains("superuser"))
-                    {
-                        usersToDisplayInDDL = userDAO.getAllUsers();
-                    }
-                    else
-                    {
-                        usersToDisplayInDDL = userDAO.getAllUsersBySubordinate(currentUser.getUserID());
-                    }
-
-                    foreach (User u in usersToDisplayInDDL)
-                    {
-                        if (!u.getUserID().Equals("admin"))
-                        {
-                            ddlSelectUser.Items.Add(new ListItem(u.getName(), u.getUserID()));
-                        }
-                    }
+                    User currentSelectedUser = userDAO.getUserByID((string)Request.QueryString["id"]);
                     Course_elearnDAO ceDAO = new Course_elearnDAO();
-                    List<int> suggestedCourseIDList = ceDAO.getAllSuggestedCoursesByUserID(ddlSelectUser.SelectedValue);
+                    List<int> suggestedCourseIDList = ceDAO.getAllSuggestedCoursesByUserID((string)Request.QueryString["id"]);
                     Session["suggestedCourseIDList"] = suggestedCourseIDList;
                 }
                 var itemIDs = string.Join(",", ((IList<int>)Session["suggestedCourseIDList"]).ToArray());
@@ -60,7 +44,14 @@ namespace LearnHub
                 SqlDataSource1.SelectCommand = sqlQueryCourseList;
                 gvCourses.DataSource = SqlDataSource1;
                 gvCourses.DataBind();
-                
+
+                gvCourses.UseAccessibleHeader = true;
+
+                if (gvCourses.Rows.Count > 0)
+                {
+                    gvCourses.HeaderRow.TableSection = TableRowSection.TableHeader;
+                }
+
                 //to load suggested cart
 
                 var sqlQuery = "";
@@ -77,7 +68,7 @@ namespace LearnHub
                 gvCourseCart.DataSource = SqlDataSourceCourseCart;
                 gvCourseCart.DataBind();
 
-                btnViewReport.OnClientClick = $"window.open('progressReports.aspx?id={ddlSelectUser.SelectedValue}')";
+                //btnViewReport.OnClientClick = $"window.open('progressReports.aspx?id={ddlSelectUser.SelectedValue}')";
             }
         }
 
@@ -105,6 +96,13 @@ namespace LearnHub
                 SqlDataSource1.SelectCommand = sqlQueryCourseList;
                 gvCourses.DataSource = SqlDataSource1;
                 gvCourses.DataBind();
+
+                gvCourses.UseAccessibleHeader = true;
+
+                if (gvCourses.Rows.Count > 0)
+                {
+                    gvCourses.HeaderRow.TableSection = TableRowSection.TableHeader;
+                }
 
                 var sqlQuery = String.Format("SELECT * FROM [Elearn_course] WHERE [elearn_courseID] IN ({0})", itemIDs);
 
@@ -140,6 +138,13 @@ namespace LearnHub
             gvCourses.DataSource = SqlDataSource1;
             gvCourses.DataBind();
 
+            gvCourses.UseAccessibleHeader = true;
+
+            if (gvCourses.Rows.Count > 0)
+            {
+                gvCourses.HeaderRow.TableSection = TableRowSection.TableHeader;
+            }
+
             var sqlQuery = "";
             if (itemIDs.Length > 0)
             {
@@ -158,7 +163,7 @@ namespace LearnHub
         protected void ddlSelectUser_SelectedIndexChanged(object sender, EventArgs e)
         {
             Course_elearnDAO ceDAO = new Course_elearnDAO();
-            List<int> suggestedCourseIDList = ceDAO.getAllSuggestedCoursesByUserID(ddlSelectUser.SelectedValue);
+            List<int> suggestedCourseIDList = ceDAO.getAllSuggestedCoursesByUserID((string)Request.QueryString["id"]);
             Session["suggestedCourseIDList"] = suggestedCourseIDList;
             var itemIDs = string.Join(",", ((IList<int>)Session["suggestedCourseIDList"]).ToArray());
 
@@ -175,6 +180,13 @@ namespace LearnHub
             SqlDataSource1.SelectCommand = sqlQueryCourseList;
             gvCourses.DataSource = SqlDataSource1;
             gvCourses.DataBind();
+
+            gvCourses.UseAccessibleHeader = true;
+
+            if (gvCourses.Rows.Count > 0)
+            {
+                gvCourses.HeaderRow.TableSection = TableRowSection.TableHeader;
+            }
 
             //to load suggested cart
 
@@ -195,19 +207,20 @@ namespace LearnHub
 
         protected void cfmSubmit_Click(object sender, EventArgs e)
         {
+            string userID = (string)Request.QueryString["id"];
             List<int> suggestedCourseIDList = (List<int>)Session["suggestedCourseIDList"];
             Course_elearnDAO ceDAO = new Course_elearnDAO();
 
             //delete all existing suggested courses
-            ceDAO.deleteSuggestedCoursesByUserID(ddlSelectUser.SelectedValue);
+            ceDAO.deleteSuggestedCoursesByUserID(userID);
 
             //insert new suggested courses
             foreach (int id in suggestedCourseIDList)
             {
-                ceDAO.insertSuggestedCourses(id, ddlSelectUser.SelectedValue);
+                ceDAO.insertSuggestedCourses(id, userID);
             }
             //to change redirect path
-            Response.Redirect("progressReports.aspx?id=" + ddlSelectUser.SelectedValue);
+            Response.Redirect("progressReports.aspx?id=" + userID);
         }
     }
 }

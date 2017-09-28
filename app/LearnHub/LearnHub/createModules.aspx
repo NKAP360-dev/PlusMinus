@@ -29,9 +29,9 @@
 
 
         jQuery(function ($) {
-            $('.table').footable({
+            $('[id*=gvPrereq]').footable({
                 "paging": {
-                    "size": 5 <%--Change how many rows per page--%>
+                    "size": 10 <%--Change how many rows per page--%>
                 },
                 "filtering": {
                     "position": "left"
@@ -399,7 +399,7 @@
                         <div id="preq" class="collapse">
                         <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:DBConnectionString %>">
                         </asp:SqlDataSource>
-                        <asp:GridView ID="gvPrereq" runat="server" AutoGenerateColumns="False" DataKeyNames="elearn_courseID,categoryID1" AllowPaging="True" CssClass="table table-striped table-hover" GridLines="None" OnRowCommand="gvPrereq_RowCommand" EmptyDataText="There are no courses available to choose from.">
+                        <asp:GridView ID="gvPrereq" runat="server" AutoGenerateColumns="False" DataKeyNames="elearn_courseID,categoryID1" AllowPaging="False" CssClass="footable table table-striped table-hover" data-paging="true" GridLines="None" OnRowCommand="gvPrereq_RowCommand" EmptyDataText="There are no courses available to choose from." EnableViewState="true">
                             <Columns>
                                 <asp:TemplateField>
                                     <ItemTemplate>
@@ -472,12 +472,14 @@
 
                     <div class="col-lg-5">
                         <div class="input-daterange input-group" id="datepicker">
-                            <asp:TextBox ID="fromDateInput" runat="server" CssClass="form-control" placeholder="DD/MM/YYYY"></asp:TextBox>
+                            <asp:TextBox ID="fromDateInput" runat="server" CssClass="form-control" placeholder="DD/MM/YYYY" ReadOnly="True"></asp:TextBox>
                             <span class="input-group-addon">to</span>
-                            <asp:TextBox ID="toDateInput" runat="server" CssClass="form-control" placeholder="DD/MM/YYYY"></asp:TextBox>
+                            <asp:TextBox ID="toDateInput" runat="server" CssClass="form-control" placeholder="DD/MM/YYYY" ReadOnly="True"></asp:TextBox>
                             <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i>
                             </span>
                         </div>
+                        <h6><em>Click on the textbox to choose a date</em></h6>
+                        <br />
                         <asp:RequiredFieldValidator ID="rfv_fromDateInput" ControlToValidate="fromDateInput" runat="server" ErrorMessage="Please enter the Start Date of the Course" ForeColor="Red" ValidationGroup="ValidateForm" />
                         <br />
                         <asp:RequiredFieldValidator ID="rfv_toDateInput" ControlToValidate="toDateInput" runat="server" ErrorMessage="Please enter the End Date of the Course" ForeColor="Red" ValidationGroup="ValidateForm" />

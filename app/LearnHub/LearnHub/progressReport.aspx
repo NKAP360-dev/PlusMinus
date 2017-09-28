@@ -185,6 +185,11 @@
                                 </div>
                             </div>
                         </a>
+                        <%
+                            UserDAO userDAO = new UserDAO();
+                            if (currentUser.getRoles().Contains("superuser") || userDAO.checkIfUserIsSupervisor(currentUser.getUserID()))
+                            {
+                        %>
                          <a href="manageProgress.aspx">
                               <div class="col-lg-12 btn-primary">
                                 <br />
@@ -196,6 +201,7 @@
                                 </div>
                             </div>
                         </a>
+                        <%} %>
                     </div>
                 </div>
             </div>

@@ -100,7 +100,7 @@ namespace LearnHub
 
         protected void upload_click(object sender, EventArgs e)
         {
-            Page.Validate("ValidateForm");
+            Page.Validate("ValidateForm2");
             if (!Page.IsValid)
             {
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "showModal();", true);

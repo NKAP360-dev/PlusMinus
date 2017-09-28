@@ -59,15 +59,10 @@ namespace LearnHub
                     List<Department> deps = depdao.getAllDepartment();
                     foreach (Department d in deps)
                     {
-                        lblDept.Items.Add(d.getDeptName());
+                        lblDept.Items.Add(new ListItem(System.Globalization.CultureInfo.CurrentCulture.TextInfo.ToTitleCase(d.getDeptName().ToLower()), d.getDeptName()));
                     }
-                    foreach (ListItem li in lblDept.Items)
-                    {
-                        if (li.Text.Equals(toChange.getDepartment()))
-                        {
-                            lblDept.SelectedValue = li.Text;
-                        }
-                    }
+                    lblDept.SelectedValue = toChange.getDepartment();
+
                     // find supervisor 
                     ArrayList sups = udao.get_supervisors();
                     foreach (User supervisor in sups)

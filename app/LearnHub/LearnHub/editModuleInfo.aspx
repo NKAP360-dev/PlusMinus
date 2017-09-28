@@ -33,9 +33,9 @@
 
 
         jQuery(function ($) {
-            $('.table').footable({
+            $('[id*=gvPrereq]').footable({
                 "paging": {
-                    "size": 5 <%--Change how many rows per page--%>
+                    "size": 10 <%--Change how many rows per page--%>
                 },
                 "filtering": {
                     "position": "left"
@@ -408,7 +408,7 @@
                         <div id="preq" class="collapse">
                             <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:DBConnectionString %>">
                         </asp:SqlDataSource>
-                        <asp:GridView ID="gvPrereq" runat="server" AutoGenerateColumns="False" DataKeyNames="elearn_courseID,categoryID1" AllowPaging="True" CssClass="table table-striped table-hover" GridLines="None" OnRowCommand="gvPrereq_RowCommand" EmptyDataText="There are no courses available to choose from.">
+                        <asp:GridView ID="gvPrereq" runat="server" AutoGenerateColumns="False" DataKeyNames="elearn_courseID,categoryID1" AllowPaging="False" CssClass="footable table table-striped table-hover" data-paging="true" GridLines="None" OnRowCommand="gvPrereq_RowCommand" EmptyDataText="There are no courses available to choose from.">
                             <Columns>
                                 <asp:TemplateField>
                                     <ItemTemplate>

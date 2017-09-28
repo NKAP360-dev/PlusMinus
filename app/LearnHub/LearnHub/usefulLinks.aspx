@@ -84,7 +84,7 @@
                         foreach (Link link in arr)
                         {%>
                     <tr>
-                        <td><a href="<%=link.link_path %>"><%=link.link_path %>/</a></td>
+                        <td><a href="~/<%=link.link_path %>" target="_blank"><%=link.link_path %>/</a></td>
                         <td><%=link.description %></td>
                     </tr>
                     <%} %>

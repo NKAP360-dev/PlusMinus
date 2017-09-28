@@ -30,11 +30,21 @@ namespace LearnHub
             {
                 Response.Redirect("errorPage.aspx");
             }
+
+            if (!IsPostBack)
+            {
+                DeptDAO depdao = new DeptDAO();
+                List<Department> deps = depdao.getAllDepartment();
+                foreach (Department d in deps)
+                {
+                    ddlDept.Items.Add(new ListItem(System.Globalization.CultureInfo.CurrentCulture.TextInfo.ToTitleCase(d.getDeptName().ToLower()), d.getDeptName()));
+                }
+            }
         }
         protected void btnCreate_Click(object sender, EventArgs e)
         {
             User currentUser = (User)Session["currentUser"];
-            string dept = txtDepartment.Text;
+            string dept = ddlDept.SelectedValue;
             string name = txtName.Text;
             string email = txtEmail.Text;
             string remarks = txtRemarks.Text;

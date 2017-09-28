@@ -86,7 +86,9 @@
                         <strong>
                             <asp:Label runat="server" CssClass="col-lg-2 control-label" Text="Department"></asp:Label></strong>
                         <div class="col-lg-9">
-                            <asp:TextBox ID="txtDepartment" runat="server" CssClass="form-control" placeholder="Department of Contact"></asp:TextBox>
+                            <asp:DropDownList ID="ddlDept" runat="server" CssClass="form-control">
+                            <asp:ListItem>--select--</asp:ListItem>
+                        </asp:DropDownList>
                         </div>
                     </div>
 
@@ -131,7 +133,7 @@
                              {%>
                         <tr>
                             <td><%=con.name %></td>
-                            <td><%=con.department %></td>
+                            <td><%=System.Globalization.CultureInfo.CurrentCulture.TextInfo.ToTitleCase(con.department.ToLower()) %></td>
                             <td><%=con.email %></td>
                             <td><%=con.remarks %></td>      
                             <td><a href="editContactUs.aspx?id=<%=con.contact_id %>" class="btn btn-sm btn-info"><span class="glyphicon glyphicon-pencil"></span></a>

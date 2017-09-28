@@ -41,7 +41,7 @@
                 <button class="dropbtn" onclick="return false;"><span class="glyphicon glyphicon-option-horizontal"></span></button>
                 <div class="dropdown-content" style="right: 0;">
                     <a href="manageProgress.aspx"><span class="glyphicon glyphicon-duplicate"></span>&nbsp&nbsp; Manage Progress Reports</a>
-                    <a href="suggestCourses.aspx"><span class="glyphicon glyphicon-comment"></span>&nbsp;&nbsp;Suggest Courses</a>
+                    <a href="suggestCourses.aspx?id=<%=userID %>"><span class="glyphicon glyphicon-comment"></span>&nbsp;&nbsp;Suggest Courses</a>
                 </div>
             </div>
             <div class="verticalLine"></div>

@@ -34,7 +34,7 @@
             <button class="dropbtn" onclick="return false;"><span class="glyphicon glyphicon-option-horizontal"></span></button>
             <div class="dropdown-content" style="right: 0;">
                 <a href="manageArticles.aspx"><span class="glyphicon glyphicon-duplicate"></span>&nbsp;&nbsp;Manage Articles</a>
-                <a href="createArticles.aspx"><span class="glyphicon glyphicon-pencil"></span>&nbsp;&nbsp;Add Article</a>
+                <a href="createArticle.aspx"><span class="glyphicon glyphicon-pencil"></span>&nbsp;&nbsp;Add Article</a>
             </div>
         </div>
 

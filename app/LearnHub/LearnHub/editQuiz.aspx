@@ -8,6 +8,8 @@
 <%@ Import Namespace="LearnHub.AppCode.entity" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <link href="Scripts/footable.bootstrap.min.css" rel="stylesheet" />
+    <script src="Scripts/footable.min.js"></script>
     <script>
         function ValidateQuizDescription(sender, args) {
             console.log("validateModuleDesc");
@@ -40,6 +42,17 @@
             }
             return false;
         }
+
+        jQuery(function ($) {
+            $('[id*=gvPrereq]').footable({
+                "paging": {
+                    "size": 10 <%--Change how many rows per page--%>
+                },
+                "filtering": {
+                    "position": "left"
+                }
+            });
+        });
     </script>
     <style>
         .breadcrumb {
@@ -48,6 +61,29 @@
             list-style: none;
             background-color: white;
             border-radius: 0px;
+        }
+
+        .pagination li > a,
+        .pagination li > span,
+        .pagination li > a:focus, .pagination .disabled > a,
+        .pagination .disabled > a:hover,
+        .pagination .disabled > a:focus,
+        .pagination .disabled > span {
+            background-color: white;
+            color: black;
+        }
+
+            .pagination li > a:hover {
+                background-color: #96a8ba;
+            }
+
+        .pagination > .active > a,
+        .pagination > .active > span,
+        .pagination > .active > a:hover,
+        .pagination > .active > span:hover,
+        .pagination > .active > a:focus,
+        .pagination > .active > span:focus {
+            background-color: #576777;
         }
     </style>
 </asp:Content>
@@ -125,7 +161,7 @@
 
                              <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:DBConnectionString %>">
                         </asp:SqlDataSource>
-                        <asp:GridView ID="gvPrereq" runat="server" AutoGenerateColumns="False" DataKeyNames="quizID" AllowPaging="True" CssClass="table table-striped table-hover" GridLines="None" OnRowCommand="gvPrereq_RowCommand" EmptyDataText="There are no quizzes available to choose from.">
+                        <asp:GridView ID="gvPrereq" runat="server" AutoGenerateColumns="False" DataKeyNames="quizID" AllowPaging="False" CssClass="footable table table-striped table-hover" data-paging="true" GridLines="None" OnRowCommand="gvPrereq_RowCommand" EmptyDataText="There are no quizzes available to choose from.">
                             <Columns>
                                 <asp:TemplateField>
                                     <ItemTemplate>
