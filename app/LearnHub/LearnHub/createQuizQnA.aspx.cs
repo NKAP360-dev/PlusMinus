@@ -255,19 +255,21 @@ namespace LearnHub
         }
         protected void checkForm(object sender, EventArgs e)
         {
-            Page.Validate("ValidateForm2");
+            Page.Validate("ValidateForm");
             System.Diagnostics.Debug.WriteLine("checkForm");
             if (!Page.IsValid)
             {
                 //rfv_txtNumCorrectAns.Enabled = false;
                 //rfv_txtTimeLimit.Enabled = false;
                 //rfv_rdlAttempt.Enabled = false;
+                System.Diagnostics.Debug.WriteLine("notvalid");
             }
             else
             {
                 //rfv_txtNumCorrectAns.Enabled = true;
                 //rfv_txtTimeLimit.Enabled = true;
                 //rfv_rdlAttempt.Enabled = true;
+                System.Diagnostics.Debug.WriteLine("valid");
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "openModal();", true);
             }
         }
@@ -285,6 +287,7 @@ namespace LearnHub
                 rfv_txtNoOfAttempt.Enabled = true;
             }
         }
+        
 
     }
 }

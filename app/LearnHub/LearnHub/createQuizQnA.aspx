@@ -158,7 +158,7 @@
             <br />
             <div class="form-group wrapper">
                 <asp:Button ID="btnNewQn" runat="server" CssClass="btn btn-primary" Text="Add Question" OnClientClick="unsavedFalse()" onclick="btnNewQn_Click" ValidationGroup="ValidateForm"/>
-                <button type="button" data-toggle="modal" data-target="#finishModal" class="btn btn-success">Finish</button>
+                <asp:Button ID="btnFinish" runat="server" CssClass="btn btn-success" Text="Finish" OnClientClick="unsavedFalse()" onclick="checkForm" useSubmitBehavior="false" ValidationGroup="ValidateForm"/>
             </div>
 
             <div id="finishModal" class="modal fade" role="dialog">
@@ -228,7 +228,7 @@
                         </div>
 
                         <div class="wrapper">
-                            <asp:Button ID="btnConfirmSubmit" CssClass="btn btn-primary" runat="server" Text="Submit" OnClick="btnConfirmSubmit_Click" />
+                            <asp:Button ID="btnConfirmSubmit" CssClass="btn btn-primary" runat="server" Text="Submit" OnClick="btnConfirmSubmit_Click" OnClientClick="unsavedFalse()" ValidationGroup="ValidateFormTwo" />
                             <asp:Button ID="btnCancel1" CssClass="btn btn-default" runat="server" class="close" data-dismiss="modal" Text="Cancel" OnClientClick="return false;" />
                             <br />
                         </div>
