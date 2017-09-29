@@ -132,6 +132,11 @@ namespace LearnHub
                         gvPrereqCart.DataBind();
                     }
                 }
+                if (Session["currentQuiz"] == null)
+                {
+                    Session["currentQuiz"] = txtQuizTitle.Text;
+                    System.Diagnostics.Debug.WriteLine("Setting currentQuiz");
+                }
             }
         }
 
@@ -330,14 +335,60 @@ namespace LearnHub
 
         protected void rdlAttempt_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (rdlAttempt.SelectedValue.Equals("n"))
+            if (rdlAttempt.SelectedValue.Equals("limited"))
             {
                 txtNoOfAttempt.Enabled = true;
+                rfv_txtNoOfAttempt.Enabled = true;
             }
             else
             {
                 txtNoOfAttempt.Enabled = false;
                 txtNoOfAttempt.Text = "";
+                rfv_txtNoOfAttempt.Enabled = false;
+            }
+        }
+
+        protected void ValidateDuplicateTitle(object sender, ServerValidateEventArgs args)
+        {
+            String input = txtQuizTitle.Text;
+            QuizDAO quizdao = new QuizDAO();
+            List<Quiz> quizList = quizdao.getAllQuiz();
+            Boolean checker = false;
+            System.Diagnostics.Debug.WriteLine(checker);
+            foreach (Quiz curr in quizList)
+            {
+                if (curr.getTitle() == input)
+                {
+                    checker = true;
+                }
+            }
+            System.Diagnostics.Debug.WriteLine(checker);
+            if (checker == true && (String)Session["currentQuiz"] != input)
+            {
+                System.Diagnostics.Debug.WriteLine("args false");
+                args.IsValid = false;
+            }
+            else
+            {
+                System.Diagnostics.Debug.WriteLine("args true");
+                args.IsValid = true;
+            }
+        }
+        protected void checkForm(object sender, EventArgs e)
+        {
+            Page.Validate("ValidateForm");
+            System.Diagnostics.Debug.WriteLine("checkForm");
+            if (!Page.IsValid)
+            {
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "openModal();", true);
+                lblErrorMsgFinal.Text = "You have not filled up all of the required fields";
+                btnConfirmSubmit.Enabled = false;
+            }
+            else
+            {
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "openModal();", true);
+                lblErrorMsgFinal.Text = "";
+                btnConfirmSubmit.Enabled = true;
             }
         }
     }

@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Masterpage.Master" AutoEventWireup="true" CodeBehind="editQuiz.aspx.cs" Inherits="LearnHub.editQuiz" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Masterpage.Master" AutoEventWireup="true" CodeBehind="editQuiz.aspx.cs" MaintainScrollPositionOnPostBack="true" Inherits="LearnHub.editQuiz" %>
 
 <%@ Register Assembly="CKEditor.NET" Namespace="CKEditor.NET" TagPrefix="CKEditor" %>
 
@@ -26,6 +26,12 @@
                 console.log("Yes desc");
                 args.IsValid = true;
             }
+        }
+
+        
+        function openModal() {
+            console.log("submitModal");
+            $("#submitModal").modal();
         }
 
         function checkForm_Clicked(source, args) {
@@ -144,7 +150,8 @@
                         <asp:Label runat="server" CssClass="col-lg-2 control-label" Text="Title of Quiz"></asp:Label></strong>
                     <div class="col-lg-5">
                         <asp:TextBox ID="txtQuizTitle" CssClass="form-control" runat="server" placeholder="Title of Quiz"></asp:TextBox>
-                        <asp:RequiredFieldValidator ID="rfv_txtQuizTitle" runat="server" ErrorMessage="Please enter a Quiz Title" ControlToValidate="txtQuizTitle" ForeColor="Red" ValidationGroup="ValidateForm"></asp:RequiredFieldValidator>
+                        <asp:RequiredFieldValidator ID="rfv_txtQuizTitle" runat="server" ErrorMessage="Please enter a Quiz Title" ControlToValidate="txtQuizTitle" ForeColor="Red" ValidationGroup="ValidateForm" Display="Dynamic"></asp:RequiredFieldValidator>
+                        <asp:CustomValidator ID="cv_txtQuizTitle" runat="server" ErrorMessage="This Title already exists! Please enter another Title." OnServerValidate="ValidateDuplicateTitle" ForeColor="Red" ValidationGroup="ValidateForm" EnableClientScript="false" ControlToValidate="txtQuizTitle" Display="Dynamic"></asp:CustomValidator>
                     </div>
                 </div>
                 <div class="form-group required">
@@ -152,7 +159,7 @@
                         <asp:Label runat="server" CssClass="col-lg-2 control-label" Text="Description of Quiz"></asp:Label></strong>
                     <div class="col-lg-5">
                         <CKEditor:CKEditorControl ID="txtQuizDesc" runat="server"></CKEditor:CKEditorControl>
-                        <asp:CustomValidator ID="cv_txtQuizDesc" runat="server" EnableClientScript="true" ErrorMessage="Please input a Quiz Description" ClientValidationFunction="ValidateQuizDescription" ForeColor="Red" ValidationGroup="ValidateForm"></asp:CustomValidator>
+                        <asp:CustomValidator ID="cv_txtQuizDesc" runat="server" EnableClientScript="true" ErrorMessage="Please input a Quiz Description" ClientValidationFunction="ValidateQuizDescription" ForeColor="Red" ValidationGroup="ValidateForm" Display="Dynamic"></asp:CustomValidator>
                     </div>
                 </div>
                 <%-- Preq --%>
@@ -210,7 +217,7 @@
                     <label class="col-lg-2 control-label">No. of correct answers needed to pass</label>
                     <div class="col-lg-5">
                         <asp:TextBox ID="txtNumCorrectAns" runat="server" CssClass="form-control"></asp:TextBox>
-                        <asp:RequiredFieldValidator ID="rfv_txtNumCorrectAns" runat="server" ErrorMessage="Please enter the number of correct answers" ControlToValidate="txtNumCorrectAns" ForeColor="Red" ValidationGroup="ValidateForm"></asp:RequiredFieldValidator>
+                        <asp:RequiredFieldValidator ID="rfv_txtNumCorrectAns" runat="server" ErrorMessage="Please enter the number of correct answers" ControlToValidate="txtNumCorrectAns" ForeColor="Red" ValidationGroup="ValidateForm" Display="Dynamic"></asp:RequiredFieldValidator>
                     </div>
                 </div>
                 <div class="form-group required">
@@ -227,6 +234,7 @@
                              <label class="col-lg-2 control-label">Time Limit (seconds)</label>
                             <div class="col-lg-5">
                                 <asp:TextBox ID="txtTimeLimit" runat="server" CssClass="form-control" placeholder="Time Limit in Seconds" TextMode="Number" min="0"></asp:TextBox>
+                                <asp:RequiredFieldValidator ID="rfv_txtTimeLimit" runat="server" ErrorMessage="Please enter the Time Limit" ControlToValidate="txtTimeLimit" ForeColor="Red" ValidationGroup="ValidateForm" Display="Dynamic"></asp:RequiredFieldValidator>
                             </div>
                         </div>
                         <br/>
@@ -237,10 +245,12 @@
                              <label class="col-lg-2 control-label">Allow Multiple Quiz Attempts</label>
                             <div class="col-lg-5">
                                 <asp:RadioButtonList ID="rdlAttempt" runat="server" AutoPostBack="True" OnSelectedIndexChanged="rdlAttempt_SelectedIndexChanged">
-                                    <asp:ListItem Value="y">&nbsp;Unlimited</asp:ListItem>
-                                    <asp:ListItem Value="n">&nbsp;Limited</asp:ListItem>
+                                    <asp:ListItem Value="unlimited">&nbsp;Unlimited</asp:ListItem>
+                                    <asp:ListItem Value="limited">&nbsp;Limited</asp:ListItem>
                                 </asp:RadioButtonList>
+                                <asp:RequiredFieldValidator ID="rfv_rdlAttempt" runat="server" ErrorMessage="Please select the attempt type" ControlToValidate="rdlAttempt" ForeColor="Red" ValidationGroup="ValidateForm" Display="Dynamic"></asp:RequiredFieldValidator>
                                 <asp:TextBox ID="txtNoOfAttempt" runat="server" CssClass="form-control" placeholder="If Limited, Number of Attempts" TextMode="Number" min="0"></asp:TextBox>
+                                <asp:RequiredFieldValidator ID="rfv_txtNoOfAttempt" runat="server" ErrorMessage="Please input the number of attempts" ControlToValidate="txtNoOfAttempt" ForeColor="Red" ValidationGroup="ValidateForm" Display="Dynamic" Enabled="False"></asp:RequiredFieldValidator>
                             </div>
                         </div>
                             </ContentTemplate>
@@ -262,7 +272,9 @@
             </fieldset>
             <br /><br />
             <div class="wrapper">
-                    <asp:Button ID="submitBtn" CssClass="btn btn-primary" runat="server" Text="Save" data-toggle="modal" OnClientClick="return checkForm_Clicked()" href="#submitModal" CausesValidation="True" UseSubmitBehavior="False" />
+                    <%--<asp:Button ID="submitBtn" CssClass="btn btn-primary" runat="server" Text="Save" data-toggle="modal" OnClientClick="return checkForm_Clicked()" href="#submitModal" CausesValidation="True" UseSubmitBehavior="False"/>--%>
+                    <asp:Button ID="Button1" CssClass="btn btn-primary" runat="server" Text="Save" onclick="checkForm" CausesValidation="True" UseSubmitBehavior="False"/>
+                    
                     <asp:Button ID="btnDeactivate" CssClass="btn btn-warning" runat="server" Text="Deactivate Quiz" data-toggle="modal" href="#deactivateModal" OnClientClick="return false;" />
                     <asp:Button ID="btnActivate" CssClass="btn btn-success" runat="server" Text="Activate Quiz" data-toggle="modal" href="#activateModal" OnClientClick="return false;" />
             </div>
