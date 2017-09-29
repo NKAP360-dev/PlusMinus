@@ -172,7 +172,7 @@
                         <div class="form-group required">
                                 <label class="col-lg-3 control-label">No. of correct answers needed to pass</label>
                                 <div class="col-lg-7">
-                                   <asp:TextBox ID="txtNumCorrectAns" runat="server" CssClass="form-control"></asp:TextBox>
+                                   <asp:TextBox ID="txtNumCorrectAns" runat="server" CssClass="form-control" TextMode="Number"></asp:TextBox>
                                     <asp:RequiredFieldValidator ID="rfv_txtNumCorrectAns" runat="server" ErrorMessage="Please enter the number of Correct Answers" ControlToValidate="txtNumCorrectAns" ForeColor="Red" ValidationGroup="ValidateFormTwo" Display="Dynamic"></asp:RequiredFieldValidator>
                                 </div>
                             </div>
