@@ -245,8 +245,8 @@
                              <label class="col-lg-2 control-label">Allow Multiple Quiz Attempts</label>
                             <div class="col-lg-5">
                                 <asp:RadioButtonList ID="rdlAttempt" runat="server" AutoPostBack="True" OnSelectedIndexChanged="rdlAttempt_SelectedIndexChanged">
-                                    <asp:ListItem Value="unlimited">&nbsp;Unlimited</asp:ListItem>
-                                    <asp:ListItem Value="limited">&nbsp;Limited</asp:ListItem>
+                                    <asp:ListItem Value="y">&nbsp;Unlimited</asp:ListItem>
+                                    <asp:ListItem Value="n">&nbsp;Limited</asp:ListItem>
                                 </asp:RadioButtonList>
                                 <asp:RequiredFieldValidator ID="rfv_rdlAttempt" runat="server" ErrorMessage="Please select the attempt type" ControlToValidate="rdlAttempt" ForeColor="Red" ValidationGroup="ValidateForm" Display="Dynamic"></asp:RequiredFieldValidator>
                                 <asp:TextBox ID="txtNoOfAttempt" runat="server" CssClass="form-control" placeholder="If Limited, Number of Attempts" TextMode="Number" min="0"></asp:TextBox>

@@ -335,7 +335,7 @@ namespace LearnHub
 
         protected void rdlAttempt_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (rdlAttempt.SelectedValue.Equals("limited"))
+            if (rdlAttempt.SelectedValue.Equals("n"))
             {
                 txtNoOfAttempt.Enabled = true;
                 rfv_txtNoOfAttempt.Enabled = true;
