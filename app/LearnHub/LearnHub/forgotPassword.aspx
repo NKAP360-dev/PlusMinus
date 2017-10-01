@@ -26,7 +26,7 @@
             font-family: 'Martel', serif !important;
         }
 
-        .wrapper {
+        .format {
             margin-top: 100px;
             margin-bottom: 100px;
         }
@@ -95,6 +95,13 @@
             text-align: center;
         }
     </style>
+    <script src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'></script>
+    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script>
+        $(window).on('load', function () {
+            $('#myModal').modal('show');
+        });
+    </script>
 
     <title>Forgot Password - LearnHub</title>
     <link href="bootstrap/css/bootstrap.css" rel="stylesheet" />
@@ -104,32 +111,32 @@
         <div class="row">
             <div class="col-lg-4"></div>
             <div class="col-lg-4">
-                <div class="wrapper">
+                <div class="format">
                     <form id="form1" runat="server">
                         <h1 class="text-center login-title">LearnHub</h1>
                         <br />
-                                    <div class="card">
-                                        <fieldset>
-                                            <div class="header">&emsp;<strong>F O R G O T &nbsp; P A S S W O R D </strong></div>
-                                            <br />
-                                            <div class="inner">
-                                                <div class="form-group">
-                                                    <p>Enter your email address below and click on the 'Reset' button. You will receive your new password shortly.</p>
-                                                    <br />
-                                                    <div class="input-group">
-                                                        <asp:TextBox ID="txtEmail" runat="server" CssClass="form-control" placeholder="Email Address"></asp:TextBox>
-                                                        <span class="input-group-addon"><span class="glyphicon glyphicon-globe"></span></span>
-                                                    </div>
-                                                    <br />
-                                                    <br />
-                                                    <div class="form-group text-center">
-                                                        <asp:LinkButton ID="btnRequest" runat="server" CssClass="btn btn-primary" OnClick="btnRequest_Click"><span><strong>Request New Password</strong></span></asp:LinkButton><br />
-                                                    </div>
-                                                    <br />
-                                                </div>
-                                            </div>
-                                        </fieldset>
+                        <div class="card">
+                            <fieldset>
+                                <div class="header">&emsp;<strong>F O R G O T &nbsp; P A S S W O R D </strong></div>
+                                <br />
+                                <div class="inner">
+                                    <div class="form-group">
+                                        <p>Enter your email address below and click on the 'Reset' button. You will receive your new password shortly.</p>
+                                        <br />
+                                        <div class="input-group">
+                                            <asp:TextBox ID="txtEmail" runat="server" CssClass="form-control" placeholder="Email Address"></asp:TextBox>
+                                            <span class="input-group-addon"><span class="glyphicon glyphicon-globe"></span></span>
+                                        </div>
+                                        <br />
+                                        <br />
+                                        <div class="form-group text-center">
+                                            <asp:LinkButton ID="btnRequest" runat="server" CssClass="btn btn-primary" OnClick="btnRequest_Click"><span><strong>Request New Password</strong></span></asp:LinkButton><br />
+                                        </div>
+                                        <br />
                                     </div>
+                                </div>
+                            </fieldset>
+                        </div>
                         <br />
                         <div class="logo">
                             <img src="img/amkthk.png" alt="LHLogo" style="width: 165px; height: 117px;" />
@@ -141,9 +148,37 @@
         </div>
     </div>
 
+    <div class="container">
+        <div class="modal" id="myModal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title"><b>U N D E R &nbsp; C O N S T R U C T I O N</b></h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="wrapper">
+                            <img src="img/barrier.png" style='width: 30%;' border="0" />
+                            <h3 class="text-danger">This page is currently still under construction!</h3>
+                            <p>
+                                You may still navigate around but not everything is working as it should be.
+                                <br />
+                                Team PlusMinus is trying their best to get everything
+                                    up as soon as possible!
+                            </p>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <div class="wrapper">
+                            <button type="button" class="btn btn-warning" data-dismiss="modal">Got it!</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 
-<script src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'></script>
-<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
 
 </html>
