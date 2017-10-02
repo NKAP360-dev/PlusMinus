@@ -21,7 +21,7 @@
                 "filtering": {
                     "enabled": true,
                     "position": "left"
-                }
+                }   
             });
         });
 

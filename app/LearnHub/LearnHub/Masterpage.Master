@@ -521,8 +521,15 @@
         <% if (Session["currentUser"] != null)
             {
                 User currentUser = (User)Session["currentUser"];
-
-                if (currentUser.getDepartment().Equals("hr"))
+                Boolean superuser = false;
+                foreach (string s in currentUser.getRoles())
+                {
+                    if (s.Equals("superuser"))
+                    {
+                        superuser = true;
+                    }
+                }
+                if (currentUser.getDepartment().Equals("hr") || superuser)
                 {
 
         %>

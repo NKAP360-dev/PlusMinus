@@ -34,60 +34,63 @@ namespace LearnHub
                         course_creator = true;
                     }
                 }
-                if (!superuser || !course_creator)
+                if (superuser || course_creator)
+                {
+                    if (!IsPostBack)
+                    {
+
+                        Course_elearnDAO cdao = new Course_elearnDAO();
+                        string id_str = Request.QueryString["id"];
+                        int id_num = int.Parse(id_str);
+                        lblBreadcrumbCourseName.Text = cdao.get_course_by_id(id_num).getCourseName();
+
+                        List<int> prereqIDlist = new List<int>();
+                        List<string> part1 = new List<string>();
+                        Session["createQuiz1"] = part1;
+                        Session["selectedPrereq"] = prereqIDlist;
+                        var itemIDs = string.Join(",", ((IList<int>)Session["selectedPrereq"]).ToArray());
+
+                        //to load course list
+                        var sqlQueryCourseList = "";
+                        if (itemIDs.Length > 0)
+                        {
+                            sqlQueryCourseList = String.Format("SELECT * FROM [Quiz] WHERE status='active' and elearn_courseID='{0}' and quizID NOT IN ({1})", id_str, itemIDs);
+                        }
+                        else
+                        {
+                            sqlQueryCourseList = "SELECT * FROM [Quiz] WHERE status='active' and elearn_courseID = '" + id_str + "'";
+                        }
+                        SqlDataSource1.SelectCommand = sqlQueryCourseList;
+                        gvPrereq.DataSource = SqlDataSource1;
+                        gvPrereq.DataBind();
+
+                        gvPrereq.UseAccessibleHeader = true;
+
+                        if (gvPrereq.Rows.Count > 0)
+                        {
+                            gvPrereq.HeaderRow.TableSection = TableRowSection.TableHeader;
+                        }
+
+                        //to load prereq cart
+
+                        var sqlQuery = "";
+                        if (itemIDs.Length > 0)
+                        {
+                            sqlQuery = String.Format("SELECT * FROM [Quiz] WHERE [quizID] IN ({0})", itemIDs);
+                        }
+                        else
+                        {
+                            sqlQuery = "SELECT * FROM [Quiz] WHERE [quizID] = -1";
+                        }
+
+                        SqlDataSourcePrereqCart.SelectCommand = sqlQuery;
+                        gvPrereqCart.DataSource = SqlDataSourcePrereqCart;
+                        gvPrereqCart.DataBind();
+                    }
+                }
+                else
                 {
                     Response.Redirect("errorPage.aspx");
-                }
-                if (!IsPostBack)
-                {
-
-                    Course_elearnDAO cdao = new Course_elearnDAO();
-                    string id_str = Request.QueryString["id"];
-                    int id_num = int.Parse(id_str);
-                    lblBreadcrumbCourseName.Text = cdao.get_course_by_id(id_num).getCourseName();
-
-                    List<int> prereqIDlist = new List<int>();
-                    List<string> part1 = new List<string>();
-                    Session["createQuiz1"] = part1;
-                    Session["selectedPrereq"] = prereqIDlist;
-                    var itemIDs = string.Join(",", ((IList<int>)Session["selectedPrereq"]).ToArray());
-
-                    //to load course list
-                    var sqlQueryCourseList = "";
-                    if (itemIDs.Length > 0)
-                    {
-                        sqlQueryCourseList = String.Format("SELECT * FROM [Quiz] WHERE status='active' and elearn_courseID='{0}' and quizID NOT IN ({1})", id_str, itemIDs);
-                    }
-                    else
-                    {
-                        sqlQueryCourseList = "SELECT * FROM [Quiz] WHERE status='active' and elearn_courseID = '" + id_str + "'";
-                    }
-                    SqlDataSource1.SelectCommand = sqlQueryCourseList;
-                    gvPrereq.DataSource = SqlDataSource1;
-                    gvPrereq.DataBind();
-
-                    gvPrereq.UseAccessibleHeader = true;
-
-                    if (gvPrereq.Rows.Count > 0)
-                    {
-                        gvPrereq.HeaderRow.TableSection = TableRowSection.TableHeader;
-                    }
-
-                    //to load prereq cart
-
-                    var sqlQuery = "";
-                    if (itemIDs.Length > 0)
-                    {
-                        sqlQuery = String.Format("SELECT * FROM [Quiz] WHERE [quizID] IN ({0})", itemIDs);
-                    }
-                    else
-                    {
-                        sqlQuery = "SELECT * FROM [Quiz] WHERE [quizID] = -1";
-                    }
-
-                    SqlDataSourcePrereqCart.SelectCommand = sqlQuery;
-                    gvPrereqCart.DataSource = SqlDataSourcePrereqCart;
-                    gvPrereqCart.DataBind();
                 }
             }
         }

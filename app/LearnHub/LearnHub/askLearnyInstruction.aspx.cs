@@ -32,6 +32,16 @@ namespace LearnHub
                     {
                         Response.Redirect("errorPage.aspx");
                     }
+                    else
+                    {
+                        if (!IsPostBack)
+                        {
+                            ChatBotInstructionDAO cbiDAO = new ChatBotInstructionDAO();
+                            ChatBotInstruction currentInstruction = cbiDAO.getInstruction();
+                            txtTitle.Text = currentInstruction.title;
+                            CKEditor1.Text = currentInstruction.instruction;
+                        }
+                    }
                 }
                 else
                 {

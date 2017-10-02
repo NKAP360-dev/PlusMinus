@@ -32,7 +32,7 @@
            <ul class="breadcrumb">
   <li><a href="home.aspx">Home</a></li>
   <li><a href="viewAllModule.aspx">Courses</a></li>
-<li><a href="manageCategory.aspx">Manage Course Category</a></li>
+<li><a href="manageCategories.aspx">Manage Course Category</a></li>
   <li class="active">Edit Course Category</li>
   </ul>
     <div class="container">

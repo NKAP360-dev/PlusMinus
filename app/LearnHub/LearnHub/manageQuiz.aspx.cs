@@ -33,17 +33,19 @@ namespace LearnHub
                         course_creator = true;
                     }
                 }
-                if (!superuser || !course_creator)
+                if (superuser || course_creator)
+                {
+                    if (!IsPostBack)
+                    {
+                        Course_elearnDAO cdao = new Course_elearnDAO();
+                        string id_str = Request.QueryString["id"];
+                        int id_num = int.Parse(id_str);
+                        lblBreadcrumbCourseName.Text = cdao.get_course_by_id(id_num).getCourseName();
+                    }
+                }
+                else
                 {
                     Response.Redirect("errorPage.aspx");
-                }
-                if (!IsPostBack)
-                {
-
-                    Course_elearnDAO cdao = new Course_elearnDAO();
-                    string id_str = Request.QueryString["id"];
-                    int id_num = int.Parse(id_str);
-                    lblBreadcrumbCourseName.Text = cdao.get_course_by_id(id_num).getCourseName();
                 }
             }
         }
