@@ -33,38 +33,40 @@ namespace LearnHub
                         course_creator = true;
                     }
                 }
-                if (!superuser || !course_creator)
+                if (superuser || course_creator)
                 {
-                    Response.Redirect("errorPage.aspx");
-                }
-                if (!IsPostBack)
-                {
-                    Course_elearnDAO cdao = new Course_elearnDAO();
-                    String id_str = Request.QueryString["id"];
-                    int id_num = int.Parse(id_str);
-                    lblBreadcrumbCourseName.Text = cdao.get_course_by_id(id_num).getCourseName();
+                    if (!IsPostBack)
+                    {
+                        Course_elearnDAO cdao = new Course_elearnDAO();
+                        String id_str = Request.QueryString["id"];
+                        int id_num = int.Parse(id_str);
+                        lblBreadcrumbCourseName.Text = cdao.get_course_by_id(id_num).getCourseName();
 
-                    List<QuizQuestion> allQuestions = new List<QuizQuestion>();
-                    Session["allQuestions"] = allQuestions;
-                    Session["questionNumber"] = 1;
-                    lblQuestionNumber.Text = "Question " + 1;
-                    lblAddedMsg.Visible = false;
+                        List<QuizQuestion> allQuestions = new List<QuizQuestion>();
+                        Session["allQuestions"] = allQuestions;
+                        Session["questionNumber"] = 1;
+                        lblQuestionNumber.Text = "Question " + 1;
+                        lblAddedMsg.Visible = false;
+                    }
+                    else
+                    {
+                        int counter = (int)Session["questionNumber"];
+                        lblQuestionNumber.Text = "Question " + counter;
+                        lblAddedMsg.Visible = false;
+                    }
                 }
                 else
                 {
-                    int counter = (int)Session["questionNumber"];
-                    lblQuestionNumber.Text = "Question " + counter;
-                    lblAddedMsg.Visible = false;
+                    Response.Redirect("errorPage.aspx");
                 }
+                /*
+                if (Page.IsPostBack)
+                {
+                    // reshow
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "openModal();", true);
+                }*/
             }
-            /*
-            if (Page.IsPostBack)
-            {
-                // reshow
-                ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "openModal();", true);
-            }*/
         }
-
         protected void btnNewQn_Click(object sender, EventArgs e)
         {
 
