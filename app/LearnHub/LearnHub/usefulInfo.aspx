@@ -55,20 +55,22 @@
                 </div>
                 <%} %>
             </div>
-             <%
-                ArrayList a1 = adao.getArticles();
-                foreach (Article article in a1)
-                {
-                            %>
+             
             <div class="col-lg-3">
                 <div class="panel panel-default">
                     <div class="panel-body">
                         <%--Show 10 most recent posts--%>
                         <h4><strong>Recent Posts</strong></h4>
                         <hr />
+                        <%
+                            ArrayList a1 = adao.getArticles();
+                            foreach (Article article in a1)
+                            {
+                            %>
                         <ul>
                             <li><a href="article.aspx?id=<%=article.article_id %>"><%=article.article_name %></a></li>
                         </ul>
+                        <%} %>
                         <br />
                         <br />
                          <div class="pull-right">
@@ -77,7 +79,7 @@
                     </div>
                 </div>
             </div>
-             <%} %>
+             
         </div>     
     </form>
 
