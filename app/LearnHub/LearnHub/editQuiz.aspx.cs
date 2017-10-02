@@ -132,11 +132,13 @@ namespace LearnHub
                         gvPrereqCart.DataBind();
                     }
                 }
+                /*
                 if (Session["currentQuiz"] == null)
                 {
                     Session["currentQuiz"] = txtQuizTitle.Text;
                     System.Diagnostics.Debug.WriteLine("Setting currentQuiz");
                 }
+                */
             }
         }
 
@@ -355,6 +357,9 @@ namespace LearnHub
             List<Quiz> quizList = quizdao.getAllQuiz();
             Boolean checker = false;
             System.Diagnostics.Debug.WriteLine(checker);
+            String id_str = Request.QueryString["id"];
+            int id_num = int.Parse(id_str);
+            Quiz currentQuiz = quizdao.getQuizByID(id_num);
             foreach (Quiz curr in quizList)
             {
                 if (curr.getTitle() == input)
@@ -363,7 +368,7 @@ namespace LearnHub
                 }
             }
             System.Diagnostics.Debug.WriteLine(checker);
-            if (checker == true && (String)Session["currentQuiz"] != input)
+            if (checker == true && currentQuiz.getTitle() != input)
             {
                 System.Diagnostics.Debug.WriteLine("args false");
                 args.IsValid = false;
