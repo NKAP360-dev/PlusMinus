@@ -110,7 +110,7 @@ namespace LearnHub.AppCode.dao
             }
             return toReturn;
         }
-        public Boolean update_user(User u, string password, string salt, ArrayList roles)
+        public Boolean updateUserPassword(User u, string password, string salt)
         {
             SqlConnection conn = new SqlConnection();
             Boolean toReturn = false;
@@ -122,25 +122,11 @@ namespace LearnHub.AppCode.dao
                 conn.Open();
                 SqlCommand comm = new SqlCommand();
                 comm.Connection = conn;
-                comm.CommandText = "update [User] set userID=@userID, name=@name , password=@password, " +
-                    "start_Date=@date, job_category=@category, job_title=@job_title, supervisor='S1234567C', role='user', dept_name=@dept_name, " +
-                    "contactNumber=@contact, address=@add, salt=@salt, email=@email where userID=@userID1";
+                comm.CommandText = "update [User] set password=@password, salt=@salt where userID=@userID";
                 comm.Parameters.AddWithValue("@userID", u.getUserID());
-                comm.Parameters.AddWithValue("@name", u.getName());
                 comm.Parameters.AddWithValue("@password", password);
-                comm.Parameters.AddWithValue("@date", u.getStartDate());
-                comm.Parameters.AddWithValue("@category", u.getJobCategory());
-                comm.Parameters.AddWithValue("@job_title", u.getJobTitle());
-                comm.Parameters.AddWithValue("@supervisor", u.getSupervisor());
-                comm.Parameters.AddWithValue("@dept_name", u.getDepartment());
-                comm.Parameters.AddWithValue("@contact", u.getContact());
-                comm.Parameters.AddWithValue("@add", u.getAddress());
                 comm.Parameters.AddWithValue("@salt", salt);
-                comm.Parameters.AddWithValue("@email", u.getEmail());
-                comm.Parameters.AddWithValue("@userID1", u.getUserID());
                 int rowsAffected = comm.ExecuteNonQuery();
-                //need new method to create pre-requisities here to store in seperate table (pre-req table)
-                add_role(u, roles);
                 toReturn = true;
             }
             catch (SqlException ex)

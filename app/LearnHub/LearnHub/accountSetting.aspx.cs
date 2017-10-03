@@ -35,6 +35,7 @@ namespace LearnHub
                 UserDAO udao = new UserDAO();
                 currentUser = (User)Session["currentUser"];
                 User user = udao.updateInfo(txtContactNo.Text, txtAddress.Text, currentUser);
+                Session["currentUser"] = user;
                 Response.Redirect("Home.aspx");
             }
         }

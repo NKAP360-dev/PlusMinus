@@ -134,6 +134,18 @@
                                         </div>
                                         <br />
                                     </div>
+                                    <asp:Panel ID="panelErrorMsg" runat="server" Visible="false">
+                                        <div class="alert alert-dismissible alert-danger">
+                                          <button type="button" class="close" data-dismiss="alert">&times;</button>
+                                          <strong>Oh snap!</strong> We are unable to find your account. Please check the email address you entered and try again.
+                                        </div>
+                                    </asp:Panel>
+                                    <asp:Panel ID="panelSuccessMsg" runat="server" Visible="false">
+                                        <div class="alert alert-dismissible alert-success">
+                                          <button type="button" class="close" data-dismiss="alert">&times;</button>
+                                          <strong>Success!</strong> You have successfully reset your password. Please check your email and <a href="Login.aspx" class="alert-link">login</a> to update your password.
+                                        </div>
+                                    </asp:Panel>
                                 </div>
                             </fieldset>
                         </div>

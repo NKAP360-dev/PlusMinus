@@ -144,6 +144,12 @@ namespace LearnHub
                 User create = new User(user, name, jobtitle, "Staff", supid, roles, dept.ToLower(), email, DateTime.Now, address, contact, getThis.getStatus());
                 //Boolean done = udao.update_user(create, password_hashed, salt, roles);
                 Boolean done = udao.update_user_without_password(create, roles);
+                
+                if (create.getUserID().Equals(u.getUserID()))
+                {
+                    Session["currentUser"] = create;
+                }
+
                 if (done)
                 {
                     Response.Redirect("manageUsers.aspx");
