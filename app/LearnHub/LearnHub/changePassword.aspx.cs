@@ -9,6 +9,7 @@ using LearnHub.AppCode.entity;
 using System.Configuration;
 using System.Data.SqlClient;
 using System.Web.Helpers;
+using System.Text.RegularExpressions;
 
 namespace LearnHub
 {
@@ -124,6 +125,24 @@ namespace LearnHub
                 System.Diagnostics.Debug.WriteLine("args false");
                 args.IsValid = false;
 
+            }
+        }
+
+        protected void cv_pwReq_ServerValidate(object source, ServerValidateEventArgs args)
+        {
+            string userQuery = txtPassword_new.Text;
+            bool containsAtLeastOneUppercase = userQuery.Any(char.IsUpper);
+            bool containsAtLeastOneLowercase = userQuery.Any(char.IsLower);
+            bool containsAtLeastOneNumerical = userQuery.Any(char.IsNumber);
+            int containsSpecialCharacters = userQuery.Count(p => !char.IsLetterOrDigit(p));
+
+            if (userQuery.Length >= 8 && containsAtLeastOneLowercase && containsAtLeastOneNumerical && containsAtLeastOneUppercase && containsSpecialCharacters > 0)
+            {
+                args.IsValid = true;
+            }
+            else
+            {
+                args.IsValid = false;
             }
         }
     }

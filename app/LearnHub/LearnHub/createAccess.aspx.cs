@@ -83,6 +83,62 @@ namespace LearnHub
             }
         }
 
+        protected void cv_checkEmailExist_ServerValidate(object source, ServerValidateEventArgs args)
+        {
+            UserDAO userDAO = new UserDAO();
+            User checkUser = userDAO.getUserByEmail(txtEmail.Text);
+            System.Diagnostics.Debug.WriteLine("cv 1");
+            if (checkUser != null)
+            {
+                System.Diagnostics.Debug.WriteLine("cv false");
+                args.IsValid = false;
+            }
+            else
+            {
+                System.Diagnostics.Debug.WriteLine("cv true");
+                args.IsValid = true;
+            }
+        }
+        protected void cv_checkPasswordFormat_ServerValidate(object source, ServerValidateEventArgs args)
+        {
+            System.Diagnostics.Debug.WriteLine("val pass");
+            string userQuery = txtPassword.Text;
+            bool containsAtLeastOneUppercase = userQuery.Any(char.IsUpper);
+            bool containsAtLeastOneLowercase = userQuery.Any(char.IsLower);
+            bool containsAtLeastOneNumerical = userQuery.Any(char.IsNumber);
+            int containsSpecialCharacters = userQuery.Count(p => !char.IsLetterOrDigit(p));
+
+            if (userQuery.Length >= 8 && containsAtLeastOneLowercase && containsAtLeastOneNumerical && containsAtLeastOneUppercase && containsSpecialCharacters > 0)
+            {
+                args.IsValid = true;
+            }
+            else
+            {
+                args.IsValid = false;
+            }
+        }
+
+        
+        protected void checkForm(object sender, EventArgs e)
+        {
+            Page.Validate("ValidateForm");
+            System.Diagnostics.Debug.WriteLine("checkForm");
+            if (!Page.IsValid)
+            {
+                System.Diagnostics.Debug.WriteLine("not valid");
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "openModal();", true);
+                lblErrorMsgFinal.Text = "You have not filled up all of the required fields";
+                btnCfmSubmit.Enabled = false;
+            }
+            else
+            {
+                System.Diagnostics.Debug.WriteLine("valid");
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "openModal();", true);
+                lblErrorMsgFinal.Text = "";
+                btnCfmSubmit.Enabled = true;
+            }
+        }
+
         /*
         protected void checkCheckBoxes(object sender, EventArgs e)
         {

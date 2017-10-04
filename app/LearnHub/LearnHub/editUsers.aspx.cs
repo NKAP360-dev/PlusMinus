@@ -13,7 +13,6 @@ namespace LearnHub
 {
     public partial class editUsers : System.Web.UI.Page
     {
-        protected User toChange;
         protected void Page_Load(object sender, EventArgs e)
         {
             //hp = new Dictionary<string, string>(); 
@@ -47,7 +46,7 @@ namespace LearnHub
                     {
                         Response.Redirect("errorPage.aspx");
                     }
-                    toChange = udao.getUserByID(userID);
+                    User toChange = udao.getUserByID(userID);
                     ArrayList roles = udao.getRolesByID(userID);
                     txtUsername.Text = toChange.getUserID();
                     txtName.Text = toChange.getName();
@@ -180,6 +179,42 @@ namespace LearnHub
                 Response.Redirect("editUsers.aspx?userID=" + userID);
             }
         }
-        
-    }   
+        protected void cv_checkEmailExist_ServerValidate(object source, ServerValidateEventArgs args)
+        {
+            UserDAO userDAO = new UserDAO();
+            User checkUser = userDAO.getUserByEmail(txtEmail.Text);
+            User toChange = userDAO.getUserByID((String)Request.QueryString["userID"]);
+            System.Diagnostics.Debug.WriteLine("cv 1");
+            if (checkUser != null && !txtEmail.Text.Equals(toChange.getEmail()))
+            {
+                System.Diagnostics.Debug.WriteLine("cv false");
+                args.IsValid = false;
+            }
+            else
+            {
+                System.Diagnostics.Debug.WriteLine("cv true");
+                args.IsValid = true;
+            }
+        }
+        protected void checkForm(object sender, EventArgs e)
+        {
+            Page.Validate("ValidateForm");
+            System.Diagnostics.Debug.WriteLine("checkForm");
+            if (!Page.IsValid)
+            {
+                System.Diagnostics.Debug.WriteLine("not valid");
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "openModal();", true);
+                lblErrorMsgFinal.Text = "You have not filled up all of the required fields";
+                btnCfmSubmit.Enabled = false;
+            }
+            else
+            {
+                System.Diagnostics.Debug.WriteLine("valid");
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "openModal();", true);
+                lblErrorMsgFinal.Text = "";
+                btnCfmSubmit.Enabled = true;
+            }
+        }
+
+    }
 }

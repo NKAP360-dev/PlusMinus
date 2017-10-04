@@ -67,13 +67,13 @@ namespace LearnHub {
         protected global::System.Web.UI.WebControls.RequiredFieldValidator rfv_txtPassword;
         
         /// <summary>
-        /// regv_txtPassword_new control.
+        /// cv_txtPassword control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RegularExpressionValidator regv_txtPassword_new;
+        protected global::System.Web.UI.WebControls.CustomValidator cv_txtPassword;
         
         /// <summary>
         /// txtPassword2 control.
@@ -173,6 +173,15 @@ namespace LearnHub {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator rfv_txtEmail;
+        
+        /// <summary>
+        /// cv_checkEmailExist control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CustomValidator cv_checkEmailExist;
         
         /// <summary>
         /// lblDept control.

@@ -43,6 +43,11 @@
             }
             args.IsValid = false;
         }
+
+        function openModal() {
+            console.log("submitModal");
+            $("#submitModal").modal();
+        }
     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -55,15 +60,15 @@
     <div class="container">
         <h1>Edit User</h1>
         <% 
-            User currentUser = (User)Session["currentUser"];
             Boolean superuser = false;
-                foreach (string s in currentUser.getRoles())
+            User currentUser = (User)Session["currentUser"];
+            foreach (string s in currentUser.getRoles())
+            {
+                if (s.Equals("superuser"))
                 {
-                    if (s.Equals("superuser"))
-                    {
-                        superuser = true;
-                    }
+                    superuser = true;
                 }
+            }
             if (currentUser != null && superuser)
             {
         %>
@@ -127,6 +132,7 @@
                 <div class="col-lg-5">
                     <asp:TextBox ID="txtEmail" runat="server" CssClass="form-control" placeholder="Email"></asp:TextBox>
                     <asp:RequiredFieldValidator ID="rfv_txtEmail" runat="server" ErrorMessage="Please input an Email Address" ControlToValidate="txtEmail" ForeColor="Red" ValidationGroup="ValidateForm" Display="Dynamic"></asp:RequiredFieldValidator>
+                    <asp:CustomValidator ID="cv_checkEmailExist" runat="server" ErrorMessage="The email address is already in used." ControlToValidate="txtEmail" ForeColor="Red" ValidationGroup="ValidateForm" Display="Dynamic" OnServerValidate="cv_checkEmailExist_ServerValidate"></asp:CustomValidator>
                 </div>
             </div>
             <div class="form-group required">
@@ -170,8 +176,11 @@
             <div class="form-group">
                 <div class="wrapper">
                     <br />
-                        <asp:Button ID="btnSubmit" CssClass="btn btn-primary" runat="server" Text="Save" data-toggle="modal" href="#submitModal" OnClientClick="return checkForm_Clicked()" UseSubmitBehavior="False" />
-                        <%if (toChange.getStatus().Equals("Active")) { %>
+                        <asp:Button ID="btnSubmit" CssClass="btn btn-primary" runat="server" Text="Save" onclick="checkForm" UseSubmitBehavior="False" ValidationGroup="ValidateForm" causesValidation="true"/>
+                        <%
+                            UserDAO userDAO = new UserDAO();
+                            User toChange = userDAO.getUserByID((String)Request.QueryString["userID"]);
+                            if (toChange.getStatus().Equals("Active")) { %>
                         <asp:Button ID="btnDeactivate" CssClass="btn btn-warning" runat="server" Text="Deactivate" data-toggle="modal" href="#deactivateModal" OnClientClick="return false" UseSubmitBehavior="False" />
                         <%} else { %>
                         <asp:Button ID="btnActivate" CssClass="btn btn-success" runat="server" Text="Activate" data-toggle="modal" href="#activateModal" OnClientClick="return false" UseSubmitBehavior="False" />

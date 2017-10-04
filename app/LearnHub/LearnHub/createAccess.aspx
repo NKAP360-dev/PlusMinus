@@ -42,6 +42,11 @@
             }
             args.IsValid = false;
         }
+
+        function openModal() {
+            console.log("submitModal");
+            $("#submitModal").modal();
+        }
     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -102,7 +107,7 @@
                     <div class="col-lg-5">
                         <asp:TextBox ID="txtPassword" runat="server" CssClass="form-control" placeholder="Password" TextMode="Password"></asp:TextBox>
                         <asp:RequiredFieldValidator ID="rfv_txtPassword" runat="server" ErrorMessage="Please input a password" ControlToValidate="txtPassword" ForeColor="Red" ValidationGroup="ValidateForm" Display="Dynamic"></asp:RequiredFieldValidator>
-                        <asp:RegularExpressionValidator Display = "Dynamic" ControlToValidate = "txtPassword" ID="regv_txtPassword_new" ValidationExpression = "^[\s\S]{8,}$" runat="server" ErrorMessage="Minimum 8 characters required." ForeColor="Red"></asp:RegularExpressionValidator>
+                        <asp:CustomValidator ID="cv_txtPassword" runat="server" ErrorMessage="Your password do not match the requirements" OnServerValidate="cv_checkPasswordFormat_ServerValidate" ControlToValidate ="txtPassword" ForeColor="Red" ValidationGroup="ValidateForm" Display="Dynamic" ></asp:CustomValidator>
                     </div>
                 </div>
                 <div class="form-group required">
@@ -146,6 +151,7 @@
                     <div class="col-lg-5">
                         <asp:TextBox ID="txtEmail" runat="server" CssClass="form-control" placeholder="Email"></asp:TextBox>
                         <asp:RequiredFieldValidator ID="rfv_txtEmail" runat="server" ErrorMessage="Please input an Email Address" ControlToValidate="txtEmail" ForeColor="Red" ValidationGroup="ValidateForm" Display="Dynamic"></asp:RequiredFieldValidator>
+                        <asp:CustomValidator ID="cv_checkEmailExist" runat="server" ErrorMessage="The email address is already in used." ControlToValidate="txtEmail" ForeColor="Red" ValidationGroup="ValidateForm" Display="Dynamic" OnServerValidate="cv_checkEmailExist_ServerValidate"></asp:CustomValidator>
                     </div>
                 </div>
                 <div class="form-group required">
@@ -191,7 +197,7 @@
                 <div class="form-group">
                     <div class="wrapper">
                         <br />
-                        <asp:Button ID="btnSubmit" CssClass="btn btn-primary" runat="server" Text="Create User" data-toggle="modal" href="#submitModal" OnClientClick="return checkForm_Clicked()" UseSubmitBehavior="False" ValidationGroup="ValidateForm" />
+                        <asp:Button ID="btnSubmit" CssClass="btn btn-primary" runat="server" Text="Create User" onclick="checkForm" UseSubmitBehavior="False" ValidationGroup="ValidateForm" causesValidation="true"/>
                     </div>
                 </div>
             </fieldset>

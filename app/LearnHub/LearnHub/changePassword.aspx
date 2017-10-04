@@ -57,6 +57,7 @@
                             <asp:TextBox ID="txtPassword_new" runat="server" CssClass="form-control" placeholder="New Password" TextMode="Password"></asp:TextBox>
                             <asp:RequiredFieldValidator ID="rfv_txtPassword_new" runat="server" ErrorMessage="Please enter a New Password" ControlToValidate="txtPassword_new" ForeColor="Red" ValidationGroup="ValidateForm" Display="Dynamic"></asp:RequiredFieldValidator>
                             <asp:CustomValidator ID="cv_SamePass" runat="server" ErrorMessage="Please enter a password that is different from your current password" OnServerValidate="ValidateSamePass" ForeColor="Red" ValidationGroup="ValidateForm" Display="Dynamic"></asp:CustomValidator>
+                            <asp:CustomValidator ID="cv_pwReq" runat="server" ErrorMessage="Your password do not match the requirements" OnServerValidate="cv_pwReq_ServerValidate" ForeColor="Red" ValidationGroup="ValidateForm" Display="Dynamic"></asp:CustomValidator>
                             <asp:RegularExpressionValidator Display = "Dynamic" ControlToValidate = "txtPassword_new" ID="regv_txtPassword_new" ValidationExpression = "^[\s\S]{8,}$" runat="server" ErrorMessage="Minimum 8 characters required." ForeColor="Red"></asp:RegularExpressionValidator>
                         </div>
                     </div>
