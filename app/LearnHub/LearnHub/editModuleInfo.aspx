@@ -15,10 +15,6 @@
 
 
     <script type="text/javascript">
-        $(window).on('load', function () {
-            $('#myModal').modal('show');
-        });
-
         $(function () {
             $('.input-daterange').datepicker({
                 format: 'dd/mm/yyyy',
@@ -549,32 +545,6 @@
            
             </fieldset>
         </form>
-
-        <div class="container">
-            <div class="modal" id="myModal">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                            <h4 class="modal-title"><b>U N D E R &nbsp; C O N S T R U C T I O N</b></h4>
-                        </div>
-                        <div class="modal-body">
-                            <div class="wrapper"><img src="img/barrier.png" style='width: 30%;' border="0"/>
-                                <h3 class="text-danger">This page is currently still under construction!</h3>
-                                <p>You may still navigate around but not everything is working as it should be. <br /> Team PlusMinus is trying their best to get everything
-                                    up as soon as possible!
-                                </p>
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <div class="wrapper">
-                            <button type="button" class="btn btn-warning" data-dismiss="modal">Got it!</button>
-                                </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
     </div>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder2" runat="server">

@@ -45,8 +45,10 @@
 
         .carousel-inner {
             width: 100%;
-            max-height: 350px !important;
+            height: 350px !important;
         }
+
+
 
         .newsFooter {
             padding-top: 10px;
@@ -137,13 +139,13 @@
         <div class="carousel-inner">
             <div class="item active">
                 <a href="#">
-                    <img src="img/banner1.png" alt="Learnhub" style="width: 2000px;">
+                    <img src="img/banner1.png" alt="Learnhub" />
                 </a>
             </div>
 
             <div class="item">
                 <a href="viewAllModule.aspx">
-                <img src="img/banner2.png" alt="Learnhub" style="width: 100%;">
+                <img src="img/banner2.png" alt="Learnhub" />
                     </a>
             </div>
         </div>
