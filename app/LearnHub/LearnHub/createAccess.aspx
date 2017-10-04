@@ -120,6 +120,10 @@
                     </div>
                 </div>
                 <br />
+                <div class="form-group">
+                        <h6> <asp:Label runat="server" CssClass="control-label text-muted" Text="Password must include at least 8 characters, inclusive of 1 upper case letter, 1 lower case letter, 1 numerical character and 1 special character."></asp:Label></h6>
+                    </div>
+                <br />
                 <h4>User Information</h4>
                 <div class="form-group required">
                     <strong>
@@ -151,7 +155,7 @@
                     <div class="col-lg-5">
                         <asp:TextBox ID="txtEmail" runat="server" CssClass="form-control" placeholder="Email"></asp:TextBox>
                         <asp:RequiredFieldValidator ID="rfv_txtEmail" runat="server" ErrorMessage="Please input an Email Address" ControlToValidate="txtEmail" ForeColor="Red" ValidationGroup="ValidateForm" Display="Dynamic"></asp:RequiredFieldValidator>
-                        <asp:CustomValidator ID="cv_checkEmailExist" runat="server" ErrorMessage="The email address is already in used." ControlToValidate="txtEmail" ForeColor="Red" ValidationGroup="ValidateForm" Display="Dynamic" OnServerValidate="cv_checkEmailExist_ServerValidate"></asp:CustomValidator>
+                        <asp:CustomValidator ID="cv_checkEmailExist" runat="server" ErrorMessage="The email address is already in use" ControlToValidate="txtEmail" ForeColor="Red" ValidationGroup="ValidateForm" Display="Dynamic" OnServerValidate="cv_checkEmailExist_ServerValidate"></asp:CustomValidator>
                     </div>
                 </div>
                 <div class="form-group required">

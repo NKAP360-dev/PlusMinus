@@ -1141,6 +1141,8 @@
     <Content Include="editQuiz.aspx" />
     <Content Include="editUsefulLinks.aspx" />
     <Content Include="editUsers.aspx" />
+    <Content Include="img\banner1.png" />
+    <Content Include="img\banner2.png" />
     <Content Include="img\barrier.png" />
     <Content Include="img\checked.png" />
     <Content Include="img\contactus.png" />

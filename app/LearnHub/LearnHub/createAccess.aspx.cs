@@ -31,6 +31,11 @@ namespace LearnHub
                     ddlSup.Items.Add(supervisor.getName());
                 }
             }
+            else
+            {
+                txtPassword.Attributes["value"] = txtPassword.Text;
+                txtPassword2.Attributes["value"] = txtPassword2.Text;
+            }
         }
         protected void submit_Click(object sender, EventArgs e)
         {
