@@ -174,6 +174,7 @@
                                 <div class="col-lg-7">
                                    <asp:TextBox ID="txtNumCorrectAns" runat="server" CssClass="form-control" TextMode="Number"></asp:TextBox>
                                     <asp:RequiredFieldValidator ID="rfv_txtNumCorrectAns" runat="server" ErrorMessage="Please enter the number of Correct Answers" ControlToValidate="txtNumCorrectAns" ForeColor="Red" ValidationGroup="ValidateFormTwo" Display="Dynamic"></asp:RequiredFieldValidator>
+                                    <asp:CustomValidator ID="cv_txtNumCorrectAns" runat="server" ErrorMessage="You have entered a number that is more than the total number of questions! Please enter a lower number!" OnServerValidate="ValidateNumberOfQuestions" ControlToValidate ="txtNumCorrectAns" ForeColor="Red" ValidationGroup="ValidateFormTwo" Display="Dynamic" ></asp:CustomValidator>
                                 </div>
                             </div>
                         <div class="form-group required">
