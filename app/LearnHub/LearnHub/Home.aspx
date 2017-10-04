@@ -137,12 +137,14 @@
         <div class="carousel-inner">
             <div class="item active">
                 <a href="#">
-                    <img src="img/learnhub1.png" alt="Learnhub" style="width: 100%;">
+                    <img src="img/banner1.png" alt="Learnhub" style="width: 2000px;">
                 </a>
             </div>
 
             <div class="item">
-                <img src="img/learnhubbanner2.png" alt="Learnhub" style="width: 100%;">
+                <a href="viewAllModule.aspx">
+                <img src="img/banner2.png" alt="Learnhub" style="width: 100%;">
+                    </a>
             </div>
         </div>
 
