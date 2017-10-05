@@ -95,7 +95,7 @@
                 <strong>
                     <asp:Label runat="server" CssClass="col-lg-2 control-label" Text="Username"></asp:Label></strong>
                 <div class="col-lg-5">
-                    <asp:TextBox ID="txtUsername" runat="server" CssClass="form-control" placeholder="Username"></asp:TextBox>
+                    <asp:TextBox ID="txtUsername" runat="server" CssClass="form-control" placeholder="Username" Enabled="false"></asp:TextBox>
                     <asp:RequiredFieldValidator ID="rfv_txtUsername" runat="server" ErrorMessage="Please input a Username" ControlToValidate="txtUsername" ForeColor="Red" ValidationGroup="ValidateForm" Display="Dynamic"></asp:RequiredFieldValidator>
                 </div>
             </div>
