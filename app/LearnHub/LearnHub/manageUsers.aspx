@@ -96,7 +96,7 @@
         <table class="table table-striped table-hover" data-paging="true" data-sorting="true" data-filtering="true">
             <thead>
                 <tr>
-                    <th>User ID</th>
+                    <th>Name</th>
                     <th>Department</th>
                     <th>Contact No</th>
                     <th>Email</th>
