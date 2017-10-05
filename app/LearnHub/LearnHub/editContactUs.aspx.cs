@@ -36,12 +36,18 @@ using LearnHub.AppCode.entity;
                 }
                 if (!IsPostBack)
                 {
+                    DeptDAO depdao = new DeptDAO();
+                    List<Department> deps = depdao.getAllDepartment();
+                    foreach (Department d in deps)
+                    {
+                        lblDept.Items.Add(new ListItem(System.Globalization.CultureInfo.CurrentCulture.TextInfo.ToTitleCase(d.getDeptName().ToLower()), d.getDeptName()));
+                    }
                     string id = Request.QueryString["id"];
                     int id_num = Convert.ToInt32(id);
                     ContactDAO adao = new ContactDAO();
                     a = adao.getContactById(id_num);
                     txtName.Text = a.name;
-                    txtDepartment.Text = System.Globalization.CultureInfo.CurrentCulture.TextInfo.ToTitleCase(a.department.ToLower());
+                    lblDept.SelectedValue = a.department;
                     txtEmail.Text = a.email;
                     txtRemarks.Text = a.remarks;
                 }
@@ -51,7 +57,7 @@ using LearnHub.AppCode.entity;
         {
             ContactDAO adao = new ContactDAO();
             string name = txtName.Text;
-            string dept = txtDepartment.Text;
+            string dept = lblDept.Text;
             string email = txtEmail.Text;
             string remarks = txtRemarks.Text;
             string id = Request.QueryString["id"];

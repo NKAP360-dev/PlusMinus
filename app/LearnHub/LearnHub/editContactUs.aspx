@@ -42,7 +42,9 @@
                 <strong>
                     <asp:Label runat="server" CssClass="col-lg-2 control-label" Text="Department"></asp:Label></strong>
                 <div class="col-lg-9">
-                    <asp:TextBox ID="txtDepartment" runat="server" CssClass="form-control" placeholder="Department of Contact"></asp:TextBox>
+                    <asp:DropDownList ID="lblDept" runat="server" CssClass="form-control">
+                            <asp:ListItem>--select--</asp:ListItem>
+                 </asp:DropDownList>
                 </div>
             </div>
 

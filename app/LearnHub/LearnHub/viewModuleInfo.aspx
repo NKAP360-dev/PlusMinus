@@ -240,10 +240,11 @@
                                 <strong>
                                     <asp:Label ID="lblCommentTitle"><%= test.getTitle() %></asp:Label></strong>&emsp;
                                 <% 
-                                    if(user == null) { 
+                                    User courseCreator = ceDAO.get_course_by_id(courseID).getCourseCreator();
+                                    if(user == null) {
 
                                     }else if (superuser || user.getDepartment().Equals("hr"))
-                                    {%>
+                                        {%>
                                 <a href="deleteTestimonial.aspx?id=<%=test.getID() %>&cid=<%=current.getCourseID() %>" onclick="return confirm('Are you sure?')"><span class="label label-danger pull-right"><span class="glyphicon glyphicon-trash"></span></span></a></strong><br />
                                 <%} %>
                                 <br />
@@ -261,6 +262,7 @@
                                 <%
 
                                     }
+                                    
                                 %>
                             </div>
                         </div>
@@ -310,11 +312,15 @@
                                 <h3 class="panel-title">
                                     <asp:Label ID="lblUploadTitle" runat="server"><%= title %></asp:Label>
                                     <%  User user = (User)Session["currentUser"];
+                                        Course_elearnDAO ceDAO = new Course_elearnDAO();
+                                        int courseID = Convert.ToInt32(Request.QueryString["id"]);
+                                         User courseCreator = ceDAO.get_course_by_id(courseID).getCourseCreator();
+
     if (user == null)
     {
         //Response.Redirect("login.aspx");
     }
-    else if (superuser || user.getDepartment().Equals("hr"))
+    else if (superuser || user.getDepartment().Equals("hr") || currentUser.getUserID() == courseCreator.getUserID() )
     {%>
                                     <a href="deleteMaterial.aspx?id=<%=current.getCourseID()%>&path=<%=strfile%>" onclick="return confirm('Are you sure?')"><span class="label label-danger pull-right"><span class="glyphicon glyphicon-trash"></span></span></a></strong><br />
                                     <%} %>
