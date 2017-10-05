@@ -31,7 +31,7 @@ namespace LearnHub
                 if (!checkCompleted)
                 {
                     //redirect user to complete all prerequisite quiz first
-                    Response.Redirect("Home.aspx");
+                    Response.Redirect("preqIncomplete.aspx");
                 }
                 else
                 {

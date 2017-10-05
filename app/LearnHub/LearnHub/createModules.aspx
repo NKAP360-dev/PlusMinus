@@ -325,7 +325,7 @@
                         <asp:RequiredFieldValidator ID="rfv_moduleType" runat="server" ControlToValidate="moduleType" ErrorMessage="Please select a Category" InitialValue="0" ForeColor="Red" ValidationGroup="ValidateForm"></asp:RequiredFieldValidator>
                     </div>
                 </div>
-                <asp:UpdatePanel ID="updatePanelCourseType" runat="server">
+                <asp:UpdatePanel ID="updatePanelCourseType" runat="server" UpdateMode="Always">
                     <ContentTemplate>
                 <div class="form-group required">
                     <strong><asp:Label runat="server" CssClass="col-lg-2 control-label" Text="Course Type"></asp:Label></strong>
@@ -399,7 +399,7 @@
                         <div id="preq" class="collapse">
                         <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:DBConnectionString %>">
                         </asp:SqlDataSource>
-                        <asp:GridView ID="gvPrereq" runat="server" AutoGenerateColumns="False" DataKeyNames="elearn_courseID,categoryID1" AllowPaging="False" CssClass="footable table table-striped table-hover" data-paging="true" GridLines="None" OnRowCommand="gvPrereq_RowCommand" EmptyDataText="There are no courses available to choose from." EnableViewState="true">
+                        <asp:GridView ID="gvPrereq" runat="server" AutoGenerateColumns="False" DataKeyNames="elearn_courseID,categoryID1" AllowPaging="False" CssClass="table table-striped table-hover" GridLines="None" OnRowCommand="gvPrereq_RowCommand" EmptyDataText="There are no courses available to choose from." EnableViewState="true">
                             <Columns>
                                 <asp:TemplateField>
                                     <ItemTemplate>

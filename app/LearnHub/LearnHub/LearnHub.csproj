@@ -572,6 +572,13 @@
     <Compile Include="pendingApproval.aspx.designer.cs">
       <DependentUpon>pendingApproval.aspx</DependentUpon>
     </Compile>
+    <Compile Include="preqIncomplete.aspx.cs">
+      <DependentUpon>preqIncomplete.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="preqIncomplete.aspx.designer.cs">
+      <DependentUpon>preqIncomplete.aspx</DependentUpon>
+    </Compile>
     <Compile Include="progressReports.aspx.cs">
       <DependentUpon>progressReports.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1174,6 +1181,7 @@
     <Content Include="noResult.aspx" />
     <Content Include="overallQuizResult.aspx" />
     <Content Include="pendingApproval.aspx" />
+    <Content Include="preqIncomplete.aspx" />
     <Content Include="progressReports.aspx" />
     <Content Include="progressReport.aspx" />
     <Content Include="quiz.aspx" />
