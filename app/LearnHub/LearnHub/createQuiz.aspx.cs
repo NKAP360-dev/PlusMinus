@@ -233,7 +233,11 @@ namespace LearnHub
             {
                 String input = txtQuizTitle.Text;
                 QuizDAO quizdao = new QuizDAO();
-                List<Quiz> quizList = quizdao.getAllQuiz();
+                //Course_elearnDAO cdao = new Course_elearnDAO();
+                string id_str = Request.QueryString["id"];
+                int id_num = int.Parse(id_str);
+                List<Quiz> quizList = quizdao.getAllQuizByCourseID(id_num);
+                //List<Quiz> quizList = quizdao.getAllQuiz();
                 Boolean checker = false;
                 foreach(Quiz curr in quizList)
                 {

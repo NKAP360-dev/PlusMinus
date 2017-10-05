@@ -294,37 +294,21 @@ namespace LearnHub
         {
             System.Diagnostics.Debug.WriteLine("val pass");
             List<QuizQuestion> allQuestions = (List<QuizQuestion>)Session["allQuestions"];
-            int noOfQuestions = allQuestions.Count;
+            int noOfQuestions = allQuestions.Count + 1;
             System.Diagnostics.Debug.WriteLine("no:" + noOfQuestions);
             int input = Convert.ToInt32(Convert.ToDouble(txtNumCorrectAns.Text));
-            if(noOfQuestions == 0)
+            if (input <= noOfQuestions)
             {
-                if (input == 1)
-                {
-                    System.Diagnostics.Debug.WriteLine("val true");
-                    args.IsValid = true;
-                }
-                else
-                {
-                    System.Diagnostics.Debug.WriteLine("val false");
-                    args.IsValid = false;
-                    ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "openModal();", true);
-                }
+                System.Diagnostics.Debug.WriteLine("val true");
+                args.IsValid = true;
             }
             else
             {
-                if (input <= noOfQuestions)
-                {
-                    System.Diagnostics.Debug.WriteLine("val true");
-                    args.IsValid = true;
-                }
-                else
-                {
-                    System.Diagnostics.Debug.WriteLine("val false");
-                    args.IsValid = false;
-                    ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "openModal();", true);
-                }
+                System.Diagnostics.Debug.WriteLine("val false");
+                args.IsValid = false;
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "openModal();", true);
             }
+            
             
         }
     }
