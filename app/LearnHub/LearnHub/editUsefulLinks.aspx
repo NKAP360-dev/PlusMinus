@@ -41,7 +41,8 @@
                     <div class="form-group required">
                         <strong>
                             <asp:Label runat="server" CssClass="col-lg-2 control-label" Text="Link"></asp:Label></strong>
-                        <div class="col-lg-9">
+                        <div class="input-group col-lg-9">
+                            <span class="input-group-addon">http://</span>
                             <asp:TextBox ID="txtLink" runat="server" CssClass="form-control" placeholder="e.g www.google.com"></asp:TextBox>
                         </div>
                     </div>
@@ -49,7 +50,7 @@
                     <div class="form-group">
                         <strong>
                             <asp:Label runat="server" CssClass="col-lg-2 control-label" Text="Description (if any)"></asp:Label></strong>
-                        <div class="col-lg-9">
+                        <div class="input-group col-lg-9">
                             <asp:TextBox ID="txtDesc" runat="server" CssClass="form-control" TextMode="MultiLine" placeholder="Description (if any)"></asp:TextBox>
                         </div>
                     </div>
