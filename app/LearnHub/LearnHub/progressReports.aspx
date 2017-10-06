@@ -24,6 +24,26 @@
         }
 
     </style>
+    <script type="text/javascript">
+        function ValidateFeedbackDescription(sender, args) {
+            console.log("enter fbd");
+            var feedbackDescription = document.getElementById("<%= txtFeedback.ClientID %>").value;
+            if (feedbackDescription == "") {
+                console.log("no desc");
+                args.IsValid = false;
+            }
+            else {
+                console.log("Yes desc");
+                args.IsValid = true;
+            }
+        }
+
+        function showDiv() {
+            if (document.getElementById) {
+                document.getElementById('addFeedback').style.display = 'block';
+            }
+        }
+    </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <ul class="breadcrumb">
@@ -138,17 +158,19 @@
                                         <div class="form-group">
                                             <div class="col-lg-12">
                                                 <asp:TextBox ID="txtFeedback" runat="server" CssClass="form-control" placeholder="Feedback"></asp:TextBox>
+                                                <asp:RequiredFieldValidator ID="rfv_txtFeedback" runat="server" ErrorMessage="Required*" ControlToValidate="txtFeedback" ForeColor="Red" ValidationGroup="ValidateForm" Display="Dynamic"></asp:RequiredFieldValidator>
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <div class="col-lg-12">
                                                 <CKEditor:CKEditorControl ID="CKEditorControl2" runat="server">
                                                 </CKEditor:CKEditorControl>
+                                                <asp:CustomValidator ID="cv_txtFeedbackDesc" runat="server" EnableClientScript="true" ErrorMessage="Required*" ClientValidationFunction="ValidateFeedbackDescription" ForeColor="Red" ValidationGroup="ValidateForm" ></asp:CustomValidator>
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <div class="col-lg-10">
-                                                <asp:Button ID="cfmSubmit" CssClass="btn btn-primary" runat="server" Text="Submit" OnClick="cfmSubmit_Click"/>
+                                                <asp:Button ID="cfmSubmit" CssClass="btn btn-primary" runat="server" Text="Submit" OnClick="cfmSubmit_Click" ValidationGroup="ValidateForm"/>
                                             </div>
                                         </div>
 

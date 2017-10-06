@@ -58,6 +58,15 @@ namespace LearnHub {
         protected global::System.Web.UI.WebControls.TextBox txtFeedback;
         
         /// <summary>
+        /// rfv_txtFeedback control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfv_txtFeedback;
+        
+        /// <summary>
         /// CKEditorControl2 control.
         /// </summary>
         /// <remarks>
@@ -65,6 +74,15 @@ namespace LearnHub {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::CKEditor.NET.CKEditorControl CKEditorControl2;
+        
+        /// <summary>
+        /// cv_txtFeedbackDesc control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CustomValidator cv_txtFeedbackDesc;
         
         /// <summary>
         /// cfmSubmit control.
