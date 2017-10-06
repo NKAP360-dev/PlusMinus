@@ -122,7 +122,7 @@ namespace LearnHub.AppCode.dao
                 conn.Open();
                 SqlCommand comm = new SqlCommand();
                 comm.Connection = conn;
-                comm.CommandText = "select * from [Links] where status = 'Active'";
+                comm.CommandText = "select * from [Links] where status = 'Active' order by link_id desc";
                 SqlDataReader dr = comm.ExecuteReader();
                 while (dr.Read())
                 {

@@ -41,8 +41,7 @@
                     <div class="form-group required">
                         <strong>
                             <asp:Label runat="server" CssClass="col-lg-2 control-label" Text="Link"></asp:Label></strong>
-                        <div class="input-group col-lg-9">
-                            <span class="input-group-addon">http://</span>
+                        <div class="col-lg-9">
                             <asp:TextBox ID="txtLink" runat="server" CssClass="form-control" placeholder="e.g www.google.com"></asp:TextBox>
                         </div>
                     </div>

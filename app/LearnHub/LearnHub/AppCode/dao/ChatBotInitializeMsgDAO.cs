@@ -110,7 +110,16 @@ namespace Emma.DAO
                 comm.Connection = conn;
                 comm.CommandText = "Insert into [ChatBotInitialization] (message, levels) VALUES (@message, @levels)";
                 comm.Parameters.AddWithValue("@message", message);
-                comm.Parameters.AddWithValue("@levels", getNextOrderNumber() + 1);
+                int nextOrderNum = getNextOrderNumber();
+                if (nextOrderNum != -1)
+                {
+                    nextOrderNum++;
+                }
+                else
+                {
+                    nextOrderNum = 0;
+                }
+                comm.Parameters.AddWithValue("@levels", nextOrderNum);
                 comm.ExecuteNonQuery();
                 success = true;
             }
@@ -140,7 +149,10 @@ namespace Emma.DAO
                 SqlDataReader dr = comm.ExecuteReader();
                 while (dr.Read())
                 {
-                    toReturn = (int)dr["preference"];
+                    if (!dr.IsDBNull(0))
+                    {
+                        toReturn = (int)dr["preference"];
+                    } 
                 }
                 dr.Close();
             }
