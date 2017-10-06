@@ -35,6 +35,24 @@ namespace LearnHub
             {
                 Response.Redirect("errorPage.aspx");
             }
+            
+        }
+        protected void checkForm(object sender, EventArgs e)
+        {
+            Page.Validate("ValidateForm");
+            System.Diagnostics.Debug.WriteLine("checkForm");
+            if (!Page.IsValid)
+            {
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "openModal();", true);
+                lblErrorMsgFinal.Text = "You have not filled up all of the required fields";
+                cfmSubmit.Enabled = false;
+            }
+            else
+            {
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "openModal();", true);
+                lblErrorMsgFinal.Text = "";
+                cfmSubmit.Enabled = true;
+            }
         }
     }
 }
