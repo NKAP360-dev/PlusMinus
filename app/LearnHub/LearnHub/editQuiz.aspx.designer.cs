@@ -121,6 +121,15 @@ namespace LearnHub {
         protected global::System.Web.UI.WebControls.RequiredFieldValidator rfv_txtNumCorrectAns;
         
         /// <summary>
+        /// cv_txtNumCorrectAns control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CustomValidator cv_txtNumCorrectAns;
+        
+        /// <summary>
         /// ddlRandomize control.
         /// </summary>
         /// <remarks>
