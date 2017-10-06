@@ -17,6 +17,11 @@
                 }
             });
         });
+
+        function openModal() {
+            console.log("submitModal");
+            $("#submitModal").modal();
+        }
     </script>
     <style>
                   .breadcrumb {
@@ -79,6 +84,7 @@
                 <label for="txtCategory" class="col-lg-2 control-label">Category Name</label>
                 <div class="col-lg-10">
                     <asp:TextBox ID="txtCategory" runat="server" CssClass="form-control" placeholder="Populate value here"></asp:TextBox>
+                    <asp:RequiredFieldValidator ID="rfv_txtCategory" runat="server" ErrorMessage="Please enter a Category Name" ControlToValidate="txtCategory" ForeColor="Red" ValidationGroup="ValidateForm" Display="Dynamic"></asp:RequiredFieldValidator>
                     <asp:Label ID="lblHiddenID" runat="server" Visible="False"></asp:Label>
                     <br>
                 </div>
@@ -87,7 +93,7 @@
             <%--Buttons--%>
             <div class="wrapper">
                 <div class="form-group">
-                    <asp:Button ID="btnSubmit" CssClass="btn btn-primary" runat="server" Text="Save" data-toggle="modal" href="#submitModal" OnClientClick="return false;" />
+                    <asp:Button ID="btnSubmit" CssClass="btn btn-primary" runat="server" Text="Save" onclick="checkForm" CausesValidation="True" UseSubmitBehavior="False"/>
                     <asp:Button ID="btnDeactivate" CssClass="btn btn-warning" runat="server" Text="Deactivate" data-toggle="modal" href="#deactivateModal" OnClientClick="return false;" />
                     <asp:Button ID="btnActivate" CssClass="btn btn-success" runat="server" Text="Activate" data-toggle="modal" href="#activateModal" OnClientClick="return false;" />
 
@@ -106,6 +112,8 @@
                         <div class="modal-body">
                             <div class="wrapper">
                                 <h4>Are you sure you want to proceed?</h4>
+                                <br />
+                                <asp:Label ID="lblErrorMsgFinal" runat="server" CssClass="text-danger" Visible="True"></asp:Label>
                                 <br />
                                 <asp:Button ID="btnConfirmSubmit" CssClass="btn btn-primary" runat="server" Text="Submit" OnClick="btnConfirmSubmit_Click"/>
                                 <asp:Button ID="btnCancel1" CssClass="btn btn-default" runat="server" class="close" data-dismiss="modal" Text="Cancel" OnClientClick="return false;" />
