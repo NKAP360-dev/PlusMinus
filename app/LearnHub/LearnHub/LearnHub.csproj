@@ -315,6 +315,13 @@
     <Compile Include="askLearnyEditHelp.aspx.designer.cs">
       <DependentUpon>askLearnyEditHelp.aspx</DependentUpon>
     </Compile>
+    <Compile Include="audit.aspx.cs">
+      <DependentUpon>audit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="audit.aspx.designer.cs">
+      <DependentUpon>audit.aspx</DependentUpon>
+    </Compile>
     <Compile Include="changePassword.aspx.cs">
       <DependentUpon>changePassword.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -814,6 +821,7 @@
     <Content Include="askLearnyInitializeMsg.aspx" />
     <Content Include="askLearnyInstruction.aspx" />
     <Content Include="askLearnyEditHelp.aspx" />
+    <Content Include="audit.aspx" />
     <Content Include="bootstrap\css\bootstrap-responsive.css" />
     <Content Include="bootstrap\css\bootstrap-responsive.min.css" />
     <Content Include="bootstrap\css\bootstrap.css" />

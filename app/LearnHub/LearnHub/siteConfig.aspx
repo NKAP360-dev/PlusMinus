@@ -279,6 +279,24 @@
             </a>
         </div>
     </div>
+    <br />
+    <div class="container">
+        <div class="row">
+           <h3><span class="glyphicon glyphicon-menu-right"></span>&emsp;Audit</h3>
+            <a href="audit.aspx">
+                <div class="col-md-3 btn-warning">
+                    <br />
+                    <br />
+                    <div class="wrapper">
+                        <span style="font-size: 75px;" class="glyphicon glyphicon-paste"></span>
+                        <br />
+                        <h3>Audit</h3>
+                        <br />
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder2" runat="server">
     <%--TRF Modal--%>
