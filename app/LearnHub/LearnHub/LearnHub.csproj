@@ -150,6 +150,7 @@
     <Compile Include="accountSetting.aspx.designer.cs">
       <DependentUpon>accountSetting.aspx</DependentUpon>
     </Compile>
+    <Compile Include="AppCode\dao\AuditDAO.cs" />
     <Compile Include="AppCode\dao\ContactDAO.cs" />
     <Compile Include="AppCode\dao\LinkDAO.cs" />
     <Compile Include="AppCode\dao\ArticleDAO.cs" />
@@ -180,6 +181,7 @@
     <Compile Include="AppCode\dao\WorkflowApproverDAO.cs" />
     <Compile Include="AppCode\dao\WorkflowSubDAO.cs" />
     <Compile Include="AppCode\dao\WorkflowDAO.cs" />
+    <Compile Include="AppCode\entity\Audit.cs" />
     <Compile Include="AppCode\entity\Contact.cs" />
     <Compile Include="AppCode\entity\Link.cs" />
     <Compile Include="AppCode\entity\Article.cs" />

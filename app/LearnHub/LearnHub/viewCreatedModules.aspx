@@ -107,7 +107,15 @@
                 User currentUser = (User)Session["currentUser"];
                 Course_elearnDAO ceDAO = new Course_elearnDAO();
                 Course_elearnCategoryDAO cecDAO = new Course_elearnCategoryDAO();
-                ArrayList allUserCourses = ceDAO.getAllCoursesByCreatorID(currentUser.getUserID());
+                ArrayList allUserCourses = new ArrayList();
+                if (currentUser.getRoles().Contains("superuser"))
+                {
+                    allUserCourses = ceDAO.getAllCourses();
+                }
+                else
+                {
+                    allUserCourses = ceDAO.getAllCoursesByCreatorID(currentUser.getUserID());
+                }
                 if (allUserCourses.Count > 0)
                 {
             %>
