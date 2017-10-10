@@ -192,8 +192,9 @@
                         <asp:Label runat="server" CssClass="col-lg-2 control-label" Text="Roles"></asp:Label></strong>
                     <div class="col-lg-5">
                         <asp:CheckBoxList ID="cblRoles" runat="server">
-                            <asp:ListItem Value="course creator">course creator</asp:ListItem>
                             <asp:ListItem Value="superuser">superuser</asp:ListItem>
+                            <asp:ListItem Value="course creator">course creator</asp:ListItem>
+                            <asp:ListItem Value="content creator">content creator</asp:ListItem>
                             <asp:ListItem Value="user">user</asp:ListItem>
                         </asp:CheckBoxList>
                         <asp:CustomValidator runat="server" ID="cvmodulelist" ClientValidationFunction="ValidateModuleList" ErrorMessage="Please Select at least One Role" ForeColor="Red" ValidationGroup="ValidateForm" Display="Dynamic" ></asp:CustomValidator>

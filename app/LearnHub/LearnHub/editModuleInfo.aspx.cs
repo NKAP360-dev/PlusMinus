@@ -137,6 +137,11 @@ namespace LearnHub
             Course_elearn currentCourse = ceDAO.get_course_by_id(Convert.ToInt32(Request.QueryString["id"]));
             ceDAO.deactivateCourse(Convert.ToInt32(Request.QueryString["id"]));
             int cat = currentCourse.getCategoryID();
+
+            //set audit
+            User currentUser = (User)Session["currentUser"];
+            setAudit(currentUser, "course", "deactivate", currentCourse.getCourseID().ToString(), "course name: " + currentCourse.getCourseName());
+
             Response.Redirect($"viewAllModule.aspx");
 
         }
@@ -147,6 +152,11 @@ namespace LearnHub
             Course_elearn currentCourse = ceDAO.get_course_by_id(Convert.ToInt32(Request.QueryString["id"]));
             ceDAO.activateCourse(Convert.ToInt32(Request.QueryString["id"]));
             int cat = currentCourse.getCategoryID();
+
+            //set audit
+            User currentUser = (User)Session["currentUser"];
+            setAudit(currentUser, "course", "activate", currentCourse.getCourseID().ToString(), "course name: " + currentCourse.getCourseName());
+
             Response.Redirect($"viewAllModule.aspx");
 
         }
@@ -157,6 +167,7 @@ namespace LearnHub
 
             Course_elearnDAO ceDAO = new Course_elearnDAO();
             int courseID = Convert.ToInt32(Request.QueryString["id"]);
+            Course_elearn currentCourse = ceDAO.get_course_by_id(courseID);
             //change to MM-dd-yyyy
             string fromDate = fromDateInput.Text.Substring(3, 2) + "/" + fromDateInput.Text.Substring(0, 2) + "/" + fromDateInput.Text.Substring(6, 4);
             string toDate = toDateInput.Text.Substring(3, 2) + "/" + toDateInput.Text.Substring(0, 2) + "/" + toDateInput.Text.Substring(6, 4);
@@ -170,6 +181,10 @@ namespace LearnHub
             {
                 ceDAO.insertPrerequisite(courseID, prereqID);
             }
+
+            //set audit
+            User currentUser = (User)Session["currentUser"];
+            setAudit(currentUser, "course", "update", courseID.ToString(), "course name: " + currentCourse.getCourseName());
 
             Response.Redirect($"viewModuleInfo.aspx?id={courseID}");
         }
@@ -376,6 +391,19 @@ namespace LearnHub
                 }
             }
             return toReturn;
+        }
+        protected void setAudit(User u, string functionModified, string operation, string id_of_function, string remarks)
+        {
+            //set audit
+            Audit a = new Audit();
+            AuditDAO aDAO = new AuditDAO();
+            a.userID = u.getUserID();
+            a.functionModified = functionModified;
+            a.operation = operation;
+            a.id_of_function = id_of_function;
+            a.dateModified = DateTime.Now;
+            a.remarks = remarks;
+            aDAO.createAudit(a);
         }
     }
 }

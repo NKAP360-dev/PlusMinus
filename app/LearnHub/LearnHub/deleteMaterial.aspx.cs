@@ -5,6 +5,8 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.IO;
+using LearnHub.AppCode.entity;
+using LearnHub.AppCode.dao;
 
 namespace LearnHub
 {
@@ -25,10 +27,28 @@ namespace LearnHub
                 else
                 {
                     System.IO.File.Delete(fullPath);
+
+                    //set audit
+                    User currentUser = (User)Session["currentUser"];
+                    string filename = Path.GetFileName(fullPath);
+                    setAudit(currentUser, "course", "update", id, "deleted material filename: " + filename);
                 }
                
                 Response.Redirect("viewModuleInfo.aspx?id=" + id_num);
             }
+        }
+        protected void setAudit(User u, string functionModified, string operation, string id_of_function, string remarks)
+        {
+            //set audit
+            Audit a = new Audit();
+            AuditDAO aDAO = new AuditDAO();
+            a.userID = u.getUserID();
+            a.functionModified = functionModified;
+            a.operation = operation;
+            a.id_of_function = id_of_function;
+            a.dateModified = DateTime.Now;
+            a.remarks = remarks;
+            aDAO.createAudit(a);
         }
     }
 }

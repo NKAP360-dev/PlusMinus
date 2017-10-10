@@ -26,15 +26,12 @@ namespace LearnHub
             User upload = (User)Session["currentUser"];
             DateTime time = DateTime.Now;
             Article a = new Article(title, body, upload, time, "Active");
-            int done = adao.createArticle(a);
-            if (done > 0)
-            {
-                Response.Redirect("manageArticles.aspx");
-            }
-            else
-            {
-                Response.Redirect("errorPage.aspx");
-            }
+            int articleID = adao.createArticle(a);
+
+            //set audit
+            setAudit(upload, "articles", "create", articleID.ToString(), "created article title: " + title);
+
+            Response.Redirect("manageArticles.aspx");
             
         }
         protected void checkForm(object sender, EventArgs e)
@@ -53,6 +50,19 @@ namespace LearnHub
                 lblErrorMsgFinal.Text = "";
                 cfmSubmit.Enabled = true;
             }
+        }
+        protected void setAudit(User u, string functionModified, string operation, string id_of_function, string remarks)
+        {
+            //set audit
+            Audit a = new Audit();
+            AuditDAO aDAO = new AuditDAO();
+            a.userID = u.getUserID();
+            a.functionModified = functionModified;
+            a.operation = operation;
+            a.id_of_function = id_of_function;
+            a.dateModified = DateTime.Now;
+            a.remarks = remarks;
+            aDAO.createAudit(a);
         }
     }
 }

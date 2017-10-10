@@ -151,6 +151,10 @@ namespace LearnHub
 
                 if (done)
                 {
+                    //set audit
+                    User currentUser = (User)Session["currentUser"];
+                    setAudit(currentUser, "user", "update", user, "user name: " + user);
+
                     Response.Redirect("manageUsers.aspx");
                 }
                 else
@@ -166,6 +170,10 @@ namespace LearnHub
             Boolean suc = udao.update_status_deactivate(userID);
             if (suc)
             {
+                //set audit
+                User currentUser = (User)Session["currentUser"];
+                setAudit(currentUser, "user", "deactivate", userID, "deactivated username: " + userID);
+
                 Response.Redirect("editUsers.aspx?userID=" + userID);
             }
         }
@@ -176,6 +184,10 @@ namespace LearnHub
             Boolean suc = udao.update_status_activate(userID);
             if (suc)
             {
+                //set audit
+                User currentUser = (User)Session["currentUser"];
+                setAudit(currentUser, "user", "activate", userID, "activated username: " + userID);
+
                 Response.Redirect("editUsers.aspx?userID=" + userID);
             }
         }
@@ -215,6 +227,18 @@ namespace LearnHub
                 btnCfmSubmit.Enabled = true;
             }
         }
-
+        protected void setAudit(User u, string functionModified, string operation, string id_of_function, string remarks)
+        {
+            //set audit
+            Audit a = new Audit();
+            AuditDAO aDAO = new AuditDAO();
+            a.userID = u.getUserID();
+            a.functionModified = functionModified;
+            a.operation = operation;
+            a.id_of_function = id_of_function;
+            a.dateModified = DateTime.Now;
+            a.remarks = remarks;
+            aDAO.createAudit(a);
+        }
     }
 }

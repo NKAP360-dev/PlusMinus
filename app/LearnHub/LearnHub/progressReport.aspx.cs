@@ -26,6 +26,8 @@ namespace LearnHub
                 int numOfCourseComplete = checkNumberOfCourseUserComplete(currentUser.getUserID());
                 lblCourseNumber.Text = numOfCourseComplete.ToString();
                 lblQuizNumber.Text = qrDAO.getNumberOfPassQuiz(currentUser.getUserID()).ToString();
+                double learningHours = (Double)Session["totalLearningHours"];
+                lblHours.Text = learningHours.ToString() + " hours";
             }
         }
 
@@ -37,6 +39,7 @@ namespace LearnHub
             QuizResultDAO qrDAO = new QuizResultDAO();
             ArrayList allResults = qrDAO.getAllQuizResultByUserID(userID);
             List<int> allCompletedCourseID = new List<int>();
+            double totalLearningHours = 0;
             int counter = 0;
             foreach(Course_elearn ce in allCourses)
             {
@@ -55,9 +58,11 @@ namespace LearnHub
                 {
                     counter++;
                     allCompletedCourseID.Add(ce.getCourseID());
+                    totalLearningHours = totalLearningHours + ce.getHoursAwarded();
                 }
             }
             Session["allCompletedCourseID"] = allCompletedCourseID;
+            Session["totalLearningHours"] = totalLearningHours;
             return counter;
         }
     }

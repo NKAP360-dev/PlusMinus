@@ -127,6 +127,38 @@ namespace LearnHub.AppCode.dao
             }
             return success;
         }
+        public String getTestimonialTitleByID(int id)
+        {
+            SqlConnection conn = new SqlConnection();
+            String toReturn = "";
+            UserDAO udao = new UserDAO();
+            try
+            {
+                conn = new SqlConnection();
+                string connstr = ConfigurationManager.ConnectionStrings["DBConnectionString"].ToString();
+                conn.ConnectionString = connstr;
+                conn.Open();
+                SqlCommand comm = new SqlCommand();
+                comm.Connection = conn;
+                comm.CommandText = "select title from [Testimonials] where ID = @id";
+                comm.Parameters.AddWithValue("@id", id);
+                SqlDataReader dr = comm.ExecuteReader();
+                while (dr.Read())
+                {
+                    toReturn = (string)dr["title"];
+                }
+                dr.Close();
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                conn.Close();
+            }
+            return toReturn;
+        }
     }
 
 }

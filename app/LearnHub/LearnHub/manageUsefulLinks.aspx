@@ -61,7 +61,26 @@
         <li><a href="usefulLinks.aspx">Useful Links</a></li>
         <li class="active">Manage Useful Links</li>
     </ul>
-
+    <%
+    User currentUser = (User)Session["currentUser"];
+    Boolean superuser = false;
+    Boolean content_creator = false;
+    if (currentUser != null)
+    {
+        foreach (string s in currentUser.getRoles())
+        {
+            if (s.Equals("superuser"))
+            {
+                superuser = true;
+            }
+            else if (s.Equals("content creator"))
+            {
+                content_creator = true;
+            }
+        }
+        if (currentUser != null && (content_creator || superuser))
+        {
+        %>
     <div class="container">
         <h1>Manage Useful Links
         <button type="button" data-toggle="collapse" data-target="#addForm" class="btn btn-success">Add New Links</button>
@@ -79,7 +98,10 @@
 
                 </div>
         </div>
-
+        <%
+        }
+    }
+            %>
         <div class="verticalLine"></div>
     </div>
 

@@ -154,6 +154,11 @@ namespace LearnHub
                     Directory.CreateDirectory(add);
                     
                 }
+
+                //set audit
+                User currentUser = (User)Session["currentUser"];
+                setAudit(currentUser, "course", "create", res.getCourseID().ToString(), "course name: " + res.getCourseName());
+
                 Response.Redirect("viewModuleInfo.aspx?id=" + id);
             }
         }
@@ -329,6 +334,19 @@ namespace LearnHub
                     gvPrereq.HeaderRow.TableSection = TableRowSection.TableHeader;
                 }
             }
+        }
+        protected void setAudit(User u, string functionModified, string operation, string id_of_function, string remarks)
+        {
+            //set audit
+            Audit a = new Audit();
+            AuditDAO aDAO = new AuditDAO();
+            a.userID = u.getUserID();
+            a.functionModified = functionModified;
+            a.operation = operation;
+            a.id_of_function = id_of_function;
+            a.dateModified = DateTime.Now;
+            a.remarks = remarks;
+            aDAO.createAudit(a);
         }
     }
 }
