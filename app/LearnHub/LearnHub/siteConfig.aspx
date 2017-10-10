@@ -113,7 +113,7 @@
     <br />
     <div class="container">
         <div class="row">
-        <h3><span class="glyphicon glyphicon-menu-right"></span>&emsp;Resources</h3>
+        <h3><span class="glyphicon glyphicon-menu-right"></span>&emsp;Content</h3>
             <a href="manageArticles.aspx">
                 <div class="col-md-3 btn-default">
                     <br />
@@ -158,6 +158,20 @@
                     </div>
                 </div>
                 </a>
+        </div>
+        <div class="row">
+            <a href="editAboutUs.aspx">
+                <div class="col-md-3 btn-default">
+                    <br />
+                    <br />
+                    <div class="wrapper">
+                        <span style="font-size: 75px;" class="glyphicon glyphicon-briefcase"></span>
+                        <br />
+                        <h3>Edit About Us</h3>
+                        <br />
+                    </div>
+                </div>
+            </a>
         </div>
     </div>
     <br />

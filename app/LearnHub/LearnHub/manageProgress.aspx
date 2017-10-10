@@ -71,6 +71,7 @@
                  <div class="dropdown" style="float: right;">
                 <button class="dropbtn" onclick="return false;"><span class="glyphicon glyphicon-option-horizontal"></span></button>
                 <div class="dropdown-content" style="right: 0;">
+                    <div class="dropHeader">Progress Management</div>
                     <a href="manageProgress.aspx"><span class="glyphicon glyphicon-duplicate"></span>&nbsp&nbsp; Manage Progress Reports</a>
                     <a href="suggestCourses.aspx"><span class="glyphicon glyphicon-comment"></span>&nbsp;&nbsp;Suggest Courses</a>
                 </div>

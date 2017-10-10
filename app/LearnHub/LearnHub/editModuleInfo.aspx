@@ -12,7 +12,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/js/bootstrap-datepicker.js"></script>
     <link href="Scripts/footable.bootstrap.min.css" rel="stylesheet" />
     <script src="Scripts/footable.min.js"></script>
-
+    <script src="//cdn.ckeditor.com/4.7.3/full/ckeditor.js"></script>
 
     <script type="text/javascript">
         $(function () {
@@ -271,6 +271,7 @@
          <div class="dropdown" style="float: right;">
                 <button class="dropbtn" onclick="return false;"><span class="glyphicon glyphicon-option-horizontal"></span></button>
                 <div class="dropdown-content" style="right: 0;">
+                    <div class="dropHeader">Course Management</div>
                     <a href="createModules.aspx"><span class="glyphicon glyphicon-plus"></span>&nbsp;&nbsp;Create New Courses</a>
                     <a href="manageCategories.aspx"><span class="glyphicon glyphicon-bookmark"></span>&nbsp;&nbsp;Manage Course Categories</a>
                     <a href="viewCreatedModules.aspx"><span class="glyphicon glyphicon-book"></span>&nbsp;&nbsp;Manage Courses</a>

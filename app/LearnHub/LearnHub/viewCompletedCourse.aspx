@@ -70,8 +70,9 @@
         <table class="table table-striped table-hover" data-paging="true" data-sorting="true" data-filtering="true">
             <thead>
                 <tr>
-                    <th width="80%">Course Title</th>
+                    <th width="60%">Course Title</th>
                     <th>No. of Quizzes Completed</th> <%--excluding attempts--%>
+                    <th>Learning Hours Awarded</th>
                     <th data-filterable="false" data-sortable="false"></th>
                 </tr>
             </thead>
@@ -90,6 +91,7 @@
                     Response.Write($"<tr>");
                     Response.Write($"<td>{currentCourse.getCourseName()}</td>");
                     Response.Write($"<td>{numOfQuizCompleted}</td>");
+                    Response.Write($"<td>{currentCourse.getHoursAwarded()}</td>");
                     Response.Write($"<td><a href=\"viewModuleInfo.aspx?id={courseID}\" class=\"btn btn-success btn-sm\"><span class=\"glyphicon glyphicon-search\"></span></a></td>");
                     Response.Write($"</tr>");
                 }

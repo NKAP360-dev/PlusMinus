@@ -8,6 +8,7 @@
 <%@ Import Namespace="LearnHub.AppCode.entity" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <script src="//cdn.ckeditor.com/4.7.3/full/ckeditor.js"></script>
     <script>
         function ValidateTestimonial(sender, args) {
             //console.log("validateModuleDesc");
@@ -36,6 +37,10 @@
             background-color: white;
             border-radius: 0px;
         }
+
+        #dropdown {
+            z-index:100;
+        }
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -47,8 +52,9 @@
     </ul>
     <form class="form-horizontal" runat="server">
         <div class="container">
-            <h1><asp:Label ID="lblCourseNameHeader" runat="server" Text="courseName"></asp:Label></h1>
-                <% 
+            <h1>
+                <asp:Label ID="lblCourseNameHeader" runat="server" Text="courseName"></asp:Label></h1>
+            <% 
                     int courseID = Convert.ToInt32(Request.QueryString["id"]);
                     User currentUser = (User)Session["currentUser"];
                     Course_elearnDAO ceDAO = new Course_elearnDAO();
@@ -66,11 +72,12 @@
                         }
                         if (currentUser != null && (currentUser.getUserID().Equals(courseCreator.getUserID()) || superuser))
                         {
-                %>
-            
-           <div class="dropdown" style="float: right;">
+            %>
+
+            <div id="dropdown" class="dropdown" style="float: right;">
                 <button class="dropbtn" onclick="return false;"><span class="glyphicon glyphicon-option-horizontal"></span></button>
                 <div class="dropdown-content" style="right: 0;">
+                    <div class="dropHeader">Individual Course Management</div>
                     <a href="editModuleInfo.aspx?id=<%=courseID %>"><span class="glyphicon glyphicon-pencil"></span>&nbsp;&nbsp;Edit Course</a>
                     <%
                         if (currentCourse.getCourseType().Equals("Online Learning"))
@@ -100,7 +107,7 @@
                 <div class="row">
                     <div class="col-md-3">
                         <div class="list-group">
-                            <asp:LinkButton ID="LinkButton1" runat="server" class="list-group-item active" OnClick="moduleInfo_Click"  CausesValidation="false"><span class="glyphicon glyphicon-info-sign"></span>&emsp;Course Info&emsp;</asp:LinkButton>
+                            <asp:LinkButton ID="LinkButton1" runat="server" class="list-group-item active" OnClick="moduleInfo_Click" CausesValidation="false"><span class="glyphicon glyphicon-info-sign"></span>&emsp;Course Info&emsp;</asp:LinkButton>
                             <%
                                 int courseID = Convert.ToInt32(Request.QueryString["id"]);
                                 Course_elearnDAO ceDAO = new Course_elearnDAO();
@@ -153,7 +160,7 @@
                                                 Response.Write($"<li><a href=\"viewModuleInfo.aspx?id={ce.getCourseID()}\">{ce.getCourseName()}</a></li>");
                                             }
                                         }
-                                        
+
                                         Response.Write("</ul>");
                                         if (!checkDisplay)
                                         {
@@ -189,14 +196,14 @@
 
                             <div class="panel-heading">
                                 <h3 class="panel-title">Testimonial&emsp;<%  User user = (User)Session["currentUser"];
-                                                                             if (user==null)
+                                                                             if (user == null)
                                                                              {
 
                                                                              }
-                                                                             else if(superuser || user.getDepartment().Equals("hr")) 
+                                                                             else if (superuser || user.getDepartment().Equals("hr"))
                                                                              {%> <a href="javascript:void(0);" data-toggle="collapse" data-target="#addTestimonial"><span class="label label-default pull-right">
 
-                                    <span class="glyphicon glyphicon-pencil"></span></span></a>
+                                                                                 <span class="glyphicon glyphicon-pencil"></span></span></a>
                                     <%} %>
                                 </h3>
                             </div>
@@ -241,10 +248,12 @@
                                     <asp:Label ID="lblCommentTitle"><%= test.getTitle() %></asp:Label></strong>&emsp;
                                 <% 
                                     User courseCreator = ceDAO.get_course_by_id(courseID).getCourseCreator();
-                                    if(user == null) {
+                                    if (user == null)
+                                    {
 
-                                    }else if (superuser || user.getDepartment().Equals("hr"))
-                                        {%>
+                                    }
+                                    else if (superuser || user.getDepartment().Equals("hr"))
+                                    {%>
                                 <a href="deleteTestimonial.aspx?id=<%=test.getID() %>&cid=<%=current.getCourseID() %>" onclick="return confirm('Are you sure?')"><span class="label label-danger pull-right"><span class="glyphicon glyphicon-trash"></span></span></a></strong><br />
                                 <%} %>
                                 <br />
@@ -262,7 +271,7 @@
                                 <%
 
                                     }
-                                    
+
                                 %>
                             </div>
                         </div>
@@ -284,29 +293,29 @@
                     <div class="col-md-9">
                         <%--Each panel for one upload--%>
                         <%
-    User currentUser = (User)Session["currentUser"];
-    if (currentUser != null)
-    {
-        Course_elearnDAO cdao = new Course_elearnDAO();
-        ArrayList list = cdao.get_uploaded_content_by_id(current);%>
+                            User currentUser = (User)Session["currentUser"];
+                            if (currentUser != null)
+                            {
+                                Course_elearnDAO cdao = new Course_elearnDAO();
+                                ArrayList list = cdao.get_uploaded_content_by_id(current);%>
                         <%
-    string dir = "Data/" + current.getCourseID();
-    foreach (string strfile in Directory.GetFiles(Server.MapPath(dir)))
-    {
-        //Response.Write(strfile);
-        title = null;
-        desc = null;
-        date = DateTime.Now;
-        foreach (Upload u in list)
-        {
-            //Response.Write(u.getServerPath());
-            if (u.getServerPath() != null && u.getServerPath().Equals(strfile))
-            {
-                title = u.getTitle();
-                desc = u.getDesc();
-                date = u.getDate();
-            }
-        }%>
+                            string dir = "Data/" + current.getCourseID();
+                            foreach (string strfile in Directory.GetFiles(Server.MapPath(dir)))
+                            {
+                                //Response.Write(strfile);
+                                title = null;
+                                desc = null;
+                                date = DateTime.Now;
+                                foreach (Upload u in list)
+                                {
+                                    //Response.Write(u.getServerPath());
+                                    if (u.getServerPath() != null && u.getServerPath().Equals(strfile))
+                                    {
+                                        title = u.getTitle();
+                                        desc = u.getDesc();
+                                        date = u.getDate();
+                                    }
+                                }%>
                         <div class="panel panel-primary">
                             <div class="panel-heading">
                                 <h3 class="panel-title">
@@ -314,14 +323,14 @@
                                     <%  User user = (User)Session["currentUser"];
                                         Course_elearnDAO ceDAO = new Course_elearnDAO();
                                         int courseID = Convert.ToInt32(Request.QueryString["id"]);
-                                         User courseCreator = ceDAO.get_course_by_id(courseID).getCourseCreator();
+                                        User courseCreator = ceDAO.get_course_by_id(courseID).getCourseCreator();
 
-    if (user == null)
-    {
-        //Response.Redirect("login.aspx");
-    }
-    else if (superuser || user.getDepartment().Equals("hr") || currentUser.getUserID() == courseCreator.getUserID() )
-    {%>
+                                        if (user == null)
+                                        {
+                                            //Response.Redirect("login.aspx");
+                                        }
+                                        else if (superuser || user.getDepartment().Equals("hr") || currentUser.getUserID() == courseCreator.getUserID())
+                                        {%>
                                     <a href="deleteMaterial.aspx?id=<%=current.getCourseID()%>&path=<%=strfile%>" onclick="return confirm('Are you sure?')"><span class="label label-danger pull-right"><span class="glyphicon glyphicon-trash"></span></span></a></strong><br />
                                     <%} %>
                                 </h3>
@@ -333,23 +342,25 @@
                                 <br />
                                 <br />
                                 <% string var = dir + "/" + Path.GetFileName(strfile);
-    if (Path.GetExtension(var).Equals(".pdf"))
-    {
-        var = "ViewerJS/#../" + dir + "/" + Path.GetFileName(strfile);%>
-                                        <a href="<%=var %>"><%=Path.GetFileName(strfile) %></a><br />     
+                                    if (Path.GetExtension(var).Equals(".pdf"))
+                                    {
+                                        var = "ViewerJS/#../" + dir + "/" + Path.GetFileName(strfile);%>
+                                <a href="<%=var %>"><%=Path.GetFileName(strfile) %></a><br />
                                 <% }
-    else
-    {%>
-                                        <a href="<%=var %>" download><%=Path.GetFileName(strfile) %></a><br />
+                                else
+                                {%>
+                                <a href="<%=var %>" download><%=Path.GetFileName(strfile) %></a><br />
                                 <%} %>
                             </div>
                         </div>
                         <%
-        }
-    } else {
-                            Response.Write("Please login to view learning materials.");
+                                }
                             }
-                                %>
+                            else
+                            {
+                                Response.Write("Please login to view learning materials.");
+                            }
+                        %>
                     </div>
                 </div>
             </asp:Panel>
@@ -363,7 +374,7 @@
                         </div>
                     </div>
 
-                    
+
                     <div class="col-md-9">
                         <%--One panel per quiz--%>
                         <%
@@ -375,18 +386,20 @@
                             List<Quiz> allQuizzes = quizDAO.getAllQuizByCourseID(courseID);
                             if (currentUser != null)
                             {
-                                foreach (Quiz q in allQuizzes)
+                                if (allQuizzes.Count != 0)
                                 {
+                                    foreach (Quiz q in allQuizzes)
+                                    {
                         %>
                         <div class="panel panel-primary">
                             <div class="panel-heading">
                                 <h3 class="panel-title">
                                     <% 
-                                    Response.Write(q.getTitle());
-                                    Course_elearnDAO ceDAO = new Course_elearnDAO();
-                                    User courseCreator = ceDAO.get_course_by_id(courseID).getCourseCreator();
-                                    if (currentUser != null && (currentUser.getUserID() == courseCreator.getUserID() || superuser))
-                                    {
+    Response.Write(q.getTitle());
+    Course_elearnDAO ceDAO = new Course_elearnDAO();
+    User courseCreator = ceDAO.get_course_by_id(courseID).getCourseCreator();
+    if (currentUser != null && (currentUser.getUserID() == courseCreator.getUserID() || superuser))
+    {
                                     %>
                                     <a href="editQuiz.aspx?id=<%=q.getQuizID()%>" class="label label-default pull-right"><span class="glyphicon glyphicon-pencil"></span></a>
                                     <% } %>
@@ -397,84 +410,88 @@
                                 <br />
                                 <br />
                                 <%
-                                    if (q.getMultipleAttempts().Equals("n"))
-                                    {
-                                        int numOfAttempts = qrDAO.getNumberOfAttempts(currentUser.getUserID(), q.getQuizID());
-                                        if (numOfAttempts < q.getNumberOfAttempts())
-                                        {
-                                            %>
-                                            <div class="pull-right">
-                                                <a href="quiz.aspx?id=<%=q.getQuizID()%>" class="btn btn-success btn-sm">Attempt Quiz</a>&nbsp; 
-                                            </div>
-                                             <br />
-                                <%
-                                        }
-                                        else
-                                        {
-                                            %>
-                                            <div class="pull-right">
-                                                 <asp:Label ID="lblAttemptMsg" runat="server" CssClass="label label-danger" Font-Size="Small" Text="You have used up all your attempts" />&nbsp;
-                                            </div>
-                                             <br />
-                                            <%
-                                        }
-                                    }
-                                    else
-                                    {
+    if (q.getMultipleAttempts().Equals("n"))
+    {
+        int numOfAttempts = qrDAO.getNumberOfAttempts(currentUser.getUserID(), q.getQuizID());
+        if (numOfAttempts < q.getNumberOfAttempts())
+        {
                                 %>
                                 <div class="pull-right">
                                     <a href="quiz.aspx?id=<%=q.getQuizID()%>" class="btn btn-success btn-sm">Attempt Quiz</a>&nbsp; 
                                 </div>
                                 <br />
-                                
-                                <%}
-                                    List<QuizResult> allAttempts = qrDAO.getQuizResultAttemptsByQuizIDandUserID(q.getQuizID(), currentUser.getUserID());
-                                    if (allAttempts.Count > 0)
-                                    {
-                                        Response.Write("<br/><hr />");
-                                        Response.Write("<table class=\"table table-striped\">");
-                                        Response.Write("<thead><tr>");
-                                        Response.Write("<th>Attempt #</th>");
-                                        Response.Write("<th>Date</th>");
-                                        Response.Write("<th>Score</th>");
-                                        Response.Write("<th>Status</th></tr></thead>");
+                                <%
+    }
+    else
+    {
+                                %>
+                                <div class="pull-right">
+                                    <asp:Label ID="lblAttemptMsg" runat="server" CssClass="label label-danger" Font-Size="Small" Text="You have used up all your attempts" />&nbsp;
+                                </div>
+                                <br />
+                                <%
+        }
+    }
+    else
+    {
+                                %>
+                                <div class="pull-right">
+                                    <a href="quiz.aspx?id=<%=q.getQuizID()%>" class="btn btn-success btn-sm">Attempt Quiz</a>&nbsp; 
+                                </div>
+                                <br />
 
-                                        foreach (QuizResult qr in allAttempts)
-                                        {
-                                            List<QuizQuestion> allQuestions = qqDAO.getAllQuizQuestionByQuizID(qr.getQuiz().getQuizID());
-                                            string displayAnswer = q.getDisplayAnswer();
-                                            Response.Write("<tr>");
-                                            if (displayAnswer.Equals("always"))
-                                            {
-                                                Response.Write($"<td><a href=\"viewResults.aspx?id={qr.getQuizResultID()}\">Attempt {qr.getAttempt()}</a></td>");
-                                            }
-                                            else if (displayAnswer.Equals("never"))
-                                            {
-                                                Response.Write($"<td><a href=\"noResult.aspx?id={qr.getQuizResultID()}\">Attempt {qr.getAttempt()}</a></td>");
-                                            }
-                                            else
-                                            {
-                                                Boolean checkIfUserPassQuiz = qrDAO.checkIfUserPassQuiz(currentUser.getUserID(), q.getQuizID());
-                                                if (checkIfUserPassQuiz)
-                                                {
-                                                    Response.Write($"<td><a href=\"viewResults.aspx?id={qr.getQuizResultID()}\">Attempt {qr.getAttempt()}</a></td>");
-                                                }
-                                                else
-                                                {
-                                                    Response.Write($"<td><a href=\"viewMyResult.aspx?id={qr.getQuizResultID()}\">Attempt {qr.getAttempt()}</a></td>");
-                                                }
-                                            }
-                                            Response.Write($"<td>{qr.getDateSubmitted().ToString("dd/MM/yyyy")}</td>");
-                                            Response.Write($"<td>{qr.getScore()}/{allQuestions.Count}</td>");
-                                            Response.Write($"<td>{qr.getGrade()}</td>");
-                                            Response.Write("</tr>");
-                                        }
-                                        Response.Write("</table>");
-                                    }
+                                <%}
+    List<QuizResult> allAttempts = qrDAO.getQuizResultAttemptsByQuizIDandUserID(q.getQuizID(), currentUser.getUserID());
+    if (allAttempts.Count > 0)
+    {
+        Response.Write("<br/><hr />");
+        Response.Write("<table class=\"table table-striped\">");
+        Response.Write("<thead><tr>");
+        Response.Write("<th>Attempt #</th>");
+        Response.Write("<th>Date</th>");
+        Response.Write("<th>Score</th>");
+        Response.Write("<th>Status</th></tr></thead>");
+
+        foreach (QuizResult qr in allAttempts)
+        {
+            List<QuizQuestion> allQuestions = qqDAO.getAllQuizQuestionByQuizID(qr.getQuiz().getQuizID());
+            string displayAnswer = q.getDisplayAnswer();
+            Response.Write("<tr>");
+            if (displayAnswer.Equals("always"))
+            {
+                Response.Write($"<td><a href=\"viewResults.aspx?id={qr.getQuizResultID()}\">Attempt {qr.getAttempt()}</a></td>");
+            }
+            else if (displayAnswer.Equals("never"))
+            {
+                Response.Write($"<td><a href=\"noResult.aspx?id={qr.getQuizResultID()}\">Attempt {qr.getAttempt()}</a></td>");
+            }
+            else
+            {
+                Boolean checkIfUserPassQuiz = qrDAO.checkIfUserPassQuiz(currentUser.getUserID(), q.getQuizID());
+                if (checkIfUserPassQuiz)
+                {
+                    Response.Write($"<td><a href=\"viewResults.aspx?id={qr.getQuizResultID()}\">Attempt {qr.getAttempt()}</a></td>");
+                }
+                else
+                {
+                    Response.Write($"<td><a href=\"viewMyResult.aspx?id={qr.getQuizResultID()}\">Attempt {qr.getAttempt()}</a></td>");
+                }
+            }
+            Response.Write($"<td>{qr.getDateSubmitted().ToString("dd/MM/yyyy")}</td>");
+            Response.Write($"<td>{qr.getScore()}/{allQuestions.Count}</td>");
+            Response.Write($"<td>{qr.getGrade()}</td>");
+            Response.Write("</tr>");
+        }
+        Response.Write("</table>");
+    }
                                 %>
                             </div>
                         </div>
                         <%
+                                    }
+                                }
+                                else {
+                                    Response.Write("There are currently no quizzes created!");
                                 }
                             }
                             else

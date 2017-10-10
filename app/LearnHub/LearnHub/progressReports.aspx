@@ -10,6 +10,7 @@
 <%@ Import Namespace="LearnHub.AppCode.entity" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <script src="//cdn.ckeditor.com/4.7.3/full/ckeditor.js"></script>
     <style>
         .breadcrumb {
             padding-top: 15px;
@@ -60,6 +61,7 @@
             <div class="dropdown" style="float: right;">
                 <button class="dropbtn" onclick="return false;"><span class="glyphicon glyphicon-option-horizontal"></span></button>
                 <div class="dropdown-content" style="right: 0;">
+                    <div class="dropHeader">Progress Management</div>
                     <a href="manageProgress.aspx"><span class="glyphicon glyphicon-duplicate"></span>&nbsp&nbsp; Manage Progress Reports</a>
                     <a href="suggestCourses.aspx?id=<%=userID %>"><span class="glyphicon glyphicon-comment"></span>&nbsp;&nbsp;Suggest Courses</a>
                 </div>
@@ -80,13 +82,12 @@
                             <table class="table">
                                 <tbody>
                                     <tr>
-                                        <td><span style="font-size: 75px; color: lightskyblue;" class="glyphicon glyphicon-book "></span>
+                                        <td><span style="font-size: 75px; color: darkslategray;" class="glyphicon glyphicon-book "></span>
                                         </td>
                                         <td style="text-align: right">
-                                            <asp:Label ID="lblCourseNumber" class="h1" runat="server" Text=""></asp:Label></td>
+                                            <a href="viewCompletedCourses.aspx?id=<%=userID %>"><asp:Label ID="lblCourseNumber" class="h1" runat="server" Text=""></asp:Label></a></td>
                                         <td style="text-align: right"><span style="font-size: 75px; opacity: 0.0;" class="glyphicon glyphicon-book "></span>
                                             <br />
-                                            <a href="viewCompletedCourses.aspx?id=<%=userID %>"><span class="glyphicon glyphicon-menu-right"></span>&nbsp;View Courses</a>
                                         </td>
                                     </tr>
                                 </tbody>
@@ -102,13 +103,34 @@
                             <table class="table">
                                 <tbody>
                                     <tr>
-                                        <td><span style="font-size: 75px; color: lightskyblue;" class="glyphicon glyphicon-check"></span>
+                                        <td><span style="font-size: 75px; color: darkslategray;" class="glyphicon glyphicon-check"></span>
                                         </td>
                                         <td style="text-align: right">
-                                            <asp:Label ID="lblQuizNumber" class="h1" runat="server" Text=""></asp:Label></td>
+                                            <a href="viewCompletedQuizzes.aspx?id=<%=userID %>"><asp:Label ID="lblQuizNumber" class="h1" runat="server" Text=""></asp:Label></a></td>
                                         <td style="text-align: right"><span style="font-size: 75px; opacity: 0.0;" class="glyphicon glyphicon-check"></span>
                                             <br />
-                                            <a href="viewCompletedQuizzes.aspx?id=<%=userID %>"><span class="glyphicon glyphicon-menu-right"></span>&nbsp;View Quizzes</a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                         <div class="verticalLine"></div>
+                        <br />
+                        <div class="row">
+                            <div class="wrapper">
+                                <h4>
+                                    <label class="control-label">TOTAL LEARNING HOURS</label></h4>
+                            </div>
+                            <table class="table">
+                                <tbody>
+                                    <tr>
+                                        <td><span style="font-size: 75px; color: darkslategray;" class="glyphicon glyphicon-time"></span>
+                                        </td>
+                                        <td style="text-align: right">
+                                            <asp:Label ID="lblHours" class="h1" runat="server" Text="0"></asp:Label></td>&emsp;&emsp;
+                                        <td style="text-align: right"><span style="font-size: 75px; opacity: 0.0;" class="glyphicon glyphicon-time"></span>
+                                            <br />
+                                            
                                         </td>
                                     </tr>
                                 </tbody>

@@ -9,6 +9,7 @@
 
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <script src="//cdn.ckeditor.com/4.7.3/full/ckeditor.js"></script>
     <style>
         .breadcrumb {
             padding-top: 15px;
@@ -40,7 +41,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <ul class="breadcrumb">
         <li><a href="home.aspx">Home</a></li>
-        <li><a href="siteConfig.aspx">Configuration Settings</a></li>
+        <li><a href="usefulInfo.aspx">Useful Information</a></li>
         <li><a href="manageArticles.aspx">Manage Useful Information Articles</a></li>
         <li class="active">Create New Article</li>
     </ul>
@@ -51,9 +52,13 @@
         <div class="dropdown" style="float: right;">
             <button class="dropbtn" onclick="return false;"><span class="glyphicon glyphicon-option-horizontal"></span></button>
             <div class="dropdown-content" style="right: 0;">
+                <div class="dropHeader">Content Management</div>
+                <a href="editAboutUs.aspx"><span class="glyphicon glyphicon-pencil"></span>&nbsp;&nbsp;Edit About Us</a>
                 <a href="manageArticles.aspx"><span class="glyphicon glyphicon-duplicate"></span>&nbsp;&nbsp;Manage Articles</a>
-                <a href="createArticle.aspx"><span class="glyphicon glyphicon-pencil"></span>&nbsp;&nbsp;Add Article</a>
-            </div>
+                <a href="manageUsefulLinks.aspx"><span class="glyphicon glyphicon-globe"></span>&nbsp;&nbsp;Manage Links</a>
+                <a href="manageContactUs.aspx"><span class="glyphicon glyphicon-earphone"></span>&nbsp;&nbsp;Manage Contact Us</a>
+
+                </div>
         </div>
 
         <div class="verticalLine"></div>

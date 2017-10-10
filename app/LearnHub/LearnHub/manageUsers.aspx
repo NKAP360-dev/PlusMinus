@@ -84,6 +84,7 @@
         <div class="dropdown" style="float: right;">
             <button class="dropbtn" onclick="return false;"><span class="glyphicon glyphicon-option-horizontal"></span></button>
             <div class="dropdown-content" style="right: 0;">
+                 <div class="dropHeader">Users Management</div>
                 <a href="manageUsers.aspx"><span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;Manage Users</a>
                 <a href="createAccess.aspx"><span class="glyphicon glyphicon-plus"></span>&nbsp;&nbsp;Add Users</a>
             </div>

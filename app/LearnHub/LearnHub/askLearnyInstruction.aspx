@@ -6,7 +6,7 @@
 <%@ Import Namespace="LearnHub.AppCode.dao" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    <script src="https://cdn.ckeditor.com/4.7.1/standard/ckeditor.js"></script>
+    <script src="//cdn.ckeditor.com/4.7.3/full/ckeditor.js"></script>
     <script>
 
         function displayText() {

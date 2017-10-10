@@ -10,42 +10,42 @@
 namespace LearnHub {
     
     
-    public partial class progressReport {
+    public partial class editAboutUs {
         
         /// <summary>
-        /// lblUsername control.
+        /// CKEditor1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblUsername;
+        protected global::CKEditor.NET.CKEditorControl CKEditor1;
         
         /// <summary>
-        /// lblCourseNumber control.
+        /// btnCreate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblCourseNumber;
+        protected global::System.Web.UI.WebControls.Button btnCreate;
         
         /// <summary>
-        /// lblQuizNumber control.
+        /// cfmSubmit control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblQuizNumber;
+        protected global::System.Web.UI.WebControls.Button cfmSubmit;
         
         /// <summary>
-        /// lblHours control.
+        /// Button2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblHours;
+        protected global::System.Web.UI.WebControls.Button Button2;
     }
 }

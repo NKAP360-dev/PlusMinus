@@ -143,6 +143,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="aboutUs.aspx.cs">
+      <DependentUpon>aboutUs.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="aboutUs.aspx.designer.cs">
+      <DependentUpon>aboutUs.aspx</DependentUpon>
+    </Compile>
     <Compile Include="accountSetting.aspx.cs">
       <DependentUpon>accountSetting.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -409,6 +416,13 @@
     </Compile>
     <Compile Include="deleteSupervisorFeedback.aspx.designer.cs">
       <DependentUpon>deleteSupervisorFeedback.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="editAboutUs.aspx.cs">
+      <DependentUpon>editAboutUs.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="editAboutUs.aspx.designer.cs">
+      <DependentUpon>editAboutUs.aspx</DependentUpon>
     </Compile>
     <Compile Include="editArticle.aspx.cs">
       <DependentUpon>editArticle.aspx</DependentUpon>
@@ -808,6 +822,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="aboutUs.aspx" />
     <Content Include="accountSetting.aspx" />
     <Content Include="applyCourse.aspx" />
     <Content Include="approvalConfirmation.aspx" />
@@ -1151,6 +1166,7 @@
     <Content Include="deleteArticle.aspx" />
     <Content Include="deleteMaterial.aspx" />
     <Content Include="deleteSupervisorFeedback.aspx" />
+    <Content Include="editAboutUs.aspx" />
     <Content Include="editArticle.aspx" />
     <Content Include="editCategories.aspx" />
     <Content Include="editContactUs.aspx" />

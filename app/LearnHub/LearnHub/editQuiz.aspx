@@ -10,6 +10,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link href="Scripts/footable.bootstrap.min.css" rel="stylesheet" />
     <script src="Scripts/footable.min.js"></script>
+    <script src="//cdn.ckeditor.com/4.7.3/full/ckeditor.js"></script>
     <script>
         function ValidateQuizDescription(sender, args) {
             console.log("validateModuleDesc");
@@ -129,6 +130,7 @@
         <div class="dropdown" style="float: right;">
             <button class="dropbtn" onclick="return false;"><span class="glyphicon glyphicon-option-horizontal"></span></button>
             <div class="dropdown-content" style="right: 0;">
+                <div class="dropHeader">Quiz Management</div>
                 <a href="manageQuiz.aspx?id=<%=courseID%>"><span class="glyphicon glyphicon-book"></span>&nbsp;&nbsp;Manage Quizzes</a>
                 <a href="createQuiz.aspx?id=<%=courseID%>"><span class="glyphicon glyphicon-plus"></span>&nbsp;&nbsp;Add New Quiz</a>
             </div>

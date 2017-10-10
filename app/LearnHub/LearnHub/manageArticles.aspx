@@ -56,7 +56,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
  <ul class="breadcrumb">
         <li><a href="home.aspx">Home</a></li>
-        <li><a href="siteConfig.aspx">Configuration Settings</a></li>
+        <li><a href="usefulInfo.aspx">Useful Information</a></li>
         <li class="active">Manage Useful Information Articles</li>
     </ul>
 
@@ -70,10 +70,15 @@
      <div class="dropdown" style="float: right;">
             <button class="dropbtn" onclick="return false;"><span class="glyphicon glyphicon-option-horizontal"></span></button>
             <div class="dropdown-content" style="right: 0;">
+                <div class="dropHeader">Content Management</div>
+                <a href="editAboutUs.aspx"><span class="glyphicon glyphicon-pencil"></span>&nbsp;&nbsp;Edit About Us</a>
                 <a href="manageArticles.aspx"><span class="glyphicon glyphicon-duplicate"></span>&nbsp;&nbsp;Manage Articles</a>
-                <a href="createArticle.aspx"><span class="glyphicon glyphicon-pencil"></span>&nbsp;&nbsp;Add Article</a>
-            </div>
+                <a href="manageUsefulLinks.aspx"><span class="glyphicon glyphicon-globe"></span>&nbsp;&nbsp;Manage Links</a>
+                <a href="manageContactUs.aspx"><span class="glyphicon glyphicon-earphone"></span>&nbsp;&nbsp;Manage Contact Us</a>
+
+                </div>
         </div>
+
     <div class="verticalLine"></div>
     <table class="table table-striped table-hover" data-paging="true" data-sorting="true" data-filtering="true">
             <thead>
