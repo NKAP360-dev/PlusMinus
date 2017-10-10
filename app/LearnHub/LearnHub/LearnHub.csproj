@@ -708,6 +708,13 @@
     <Compile Include="uploadDownloadTest.aspx.designer.cs">
       <DependentUpon>uploadDownloadTest.aspx</DependentUpon>
     </Compile>
+    <Compile Include="uploadTrainingCalendar.aspx.cs">
+      <DependentUpon>uploadTrainingCalendar.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="uploadTrainingCalendar.aspx.designer.cs">
+      <DependentUpon>uploadTrainingCalendar.aspx</DependentUpon>
+    </Compile>
     <Compile Include="usefulInfo.aspx.cs">
       <DependentUpon>usefulInfo.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1230,6 +1237,7 @@
     <Content Include="trfApplicationStatus.aspx" />
     <Content Include="TRFapproval.aspx" />
     <Content Include="uploadDownloadTest.aspx" />
+    <Content Include="uploadTrainingCalendar.aspx" />
     <Content Include="usefulInfo.aspx" />
     <Content Include="usefulLinks.aspx" />
     <Content Include="viewAllArticles.aspx" />

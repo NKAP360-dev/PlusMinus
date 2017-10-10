@@ -172,6 +172,18 @@
                     </div>
                 </div>
             </a>
+            <a href="uploadTrainingCalendar.aspx">
+                <div class="col-md-3 btn-default">
+                    <br />
+                    <br />
+                    <div class="wrapper">
+                        <span style="font-size: 75px;" class="glyphicon glyphicon-calendar"></span>
+                        <br />
+                        <h3>Upload Calendar</h3>
+                        <br />
+                    </div>
+                </div>
+            </a>
         </div>
     </div>
     <br />
@@ -337,4 +349,8 @@
             </div>
         </div>
     </div>
+
+    <%--Upload Modal--%>
+    <%--Hello whoever is doing the integration for this, please go to masterpage and integrate 'Training Calendar' as well, to allow download of the uploaded file--%>
+   
 </asp:Content>
