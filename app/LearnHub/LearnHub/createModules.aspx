@@ -173,7 +173,7 @@
                 toDateFinal.setMonth(month);
                 toDateFinal.setDate(day);
                 console.log(toDateFinal);
-                if (toDateFinal <= fromDateFinal) {
+                if (toDateFinal < fromDateFinal) {
                     args.IsValid = false;
                     return false;
                 }
