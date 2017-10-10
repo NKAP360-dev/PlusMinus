@@ -141,9 +141,10 @@ namespace LearnHub.AppCode.dao
                 conn.Close();
             }
         }
-        public void createCategory(CourseCategory cc) // Insert.
+        public int createCategory(CourseCategory cc) // Insert.
         {
             SqlConnection conn = null;
+            int toReturn = -1;
             try
             {
                 conn = new SqlConnection();
@@ -151,10 +152,10 @@ namespace LearnHub.AppCode.dao
                 conn.Open();
                 SqlCommand comm = new SqlCommand();
                 comm.Connection = conn;
-                comm.CommandText = "Insert into [Elearn_courseCategory] (category, status) VALUES (@category, @status)";
+                comm.CommandText = "Insert into [Elearn_courseCategory] (category, status) OUTPUT INSERTED.categoryID VALUES (@category, @status)";
                 comm.Parameters.AddWithValue("@category", cc.category);
                 comm.Parameters.AddWithValue("@status", cc.status);
-                int rowsAffected = comm.ExecuteNonQuery();
+                toReturn = (Int32)comm.ExecuteScalar();
             }
             catch (SqlException ex)
             {
@@ -164,6 +165,7 @@ namespace LearnHub.AppCode.dao
             {
                 conn.Close();
             }
+            return toReturn;
         }
         public void deactivateCategory(int categoryID) // Update.
         {

@@ -38,6 +38,11 @@ namespace LearnHub
             int categoryID = Convert.ToInt32(lblHiddenID.Text);
             Course_elearnCategoryDAO cecDAO = new Course_elearnCategoryDAO();
             cecDAO.updateCategory(txtCategory.Text, categoryID);
+
+            //set audit
+            User currentUser = (User)Session["currentUser"];
+            setAudit(currentUser, "course category", "update", categoryID.ToString(), "update category name to: " + txtCategory.Text);
+
             Response.Redirect("manageCategories.aspx");
         }
 
@@ -47,6 +52,11 @@ namespace LearnHub
             int categoryID = Convert.ToInt32(lblHiddenID.Text);
             Course_elearnCategoryDAO cecDAO = new Course_elearnCategoryDAO();
             cecDAO.deactivateCategory(categoryID);
+
+            //set audit
+            User currentUser = (User)Session["currentUser"];
+            setAudit(currentUser, "course category", "deactivate", categoryID.ToString(), "category name: " + txtCategory.Text);
+
             Response.Redirect("manageCategories.aspx");
         }
 
@@ -56,6 +66,11 @@ namespace LearnHub
             int categoryID = Convert.ToInt32(lblHiddenID.Text);
             Course_elearnCategoryDAO cecDAO = new Course_elearnCategoryDAO();
             cecDAO.activateCategory(categoryID);
+
+            //set audit
+            User currentUser = (User)Session["currentUser"];
+            setAudit(currentUser, "course category", "activate", categoryID.ToString(), "category name: " + txtCategory.Text);
+
             Response.Redirect("manageCategories.aspx");
         }
         protected void checkForm(object sender, EventArgs e)
@@ -74,6 +89,19 @@ namespace LearnHub
                 lblErrorMsgFinal.Text = "";
                 btnConfirmSubmit.Enabled = true;
             }
+        }
+        protected void setAudit(User u, string functionModified, string operation, string id_of_function, string remarks)
+        {
+            //set audit
+            Audit a = new Audit();
+            AuditDAO aDAO = new AuditDAO();
+            a.userID = u.getUserID();
+            a.functionModified = functionModified;
+            a.operation = operation;
+            a.id_of_function = id_of_function;
+            a.dateModified = DateTime.Now;
+            a.remarks = remarks;
+            aDAO.createAudit(a);
         }
     }
 }

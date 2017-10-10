@@ -24,7 +24,19 @@ namespace LearnHub
             CourseCategory cc = new CourseCategory();
             cc.category = txtCategory.Text;
             cc.status = "active";
-            cecDAO.createCategory(cc);
+            int createdCourseCattID = cecDAO.createCategory(cc);
+
+            //set audit
+            User currentUser = (User)Session["currentUser"];
+            Audit a = new Audit();
+            AuditDAO aDAO = new AuditDAO();
+            a.userID = currentUser.getUserID();
+            a.functionModified = "course category";
+            a.operation = "create";
+            a.id_of_function = createdCourseCattID.ToString();
+            a.dateModified = DateTime.Now;
+            a.remarks = "category name: " + txtCategory.Text;
+            aDAO.createAudit(a);
         }
     }
 }

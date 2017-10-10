@@ -310,6 +310,10 @@ namespace LearnHub
                 quizDAO.insertPrerequisite(currentQuiz.getQuizID(), prereqID);
             }
 
+            //set audit
+            User currentUser = (User)Session["currentUser"];
+            setAudit(currentUser, "quiz", "update", id.ToString(), "quiz title: " + currentQuiz.getTitle());
+
             Response.Redirect("viewModuleInfo.aspx?id=" + currentQuiz.getMainCourse().getCourseID());
         }
 
@@ -321,6 +325,11 @@ namespace LearnHub
             int id = Convert.ToInt32(Request.QueryString["id"]);
             Quiz currentQuiz = quizDAO.getQuizByID(id);
             quizDAO.updateQuizStatus(id, "inactive");
+
+            //set audit
+            User currentUser = (User)Session["currentUser"];
+            setAudit(currentUser, "quiz", "deactivate", id.ToString(), "quiz title: " + currentQuiz.getTitle());
+
             Response.Redirect("viewModuleInfo.aspx?id=" + currentQuiz.getMainCourse().getCourseID());
         }
 
@@ -332,6 +341,11 @@ namespace LearnHub
             int id = Convert.ToInt32(Request.QueryString["id"]);
             Quiz currentQuiz = quizDAO.getQuizByID(id);
             quizDAO.updateQuizStatus(id, "active");
+
+            //set audit
+            User currentUser = (User)Session["currentUser"];
+            setAudit(currentUser, "quiz", "activate", id.ToString(), "quiz title: " + currentQuiz.getTitle());
+
             Response.Redirect("viewModuleInfo.aspx?id=" + currentQuiz.getMainCourse().getCourseID());
         }
 
@@ -417,6 +431,19 @@ namespace LearnHub
             }
 
 
+        }
+        protected void setAudit(User u, string functionModified, string operation, string id_of_function, string remarks)
+        {
+            //set audit
+            Audit a = new Audit();
+            AuditDAO aDAO = new AuditDAO();
+            a.userID = u.getUserID();
+            a.functionModified = functionModified;
+            a.operation = operation;
+            a.id_of_function = id_of_function;
+            a.dateModified = DateTime.Now;
+            a.remarks = remarks;
+            aDAO.createAudit(a);
         }
     }
 }
