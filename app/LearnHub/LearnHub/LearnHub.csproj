@@ -539,6 +539,20 @@
     <Compile Include="manageContactUs.aspx.designer.cs">
       <DependentUpon>manageContactUs.aspx</DependentUpon>
     </Compile>
+    <Compile Include="manageNews.aspx.cs">
+      <DependentUpon>manageNews.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="manageNews.aspx.designer.cs">
+      <DependentUpon>manageNews.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="manageNewsBanners.aspx.cs">
+      <DependentUpon>manageNewsBanners.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="manageNewsBanners.aspx.designer.cs">
+      <DependentUpon>manageNewsBanners.aspx</DependentUpon>
+    </Compile>
     <Compile Include="manageProgress.aspx.cs">
       <DependentUpon>manageProgress.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1207,6 +1221,8 @@
     <Content Include="manageArticles.aspx" />
     <Content Include="manageCategories.aspx" />
     <Content Include="manageContactUs.aspx" />
+    <Content Include="manageNews.aspx" />
+    <Content Include="manageNewsBanners.aspx" />
     <Content Include="manageProgress.aspx" />
     <Content Include="manageQuiz.aspx" />
     <Content Include="manageUsefulLinks.aspx" />

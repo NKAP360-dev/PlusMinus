@@ -49,24 +49,24 @@
     <div class="container">
         <h1>Create New Article</h1>
         <%
-    User currentUser = (User)Session["currentUser"];
-    Boolean superuser = false;
-    Boolean content_creator = false;
-    if (currentUser != null)
-    {
-        foreach (string s in currentUser.getRoles())
-        {
-            if (s.Equals("superuser"))
+            User currentUser = (User)Session["currentUser"];
+            Boolean superuser = false;
+            Boolean content_creator = false;
+            if (currentUser != null)
             {
-                superuser = true;
-            }
-            else if (s.Equals("content creator"))
-            {
-                content_creator = true;
-            }
-        }
-        if (currentUser != null && (content_creator || superuser))
-        {
+                foreach (string s in currentUser.getRoles())
+                {
+                    if (s.Equals("superuser"))
+                    {
+                        superuser = true;
+                    }
+                    else if (s.Equals("content creator"))
+                    {
+                        content_creator = true;
+                    }
+                }
+                if (currentUser != null && (content_creator || superuser))
+                {
         %>
         <div class="dropdown" style="float: right;">
             <button class="dropbtn" onclick="return false;"><span class="glyphicon glyphicon-option-horizontal"></span></button>
@@ -77,13 +77,15 @@
                 <a href="manageUsefulLinks.aspx"><span class="glyphicon glyphicon-globe"></span>&nbsp;&nbsp;Manage Links</a>
                 <a href="manageContactUs.aspx"><span class="glyphicon glyphicon-earphone"></span>&nbsp;&nbsp;Manage Contact Us</a>
                 <a href="uploadTrainingCalendar.aspx"><span class="glyphicon glyphicon-calendar"></span>&nbsp;&nbsp; Upload Training Calendar</a>
+                <a href="manageNewsBanners.aspx"><span class="glyphicon glyphicon-picture"></span>&nbsp;&nbsp; Manage News Banners</a>
+                <a href="manageNews.aspx"><span class="glyphicon glyphicon-blackboard"></span>&nbsp;&nbsp; Manage News</a>
 
-                </div>
+            </div>
         </div>
         <%
-        }
-    }
-            %>
+                }
+            }
+        %>
 
         <div class="verticalLine"></div>
         <br />
@@ -99,35 +101,35 @@
 
             <CKEditor:CKEditorControl ID="CKEditor1" runat="server">
             </CKEditor:CKEditorControl>
-            <asp:CustomValidator ID="cv_txtArticleDesc" runat="server" EnableClientScript="true" ErrorMessage="Required*" ClientValidationFunction="ValidateArticleDescription" ForeColor="Red" ValidationGroup="ValidateForm" Display="Dynamic" ></asp:CustomValidator>
+            <asp:CustomValidator ID="cv_txtArticleDesc" runat="server" EnableClientScript="true" ErrorMessage="Required*" ClientValidationFunction="ValidateArticleDescription" ForeColor="Red" ValidationGroup="ValidateForm" Display="Dynamic"></asp:CustomValidator>
             <br />
             <div class="form-group wrapper">
-                <asp:Button ID="btnCreate" CssClass="btn btn-primary" runat="server" Text="Create" onclick="checkForm" CausesValidation="True" UseSubmitBehavior="False" ValidationGroup="ValidateForm"/>
+                <asp:Button ID="btnCreate" CssClass="btn btn-primary" runat="server" Text="Create" OnClick="checkForm" CausesValidation="True" UseSubmitBehavior="False" ValidationGroup="ValidateForm" />
             </div>
 
-               <div id="submitModal" class="modal fade" role="dialog">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title"><b>Create Article </b></h4>
-                    </div>
-                    <div class="modal-body">
-                        <div class="wrapper">
-                            <h4>This article will be published. Are you sure you want to proceed?</h4>
-                            <br />
-                            <asp:Label ID="lblErrorMsgFinal" runat="server" CssClass="text-danger" Visible="True"></asp:Label>
+            <div id="submitModal" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title"><b>Create Article </b></h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="wrapper">
+                                <h4>This article will be published. Are you sure you want to proceed?</h4>
                                 <br />
-                            <asp:Button ID="cfmSubmit" CssClass="btn btn-primary" runat="server" Text="Create" OnClick="cfmSubmit_Click" />
-                            <asp:Button ID="Button2" CssClass="btn btn-default" runat="server" class="close" data-dismiss="modal" Text="Cancel" OnClientClick="return false;" />
+                                <asp:Label ID="lblErrorMsgFinal" runat="server" CssClass="text-danger" Visible="True"></asp:Label>
+                                <br />
+                                <asp:Button ID="cfmSubmit" CssClass="btn btn-primary" runat="server" Text="Create" OnClick="cfmSubmit_Click" />
+                                <asp:Button ID="Button2" CssClass="btn btn-default" runat="server" class="close" data-dismiss="modal" Text="Cancel" OnClientClick="return false;" />
 
-                            <br />
+                                <br />
+                            </div>
                         </div>
                     </div>
-                </div>
 
+                </div>
             </div>
-        </div>
 
 
         </form>

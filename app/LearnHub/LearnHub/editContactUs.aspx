@@ -58,14 +58,16 @@
                 <a href="manageUsefulLinks.aspx"><span class="glyphicon glyphicon-globe"></span>&nbsp;&nbsp;Manage Links</a>
                 <a href="manageContactUs.aspx"><span class="glyphicon glyphicon-earphone"></span>&nbsp;&nbsp;Manage Contact Us</a>
                 <a href="uploadTrainingCalendar.aspx"><span class="glyphicon glyphicon-calendar"></span>&nbsp;&nbsp; Upload Training Calendar</a>
+                <a href="manageNewsBanners.aspx"><span class="glyphicon glyphicon-picture"></span>&nbsp;&nbsp; Manage News Banners</a>
+                <a href="manageNews.aspx"><span class="glyphicon glyphicon-blackboard"></span>&nbsp;&nbsp; Manage News</a>
 
-                </div>
+            </div>
         </div>
 
         <%
                 }
             }
-            %>
+        %>
 
         <div class="verticalLine"></div>
         <br />
@@ -83,8 +85,8 @@
                     <asp:Label runat="server" CssClass="col-lg-2 control-label" Text="Department"></asp:Label></strong>
                 <div class="col-lg-9">
                     <asp:DropDownList ID="lblDept" runat="server" CssClass="form-control">
-                            <asp:ListItem>--select--</asp:ListItem>
-                 </asp:DropDownList>
+                        <asp:ListItem>--select--</asp:ListItem>
+                    </asp:DropDownList>
                 </div>
             </div>
 
@@ -120,7 +122,7 @@
                             <div class="wrapper">
                                 <h4>Are you sure you want to save your changes and overwrite the current contact details?</h4>
                                 <br />
-                                 <asp:Button ID="btnConfirmSubmit" CssClass="btn btn-primary" runat="server" Text="Save Changes" OnClick="btnEdit_Click"/>
+                                <asp:Button ID="btnConfirmSubmit" CssClass="btn btn-primary" runat="server" Text="Save Changes" OnClick="btnEdit_Click" />
                                 <asp:Button ID="btnCancel1" CssClass="btn btn-default" runat="server" class="close" data-dismiss="modal" Text="Cancel" OnClientClick="return false;" />
 
                                 <br />

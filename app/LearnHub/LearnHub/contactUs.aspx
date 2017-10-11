@@ -23,7 +23,7 @@
             max-width: 850px;
         }
 
-         .pagination li > a,
+        .pagination li > a,
         .pagination li > span,
         .pagination li > a:focus, .pagination .disabled > a,
         .pagination .disabled > a:hover,
@@ -51,12 +51,12 @@
             $('.table').footable({
                 "paging": {
                     "size": 10 <%--Change how many rows per page--%>
-                 },
-                 "filtering": {
-                     "position": "left"
-                 }
-             });
-         });
+                },
+                "filtering": {
+                    "position": "left"
+                }
+            });
+        });
     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -69,70 +69,72 @@
         <div class="container">
             <h1>Contact Us</h1>
             <%
-    User currentUser = (User)Session["currentUser"];
-    Boolean superuser = false;
-    Boolean content_creator = false;
-    if (currentUser != null)
-    {
-        foreach (string s in currentUser.getRoles())
-        {
-            if (s.Equals("superuser"))
-            {
-                superuser = true;
-            }
-            else if (s.Equals("content creator"))
-            {
-                content_creator = true;
-            }
-        }
-        if (currentUser != null && (content_creator || superuser))
-        {
-        %>
+                User currentUser = (User)Session["currentUser"];
+                Boolean superuser = false;
+                Boolean content_creator = false;
+                if (currentUser != null)
+                {
+                    foreach (string s in currentUser.getRoles())
+                    {
+                        if (s.Equals("superuser"))
+                        {
+                            superuser = true;
+                        }
+                        else if (s.Equals("content creator"))
+                        {
+                            content_creator = true;
+                        }
+                    }
+                    if (currentUser != null && (content_creator || superuser))
+                    {
+            %>
             <div class="dropdown" style="float: right;">
-            <button class="dropbtn" onclick="return false;"><span class="glyphicon glyphicon-option-horizontal"></span></button>
-            <div class="dropdown-content" style="right: 0;">
-                <div class="dropHeader">Content Management</div>
-                <a href="editAboutUs.aspx"><span class="glyphicon glyphicon-pencil"></span>&nbsp;&nbsp;Edit About Us</a>
-                <a href="manageArticles.aspx"><span class="glyphicon glyphicon-duplicate"></span>&nbsp;&nbsp;Manage Articles</a>
-                <a href="manageUsefulLinks.aspx"><span class="glyphicon glyphicon-globe"></span>&nbsp;&nbsp;Manage Links</a>
-                <a href="manageContactUs.aspx"><span class="glyphicon glyphicon-earphone"></span>&nbsp;&nbsp;Manage Contact Us</a>
-                <a href="uploadTrainingCalendar.aspx"><span class="glyphicon glyphicon-calendar"></span>&nbsp;&nbsp; Upload Training Calendar</a>
+                <button class="dropbtn" onclick="return false;"><span class="glyphicon glyphicon-option-horizontal"></span></button>
+                <div class="dropdown-content" style="right: 0;">
+                    <div class="dropHeader">Content Management</div>
+                    <a href="editAboutUs.aspx"><span class="glyphicon glyphicon-pencil"></span>&nbsp;&nbsp;Edit About Us</a>
+                    <a href="manageArticles.aspx"><span class="glyphicon glyphicon-duplicate"></span>&nbsp;&nbsp;Manage Articles</a>
+                    <a href="manageUsefulLinks.aspx"><span class="glyphicon glyphicon-globe"></span>&nbsp;&nbsp;Manage Links</a>
+                    <a href="manageContactUs.aspx"><span class="glyphicon glyphicon-earphone"></span>&nbsp;&nbsp;Manage Contact Us</a>
+                    <a href="uploadTrainingCalendar.aspx"><span class="glyphicon glyphicon-calendar"></span>&nbsp;&nbsp; Upload Training Calendar</a>
+                    <a href="manageNewsBanners.aspx"><span class="glyphicon glyphicon-picture"></span>&nbsp;&nbsp; Manage News Banners</a>
+                    <a href="manageNews.aspx"><span class="glyphicon glyphicon-blackboard"></span>&nbsp;&nbsp; Manage News</a>
 
                 </div>
-        </div>
+            </div>
             <%
-        }
-    }
-                %>
+                    }
+                }
+            %>
             <div class="verticalLine"></div>
             <br />
             <div class="banner wrapper">
                 <img src="img/contactus.png" style='width: 100%;' border="0" />
             </div>
             <br />
-             <table class="table table-striped table-hover" data-paging="true" data-sorting="true" data-filtering="true">
-            <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Department</th>
-                    <th>Email</th>
-                    <th>Remarks</th>
-                </tr>
-            </thead>
-            <tbody>
-                <% ContactDAO ldao = new ContactDAO();
-                             ArrayList arr = ldao.getContacts();
-                             foreach (Contact con in arr)
-                             {%>
-                        <tr>
-                            <td><%=con.name %></td>
-                            <td><%=System.Globalization.CultureInfo.CurrentCulture.TextInfo.ToTitleCase(con.department.ToLower()) %></td>
-                            <td><%=con.email %></td>
-                            <td><%=con.remarks %></td>      
-                        </tr>
-                        <%} %>
-            </tbody>
-        </table>
+            <table class="table table-striped table-hover" data-paging="true" data-sorting="true" data-filtering="true">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Department</th>
+                        <th>Email</th>
+                        <th>Remarks</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% ContactDAO ldao = new ContactDAO();
+                        ArrayList arr = ldao.getContacts();
+                        foreach (Contact con in arr)
+                        {%>
+                    <tr>
+                        <td><%=con.name %></td>
+                        <td><%=System.Globalization.CultureInfo.CurrentCulture.TextInfo.ToTitleCase(con.department.ToLower()) %></td>
+                        <td><%=con.email %></td>
+                        <td><%=con.remarks %></td>
+                    </tr>
+                    <%} %>
+                </tbody>
+            </table>
         </div>
     </form>
 </asp:Content>

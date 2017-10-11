@@ -80,7 +80,7 @@
         }
         if (currentUser != null && (content_creator || superuser))
         {
-        %>
+    %>
     <div class="container">
         <h1>Manage Useful Links
         <button type="button" data-toggle="collapse" data-target="#addForm" class="btn btn-success">Add New Links</button>
@@ -95,13 +95,15 @@
                 <a href="manageUsefulLinks.aspx"><span class="glyphicon glyphicon-globe"></span>&nbsp;&nbsp;Manage Links</a>
                 <a href="manageContactUs.aspx"><span class="glyphicon glyphicon-earphone"></span>&nbsp;&nbsp;Manage Contact Us</a>
                 <a href="uploadTrainingCalendar.aspx"><span class="glyphicon glyphicon-calendar"></span>&nbsp;&nbsp; Upload Training Calendar</a>
+                <a href="manageNewsBanners.aspx"><span class="glyphicon glyphicon-picture"></span>&nbsp;&nbsp; Manage News Banners</a>
+                <a href="manageNews.aspx"><span class="glyphicon glyphicon-blackboard"></span>&nbsp;&nbsp; Manage News</a>
 
-                </div>
+            </div>
         </div>
         <%
         }
     }
-            %>
+        %>
         <div class="verticalLine"></div>
     </div>
 
@@ -161,7 +163,7 @@
             </table>
         </div>
 
-          <%--Modal for Submission Confirmation--%>
+        <%--Modal for Submission Confirmation--%>
         <div id="submitModal" class="modal fade" role="dialog">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -173,7 +175,7 @@
                         <div class="wrapper">
                             <h4>Are you sure you want to submit?</h4>
                             <br />
-                            <asp:Button ID="btnConfirmSubmit" CssClass="btn btn-primary" runat="server" Text="Submit" OnClick="btnSubmit_Click"/>
+                            <asp:Button ID="btnConfirmSubmit" CssClass="btn btn-primary" runat="server" Text="Submit" OnClick="btnSubmit_Click" />
                             <asp:Button ID="btnCancel1" CssClass="btn btn-default" runat="server" class="close" data-dismiss="modal" Text="Cancel" OnClientClick="return false;" />
 
                             <br />
@@ -184,7 +186,7 @@
             </div>
         </div>
 
-         <%--Modal for Deletion Confirmation--%>
+        <%--Modal for Deletion Confirmation--%>
         <div id="deleteModal" class="modal fade" role="dialog">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -197,7 +199,7 @@
                         <div class="wrapper">
                             <h4>Are you sure you want to delete?</h4>
                             <br />
-                            <asp:Button ID="cfmDelete" CssClass="btn btn-danger" runat="server" Text="Delete"/>
+                            <asp:Button ID="cfmDelete" CssClass="btn btn-danger" runat="server" Text="Delete" />
                             <asp:Button ID="cfmCancel" CssClass="btn btn-default" runat="server" class="close" data-dismiss="modal" Text="Cancel" />
 
                             <br />

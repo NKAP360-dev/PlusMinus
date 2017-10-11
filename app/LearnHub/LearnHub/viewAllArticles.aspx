@@ -41,7 +41,7 @@
             background-color: #576777;
         }
     </style>
-     <script>
+    <script>
         jQuery(function ($) {
             $('.table').footable({
                 "paging": {
@@ -72,8 +72,10 @@
                 <a href="manageUsefulLinks.aspx"><span class="glyphicon glyphicon-globe"></span>&nbsp;&nbsp;Manage Links</a>
                 <a href="manageContactUs.aspx"><span class="glyphicon glyphicon-earphone"></span>&nbsp;&nbsp;Manage Contact Us</a>
                 <a href="uploadTrainingCalendar.aspx"><span class="glyphicon glyphicon-calendar"></span>&nbsp;&nbsp; Upload Training Calendar</a>
+                <a href="manageNewsBanners.aspx"><span class="glyphicon glyphicon-picture"></span>&nbsp;&nbsp; Manage News Banners</a>
+                <a href="manageNews.aspx"><span class="glyphicon glyphicon-blackboard"></span>&nbsp;&nbsp; Manage News</a>
 
-                </div>
+            </div>
         </div>
         <div class="verticalLine"></div>
         <table class="table table-striped table-hover" data-paging="true" data-sorting="true" data-filtering="true">
@@ -86,12 +88,12 @@
             </thead>
             <tbody>
                 <%ArticleDAO adao = new ArticleDAO();
-                     ArrayList a = adao.getArticles();
-                     foreach (Article article in a)
-                     {
-                            %>
+                    ArrayList a = adao.getArticles();
+                    foreach (Article article in a)
+                    {
+                %>
                 <tr>
-                   <td><%= article.article_name %></td>
+                    <td><%= article.article_name %></td>
                     <td><%= article.upload_datetime.ToShortDateString() %></td>
                     <td><a href="article.aspx?id=<%=article.article_id %>" class="btn btn-sm btn-info"><span class="glyphicon glyphicon-search"></span></a></td>
                 </tr>
