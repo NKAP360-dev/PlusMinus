@@ -106,11 +106,18 @@
                         return false;
                     }
                     else {
-                        console.log("1 dec");
-                        console.log(indexes[1]);
-                        console.log(indexes[1].length);
-                        args.IsValid = true;
-                        return true;
+                        if (indexes[1] == 5) {
+                            console.log("1 dec");
+                            console.log(indexes[1]);
+                            console.log(indexes[1].length);
+                            args.IsValid = true;
+                            return true;
+                        }
+                        else {
+                            args.IsValid = false;
+                            return false;
+                        }
+                        
                     }
                 }
                 else {
@@ -379,14 +386,15 @@
                         <asp:Label ID="hoursLabel" runat="server" CssClass="col-lg-2 control-label" Text="Learning Hours"></asp:Label></strong>
                     <div class="col-lg-5">
                         <div class="input-group">
-                            <asp:TextBox ID="hoursInput" runat="server" CssClass="form-control" placeholder="No. of Hours" TextMode="Number"></asp:TextBox>
+                            <asp:TextBox ID="hoursInput" runat="server" CssClass="form-control" placeholder="No. of Hours" TextMode="SingleLine"></asp:TextBox>
                             <span class="input-group-addon">hours </span>
                         </div>
                         <asp:RequiredFieldValidator ID="rfv_hoursInput" runat="server" ErrorMessage="Please Input the Number of Learning Hours" ControlToValidate="hoursInput" ForeColor="Red" ValidationGroup="ValidateForm"></asp:RequiredFieldValidator>
                          <br />
-                        <asp:CustomValidator ID="cv_hoursInputFormat" runat="server" EnableClientScript="true" ErrorMessage="Please enter hours in either whole number or with only one decimal place e.g (15.5)" ClientValidationFunction="ValidateHoursFormat" ForeColor="Red" ValidationGroup="ValidateForm"></asp:CustomValidator>
+                        <asp:CustomValidator ID="cv_hoursInputFormat" runat="server" EnableClientScript="true" ErrorMessage="Please enter hours in either whole number or with only one decimal place e.g (15.5)" ClientValidationFunction="ValidateHoursFormat" ForeColor="Red" ValidationGroup="ValidateForm" Display="Dynamic"></asp:CustomValidator>
                         <br />
-                        <asp:CustomValidator ID="cv_hoursInput" runat="server" EnableClientScript="true" ErrorMessage="Please enter a value between 0.0 and 100000.0" ClientValidationFunction="ValidateHours" ForeColor="Red" ValidationGroup="ValidateForm"></asp:CustomValidator>
+                        <asp:CustomValidator ID="cv_hoursInput" runat="server" EnableClientScript="true" ErrorMessage="Please enter a value between 0.0 and 100000.0" ClientValidationFunction="ValidateHours" ForeColor="Red" ValidationGroup="ValidateForm" Display="Dynamic"></asp:CustomValidator>
+                        
                     </div>                                      
                 </div>
                 <%--Preq--%>
