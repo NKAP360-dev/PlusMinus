@@ -47,7 +47,7 @@
         .carousel-inner {
             width: 100%;
             background-size: contain;
-            height:350px;
+            height:400px;
         }
 
             .carousel-inner img {
@@ -144,12 +144,21 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div id="myCarousel" class="carousel slide" data-ride="carousel">
         <!-- Indicators -->
+        <%-- THIS PART TO BE INTEGRATED 
+             each li for no. of banners
+            class="active" for first li--%>
         <ol class="carousel-indicators">
             <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
             <li data-target="#myCarousel" data-slide-to="1"></li>
+            <li data-target="#myCarousel" data-slide-to="2"></li>
         </ol>
 
         <!-- Wrapper for slides -->
+        <%-- THIS PART TO BE INTEGRATED 
+             each <div class="item"> for each banner uploaded
+            <div class="item active"> for first banner
+            alt = BANNER NAME
+            a href = BANNER LINK--%>
         <div class="carousel-inner">
             <div class="item active">
                 <a href="#">

@@ -40,6 +40,10 @@
         .pagination > .active > span:focus {
             background-color: #576777;
         }
+
+        .dropdown {
+            z-index: 100;
+        }
     </style>
 
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
@@ -93,7 +97,7 @@
 
     <div class="container">
         <h1>Manage News Banner
-        <button type="button" data-toggle="collapse" data-target="#addForm" class="btn btn-success"><span class="glyphicon glyphicon-plus"></span>&nbsp;Add </button>
+        <button type="button" data-toggle="collapse" data-target="#addForm" class="btn btn-success">Upload New Banner</button>
         </h1>
 
         <div class="dropdown" style="float: right;">
@@ -115,29 +119,76 @@
     <form class="form-horizontal" runat="server">
         <div class="container">
             <div id="addForm" class="collapse">
-                aye
+                <br />
+                <div class="form-group required">
+                    <strong>
+                        <asp:Label runat="server" CssClass="col-lg-2 control-label" Text="Banner Name"></asp:Label></strong>
+                    <div class="input-group col-lg-9">
+                        <asp:TextBox ID="txtName" runat="server" CssClass="form-control" placeholder="Banner Name"></asp:TextBox>
+                    </div>
+                </div>
+
+                <div class="form-group required">
+                    <strong>
+                        <asp:Label runat="server" CssClass="col-lg-2 control-label" Text="Banner Link"></asp:Label></strong>
+                    <div class="input-group col-lg-9">
+                        <span class="input-group-addon">http://</span>
+                        <asp:TextBox ID="txtLink" runat="server" CssClass="form-control" placeholder="Page that user will land upon clicking the banner"></asp:TextBox>
+                    </div>
+                </div>
+
+                <div class="form-group required">
+                      <strong>
+                        <asp:Label runat="server" CssClass="col-lg-2 control-label" Text="Upload Banner Image"></asp:Label></strong>
+                    <div class="col-lg-9">
+                     <asp:FileUpload ID="FileUpload1" runat="server" />
+                        </div>
+
+                </div>
+                <div class="wrapper">
+                    <asp:Button runat="server" CssClass="btn btn-primary" Text="Upload"/>
+                    <%--Please integrate the displaying of banners at home.aspx as well--%>
+                </div>
+                 <div class="verticalLine"></div>
             </div>
+           
         </div>
         <div class="container">
             <h4><b>Drag and drop to reorder banners</b></h4>
-            <table class="table table-striped table-hover " id="hi">
-                <thead><tr><th>Banner Name</th>
-                    <th></th><tr />
-                        
+            <%--For some reason item 1 can't be dragged, not sure if this issue will be resolved with gridview as learny initialize msg uses same javascript
+                to reorder but works well w gridview--%>
+            <table class="table table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th>Banner Name</th>
+                        <th></th>
+                        <tr />
+
                 </thead>
-               <tr><td>Banner1</td>
-                   <td><a href="#" class="btn btn-sm btn-danger pull-right"><span class="glyphicon glyphicon-trash"></span></a></td></tr>
-                    <tr><td>Banner2</td>
-                         <td><a href="#" class="btn btn-sm btn-danger pull-right"><span class="glyphicon glyphicon-trash"></span></a></td>
-                    </tr>
-                    <tr><td>Banner3</td>
-                         <td><a href="#" class="btn btn-sm btn-danger pull-right"><span class="glyphicon glyphicon-trash"></span></a></td>
-                    </tr>
-                
+                <tr>
+                    <td>Banner1</td>
+                    <td><a href="#" class="btn btn-sm btn-danger pull-right"><span class="glyphicon glyphicon-trash"></span></a></td>
+                </tr>
+                <tr>
+                    <td>Banner2</td>
+                    <td><a href="#" class="btn btn-sm btn-danger pull-right"><span class="glyphicon glyphicon-trash"></span></a></td>
+                </tr>
+                <tr>
+                    <td>Banner3</td>
+                    <td><a href="#" class="btn btn-sm btn-danger pull-right"><span class="glyphicon glyphicon-trash"></span></a></td>
+                </tr>
+
             </table>
+             <div class="wrapper">
+                <div class="form-group">
+                    <asp:LinkButton ID="btnSave" CssClass="btn btn-primary" runat="server">Save Order</asp:LinkButton>
+                    <br />
+                </div>
+                
+            </div>
         </div>
 
-         <%--Modal for Deletion Confirmation--%>
+        <%--Modal for Deletion Confirmation--%>
         <div id="deleteModal" class="modal fade" role="dialog">
             <div class="modal-dialog">
                 <div class="modal-content">
