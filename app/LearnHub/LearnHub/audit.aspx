@@ -40,7 +40,23 @@
                         <asp:Label runat="server" CssClass="col-lg-2 control-label" Text="Function"></asp:Label></strong>
                     <div class="col-lg-5">
                         <asp:DropDownList ID="ddlFunction" CssClass="form-control" runat="server">
-                            <asp:ListItem Text="-- Select --" Selected="true" Value="0"></asp:ListItem>
+                            <asp:ListItem Text="-- Select --" Selected="true" Value="none"></asp:ListItem>
+                            <asp:ListItem Text="All" Selected="false" Value="all"></asp:ListItem>
+                            <asp:ListItem Text="Articles" Selected="false" Value="articles"></asp:ListItem>
+                            <asp:ListItem Text="Contact Us" Selected="false" Value="contact us"></asp:ListItem>
+                            <asp:ListItem Text="Course" Selected="false" Value="course"></asp:ListItem>
+                            <asp:ListItem Text="Course Category" Selected="false" Value="course category"></asp:ListItem>
+                            <asp:ListItem Text="Learny Answers" Selected="false" Value="learny answers"></asp:ListItem>
+                            <asp:ListItem Text="Learny Feedback" Selected="false" Value="learny feedback"></asp:ListItem>
+                            <asp:ListItem Text="Learny Help Questions" Selected="false" Value="learny help questions"></asp:ListItem>
+                            <asp:ListItem Text="Learny Instructions" Selected="false" Value="learny instructions"></asp:ListItem>
+                            <asp:ListItem Text="Learny Intents" Selected="false" Value="learny intents"></asp:ListItem>
+                            <asp:ListItem Text="Learny Initialization Message" Selected="false" Value="learny initialization message"></asp:ListItem>
+                            <asp:ListItem Text="Quiz" Selected="false" Value="quiz"></asp:ListItem>
+                            <asp:ListItem Text="Userful Links" Selected="false" Value="useful links"></asp:ListItem>
+                            <asp:ListItem Text="User" Selected="false" Value="user"></asp:ListItem>
+
+
                         </asp:DropDownList>
                     </div>
                 </div>
@@ -50,14 +66,14 @@
                         <asp:Label runat="server" CssClass="col-lg-2 control-label" Text="Operation"></asp:Label></strong>
                     <div class="col-lg-5">
                         <asp:DropDownList ID="ddlOperation" CssClass="form-control" runat="server">
-                            <asp:ListItem Text="-- Select --" Selected="true" Value="0"></asp:ListItem>
-                            <asp:ListItem Text="All" Selected="false"></asp:ListItem>
-                            <asp:ListItem Text="Create" Selected="false"></asp:ListItem>
-                            <asp:ListItem Text="Read" Selected="false"></asp:ListItem>
-                            <asp:ListItem Text="Update" Selected="false"></asp:ListItem>
-                            <asp:ListItem Text="Delete" Selected="false"></asp:ListItem>
-                            <asp:ListItem Text="Activate" Selected="false"></asp:ListItem>
-                            <asp:ListItem Text="Deactivate" Selected="false"></asp:ListItem>
+                            <asp:ListItem Text="-- Select --" Selected="true" Value="none"></asp:ListItem>
+                            <asp:ListItem Text="All" Selected="false" Value="all"></asp:ListItem>
+                            <asp:ListItem Text="Create" Selected="false" Value="create"></asp:ListItem>
+                            <asp:ListItem Text="Read" Selected="false" Value="read"></asp:ListItem>
+                            <asp:ListItem Text="Update" Selected="false" Value="update"></asp:ListItem>
+                            <asp:ListItem Text="Delete" Selected="false" Value="delete"></asp:ListItem>
+                            <asp:ListItem Text="Activate" Selected="false" Value="activate"></asp:ListItem>
+                            <asp:ListItem Text="Deactivate" Selected="false" Value="deactivate"></asp:ListItem>
                         </asp:DropDownList>
                     </div>
                 </div>

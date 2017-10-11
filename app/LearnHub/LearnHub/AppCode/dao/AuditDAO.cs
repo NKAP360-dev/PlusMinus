@@ -25,7 +25,14 @@ namespace LearnHub.AppCode.dao
                 comm.Parameters.AddWithValue("@userID", a.userID);
                 comm.Parameters.AddWithValue("@functionModified", a.functionModified);
                 comm.Parameters.AddWithValue("@operation", a.operation);
-                comm.Parameters.AddWithValue("@id_of_function", a.id_of_function);
+                if (a.id_of_function != null)
+                {
+                    comm.Parameters.AddWithValue("@id_of_function", a.id_of_function);
+                }
+                else
+                {
+                    comm.Parameters.AddWithValue("@id_of_function", DBNull.Value);
+                }
                 comm.Parameters.AddWithValue("@dateModified", a.dateModified);
                 comm.Parameters.AddWithValue("@remarks", a.remarks);
                 toReturn = (Int32)comm.ExecuteScalar();

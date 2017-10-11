@@ -74,6 +74,11 @@ namespace LearnHub
             {
                 cbaDAO.updateChatBotAnswer(txtAnswers.Text, txtEntity.Text, ddlIntent.SelectedValue, answerID);
             }
+
+            //set audit
+            User currentUser = (User)Session["currentUser"];
+            setAudit(currentUser, "learny answers", "update", answerID.ToString(), "updated answer: " + txtAnswers.Text);
+
             Response.Redirect("askLearnyAddAns.aspx");
         }
 
@@ -82,12 +87,31 @@ namespace LearnHub
             ChatBotAnswerDAO cbaDAO = new ChatBotAnswerDAO();
             int answerID = Convert.ToInt32(Request.QueryString["id"]);
             cbaDAO.deleteAnswerByID(answerID);
+
+            //set audit
+            User currentUser = (User)Session["currentUser"];
+            setAudit(currentUser, "learny answers", "delete", answerID.ToString(), "deleted answer: " + txtAnswers.Text);
+
             Response.Redirect("askLearnyAddAns.aspx");
         }
 
         protected void ddlIntent_SelectedIndexChanged(object sender, EventArgs e)
         {
             gvIntentAnswers.DataBind();
+        }
+
+        protected void setAudit(User u, string functionModified, string operation, string id_of_function, string remarks)
+        {
+            //set audit
+            Audit a = new Audit();
+            AuditDAO aDAO = new AuditDAO();
+            a.userID = u.getUserID();
+            a.functionModified = functionModified;
+            a.operation = operation;
+            a.id_of_function = id_of_function;
+            a.dateModified = DateTime.Now;
+            a.remarks = remarks;
+            aDAO.createAudit(a);
         }
     }
 }

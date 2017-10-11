@@ -69,7 +69,25 @@ using LearnHub.AppCode.entity;
             string status = article.status;
             Contact toChange = new Contact(id_edit, name, dept.ToLower(), u, start, status, email, remarks);
             adao.updateContact(toChange);
+
+            //set audit
+            User currentUser = (User)Session["currentUser"];
+            setAudit(currentUser, "contact us", "update", id, "updated contact personnel name: " + name);
+
             Response.Redirect("manageContactUs.aspx");
+        }
+        protected void setAudit(User u, string functionModified, string operation, string id_of_function, string remarks)
+        {
+            //set audit
+            Audit a = new Audit();
+            AuditDAO aDAO = new AuditDAO();
+            a.userID = u.getUserID();
+            a.functionModified = functionModified;
+            a.operation = operation;
+            a.id_of_function = id_of_function;
+            a.dateModified = DateTime.Now;
+            a.remarks = remarks;
+            aDAO.createAudit(a);
         }
     }
 }

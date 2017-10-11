@@ -7,6 +7,7 @@ using System.Web.UI.WebControls;
 using Emma.DAO;
 using Emma.Entity;
 using LearnHub.AppCode.entity;
+using LearnHub.AppCode.dao;
 
 namespace LearnHub
 {
@@ -57,6 +58,11 @@ namespace LearnHub
             ChatBotInitializeMsgDAO cbimDAO = new ChatBotInitializeMsgDAO();
             int messageID = Convert.ToInt32(Request.QueryString["id"]);
             cbimDAO.updateInitializationMessage(messageID, txtMsgInput.Text);
+
+            //set audit
+            User currentUser = (User)Session["currentUser"];
+            setAudit(currentUser, "learny initialization message", "update", messageID.ToString(), "updated message: " + txtMsgInput.Text);
+
             Response.Redirect("askLearnyInitializeMsg.aspx");
         }
 
@@ -67,7 +73,25 @@ namespace LearnHub
             ChatBotInitializeMsgDAO cbimDAO = new ChatBotInitializeMsgDAO();
             int messageID = Convert.ToInt32(Request.QueryString["id"]);
             cbimDAO.deleteMessageByID(messageID);
+
+            //set audit
+            User currentUser = (User)Session["currentUser"];
+            setAudit(currentUser, "learny initialization message", "delete", messageID.ToString(), "deleted message: " + txtMsgInput.Text);
+
             Response.Redirect("askLearnyInitializeMsg.aspx");
+        }
+        protected void setAudit(User u, string functionModified, string operation, string id_of_function, string remarks)
+        {
+            //set audit
+            Audit a = new Audit();
+            AuditDAO aDAO = new AuditDAO();
+            a.userID = u.getUserID();
+            a.functionModified = functionModified;
+            a.operation = operation;
+            a.id_of_function = id_of_function;
+            a.dateModified = DateTime.Now;
+            a.remarks = remarks;
+            aDAO.createAudit(a);
         }
     }
 }

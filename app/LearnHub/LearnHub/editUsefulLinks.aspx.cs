@@ -55,7 +55,25 @@ namespace LearnHub
             string status = article.status;
             Link toChange = new Link(id_edit, link, desc, u, start, status);
             ldao.updateLink(toChange);
+
+            //set audit
+            User currentUser = (User)Session["currentUser"];
+            setAudit(currentUser, "useful links", "update", id, "updated link: " + link);
+
             Response.Redirect("manageUsefulLinks.aspx");
+        }
+        protected void setAudit(User u, string functionModified, string operation, string id_of_function, string remarks)
+        {
+            //set audit
+            Audit a = new Audit();
+            AuditDAO aDAO = new AuditDAO();
+            a.userID = u.getUserID();
+            a.functionModified = functionModified;
+            a.operation = operation;
+            a.id_of_function = id_of_function;
+            a.dateModified = DateTime.Now;
+            a.remarks = remarks;
+            aDAO.createAudit(a);
         }
     }
 }

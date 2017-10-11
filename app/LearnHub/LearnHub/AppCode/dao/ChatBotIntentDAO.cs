@@ -45,10 +45,10 @@ namespace Emma.DAO
             }
             return toReturn;
         }
-        public Boolean addIntent(string intent) // Insert.
+        public int addIntent(string intent) // Insert.
         {
             SqlConnection conn = null;
-            Boolean success = false;
+            int toReturn = -1;
             try
             {
                 conn = new SqlConnection();
@@ -56,10 +56,9 @@ namespace Emma.DAO
                 conn.Open();
                 SqlCommand comm = new SqlCommand();
                 comm.Connection = conn;
-                comm.CommandText = "Insert into [ChatBotIntent] (intent) VALUES (@intent)";
+                comm.CommandText = "Insert into [ChatBotIntent] (intent) OUTPUT INSERTED.intentID VALUES (@intent)";
                 comm.Parameters.AddWithValue("@intent", intent);
-                comm.ExecuteNonQuery();
-                success = true;
+                toReturn = (Int32)comm.ExecuteScalar();
             }
             catch (SqlException ex)
             {
@@ -69,7 +68,7 @@ namespace Emma.DAO
             {
                 conn.Close();
             }
-            return success;
+            return toReturn;
         }
         public ChatBotIntent getChatBotIntentByID(int intentID)
         {

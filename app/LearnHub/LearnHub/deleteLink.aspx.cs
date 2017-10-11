@@ -34,13 +34,31 @@ namespace LearnHub
                 string id = Request.QueryString["id"];
                 int id_num = Convert.ToInt32(id);
                 LinkDAO adao = new LinkDAO();
+                Link link = adao.getLinksById(id_num);
                 adao.deactivateArticle(id_num);
+
+                //set audit
+                setAudit(currentUser, "useful links", "delete", id, "deleted link: " + link.link_path);
+
                 Response.Redirect("manageUsefulLinks.aspx");
             }
             else
             {
                 Response.Redirect("errorPage.aspx");
             }
+        }
+        protected void setAudit(User u, string functionModified, string operation, string id_of_function, string remarks)
+        {
+            //set audit
+            Audit a = new Audit();
+            AuditDAO aDAO = new AuditDAO();
+            a.userID = u.getUserID();
+            a.functionModified = functionModified;
+            a.operation = operation;
+            a.id_of_function = id_of_function;
+            a.dateModified = DateTime.Now;
+            a.remarks = remarks;
+            aDAO.createAudit(a);
         }
     }
 }

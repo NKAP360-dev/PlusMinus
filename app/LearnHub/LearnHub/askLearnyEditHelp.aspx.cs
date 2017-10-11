@@ -1,5 +1,6 @@
 ﻿using Emma.DAO;
 using Emma.Entity;
+using LearnHub.AppCode.dao;
 using LearnHub.AppCode.entity;
 using System;
 using System.Collections.Generic;
@@ -62,6 +63,11 @@ namespace LearnHub
             ChatBotHelpQuestionDAO cbhqDAO = new ChatBotHelpQuestionDAO();
             ChatBotHelpQuestion currentQuestion = cbhqDAO.getChatBotHelpQuestionByID(Convert.ToInt32(Request.QueryString["id"]));
             cbhqDAO.updateChatBotHelpQuestion(txtHelpInput.Text, currentQuestion.questionID);
+
+            //set audit
+            User currentUser = (User)Session["currentUser"];
+            setAudit(currentUser, "learny help questions", "update", currentQuestion.questionID.ToString(), "updated question: " + txtHelpInput.Text);
+
             Response.Redirect("askLearnyHelpQn.aspx");
         }
 
@@ -71,7 +77,25 @@ namespace LearnHub
             ChatBotHelpQuestionDAO cbhqDAO = new ChatBotHelpQuestionDAO();
             ChatBotHelpQuestion currentQuestion = cbhqDAO.getChatBotHelpQuestionByID(Convert.ToInt32(Request.QueryString["id"]));
             cbhqDAO.deleteQuestionByID(currentQuestion.questionID);
+
+            //set audit
+            User currentUser = (User)Session["currentUser"];
+            setAudit(currentUser, "learny help questions", "delete", currentQuestion.questionID.ToString(), "deleted question: " + currentQuestion.question);
+
             Response.Redirect("askLearnyHelpQn.aspx");
+        }
+        protected void setAudit(User u, string functionModified, string operation, string id_of_function, string remarks)
+        {
+            //set audit
+            Audit a = new Audit();
+            AuditDAO aDAO = new AuditDAO();
+            a.userID = u.getUserID();
+            a.functionModified = functionModified;
+            a.operation = operation;
+            a.id_of_function = id_of_function;
+            a.dateModified = DateTime.Now;
+            a.remarks = remarks;
+            aDAO.createAudit(a);
         }
     }
 }

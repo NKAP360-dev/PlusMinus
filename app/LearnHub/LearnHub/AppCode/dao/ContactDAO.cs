@@ -155,7 +155,7 @@ namespace LearnHub.AppCode.dao
         public int createContact(Contact a) // Insert.
         {
             SqlConnection conn = null;
-            int toReturn = 0;
+            int toReturn = -1;
             try
             {
                 conn = new SqlConnection();
@@ -163,15 +163,15 @@ namespace LearnHub.AppCode.dao
                 conn.Open();
                 SqlCommand comm = new SqlCommand();
                 comm.Connection = conn;
-                comm.CommandText = "insert into [Contact] (name, department, email, remarks, upload_datetime, status, user_upload)" 
-                                        +"values(@name, @dept, @email, @remarks, @date, 'Active', @uid)";
+                comm.CommandText = "insert into [Contact] (name, department, email, remarks, upload_datetime, status, user_upload) OUTPUT INSERTED.contact_id"
+                                        + "values(@name, @dept, @email, @remarks, @date, 'Active', @uid)";
                 comm.Parameters.AddWithValue("@name", a.name);
                 comm.Parameters.AddWithValue("@dept", a.department);
                 comm.Parameters.AddWithValue("@email", a.email);
                 comm.Parameters.AddWithValue("@remarks", a.remarks);
                 comm.Parameters.AddWithValue("@date", a.upload_datetime);
                 comm.Parameters.AddWithValue("@uid", a.user.getUserID());
-                toReturn = comm.ExecuteNonQuery();
+                toReturn = (Int32)comm.ExecuteScalar();
             }
             catch (SqlException ex)
             {

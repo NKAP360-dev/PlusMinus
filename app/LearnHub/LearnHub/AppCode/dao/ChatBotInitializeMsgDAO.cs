@@ -97,10 +97,10 @@ namespace Emma.DAO
                 conn.Close();
             }
         }
-        public Boolean insertMessage(string message) // Insert.
+        public int insertMessage(string message) // Insert.
         {
             SqlConnection conn = null;
-            Boolean success = false;
+            int toReturn = -1;
             try
             {
                 conn = new SqlConnection();
@@ -108,7 +108,7 @@ namespace Emma.DAO
                 conn.Open();
                 SqlCommand comm = new SqlCommand();
                 comm.Connection = conn;
-                comm.CommandText = "Insert into [ChatBotInitialization] (message, levels) VALUES (@message, @levels)";
+                comm.CommandText = "Insert into [ChatBotInitialization] (message, levels) OUTPUT INSERTED.messageID VALUES (@message, @levels)";
                 comm.Parameters.AddWithValue("@message", message);
                 int nextOrderNum = getNextOrderNumber();
                 if (nextOrderNum != -1)
@@ -120,8 +120,7 @@ namespace Emma.DAO
                     nextOrderNum = 0;
                 }
                 comm.Parameters.AddWithValue("@levels", nextOrderNum);
-                comm.ExecuteNonQuery();
-                success = true;
+                toReturn = (Int32)comm.ExecuteScalar();
             }
             catch (SqlException ex)
             {
@@ -131,7 +130,7 @@ namespace Emma.DAO
             {
                 conn.Close();
             }
-            return success;
+            return toReturn;
         }
         public int getNextOrderNumber()
         {

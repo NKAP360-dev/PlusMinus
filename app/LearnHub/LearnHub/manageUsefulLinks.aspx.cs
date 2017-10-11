@@ -38,16 +38,25 @@ namespace LearnHub
             string desc = txtDesc.Text;
             Link createThis = new Link("http://"+link, desc, currentUser, DateTime.Now, "Active");
             LinkDAO linkdao = new LinkDAO();
-            int succ = linkdao.createLink(createThis);
-            if (succ > 0)
-            {
-                Response.Redirect("manageUsefulLinks.aspx");
-            }
-            else
-            {
-                Response.Redirect("errorPage.aspx");
-            }
+            int linkID = linkdao.createLink(createThis);
+            //set audit
+            setAudit(currentUser, "useful links", "create", linkID.ToString(), "link: " + link);
 
+            Response.Redirect("manageUsefulLinks.aspx");
+
+        }
+        protected void setAudit(User u, string functionModified, string operation, string id_of_function, string remarks)
+        {
+            //set audit
+            Audit a = new Audit();
+            AuditDAO aDAO = new AuditDAO();
+            a.userID = u.getUserID();
+            a.functionModified = functionModified;
+            a.operation = operation;
+            a.id_of_function = id_of_function;
+            a.dateModified = DateTime.Now;
+            a.remarks = remarks;
+            aDAO.createAudit(a);
         }
     }
 }

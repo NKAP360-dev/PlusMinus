@@ -182,10 +182,10 @@ namespace Emma.DAO
             return toReturn;
         }
 
-        public Boolean insertAnswer(ChatBotAnswer cbAnswer) // Insert.
+        public int insertAnswer(ChatBotAnswer cbAnswer) // Insert.
         {
             SqlConnection conn = null;
-            Boolean success = false;
+            int toReturn = -1;
             try
             {
                 conn = new SqlConnection();
@@ -193,7 +193,7 @@ namespace Emma.DAO
                 conn.Open();
                 SqlCommand comm = new SqlCommand();
                 comm.Connection = conn;
-                comm.CommandText = "Insert into [ChatBotAns] (answer, intentID, entityName) VALUES (@answer, @intentID, @entityName)";
+                comm.CommandText = "Insert into [ChatBotAns] (answer, intentID, entityName) OUTPUT INSERTED.answerID VALUES (@answer, @intentID, @entityName)";
                 comm.Parameters.AddWithValue("@answer", cbAnswer.answer);
                 comm.Parameters.AddWithValue("@intentID", cbAnswer.intent);
                 if (cbAnswer.entityName != null)
@@ -204,8 +204,7 @@ namespace Emma.DAO
                 {
                     comm.Parameters.AddWithValue("@entityName", DBNull.Value);
                 }
-                comm.ExecuteNonQuery();
-                success = true;
+                toReturn = (Int32)comm.ExecuteScalar();
             }
             catch (SqlException ex)
             {
@@ -215,7 +214,7 @@ namespace Emma.DAO
             {
                 conn.Close();
             }
-            return success;
+            return toReturn;
         }
         public ChatBotAnswer getChatBotAnswerByID(int answerID)
         {

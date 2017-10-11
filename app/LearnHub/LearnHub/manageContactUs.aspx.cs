@@ -50,15 +50,25 @@ namespace LearnHub
             string remarks = txtRemarks.Text;
             Contact c = new Contact(name, dept, currentUser, DateTime.Now, "Active", email, remarks);
             ContactDAO cdao = new ContactDAO();
-            int val = cdao.createContact(c);
-            if (val > 0)
-            {
-                Response.Redirect("manageContactUs.aspx");
-            }
-            else
-            {
-                Response.Redirect("errorPage.aspx");
-            }
+            int contactID = cdao.createContact(c);
+
+            //set audit
+            setAudit(currentUser, "contact us", "create", contactID.ToString(), "contact personnel name: " + name);
+
+            Response.Redirect("manageContactUs.aspx");
         }
-     }
+        protected void setAudit(User u, string functionModified, string operation, string id_of_function, string remarks)
+        {
+            //set audit
+            Audit a = new Audit();
+            AuditDAO aDAO = new AuditDAO();
+            a.userID = u.getUserID();
+            a.functionModified = functionModified;
+            a.operation = operation;
+            a.id_of_function = id_of_function;
+            a.dateModified = DateTime.Now;
+            a.remarks = remarks;
+            aDAO.createAudit(a);
+        }
+    }
  }

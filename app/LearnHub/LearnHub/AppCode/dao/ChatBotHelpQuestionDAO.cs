@@ -76,10 +76,10 @@ namespace Emma.DAO
             }
             return toReturn;
         }
-        public Boolean insertQuestion(string question) // Insert.
+        public int insertQuestion(string question) // Insert.
         {
             SqlConnection conn = null;
-            Boolean success = false;
+            int toReturn = -1;
             try
             {
                 conn = new SqlConnection();
@@ -87,10 +87,9 @@ namespace Emma.DAO
                 conn.Open();
                 SqlCommand comm = new SqlCommand();
                 comm.Connection = conn;
-                comm.CommandText = "Insert into [ChatBotHelpQuestion] (question) VALUES (@question)";
+                comm.CommandText = "Insert into [ChatBotHelpQuestion] OUTPUT INSERTED.questionID (question) VALUES (@question)";
                 comm.Parameters.AddWithValue("@question", question);
-                comm.ExecuteNonQuery();
-                success = true;
+                toReturn = (Int32)comm.ExecuteScalar();
             }
             catch (SqlException ex)
             {
@@ -100,7 +99,7 @@ namespace Emma.DAO
             {
                 conn.Close();
             }
-            return success;
+            return toReturn;
         }
         public void updateChatBotHelpQuestion(string question, int questionID) // Update.
         {

@@ -152,7 +152,7 @@ namespace LearnHub.AppCode.dao
         public int createLink(Link a) // Insert.
         {
             SqlConnection conn = null;
-            int toReturn = 0;
+            int toReturn = -1;
             try
             {
                 conn = new SqlConnection();
@@ -161,14 +161,14 @@ namespace LearnHub.AppCode.dao
                 SqlCommand comm = new SqlCommand();
                 comm.Connection = conn;
                 comm.CommandText = "insert into [Links] "
-                                    + "(link_path, description, upload_datetime, upload_user, status)"
+                                    + "(link_path, description, upload_datetime, upload_user, status) OUTPUT INSERTED.link_id"
                                     + "values(@path, @desc, convert(datetime,@stamp,103), @user, @status)";
                 comm.Parameters.AddWithValue("@path", a.link_path);
                 comm.Parameters.AddWithValue("@desc", a.description);
                 comm.Parameters.AddWithValue("@stamp", a.upload_datetime);
                 comm.Parameters.AddWithValue("@user", a.user.getUserID());
                 comm.Parameters.AddWithValue("@status", a.status);
-                toReturn = comm.ExecuteNonQuery();
+                toReturn = (Int32)comm.ExecuteScalar();
             }
             catch (SqlException ex)
             {

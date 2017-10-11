@@ -60,7 +60,26 @@
         <li><a href="usefulInfo.aspx">Useful Information</a></li>
         <li>View All Articles</li>
     </ul>
-
+     <%
+    User currentUser = (User)Session["currentUser"];
+    Boolean superuser = false;
+    Boolean content_creator = false;
+    if (currentUser != null)
+    {
+        foreach (string s in currentUser.getRoles())
+        {
+            if (s.Equals("superuser"))
+            {
+                superuser = true;
+            }
+            else if (s.Equals("content creator"))
+            {
+                content_creator = true;
+            }
+        }
+        if (currentUser != null && (content_creator || superuser))
+        {
+        %>
     <div class="container">
         <h1>View All Articles</h1>
         <div class="dropdown" style="float: right;">
@@ -77,6 +96,10 @@
 
             </div>
         </div>
+        <%
+        }
+    }
+            %>
         <div class="verticalLine"></div>
         <table class="table table-striped table-hover" data-paging="true" data-sorting="true" data-filtering="true">
             <thead>

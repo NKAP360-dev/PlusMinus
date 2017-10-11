@@ -1,5 +1,8 @@
 ﻿<%@ Page Title="Home - LearnHub" Language="C#" MasterPageFile="~/Masterpage.Master" AutoEventWireup="true" CodeBehind="Home.aspx.cs" Inherits="LearnHub.Home" %>
 
+<%@ Import Namespace="LearnHub.AppCode.dao" %>
+<%@ Import Namespace="LearnHub.AppCode.entity" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link href="https://fonts.googleapis.com/css?family=Biryani:800" rel="stylesheet">
     <style>
@@ -181,6 +184,26 @@
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder2" runat="server">
     <form id="form1" runat="server">
         <br />
+         <%
+    User currentUser = (User)Session["currentUser"];
+    Boolean superuser = false;
+    Boolean content_creator = false;
+    if (currentUser != null)
+    {
+        foreach (string s in currentUser.getRoles())
+        {
+            if (s.Equals("superuser"))
+            {
+                superuser = true;
+            }
+            else if (s.Equals("content creator"))
+            {
+                content_creator = true;
+            }
+        }
+        if (currentUser != null && (content_creator || superuser))
+        {
+        %>
         <div class="row">
             <div class="col-lg-12">
                 <div class="dropdown" style="float: right;">
@@ -199,6 +222,10 @@
                 </div>
             </div>
         </div>
+        <%
+        }
+    }
+            %>
         <br />
         <div class="container">
 

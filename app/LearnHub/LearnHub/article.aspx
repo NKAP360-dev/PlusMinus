@@ -32,7 +32,27 @@
                             %>
             <li class="active">
                 <asp:Label ID="lblArticleTitle"><%=article.article_name %></asp:Label></li>
-
+            </ul>
+         <%
+             User currentUser = (User)Session["currentUser"];
+             Boolean superuser = false;
+             Boolean content_creator = false;
+             if (currentUser != null)
+             {
+                 foreach (string s in currentUser.getRoles())
+                 {
+                     if (s.Equals("superuser"))
+                     {
+                         superuser = true;
+                     }
+                     else if (s.Equals("content creator"))
+                     {
+                         content_creator = true;
+                     }
+                 }
+                 if (currentUser != null && (content_creator || superuser))
+                 {
+        %>
             <div class ="pull-right">
         <div class="dropdown" style="float: right;">
             <button class="dropbtn" onclick="return false;"><span class="glyphicon glyphicon-option-horizontal"></span></button>
@@ -49,8 +69,10 @@
                 </div>
         </div>
     </div>
-        </ul>
-
+        <%
+                }
+            }
+            %>
 
         <div class="container">
             <div class="col-lg-9">
