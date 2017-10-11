@@ -58,6 +58,8 @@ namespace LearnHub
                 {
                     lblTargetAudience.Text = "-";
                 }
+                lblCoursePeriodStart.Text = "Start: " + current.getStartDate().ToLongDateString();
+                lblCoursePeriodEnd.Text = "End: " + current.getExpiryDate().ToLongDateString();
             }
         }
         protected void submitTestimonial_Click(object sender, EventArgs e)

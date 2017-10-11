@@ -184,6 +184,12 @@
                                 <asp:Label ID="lblTargetAudience" runat="server"></asp:Label>
                                 <br />
                                 <br />
+                                <b>Course Availability Period</b><br />
+                                <asp:Label ID="lblCoursePeriodStart" runat="server"></asp:Label>
+                                <br />
+                                <asp:Label ID="lblCoursePeriodEnd" runat="server"></asp:Label>
+                                <br />
+                                <br />
                             </div>
                         </div>
                     </div>
