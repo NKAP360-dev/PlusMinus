@@ -53,6 +53,11 @@
                 }
             });
         });
+
+        function openModal() {
+            console.log("submitModal");
+            $("#submitModal").modal();
+        }
     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -119,6 +124,15 @@
                             <span class="input-group-addon">http://</span>
                             <asp:TextBox ID="txtLink" runat="server" CssClass="form-control" placeholder="e.g www.google.com"></asp:TextBox>
                         </div>
+
+                    </div>
+                    <div class="form-group required">
+                        <strong>
+                            <asp:Label runat="server" CssClass="col-lg-2 control-label" Text=""></asp:Label></strong>
+                        <div class="input-group col-lg-9">
+                            <asp:RequiredFieldValidator ID="rfv_txtLink" runat="server" ErrorMessage="Please input a Link" ControlToValidate="txtLink" ForeColor="Red" ValidationGroup="ValidateForm" Display="Dynamic"></asp:RequiredFieldValidator>
+                        </div>
+
                     </div>
 
                     <div class="form-group required">
@@ -126,12 +140,13 @@
                             <asp:Label runat="server" CssClass="col-lg-2 control-label" Text="Description (if any)"></asp:Label></strong>
                         <div class="input-group col-lg-9">
                             <asp:TextBox ID="txtDesc" runat="server" CssClass="form-control" TextMode="MultiLine" placeholder="Description (if any)"></asp:TextBox>
+                            <asp:RequiredFieldValidator ID="rfv_txtDesc" runat="server" ErrorMessage="Please input a Description" ControlToValidate="txtDesc" ForeColor="Red" ValidationGroup="ValidateForm" Display="Dynamic"></asp:RequiredFieldValidator>
                         </div>
                     </div>
 
                     <br />
                     <div class="form-group wrapper">
-                        <asp:Button ID="btnSubmit" CssClass="btn btn-primary" runat="server" Text="Submit" data-toggle="modal" href="#submitModal" OnClientClick="$('#myModal').modal(); return false;" UseSubmitBehavior="False" />
+                        <asp:Button ID="btnSubmit" CssClass="btn btn-primary" runat="server" Text="Submit" OnClick="checkForm" CausesValidation="True" UseSubmitBehavior="False" ValidationGroup="ValidateForm" />
                     </div>
                     <br />
 
@@ -174,6 +189,8 @@
                     <div class="modal-body">
                         <div class="wrapper">
                             <h4>Are you sure you want to submit?</h4>
+                            <br />
+                            <asp:Label ID="lblErrorMsgFinal" runat="server" CssClass="text-danger" Visible="True"></asp:Label>
                             <br />
                             <asp:Button ID="btnConfirmSubmit" CssClass="btn btn-primary" runat="server" Text="Submit" OnClick="btnSubmit_Click" />
                             <asp:Button ID="btnCancel1" CssClass="btn btn-default" runat="server" class="close" data-dismiss="modal" Text="Cancel" OnClientClick="return false;" />
