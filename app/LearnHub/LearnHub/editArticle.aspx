@@ -19,6 +19,24 @@
             border-radius: 0px;
         }
     </style>
+    <script type="text/javascript">
+        function ValidateArticleDescription(sender, args) {
+            console.log("enter fbd");
+            var feedbackDescription = document.getElementById("<%= CKEditor1.ClientID %>").value;
+            if (feedbackDescription == "") {
+                console.log("no desc");
+                args.IsValid = false;
+            }
+            else {
+                console.log("Yes desc");
+                args.IsValid = true;
+            }
+        }
+        function openModal() {
+            console.log("submitModal");
+            $("#submitModal").modal();
+        }
+    </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <ul class="breadcrumb">
@@ -77,14 +95,16 @@
                     <asp:Label runat="server" CssClass="col-lg-1 control-label" Text="Title"></asp:Label></strong>
                 <div class="col-lg-11">
                     <asp:TextBox ID="txtTitle" runat="server" CssClass="form-control" placeholder="Title of Article"></asp:TextBox>
+                    <asp:RequiredFieldValidator ID="rfv_txtTitle" runat="server" ErrorMessage="Please input a Title" ControlToValidate="txtTitle" ForeColor="Red" ValidationGroup="ValidateForm" Display="Dynamic"></asp:RequiredFieldValidator>
                 </div>
             </div>
 
             <CKEditor:CKEditorControl ID="CKEditor1" runat="server">
             </CKEditor:CKEditorControl>
+            <asp:CustomValidator ID="cv_txtArticleDesc" runat="server" EnableClientScript="true" ErrorMessage="Required*" ClientValidationFunction="ValidateArticleDescription" ForeColor="Red" ValidationGroup="ValidateForm" Display="Dynamic"></asp:CustomValidator>
             <br />
             <div class="form-group wrapper">
-                <asp:Button ID="btnCreate" CssClass="btn btn-primary" runat="server" Text="Save" data-toggle="modal" href="#submitModal" OnClientClick="$('#myModal').modal();  return false;" UseSubmitBehavior="False" />
+                <asp:Button ID="btnCreate" CssClass="btn btn-primary" runat="server" Text="Save" OnClick="checkForm" CausesValidation="True" UseSubmitBehavior="False" ValidationGroup="ValidateForm"/>
             </div>
 
             <div id="submitModal" class="modal fade" role="dialog">
@@ -97,6 +117,8 @@
                         <div class="modal-body">
                             <div class="wrapper">
                                 <h4>This will overwrite your current article. Are you sure you want to proceed?</h4>
+                                <br />
+                                <asp:Label ID="lblErrorMsgFinal" runat="server" CssClass="text-danger" Visible="True"></asp:Label>
                                 <br />
 
                                 <asp:Button ID="cfmSubmit" CssClass="btn btn-primary" runat="server" Text="Yes" OnClick="btnEdit_Click" />

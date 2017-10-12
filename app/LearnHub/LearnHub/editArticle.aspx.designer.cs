@@ -22,6 +22,15 @@ namespace LearnHub {
         protected global::System.Web.UI.WebControls.TextBox txtTitle;
         
         /// <summary>
+        /// rfv_txtTitle control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfv_txtTitle;
+        
+        /// <summary>
         /// CKEditor1 control.
         /// </summary>
         /// <remarks>
@@ -31,6 +40,15 @@ namespace LearnHub {
         protected global::CKEditor.NET.CKEditorControl CKEditor1;
         
         /// <summary>
+        /// cv_txtArticleDesc control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CustomValidator cv_txtArticleDesc;
+        
+        /// <summary>
         /// btnCreate control.
         /// </summary>
         /// <remarks>
@@ -38,6 +56,15 @@ namespace LearnHub {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnCreate;
+        
+        /// <summary>
+        /// lblErrorMsgFinal control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblErrorMsgFinal;
         
         /// <summary>
         /// cfmSubmit control.

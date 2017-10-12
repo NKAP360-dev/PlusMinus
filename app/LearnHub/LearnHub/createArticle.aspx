@@ -22,7 +22,7 @@
     <script type="text/javascript">
         function ValidateArticleDescription(sender, args) {
             console.log("enter fbd");
-            var feedbackDescription = document.getElementById("<%= txtTitle.ClientID %>").value;
+            var feedbackDescription = document.getElementById("<%= CKEditor1.ClientID %>").value;
             if (feedbackDescription == "") {
                 console.log("no desc");
                 args.IsValid = false;
