@@ -122,10 +122,10 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr><td>hi</td>
+                    <tr><td><a href="news.aspx">hi</a></td>
                         <td>hi</td>
                         <td>hi</td>
-                        <td><a href="editNews.aspx" class="btn btn-sm btn-info"><span class="glyphicon glyphicon-pencil"></span></a></td>
+                        <td><a href="editNews.aspx" class="btn btn-sm btn-info"><span class="glyphicon glyphicon-pencil"></span></a><a href="#" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure?')"><span class="glyphicon glyphicon-trash"></span></a></td>
                     </tr>
                     </tbody>
                 </table>

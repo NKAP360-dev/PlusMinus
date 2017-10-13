@@ -6,6 +6,10 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link href="https://fonts.googleapis.com/css?family=Biryani:800" rel="stylesheet">
     <style>
+         h3 {
+            display: inline;
+        }
+
         .newsType {
             font-family: 'Biryani', sans-serif !important;
             font-size: 10px;
@@ -238,9 +242,11 @@
         <br />
         <div class="container">
 
+            <%--TO BE INTEGRATED--%>
+            <%--Display 6 latest news--%>
             <div class="row">
                 <div class="col-md-4">
-                    <a href="#">
+                    <a href="news.aspx">
                         <div class="panel panel-default">
                             <div class="newsImage">
                                 <img src="https://www.cdc.gov/handwashing/images/handwashing-banner1.jpg" alt="Learnhub">
@@ -259,7 +265,7 @@
                 </div>
 
                 <div class="col-md-4">
-                    <a href="#">
+                    <a href="news.aspx">
                         <div class="panel panel-default">
                             <div class="newsImage">
                                 <img src="https://d3tvpxjako9ywy.cloudfront.net/blog/content/uploads/2014/12/iStock-612235546-624x416.jpg?av=3605f7e90f16446ab34c16e85e991868" alt="Learnhub">
@@ -278,7 +284,7 @@
                 </div>
 
                 <div class="col-md-4">
-                    <a href="#">
+                    <a href="news.aspx">
                         <div class="panel panel-default">
                             <div class="newsImage">
                                 <img src="https://fedweb-assets.s3.amazonaws.com/cache/fed-48/2/Emergency%2520prep1_334072_resize_1524__1_1.png" alt="Learnhub">
@@ -298,7 +304,7 @@
             </div>
             <div class="row">
                 <div class="col-md-4">
-                    <a href="#">
+                    <a href="news.aspx">
                         <div class="panel panel-default">
                             <div class="newsImage">
                                 <img src="http://cdn.c3a.com.sg/1371026187_170081754_AhDf.jpg" alt="Learnhub">
@@ -317,7 +323,7 @@
                 </div>
 
                 <div class="col-md-4">
-                    <a href="#">
+                    <a href="news.aspx">
                         <div class="panel panel-default">
                             <div class="newsImage">
                                 <img src="http://www.stephenblower.co.uk/wp-content/uploads/2013/03/maintenance-1.jpg" alt="Learnhub">
@@ -336,7 +342,7 @@
                 </div>
 
                 <div class="col-md-4">
-                    <a href="#">
+                    <a href="news.aspx">
                         <div class="panel panel-default">
                             <div class="newsImage">
                                 <img src="https://www.naturalnews.com/gallery/640/Ebola/Ebola-Virus-Word-Shapes.jpg" alt="Learnhub">
@@ -355,8 +361,8 @@
                 </div>
             </div>
             <div class="row">
-                <div class="wrapper">
-                    <a href="viewAllNews.aspx">View All</a>
+                <div class="wrapper"><br />
+                    <a href="viewAllNews.aspx"><h3>View All</h3>&emsp;<span class="glyphicon glyphicon-menu-right"></span></a>
                 </div>
             </div>
         </div>

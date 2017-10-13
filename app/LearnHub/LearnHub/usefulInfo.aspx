@@ -49,7 +49,7 @@
     %>
     <div class="pull-right">
         <div class="dropdown" style="float: right;">
-            <button class="dropbtn" onclick="return false;"><span class="glyphicon glyphicon-option-horizontal"></span></button>
+            <button class="dropbtn" onclick="return false;"><span class="glyphicon glyphicon-option-horizontal"></span></button> &emsp;
             <div class="dropdown-content" style="right: 0;">
                 <div class="dropHeader">Content Management</div>
                 <a href="editAboutUs.aspx"><span class="glyphicon glyphicon-pencil"></span>&nbsp;&nbsp;Edit About Us</a>
