@@ -157,6 +157,13 @@
     <Compile Include="accountSetting.aspx.designer.cs">
       <DependentUpon>accountSetting.aspx</DependentUpon>
     </Compile>
+    <Compile Include="addNews.aspx.cs">
+      <DependentUpon>addNews.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="addNews.aspx.designer.cs">
+      <DependentUpon>addNews.aspx</DependentUpon>
+    </Compile>
     <Compile Include="AppCode\dao\AuditDAO.cs" />
     <Compile Include="AppCode\dao\ContactDAO.cs" />
     <Compile Include="AppCode\dao\LinkDAO.cs" />
@@ -452,6 +459,13 @@
     <Compile Include="editModuleInfo.aspx.designer.cs">
       <DependentUpon>editModuleInfo.aspx</DependentUpon>
     </Compile>
+    <Compile Include="editNews.aspx.cs">
+      <DependentUpon>editNews.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="editNews.aspx.designer.cs">
+      <DependentUpon>editNews.aspx</DependentUpon>
+    </Compile>
     <Compile Include="editQuiz.aspx.cs">
       <DependentUpon>editQuiz.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -587,6 +601,13 @@
     </Compile>
     <Compile Include="Masterpage.Master.designer.cs">
       <DependentUpon>Masterpage.Master</DependentUpon>
+    </Compile>
+    <Compile Include="news.aspx.cs">
+      <DependentUpon>news.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="news.aspx.designer.cs">
+      <DependentUpon>news.aspx</DependentUpon>
     </Compile>
     <Compile Include="noResult.aspx.cs">
       <DependentUpon>noResult.aspx</DependentUpon>
@@ -757,6 +778,13 @@
     <Compile Include="viewAllModule.aspx.designer.cs">
       <DependentUpon>viewAllModule.aspx</DependentUpon>
     </Compile>
+    <Compile Include="viewAllNews.aspx.cs">
+      <DependentUpon>viewAllNews.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="viewAllNews.aspx.designer.cs">
+      <DependentUpon>viewAllNews.aspx</DependentUpon>
+    </Compile>
     <Compile Include="viewApprovedTRF.aspx.cs">
       <DependentUpon>viewApprovedTRF.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -845,6 +873,7 @@
   <ItemGroup>
     <Content Include="aboutUs.aspx" />
     <Content Include="accountSetting.aspx" />
+    <Content Include="addNews.aspx" />
     <Content Include="applyCourse.aspx" />
     <Content Include="approvalConfirmation.aspx" />
     <Content Include="approvedTRF.aspx" />
@@ -1192,6 +1221,7 @@
     <Content Include="editCategories.aspx" />
     <Content Include="editContactUs.aspx" />
     <Content Include="editModuleInfo.aspx" />
+    <Content Include="editNews.aspx" />
     <Content Include="editQuiz.aspx" />
     <Content Include="editUsefulLinks.aspx" />
     <Content Include="editUsers.aspx" />
@@ -1227,6 +1257,7 @@
     <Content Include="manageQuiz.aspx" />
     <Content Include="manageUsefulLinks.aspx" />
     <Content Include="manageUsers.aspx" />
+    <Content Include="news.aspx" />
     <Content Include="noResult.aspx" />
     <Content Include="overallQuizResult.aspx" />
     <Content Include="pendingApproval.aspx" />
@@ -1258,6 +1289,7 @@
     <Content Include="usefulLinks.aspx" />
     <Content Include="viewAllArticles.aspx" />
     <Content Include="viewAllModule.aspx" />
+    <Content Include="viewAllNews.aspx" />
     <Content Include="viewApprovedTRF.aspx" />
     <Content Include="viewCompletedCourses.aspx" />
     <Content Include="viewCompletedCourse.aspx" />

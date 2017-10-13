@@ -354,6 +354,11 @@
                     </a>
                 </div>
             </div>
+            <div class="row">
+                <div class="wrapper">
+                    <a href="viewAllNews.aspx">View All</a>
+                </div>
+            </div>
         </div>
 
 
