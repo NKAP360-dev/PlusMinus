@@ -18,6 +18,12 @@
             border-radius: 0px;
         }
     </style>
+    <script type="text/javascript">
+        function openModal() {
+            console.log("submitModal");
+            $("#submitModal").modal();
+        }
+    </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <ul class="breadcrumb">
@@ -81,20 +87,21 @@
                         <asp:Label runat="server" CssClass="col-lg-2 control-label" Text="Link"></asp:Label></strong>
                     <div class="col-lg-9">
                         <asp:TextBox ID="txtLink" runat="server" CssClass="form-control" placeholder="e.g www.google.com"></asp:TextBox>
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="Please input a Link" ControlToValidate="txtLink" ForeColor="Red" ValidationGroup="ValidateForm" Display="Dynamic"></asp:RequiredFieldValidator>
                     </div>
                 </div>
-
                 <div class="form-group">
                     <strong>
                         <asp:Label runat="server" CssClass="col-lg-2 control-label" Text="Description (if any)"></asp:Label></strong>
                     <div class="col-lg-9">
                         <asp:TextBox ID="txtDesc" runat="server" CssClass="form-control" TextMode="MultiLine" placeholder="Description (if any)"></asp:TextBox>
+                        <asp:RequiredFieldValidator ID="rfv_txtDesc" runat="server" ErrorMessage="Please input a Description" ControlToValidate="txtDesc" ForeColor="Red" ValidationGroup="ValidateForm" Display="Dynamic"></asp:RequiredFieldValidator>
                     </div>
                 </div>
 
                 <br />
                 <div class="form-group wrapper">
-                    <asp:Button ID="btnSubmit" CssClass="btn btn-primary" runat="server" Text="Save" data-toggle="modal" href="#submitModal" OnClientClick="$('#myModal').modal(); return false;" UseSubmitBehavior="False" />
+                    <asp:Button ID="btnSubmit" CssClass="btn btn-primary" runat="server" Text="Save" OnClick="checkForm" CausesValidation="True" UseSubmitBehavior="False" ValidationGroup="ValidateForm" />
                 </div>
                 <br />
 
@@ -113,6 +120,8 @@
                     <div class="modal-body">
                         <div class="wrapper">
                             <h4>Are you sure you want to save your changes and overwrite the current useful link details?</h4>
+                            <br />
+                            <asp:Label ID="lblErrorMsgFinal" runat="server" CssClass="text-danger" Visible="True"></asp:Label>
                             <br />
                             <asp:Button ID="btnConfirmSubmit" CssClass="btn btn-primary" runat="server" Text="Save Changes" OnClick="btnSave_Click" />
                             <asp:Button ID="btnCancel1" CssClass="btn btn-default" runat="server" class="close" data-dismiss="modal" Text="Cancel" OnClientClick="return false;" />
