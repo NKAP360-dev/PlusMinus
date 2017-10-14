@@ -53,6 +53,11 @@
                 }
             });
         });
+
+        function openModal() {
+            console.log("submitModal");
+            $("#submitModal").modal();
+        }
     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -121,6 +126,7 @@
                             <asp:Label runat="server" CssClass="col-lg-2 control-label" Text="Name"></asp:Label></strong>
                         <div class="col-lg-9">
                             <asp:TextBox ID="txtName" runat="server" CssClass="form-control" placeholder="Name of Contact"></asp:TextBox>
+                            <asp:RequiredFieldValidator ID="rfv_txtName" runat="server" ErrorMessage="Please input a Contact Name" ControlToValidate="txtName" ForeColor="Red" ValidationGroup="ValidateForm" Display="Dynamic"></asp:RequiredFieldValidator>
                         </div>
                     </div>
 
@@ -129,8 +135,9 @@
                             <asp:Label runat="server" CssClass="col-lg-2 control-label" Text="Department"></asp:Label></strong>
                         <div class="col-lg-9">
                             <asp:DropDownList ID="ddlDept" runat="server" CssClass="form-control">
-                                <asp:ListItem>--select--</asp:ListItem>
+                                <asp:ListItem Value="0">--select--</asp:ListItem>
                             </asp:DropDownList>
+                            <asp:RequiredFieldValidator ID="rfv_ddlDept" runat="server" ErrorMessage="Please select a department" InitialValue="0" ControlToValidate="ddlDept" ForeColor="Red" ValidationGroup="ValidateForm" Display="Dynamic"></asp:RequiredFieldValidator>
                         </div>
                     </div>
 
@@ -139,6 +146,7 @@
                             <asp:Label runat="server" CssClass="col-lg-2 control-label" Text="Email"></asp:Label></strong>
                         <div class="col-lg-9">
                             <asp:TextBox ID="txtEmail" runat="server" CssClass="form-control" placeholder="Email of Contact"></asp:TextBox>
+                            <asp:RequiredFieldValidator ID="rfv_txtEmail" runat="server" ErrorMessage="Please input an Email Address" ControlToValidate="txtEmail" ForeColor="Red" ValidationGroup="ValidateForm" Display="Dynamic"></asp:RequiredFieldValidator>
                         </div>
                     </div>
 
@@ -152,7 +160,7 @@
 
                     <br />
                     <div class="form-group wrapper">
-                        <asp:Button ID="btnSubmit" CssClass="btn btn-primary" runat="server" Text="Submit" data-toggle="modal" href="#submitModal" OnClientClick="$('#myModal').modal(); return false;" UseSubmitBehavior="False" />
+                        <asp:Button ID="btnSubmit" CssClass="btn btn-primary" runat="server" Text="Submit" OnClick="checkForm" CausesValidation="True" UseSubmitBehavior="False" ValidationGroup="ValidateForm"  />
                     </div>
                     <br />
                 </fieldset>
@@ -199,6 +207,8 @@
                     <div class="modal-body">
                         <div class="wrapper">
                             <h4>Are you sure you want to submit?</h4>
+                            <br />
+                            <asp:Label ID="lblErrorMsgFinal" runat="server" CssClass="text-danger" Visible="True"></asp:Label>
                             <br />
                             <asp:Button ID="btnConfirmSubmit" CssClass="btn btn-primary" runat="server" Text="Submit" OnClick="btnCreate_Click" />
                             <asp:Button ID="btnCancel1" CssClass="btn btn-default" runat="server" class="close" data-dismiss="modal" Text="Cancel" OnClientClick="return false;" />
