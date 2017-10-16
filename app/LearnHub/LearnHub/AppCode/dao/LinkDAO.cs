@@ -160,9 +160,7 @@ namespace LearnHub.AppCode.dao
                 conn.Open();
                 SqlCommand comm = new SqlCommand();
                 comm.Connection = conn;
-                comm.CommandText = "insert into [Links] "
-                                    + "(link_path, description, upload_datetime, upload_user, status) OUTPUT INSERTED.link_id"
-                                    + "values(@path, @desc, convert(datetime,@stamp,103), @user, @status)";
+                comm.CommandText = "insert into [Links] (link_path, description, upload_datetime, upload_user, status) OUTPUT INSERTED.link_id VALUES (@path, @desc, convert(datetime,@stamp,103), @user, @status)";
                 comm.Parameters.AddWithValue("@path", a.link_path);
                 comm.Parameters.AddWithValue("@desc", a.description);
                 comm.Parameters.AddWithValue("@stamp", a.upload_datetime);

@@ -22,17 +22,25 @@ namespace LearnHub
             {
                 User currentUser = (User)Session["currentUser"];
                 Boolean superuser = false;
+                Boolean content_creator = false;
                 foreach (string s in currentUser.getRoles())
                 {
                     if (s.Equals("superuser"))
                     {
                         superuser = true;
                     }
+                    if (s.Equals("content creator"))
+                    {
+                        content_creator = true;
+                    }
                 }
 
-                if (!superuser)
+                if (!content_creator)
                 {
-                    Response.Redirect("errorPage.aspx");
+                    if (!superuser)
+                    {
+                        Response.Redirect("errorPage.aspx");
+                    }
                 }
                 if (!IsPostBack)
                 {

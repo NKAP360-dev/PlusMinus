@@ -163,8 +163,7 @@ namespace LearnHub.AppCode.dao
                 conn.Open();
                 SqlCommand comm = new SqlCommand();
                 comm.Connection = conn;
-                comm.CommandText = "insert into [Contact] (name, department, email, remarks, upload_datetime, status, user_upload) OUTPUT INSERTED.contact_id"
-                                        + "values(@name, @dept, @email, @remarks, @date, 'Active', @uid)";
+                comm.CommandText = "insert into [Contact] (name, department, email, remarks, upload_datetime, status, user_upload) OUTPUT INSERTED.contact_id VALUES (@name, @dept, @email, @remarks, @date, 'Active', @uid)";
                 comm.Parameters.AddWithValue("@name", a.name);
                 comm.Parameters.AddWithValue("@dept", a.department);
                 comm.Parameters.AddWithValue("@email", a.email);

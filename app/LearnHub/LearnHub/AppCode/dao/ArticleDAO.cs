@@ -159,9 +159,7 @@ namespace LearnHub.AppCode.dao
                 conn.Open();
                 SqlCommand comm = new SqlCommand();
                 comm.Connection = conn;
-                comm.CommandText = "insert into [Articles] "
-                                    + "(article_name, article_body, timestamp, user_upload, status) OUTPUT INSERTED.article_id"
-                                    + "values(@name, @body, convert(datetime,@stamp,103), @user, @status)";
+                comm.CommandText = "insert into [Articles] (article_name, article_body, timestamp, user_upload, status) OUTPUT INSERTED.article_id VALUES (@name, @body, convert(datetime,@stamp,103), @user, @status)";
                 comm.Parameters.AddWithValue("@name", a.article_name);
                 comm.Parameters.AddWithValue("@body", a.article_body);
                 comm.Parameters.AddWithValue("@stamp", a.upload_datetime);

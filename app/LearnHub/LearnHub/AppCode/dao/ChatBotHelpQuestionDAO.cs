@@ -87,7 +87,7 @@ namespace Emma.DAO
                 conn.Open();
                 SqlCommand comm = new SqlCommand();
                 comm.Connection = conn;
-                comm.CommandText = "Insert into [ChatBotHelpQuestion] OUTPUT INSERTED.questionID (question) VALUES (@question)";
+                comm.CommandText = "Insert into [ChatBotHelpQuestion] (question) OUTPUT INSERTED.questionID VALUES (@question)";
                 comm.Parameters.AddWithValue("@question", question);
                 toReturn = (Int32)comm.ExecuteScalar();
             }

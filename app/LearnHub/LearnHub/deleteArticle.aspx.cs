@@ -20,16 +20,27 @@ namespace LearnHub
                 Response.Redirect("Login.aspx");
             }
             Boolean super = false;
-            //Boolean hr = false;
+            Boolean content_creator = false;
             foreach(string role in currentUser.getRoles())
             {
                 if (role.Equals("superuser"))
                 {
                     super = true;
                 }
+                if (role.Equals("content creator"))
+                {
+                    content_creator = true;
+                }
             }
-            if (Request.QueryString["id"] != null && super)
+            if (Request.QueryString["id"] != null )
             {
+                if (!content_creator)
+                {
+                    if (!super)
+                    {
+                        Response.Redirect("errorPage.aspx");
+                    }
+                }
                 //TestimonialDAO tdao = new TestimonialDAO();
                 string id = Request.QueryString["id"];
                 int id_num = Convert.ToInt32(id);

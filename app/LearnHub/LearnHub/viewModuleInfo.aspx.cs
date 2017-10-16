@@ -77,6 +77,11 @@ namespace LearnHub
                 TestimonialDAO tdao = new TestimonialDAO();
                 Boolean res = tdao.create_testimonial(new Testimonial(byWho, quote, (User)Session["currentUser"], current, title));
                 int courseID = Convert.ToInt32(Request.QueryString["id"]);
+
+                //set audit
+                User currentUser = (User)Session["currentUser"];
+                setAudit(currentUser, "course", "update", courseID.ToString(), "added testimonial title: " + title);
+
                 Response.Redirect("viewModuleInfo.aspx?id=" + courseID);
             }
         }
@@ -127,6 +132,10 @@ namespace LearnHub
                         Course_elearnDAO cdao = new Course_elearnDAO();
                         Upload u = new Upload(current, DateTime.Now, uploadTitleInput.Text, uploadDescriptionInput.Text, totalpath1);
                         Upload upload_succ = cdao.upload_entry(u);
+
+                        //set audit
+                        User currentUser = (User)Session["currentUser"];
+                        setAudit(currentUser, "course", "update", coursedir.ToString(), "uploaded filename: " + fileName);
                     }
                 }
             }
@@ -180,6 +189,19 @@ namespace LearnHub
                 System.Diagnostics.Debug.WriteLine("args true");
                 args.IsValid = true;
             }
+        }
+        protected void setAudit(User u, string functionModified, string operation, string id_of_function, string remarks)
+        {
+            //set audit
+            Audit a = new Audit();
+            AuditDAO aDAO = new AuditDAO();
+            a.userID = u.getUserID();
+            a.functionModified = functionModified;
+            a.operation = operation;
+            a.id_of_function = id_of_function;
+            a.dateModified = DateTime.Now;
+            a.remarks = remarks;
+            aDAO.createAudit(a);
         }
     }
 }

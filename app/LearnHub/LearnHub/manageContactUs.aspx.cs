@@ -19,16 +19,24 @@ namespace LearnHub
                 Response.Redirect("login.aspx");
             }
             Boolean super = false;
+            Boolean cc = false;
             foreach (string role in currentUser.getRoles())
             {
                 if (role.Equals("superuser"))
                 {
                     super = true;
                 }
+                if (role.Equals("content creator"))
+                {
+                    cc = true;
+                }
             }
-            if (!super)
+            if (!cc)
             {
-                Response.Redirect("errorPage.aspx");
+                if (!super)
+                {
+                    Response.Redirect("errorPage.aspx");
+                }
             }
 
             if (!IsPostBack)
