@@ -20,11 +20,11 @@ namespace LearnHub
                 string cid = Request.QueryString["cid"];
                 int tid = Convert.ToInt32(id);
                 int course_id = Convert.ToInt32(cid);
+                string title = tdao.getTestimonialTitleByID(tid);
                 Boolean check = tdao.delete_testimonial(tid, course_id);
 
                 //set audit
                 User currentUser = (User)Session["currentUser"];
-                string title = tdao.getTestimonialTitleByID(tid);
                 setAudit(currentUser, "course", "update", cid, "deleted testimonial title: " + title);
 
                 Response.Redirect("viewModuleInfo.aspx?id=" + course_id);

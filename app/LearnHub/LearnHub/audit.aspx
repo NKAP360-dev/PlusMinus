@@ -14,11 +14,21 @@
         }
     </style>
     <script type="text/javascript">
+
         $(function () {
-            $("#datepicker").datepicker({
-                autoclose: true,
-                todayHighlight: true
-            }).datepicker('update', new Date());
+            $('.input-daterange').datepicker({
+                format: 'dd/mm/yyyy',
+                autoclose: true
+            });
+        });
+
+        $(function () {
+            $('.input-group.date').datepicker({
+                format: 'dd/mm/yyyy',
+                calendarWeeks: true,
+                todayHighlight: true,
+                autoclose: true
+            });
         });
     </script>
 </asp:Content>
@@ -83,15 +93,19 @@
                     <strong>
                         <asp:Label runat="server" CssClass="col-lg-2 control-label" Text="Date"></asp:Label></strong>
                     <div class="col-lg-5">
-                        <div id="datepicker" class="input-group date" data-date-format="dd-mm-yyyy">
-                            <asp:TextBox runat="server" ID="txtDate" CssClass="form-control" ReadOnly="true"></asp:TextBox>
-                            <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                        <div class="input-daterange input-group" id="datepicker">
+                            <asp:TextBox ID="fromDateInput" runat="server" CssClass="form-control" placeholder="DD/MM/YYYY" ReadOnly="False"></asp:TextBox>
+                            <span class="input-group-addon">to</span>
+                            <asp:TextBox ID="toDateInput" runat="server" CssClass="form-control" placeholder="DD/MM/YYYY" ReadOnly="False"></asp:TextBox>
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i>
+                            </span>
                         </div>
+                        <h6><em>Click on the textbox to choose a date</em></h6>
                     </div>
                 </div>
                 <br />
                 <div class="wrapper">
-                <asp:Button ID="btnDownload" runat="server" CssClass="btn btn-primary" Text="Download"/>
+                <asp:Button ID="btnDownload" runat="server" CssClass="btn btn-primary" Text="Download" OnClick="btnDownload_Click"/>
                     </div>
             </fieldset>
         </form>

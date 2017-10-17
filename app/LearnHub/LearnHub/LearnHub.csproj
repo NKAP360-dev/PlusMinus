@@ -167,6 +167,7 @@
     <Compile Include="AppCode\dao\AboutUsDAO.cs" />
     <Compile Include="AppCode\dao\AuditDAO.cs" />
     <Compile Include="AppCode\dao\ContactDAO.cs" />
+    <Compile Include="AppCode\dao\CsvExport.cs" />
     <Compile Include="AppCode\dao\LinkDAO.cs" />
     <Compile Include="AppCode\dao\ArticleDAO.cs" />
     <Compile Include="AppCode\dao\BondDAO.cs" />
