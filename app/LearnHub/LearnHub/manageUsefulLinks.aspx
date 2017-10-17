@@ -126,7 +126,7 @@
                         </div>
 
                     </div>
-                    <div class="form-group required">
+                    <div class="form-group">
                         <strong>
                             <asp:Label runat="server" CssClass="col-lg-2 control-label" Text=""></asp:Label></strong>
                         <div class="input-group col-lg-9">

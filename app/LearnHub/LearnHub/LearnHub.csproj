@@ -164,6 +164,7 @@
     <Compile Include="addNews.aspx.designer.cs">
       <DependentUpon>addNews.aspx</DependentUpon>
     </Compile>
+    <Compile Include="AppCode\dao\AboutUsDAO.cs" />
     <Compile Include="AppCode\dao\AuditDAO.cs" />
     <Compile Include="AppCode\dao\ContactDAO.cs" />
     <Compile Include="AppCode\dao\LinkDAO.cs" />

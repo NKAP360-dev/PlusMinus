@@ -42,6 +42,7 @@
                         <asp:DropDownList ID="ddlFunction" CssClass="form-control" runat="server">
                             <asp:ListItem Text="-- Select --" Selected="true" Value="none"></asp:ListItem>
                             <asp:ListItem Text="All" Selected="false" Value="all"></asp:ListItem>
+                            <asp:ListItem Text="About Us" Selected="False" Value="about us"></asp:ListItem>
                             <asp:ListItem Text="Articles" Selected="false" Value="articles"></asp:ListItem>
                             <asp:ListItem Text="Contact Us" Selected="false" Value="contact us"></asp:ListItem>
                             <asp:ListItem Text="Course" Selected="false" Value="course"></asp:ListItem>

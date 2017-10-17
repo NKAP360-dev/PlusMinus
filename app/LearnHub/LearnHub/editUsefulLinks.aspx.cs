@@ -19,34 +19,22 @@ namespace LearnHub
             {
                 Response.Redirect("login.aspx");
             }
-            Boolean super = false;
-            Boolean cc = false;
-            foreach (string role in currentUser.getRoles())
+            Boolean authenticate = authenticateAccess(currentUser);
+            if (!authenticate)
             {
-                if (role.Equals("superuser"))
-                {
-                    super = true;
-                }
-                if (role.Equals("content creator")) 
-                {
-                    cc = true;
-                }
+                Response.Redirect("errorPage.aspx");
             }
-            if (!cc)
+            else
             {
-                if (!super)
+                if (!IsPostBack)
                 {
-                    Response.Redirect("errorPage.aspx");
+                    string id = Request.QueryString["id"];
+                    int id_num = Convert.ToInt32(id);
+                    LinkDAO adao = new LinkDAO();
+                    Link a = adao.getLinksById(id_num);
+                    txtLink.Text = a.link_path;
+                    txtDesc.Text = a.description;
                 }
-            }
-            if (!IsPostBack)
-            {
-                string id = Request.QueryString["id"];
-                int id_num = Convert.ToInt32(id);
-                LinkDAO adao = new LinkDAO();
-                Link a = adao.getLinksById(id_num);
-                txtLink.Text = a.link_path;
-                txtDesc.Text = a.description;
             }
         }
         protected void btnSave_Click(object sender, EventArgs e)
@@ -99,6 +87,16 @@ namespace LearnHub
                 lblErrorMsgFinal.Text = "";
                 btnConfirmSubmit.Enabled = true;
             }
+        }
+        protected Boolean authenticateAccess(User currentUser)
+        {
+            Boolean toReturn = false;
+            ArrayList roles = currentUser.getRoles();
+            if (roles.Contains("superuser") || roles.Contains("content creator"))
+            {
+                toReturn = true;
+            }
+            return toReturn;
         }
     }
 }

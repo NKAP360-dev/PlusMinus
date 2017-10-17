@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using LearnHub.AppCode.dao;
 using LearnHub.AppCode.entity;
+using System.Collections;
 
 namespace LearnHub
 {
@@ -16,6 +17,15 @@ namespace LearnHub
             if (Session["currentUser"] == null)
             {
                 Response.Redirect("login.aspx");
+            }
+            else
+            {
+                User currentUser = (User)Session["currentUser"];
+                Boolean authenticate = authenticateAccess(currentUser);
+                if (!authenticate)
+                {
+                    Response.Redirect("errorPage.aspx");
+                }
             }
         }
         protected void cfmSubmit_Click(object sender, EventArgs e)
@@ -63,6 +73,16 @@ namespace LearnHub
             a.dateModified = DateTime.Now;
             a.remarks = remarks;
             aDAO.createAudit(a);
+        }
+        protected Boolean authenticateAccess(User currentUser)
+        {
+            Boolean toReturn = false;
+            ArrayList roles = currentUser.getRoles();
+            if (roles.Contains("superuser") || roles.Contains("content creator"))
+            {
+                toReturn = true;
+            }
+            return toReturn;
         }
     }
 }

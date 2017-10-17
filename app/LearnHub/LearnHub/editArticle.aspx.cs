@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using LearnHub.AppCode.dao;
 using LearnHub.AppCode.entity;
+using System.Collections;
 
 namespace LearnHub
 {
@@ -21,35 +22,22 @@ namespace LearnHub
             else
             {
                 User currentUser = (User)Session["currentUser"];
-                Boolean superuser = false;
-                Boolean content_creator = false;
-                foreach (string s in currentUser.getRoles())
+                Boolean authenticate = authenticateAccess(currentUser);
+                if (!authenticate)
                 {
-                    if (s.Equals("superuser"))
-                    {
-                        superuser = true;
-                    }
-                    if (s.Equals("content creator"))
-                    {
-                        content_creator = true;
-                    }
+                    Response.Redirect("errorPage.aspx");
                 }
-
-                if (!content_creator)
+                else
                 {
-                    if (!superuser)
+                    if (!IsPostBack)
                     {
-                        Response.Redirect("errorPage.aspx");
+                        string id = Request.QueryString["id"];
+                        int id_num = Convert.ToInt32(id);
+                        ArticleDAO adao = new ArticleDAO();
+                        a = adao.getArticleById(id_num);
+                        txtTitle.Text = a.article_name;
+                        CKEditor1.Text = a.article_body;
                     }
-                }
-                if (!IsPostBack)
-                {
-                    string id = Request.QueryString["id"];
-                    int id_num = Convert.ToInt32(id);
-                    ArticleDAO adao = new ArticleDAO();
-                    a = adao.getArticleById(id_num);
-                    txtTitle.Text = a.article_name;
-                    CKEditor1.Text = a.article_body;
                 }
             }
         }
@@ -103,6 +91,16 @@ namespace LearnHub
                 lblErrorMsgFinal.Text = "";
                 cfmSubmit.Enabled = true;
             }
+        }
+        protected Boolean authenticateAccess(User currentUser)
+        {
+            Boolean toReturn = false;
+            ArrayList roles = currentUser.getRoles();
+            if (roles.Contains("superuser") || roles.Contains("content creator"))
+            {
+                toReturn = true;
+            }
+            return toReturn;
         }
     }
 }

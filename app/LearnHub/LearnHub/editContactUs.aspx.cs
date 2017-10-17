@@ -6,8 +6,9 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using LearnHub.AppCode.dao;
 using LearnHub.AppCode.entity;
- 
- namespace LearnHub
+using System.Collections;
+
+namespace LearnHub
  {
      public partial class editContactUs : System.Web.UI.Page
      {
@@ -21,43 +22,30 @@ using LearnHub.AppCode.entity;
             else
             {
                 User currentUser = (User)Session["currentUser"];
-                Boolean superuser = false;
-                Boolean content_creator = false;
-                foreach (string s in currentUser.getRoles())
+                Boolean authenticate = authenticateAccess(currentUser);
+                if (!authenticate)
                 {
-                    if (s.Equals("superuser"))
-                    {
-                        superuser = true;
-                    }
-                    if (s.Equals("content creator"))
-                    {
-                        content_creator = true;
-                    }
+                    Response.Redirect("errorPage.aspx");
                 }
-
-                if (!content_creator)
+                else
                 {
-                    if (!superuser)
+                    if (!IsPostBack)
                     {
-                        Response.Redirect("errorPage.aspx");
+                        DeptDAO depdao = new DeptDAO();
+                        List<Department> deps = depdao.getAllDepartment();
+                        foreach (Department d in deps)
+                        {
+                            lblDept.Items.Add(new ListItem(System.Globalization.CultureInfo.CurrentCulture.TextInfo.ToTitleCase(d.getDeptName().ToLower()), d.getDeptName()));
+                        }
+                        string id = Request.QueryString["id"];
+                        int id_num = Convert.ToInt32(id);
+                        ContactDAO adao = new ContactDAO();
+                        a = adao.getContactById(id_num);
+                        txtName.Text = a.name;
+                        lblDept.SelectedValue = a.department;
+                        txtEmail.Text = a.email;
+                        txtRemarks.Text = a.remarks;
                     }
-                }
-                if (!IsPostBack)
-                {
-                    DeptDAO depdao = new DeptDAO();
-                    List<Department> deps = depdao.getAllDepartment();
-                    foreach (Department d in deps)
-                    {
-                        lblDept.Items.Add(new ListItem(System.Globalization.CultureInfo.CurrentCulture.TextInfo.ToTitleCase(d.getDeptName().ToLower()), d.getDeptName()));
-                    }
-                    string id = Request.QueryString["id"];
-                    int id_num = Convert.ToInt32(id);
-                    ContactDAO adao = new ContactDAO();
-                    a = adao.getContactById(id_num);
-                    txtName.Text = a.name;
-                    lblDept.SelectedValue = a.department;
-                    txtEmail.Text = a.email;
-                    txtRemarks.Text = a.remarks;
                 }
             }
         }
@@ -113,6 +101,16 @@ using LearnHub.AppCode.entity;
                 lblErrorMsgFinal.Text = "";
                 btnConfirmSubmit.Enabled = true;
             }
+        }
+        protected Boolean authenticateAccess(User currentUser)
+        {
+            Boolean toReturn = false;
+            ArrayList roles = currentUser.getRoles();
+            if (roles.Contains("superuser") || roles.Contains("content creator"))
+            {
+                toReturn = true;
+            }
+            return toReturn;
         }
     }
 }

@@ -7,6 +7,7 @@ using System.Web.UI.WebControls;
 using System.IO;
 using LearnHub.AppCode.dao;
 using LearnHub.AppCode.entity;
+using System.Collections;
 
 namespace LearnHub
 {
@@ -19,39 +20,27 @@ namespace LearnHub
             {
                 Response.Redirect("Login.aspx");
             }
-            Boolean super = false;
-            Boolean cc = false;
-            foreach(string role in currentUser.getRoles())
-            {
-                if (role.Equals("superuser"))
-                {
-                    super = true;
-                }
-                if (role.Equals("content creator"))
-                {
-                    cc = true;
-                }
-            }
+            Boolean authenticate = authenticateAccess(currentUser);
             if (Request.QueryString["id"] != null)
             {
-                if (!cc)
+                if (!authenticate)
                 {
-                    if (!super)
-                    {
-                        Response.Redirect("errorPage.aspx");
-                    }
+                    Response.Redirect("errorPage.aspx");
                 }
-                //TestimonialDAO tdao = new TestimonialDAO();
-                string id = Request.QueryString["id"];
-                int id_num = Convert.ToInt32(id);
-                ContactDAO adao = new ContactDAO();
-                Contact contactUs = adao.getContactById(id_num);
-                adao.deactivateContact(id_num);
+                else
+                {
+                    //TestimonialDAO tdao = new TestimonialDAO();
+                    string id = Request.QueryString["id"];
+                    int id_num = Convert.ToInt32(id);
+                    ContactDAO adao = new ContactDAO();
+                    Contact contactUs = adao.getContactById(id_num);
+                    adao.deactivateContact(id_num);
 
-                //set audit
-                setAudit(currentUser, "contact us", "delete", id, "deleted contact personnel name: " + contactUs.name);
+                    //set audit
+                    setAudit(currentUser, "contact us", "delete", id, "deleted contact personnel name: " + contactUs.name);
 
-                Response.Redirect("manageContactUs.aspx");
+                    Response.Redirect("manageContactUs.aspx");
+                }
             }
             else
             {
@@ -70,6 +59,16 @@ namespace LearnHub
             a.dateModified = DateTime.Now;
             a.remarks = remarks;
             aDAO.createAudit(a);
+        }
+        protected Boolean authenticateAccess(User currentUser)
+        {
+            Boolean toReturn = false;
+            ArrayList roles = currentUser.getRoles();
+            if (roles.Contains("superuser") || roles.Contains("content creator"))
+            {
+                toReturn = true;
+            }
+            return toReturn;
         }
     }
 }

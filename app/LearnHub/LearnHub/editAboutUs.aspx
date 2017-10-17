@@ -87,7 +87,7 @@
                                 <h4>This will overwrite your current content. Are you sure you want to proceed?</h4>
                                 <br />
 
-                                <asp:Button ID="cfmSubmit" CssClass="btn btn-primary" runat="server" Text="Yes" />
+                                <asp:Button ID="cfmSubmit" CssClass="btn btn-primary" runat="server" Text="Yes" OnClick="cfmSubmit_Click"/>
                                 <asp:Button ID="Button2" CssClass="btn btn-default" runat="server" class="close" data-dismiss="modal" Text="Cancel" OnClientClick="return false;" />
 
                                 <br />

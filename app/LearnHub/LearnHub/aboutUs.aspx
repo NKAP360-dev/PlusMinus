@@ -65,7 +65,7 @@
 
     <div class="container">
         <br />
-        Content goes here - everything that was entered in ckeditor in editAboutUs.aspx
+        <asp:Label runat="server" ID="lblMsg"></asp:Label>
     </div>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder2" runat="server">
