@@ -39,7 +39,7 @@
         }
 
         #dropdown {
-            z-index:100;
+            z-index: 100;
         }
     </style>
 </asp:Content>
@@ -207,11 +207,7 @@
 
                                                                              }
                                                                              else if (superuser || user.getDepartment().Equals("hr"))
-                                                                             {%> <a href="javascript:void(0);" data-toggle="collapse" data-target="#addTestimonial"><span class="label label-default pull-right">
-
-                                                                                 <span class="glyphicon glyphicon-pencil"></span></span></a>
-                                    <%} %>
-                                </h3>
+                                                                             {%><a href="javascript:void(0);" data-toggle="collapse" data-target="#addTestimonial"><span class="label label-default pull-right"><span class="glyphicon glyphicon-pencil"></span></span></a><%} %></h3>
                             </div>
                             <div class="panel-body">
                                 <div class="collapse" id="addTestimonial">
@@ -353,8 +349,8 @@
                                         var = "ViewerJS/#../" + dir + "/" + Path.GetFileName(strfile);%>
                                 <a href="<%=var %>"><%=Path.GetFileName(strfile) %></a><br />
                                 <% }
-                                else
-                                {%>
+                                    else
+                                    {%>
                                 <a href="<%=var %>" download><%=Path.GetFileName(strfile) %></a><br />
                                 <%} %>
                             </div>
@@ -401,11 +397,11 @@
                             <div class="panel-heading">
                                 <h3 class="panel-title">
                                     <% 
-    Response.Write(q.getTitle());
-    Course_elearnDAO ceDAO = new Course_elearnDAO();
-    User courseCreator = ceDAO.get_course_by_id(courseID).getCourseCreator();
-    if (currentUser != null && (currentUser.getUserID() == courseCreator.getUserID() || superuser))
-    {
+                                        Response.Write(q.getTitle());
+                                        Course_elearnDAO ceDAO = new Course_elearnDAO();
+                                        User courseCreator = ceDAO.get_course_by_id(courseID).getCourseCreator();
+                                        if (currentUser != null && (currentUser.getUserID() == courseCreator.getUserID() || superuser))
+                                        {
                                     %>
                                     <a href="editQuiz.aspx?id=<%=q.getQuizID()%>" class="label label-default pull-right"><span class="glyphicon glyphicon-pencil"></span></a>
                                     <% } %>
@@ -416,30 +412,30 @@
                                 <br />
                                 <br />
                                 <%
-    if (q.getMultipleAttempts().Equals("n"))
-    {
-        int numOfAttempts = qrDAO.getNumberOfAttempts(currentUser.getUserID(), q.getQuizID());
-        if (numOfAttempts < q.getNumberOfAttempts())
-        {
+                                    if (q.getMultipleAttempts().Equals("n"))
+                                    {
+                                        int numOfAttempts = qrDAO.getNumberOfAttempts(currentUser.getUserID(), q.getQuizID());
+                                        if (numOfAttempts < q.getNumberOfAttempts())
+                                        {
                                 %>
                                 <div class="pull-right">
                                     <a href="quiz.aspx?id=<%=q.getQuizID()%>" class="btn btn-success btn-sm">Attempt Quiz</a>&nbsp; 
                                 </div>
                                 <br />
                                 <%
-    }
-    else
-    {
+                                }
+                                else
+                                {
                                 %>
                                 <div class="pull-right">
                                     <asp:Label ID="lblAttemptMsg" runat="server" CssClass="label label-danger" Font-Size="Small" Text="You have used up all your attempts" />&nbsp;
                                 </div>
                                 <br />
                                 <%
-        }
-    }
-    else
-    {
+                                    }
+                                }
+                                else
+                                {
                                 %>
                                 <div class="pull-right">
                                     <a href="quiz.aspx?id=<%=q.getQuizID()%>" class="btn btn-success btn-sm">Attempt Quiz</a>&nbsp; 
@@ -447,56 +443,57 @@
                                 <br />
 
                                 <%}
-    List<QuizResult> allAttempts = qrDAO.getQuizResultAttemptsByQuizIDandUserID(q.getQuizID(), currentUser.getUserID());
-    if (allAttempts.Count > 0)
-    {
-        Response.Write("<br/><hr />");
-        Response.Write("<table class=\"table table-striped\">");
-        Response.Write("<thead><tr>");
-        Response.Write("<th>Attempt #</th>");
-        Response.Write("<th>Date</th>");
-        Response.Write("<th>Score</th>");
-        Response.Write("<th>Status</th></tr></thead>");
+                                    List<QuizResult> allAttempts = qrDAO.getQuizResultAttemptsByQuizIDandUserID(q.getQuizID(), currentUser.getUserID());
+                                    if (allAttempts.Count > 0)
+                                    {
+                                        Response.Write("<br/><hr />");
+                                        Response.Write("<table class=\"table table-striped\">");
+                                        Response.Write("<thead><tr>");
+                                        Response.Write("<th>Attempt #</th>");
+                                        Response.Write("<th>Date</th>");
+                                        Response.Write("<th>Score</th>");
+                                        Response.Write("<th>Status</th></tr></thead>");
 
-        foreach (QuizResult qr in allAttempts)
-        {
-            List<QuizQuestion> allQuestions = qqDAO.getAllQuizQuestionByQuizID(qr.getQuiz().getQuizID());
-            string displayAnswer = q.getDisplayAnswer();
-            Response.Write("<tr>");
-            if (displayAnswer.Equals("always"))
-            {
-                Response.Write($"<td><a href=\"viewResults.aspx?id={qr.getQuizResultID()}\">Attempt {qr.getAttempt()}</a></td>");
-            }
-            else if (displayAnswer.Equals("never"))
-            {
-                Response.Write($"<td><a href=\"noResult.aspx?id={qr.getQuizResultID()}\">Attempt {qr.getAttempt()}</a></td>");
-            }
-            else
-            {
-                Boolean checkIfUserPassQuiz = qrDAO.checkIfUserPassQuiz(currentUser.getUserID(), q.getQuizID());
-                if (checkIfUserPassQuiz)
-                {
-                    Response.Write($"<td><a href=\"viewResults.aspx?id={qr.getQuizResultID()}\">Attempt {qr.getAttempt()}</a></td>");
-                }
-                else
-                {
-                    Response.Write($"<td><a href=\"viewMyResult.aspx?id={qr.getQuizResultID()}\">Attempt {qr.getAttempt()}</a></td>");
-                }
-            }
-            Response.Write($"<td>{qr.getDateSubmitted().ToString("dd/MM/yyyy")}</td>");
-            Response.Write($"<td>{qr.getScore()}/{allQuestions.Count}</td>");
-            Response.Write($"<td>{qr.getGrade()}</td>");
-            Response.Write("</tr>");
-        }
-        Response.Write("</table>");
-    }
+                                        foreach (QuizResult qr in allAttempts)
+                                        {
+                                            List<QuizQuestion> allQuestions = qqDAO.getAllQuizQuestionByQuizID(qr.getQuiz().getQuizID());
+                                            string displayAnswer = q.getDisplayAnswer();
+                                            Response.Write("<tr>");
+                                            if (displayAnswer.Equals("always"))
+                                            {
+                                                Response.Write($"<td><a href=\"viewResults.aspx?id={qr.getQuizResultID()}\">Attempt {qr.getAttempt()}</a></td>");
+                                            }
+                                            else if (displayAnswer.Equals("never"))
+                                            {
+                                                Response.Write($"<td><a href=\"noResult.aspx?id={qr.getQuizResultID()}\">Attempt {qr.getAttempt()}</a></td>");
+                                            }
+                                            else
+                                            {
+                                                Boolean checkIfUserPassQuiz = qrDAO.checkIfUserPassQuiz(currentUser.getUserID(), q.getQuizID());
+                                                if (checkIfUserPassQuiz)
+                                                {
+                                                    Response.Write($"<td><a href=\"viewResults.aspx?id={qr.getQuizResultID()}\">Attempt {qr.getAttempt()}</a></td>");
+                                                }
+                                                else
+                                                {
+                                                    Response.Write($"<td><a href=\"viewMyResult.aspx?id={qr.getQuizResultID()}\">Attempt {qr.getAttempt()}</a></td>");
+                                                }
+                                            }
+                                            Response.Write($"<td>{qr.getDateSubmitted().ToString("dd/MM/yyyy")}</td>");
+                                            Response.Write($"<td>{qr.getScore()}/{allQuestions.Count}</td>");
+                                            Response.Write($"<td>{qr.getGrade()}</td>");
+                                            Response.Write("</tr>");
+                                        }
+                                        Response.Write("</table>");
+                                    }
                                 %>
                             </div>
                         </div>
                         <%
                                     }
                                 }
-                                else {
+                                else
+                                {
                                     Response.Write("There are currently no quizzes created!");
                                 }
                             }
@@ -522,40 +519,110 @@
                     </div>
                     <div class="modal-body">
 
-                        <div class="form-group">
+                        <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
+                        <asp:UpdatePanel ID="UpdatePanel1" runat="server">
 
-                            <div class="col-lg-12">
-                                <p>
-                                    <asp:TextBox ID="uploadTitleInput" runat="server" CssClass="form-control" placeholder="Enter Upload Title"></asp:TextBox>
-                                    <asp:RequiredFieldValidator ID="rfv_uploadTitleInput" runat="server" ErrorMessage="Please enter a Title" ControlToValidate="uploadTitleInput" ForeColor="Red" Display="Dynamic"></asp:RequiredFieldValidator>
-                                    <asp:CustomValidator ID="cv_uploadTitleInput" runat="server" ErrorMessage="This title already exists! Please enter a different title" OnServerValidate="checkTitleExists" ForeColor="Red" ValidationGroup="ValidateForm2" Display="Dynamic"></asp:CustomValidator>
-                                </p>
-                                <br />
-                            </div>
+                            <ContentTemplate>
+                                <asp:RadioButtonList ID="rblUploadType" runat="server" OnSelectedIndexChanged="rblUploadType_SelectedIndexChanged" AutoPostBack="true">
+                                    <asp:ListItem Value="file">File</asp:ListItem>
+                                    <asp:ListItem Value="video">Video</asp:ListItem>
+                                    <asp:ListItem Value="both">File and Video</asp:ListItem>
+                                </asp:RadioButtonList>
+                                <asp:Panel ID="fileOnlyPanel" runat="server" Visible="false">
+                                    <label class="control-label">Upload File Only</label>
+                                    <div class="form-group">
+
+                                        <div class="col-lg-12">
+                                            <p>
+                                                <asp:TextBox ID="uploadTitleInput" runat="server" CssClass="form-control" placeholder="Enter Upload Title"></asp:TextBox>
+                                                <asp:RequiredFieldValidator ID="rfv_uploadTitleInput" runat="server" ErrorMessage="Please enter a Title" ControlToValidate="uploadTitleInput" ForeColor="Red" Display="Dynamic"></asp:RequiredFieldValidator>
+                                                <asp:CustomValidator ID="cv_uploadTitleInput" runat="server" ErrorMessage="This title already exists! Please enter a different title" OnServerValidate="checkTitleExists" ForeColor="Red" ValidationGroup="ValidateForm2" Display="Dynamic"></asp:CustomValidator>
+                                            </p>
+                                            <br />
+                                        </div>
 
 
-                        </div>
-                        <div class="form-group">
-                            <div class="col-lg-12">
-                                <p>
-                                    <asp:TextBox ID="uploadDescriptionInput" TextMode="multiline" Columns="50" Rows="5" runat="server" CssClass="form-control" placeholder="Enter Upload Description"></asp:TextBox>
-                                    <asp:RequiredFieldValidator ID="rfv_uploadDescriptionInput" runat="server" ErrorMessage="Please enter a Description" ControlToValidate="uploadDescriptionInput" ForeColor="Red" Display="Dynamic"></asp:RequiredFieldValidator>
-                                </p>
-                                <br />
-                            </div>
-                        </div>
-                        <%--Positioning for buttons--%>
-                        <asp:FileUpload ID="FileUpload1" runat="server" />
-                        <asp:RequiredFieldValidator ID="rfv_FileUpload1" runat="server" ErrorMessage="Please select an item to upload!" ControlToValidate="FileUpload1" ForeColor="Red" Display="Dynamic"></asp:RequiredFieldValidator>
-                        <br />
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-lg-12">
+                                            <p>
+                                                <asp:TextBox ID="uploadDescriptionInput" TextMode="multiline" Columns="50" Rows="5" runat="server" CssClass="form-control" placeholder="Enter Upload Description"></asp:TextBox>
+                                                <asp:RequiredFieldValidator ID="rfv_uploadDescriptionInput" runat="server" ErrorMessage="Please enter a Description" ControlToValidate="uploadDescriptionInput" ForeColor="Red" Display="Dynamic"></asp:RequiredFieldValidator>
+                                            </p>
+                                            <br />
+                                        </div>
+                                    </div>
+                                    <%--Positioning for buttons--%>
+                                    <asp:FileUpload ID="FileUpload1" runat="server" />
+                                    <asp:RequiredFieldValidator ID="rfv_FileUpload1" runat="server" ErrorMessage="Please select an item to upload!" ControlToValidate="FileUpload1" ForeColor="Red" Display="Dynamic"></asp:RequiredFieldValidator>
+                                    <br />
+                                </asp:Panel>
+                                <asp:Panel ID="videoOnlyPanel" runat="server" Visible="false">
+                                    <label class="control-label">Upload Video Only</label>
+                                    <div class="form-group">
+                                        <div class="col-lg-12">
+                                            <p>
+                                                <asp:TextBox ID="TextBox1" runat="server" CssClass="form-control" placeholder="Enter Upload Title"></asp:TextBox>
+                                            </p>
+                                            <br />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-lg-12">
+                                            <p>
+                                                <asp:TextBox ID="TextBox2" TextMode="multiline" Columns="50" Rows="5" runat="server" CssClass="form-control" placeholder="Enter Upload Description"></asp:TextBox>
+                                            </p>
+                                            <br />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-lg-12">
+                                            <p>
+                                                <asp:TextBox ID="txtVideo" runat="server" CssClass="form-control" placeholder="Enter YouTube Link"></asp:TextBox>
+                                            </p>
+                                            <br />
+                                        </div>
+                                    </div>
+                                </asp:Panel>
+                                <asp:Panel ID="bothPanel" runat="server" Visible="false">
+                                    <label class="control-label">Upload File and Video</label>
+                                    <div class="form-group">
+                                        <div class="col-lg-12">
+                                            <p>                                             
+                                                <asp:TextBox ID="TextBox3" runat="server" CssClass="form-control" placeholder="Enter Upload Title"></asp:TextBox>
+                                            </p>
+                                            <br />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-lg-12">
+                                            <p>
+                                                <asp:TextBox ID="TextBox4" TextMode="multiline" Columns="50" Rows="5" runat="server" CssClass="form-control" placeholder="Enter Upload Description"></asp:TextBox>
+                                            </p>
+                                            <br />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-lg-12">
+                                            <p>
+                                                <asp:TextBox ID="TextBox5" runat="server" CssClass="form-control" placeholder="Enter YouTube Link"></asp:TextBox>
+                                            </p>
+                                            <br />
+                                        </div>
+                                    </div>
+                                      <asp:FileUpload ID="FileUpload2" runat="server" />
+                                </asp:Panel>
+                            </ContentTemplate>
+                            <Triggers>
+                                <asp:AsyncPostBackTrigger ControlID="rblUploadType" EventName="SelectedIndexChanged" />
+                            </Triggers>
+                        </asp:UpdatePanel>
+                    </div>
+                    <div class="modal-footer">
+                        <asp:Button ID="Button1" class="btn btn-primary" runat="server" Text="Upload"
+                            OnClick="upload_click" CausesValidation="True" />
+                        <asp:Button ID="Button2" CssClass="btn btn-default" runat="server" class="close" data-dismiss="modal" Text="Go Back" />
 
-                        <div class="modal-footer">
-
-                            <asp:Button ID="Button1" class="btn btn-primary" runat="server" Text="Upload"
-                                OnClick="upload_click" CausesValidation="True" />
-                            <asp:Button ID="Button2" CssClass="btn btn-default" runat="server" class="close" data-dismiss="modal" Text="Go Back" />
-
-                        </div>
                     </div>
                 </div>
             </div>

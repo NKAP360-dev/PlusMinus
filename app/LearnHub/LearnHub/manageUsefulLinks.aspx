@@ -41,6 +41,10 @@
         .pagination > .active > span:focus {
             background-color: #576777;
         }
+
+        .dropdown {
+            z-index:100;
+        }
     </style>
     <script>
         jQuery(function ($) {
@@ -137,9 +141,9 @@
 
                     <div class="form-group required">
                         <strong>
-                            <asp:Label runat="server" CssClass="col-lg-2 control-label" Text="Description (if any)"></asp:Label></strong>
+                            <asp:Label runat="server" CssClass="col-lg-2 control-label" Text="Description"></asp:Label></strong>
                         <div class="input-group col-lg-9">
-                            <asp:TextBox ID="txtDesc" runat="server" CssClass="form-control" TextMode="MultiLine" placeholder="Description (if any)"></asp:TextBox>
+                            <asp:TextBox ID="txtDesc" runat="server" CssClass="form-control" TextMode="MultiLine" placeholder="Description"></asp:TextBox>
                             <asp:RequiredFieldValidator ID="rfv_txtDesc" runat="server" ErrorMessage="Please input a Description" ControlToValidate="txtDesc" ForeColor="Red" ValidationGroup="ValidateForm" Display="Dynamic"></asp:RequiredFieldValidator>
                         </div>
                     </div>

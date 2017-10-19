@@ -203,5 +203,25 @@ namespace LearnHub
             a.remarks = remarks;
             aDAO.createAudit(a);
         }
+
+        protected void rblUploadType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (rblUploadType.SelectedValue.Equals("file"))
+            {
+                fileOnlyPanel.Visible = true;
+                videoOnlyPanel.Visible = false;
+                bothPanel.Visible = false;
+            }
+            else if (rblUploadType.SelectedValue.Equals("video")) {
+                fileOnlyPanel.Visible = false;
+                videoOnlyPanel.Visible = true;
+                bothPanel.Visible = false;
+            } else if (rblUploadType.SelectedValue.Equals("both")) {
+                fileOnlyPanel.Visible = false;
+                videoOnlyPanel.Visible = false;
+                bothPanel.Visible = true;
+            }
+
+        }
     }
 }

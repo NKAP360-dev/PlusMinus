@@ -106,6 +106,7 @@
                 <tr>
                     <th width="80%">Title</th>
                     <th>Date Posted</th>
+                    <th data-visible="false">Article body</th>
                     <th data-filterable="false" data-sortable="false"></th>
                 </tr>
             </thead>
@@ -118,6 +119,7 @@
                 <tr>
                     <td><%= article.article_name %></td>
                     <td><%= article.upload_datetime.ToShortDateString() %></td>
+                    <td><%= article.article_body %></td>
                     <td><a href="article.aspx?id=<%=article.article_id %>" class="btn btn-sm btn-info"><span class="glyphicon glyphicon-search"></span></a></td>
                 </tr>
                 <%} %>
