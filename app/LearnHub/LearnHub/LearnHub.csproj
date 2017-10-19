@@ -178,6 +178,7 @@
     <Compile Include="AppCode\dao\ChatBotInstructionDAO.cs" />
     <Compile Include="AppCode\dao\ChatBotIntentDAO.cs" />
     <Compile Include="AppCode\dao\ChatBotAnswerDAO.cs" />
+    <Compile Include="AppCode\dao\NewsDAO.cs" />
     <Compile Include="AppCode\dao\QuizAnswerDAO.cs" />
     <Compile Include="AppCode\dao\QuizDAO.cs" />
     <Compile Include="AppCode\dao\QuizQuestionDAO.cs" />
@@ -209,6 +210,7 @@
     <Compile Include="AppCode\entity\ChatBotInitializeMsg.cs" />
     <Compile Include="AppCode\entity\ChatBotInstruction.cs" />
     <Compile Include="AppCode\entity\ChatBotIntent.cs" />
+    <Compile Include="AppCode\entity\News.cs" />
     <Compile Include="AppCode\entity\QuizAnswer.cs" />
     <Compile Include="AppCode\entity\QuizQuestion.cs" />
     <Compile Include="AppCode\entity\QuizResult.cs" />
@@ -397,6 +399,13 @@
     </Compile>
     <Compile Include="deleteContact.aspx.designer.cs">
       <DependentUpon>deleteContact.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="deleteNews.aspx.cs">
+      <DependentUpon>deleteNews.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="deleteNews.aspx.designer.cs">
+      <DependentUpon>deleteNews.aspx</DependentUpon>
     </Compile>
     <Compile Include="deleteLink.aspx.cs">
       <DependentUpon>deleteLink.aspx</DependentUpon>
@@ -1214,6 +1223,7 @@
     <Content Include="createQuiz.aspx" />
     <Content Include="createQuizQnA.aspx" />
     <Content Include="deleteContact.aspx" />
+    <Content Include="deleteNews.aspx" />
     <Content Include="deleteLink.aspx" />
     <Content Include="deleteArticle.aspx" />
     <Content Include="deleteMaterial.aspx" />
@@ -1227,8 +1237,8 @@
     <Content Include="editQuiz.aspx" />
     <Content Include="editUsefulLinks.aspx" />
     <Content Include="editUsers.aspx" />
-    <Content Include="img\banner1.png" />
-    <Content Include="img\banner2.png" />
+    <Content Include="img\banner\banner1.png" />
+    <Content Include="img\banner\banner2.png" />
     <Content Include="img\barrier.png" />
     <Content Include="img\checked.png" />
     <Content Include="img\contactus.png" />
@@ -1324,6 +1334,7 @@
     <Content Include="deleteTestimonial.aspx" />
     <Content Include="forgotPassword.aspx" />
     <Content Include="WebForm1.aspx" />
+    <Content Include="Audit\[26_09_2017]10_17_2017_4_22 PM_course_update.csv" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />

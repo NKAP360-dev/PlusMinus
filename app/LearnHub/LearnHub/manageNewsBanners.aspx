@@ -132,7 +132,6 @@
                     <strong>
                         <asp:Label runat="server" CssClass="col-lg-2 control-label" Text="Banner Link"></asp:Label></strong>
                     <div class="input-group col-lg-9">
-                        <span class="input-group-addon">http://</span>
                         <asp:TextBox ID="txtLink" runat="server" CssClass="form-control" placeholder="Page that user will land upon clicking the banner"></asp:TextBox>
                     </div>
                 </div>
@@ -141,12 +140,12 @@
                       <strong>
                         <asp:Label runat="server" CssClass="col-lg-2 control-label" Text="Upload Banner Image"></asp:Label></strong>
                     <div class="col-lg-9">
-                     <asp:FileUpload ID="FileUpload1" runat="server" />
+                     <asp:FileUpload ID="FileUpload1" runat="server"/>
                         </div>
 
                 </div>
                 <div class="wrapper">
-                    <asp:Button runat="server" CssClass="btn btn-primary" Text="Upload"/>
+                    <asp:Button runat="server" CssClass="btn btn-primary" Text="Upload" OnClick="btnUpload_Click"/>
                     <%--Please integrate the displaying of banners at home.aspx as well--%>
                 </div>
                  <div class="verticalLine"></div>
@@ -157,31 +156,31 @@
             <h4><b>Drag and drop to reorder banners</b></h4>
             <%--For some reason item 1 can't be dragged, not sure if this issue will be resolved with gridview as learny initialize msg uses same javascript
                 to reorder but works well w gridview--%>
-            <table class="table table-striped table-hover">
-                <thead>
-                    <tr>
-                        <th>Banner Name</th>
-                        <th></th>
-                        <tr />
+           <asp:SqlDataSource ID="SqlDataSourceMessages" runat="server" ConnectionString="<%$ ConnectionStrings:DBConnectionString %>" SelectCommand="SELECT * FROM [News] where status = 'Active' ORDER BY levels"></asp:SqlDataSource>
+            <asp:GridView ID="gvMessages" runat="server" AutoGenerateColumns="False" DataKeyNames="banner_name" DataSourceID="SqlDataSourceMessages" GridLines="None" CssClass="table table-striped table-hover">
+                <Columns>
+                    
+                    <asp:TemplateField>
+                        <ItemTemplate>
+                            <input type="hidden" name="banner_id" value='<%# Eval("banner_id") %>' />
+                        </ItemTemplate>
+                    </asp:TemplateField>
 
-                </thead>
-                <tr>
-                    <td>Banner1</td>
-                    <td><a href="#" class="btn btn-sm btn-danger pull-right"><span class="glyphicon glyphicon-trash"></span></a></td>
-                </tr>
-                <tr>
-                    <td>Banner2</td>
-                    <td><a href="#" class="btn btn-sm btn-danger pull-right"><span class="glyphicon glyphicon-trash"></span></a></td>
-                </tr>
-                <tr>
-                    <td>Banner3</td>
-                    <td><a href="#" class="btn btn-sm btn-danger pull-right"><span class="glyphicon glyphicon-trash"></span></a></td>
-                </tr>
+                    <asp:BoundField DataField="banner_name" HeaderText="Banner Name" SortExpression="banner_name" />
 
-            </table>
+                    <asp:TemplateField>
+                        <ItemTemplate>
+                            <a href="deleteNews.aspx?id=<%# Eval("banner_id") %>" class="btn btn-sm btn-danger pull-right" onclick="return confirm('Are you sure?')"><span class="glyphicon glyphicon-trash"></span></a>
+                        </ItemTemplate>
+                    </asp:TemplateField>
+
+                </Columns>
+                <EmptyDataTemplate>
+                </EmptyDataTemplate>
+            </asp:GridView>
              <div class="wrapper">
                 <div class="form-group">
-                    <asp:LinkButton ID="btnSave" CssClass="btn btn-primary" runat="server">Save Order</asp:LinkButton>
+                    <asp:LinkButton ID="btnSave" CssClass="btn btn-primary" runat="server" OnClick="btnSave_Click">Save Order</asp:LinkButton>
                     <br />
                 </div>
                 

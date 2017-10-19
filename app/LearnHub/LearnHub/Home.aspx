@@ -1,5 +1,7 @@
 ﻿<%@ Page Title="Home - LearnHub" Language="C#" MasterPageFile="~/Masterpage.Master" AutoEventWireup="true" CodeBehind="Home.aspx.cs" Inherits="LearnHub.Home" %>
-
+<%@ Import Namespace="System.IO" %>
+<%@ Import Namespace="System.Data" %>
+<%@ Import Namespace="System.Collections" %>
 <%@ Import Namespace="LearnHub.AppCode.dao" %>
 <%@ Import Namespace="LearnHub.AppCode.entity" %>
 
@@ -164,19 +166,51 @@
             alt = BANNER NAME
             a href = BANNER LINK--%>
         <div class="carousel-inner">
-            <div class="item active">
-                <a href="#">
-                    <img src="img/banner1.png" alt="Learnhub"  style="height: 100%;"/>
-                </a>
-            </div>
-
-            <div class="item">
-                <a href="viewAllModule.aspx">
-                    <img src="img/banner2.png" alt="Learnhub"  style="height: 100%;"/>
-                </a>
-            </div>
-
             
+            <% 
+                int i = 0;
+                NewsDAO ndao = new NewsDAO();
+                ArrayList allNews = ndao.getNews();
+                string dir = "img/banner";
+                //News n in allNews
+                foreach (News n in allNews)
+                {
+                    if (i== 0) {
+                        string str = "";
+                        foreach (string strfile in Directory.GetFiles(Server.MapPath(dir)))
+                        {
+                            
+                            if (n.img_path.Equals(strfile))
+                            {
+                                str = strfile;
+
+                            }
+                        }  %>
+                            <div class="item active">
+                                <a href="<%=n.banner_link %>">
+                                    <img src="<%=dir+"/"+Path.GetFileName(str)%>" alt="<%=n.banner_name %>"  style="height: 100%;"/>
+                                 </a>
+                            </div>
+                       <%
+                           } else {
+                               string str = "";
+                               foreach(string strfile in Directory.GetFiles(Server.MapPath(dir)))
+                               {
+
+                                   if (n.img_path.Equals(strfile))
+                                   {
+                                       str = strfile;
+
+                                   }
+                               }%>
+                        <div class="item">
+                                <a href="<%=n.banner_link %>">
+                                    <img src="<%=dir+"/"+Path.GetFileName(str)%>" alt="<%=n.banner_name %>"  style="height: 100%;"/>
+                                 </a>
+                            </div>
+                    <%} 
+                 i++;
+              }%>
         </div>
 
         <!-- Left and right controls -->
