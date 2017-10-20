@@ -162,7 +162,7 @@
                         <div class="wrapper">
                             <h4>Are you sure you want to submit?</h4>
                             <br />
-                            <asp:Button ID="cfmSubmit" CssClass="btn btn-primary" runat="server" Text="Submit" />
+                            <asp:Button ID="cfmSubmit" CssClass="btn btn-primary" runat="server" Text="Submit" OnClick ="btnSubmit_Click" />
                             <asp:Button ID="Button2" CssClass="btn btn-default" runat="server" class="close" data-dismiss="modal" Text="Go Back" />
                             <%--Redirect to viewModuleInfo of newly created course--%>
                             <br />

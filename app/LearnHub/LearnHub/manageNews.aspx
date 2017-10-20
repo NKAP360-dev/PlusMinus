@@ -121,13 +121,20 @@
                         
                     </tr>
                 </thead>
+                
                 <tbody>
-                    <tr><td><a href="news.aspx">hi</a></td>
-                        <td>hi</td>
-                        <td>hi</td>
-                        <td><a href="editNews.aspx" class="btn btn-sm btn-info"><span class="glyphicon glyphicon-pencil"></span></a><a href="#" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure?')"><span class="glyphicon glyphicon-trash"></span></a></td>
+                    <%News_highlightsDAO ndao = new News_highlightsDAO();
+                    ArrayList arr = ndao.getNewsHighlights();
+                    foreach (News_highlights news in arr)
+                    {%>
+                    <tr><td><a href="news.aspx?id=<%=news.highlight_id %>"><%=news.title %></a></td>
+                        <td><%=news.type %></td>
+                        <td><%=news.entry_time.ToShortDateString() %></td>
+                        <td><a href="editNews.aspx?id=<%=news.highlight_id %>" class="btn btn-sm btn-info"><span class="glyphicon glyphicon-pencil"></span></a><a href="deleteNewsHighlight.aspx?id=<%=news.highlight_id %>" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure?')"><span class="glyphicon glyphicon-trash"></span></a></td>
                     </tr>
+                    <%} %>
                     </tbody>
+                
                 </table>
     </div>
         </form>

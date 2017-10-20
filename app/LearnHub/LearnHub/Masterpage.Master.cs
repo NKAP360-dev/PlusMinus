@@ -7,6 +7,9 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.IO;
+using System.Data;
+
 
 namespace LearnHub
 {
@@ -19,7 +22,11 @@ namespace LearnHub
             {
                 //Response.Redirect("Login.aspx");
             }
+            HyperLink hlRow = new HyperLink();
+            hlRow.NavigateUrl = "downloadTrainingCalendar.aspx";
+            hlRow.Text = "Training Calendar";
+            hlRow.Visible = true;
+            this.HyperLink8.Controls.Add(hlRow);
         }
-
     }
 }

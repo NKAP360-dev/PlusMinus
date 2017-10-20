@@ -72,9 +72,22 @@
         <div class="container">
             <div class="panel panel-default">
                 <div class="panel-body">
-                    <h1>Title</h1>
+                    <%News_highlightsDAO ndao = new News_highlightsDAO();
+                        News_highlights n = null;
+                        if (Request.QueryString["id"] != null)
+                        {
+                            string id_str = Request.QueryString["id"];
+                            int id_num = int.Parse(id_str);
+                            n = ndao.getHighlightById(id_num);
+                        }
+                        else
+                        {
+                            Response.Redirect("errorPage.aspx");
+                        }
+                        %>
+                    <h1><%=n.title %></h1>
                     <hr />
-                    <p>body</p>
+                    <p><%=n.news_text %></p>
                 </div>
             </div>
         </div>

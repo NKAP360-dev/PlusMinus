@@ -178,6 +178,7 @@
     <Compile Include="AppCode\dao\ChatBotInstructionDAO.cs" />
     <Compile Include="AppCode\dao\ChatBotIntentDAO.cs" />
     <Compile Include="AppCode\dao\ChatBotAnswerDAO.cs" />
+    <Compile Include="AppCode\dao\News_highlightsDAO.cs" />
     <Compile Include="AppCode\dao\NewsDAO.cs" />
     <Compile Include="AppCode\dao\QuizAnswerDAO.cs" />
     <Compile Include="AppCode\dao\QuizDAO.cs" />
@@ -210,6 +211,7 @@
     <Compile Include="AppCode\entity\ChatBotInitializeMsg.cs" />
     <Compile Include="AppCode\entity\ChatBotInstruction.cs" />
     <Compile Include="AppCode\entity\ChatBotIntent.cs" />
+    <Compile Include="AppCode\entity\News_highlights.cs" />
     <Compile Include="AppCode\entity\News.cs" />
     <Compile Include="AppCode\entity\QuizAnswer.cs" />
     <Compile Include="AppCode\entity\QuizQuestion.cs" />
@@ -399,6 +401,13 @@
     </Compile>
     <Compile Include="deleteContact.aspx.designer.cs">
       <DependentUpon>deleteContact.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="deleteNewsHighlight.aspx.cs">
+      <DependentUpon>deleteNewsHighlight.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="deleteNewsHighlight.aspx.designer.cs">
+      <DependentUpon>deleteNewsHighlight.aspx</DependentUpon>
     </Compile>
     <Compile Include="deleteNews.aspx.cs">
       <DependentUpon>deleteNews.aspx</DependentUpon>
@@ -880,6 +889,13 @@
     <Compile Include="WebForm1.aspx.designer.cs">
       <DependentUpon>WebForm1.aspx</DependentUpon>
     </Compile>
+    <Compile Include="downloadTrainingCalendar.aspx.cs">
+      <DependentUpon>downloadTrainingCalendar.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="downloadTrainingCalendar.aspx.designer.cs">
+      <DependentUpon>downloadTrainingCalendar.aspx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="aboutUs.aspx" />
@@ -1223,6 +1239,7 @@
     <Content Include="createQuiz.aspx" />
     <Content Include="createQuizQnA.aspx" />
     <Content Include="deleteContact.aspx" />
+    <Content Include="deleteNewsHighlight.aspx" />
     <Content Include="deleteNews.aspx" />
     <Content Include="deleteLink.aspx" />
     <Content Include="deleteArticle.aspx" />
@@ -1335,6 +1352,7 @@
     <Content Include="forgotPassword.aspx" />
     <Content Include="WebForm1.aspx" />
     <Content Include="Audit\[26_09_2017]10_17_2017_4_22 PM_course_update.csv" />
+    <Content Include="downloadTrainingCalendar.aspx" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -1368,7 +1386,9 @@
     <Folder Include="Content\" />
     <Folder Include="Data\" />
     <Folder Include="fonts\" />
+    <Folder Include="img\highlights\" />
     <Folder Include="Models\" />
+    <Folder Include="Training_Calendar\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

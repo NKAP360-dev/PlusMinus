@@ -105,13 +105,15 @@ namespace LearnHub
                 User user = (User)Session["currentUser"];
                 Course_elearn c = null;
                 string type = Request.QueryString["type"];
-
+                string name = nameOfModuleInput.Text;
+                name = name.Replace("'", "''");
+                
                 string fromDate = fromDateInput.Text.Substring(3, 2) + "/" + fromDateInput.Text.Substring(0, 2) + "/" + fromDateInput.Text.Substring(6, 4);
                 string toDate = toDateInput.Text.Substring(3, 2) + "/" + toDateInput.Text.Substring(0, 2) + "/" + toDateInput.Text.Substring(6, 4);
 
                 if (check && moduleType.Text != "") // if no expiry date
                 {
-                    c = new Course_elearn(nameOfModuleInput.Text, user.getDepartment(), DateTime.Now,
+                    c = new Course_elearn(name, user.getDepartment(), DateTime.Now,
                         DateTime.ParseExact(fromDate, "MM/dd/yyyy", CultureInfo.InvariantCulture), DateTime.ParseExact(toDate, "MM/dd/yyyy", CultureInfo.InvariantCulture), "active", descriptionModuleInput.Text, Convert.ToInt32(moduleType.SelectedValue), user, Convert.ToDouble(hoursInput.Text), txtTargetAudience.Text, ddlCourseType.SelectedValue);
                 }
 

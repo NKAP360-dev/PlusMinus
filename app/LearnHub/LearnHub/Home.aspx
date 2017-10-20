@@ -278,121 +278,42 @@
 
             <%--TO BE INTEGRATED--%>
             <%--Display 6 latest news--%>
-            <div class="row">
-                <div class="col-md-4">
-                    <a href="news.aspx">
-                        <div class="panel panel-default">
-                            <div class="newsImage">
-                                <img src="https://www.cdc.gov/handwashing/images/handwashing-banner1.jpg" alt="Learnhub">
-                                <div class="newsType">
-                                    news
-                                </div>
-                            </div>
-                            <div class="panel-body">
-                                <h4 class="text-success"><strong>New Course - Wash Hands 101</strong></h4>
-                                <hr />
-                                <p>Keeping hands clean is one of the most important steps we can take to avoid getting sick and spreading germs to others.</p>
-                                <br />
-                            </div>
-                        </div>
-                    </a>
-                </div>
+                <%News_highlightsDAO ndao = new News_highlightsDAO();
+                    ArrayList highlights = ndao.getNewsHighlights();
+                    string dir = "img/highlights";
+                    foreach (News_highlights highlight in highlights)
+                    {
+                        string str = "";
+                        foreach (string strfile in Directory.GetFiles(Server.MapPath(dir)))
+                        {
 
-                <div class="col-md-4">
-                    <a href="news.aspx">
-                        <div class="panel panel-default">
-                            <div class="newsImage">
-                                <img src="https://d3tvpxjako9ywy.cloudfront.net/blog/content/uploads/2014/12/iStock-612235546-624x416.jpg?av=3605f7e90f16446ab34c16e85e991868" alt="Learnhub">
-                                <div class="newsType">
-                                    update
-                                </div>
-                            </div>
-                            <div class="panel-body">
-                                <h4 class="text-success"><strong>Training Calendar has been updated!</strong></h4>
-                                <hr />
-                                <p>Training Calendar has been updated!</p>
-                                <br />
-                            </div>
-                        </div>
-                    </a>
-                </div>
+                            if (highlight.img_path.Equals(strfile))
+                            {
+                                str = strfile;
 
+                            }
+                        }
+                        %>
                 <div class="col-md-4">
-                    <a href="news.aspx">
+                    <a href="news.aspx?id=<%=highlight.highlight_id%>">
                         <div class="panel panel-default">
                             <div class="newsImage">
-                                <img src="https://fedweb-assets.s3.amazonaws.com/cache/fed-48/2/Emergency%2520prep1_334072_resize_1524__1_1.png" alt="Learnhub">
+                                <img src="<%= dir+"/"+Path.GetFileName(str)%>" alt="Learnhub">
                                 <div class="newsType">
-                                    news
+                                    <%=highlight.type %>
                                 </div>
                             </div>
                             <div class="panel-body">
-                                <h4 class="text-success"><strong>New Course - Emergency Preparedness</strong></h4>
+                                <h4 class="text-success"><strong><%=highlight.title %></strong></h4>
                                 <hr />
-                                <p>The course equips students with knowledge on how to be prepared to deal with emergencies and manage disasters effectively.</p>
+                                <p><%=highlight.body %></p>
                                 <br />
                             </div>
                         </div>
                     </a>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-md-4">
-                    <a href="news.aspx">
-                        <div class="panel panel-default">
-                            <div class="newsImage">
-                                <img src="http://cdn.c3a.com.sg/1371026187_170081754_AhDf.jpg" alt="Learnhub">
-                                <div class="newsType">
-                                    news
-                                </div>
-                            </div>
-                            <div class="panel-body">
-                                <h4 class="text-success"><strong>New Course - Elderly Care 101</strong></h4>
-                                <hr />
-                                <p>Frail elderly who need more attention at home can get the care they need, if going to a nursing home is not on the cards.</p>
-                                <br />
-                            </div>
-                        </div>
-                    </a>
-                </div>
+                <%} %>
 
-                <div class="col-md-4">
-                    <a href="news.aspx">
-                        <div class="panel panel-default">
-                            <div class="newsImage">
-                                <img src="http://www.stephenblower.co.uk/wp-content/uploads/2013/03/maintenance-1.jpg" alt="Learnhub">
-                                <div class="newsType">
-                                    update
-                                </div>
-                            </div>
-                            <div class="panel-body">
-                                <h4 class="text-success"><strong>LearnHub Maintenance</strong></h4>
-                                <hr />
-                                <p>LearnHub will be undergoing maintenance this Sunday, 1st October. LearnHub will not be available on this day. We apologize for any inconvenience caused.</p>
-                                <br />
-                            </div>
-                        </div>
-                    </a>
-                </div>
-
-                <div class="col-md-4">
-                    <a href="news.aspx">
-                        <div class="panel panel-default">
-                            <div class="newsImage">
-                                <img src="https://www.naturalnews.com/gallery/640/Ebola/Ebola-Virus-Word-Shapes.jpg" alt="Learnhub">
-                                <div class="newsType">
-                                    news
-                                </div>
-                            </div>
-                            <div class="panel-body">
-                                <h4 class="text-success"><strong>Removal of Course -Ebola</strong></h4>
-                                <hr />
-                                <p>We will no longer be offering this course.</p>
-                                <br />
-                            </div>
-                        </div>
-                    </a>
-                </div>
             </div>
             <div class="row">
                 <div class="wrapper"><br />
