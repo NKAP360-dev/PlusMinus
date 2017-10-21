@@ -51,6 +51,11 @@ namespace LearnHub
                     FileUpload1.PostedFile
                     .SaveAs(Server.MapPath(filepath) + fileName);
                     string totalpath1 = Server.MapPath(filepath) + fileName;
+
+                    //set audit
+                    User currentUser = (User)Session["currentUser"];
+                    setAudit(currentUser, "training calendar", "create", null, "created training calendar");
+
                     Response.Redirect("home.aspx");
                 }
             }

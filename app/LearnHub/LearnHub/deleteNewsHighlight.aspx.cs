@@ -36,7 +36,7 @@ namespace LearnHub
                         File.Delete(obj.img_path);
                     }               
                     //set audit
-                    setAudit(currentUser, "Delete News highlight", "delete", id, "deleted News Highlight: " + obj.title);
+                    setAudit(currentUser, "news", "delete", id, "deleted news title: " + obj.title);
 
                     Response.Redirect("manageNews.aspx");
                 }

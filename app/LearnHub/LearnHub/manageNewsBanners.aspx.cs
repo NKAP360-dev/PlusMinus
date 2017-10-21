@@ -29,7 +29,7 @@ namespace LearnHub
 
             //set audit
             User currentUser = (User)Session["currentUser"];
-            setAudit(currentUser, "Manage News Banners", "update", null, "Reorder message order");
+            setAudit(currentUser, "news banner", "update", null, "Reorder news banner order");
             Response.Redirect("manageNewsBanners.aspx");
         }
         protected void btnUpload_Click(object sender, EventArgs e)
@@ -54,15 +54,13 @@ namespace LearnHub
                     news.user = (User)Session["currentUser"];
                     news.img_path = totalpath1;
                     NewsDAO ndao = new NewsDAO();
-                    int done = ndao.createNewsBanner(news);
-                    if (done > 0)
-                    {
-                        Response.Redirect("home.aspx");
-                    }
-                    else
-                    {
-                        Response.Redirect("manageNewsBanners.aspx");
-                    }
+                    int bannerID = ndao.createNewsBanner(news);
+
+                    //set audit
+                    User currentUser = (User)Session["currentUser"];
+                    setAudit(currentUser, "news banner", "create", bannerID.ToString(), "created banner name: " + name);
+
+                    Response.Redirect("home.aspx");
                 }
             }
             else

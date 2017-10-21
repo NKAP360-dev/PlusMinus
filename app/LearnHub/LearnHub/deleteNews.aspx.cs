@@ -36,7 +36,7 @@ namespace LearnHub
                         File.Delete(obj.img_path);
                     }               
                     //set audit
-                    setAudit(currentUser, "Delete News", "delete", id, "deleted News: " + obj.banner_name);
+                    setAudit(currentUser, "news banner", "delete", id, "deleted news banner name: " + obj.banner_name);
 
                     Response.Redirect("manageNewsBanners.aspx");
                 }

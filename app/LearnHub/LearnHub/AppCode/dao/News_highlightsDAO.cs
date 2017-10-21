@@ -170,7 +170,7 @@ namespace LearnHub.AppCode.dao
                 conn.Open();
                 SqlCommand comm = new SqlCommand();
                 comm.Connection = conn;
-                comm.CommandText = "insert into [News_highlights] (date_posted, title, body, news_text, status, user_id, img_path, type)  VALUES"
+                comm.CommandText = "insert into [News_highlights] (date_posted, title, body, news_text, status, user_id, img_path, type) OUTPUT INSERTED.highlight_id VALUES"
                                     + "(@date, @title, @body, @text, @status, @uid, @img_path, @type)";
                 comm.Parameters.AddWithValue("@date", a.entry_time);
                 comm.Parameters.AddWithValue("@title", a.title);
@@ -180,7 +180,7 @@ namespace LearnHub.AppCode.dao
                 comm.Parameters.AddWithValue("@uid", a.user.getUserID());
                 comm.Parameters.AddWithValue("@img_path", a.img_path);
                 comm.Parameters.AddWithValue("@type", a.type);
-                toReturn =  comm.ExecuteNonQuery();
+                toReturn = (Int32)comm.ExecuteScalar();
             }
             catch (SqlException ex)
             {

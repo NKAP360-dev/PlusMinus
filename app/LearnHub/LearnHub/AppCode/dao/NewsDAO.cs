@@ -174,7 +174,7 @@ namespace LearnHub.AppCode.dao
                 conn.Open();
                 SqlCommand comm = new SqlCommand();
                 comm.Connection = conn;
-                comm.CommandText = "insert into [News] (userID, entry_time_stamp, banner_name, banner_link, news_text, status, img_path, levels)  VALUES"
+                comm.CommandText = "insert into [News] (userID, entry_time_stamp, banner_name, banner_link, news_text, status, img_path, levels) OUTPUT INSERTED.banner_id  VALUES"
                                     + "(@id, @date, @name, @link, @news, 'Active', @path, @levels)";
                 comm.Parameters.AddWithValue("@id", a.user.getUserID());
                 comm.Parameters.AddWithValue("@date", a.entry_time);
@@ -199,7 +199,7 @@ namespace LearnHub.AppCode.dao
                     nextOrderNum = 0;
                 }
                 comm.Parameters.AddWithValue("@levels", nextOrderNum);
-                toReturn =  comm.ExecuteNonQuery();
+                toReturn = (Int32)comm.ExecuteScalar();
             }
             catch (SqlException ex)
             {

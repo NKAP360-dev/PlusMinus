@@ -42,15 +42,13 @@ namespace LearnHub
                     n.user = (User)Session["currentUser"];
                     n.type = type;
                     News_highlightsDAO ndao = new News_highlightsDAO();
-                    int done = ndao.createNewsHighlight(n);
-                    if (done > 0)
-                    {
-                        Response.Redirect("home.aspx");
-                    }
-                    else
-                    {
-                        Response.Redirect("manageNews.aspx");
-                    }
+                    int id = ndao.createNewsHighlight(n);
+
+                    //set audit
+                    User currentUser = (User)Session["currentUser"];
+                    setAudit(currentUser, "news", "create", id.ToString(), "created news title: " + title);
+
+                    Response.Redirect("home.aspx");
                 }
             }
         }

@@ -63,7 +63,10 @@
                             <asp:ListItem Text="Learny Instructions" Selected="false" Value="learny instructions"></asp:ListItem>
                             <asp:ListItem Text="Learny Intents" Selected="false" Value="learny intents"></asp:ListItem>
                             <asp:ListItem Text="Learny Initialization Message" Selected="false" Value="learny initialization message"></asp:ListItem>
+                            <asp:ListItem Text="News" Selected="false" Value="news"></asp:ListItem>
+                            <asp:ListItem Text="News Banner" Selected="false" Value="news banner"></asp:ListItem>
                             <asp:ListItem Text="Quiz" Selected="false" Value="quiz"></asp:ListItem>
+                            <asp:ListItem Text="Training Calendar" Selected="false" Value="training calendar"></asp:ListItem>
                             <asp:ListItem Text="Userful Links" Selected="false" Value="useful links"></asp:ListItem>
                             <asp:ListItem Text="User" Selected="false" Value="user"></asp:ListItem>
 
