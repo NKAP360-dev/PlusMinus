@@ -72,6 +72,39 @@ namespace LearnHub.AppCode.dao
             }
             return rowsAffected;
         }
+        public Boolean updateHighlightNoImg(News_highlights a) // Update.
+        {
+            SqlConnection conn = new SqlConnection();
+            Boolean rowsAffected = false;
+            try
+            {
+                conn = new SqlConnection();
+                string connstr = ConfigurationManager.ConnectionStrings["DBConnectionString"].ToString();
+                conn.ConnectionString = connstr;
+                conn.Open();
+                SqlCommand comm = new SqlCommand();
+                comm.Connection = conn;
+                comm.CommandText =
+                    "Update [News_highlights] SET title=@title, body=@body, news_text=@text, type=@type WHERE highlight_id = @id";
+                comm.Parameters.AddWithValue("@title", a.title);
+                comm.Parameters.AddWithValue("@body", a.body);
+                comm.Parameters.AddWithValue("@text", a.news_text);
+                //comm.Parameters.AddWithValue("@img_path", a.img_path);
+                comm.Parameters.AddWithValue("@type", a.type);
+                comm.Parameters.AddWithValue("@id", a.highlight_id);
+                rowsAffected = true;
+                comm.ExecuteNonQuery();
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                conn.Close();
+            }
+            return rowsAffected;
+        }
         public News_highlights getHighlightById(int id)
         {
             SqlConnection conn = new SqlConnection();
@@ -115,6 +148,36 @@ namespace LearnHub.AppCode.dao
                 conn.Close();
             }
             return a;
+        }
+        public int getHighlightIdLatest()
+        {
+            SqlConnection conn = new SqlConnection();
+            int toReturn = 0;
+            try
+            {
+                conn = new SqlConnection();
+                string connstr = ConfigurationManager.ConnectionStrings["DBConnectionString"].ToString();
+                conn.ConnectionString = connstr;
+                conn.Open();
+                SqlCommand comm = new SqlCommand();
+                comm.Connection = conn;
+                comm.CommandText = "select max(highlight_id) as temp from News_highlights";
+                SqlDataReader dr = comm.ExecuteReader();
+                while (dr.Read())
+                {
+                    toReturn = ((int)dr["temp"]);
+                }
+                dr.Close();
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                conn.Close();
+            }
+            return toReturn;
         }
         public ArrayList getNewsHighlights()
         {
@@ -180,7 +243,8 @@ namespace LearnHub.AppCode.dao
                 comm.Parameters.AddWithValue("@uid", a.user.getUserID());
                 comm.Parameters.AddWithValue("@img_path", a.img_path);
                 comm.Parameters.AddWithValue("@type", a.type);
-                toReturn = (Int32)comm.ExecuteScalar();
+                int v = (Int32)comm.ExecuteScalar();
+                toReturn = getHighlightIdLatest();
             }
             catch (SqlException ex)
             {

@@ -16,13 +16,20 @@ namespace LearnHub
         {
             string path = "Training_Calendar/";
             string[] fileNames = Directory.GetFiles(Server.MapPath(path));
-            string file_i_want = fileNames[0];
-            FileInfo fileInfo = new FileInfo(file_i_want);
-            Response.Clear();
-            Response.AddHeader("Content-Disposition", "attachment;filename=" + fileInfo.Name);
-            Response.AddHeader("Content-Length", fileInfo.Length.ToString());
-            Response.TransmitFile(Server.MapPath(path+Path.GetFileName(file_i_want)));
-            Response.End();
+            if (fileNames == null || fileNames.Length == 0)
+            {
+                Response.Redirect("Home.aspx");
+            }
+            else
+            {
+                string file_i_want = fileNames[0];
+                FileInfo fileInfo = new FileInfo(file_i_want);
+                Response.Clear();
+                Response.AddHeader("Content-Disposition", "attachment;filename=" + fileInfo.Name);
+                Response.AddHeader("Content-Length", fileInfo.Length.ToString());
+                Response.TransmitFile(Server.MapPath(path + Path.GetFileName(file_i_want)));
+                Response.End();
+            }
         }
     }
 }

@@ -108,7 +108,7 @@
                 </div>
             </div>
 
-            <div class="form-group required">
+            <div class="form-group">
                 <strong>
                     <asp:Label runat="server" CssClass="col-lg-2 control-label" Text="Upload News Image"></asp:Label></strong>
                 <div class="col-lg-9">

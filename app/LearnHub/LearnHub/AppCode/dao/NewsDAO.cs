@@ -13,6 +13,36 @@ namespace LearnHub.AppCode.dao
 {
     public class NewsDAO
     {
+        public int getBannerIdLatest()
+        {
+            SqlConnection conn = new SqlConnection();
+            int toReturn = 0;
+            try
+            {
+                conn = new SqlConnection();
+                string connstr = ConfigurationManager.ConnectionStrings["DBConnectionString"].ToString();
+                conn.ConnectionString = connstr;
+                conn.Open();
+                SqlCommand comm = new SqlCommand();
+                comm.Connection = conn;
+                comm.CommandText = "select max(banner_id) as temp from News";
+                SqlDataReader dr = comm.ExecuteReader();
+                while (dr.Read())
+                {
+                    toReturn = ((int)dr["temp"]);
+                }
+                dr.Close();
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                conn.Close();
+            }
+            return toReturn;
+        }
         public void updateNewsLevel(int id, int levels) // Update.
         {
             SqlConnection conn = new SqlConnection();
@@ -199,7 +229,8 @@ namespace LearnHub.AppCode.dao
                     nextOrderNum = 0;
                 }
                 comm.Parameters.AddWithValue("@levels", nextOrderNum);
-                toReturn = (Int32)comm.ExecuteScalar();
+                int v = (Int32)comm.ExecuteScalar();
+                toReturn = getBannerIdLatest();
             }
             catch (SqlException ex)
             {

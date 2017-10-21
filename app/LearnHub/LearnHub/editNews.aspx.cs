@@ -91,6 +91,19 @@ namespace LearnHub
                     }
                 }
             }
+            else
+            {
+                News_highlightsDAO ndao = new News_highlightsDAO();
+                Boolean done = ndao.updateHighlightNoImg(edited);
+                if (done)
+                {
+                    //set audit
+                    User currentUser = (User)Session["currentUser"];
+                    setAudit(currentUser, "news", "update", id, "updated news title: " + txtTitle.Text);
+
+                    Response.Redirect("manageNews.aspx");
+                }
+            }
         }
         protected void setAudit(User u, string functionModified, string operation, string id_of_function, string remarks)
         {

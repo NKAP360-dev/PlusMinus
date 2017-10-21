@@ -21,8 +21,8 @@ namespace LearnHub
         }
         protected void btnDownload_Click(object sender, EventArgs e)
         {
-            string function = ddlFunction.SelectedValue;
-            string operation = ddlOperation.SelectedValue;
+            string function = ddlFunction.SelectedValue.ToLower();
+            string operation = ddlOperation.SelectedValue.ToLower();
             string date_from1 = fromDateInput.Text;
             string date_to1 = toDateInput.Text;
             string fromDate = fromDateInput.Text.Substring(3, 2) + "/" + fromDateInput.Text.Substring(0, 2) + "/" + fromDateInput.Text.Substring(6, 4);
@@ -32,8 +32,31 @@ namespace LearnHub
             string date_to = toDate + " 23:59:59";
 
             AuditDAO adao = new AuditDAO();
-            ArrayList arr = adao.getAllAudit(operation, function, DateTime.ParseExact(fromDate, "MM/dd/yyyy", CultureInfo.InvariantCulture), 
+            ArrayList arr = new ArrayList();
+            if(function.Equals("all") && operation.Equals("all"))
+            {
+                arr = adao.getAllAudit_All(DateTime.ParseExact(fromDate, "MM/dd/yyyy", CultureInfo.InvariantCulture),
                 DateTime.ParseExact(toDate, "MM/dd/yyyy", CultureInfo.InvariantCulture));
+            }
+            else
+            {
+                if (operation.Equals("all"))
+                {
+                    arr = adao.getAllAudit_function(function, DateTime.ParseExact(fromDate, "MM/dd/yyyy", CultureInfo.InvariantCulture),
+                    DateTime.ParseExact(toDate, "MM/dd/yyyy", CultureInfo.InvariantCulture));
+                }
+                else if (function.Equals("all"))
+                {
+                    arr = adao.getAllAudit_operation(operation, DateTime.ParseExact(fromDate, "MM/dd/yyyy", CultureInfo.InvariantCulture),
+                    DateTime.ParseExact(toDate, "MM/dd/yyyy", CultureInfo.InvariantCulture));
+                }
+                else
+                {
+                    arr = adao.getAllAudit(operation, function, DateTime.ParseExact(fromDate, "MM/dd/yyyy", CultureInfo.InvariantCulture),
+                    DateTime.ParseExact(toDate, "MM/dd/yyyy", CultureInfo.InvariantCulture));
+                }
+            }
+            
             var myExport = new CsvExport();
             foreach(Audit a in arr)
             {
