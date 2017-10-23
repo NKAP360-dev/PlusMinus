@@ -345,6 +345,7 @@ namespace LearnHub
         {
             System.Diagnostics.Debug.WriteLine("VALIDATENAMEEXISTS");
             String input = nameOfModuleInput.Text;
+            input = input.Replace("'", "''");
             Course_elearnDAO course_elearnDAO = new Course_elearnDAO();
             if (course_elearnDAO.checkModuleNameExists(input))
             {

@@ -106,7 +106,6 @@ namespace LearnHub
                 Course_elearn c = null;
                 string type = Request.QueryString["type"];
                 string name = nameOfModuleInput.Text;
-                name = name.Replace("'", "''");
                 
                 string fromDate = fromDateInput.Text.Substring(3, 2) + "/" + fromDateInput.Text.Substring(0, 2) + "/" + fromDateInput.Text.Substring(6, 4);
                 string toDate = toDateInput.Text.Substring(3, 2) + "/" + toDateInput.Text.Substring(0, 2) + "/" + toDateInput.Text.Substring(6, 4);
@@ -294,6 +293,7 @@ namespace LearnHub
 
             System.Diagnostics.Debug.WriteLine("VALIDATENAMEEXISTS");
             String input = nameOfModuleInput.Text;
+            input = input.Replace("'", "''");
             Course_elearnDAO course_elearnDAO = new Course_elearnDAO();
             if (course_elearnDAO.checkModuleNameExists(input))
             {
