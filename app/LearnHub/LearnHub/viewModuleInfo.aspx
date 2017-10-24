@@ -401,7 +401,11 @@
                                         {
                                             var = "ViewerJS/#../" + dir + "/" + Path.GetFileName(strfile);
                                         }
-                                        string replace = link.Replace("watch?v=", "embed/");
+                                        string replace = link;
+                                            if (link.Contains("watch?v="))
+                                            {
+                                                replace = link.Replace("watch?v=", "embed/");
+                                            }
                                         %>
                                      
                                 
@@ -627,8 +631,8 @@
                                         <div class="col-lg-12">
                                             <p>
                                                 <asp:TextBox ID="TextBox1" runat="server" CssClass="form-control" placeholder="Enter Upload Title"></asp:TextBox>
-                                                <!--<asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="Please enter a Title" ControlToValidate="TextBox1" ForeColor="Red" Display="Dynamic"></asp:RequiredFieldValidator>
-                                                <asp:CustomValidator ID="CustomValidator2" runat="server" ErrorMessage="This title already exists! Please enter a different title" OnServerValidate="checkTitleExists" ForeColor="Red" ValidationGroup="ValidateForm2" Display="Dynamic"></asp:CustomValidator>-->
+                                                <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="Please enter a Title" ControlToValidate="TextBox1" ForeColor="Red" Display="Dynamic"></asp:RequiredFieldValidator>
+                                                <asp:CustomValidator ID="CustomValidator2" runat="server" ErrorMessage="This title already exists! Please enter a different title" OnServerValidate="checkTitleExists" ForeColor="Red" ValidationGroup="ValidateForm2" Display="Dynamic"></asp:CustomValidator>
                                             </p>
                                             <br />
                                         </div>
@@ -637,7 +641,7 @@
                                         <div class="col-lg-12">
                                             <p>
                                                 <asp:TextBox ID="TextBox2" TextMode="multiline" Columns="50" Rows="5" runat="server" CssClass="form-control" placeholder="Enter Upload Description"></asp:TextBox>
-                                                <!--<asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="Please enter a Description" ControlToValidate="TextBox2" ForeColor="Red" Display="Dynamic"></asp:RequiredFieldValidator>-->
+                                                <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="Please enter a Description" ControlToValidate="TextBox2" ForeColor="Red" Display="Dynamic"></asp:RequiredFieldValidator>
                                             </p>
                                             <br />
                                         </div>
@@ -646,7 +650,7 @@
                                         <div class="col-lg-12">
                                             <p>
                                                 <asp:TextBox ID="txtVideo" runat="server" CssClass="form-control" placeholder="Enter YouTube Link"></asp:TextBox>
-                                                <!--<asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ErrorMessage="Please select a link to upload!" ControlToValidate="txtVideo" ForeColor="Red" Display="Dynamic"></asp:RequiredFieldValidator>-->
+                                                <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ErrorMessage="Please select a link to upload!" ControlToValidate="txtVideo" ForeColor="Red" Display="Dynamic"></asp:RequiredFieldValidator>
                                             </p>
                                             <br />
                                         </div>
