@@ -13,12 +13,21 @@ namespace LearnHub.AppCode.entity
         private string desc;
         private string server_path;
         private int id;
-
+        public string upload_type { get; set; } 
+        public string video_link { get; set; }
         public Upload()
         {
 
         }
-        public Upload(Course_elearn course, DateTime date, string title, string desc, string server_path)
+        public Upload(Course_elearn course, DateTime date, string title, string desc) // for video upload only
+        {
+            this.course = course;
+            this.date = date;
+            this.title = title;
+            this.desc = desc;
+            //this.server_path = server_path;
+        }
+        public Upload(Course_elearn course, DateTime date, string title, string desc, string server_path) //for both and file uploads
         {
             this.course = course;
             this.date = date;

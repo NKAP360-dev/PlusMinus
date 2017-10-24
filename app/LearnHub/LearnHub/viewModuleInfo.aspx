@@ -301,27 +301,57 @@
                                 Course_elearnDAO cdao = new Course_elearnDAO();
                                 ArrayList list = cdao.get_uploaded_content_by_id(current);%>
                         <%
+                            string strfile = "";
                             string dir = "Data/" + current.getCourseID();
-                            foreach (string strfile in Directory.GetFiles(Server.MapPath(dir)))
+                            Boolean delete_path = false;
+                            foreach (Upload u in list)
                             {
-                                //Response.Write(strfile);
-                                title = null;
-                                desc = null;
-                                date = DateTime.Now;
-                                foreach (Upload u in list)
+                                //edit the getUploadID in dao to return video content also
+                                string title = null;
+                                string desc = null;
+                                string link = null;
+                                Boolean show_both = false;
+                                DateTime date = DateTime.Now;
+                                //Response.Write(u.upload_type);
+                                if(u.upload_type.Equals("file") || u.upload_type.Equals("both"))
                                 {
-                                    //Response.Write(u.getServerPath());
-                                    if (u.getServerPath() != null && u.getServerPath().Equals(strfile))
+                                    foreach (string str in Directory.GetFiles(Server.MapPath(dir)))
                                     {
-                                        title = u.getTitle();
-                                        desc = u.getDesc();
-                                        date = u.getDate();
+                                        //Response.Write(u.getServerPath());
+                                        if (u.getServerPath() != null && u.getServerPath().Equals(str))
+                                        {
+                                            //Response.Write(u.upload_type);
+                                            title = u.getTitle();
+                                            desc = u.getDesc();
+                                            date = u.getDate();
+                                            //Response.Write(title);
+                                            strfile = str;
+                                            delete_path = true;
+                                            if (u.upload_type.Equals("both"))
+                                            {
+                                                link = u.video_link;
+                                                show_both = true;
+                                                delete_path = false;
+                                            }
+                                        }
                                     }
-                                }%>
-                        <div class="panel panel-primary">
+                                }
+                                else
+                                {
+                                    title = u.getTitle();
+                                    desc = u.getDesc();
+                                    link = u.video_link;
+                                    delete_path = false;
+
+                                }
+                                //Response.Write(strfile);
+
+                                %>
+                        <div class="panel panel-primary">   
                             <div class="panel-heading">
                                 <h3 class="panel-title">
-                                    <asp:Label ID="lblUploadTitle" runat="server"><%= title %></asp:Label>
+                                    <%=title %>
+                                    <asp:Label ID="lblUploadTitle" runat="server"></asp:Label>
                                     <%  User user = (User)Session["currentUser"];
                                         Course_elearnDAO ceDAO = new Course_elearnDAO();
                                         int courseID = Convert.ToInt32(Request.QueryString["id"]);
@@ -332,26 +362,60 @@
                                             //Response.Redirect("login.aspx");
                                         }
                                         else if (superuser || user.getDepartment().Equals("hr") || currentUser.getUserID() == courseCreator.getUserID())
-                                        {%>
+                                        {
+                                            if (delete_path)
+                                            {%>
                                     <a href="deleteMaterial.aspx?id=<%=current.getCourseID()%>&path=<%=strfile%>" onclick="return confirm('Are you sure?')"><span class="label label-danger pull-right"><span class="glyphicon glyphicon-trash"></span></span></a></strong><br />
-                                    <%} %>
+                                    <%      }else if (show_both)
+                                        {%>
+                                    <a href="deleteBoth.aspx?id=<%=current.getCourseID()%>&path=<%=strfile%>&video_link=<%=u.video_link%>" onclick="return confirm('Are you sure?')"><span class="label label-danger pull-right"><span class="glyphicon glyphicon-trash"></span></span></a></strong><br />
+                                        <%}
+                                        else
+                                        { %>
+                                        <a href="deleteMaterialLink.aspx?id=<%=current.getCourseID()%>&video_link=<%=u.video_link%>" onclick="return confirm('Are you sure?')"><span class="label label-danger pull-right"><span class="glyphicon glyphicon-trash"></span></span></a></strong><br />
+                                    <%}
+                                        } %>
                                 </h3>
                             </div>
                             <div class="panel-body">
                                 Uploaded on:
-                                <asp:Label ID="lblUploadDate" runat="server"><%= date.ToShortDateString() %></asp:Label><br />
-                                <asp:Label ID="lblUploadDescription" runat="server"><%= desc %></asp:Label>
+                                <%= date.ToShortDateString() %>
+                                <asp:Label ID="lblUploadDate" runat="server"></asp:Label><br />
+                                <%= desc %>
+                                <asp:Label ID="lblUploadDescription" runat="server"></asp:Label>
                                 <br />
                                 <br />
-                                <% string var = dir + "/" + Path.GetFileName(strfile);
-                                    if (Path.GetExtension(var).Equals(".pdf"))
-                                    {
-                                        var = "ViewerJS/#../" + dir + "/" + Path.GetFileName(strfile);%>
+                                <% if (delete_path) {
+                                        string var = dir + "/" + Path.GetFileName(strfile);
+                                        if (Path.GetExtension(var).Equals(".pdf"))
+                                        {
+                                            var = "ViewerJS/#../" + dir + "/" + Path.GetFileName(strfile);
+                                        }%>
                                 <a href="<%=var %>"><%=Path.GetFileName(strfile) %></a><br />
                                 <% }
-                                    else
-                                    {%>
-                                <a href="<%=var %>" download><%=Path.GetFileName(strfile) %></a><br />
+                                    else if (show_both)
+                                    {
+                                        string var = dir + "/" + Path.GetFileName(strfile);
+                                        //Response.Write(var);
+                                        if (Path.GetExtension(var).Equals(".pdf"))
+                                        {
+                                            var = "ViewerJS/#../" + dir + "/" + Path.GetFileName(strfile);
+                                        }
+                                        string replace = link.Replace("watch?v=", "embed/");
+                                        %>
+                                     
+                                
+                                     <iframe width="560" height="315" src="<%=replace %>" frameborder="0" allowfullscreen></iframe><br /><br />
+                                    <a href="<%=var %>"><%=Path.GetFileName(strfile) %></a><br />
+                                    <%
+                                        }else{
+                                            string replace = link;
+                                            if (link.Contains("watch?v="))
+                                            {
+                                                replace = link.Replace("watch?v=", "embed/");
+                                            }
+                                            %>
+                                <iframe width="560" height="315" src="<%=replace %>" frameborder="0" allowfullscreen></iframe>
                                 <%} %>
                             </div>
                         </div>
@@ -526,7 +590,7 @@
                                 <asp:RadioButtonList ID="rblUploadType" runat="server" OnSelectedIndexChanged="rblUploadType_SelectedIndexChanged" AutoPostBack="true">
                                     <asp:ListItem Value="file">File</asp:ListItem>
                                     <asp:ListItem Value="video">Video</asp:ListItem>
-                                    <asp:ListItem Value="both">File and Video</asp:ListItem>
+                                    <asp:ListItem Value="both">Both</asp:ListItem>
                                 </asp:RadioButtonList>
                                 <asp:Panel ID="fileOnlyPanel" runat="server" Visible="false">
                                     <label class="control-label">Upload File Only</label>
@@ -563,6 +627,8 @@
                                         <div class="col-lg-12">
                                             <p>
                                                 <asp:TextBox ID="TextBox1" runat="server" CssClass="form-control" placeholder="Enter Upload Title"></asp:TextBox>
+                                                <!--<asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="Please enter a Title" ControlToValidate="TextBox1" ForeColor="Red" Display="Dynamic"></asp:RequiredFieldValidator>
+                                                <asp:CustomValidator ID="CustomValidator2" runat="server" ErrorMessage="This title already exists! Please enter a different title" OnServerValidate="checkTitleExists" ForeColor="Red" ValidationGroup="ValidateForm2" Display="Dynamic"></asp:CustomValidator>-->
                                             </p>
                                             <br />
                                         </div>
@@ -571,6 +637,7 @@
                                         <div class="col-lg-12">
                                             <p>
                                                 <asp:TextBox ID="TextBox2" TextMode="multiline" Columns="50" Rows="5" runat="server" CssClass="form-control" placeholder="Enter Upload Description"></asp:TextBox>
+                                                <!--<asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="Please enter a Description" ControlToValidate="TextBox2" ForeColor="Red" Display="Dynamic"></asp:RequiredFieldValidator>-->
                                             </p>
                                             <br />
                                         </div>
@@ -579,6 +646,7 @@
                                         <div class="col-lg-12">
                                             <p>
                                                 <asp:TextBox ID="txtVideo" runat="server" CssClass="form-control" placeholder="Enter YouTube Link"></asp:TextBox>
+                                                <!--<asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ErrorMessage="Please select a link to upload!" ControlToValidate="txtVideo" ForeColor="Red" Display="Dynamic"></asp:RequiredFieldValidator>-->
                                             </p>
                                             <br />
                                         </div>

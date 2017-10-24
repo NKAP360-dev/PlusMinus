@@ -402,6 +402,20 @@
     <Compile Include="deleteContact.aspx.designer.cs">
       <DependentUpon>deleteContact.aspx</DependentUpon>
     </Compile>
+    <Compile Include="deleteBoth.aspx.cs">
+      <DependentUpon>deleteBoth.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="deleteBoth.aspx.designer.cs">
+      <DependentUpon>deleteBoth.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="deleteMaterialLink.aspx.cs">
+      <DependentUpon>deleteMaterialLink.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="deleteMaterialLink.aspx.designer.cs">
+      <DependentUpon>deleteMaterialLink.aspx</DependentUpon>
+    </Compile>
     <Compile Include="deleteNewsHighlight.aspx.cs">
       <DependentUpon>deleteNewsHighlight.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1239,6 +1253,8 @@
     <Content Include="createQuiz.aspx" />
     <Content Include="createQuizQnA.aspx" />
     <Content Include="deleteContact.aspx" />
+    <Content Include="deleteBoth.aspx" />
+    <Content Include="deleteMaterialLink.aspx" />
     <Content Include="deleteNewsHighlight.aspx" />
     <Content Include="deleteNews.aspx" />
     <Content Include="deleteLink.aspx" />

@@ -114,28 +114,78 @@ namespace LearnHub
             }
             else
             {
-                if (FileUpload1.HasFile)
+                //check if is what content
+                string val = rblUploadType.SelectedValue.ToLower().Trim();
+                if (val.Equals("file"))
                 {
-                    int coursedir = current.getCourseID();
-                    string fileName = FileUpload1.FileName;
-                    string filepath = "~/Data/" + coursedir + "/";
-                    string FileExtension = fileName.Substring(fileName.LastIndexOf('.') + 1).ToLower();
-                    if (FileExtension.Equals("pdf") || FileExtension.Equals("jpeg") || FileExtension.Equals("png") || FileExtension.Equals("doc")
-                        || FileExtension.Equals("docx") || FileExtension.Equals("xlsx") || FileExtension.Equals("csv") || FileExtension.Equals("xlsm")
-                        || FileExtension.Equals("mp3") || FileExtension.Equals("mp4") || FileExtension.Equals("avi") || FileExtension.Equals("m4a") 
-                        || FileExtension.Equals("zip")|| FileExtension.Equals("rar")|| FileExtension.Equals("ppt") || FileExtension.Equals("jpg") ||
-                            FileExtension.Equals("pptx"))
+                    if (FileUpload1.HasFile)
                     {
-                        FileUpload1.PostedFile
-                        .SaveAs(Server.MapPath(filepath) + fileName);
-                        string totalpath1 = Server.MapPath(filepath) + fileName;
-                        Course_elearnDAO cdao = new Course_elearnDAO();
-                        Upload u = new Upload(current, DateTime.Now, uploadTitleInput.Text, uploadDescriptionInput.Text, totalpath1);
-                        Upload upload_succ = cdao.upload_entry(u);
+                        int coursedir = current.getCourseID();
+                        string fileName = FileUpload1.FileName;
+                        string filepath = "~/Data/" + coursedir + "/";
+                        string FileExtension = fileName.Substring(fileName.LastIndexOf('.') + 1).ToLower();
+                        if (FileExtension.Equals("pdf") || FileExtension.Equals("jpeg") || FileExtension.Equals("png") || FileExtension.Equals("doc")
+                            || FileExtension.Equals("docx") || FileExtension.Equals("xlsx") || FileExtension.Equals("csv") || FileExtension.Equals("xlsm")
+                            || FileExtension.Equals("mp3") || FileExtension.Equals("mp4") || FileExtension.Equals("avi") || FileExtension.Equals("m4a")
+                            || FileExtension.Equals("zip") || FileExtension.Equals("rar") || FileExtension.Equals("ppt") || FileExtension.Equals("jpg") ||
+                                FileExtension.Equals("pptx"))
+                        {
+                            FileUpload1.PostedFile
+                            .SaveAs(Server.MapPath(filepath) + fileName);
+                            string totalpath1 = Server.MapPath(filepath) + fileName;
+                            Course_elearnDAO cdao = new Course_elearnDAO();
+                            Upload u = new Upload(current, DateTime.Now, uploadTitleInput.Text, uploadDescriptionInput.Text, totalpath1);
+                            u.upload_type = "file";
+                            Upload upload_succ = cdao.upload_entry(u);
 
-                        //set audit
-                        User currentUser = (User)Session["currentUser"];
-                        setAudit(currentUser, "course", "update", coursedir.ToString(), "uploaded filename: " + fileName);
+                            //set audit
+                            User currentUser = (User)Session["currentUser"];
+                            setAudit(currentUser, "course", "update", coursedir.ToString(), "uploaded filename: " + fileName);
+                        }
+                    }
+                }
+                else if (val.Equals("video"))
+                {
+                    string title = TextBox1.Text;
+                    string desc = TextBox2.Text;
+                    string link = txtVideo.Text;
+                    Course_elearnDAO cdao = new Course_elearnDAO();
+                    Upload u = new Upload(current, DateTime.Now, TextBox1.Text, TextBox2.Text);
+                    u.upload_type = "video";
+                    u.video_link = link;
+                    Upload upload_succ = cdao.upload_entry_video(u);
+
+                    //set audit
+                    User currentUser = (User)Session["currentUser"];
+                }
+                else
+                {
+                    string link = TextBox5.Text;
+                    if (FileUpload2.HasFile)
+                    {
+                        int coursedir = current.getCourseID();
+                        string fileName = FileUpload2.FileName;
+                        string filepath = "~/Data/" + coursedir + "/";
+                        string FileExtension = fileName.Substring(fileName.LastIndexOf('.') + 1).ToLower();
+                        if (FileExtension.Equals("pdf") || FileExtension.Equals("jpeg") || FileExtension.Equals("png") || FileExtension.Equals("doc")
+                            || FileExtension.Equals("docx") || FileExtension.Equals("xlsx") || FileExtension.Equals("csv") || FileExtension.Equals("xlsm")
+                            || FileExtension.Equals("mp3") || FileExtension.Equals("mp4") || FileExtension.Equals("avi") || FileExtension.Equals("m4a")
+                            || FileExtension.Equals("zip") || FileExtension.Equals("rar") || FileExtension.Equals("ppt") || FileExtension.Equals("jpg") ||
+                                FileExtension.Equals("pptx"))
+                        {
+                            FileUpload2.PostedFile
+                            .SaveAs(Server.MapPath(filepath) + fileName);
+                            string totalpath1 = Server.MapPath(filepath) + fileName;
+                            Course_elearnDAO cdao = new Course_elearnDAO();
+                            Upload u = new Upload(current, DateTime.Now, TextBox3.Text, TextBox4.Text, totalpath1);
+                            u.upload_type = "both";
+                            u.video_link = link;
+                            Upload upload_succ = cdao.upload_entry_both(u);
+
+                            //set audit
+                            User currentUser = (User)Session["currentUser"];
+                            setAudit(currentUser, "course", "update", coursedir.ToString(), "uploaded filename: " + fileName);
+                        }
                     }
                 }
             }

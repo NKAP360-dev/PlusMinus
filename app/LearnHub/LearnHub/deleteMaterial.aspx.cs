@@ -10,7 +10,7 @@ using LearnHub.AppCode.dao;
 
 namespace LearnHub
 {
-    public partial class WebForm5 : System.Web.UI.Page
+    public partial class WebForm5: System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -27,11 +27,12 @@ namespace LearnHub
                 else
                 {
                     System.IO.File.Delete(fullPath);
-
+                    Course_elearnDAO cdao = new Course_elearnDAO();
+                    cdao.delete_Material(id_num, fullPath);
                     //set audit
                     User currentUser = (User)Session["currentUser"];
                     string filename = Path.GetFileName(fullPath);
-                    setAudit(currentUser, "course", "update", id, "deleted material filename: " + filename);
+                    setAudit(currentUser, "course", "update", id, "deleted material link: " + filename);
                 }
                
                 Response.Redirect("viewModuleInfo.aspx?id=" + id_num);

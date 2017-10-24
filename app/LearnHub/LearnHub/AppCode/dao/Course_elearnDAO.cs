@@ -12,7 +12,60 @@ namespace LearnHub.AppCode.dao
 {
     public class Course_elearnDAO
     {
+        public void delete_Material(int courseID, string link) // Update.
+        {
+            SqlConnection conn = new SqlConnection();
 
+            try
+            {
+                conn = new SqlConnection();
+                string connstr = ConfigurationManager.ConnectionStrings["DBConnectionString"].ToString();
+                conn.ConnectionString = connstr;
+                conn.Open();
+                SqlCommand comm = new SqlCommand();
+                comm.Connection = conn;
+                comm.CommandText =
+                    "delete from Elearn_courseContent where elearn_courseID = @courseID and server_path = @link";
+                comm.Parameters.AddWithValue("@courseID", courseID);
+                comm.Parameters.AddWithValue("@link", link);
+                int rowsAffected = comm.ExecuteNonQuery();
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+        public void delete_link(int courseID, string link) // Update.
+        {
+            SqlConnection conn = new SqlConnection();
+
+            try
+            {
+                conn = new SqlConnection();
+                string connstr = ConfigurationManager.ConnectionStrings["DBConnectionString"].ToString();
+                conn.ConnectionString = connstr;
+                conn.Open();
+                SqlCommand comm = new SqlCommand();
+                comm.Connection = conn;
+                comm.CommandText =
+                    "delete from Elearn_courseContent where elearn_courseID = @courseID and video_link = @link";
+                comm.Parameters.AddWithValue("@courseID", courseID);
+                comm.Parameters.AddWithValue("@link", link);
+                int rowsAffected = comm.ExecuteNonQuery();
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
         public void activateCourse(int courseID) // Update.
         {
             SqlConnection conn = new SqlConnection();
@@ -78,7 +131,7 @@ namespace LearnHub.AppCode.dao
                 conn.Open();
                 SqlCommand comm = new SqlCommand();
                 comm.Connection = conn;
-                comm.CommandText = "select upload_date, upload_title, upload_desc, server_path from [Elearn_courseContent] where elearn_courseID=@id";
+                comm.CommandText = "select upload_date, upload_title, upload_desc, server_path, upload_type, video_link from [Elearn_courseContent] where elearn_courseID=@id";
                 comm.Parameters.AddWithValue("@id", course.getCourseID());
                 SqlDataReader dr = comm.ExecuteReader();
                 while (dr.Read())
@@ -95,7 +148,14 @@ namespace LearnHub.AppCode.dao
                     {
                         toReturn.setServerPath((string)dr["server_path"]);
                     }
-
+                    if (dr["upload_type"] != DBNull.Value)
+                    {
+                        toReturn.upload_type = (string)dr["upload_type"];
+                    }
+                    if (dr["video_link"] != DBNull.Value)
+                    {
+                        toReturn.video_link = (string)dr["video_link"];
+                    }
                     toReturn_list.Add(toReturn);
                 }
                 dr.Close();
@@ -124,13 +184,14 @@ namespace LearnHub.AppCode.dao
                 SqlCommand comm = new SqlCommand();
                 comm.Connection = conn;
                 comm.CommandText = "insert into [Elearn_courseContent] "
-                                    + "(elearn_courseID, upload_date, upload_title, upload_desc, server_path)"
-                                    + "values(@id, Convert(datetime, @date, 103), @title, @desc, @server_path)";
+                                    + "(elearn_courseID, upload_date, upload_title, upload_desc, server_path, upload_type)"
+                                    + "values(@id, Convert(datetime, @date, 103), @title, @desc, @server_path, @upload_type)";
                 comm.Parameters.AddWithValue("@id", upload.getCourse_elearn().getCourseID());
                 comm.Parameters.AddWithValue("@date", upload.getDate());
                 comm.Parameters.AddWithValue("@title", upload.getTitle());
                 comm.Parameters.AddWithValue("@desc", upload.getDesc());
                 comm.Parameters.AddWithValue("@server_path", upload.getServerPath());
+                comm.Parameters.AddWithValue("@upload_type", upload.upload_type);
                 //comm.Parameters.AddWithValue("@content", course.getCourseID());
                 int rowsAffected = comm.ExecuteNonQuery();
                 //need new method to create pre-requisities here to store in seperate table (pre-req table)
@@ -147,6 +208,79 @@ namespace LearnHub.AppCode.dao
             return toReturn;
         }
 
+        public Upload upload_entry_video(Upload upload)
+        {
+            SqlConnection conn = new SqlConnection();
+            Upload toReturn = null;
+            try
+            {
+                conn = new SqlConnection();
+                string connstr = ConfigurationManager.ConnectionStrings["DBConnectionString"].ToString();
+                conn.ConnectionString = connstr;
+                conn.Open();
+                SqlCommand comm = new SqlCommand();
+                comm.Connection = conn;
+                comm.CommandText = "insert into [Elearn_courseContent] "
+                                    + "(elearn_courseID, upload_date, upload_title, upload_desc, upload_type, video_link)"
+                                    + "values(@id, Convert(datetime, @date, 103), @title, @desc, @upload_type, @video_link)";
+                comm.Parameters.AddWithValue("@id", upload.getCourse_elearn().getCourseID());
+                comm.Parameters.AddWithValue("@date", upload.getDate());
+                comm.Parameters.AddWithValue("@title", upload.getTitle());
+                comm.Parameters.AddWithValue("@desc", upload.getDesc());
+                comm.Parameters.AddWithValue("@upload_type", upload.upload_type);
+                comm.Parameters.AddWithValue("@video_link", upload.video_link);
+                //comm.Parameters.AddWithValue("@content", course.getCourseID());
+                int rowsAffected = comm.ExecuteNonQuery();
+                //need new method to create pre-requisities here to store in seperate table (pre-req table)
+                toReturn = upload;
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                conn.Close();
+            }
+            return toReturn;
+        }
+        public Upload upload_entry_both(Upload upload)
+        {
+            SqlConnection conn = new SqlConnection();
+            Upload toReturn = null;
+            try
+            {
+                conn = new SqlConnection();
+                string connstr = ConfigurationManager.ConnectionStrings["DBConnectionString"].ToString();
+                conn.ConnectionString = connstr;
+                conn.Open();
+                SqlCommand comm = new SqlCommand();
+                comm.Connection = conn;
+                comm.CommandText = "insert into [Elearn_courseContent] "
+                                    + "(elearn_courseID, upload_date, upload_title, upload_desc, server_path, upload_type, video_link)"
+                                    + "values(@id, Convert(datetime, @date, 103), @title, @desc, @server_path, @upload_type, @video_link)";
+                comm.Parameters.AddWithValue("@id", upload.getCourse_elearn().getCourseID());
+                comm.Parameters.AddWithValue("@date", upload.getDate());
+                comm.Parameters.AddWithValue("@title", upload.getTitle());
+                comm.Parameters.AddWithValue("@desc", upload.getDesc());
+                comm.Parameters.AddWithValue("@server_path", upload.getServerPath());
+                comm.Parameters.AddWithValue("@upload_type", upload.upload_type);
+                comm.Parameters.AddWithValue("@video_link", upload.video_link);
+                //comm.Parameters.AddWithValue("@content", course.getCourseID());
+                int rowsAffected = comm.ExecuteNonQuery();
+                //need new method to create pre-requisities here to store in seperate table (pre-req table)
+                toReturn = upload;
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                conn.Close();
+            }
+            return toReturn;
+        }
         public Course_elearn create_elearnCourse(Course_elearn course)
         {
             SqlConnection conn = new SqlConnection();
@@ -160,7 +294,7 @@ namespace LearnHub.AppCode.dao
                 SqlCommand comm = new SqlCommand();
                 comm.Connection = conn;
                 comm.CommandText = "insert into [Elearn_course] " +
-                    "(elearn_courseName, elearn_courseProvider, entry_date, start_date, expiry_date, status, description, categoryID, courseCreator, hoursAwarded, targetAudience, courseType) " +
+                    "(elearn_courseName, elearn_courseProvider, entry_date, start_date, expiry_date, status, description, categoryID, courseCreator, hoursAwarded, targetAudience, courseType) OUTPUT INSERTED.elearn_courseID " +
                     "values (@cName, @provider, Convert(datetime, @entry, 103), convert(datetime,@time,103), Convert(datetime,@expiry,103), @status, @desc, @category, @courseCreator, @hoursAwarded, @targetAudience, @courseType)";
                 comm.Parameters.AddWithValue("@cName", course.getCourseName());
                 if (course.getCourseProvider() != null)
@@ -196,8 +330,9 @@ namespace LearnHub.AppCode.dao
                 comm.Parameters.AddWithValue("@hoursAwarded", course.getHoursAwarded());
                 comm.Parameters.AddWithValue("@targetAudience", course.getTargetAudience());
                 comm.Parameters.AddWithValue("@courseType", course.getCourseType());
-                int rowsAffected = comm.ExecuteNonQuery();                
+                int a = (Int32)comm.ExecuteScalar();
                 //need new method to create pre-requisities here to store in seperate table (pre-req table)
+                course.setCourseID(a);
                 toReturn = course;
             }
             catch (SqlException ex)
