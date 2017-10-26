@@ -395,6 +395,13 @@
     <Compile Include="createQuizQnA.aspx.designer.cs">
       <DependentUpon>createQuizQnA.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Dashboard.aspx.cs">
+      <DependentUpon>Dashboard.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Dashboard.aspx.designer.cs">
+      <DependentUpon>Dashboard.aspx</DependentUpon>
+    </Compile>
     <Compile Include="deleteContact.aspx.cs">
       <DependentUpon>deleteContact.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1252,6 +1259,7 @@
     <Content Include="createModules.aspx" />
     <Content Include="createQuiz.aspx" />
     <Content Include="createQuizQnA.aspx" />
+    <Content Include="Dashboard.aspx" />
     <Content Include="deleteContact.aspx" />
     <Content Include="deleteBoth.aspx" />
     <Content Include="deleteMaterialLink.aspx" />
