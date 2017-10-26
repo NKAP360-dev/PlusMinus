@@ -128,17 +128,6 @@
                 <% 
                     int courseID = currentQuiz.getMainCourse().getCourseID();%>
                 <a href="viewModuleInfo.aspx?id=<%=courseID%>" class="pull-left"><span class="glyphicon glyphicon-menu-left"></span>&nbsp;Back to Course</a>
-
-                <br />
-
-                <%--Enhancements required--%>
-                If you are seeing this message it means this page is not integrated with enhancements
-                <%--Tick and crosses to enhance UX
-                    Put tick beside correct answer
-                    Put cross beside other 3 wrong answer
-                    Follow color logic??--%>
-                <img src=img/tick.png>
-                <img src=img/cancel.png>
             </asp:Panel>
         </div>
     </form>

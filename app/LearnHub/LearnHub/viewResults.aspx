@@ -110,6 +110,17 @@
                                         Response.Write("disabled>");
                                     }
                                     Response.Write($"{possibleAnswer.getAnswer()}</label>");
+                                    if (possibleAnswer.getQuizAnswerID() == userAnswerID)
+                                    {
+                                        if (possibleAnswer.getAnswer().Equals(question.getQuizAnswer().getAnswer()))
+                                        {
+                                            Response.Write(" <img src=img/tick.png>");
+                                        }
+                                        else
+                                        {
+                                            Response.Write(" <img src=img/cancel.png>");
+                                        }
+                                    }
                                 }
                                 Response.Write("</td></tr>");
                                 if (userCorrect)
@@ -127,14 +138,6 @@
                 <% 
                     int courseID = currentQuiz.getMainCourse().getCourseID();%>
                 <a href="viewModuleInfo.aspx?id=<%=courseID%>" class="pull-left"><span class="glyphicon glyphicon-menu-left"></span>&nbsp;Back to Course</a>
-                 <%--Enhancements required--%>
-                If you are seeing this message it means this page is not integrated with enhancements
-                <%--Tick and crosses to enhance UX
-                    Put tick beside correct answer
-                    Put cross beside other 3 wrong answer
-                    Follow color logic??--%>
-                <img src=img/tick.png>
-                <img src=img/cancel.png>
             </asp:Panel>
         </div>
     </form>
