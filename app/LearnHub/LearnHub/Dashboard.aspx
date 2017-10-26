@@ -30,7 +30,7 @@
     </style>
     <script type="text/javascript">  
         $(function () {
-            Highcharts.chart('pie', {
+            Highcharts.chart('userPieChart', {
                 chart: {
                     plotBackgroundColor: null,
                     plotBorderWidth: null,
@@ -60,16 +60,50 @@
                 series: [{
                     name: 'No. Of Users',
                     colorByPoint: true,
-                    data: <%= pieChartData%>  
+                    data: <%= userPieChartData%>  
                 }]
             });
         });
 
 
+        $(function () {
+            Highcharts.chart('coursePieChart', {
+                chart: {
+                    plotBackgroundColor: null,
+                    plotBorderWidth: null,
+                    plotShadow: false,
+                    type: 'pie'
+                },
+                title: {
+                    text: 'No. of Courses by Course Category'
+                },
+                tooltip: {
+                    pointFormat: '{series.name}: <b>{point.y}</b>'
+                },
+                plotOptions: {
+                    pie: {
+                        allowPointSelect: true,
+                        cursor: 'pointer',
+                        dataLabels: {
+                            enabled: true,
+                            format: '<b>{point.name}</b>: {point.y}',
+                            style: {
+                                color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                            }
+                        },
+                        showInLegend: true
+                    }
+                },
+                series: [{
+                    name: 'No. Of Courses',
+                    colorByPoint: true,
+                    data: <%= coursePieChartData%>  
+                }]
+            });
+        });
     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-
     <div class="container">
         <br />
         <div class="row">
@@ -78,22 +112,10 @@
                     <div class="wrapper">
                         <span style="font-size: 35px;" class="glyphicon glyphicon-user"></span>
                         &nbsp;
-                 31
+                        <asp:Label ID="lblUsers" runat="server" Text=""></asp:Label>
                     </div>
                     <div class="wrapper">
-                        <h5><strong>No. of Users</strong></h5>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="box">
-                    <div class="wrapper">
-                        <span style="font-size: 35px;" class="glyphicon glyphicon-book"></span>
-                        &nbsp;
-                 31
-                    </div>
-                    <div class="wrapper">
-                        <h5><strong>No. of Courses</strong></h5>
+                        <h5><strong>Users</strong></h5>
                     </div>
                 </div>
             </div>
@@ -102,33 +124,54 @@
                     <div class="wrapper">
                         <span style="font-size: 35px;" class="glyphicon glyphicon-book"></span>
                         &nbsp;
-                 31
+                    <asp:Label ID="lblCourses" runat="server" Text=""></asp:Label>
                     </div>
                     <div class="wrapper">
-                        <h5><strong>No. of Courses</strong></h5>
+                        <h5><strong>Courses</strong></h5>
                     </div>
                 </div>
             </div>
             <div class="col-md-3">
                 <div class="box">
                     <div class="wrapper">
-                        <span style="font-size: 35px;" class="glyphicon glyphicon-book"></span>
+                        <span style="font-size: 35px;" class="glyphicon glyphicon-check"></span>
                         &nbsp;
-                 31
+                 <asp:Label ID="lblQuizAttempts" runat="server" Text=""></asp:Label>
                     </div>
                     <div class="wrapper">
-                        <h5><strong>No. of Courses</strong></h5>
+                        <h5><strong>Attempted Quizzes</strong></h5>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="box">
+                    <div class="wrapper">
+                        <span style="font-size: 35px;" class="glyphicon glyphicon-time"></span>
+                        &nbsp;
+                 <asp:Label ID="lblHours" runat="server" Text=""></asp:Label>
+                    </div>
+                    <div class="wrapper">
+                        <h5><strong>Learning Hours Awarded</strong></h5>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <div class=" container">
-        <br />
-        <form id="form1" runat="server">
-            <div id="pie" class="pull-left" style="width: 500px; height: 400px; margin: 0 auto"></div>
-        </form>
-    </div>
+
+    <br />
+    <form id="form1" runat="server">
+        <div class=" container">
+            <div class="row">
+                <div class="col-md-6">
+                    <div id="userPieChart" class="pull-left" style="min-width: 300px; width: 500px; height: 400px; margin: 0 auto"></div>
+                </div>
+                <div class="col-md-6">
+                    <div id="coursePieChart" class="pull-left" style="min-width: 300px; width: 500px; height: 400px; margin: 0 auto"></div>
+                </div>
+            </div>
+        </div>
+    </form>
+
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder2" runat="server">
 </asp:Content>
