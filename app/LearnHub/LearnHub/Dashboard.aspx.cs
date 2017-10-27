@@ -32,6 +32,8 @@ namespace LearnHub
 
             renderUserPieChart();
             renderCoursePieChart();
+            renderPopularCourse();
+            renderPopularCourseCategory();
         }
 
         public string userPieChartData
@@ -41,6 +43,18 @@ namespace LearnHub
         }
 
         public string coursePieChartData
+        {
+            get;
+            set;
+        }
+
+        public string popularCourseData
+        {
+            get;
+            set;
+        }
+
+        public string popularCourseName
         {
             get;
             set;
@@ -94,6 +108,52 @@ namespace LearnHub
             coursePieChartData = temp;
         }
 
+        public void renderPopularCourse()
+        {
+            DataTable dt = GetPopularCourseData(); //Assuming that GetData already populating with data as datatable   
+            List<int> _data = new List<int>();
+            //Dictionary<String, string> tHash = new Dictionary<string, string>();
+            string temp = "[";
+            int counter = 1;
+            foreach (DataRow row in dt.Rows)
+            {
+
+                int count = (int)row["count"];
+
+                temp = temp + count;
+                if (counter != dt.Rows.Count)
+                {
+                    temp = temp + "," + " ";
+                }
+
+                counter++;
+            }
+            temp = temp + "]";
+            popularCourseData = temp;
+        }
+
+        public void renderPopularCourseCategory()
+        {
+            DataTable dt = GetPopularCourseName();
+            string temp = "[";
+            int counter = 1;
+
+            foreach (DataRow row in dt.Rows)
+            {
+                temp = temp + $"'{(string)row["courseName"]}'";
+                if (counter != dt.Rows.Count)
+                {
+                    temp = temp + "," + " ";
+                }
+
+                counter++;
+            }
+
+            temp = temp + "]";
+            popularCourseName = temp;
+
+        }
+
         public DataTable GetUserPieData()
         {
             string connectionString = ConfigurationManager.ConnectionStrings["DBConnectionString"].ConnectionString;
@@ -125,6 +185,51 @@ namespace LearnHub
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 using (SqlCommand command = new SqlCommand(" select cc.category AS categoryName, count(c.elearn_courseName) AS count from [Elearn_courseCategory] cc left outer join [Elearn_course] c ON c.categoryID = cc.categoryID group by cc.category", connection))
+                {
+                    connection.Open();
+                    using (SqlDataReader dr = command.ExecuteReader())
+                    {
+                        if (dr.HasRows)
+                        {
+                            dt.Load(dr);
+                        }
+                    }
+                }
+            }
+
+            return dt;
+        }
+
+        public DataTable GetPopularCourseData()
+        {
+            string connectionString = ConfigurationManager.ConnectionStrings["DBConnectionString"].ConnectionString;
+            DataTable dt = new DataTable();
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                using (SqlCommand command = new SqlCommand("select top 10 count(*) as count from [QuizResult] qr left outer join [Quiz] q on qr.quizID = q.quizid left outer join [Elearn_course] c on q.elearn_courseID = c.elearn_courseID group by c.elearn_courseName order by count desc", connection))
+                {
+                    connection.Open();
+                    using (SqlDataReader dr = command.ExecuteReader())
+                    {
+                        if (dr.HasRows)
+                        {
+                            dt.Load(dr);
+                        }
+                    }
+                }
+            }
+
+            return dt;
+        }
+        public DataTable GetPopularCourseName()
+        {
+            string connectionString = ConfigurationManager.ConnectionStrings["DBConnectionString"].ConnectionString;
+            DataTable dt = new DataTable();
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                using (SqlCommand command = new SqlCommand("select top 10 c.elearn_courseName AS courseName from [QuizResult] qr left outer join [Quiz] q on qr.quizID = q.quizid left outer join [Elearn_course] c on q.elearn_courseID = c.elearn_courseID group by c.elearn_courseName order by count(*) desc", connection))
                 {
                     connection.Open();
                     using (SqlDataReader dr = command.ExecuteReader())

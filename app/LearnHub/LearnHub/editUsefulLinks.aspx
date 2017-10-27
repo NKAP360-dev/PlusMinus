@@ -90,7 +90,7 @@
                         <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="Please input a Link" ControlToValidate="txtLink" ForeColor="Red" ValidationGroup="ValidateForm" Display="Dynamic"></asp:RequiredFieldValidator>
                     </div>
                 </div>
-                <div class="form-group">
+                <div class="form-group required">
                     <strong>
                         <asp:Label runat="server" CssClass="col-lg-2 control-label" Text="Description"></asp:Label></strong>
                     <div class="col-lg-9">

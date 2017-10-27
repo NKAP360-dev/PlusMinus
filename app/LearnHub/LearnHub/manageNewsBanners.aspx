@@ -159,14 +159,13 @@
            <asp:SqlDataSource ID="SqlDataSourceMessages" runat="server" ConnectionString="<%$ ConnectionStrings:DBConnectionString %>" SelectCommand="SELECT * FROM [News] where status = 'Active' ORDER BY levels"></asp:SqlDataSource>
             <asp:GridView ID="gvMessages" runat="server" AutoGenerateColumns="False" DataKeyNames="banner_name" DataSourceID="SqlDataSourceMessages" GridLines="None" CssClass="table table-striped table-hover">
                 <Columns>
-                    
+                    <asp:BoundField DataField="banner_name" HeaderText="Banner Name" SortExpression="banner_name" />
+
                     <asp:TemplateField>
                         <ItemTemplate>
                             <input type="hidden" name="banner_id" value='<%# Eval("banner_id") %>' />
                         </ItemTemplate>
                     </asp:TemplateField>
-
-                    <asp:BoundField DataField="banner_name" HeaderText="Banner Name" SortExpression="banner_name" />
 
                     <asp:TemplateField>
                         <ItemTemplate>
@@ -180,7 +179,7 @@
             </asp:GridView>
              <div class="wrapper">
                 <div class="form-group">
-                    <asp:LinkButton ID="btnSave" CssClass="btn btn-primary" runat="server" OnClick="btnSave_Click">Save Order</asp:LinkButton>
+                    <asp:LinkButton ID="btnSave" CssClass="btn btn-primary" runat="server" OnClick="btnSave_Click" OnClientClick="btnSaveClick()">Save Order</asp:LinkButton>
                     <br />
                 </div>
                 

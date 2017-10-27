@@ -101,6 +101,49 @@
                 }]
             });
         });
+
+        $(function () {
+            Highcharts.chart('popularCourseChart', {
+                chart: {
+                    type: 'column'
+                },
+                title: {
+                    text: 'Top 10 Courses by No. of Total Quiz Attempts'
+                },              
+                xAxis: {
+                    categories: <%= popularCourseName%>,
+                    crosshair: true,
+                    title: {
+                        text:'Course Name'
+                    }
+                },
+                yAxis: {
+                    min: 0,
+                    title: {
+                        text: 'No. of Total Quiz Attempts'
+                    }
+                },
+                tooltip: {
+                    headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                    pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                    '<td style="padding:0"><b>{point.y}</b></td></tr>',
+                    footerFormat: '</table>',
+                    shared: true,
+                    useHTML: true
+                },
+                plotOptions: {
+                    column: {
+                        pointPadding: 0.2,
+                        borderWidth: 0
+                    }
+                },
+                series: [{
+                    name: 'No. of Total Quiz Attempt',
+                    data: <%= popularCourseData%>,
+                    type: 'column'
+                }]
+            });
+         });
     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -167,6 +210,12 @@
                 </div>
                 <div class="col-md-6">
                     <div id="coursePieChart" class="pull-left" style="min-width: 300px; width: 500px; height: 400px; margin: 0 auto"></div>
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-md-6">
+                     <div id="popularCourseChart" class="pull-left" style="min-width: 300px; width: 500px; height: 400px; margin: 0 auto"></div>
                 </div>
             </div>
         </div>
