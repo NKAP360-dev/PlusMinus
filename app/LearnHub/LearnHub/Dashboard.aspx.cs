@@ -171,6 +171,7 @@ namespace LearnHub
                             dt.Load(dr);
                         }
                     }
+                    connection.Close();
                 }
             }
 
@@ -194,6 +195,7 @@ namespace LearnHub
                             dt.Load(dr);
                         }
                     }
+                    connection.Close();
                 }
             }
 
@@ -217,6 +219,7 @@ namespace LearnHub
                             dt.Load(dr);
                         }
                     }
+                    connection.Close();
                 }
             }
 
@@ -239,6 +242,7 @@ namespace LearnHub
                             dt.Load(dr);
                         }
                     }
+                    connection.Close();
                 }
             }
 

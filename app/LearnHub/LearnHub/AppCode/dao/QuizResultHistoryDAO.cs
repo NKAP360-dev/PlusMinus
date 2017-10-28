@@ -157,7 +157,7 @@ namespace LearnHub.AppCode.dao
                 conn.Open();
                 SqlCommand comm = new SqlCommand();
                 comm.Connection = conn;
-                comm.CommandText = "select * from [QuizResultHistory]";
+                comm.CommandText = "select * " + "from [QuizResultHistory]";
                 SqlDataReader dr = comm.ExecuteReader();
                 while (dr.Read())
                 {

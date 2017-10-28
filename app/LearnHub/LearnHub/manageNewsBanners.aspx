@@ -180,7 +180,9 @@
              <div class="wrapper">
                 <div class="form-group">
                     <asp:LinkButton ID="btnSave" CssClass="btn btn-primary" runat="server" OnClick="btnSave_Click" OnClientClick="btnSaveClick()">Save Order</asp:LinkButton>
-                    <br />
+                    <br /><br />
+                    <%--To be integrated by eugene--%>
+                    <asp:Label ID="lblSuccessMsg" CssClass="text-success" runat="server" Text="Order has been saved successfully"></asp:Label>
                 </div>
                 
             </div>

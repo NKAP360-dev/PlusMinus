@@ -580,7 +580,7 @@ namespace LearnHub.AppCode.dao
                 conn.Open();
                 SqlCommand comm = new SqlCommand();
                 comm.Connection = conn;
-                comm.CommandText = "select role from User_roles where userID=@userID";
+                comm.CommandText = "select role from [User_roles] where userID=@userID";
                 comm.Parameters.AddWithValue("@userID", userID);
                 SqlDataReader dr = comm.ExecuteReader();
                 while (dr.Read())

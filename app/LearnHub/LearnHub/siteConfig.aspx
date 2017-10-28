@@ -184,6 +184,30 @@
                     </div>
                 </div>
             </a>
+            <a href="manageNewsBanners.aspx">
+                <div class="col-md-3 btn-default">
+                    <br />
+                    <br />
+                    <div class="wrapper">
+                        <span style="font-size: 75px;" class="glyphicon glyphicon-picture"></span>
+                        <br />
+                        <h3>Manage Banners</h3>
+                        <br />
+                    </div>
+                </div>
+            </a>
+            <a href="manageNews.aspx">
+                <div class="col-md-3 btn-default">
+                    <br />
+                    <br />
+                    <div class="wrapper">
+                        <span style="font-size: 75px;" class="glyphicon glyphicon-blackboard"></span>
+                        <br />
+                        <h3>Manage News</h3>
+                        <br />
+                    </div>
+                </div>
+            </a>
         </div>
     </div>
     <br />
