@@ -145,43 +145,6 @@ namespace LearnHub.AppCode.dao
             return toReturn;
         }
 
-        public List<QuizResultHistory> getAll()
-        {
-            SqlConnection conn = new SqlConnection();
-            List<QuizResultHistory> toReturn = new List<QuizResultHistory>();
-            try
-            {
-                conn = new SqlConnection();
-                string connstr = ConfigurationManager.ConnectionStrings["DBConnectionString"].ToString();
-                conn.ConnectionString = connstr;
-                conn.Open();
-                SqlCommand comm = new SqlCommand();
-                comm.Connection = conn;
-                comm.CommandText = "select * " + "from [QuizResultHistory]";
-                SqlDataReader dr = comm.ExecuteReader();
-                while (dr.Read())
-                {
-                    QuizResultHistory qrh = new QuizResultHistory();
-                    qrh.setUserID((string)dr["userID"]);
-                    QuizQuestionDAO qqDAO = new QuizQuestionDAO();
-                    QuizAnswerDAO qaDAO = new QuizAnswerDAO();
-                    qrh.setQuestion(qqDAO.getQuizQuestionByID((int)dr["quizQuestionID"]));
-                    qrh.setAnswer(qaDAO.getQuizAnswerByID((int)dr["quizAnswerID"]));
-                    qrh.setAttempt((int)dr["attempt"]);
-                    qrh.setQuizID((int)dr["quizID"]);
-                    toReturn.Add(qrh);
-                }
-                dr.Close();
-            }
-            catch (SqlException ex)
-            {
-                throw ex;
-            }
-            finally
-            {
-                conn.Close();
-            }
-            return toReturn;
-        }
+      
     }
 }

@@ -28,7 +28,7 @@ namespace LearnHub
 
             //QuizResultHistoryDAO qrhDAO = new QuizResultHistoryDAO();
             //List<QuizResultHistory> allQuiz = qrhDAO.getAll();
-            //lblQuizAttempts.Text = allQuiz.Count().ToString();
+            lblQuizAttempts.Text = GetTotalNoOfQuiz().ToString();
 
             renderUserPieChart();
             renderCoursePieChart();
@@ -60,6 +60,7 @@ namespace LearnHub
             set;
         }
 
+        
         public void renderUserPieChart()
         {
             DataTable dt = GetUserPieData(); //Assuming that GetData already populating with data as datatable   
@@ -247,6 +248,30 @@ namespace LearnHub
             }
 
             return dt;
+        }
+
+        public int GetTotalNoOfQuiz() {
+            string connectionString = ConfigurationManager.ConnectionStrings["DBConnectionString"].ConnectionString;
+            DataTable dt = new DataTable();
+            int toReturn = 0;
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                using (SqlCommand command = new SqlCommand("select count(*) from [QuizResultHistory]", connection))
+                {
+                    connection.Open();
+                    using (SqlDataReader dr = command.ExecuteReader())
+                    {
+                        if (dr.HasRows)
+                        {
+                            dt.Load(dr);
+                        }
+                    }
+                    connection.Close();
+                }
+            }
+            toReturn = int.Parse(dt.Rows[0][0].ToString());
+            return toReturn;
         }
     }
 }
