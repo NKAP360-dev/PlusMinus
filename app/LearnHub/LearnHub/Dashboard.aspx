@@ -114,7 +114,7 @@
                     categories: <%= popularCourseName%>,
                     crosshair: true,
                     title: {
-                        text:'Course Name'
+                        text:'Course'
                     }
                 },
                 yAxis: {
@@ -143,6 +143,49 @@
                     type: 'column'
                 }]
             });
+        });
+
+        $(function () {
+            Highcharts.chart('auditFunctionChart', {
+                chart: {
+                    type: 'column'
+                },
+                title: {
+                    text: 'No. of Activities per Function'
+                },
+                xAxis: {
+                    categories: <%= auditFunctionName%>,
+                    crosshair: true,
+                    title: {
+                        text: 'Function'
+                    }
+                },
+                yAxis: {
+                    min: 0,
+                    title: {
+                        text: 'No. of Activities'
+                    }
+                },
+                tooltip: {
+                    headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                    pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                    '<td style="padding:0"><b>{point.y}</b></td></tr>',
+                    footerFormat: '</table>',
+                    shared: true,
+                    useHTML: true
+                },
+                plotOptions: {
+                    column: {
+                        pointPadding: 0.2,
+                        borderWidth: 0
+                    }
+                },
+                series: [{
+                    name: 'No. of Activities',
+                    data: <%= auditFunctionData%>,
+                    type: 'column'
+                }]
+             });
          });
     </script>
 </asp:Content>
@@ -216,6 +259,9 @@
             <div class="row">
                 <div class="col-md-6">
                      <div id="popularCourseChart" class="pull-left" style="min-width: 300px; width: 500px; height: 400px; margin: 0 auto"></div>
+                </div>
+                 <div class="col-md-6">
+                     <div id="auditFunctionChart" class="pull-left" style="min-width: 300px; width: 500px; height: 400px; margin: 0 auto"></div>
                 </div>
             </div>
         </div>

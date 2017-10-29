@@ -269,3 +269,4 @@ C:\Users\weilinggwee\plusminus\app\LearnHub\LearnHub\bin\Microsoft.AI.WindowsSer
 C:\Users\weilinggwee\plusminus\app\LearnHub\LearnHub\bin\Microsoft.AI.Web.xml
 C:\Users\weilinggwee\plusminus\app\LearnHub\LearnHub\obj\Debug\LearnHub.dll
 C:\Users\weilinggwee\plusminus\app\LearnHub\LearnHub\obj\Debug\LearnHub.pdb
+C:\Users\weilinggwee\plusminus\app\LearnHub\LearnHub\obj\Debug\LearnHub.csprojResolveAssemblyReference.cache

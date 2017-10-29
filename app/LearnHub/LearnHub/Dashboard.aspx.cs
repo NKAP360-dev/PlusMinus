@@ -26,14 +26,16 @@ namespace LearnHub
             ArrayList allCourses = courseDAO.getAllCourses();
             lblCourses.Text = allCourses.Count.ToString();
 
-            //QuizResultHistoryDAO qrhDAO = new QuizResultHistoryDAO();
-            //List<QuizResultHistory> allQuiz = qrhDAO.getAll();
             lblQuizAttempts.Text = GetTotalNoOfQuiz().ToString();
+
+            lblHours.Text = GetTotalNoOfLearningHours().ToString();
 
             renderUserPieChart();
             renderCoursePieChart();
             renderPopularCourse();
             renderPopularCourseCategory();
+            renderAuditFunction();
+            renderAuditFunctionName();
         }
 
         public string userPieChartData
@@ -56,6 +58,16 @@ namespace LearnHub
 
         public string popularCourseName
         {
+            get;
+            set;
+        }
+
+        public string auditFunctionData {
+            get;
+            set;
+        }
+
+        public string auditFunctionName {
             get;
             set;
         }
@@ -155,6 +167,50 @@ namespace LearnHub
 
         }
 
+        public void renderAuditFunction()
+        {
+            DataTable dt = GetAuditFunctionData(); //Assuming that GetData already populating with data as datatable   
+            List<int> _data = new List<int>();
+            string temp = "[";
+            int counter = 1;
+            foreach (DataRow row in dt.Rows)
+            {
+
+                int count = (int)row["count"];
+
+                temp = temp + count;
+                if (counter != dt.Rows.Count)
+                {
+                    temp = temp + "," + " ";
+                }
+
+                counter++;
+            }
+            temp = temp + "]";
+            auditFunctionData = temp;
+        }
+
+        public void renderAuditFunctionName()
+        {
+            DataTable dt = GetAuditFunctionName();
+            string temp = "[";
+            int counter = 1;
+
+            foreach (DataRow row in dt.Rows)
+            {
+                temp = temp + $"'{(string)row["functionmodified"]}'";
+                if (counter != dt.Rows.Count)
+                {
+                    temp = temp + "," + " ";
+                }
+
+                counter++;
+            }
+
+            temp = temp + "]";
+            auditFunctionName = temp;
+
+        }
         public DataTable GetUserPieData()
         {
             string connectionString = ConfigurationManager.ConnectionStrings["DBConnectionString"].ConnectionString;
@@ -250,6 +306,52 @@ namespace LearnHub
             return dt;
         }
 
+        public DataTable GetAuditFunctionData()
+        {
+            string connectionString = ConfigurationManager.ConnectionStrings["DBConnectionString"].ConnectionString;
+            DataTable dt = new DataTable();
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                using (SqlCommand command = new SqlCommand("select count(*) as count from [Audit] group by functionModified", connection))
+                {
+                    connection.Open();
+                    using (SqlDataReader dr = command.ExecuteReader())
+                    {
+                        if (dr.HasRows)
+                        {
+                            dt.Load(dr);
+                        }
+                    }
+                    connection.Close();
+                }
+            }
+
+            return dt;
+        }
+        public DataTable GetAuditFunctionName()
+        {
+            string connectionString = ConfigurationManager.ConnectionStrings["DBConnectionString"].ConnectionString;
+            DataTable dt = new DataTable();
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                using (SqlCommand command = new SqlCommand("select functionmodified from [Audit] group by functionModified", connection))
+                {
+                    connection.Open();
+                    using (SqlDataReader dr = command.ExecuteReader())
+                    {
+                        if (dr.HasRows)
+                        {
+                            dt.Load(dr);
+                        }
+                    }
+                    connection.Close();
+                }
+            }
+
+            return dt;
+        }
         public int GetTotalNoOfQuiz() {
             string connectionString = ConfigurationManager.ConnectionStrings["DBConnectionString"].ConnectionString;
             DataTable dt = new DataTable();
@@ -258,6 +360,31 @@ namespace LearnHub
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 using (SqlCommand command = new SqlCommand("select count(*) from [QuizResultHistory]", connection))
+                {
+                    connection.Open();
+                    using (SqlDataReader dr = command.ExecuteReader())
+                    {
+                        if (dr.HasRows)
+                        {
+                            dt.Load(dr);
+                        }
+                    }
+                    connection.Close();
+                }
+            }
+            toReturn = int.Parse(dt.Rows[0][0].ToString());
+            return toReturn;
+        }
+
+        public int GetTotalNoOfLearningHours()
+        {
+            string connectionString = ConfigurationManager.ConnectionStrings["DBConnectionString"].ConnectionString;
+            DataTable dt = new DataTable();
+            int toReturn = 0;
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                using (SqlCommand command = new SqlCommand("select sum(c.hoursAwarded) from [QuizResult] qr inner join [Quiz] q on qr.quizID = q.quizID inner join [Elearn_course] c on q.elearn_courseID = c.elearn_courseID where qr.grade = 'pass'", connection))
                 {
                     connection.Open();
                     using (SqlDataReader dr = command.ExecuteReader())
