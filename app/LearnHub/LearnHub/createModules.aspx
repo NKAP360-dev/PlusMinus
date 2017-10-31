@@ -106,7 +106,7 @@
                         return false;
                     }
                     else {
-                        if (indexes[1] == 5) {
+                        if (indexes[1] == 5 || indexes[1] == 0) {
                             console.log("1 dec");
                             console.log(indexes[1]);
                             console.log(indexes[1].length);
@@ -391,7 +391,7 @@
                         </div>
                         <asp:RequiredFieldValidator ID="rfv_hoursInput" runat="server" ErrorMessage="Please Input the Number of Learning Hours" ControlToValidate="hoursInput" ForeColor="Red" ValidationGroup="ValidateForm"></asp:RequiredFieldValidator>
                          <br />
-                        <asp:CustomValidator ID="cv_hoursInputFormat" runat="server" EnableClientScript="true" ErrorMessage="Please enter hours in either whole number or with only one decimal place e.g (15.5)" ClientValidationFunction="ValidateHoursFormat" ForeColor="Red" ValidationGroup="ValidateForm" Display="Dynamic"></asp:CustomValidator>
+                        <asp:CustomValidator ID="cv_hoursInputFormat" runat="server" EnableClientScript="true" ErrorMessage="Please enter hours in either whole number or with only one decimal place that is either 0.0 or 0.5 (e.g 15.5)" ClientValidationFunction="ValidateHoursFormat" ForeColor="Red" ValidationGroup="ValidateForm" Display="Dynamic"></asp:CustomValidator>
                         <br />
                         <asp:CustomValidator ID="cv_hoursInput" runat="server" EnableClientScript="true" ErrorMessage="Please enter a value between 0.0 and 100000.0" ClientValidationFunction="ValidateHours" ForeColor="Red" ValidationGroup="ValidateForm" Display="Dynamic"></asp:CustomValidator>
                         
