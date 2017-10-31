@@ -146,11 +146,11 @@ namespace LearnHub
                 }
                 else if (val.Equals("video"))
                 {
-                    string title = TextBox1.Text;
-                    string desc = TextBox2.Text;
+                    string title = uploadTitleInput2.Text;
+                    string desc = uploadDescriptionInput2.Text;
                     string link = txtVideo.Text;
                     Course_elearnDAO cdao = new Course_elearnDAO();
-                    Upload u = new Upload(current, DateTime.Now, TextBox1.Text, TextBox2.Text);
+                    Upload u = new Upload(current, DateTime.Now, uploadTitleInput2.Text, uploadDescriptionInput2.Text);
                     u.upload_type = "video";
                     u.video_link = link;
                     Upload upload_succ = cdao.upload_entry_video(u);
@@ -160,7 +160,7 @@ namespace LearnHub
                 }
                 else
                 {
-                    string link = TextBox5.Text;
+                    string link = txtVideo2.Text;
                     if (FileUpload2.HasFile)
                     {
                         int coursedir = current.getCourseID();
@@ -177,7 +177,7 @@ namespace LearnHub
                             .SaveAs(Server.MapPath(filepath) + fileName);
                             string totalpath1 = Server.MapPath(filepath) + fileName;
                             Course_elearnDAO cdao = new Course_elearnDAO();
-                            Upload u = new Upload(current, DateTime.Now, TextBox3.Text, TextBox4.Text, totalpath1);
+                            Upload u = new Upload(current, DateTime.Now, uploadTitleInput3.Text, uploadDescriptionInput3.Text, totalpath1);
                             u.upload_type = "both";
                             u.video_link = link;
                             Upload upload_succ = cdao.upload_entry_both(u);
@@ -188,6 +188,15 @@ namespace LearnHub
                         }
                     }
                 }
+                uploadTitleInput.Text = "";
+                uploadDescriptionInput.Text = "";
+                uploadTitleInput2.Text = "";
+                uploadDescriptionInput2.Text = "";
+                txtVideo.Text = "";
+                uploadTitleInput3.Text = "";
+                uploadDescriptionInput3.Text = "";
+                txtVideo2.Text = "";
+                rblUploadType.SelectedValue = "file";
             }
         }
 
@@ -214,7 +223,20 @@ namespace LearnHub
 
         protected void checkTitleExists(object sender, ServerValidateEventArgs args)
         {
-            String input = uploadTitleInput.Text;
+            String input = "";
+            if (rblUploadType.SelectedValue.Equals("file"))
+            {
+                input = uploadTitleInput.Text;
+            }
+            else if (rblUploadType.SelectedValue.Equals("video"))
+            {
+                input = uploadTitleInput2.Text;
+            }
+            else if (rblUploadType.SelectedValue.Equals("both"))
+            {
+                input = uploadTitleInput3.Text;
+            }
+                
             Boolean checker = false;
             Course_elearnDAO cdao = new Course_elearnDAO();
             ArrayList list = cdao.get_uploaded_content_by_id(current);
@@ -240,6 +262,7 @@ namespace LearnHub
                 args.IsValid = true;
             }
         }
+
         protected void setAudit(User u, string functionModified, string operation, string id_of_function, string remarks)
         {
             //set audit
@@ -261,15 +284,56 @@ namespace LearnHub
                 fileOnlyPanel.Visible = true;
                 videoOnlyPanel.Visible = false;
                 bothPanel.Visible = false;
+                rfv_uploadTitleInput.Enabled = true;
+                cv_uploadTitleInput.Enabled = true;
+                rfv_uploadDescriptionInput.Enabled = true;
+                rfv_FileUpload1.Enabled = true;
+                rfv_uploadTitleInput2.Enabled = false;
+                cv_uploadTitleInput2.Enabled = false;
+                rfv_uploadDescriptionInput2.Enabled = false;
+                rfv_txtVideo.Enabled = false;
+                rfv_uploadTitleInput3.Enabled = false;
+                cv_uploadTitleInput3.Enabled = false;
+                rfv_uploadDescriptionInput3.Enabled = false;
+                rfv_txtVideo2.Enabled = false;
+                rfv_FileUpload2.Enabled = false;
             }
             else if (rblUploadType.SelectedValue.Equals("video")) {
                 fileOnlyPanel.Visible = false;
                 videoOnlyPanel.Visible = true;
                 bothPanel.Visible = false;
+                rfv_uploadTitleInput.Enabled = false;
+                cv_uploadTitleInput.Enabled = false;
+                rfv_uploadDescriptionInput.Enabled = false;
+                rfv_FileUpload1.Enabled = false;
+                rfv_uploadTitleInput2.Enabled = true;
+                cv_uploadTitleInput2.Enabled = true;
+                rfv_uploadDescriptionInput2.Enabled = true;
+                rfv_txtVideo.Enabled = true;
+                rfv_uploadTitleInput3.Enabled = false;
+                cv_uploadTitleInput3.Enabled = false;
+                rfv_uploadDescriptionInput3.Enabled = false;
+                rfv_txtVideo2.Enabled = false;
+                rfv_FileUpload2.Enabled = false;
+
             } else if (rblUploadType.SelectedValue.Equals("both")) {
                 fileOnlyPanel.Visible = false;
                 videoOnlyPanel.Visible = false;
                 bothPanel.Visible = true;
+                rfv_uploadTitleInput.Enabled = false;
+                cv_uploadTitleInput.Enabled = false;
+                rfv_uploadDescriptionInput.Enabled = false;
+                rfv_FileUpload1.Enabled = false;
+                rfv_uploadTitleInput2.Enabled = false;
+                cv_uploadTitleInput2.Enabled = false;
+                rfv_uploadDescriptionInput2.Enabled = false;
+                rfv_txtVideo.Enabled = false;
+                rfv_uploadTitleInput3.Enabled = true;
+                cv_uploadTitleInput3.Enabled = true;
+                rfv_uploadDescriptionInput3.Enabled = true;
+                rfv_txtVideo2.Enabled = true;
+                rfv_FileUpload2.Enabled = true;
+
             }
 
         }
