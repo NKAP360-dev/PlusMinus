@@ -87,6 +87,10 @@
 
             window.onbeforeunload = unloadPage;
         });
+
+        function showModal() {
+            $('#addForm').show();
+        }
     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -125,6 +129,7 @@
                         <asp:Label runat="server" CssClass="col-lg-2 control-label" Text="Banner Name"></asp:Label></strong>
                     <div class="input-group col-lg-9">
                         <asp:TextBox ID="txtName" runat="server" CssClass="form-control" placeholder="Banner Name"></asp:TextBox>
+                        <asp:RequiredFieldValidator ID="rfv_txtName" runat="server" ErrorMessage="Please enter a Name" ControlToValidate="txtName" ForeColor="Red" Display="Dynamic" ValidationGroup="ValidateForm"></asp:RequiredFieldValidator>
                     </div>
                 </div>
 
@@ -133,6 +138,7 @@
                         <asp:Label runat="server" CssClass="col-lg-2 control-label" Text="Banner Link"></asp:Label></strong>
                     <div class="input-group col-lg-9">
                         <asp:TextBox ID="txtLink" runat="server" CssClass="form-control" placeholder="Page that user will land upon clicking the banner"></asp:TextBox>
+                        <asp:RequiredFieldValidator ID="rfv_txtLink" runat="server" ErrorMessage="Please enter a Link" ControlToValidate="txtLink" ForeColor="Red" Display="Dynamic" ValidationGroup="ValidateForm"></asp:RequiredFieldValidator>
                     </div>
                 </div>
 
@@ -141,6 +147,8 @@
                         <asp:Label runat="server" CssClass="col-lg-2 control-label" Text="Upload Banner Image"></asp:Label></strong>
                     <div class="col-lg-9">
                      <asp:FileUpload ID="FileUpload1" runat="server"/>
+                        <asp:RequiredFieldValidator ID="rfv_FileUpload1" runat="server" ErrorMessage="Please select an item to upload!" ControlToValidate="FileUpload1" ForeColor="Red" Display="Dynamic" ValidationGroup="ValidateForm"></asp:RequiredFieldValidator>
+                        <asp:RegularExpressionValidator id="reg_FileUpload1" runat="server" ErrorMessage="Only jpeg and png file is allowed!" ValidationExpression ="^.+(.jpeg|.JPEG|.jpg|.JPG|.png|.PNG)$" ControlToValidate="FileUpload1" ForeColor="Red" Display="Dynamic" ValidationGroup="ValidateForm"> </asp:RegularExpressionValidator>
                         </div>
 
                 </div>
