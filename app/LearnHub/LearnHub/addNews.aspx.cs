@@ -13,7 +13,6 @@ namespace LearnHub
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-           
         }
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
@@ -64,6 +63,41 @@ namespace LearnHub
             a.dateModified = DateTime.Now;
             a.remarks = remarks;
             aDAO.createAudit(a);
+        }
+        protected void checkForm(object sender, EventArgs e)
+        {
+            if (Session["FileUpload1"] == null && FileUpload1.HasFile)
+            {
+                Session["FileUpload1"] = FileUpload1;
+                System.Diagnostics.Debug.WriteLine("scenario 1");
+            }
+            else if (Session["FileUpload1"] != null && (!FileUpload1.HasFile))
+            {
+                FileUpload1 = (FileUpload)Session["FileUpload1"];
+                System.Diagnostics.Debug.WriteLine("scenario 2");
+            }
+            else if (FileUpload1.HasFile)
+            {
+                Session["FileUpload1"] = FileUpload1;
+                System.Diagnostics.Debug.WriteLine("scenario 3");
+
+            }
+            System.Diagnostics.Debug.WriteLine(((FileUpload)Session["FileUpload1"]).FileName);
+            Page.Validate("ValidateForm");
+            System.Diagnostics.Debug.WriteLine("checkForm");
+            if (!Page.IsValid)
+            {
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "openModal();", true);
+                //lblErrorMsgFinal.Text = "You have not filled up all of the required fields";
+                cfmSubmit.Enabled = false;
+            }
+            else
+            {
+                
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "openModal();", true);
+                //lblErrorMsgFinal.Text = "";
+                cfmSubmit.Enabled = true;
+            }
         }
     }
 }

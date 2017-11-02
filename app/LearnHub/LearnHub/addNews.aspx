@@ -32,6 +32,42 @@
 
 
         }
+        function ValidateModuleDescription(sender, args) {
+            console.log("validateModuleDesc");
+            var moduleDescription = document.getElementById("<%= descriptionModuleInput.ClientID %>").value;
+            console.log("moduledesc" + moduleDescription);
+            if (moduleDescription == "") {
+                console.log("no desc");
+                args.IsValid = false;
+            }
+            else {
+                console.log("Yes desc");
+                args.IsValid = true;
+            }
+        }
+        function openModal() {
+            console.log("submitModal");
+            $("#submitModal").modal();
+        }
+
+        function checkForm_Clicked(source, args) {
+
+            Page_ClientValidate('ValidateForm');
+            //Page_ClientValidate();
+
+            if (!Page_IsValid) {
+                document.getElementById('<%= lblErrorMsgFinal.ClientID %>').style.display = 'inherit';
+                document.getElementById('<%= lblErrorMsgFinal.ClientID %>').innerHTML = "You have not filled up all of the required fields";
+                //Page_ClientValidate('summaryGroup');
+                document.getElementById('<%= cfmSubmit.ClientID %>').disabled = true;
+                console.log("The end");
+            }
+            else {
+                document.getElementById('<%= lblErrorMsgFinal.ClientID %>').innerHTML = "";
+                document.getElementById('<%= cfmSubmit.ClientID %>').disabled = false;
+            }
+            return false;
+        }
     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -88,16 +124,16 @@
 
             <div class="verticalLine"></div>
             <br />
-
             <div class="form-group required">
                 <strong>
                     <asp:Label runat="server" CssClass="col-lg-2 control-label" Text="News Type"></asp:Label></strong>
                 <div class="col-lg-9">
                     <asp:DropDownList ID="ddlType" runat="server" CssClass="form-control">
                         <asp:ListItem Text="-- Select --" Selected="true" Value="none"></asp:ListItem>
-                        <asp:ListItem>News</asp:ListItem>
-                        <asp:ListItem>Update</asp:ListItem>
+                        <asp:ListItem Value="news">News</asp:ListItem>
+                        <asp:ListItem Value="update">Update</asp:ListItem>
                     </asp:DropDownList>
+                    <asp:RequiredFieldValidator ID="rfv_ddlType" runat="server" ControlToValidate="ddlType" ErrorMessage="Please select a News Type" InitialValue="none" ForeColor="Red" Display="Dynamic" ValidationGroup="ValidateForm"></asp:RequiredFieldValidator>
                 </div>
             </div>
 
@@ -106,6 +142,7 @@
                     <asp:Label runat="server" CssClass="col-lg-2 control-label" Text="News Title"></asp:Label></strong>
                 <div class="col-lg-9">
                     <asp:TextBox ID="txtTitle" runat="server" CssClass="form-control" placeholder="Banner Name"></asp:TextBox>
+                    <asp:RequiredFieldValidator ID="rfv_txtTitle" runat="server" ErrorMessage="Please enter a Title" ControlToValidate="txtTitle" ForeColor="Red" Display="Dynamic" ValidationGroup="ValidateForm"></asp:RequiredFieldValidator>
                 </div>
             </div>
 
@@ -114,6 +151,8 @@
                     <asp:Label runat="server" CssClass="col-lg-2 control-label" Text="Upload News Image"></asp:Label></strong>
                 <div class="col-lg-9">
                     <asp:FileUpload ID="FileUpload1" runat="server" />
+                    <asp:RequiredFieldValidator ID="rfv_FileUpload1" runat="server" ErrorMessage="Please select an item to upload!" ControlToValidate="FileUpload1" ForeColor="Red" Display="Dynamic" ValidationGroup="ValidateForm"></asp:RequiredFieldValidator>
+                    <asp:RegularExpressionValidator id="reg_FileUpload1" runat="server" ErrorMessage="Only jpeg and png file is allowed!" ValidationExpression ="^.+(.jpeg|.JPEG|.jpg|.JPG|.png|.PNG)$" ControlToValidate="FileUpload1" ForeColor="Red" Display="Dynamic" ValidationGroup="ValidateForm"> </asp:RegularExpressionValidator>
                 </div>
             </div>
 
@@ -123,6 +162,7 @@
                 <div class="col-lg-9">
                     <asp:TextBox ID="txtDesc" TextMode="MultiLine" runat="server" CssClass="form-control" placeholder="Enter front page description"
                         onKeyDown="limitText(this, 130);" onKeyUp="limitText((this, 130);"></asp:TextBox>
+                    <asp:RequiredFieldValidator ID="rfv_txtDesc" runat="server" ErrorMessage="Please enter a Description" ControlToValidate="txtDesc" ForeColor="Red" Display="Dynamic" ValidationGroup="ValidateForm"></asp:RequiredFieldValidator>
                     <div class="pull-right">
                         <p>
                             You have
@@ -138,6 +178,7 @@
                     <asp:Label runat="server" CssClass="col-lg-2 control-label" Text="News Content"></asp:Label></strong>
                 <div class="col-lg-9">
                     <CKEditor:CKEditorControl ID="descriptionModuleInput" runat="server"></CKEditor:CKEditorControl>
+                    <asp:CustomValidator ID="cv_descriptionModuleInput" runat="server" EnableClientScript="true" ErrorMessage="Please input a Course Description" ClientValidationFunction="ValidateModuleDescription" ForeColor="Red" ValidationGroup="ValidateForm"></asp:CustomValidator>
                 </div>
             </div>
         </div>
@@ -145,10 +186,9 @@
             <br />
 
             <div class="wrapper">
-                <asp:Button ID="submitBtn" CssClass="btn btn-primary" runat="server" Text="Submit" data-toggle="modal" href="#submitModal" UseSubmitBehavior="False" OnClientClick="return false;" />
+                <asp:Button ID="submitBtn" CssClass="btn btn-primary" runat="server" Text="Submit" data-toggle="modal" href="#submitModal" UseSubmitBehavior="False" OnClientClick="return checkForm_Clicked();" CausesValidation="True" />
             </div>
         </div>
-
         <%--Modal for Submission Confirmation--%>
         <div id="submitModal" class="modal fade" role="dialog">
             <div class="modal-dialog">
@@ -161,6 +201,8 @@
                     <div class="modal-body">
                         <div class="wrapper">
                             <h4>Are you sure you want to submit?</h4>
+                            <br />
+                            <asp:Label ID="lblErrorMsgFinal" runat="server" CssClass="text-danger" Visible="True"></asp:Label>
                             <br />
                             <asp:Button ID="cfmSubmit" CssClass="btn btn-primary" runat="server" Text="Submit" OnClick ="btnSubmit_Click" />
                             <asp:Button ID="Button2" CssClass="btn btn-default" runat="server" class="close" data-dismiss="modal" Text="Go Back" />
