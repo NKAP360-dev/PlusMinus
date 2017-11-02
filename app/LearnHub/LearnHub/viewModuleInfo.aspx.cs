@@ -130,6 +130,7 @@ namespace LearnHub
                             || FileExtension.Equals("zip") || FileExtension.Equals("rar") || FileExtension.Equals("ppt") || FileExtension.Equals("jpg") ||
                                 FileExtension.Equals("pptx"))
                         {
+                            fileName = HttpUtility.UrlDecode(fileName);
                             FileUpload1.PostedFile
                             .SaveAs(Server.MapPath(filepath) + fileName);
                             string totalpath1 = Server.MapPath(filepath) + fileName;
@@ -173,6 +174,7 @@ namespace LearnHub
                             || FileExtension.Equals("zip") || FileExtension.Equals("rar") || FileExtension.Equals("ppt") || FileExtension.Equals("jpg") ||
                                 FileExtension.Equals("pptx"))
                         {
+                            fileName = HttpUtility.UrlDecode(fileName);
                             FileUpload2.PostedFile
                             .SaveAs(Server.MapPath(filepath) + fileName);
                             string totalpath1 = Server.MapPath(filepath) + fileName;

@@ -30,7 +30,7 @@ namespace LearnHub
             //set audit
             User currentUser = (User)Session["currentUser"];
             setAudit(currentUser, "news banner", "update", null, "Reorder news banner order");
-            Response.Redirect("manageNewsBanners.aspx");
+            Response.Redirect("manageNewsBanners.aspx?updated=true");
         }
         protected void btnUpload_Click(object sender, EventArgs e)
         {

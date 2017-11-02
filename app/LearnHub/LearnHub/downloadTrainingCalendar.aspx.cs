@@ -25,6 +25,7 @@ namespace LearnHub
                 string file_i_want = fileNames[0];
                 FileInfo fileInfo = new FileInfo(file_i_want);
                 Response.Clear();
+                Response.ContentType = "application/octet-stream";
                 Response.AddHeader("Content-Disposition", "attachment;filename=" + fileInfo.Name);
                 Response.AddHeader("Content-Length", fileInfo.Length.ToString());
                 Response.TransmitFile(Server.MapPath(path + Path.GetFileName(file_i_want)));

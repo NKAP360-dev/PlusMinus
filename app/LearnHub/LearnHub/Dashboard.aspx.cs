@@ -376,11 +376,11 @@ namespace LearnHub
             return toReturn;
         }
 
-        public int GetTotalNoOfLearningHours()
+        public double GetTotalNoOfLearningHours()
         {
             string connectionString = ConfigurationManager.ConnectionStrings["DBConnectionString"].ConnectionString;
             DataTable dt = new DataTable();
-            int toReturn = 0;
+            double toReturn = 0.0;
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
@@ -397,7 +397,7 @@ namespace LearnHub
                     connection.Close();
                 }
             }
-            toReturn = int.Parse(dt.Rows[0][0].ToString());
+            toReturn = Double.Parse(dt.Rows[0][0].ToString());
             return toReturn;
         }
     }
