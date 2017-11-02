@@ -39,24 +39,32 @@ namespace LearnHub
         }
         protected void btnUpload_Click(object sender, EventArgs e)
         {
-            Array.ForEach(Directory.GetFiles(Server.MapPath("Training_Calendar")), File.Delete);
-            if (FileUpload1.HasFile)
+            Page.Validate("ValidateForm");
+            if (!Page.IsValid)
             {
-                string fileName = FileUpload1.FileName;
-                string filepath = "Training_Calendar/";
-                string FileExtension = fileName.Substring(fileName.LastIndexOf('.') + 1).ToLower();
-                if (FileExtension.Equals("xlsx") || FileExtension.Equals("pdf") || FileExtension.Equals("csv") || FileExtension.Equals("doc") || FileExtension.Equals("docx")
-                    || FileExtension.Equals("xlsm"))
+
+            }
+            else
+            {
+                Array.ForEach(Directory.GetFiles(Server.MapPath("Training_Calendar")), File.Delete);
+                if (FileUpload1.HasFile)
                 {
-                    FileUpload1.PostedFile
-                    .SaveAs(Server.MapPath(filepath) + fileName);
-                    string totalpath1 = Server.MapPath(filepath) + fileName;
+                    string fileName = FileUpload1.FileName;
+                    string filepath = "Training_Calendar/";
+                    string FileExtension = fileName.Substring(fileName.LastIndexOf('.') + 1).ToLower();
+                    if (FileExtension.Equals("xlsx") || FileExtension.Equals("pdf") || FileExtension.Equals("csv") || FileExtension.Equals("doc") || FileExtension.Equals("docx")
+                        || FileExtension.Equals("xlsm"))
+                    {
+                        FileUpload1.PostedFile
+                        .SaveAs(Server.MapPath(filepath) + fileName);
+                        string totalpath1 = Server.MapPath(filepath) + fileName;
 
-                    //set audit
-                    User currentUser = (User)Session["currentUser"];
-                    setAudit(currentUser, "training calendar", "create", null, "created training calendar");
+                        //set audit
+                        User currentUser = (User)Session["currentUser"];
+                        setAudit(currentUser, "training calendar", "create", null, "created training calendar");
 
-                    Response.Redirect("home.aspx");
+                        Response.Redirect("home.aspx");
+                    }
                 }
             }
         }

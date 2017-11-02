@@ -24,6 +24,8 @@
                         
                        <p>Please note that this upload will overwrite the current uploaded file.</p><br />
                         <asp:FileUpload ID="FileUpload1" runat="server" />
+                        <asp:RequiredFieldValidator ID="rfv_FileUpload1" runat="server" ErrorMessage="Please select an item to upload!" ControlToValidate="FileUpload1" ForeColor="Red" Display="Dynamic" ValidationGroup="ValidateForm"></asp:RequiredFieldValidator>
+                        <asp:RegularExpressionValidator id="reg_FileUpload1" runat="server" ErrorMessage="Only xlsx, xlsm, doc, docx, pdf, and csv files are allowed!" ValidationExpression ="^.+(.xlsx|.XLSX|.pdf|.PDF|.csv|.CSV|.doc|.DOC|.docx|.DOCX|.xlsm|.XLSM)$" ControlToValidate="FileUpload1" ForeColor="Red" Display="Dynamic" ValidationGroup="ValidateForm"> </asp:RegularExpressionValidator>
                         <%--HELLO WHOEVER IS INTEGRATION FOR THIS, PLEASE GO TO MASTERPAGE - TRAINING CALENDAR TO ALLOW DOWNLOAD OF THE UPLOADED FILE 
                             AS WELL!!!!! THANKS
                             
