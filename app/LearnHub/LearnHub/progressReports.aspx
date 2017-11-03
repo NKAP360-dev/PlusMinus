@@ -28,7 +28,7 @@
     <script type="text/javascript">
         function ValidateFeedbackDescription(sender, args) {
             console.log("enter fbd");
-            var feedbackDescription = document.getElementById("<%= txtFeedback.ClientID %>").value;
+            var feedbackDescription = document.getElementById("<%= CKEditorControl2.ClientID %>").value;
             if (feedbackDescription == "") {
                 console.log("no desc");
                 args.IsValid = false;
