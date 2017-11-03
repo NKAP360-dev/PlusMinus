@@ -17,7 +17,6 @@ namespace LearnHub
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            CompareEndTodayValidator.ValueToCompare = DateTime.Now.ToShortDateString();
         }
         protected void btnDownload_Click(object sender, EventArgs e)
         {
