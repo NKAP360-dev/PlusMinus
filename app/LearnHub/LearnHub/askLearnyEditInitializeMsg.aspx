@@ -37,7 +37,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
        <ul class="breadcrumb">
   <li><a href="home.aspx">Home</a></li>
-  <li><a href="learnyConfiguration.aspx">Learny Configuration</a></li>
+  <li><a href="siteConfig.aspx">Configuration Settings</a></li>
            <li><a href="askLearnyInitializeMsg.aspx">Configure Initialization Messages</a></li>
   <li class="active">Edit Initialization Message</li>
   </ul>

@@ -79,7 +79,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
             <ul class="breadcrumb">
   <li><a href="home.aspx">Home</a></li>
-  <li><a href="learnyConfiguration.aspx">Learny Configuration</a></li>
+  <li><a href="siteConfig.aspx">Configuration Settings</a></li>
   <li class="active">Manage Help Questions</li>
   </ul>
     <div class="container">
@@ -97,7 +97,7 @@
                     <div class="form-group required">
                         <strong>
                             <%--Help Question--%>
-                            <label for="txtHelpInput" class="col-lg-3 control-label"><span class="glyphicon glyphicon-question-sign" data-toggle='tooltip' data-placement="left" title="" data-original-title="What the hell is a help question? Beats me"></span>&nbsp;Help Question</label>
+                            <label for="txtHelpInput" class="col-lg-3 control-label"><span class="glyphicon glyphicon-question-sign" data-toggle="tooltip" data-placement="left" title="" data-original-title="What the hell is a help question? Beats me"></span>&nbsp;Help Question</label>
                         </strong>
                         <div class="col-lg-7">
                             <%--Mandatory text field--%>
