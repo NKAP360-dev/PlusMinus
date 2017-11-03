@@ -124,7 +124,7 @@
                     
                         <div class="form-group required">
                             <strong>
-                                <label for="txtMsgInput" class="col-lg-3 control-label"><span class="glyphicon glyphicon-question-sign" data-toggle='tooltip' data-placement="left" title="" data-original-title="An Initialization Message is the message you see when you initialize :)"></span>&nbsp;Initialization Message </label>
+                                <label for="txtMsgInput" class="col-lg-3 control-label">&nbsp;Initialization Message </label>
                             </strong>
                             <div class="col-lg-8">
                                 <%--Mandatory text field--%>

@@ -97,7 +97,7 @@
                     <div class="form-group required">
                         <strong>
                             <%--Help Question--%>
-                            <label for="txtHelpInput" class="col-lg-3 control-label"><span class="glyphicon glyphicon-question-sign" data-toggle="tooltip" data-placement="left" title="" data-original-title="What the hell is a help question? Beats me"></span>&nbsp;Help Question</label>
+                            <label for="txtHelpInput" class="col-lg-3 control-label"><span class="glyphicon glyphicon-question-sign" data-toggle="tooltip" data-placement="left" title="" data-original-title="Learny suggests these questions to users when users request for help"></span>&nbsp;Help Question</label>
                         </strong>
                         <div class="col-lg-7">
                             <%--Mandatory text field--%>
