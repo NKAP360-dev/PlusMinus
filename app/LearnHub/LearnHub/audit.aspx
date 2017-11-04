@@ -73,7 +73,7 @@
 
 
                         </asp:DropDownList>
-                        <asp:RequiredFieldValidator ID="rfv_ddlFunction" runat="server" ControlToValidate="ddlFunction" ErrorMessage="Please select a Function" InitialValue="none" ForeColor="Red" Display="Dynamic" ValidationGroup="ValidateForm"></asp:RequiredFieldValidator>
+                        <asp:RequiredFieldValidator ID="rfv_ddlFunction" runat="server" ControlToValidate="ddlFunction" ErrorMessage="Please select a Function" InitialValue="none" ForeColor="Red" Display="Dynamic"></asp:RequiredFieldValidator>
                     </div>
                 </div>
 
@@ -91,7 +91,7 @@
                             <asp:ListItem Text="Activate" Selected="false" Value="activate"></asp:ListItem>
                             <asp:ListItem Text="Deactivate" Selected="false" Value="deactivate"></asp:ListItem>
                         </asp:DropDownList>
-                        <asp:RequiredFieldValidator ID="rfv_ddlOperation" runat="server" ControlToValidate="ddlOperation" ErrorMessage="Please select an Operation" InitialValue="none" ForeColor="Red" Display="Dynamic" ValidationGroup="ValidateForm"></asp:RequiredFieldValidator>
+                        <asp:RequiredFieldValidator ID="rfv_ddlOperation" runat="server" ControlToValidate="ddlOperation" ErrorMessage="Please select an Operation" InitialValue="none" ForeColor="Red" Display="Dynamic"></asp:RequiredFieldValidator>
                     </div>
                 </div>
 
@@ -107,8 +107,8 @@
                             </span>
                         </div>
                         <h6><em>Click on the textbox to choose a date</em></h6>
-                        <asp:RequiredFieldValidator ID="rfv_fromDateInput" runat="server" ErrorMessage="Please enter a from Date" ControlToValidate="fromDateInput" ForeColor="Red" Display="Dynamic" ValidationGroup="ValidateForm"></asp:RequiredFieldValidator>
-                        <asp:RequiredFieldValidator ID="rfv_toDateInput" runat="server" ErrorMessage="Please enter a to Date" ControlToValidate="toDateInput" ForeColor="Red" Display="Dynamic" ValidationGroup="ValidateForm"></asp:RequiredFieldValidator>
+                        <asp:RequiredFieldValidator ID="rfv_fromDateInput" runat="server" ErrorMessage="Please enter a from Date" ControlToValidate="fromDateInput" ForeColor="Red" Display="Dynamic" ></asp:RequiredFieldValidator>
+                        <asp:RequiredFieldValidator ID="rfv_toDateInput" runat="server" ErrorMessage="Please enter a to Date" ControlToValidate="toDateInput" ForeColor="Red" Display="Dynamic" ></asp:RequiredFieldValidator>
                         <asp:CustomValidator ID="cv_dateInput" runat="server" OnServerValidate = "compareDate" ErrorMessage="Please enter a From Date that is Before the To Date." ForeColor="Red" ValidationGroup="ValidateForm"></asp:CustomValidator>
                         
                     </div>
