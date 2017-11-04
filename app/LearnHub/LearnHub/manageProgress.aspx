@@ -103,11 +103,14 @@
                         }
                         foreach (User u in allUserOfDept)
                         {
-                            Response.Write($"<tr>");
-                            Response.Write($"<td>{u.getName()}</td>");
-                            Response.Write($"<td>{u.getDepartment()}</td>");
-                            Response.Write($"<td><a href=\"progressReports.aspx?id={u.getUserID()}\" class=\"btn btn-sm btn-info\"><span class=\"glyphicon glyphicon-search\"></span></a></td>");
-                            Response.Write($"</tr>");
+                            if (u.getUserID() != currentUser.getUserID())
+                            {
+                                Response.Write($"<tr>");
+                                Response.Write($"<td>{u.getName()}</td>");
+                                Response.Write($"<td>{u.getDepartment()}</td>");
+                                Response.Write($"<td><a href=\"progressReports.aspx?id={u.getUserID()}\" class=\"btn btn-sm btn-info\"><span class=\"glyphicon glyphicon-search\"></span></a></td>");
+                                Response.Write($"</tr>");
+                            }
                         }
                     %>
                     </tbody>

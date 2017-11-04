@@ -63,10 +63,11 @@ namespace LearnHub
                     lblDept.SelectedValue = toChange.getDepartment();
 
                     // find supervisor 
-                    ArrayList sups = udao.get_supervisors();
-                    foreach (User supervisor in sups)
+                    List<User> allSupervisorForDept = udao.getAllUsersByDept(toChange.getDepartment());
+                    ddlSup.Items.Add(new ListItem("--select--", "none"));
+                    foreach (User u in allSupervisorForDept)
                     {
-                        ddlSup.Items.Add(supervisor.getName());
+                        ddlSup.Items.Add(new ListItem(u.getName(), u.getName()));
                     }
                     foreach (ListItem li in ddlSup.Items)
                     {
@@ -129,8 +130,13 @@ namespace LearnHub
                 string address = txtAddress.Text;
                 string email = txtEmail.Text;
                 string dept = lblDept.SelectedValue;
-                string supervisor = ddlSup.SelectedValue;
-                string supid = udao.getUserByName(supervisor).getUserID();
+                string supervisor = null;
+                string supid = null;
+                if (ddlSup.SelectedValue != "none")
+                {
+                    supervisor = ddlSup.SelectedValue;
+                    supid = udao.getUserByName(supervisor).getUserID();
+                }
                 string jobtitle = txtJobTitle.Text;
                 ArrayList roles = new ArrayList();
                 foreach (ListItem item in cblRoles.Items)
@@ -239,6 +245,19 @@ namespace LearnHub
             a.dateModified = DateTime.Now;
             a.remarks = remarks;
             aDAO.createAudit(a);
+        }
+
+        protected void lblDept_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string departmentName = lblDept.SelectedValue;
+            UserDAO userDAO = new UserDAO();
+            List<User> allSupervisorForDept = userDAO.getAllUsersByDept(departmentName);
+            ddlSup.Items.Clear();
+            ddlSup.Items.Add(new ListItem("--select--", "none"));
+            foreach (User u in allSupervisorForDept)
+            {
+                ddlSup.Items.Add(new ListItem(u.getName(), u.getName()));
+            }
         }
     }
 }

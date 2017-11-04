@@ -164,7 +164,7 @@
                         <asp:Label runat="server" CssClass="col-lg-2 control-label" Text="Department"></asp:Label></strong>
                     <div class="col-lg-5">
                         <asp:DropDownList ID="lblDept" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="lblDept_SelectedIndexChanged">
-                            <asp:ListItem>--select--</asp:ListItem>
+                            <asp:ListItem Value="none">--select--</asp:ListItem>
                         </asp:DropDownList>
                     </div>
                 </div>
@@ -176,7 +176,7 @@
                         <asp:RequiredFieldValidator ID="rfv_txtJobTitle" runat="server" ErrorMessage="Please input a Job Title" ControlToValidate="txtJobTitle" ForeColor="Red" ValidationGroup="ValidateForm" Display="Dynamic"></asp:RequiredFieldValidator>
                     </div>
                 </div>
-                <div class="form-group required">
+                <div class="form-group">
                     <strong>
                         <asp:Label runat="server" CssClass="col-lg-2 control-label" Text="Supervisor"></asp:Label></strong>
                     <div class="col-lg-5">

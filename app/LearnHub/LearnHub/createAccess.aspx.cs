@@ -48,8 +48,13 @@ namespace LearnHub
             string email = txtEmail.Text;
             string dept = lblDept.SelectedValue;
             string jobtitle = txtJobTitle.Text;
-            string supervisor = ddlSup.SelectedValue;
-            string supid = udao.getUserByName(supervisor).getUserID();
+            string supervisor = null;
+            string supid = null;
+            if (ddlSup.SelectedValue != "none")
+            {
+                supervisor = ddlSup.SelectedValue;
+                supid = udao.getUserByName(supervisor).getUserID();
+            }
             ArrayList roles = new ArrayList();
             foreach (ListItem item in cblRoles.Items)
             {
@@ -86,6 +91,7 @@ namespace LearnHub
             UserDAO userDAO = new UserDAO();
             List<User> allSupervisorForDept = userDAO.getAllUsersByDept(departmentName);
             ddlSup.Items.Clear();
+            ddlSup.Items.Add(new ListItem("--select--", "none"));
             foreach (User u in allSupervisorForDept)
             {
                 ddlSup.Items.Add(new ListItem(u.getName(), u.getName()));

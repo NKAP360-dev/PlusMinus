@@ -86,9 +86,13 @@
         <div class="verticalLine"></div>
     </div>
 
-
+    
     <div class="container">
+        
         <form class="form-horizontal" runat="server" enablepartialrendering="true">
+            <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
+    <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+        <ContentTemplate>
             <fieldset>
             <legend>Edit information for current user</legend>
                 <h4>Account Information</h4>
@@ -140,7 +144,8 @@
                 <strong>
                     <asp:Label runat="server" CssClass="col-lg-2 control-label" Text="Department"></asp:Label></strong>
                 <div class="col-lg-5">
-                    <asp:DropDownList ID="lblDept" runat="server" CssClass="form-control">
+                    <asp:DropDownList ID="lblDept" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="lblDept_SelectedIndexChanged">
+                        <asp:ListItem Value="none">--select--</asp:ListItem>
                     </asp:DropDownList>
                 </div>
             </div>
@@ -152,7 +157,7 @@
                     <asp:RequiredFieldValidator ID="rfv_txtJobTitle" runat="server" ErrorMessage="Please input a Job Title" ControlToValidate="txtJobTitle" ForeColor="Red" ValidationGroup="ValidateForm" Display="Dynamic"></asp:RequiredFieldValidator>
                 </div>
             </div>
-                <div class="form-group required">
+                <div class="form-group">
                 <strong>
                     <asp:Label runat="server" CssClass="col-lg-2 control-label" Text="Supervisor"></asp:Label></strong>
                 <div class="col-lg-5">
@@ -263,8 +268,15 @@
 
                     </div>
                 </div>
+            </ContentTemplate>
+        <Triggers>
+            <asp:AsyncPostBackTrigger ControlID="lblDept" EventName="SelectedIndexChanged" />
+        </Triggers>
+    </asp:UpdatePanel>
         </form>
+            
     </div>
+            
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder2" runat="server">
 </asp:Content>

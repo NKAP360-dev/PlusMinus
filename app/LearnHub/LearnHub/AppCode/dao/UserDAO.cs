@@ -88,7 +88,14 @@ namespace LearnHub.AppCode.dao
                 comm.Parameters.AddWithValue("@date", u.getStartDate());
                 comm.Parameters.AddWithValue("@category", u.getJobCategory());
                 comm.Parameters.AddWithValue("@job_title", u.getJobTitle());
-                comm.Parameters.AddWithValue("@supervisor", u.getSupervisor());
+                if (u.getSupervisor() != null)
+                {
+                    comm.Parameters.AddWithValue("@supervisor", u.getSupervisor());
+                }
+                else
+                {
+                    comm.Parameters.AddWithValue("@supervisor", DBNull.Value);
+                }
                 comm.Parameters.AddWithValue("@dept_name", u.getDepartment());
                 comm.Parameters.AddWithValue("@contact", u.getContact());
                 comm.Parameters.AddWithValue("@add", u.getAddress());
@@ -248,7 +255,14 @@ namespace LearnHub.AppCode.dao
                 comm.Parameters.AddWithValue("@start_date", u.getStartDate());
                 comm.Parameters.AddWithValue("@job_category", u.getJobCategory());
                 comm.Parameters.AddWithValue("@job_title", u.getJobTitle());
-                comm.Parameters.AddWithValue("@supervisor", u.getSupervisor());
+                if (u.getSupervisor() != null)
+                {
+                    comm.Parameters.AddWithValue("@supervisor", u.getSupervisor());
+                }
+                else
+                {
+                    comm.Parameters.AddWithValue("@supervisor", DBNull.Value);
+                }
                 comm.Parameters.AddWithValue("@dept", u.getDepartment());
                 comm.Parameters.AddWithValue("@contact", u.getContact());
                 comm.Parameters.AddWithValue("@address", u.getAddress());
