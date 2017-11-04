@@ -166,7 +166,7 @@
                 </asp:Panel>
             </fieldset>
             <div class="form-group wrapper">
-                <asp:Button ID="btnSubmit" CssClass="btn btn-primary" runat="server" Text="Submit" data-toggle="modal" href="#submitModal" OnClientClick="$('#myModal').modal();  return checkForm_Clicked();" UseSubmitBehavior="False" />
+                <asp:Button ID="btnSubmit" CssClass="btn btn-primary" runat="server" Text="Submit" data-toggle="modal" href="#submitModal" OnClientClick="$('#myModal').modal(); return false" UseSubmitBehavior="False" />
             </div>
             <div id="submitModal" class="modal fade" role="dialog">
                 <div class="modal-dialog">
