@@ -28,6 +28,8 @@
             $('#uploadModal').modal('show');
         }
 
+        
+
     </script>
     <style>
         .breadcrumb {
@@ -596,7 +598,7 @@
                                     <asp:ListItem Value="video">Video</asp:ListItem>
                                     <asp:ListItem Value="both">Both</asp:ListItem>
                                 </asp:RadioButtonList>
-                                <asp:RequiredFieldValidator ID="rfv_rblUploadType" runat="server" ErrorMessage="Please select and upload type" ControlToValidate="rblUploadType" ForeColor="Red" Display="Dynamic"></asp:RequiredFieldValidator>
+                                <asp:RequiredFieldValidator ID="rfv_rblUploadType" runat="server" ErrorMessage="Please select and upload type" ControlToValidate="rblUploadType" ForeColor="Red" Display="Dynamic" ValidationGroup="ValidateForm2"></asp:RequiredFieldValidator>
                                 <asp:Panel ID="fileOnlyPanel" runat="server" Visible="false">
                                     <label class="control-label">Upload File Only</label>
                                     <div class="form-group">
@@ -604,7 +606,7 @@
                                         <div class="col-lg-12">
                                             <p>
                                                 <asp:TextBox ID="uploadTitleInput" runat="server" CssClass="form-control" placeholder="Enter Upload Title"></asp:TextBox>
-                                                <asp:RequiredFieldValidator ID="rfv_uploadTitleInput" runat="server" ErrorMessage="Please enter a Title" ControlToValidate="uploadTitleInput" ForeColor="Red" Display="Dynamic"></asp:RequiredFieldValidator>
+                                                <asp:RequiredFieldValidator ID="rfv_uploadTitleInput" runat="server" ErrorMessage="Please enter a Title" ControlToValidate="uploadTitleInput" ForeColor="Red" Display="Dynamic" ValidationGroup="ValidateForm2"></asp:RequiredFieldValidator>
                                                 <asp:CustomValidator ID="cv_uploadTitleInput" runat="server" ErrorMessage="This title already exists! Please enter a different title" OnServerValidate="checkTitleExists" ForeColor="Red" ValidationGroup="ValidateForm2" Display="Dynamic"></asp:CustomValidator>
                                             </p>
                                             <br />
@@ -616,23 +618,25 @@
                                         <div class="col-lg-12">
                                             <p>
                                                 <asp:TextBox ID="uploadDescriptionInput" TextMode="multiline" Columns="50" Rows="5" runat="server" CssClass="form-control" placeholder="Enter Upload Description"></asp:TextBox>
-                                                <asp:RequiredFieldValidator ID="rfv_uploadDescriptionInput" runat="server" ErrorMessage="Please enter a Description" ControlToValidate="uploadDescriptionInput" ForeColor="Red" Display="Dynamic"></asp:RequiredFieldValidator>
+                                                <asp:RequiredFieldValidator ID="rfv_uploadDescriptionInput" runat="server" ErrorMessage="Please enter a Description" ControlToValidate="uploadDescriptionInput" ForeColor="Red" Display="Dynamic" ValidationGroup="ValidateForm2"></asp:RequiredFieldValidator>
                                             </p>
                                             <br />
                                         </div>
                                     </div>
                                     <%--Positioning for buttons--%>
-                                    <asp:FileUpload ID="FileUpload1" runat="server" />
-                                    <asp:RequiredFieldValidator ID="rfv_FileUpload1" runat="server" ErrorMessage="Please select an item to upload!" ControlToValidate="FileUpload1" ForeColor="Red" Display="Dynamic"></asp:RequiredFieldValidator>
+                                    
                                     <br />
                                 </asp:Panel>
+                                <asp:FileUpload ID="FileUpload1" runat="server" Visible="False" />
+                                    <asp:RequiredFieldValidator ID="rfv_FileUpload1" runat="server" ErrorMessage="Please select an item to upload!" ControlToValidate="FileUpload1" ForeColor="Red" Display="Dynamic" ValidationGroup="ValidateForm2"></asp:RequiredFieldValidator>
+                                <asp:Label Text="" runat="server" ID="Label1" />
                                 <asp:Panel ID="videoOnlyPanel" runat="server" Visible="false">
                                     <label class="control-label">Upload Video Only</label>
                                     <div class="form-group">
                                         <div class="col-lg-12">
                                             <p>
                                                 <asp:TextBox ID="uploadTitleInput2" runat="server" CssClass="form-control" placeholder="Enter Upload Title"></asp:TextBox>
-                                                <asp:RequiredFieldValidator ID="rfv_uploadTitleInput2" runat="server" ErrorMessage="Please enter a Title" ControlToValidate="uploadTitleInput2" ForeColor="Red" Display="Dynamic"></asp:RequiredFieldValidator>
+                                                <asp:RequiredFieldValidator ID="rfv_uploadTitleInput2" runat="server" ErrorMessage="Please enter a Title" ControlToValidate="uploadTitleInput2" ForeColor="Red" Display="Dynamic" ValidationGroup="ValidateForm2"></asp:RequiredFieldValidator>
                                                 <asp:CustomValidator ID="cv_uploadTitleInput2" runat="server" ErrorMessage="This title already exists! Please enter a different title" OnServerValidate="checkTitleExists" ForeColor="Red" ValidationGroup="ValidateForm2" Display="Dynamic"></asp:CustomValidator>
                                             </p>
                                             <br />
@@ -642,7 +646,7 @@
                                         <div class="col-lg-12">
                                             <p>
                                                 <asp:TextBox ID="uploadDescriptionInput2" TextMode="multiline" Columns="50" Rows="5" runat="server" CssClass="form-control" placeholder="Enter Upload Description"></asp:TextBox>
-                                                <asp:RequiredFieldValidator ID="rfv_uploadDescriptionInput2" runat="server" ErrorMessage="Please enter a Description" ControlToValidate="uploadDescriptionInput2" ForeColor="Red" Display="Dynamic"></asp:RequiredFieldValidator>
+                                                <asp:RequiredFieldValidator ID="rfv_uploadDescriptionInput2" runat="server" ErrorMessage="Please enter a Description" ControlToValidate="uploadDescriptionInput2" ForeColor="Red" Display="Dynamic" ValidationGroup="ValidateForm2"></asp:RequiredFieldValidator>
                                             </p>
                                             <br />
                                         </div>
@@ -651,7 +655,7 @@
                                         <div class="col-lg-12">
                                             <p>
                                                 <asp:TextBox ID="txtVideo" runat="server" CssClass="form-control" placeholder="Enter YouTube Link"></asp:TextBox>
-                                                <asp:RequiredFieldValidator ID="rfv_txtVideo" runat="server" ErrorMessage="Please select a link to upload!" ControlToValidate="txtVideo" ForeColor="Red" Display="Dynamic"></asp:RequiredFieldValidator>
+                                                <asp:RequiredFieldValidator ID="rfv_txtVideo" runat="server" ErrorMessage="Please select a link to upload!" ControlToValidate="txtVideo" ForeColor="Red" Display="Dynamic" ValidationGroup="ValidateForm2"></asp:RequiredFieldValidator>
                                             </p>
                                             <br />
                                         </div>
@@ -663,7 +667,7 @@
                                         <div class="col-lg-12">
                                             <p>                                             
                                                 <asp:TextBox ID="uploadTitleInput3" runat="server" CssClass="form-control" placeholder="Enter Upload Title"></asp:TextBox>
-                                                <asp:RequiredFieldValidator ID="rfv_uploadTitleInput3" runat="server" ErrorMessage="Please enter a Title" ControlToValidate="uploadTitleInput3" ForeColor="Red" Display="Dynamic"></asp:RequiredFieldValidator>
+                                                <asp:RequiredFieldValidator ID="rfv_uploadTitleInput3" runat="server" ErrorMessage="Please enter a Title" ControlToValidate="uploadTitleInput3" ForeColor="Red" Display="Dynamic" ValidationGroup="ValidateForm2"></asp:RequiredFieldValidator>
                                                 <asp:CustomValidator ID="cv_uploadTitleInput3" runat="server" ErrorMessage="This title already exists! Please enter a different title" OnServerValidate="checkTitleExists" ForeColor="Red" ValidationGroup="ValidateForm2" Display="Dynamic"></asp:CustomValidator>
                                             </p>
                                             <br />
@@ -673,7 +677,7 @@
                                         <div class="col-lg-12">
                                             <p>
                                                 <asp:TextBox ID="uploadDescriptionInput3" TextMode="multiline" Columns="50" Rows="5" runat="server" CssClass="form-control" placeholder="Enter Upload Description"></asp:TextBox>
-                                                <asp:RequiredFieldValidator ID="rfv_uploadDescriptionInput3" runat="server" ErrorMessage="Please enter a Description" ControlToValidate="uploadDescriptionInput3" ForeColor="Red" Display="Dynamic"></asp:RequiredFieldValidator>
+                                                <asp:RequiredFieldValidator ID="rfv_uploadDescriptionInput3" runat="server" ErrorMessage="Please enter a Description" ControlToValidate="uploadDescriptionInput3" ForeColor="Red" Display="Dynamic" ValidationGroup="ValidateForm2"></asp:RequiredFieldValidator>
                                             </p>
                                             <br />
                                         </div>
@@ -682,14 +686,16 @@
                                         <div class="col-lg-12">
                                             <p>
                                                 <asp:TextBox ID="txtVideo2" runat="server" CssClass="form-control" placeholder="Enter YouTube Link"></asp:TextBox>
-                                                <asp:RequiredFieldValidator ID="rfv_txtVideo2" runat="server" ErrorMessage="Please select a link to upload!" ControlToValidate="txtVideo2" ForeColor="Red" Display="Dynamic"></asp:RequiredFieldValidator>
+                                                <asp:RequiredFieldValidator ID="rfv_txtVideo2" runat="server" ErrorMessage="Please select a link to upload!" ControlToValidate="txtVideo2" ForeColor="Red" Display="Dynamic" ValidationGroup="ValidateForm2"></asp:RequiredFieldValidator>
                                             </p>
                                             <br />
                                         </div>
                                     </div>
-                                      <asp:FileUpload ID="FileUpload2" runat="server" />
-                                    <asp:RequiredFieldValidator ID="rfv_FileUpload2" runat="server" ErrorMessage="Please select an item to upload!" ControlToValidate="FileUpload2" ForeColor="Red" Display="Dynamic"></asp:RequiredFieldValidator>
+                                      
                                 </asp:Panel>
+                                <asp:FileUpload ID="FileUpload2" runat="server" Visible="False" />
+                                    <asp:RequiredFieldValidator ID="rfv_FileUpload2" runat="server" ErrorMessage="Please select an item to upload!" ControlToValidate="FileUpload2" ForeColor="Red" Display="Dynamic" ValidationGroup="ValidateForm2"></asp:RequiredFieldValidator>
+                                <asp:Label Text="" runat="server" ID="Label2" />
                             </ContentTemplate>
                             <Triggers>
                                 <asp:AsyncPostBackTrigger ControlID="rblUploadType" EventName="SelectedIndexChanged" />

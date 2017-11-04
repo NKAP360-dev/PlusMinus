@@ -60,6 +60,50 @@ namespace LearnHub
                 }
                 lblCoursePeriodStart.Text = "Start: " + current.getStartDate().ToLongDateString();
                 lblCoursePeriodEnd.Text = "End: " + current.getExpiryDate().ToLongDateString();
+
+                if (Session["fileUpload"] == null)
+                {
+                    if (FileUpload1.HasFile)
+                    {
+                        Session["fileUpload"] = FileUpload1;
+                        Label1.Text = FileUpload1.FileName; // get the name
+                    }
+                    else if (FileUpload2.HasFile)
+                    {
+                        Session["fileUpload"] = FileUpload2;
+                        Label2.Text = FileUpload2.FileName; // get the name
+                    }
+                     
+                }
+                // This condition will occur on next postbacks        
+                else if (Session["fileUpload"] != null)
+                {
+                    if (!FileUpload1.HasFile)
+                    {
+                        FileUpload1 = (FileUpload)Session["fileUpload"];
+                        Label1.Text = FileUpload1.FileName;
+                    }
+                    else if (!FileUpload2.HasFile)
+                    {
+                        FileUpload2 = (FileUpload)Session["fileUpload"];
+                        Label2.Text = FileUpload2.FileName;
+                    }
+
+                    
+                }
+                //  when Session will have File but user want to change the file 
+                // i.e. wants to upload a new file using same FileUpload control
+                // so update the session to have the newly uploaded file
+                else if (FileUpload1.HasFile)
+                {
+                    Session["fileUpload"] = FileUpload1;
+                    Label1.Text = FileUpload1.FileName;
+                }
+                else if (FileUpload2.HasFile)
+                {
+                    Session["fileUpload"] = FileUpload2;
+                    Label2.Text = FileUpload2.FileName;
+                }
             }
         }
         protected void submitTestimonial_Click(object sender, EventArgs e)
@@ -107,6 +151,20 @@ namespace LearnHub
 
         protected void upload_click(object sender, EventArgs e)
         {
+            if (FileUpload1.HasFile)
+            {
+
+                Session["fileUpload"] = FileUpload1;
+
+                FileUpload1 = (FileUpload)Session["fileUpload"];
+
+            }
+            else if (FileUpload2.HasFile)
+            {
+                Session["fileUpload"] = FileUpload2;
+
+                FileUpload2 = (FileUpload)Session["fileUpload"];
+            }
             Page.Validate("ValidateForm2");
             if (!Page.IsValid)
             {
@@ -299,6 +357,8 @@ namespace LearnHub
                 rfv_uploadDescriptionInput3.Enabled = false;
                 rfv_txtVideo2.Enabled = false;
                 rfv_FileUpload2.Enabled = false;
+                FileUpload1.Visible = true;
+                FileUpload2.Visible = false;
             }
             else if (rblUploadType.SelectedValue.Equals("video")) {
                 fileOnlyPanel.Visible = false;
@@ -317,6 +377,8 @@ namespace LearnHub
                 rfv_uploadDescriptionInput3.Enabled = false;
                 rfv_txtVideo2.Enabled = false;
                 rfv_FileUpload2.Enabled = false;
+                FileUpload1.Visible = false;
+                FileUpload2.Visible = false;
 
             } else if (rblUploadType.SelectedValue.Equals("both")) {
                 fileOnlyPanel.Visible = false;
@@ -335,7 +397,8 @@ namespace LearnHub
                 rfv_uploadDescriptionInput3.Enabled = true;
                 rfv_txtVideo2.Enabled = true;
                 rfv_FileUpload2.Enabled = true;
-
+                FileUpload1.Visible = false;
+                FileUpload2.Visible = true;
             }
 
         }
