@@ -18,7 +18,7 @@ namespace LearnHub
             string[] fileNames = Directory.GetFiles(Server.MapPath(path));
             if (fileNames == null || fileNames.Length == 0)
             {
-                Response.Redirect("Home.aspx");
+                Response.Redirect("noTrngCal.aspx");
             }
             else
             {

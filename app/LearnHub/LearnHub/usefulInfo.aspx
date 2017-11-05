@@ -74,8 +74,10 @@
             <div class="col-lg-9">
                 <%ArticleDAO adao = new ArticleDAO();
                     ArrayList a = adao.getArticles();
-                    foreach (Article article in a)
+                    if (a.Count > 0)
                     {
+                        foreach (Article article in a)
+                        {
                 %>
                 <div class="panel panel-default">
                     <div class="panel-body">
@@ -89,7 +91,15 @@
 
                     </div>
                 </div>
-                <%} %>
+                <%}
+                    }
+                    else {%>
+                        <div class="panep panel-default">
+                            <div class="panel-body">
+                                <h4>There are currently no articles.</h4>
+                            </div>
+                        </div>
+                   <% }%>
             </div>
 
             <div class="col-lg-3">

@@ -657,6 +657,13 @@
     <Compile Include="noResult.aspx.designer.cs">
       <DependentUpon>noResult.aspx</DependentUpon>
     </Compile>
+    <Compile Include="noTrngCal.aspx.cs">
+      <DependentUpon>noTrngCal.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="noTrngCal.aspx.designer.cs">
+      <DependentUpon>noTrngCal.aspx</DependentUpon>
+    </Compile>
     <Compile Include="overallQuizResult.aspx.cs">
       <DependentUpon>overallQuizResult.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1312,6 +1319,7 @@
     <Content Include="manageUsers.aspx" />
     <Content Include="news.aspx" />
     <Content Include="noResult.aspx" />
+    <Content Include="noTrngCal.aspx" />
     <Content Include="overallQuizResult.aspx" />
     <Content Include="pendingApproval.aspx" />
     <Content Include="preqIncomplete.aspx" />
