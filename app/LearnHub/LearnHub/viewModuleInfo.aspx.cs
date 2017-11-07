@@ -211,7 +211,10 @@ namespace LearnHub
                 uploadTitleInput3.Text = "";
                 uploadDescriptionInput3.Text = "";
                 txtVideo2.Text = "";
-                rblUploadType.SelectedValue = "file";
+                rblUploadType.ClearSelection();
+                fileOnlyPanel.Visible = false;
+                videoOnlyPanel.Visible = false;
+                bothPanel.Visible = false;
             }
         }
 
