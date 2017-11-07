@@ -411,7 +411,7 @@
                         }
                     }
                     
-                    if (u != null && u.getDepartment().Equals("hr") || succ)
+                    if (u != null && succ)
                     {
                 %>
                 <ul class="nav navbar-nav">

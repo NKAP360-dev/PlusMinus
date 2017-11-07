@@ -117,7 +117,15 @@ namespace LearnHub.AppCode.dao
                     a.userID = ((string)dr["userID"]);
                     a.functionModified = ((string)dr["functionModified"]);
                     a.operation = ((string)dr["operation"]);
-                    a.id_of_function = (string)dr["id_of_function"];
+                    if (!dr.IsDBNull(4))
+                    {
+                        a.id_of_function = (string)dr["id_of_function"];
+                    }
+                    else
+                    {
+                        a.id_of_function = null;
+                    }
+                    
                     a.dateModified = ((DateTime)dr["dateModified"]);
                     a.remarks = ((string)dr["remarks"]);
                     toReturn.Add(a);
