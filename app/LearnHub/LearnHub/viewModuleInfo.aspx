@@ -657,12 +657,11 @@
                                         </div>
                                     </div>
                                     <%--Positioning for buttons--%>
-                                    
+                                    <asp:FileUpload ID="FileUpload1" runat="server" Visible="False" />
+                                    <asp:RequiredFieldValidator ID="rfv_FileUpload1" runat="server" ErrorMessage="Please select an item to upload!" ControlToValidate="FileUpload1" ForeColor="Red" Display="Dynamic" ValidationGroup="ValidateForm2"></asp:RequiredFieldValidator>
                                     <br />
                                 </asp:Panel>
-                                <asp:FileUpload ID="FileUpload1" runat="server" Visible="False" />
-                                    <asp:RequiredFieldValidator ID="rfv_FileUpload1" runat="server" ErrorMessage="Please select an item to upload!" ControlToValidate="FileUpload1" ForeColor="Red" Display="Dynamic" ValidationGroup="ValidateForm2"></asp:RequiredFieldValidator>
-                                <asp:Label Text="" runat="server" ID="Label1" />
+                                
                                 <asp:Panel ID="videoOnlyPanel" runat="server" Visible="false">
                                     <label class="control-label">Upload Video Only</label>
                                     <div class="form-group">
@@ -724,11 +723,10 @@
                                             <br />
                                         </div>
                                     </div>
-                                      
+                                <asp:FileUpload ID="FileUpload2" runat="server" Visible="False" />     
+                                   <asp:RequiredFieldValidator ID="rfv_FileUpload2" runat="server" ErrorMessage="Please select an item to upload!" ControlToValidate="FileUpload2" ForeColor="Red" Display="Dynamic" ValidationGroup="ValidateForm2"></asp:RequiredFieldValidator> 
                                 </asp:Panel>
-                                <asp:FileUpload ID="FileUpload2" runat="server" Visible="False" />
-                                    <asp:RequiredFieldValidator ID="rfv_FileUpload2" runat="server" ErrorMessage="Please select an item to upload!" ControlToValidate="FileUpload2" ForeColor="Red" Display="Dynamic" ValidationGroup="ValidateForm2"></asp:RequiredFieldValidator>
-                                <asp:Label Text="" runat="server" ID="Label2" />
+                                
                             </ContentTemplate>
                             <Triggers>
                                 <asp:AsyncPostBackTrigger ControlID="rblUploadType" EventName="SelectedIndexChanged" />

@@ -25,6 +25,7 @@ namespace LearnHub
         protected Boolean superuser;
         protected void Page_Load(object sender, EventArgs e)
         {
+            
             //Response.Write(DateTime.Now.ToShortDateString());
             Course_elearnDAO cdao = new Course_elearnDAO();
             string id_str = null;
@@ -66,50 +67,7 @@ namespace LearnHub
                 {
                     panelInactive.Visible = true;
                 }
-
-                if (Session["fileUpload"] == null)
-                {
-                    if (FileUpload1.HasFile)
-                    {
-                        Session["fileUpload"] = FileUpload1;
-                        Label1.Text = FileUpload1.FileName; // get the name
-                    }
-                    else if (FileUpload2.HasFile)
-                    {
-                        Session["fileUpload"] = FileUpload2;
-                        Label2.Text = FileUpload2.FileName; // get the name
-                    }
-                     
-                }
-                // This condition will occur on next postbacks        
-                else if (Session["fileUpload"] != null)
-                {
-                    if (!FileUpload1.HasFile)
-                    {
-                        FileUpload1 = (FileUpload)Session["fileUpload"];
-                        Label1.Text = FileUpload1.FileName;
-                    }
-                    else if (!FileUpload2.HasFile)
-                    {
-                        FileUpload2 = (FileUpload)Session["fileUpload"];
-                        Label2.Text = FileUpload2.FileName;
-                    }
-
-                    
-                }
-                //  when Session will have File but user want to change the file 
-                // i.e. wants to upload a new file using same FileUpload control
-                // so update the session to have the newly uploaded file
-                else if (FileUpload1.HasFile)
-                {
-                    Session["fileUpload"] = FileUpload1;
-                    Label1.Text = FileUpload1.FileName;
-                }
-                else if (FileUpload2.HasFile)
-                {
-                    Session["fileUpload"] = FileUpload2;
-                    Label2.Text = FileUpload2.FileName;
-                }
+                Page.Form.Attributes.Add("enctype", "multipart/form-data");
             }
         }
         protected void submitTestimonial_Click(object sender, EventArgs e)
@@ -157,20 +115,7 @@ namespace LearnHub
 
         protected void upload_click(object sender, EventArgs e)
         {
-            if (FileUpload1.HasFile)
-            {
-
-                Session["fileUpload"] = FileUpload1;
-
-                FileUpload1 = (FileUpload)Session["fileUpload"];
-
-            }
-            else if (FileUpload2.HasFile)
-            {
-                Session["fileUpload"] = FileUpload2;
-
-                FileUpload2 = (FileUpload)Session["fileUpload"];
-            }
+            System.Diagnostics.Debug.WriteLine("upload_click");
             Page.Validate("ValidateForm2");
             if (!Page.IsValid)
             {
@@ -178,12 +123,15 @@ namespace LearnHub
             }
             else
             {
+                System.Diagnostics.Debug.WriteLine("else");
                 //check if is what content
                 string val = rblUploadType.SelectedValue.ToLower().Trim();
                 if (val.Equals("file"))
                 {
+                    System.Diagnostics.Debug.WriteLine("val equals file");
                     if (FileUpload1.HasFile)
                     {
+                        System.Diagnostics.Debug.WriteLine("has file");
                         int coursedir = current.getCourseID();
                         string fileName = FileUpload1.FileName;
                         string filepath = "~/Data/" + coursedir + "/";
@@ -194,6 +142,7 @@ namespace LearnHub
                             || FileExtension.Equals("zip") || FileExtension.Equals("rar") || FileExtension.Equals("ppt") || FileExtension.Equals("jpg") ||
                                 FileExtension.Equals("pptx"))
                         {
+                            System.Diagnostics.Debug.WriteLine("approved extension");
                             fileName = HttpUtility.UrlDecode(fileName);
                             FileUpload1.PostedFile
                             .SaveAs(Server.MapPath(filepath) + fileName);
@@ -353,7 +302,6 @@ namespace LearnHub
                 rfv_uploadTitleInput.Enabled = true;
                 cv_uploadTitleInput.Enabled = true;
                 rfv_uploadDescriptionInput.Enabled = true;
-                rfv_FileUpload1.Enabled = true;
                 rfv_uploadTitleInput2.Enabled = false;
                 cv_uploadTitleInput2.Enabled = false;
                 rfv_uploadDescriptionInput2.Enabled = false;
@@ -362,9 +310,10 @@ namespace LearnHub
                 cv_uploadTitleInput3.Enabled = false;
                 rfv_uploadDescriptionInput3.Enabled = false;
                 rfv_txtVideo2.Enabled = false;
-                rfv_FileUpload2.Enabled = false;
                 FileUpload1.Visible = true;
                 FileUpload2.Visible = false;
+                rfv_FileUpload1.Enabled = true;
+                rfv_FileUpload2.Enabled = false;
             }
             else if (rblUploadType.SelectedValue.Equals("video")) {
                 fileOnlyPanel.Visible = false;
@@ -373,7 +322,6 @@ namespace LearnHub
                 rfv_uploadTitleInput.Enabled = false;
                 cv_uploadTitleInput.Enabled = false;
                 rfv_uploadDescriptionInput.Enabled = false;
-                rfv_FileUpload1.Enabled = false;
                 rfv_uploadTitleInput2.Enabled = true;
                 cv_uploadTitleInput2.Enabled = true;
                 rfv_uploadDescriptionInput2.Enabled = true;
@@ -382,9 +330,10 @@ namespace LearnHub
                 cv_uploadTitleInput3.Enabled = false;
                 rfv_uploadDescriptionInput3.Enabled = false;
                 rfv_txtVideo2.Enabled = false;
-                rfv_FileUpload2.Enabled = false;
                 FileUpload1.Visible = false;
                 FileUpload2.Visible = false;
+                rfv_FileUpload1.Enabled = false;
+                rfv_FileUpload2.Enabled = false;
 
             } else if (rblUploadType.SelectedValue.Equals("both")) {
                 fileOnlyPanel.Visible = false;
@@ -393,7 +342,6 @@ namespace LearnHub
                 rfv_uploadTitleInput.Enabled = false;
                 cv_uploadTitleInput.Enabled = false;
                 rfv_uploadDescriptionInput.Enabled = false;
-                rfv_FileUpload1.Enabled = false;
                 rfv_uploadTitleInput2.Enabled = false;
                 cv_uploadTitleInput2.Enabled = false;
                 rfv_uploadDescriptionInput2.Enabled = false;
@@ -402,9 +350,10 @@ namespace LearnHub
                 cv_uploadTitleInput3.Enabled = true;
                 rfv_uploadDescriptionInput3.Enabled = true;
                 rfv_txtVideo2.Enabled = true;
-                rfv_FileUpload2.Enabled = true;
                 FileUpload1.Visible = false;
                 FileUpload2.Visible = true;
+                rfv_FileUpload1.Enabled = false;
+                rfv_FileUpload2.Enabled = true;
             }
 
         }
