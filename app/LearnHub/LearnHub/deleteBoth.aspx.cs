@@ -29,8 +29,8 @@ namespace LearnHub
                 {
                     System.IO.File.Delete(fullPath);
                     Course_elearnDAO cdao = new Course_elearnDAO();
-                    cdao.delete_Material(id_num, fullPath);
-                    cdao.delete_link(id_num, link);
+                    cdao.delete_both(id_num, fullPath, link);
+                    //cdao.delete_link(id_num, link);
                     //set audit
                     User currentUser = (User)Session["currentUser"];
                     string filename = Path.GetFileName(fullPath);

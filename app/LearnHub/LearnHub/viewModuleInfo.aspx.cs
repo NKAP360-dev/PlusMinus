@@ -60,6 +60,12 @@ namespace LearnHub
                 }
                 lblCoursePeriodStart.Text = "Start: " + current.getStartDate().ToLongDateString();
                 lblCoursePeriodEnd.Text = "End: " + current.getExpiryDate().ToLongDateString();
+                DateTime currentDateTime = DateTime.Now;
+
+                if (current.getStatus().Equals("inactive") || !(DateTime.Compare(current.getStartDate(), currentDateTime) < 0 && DateTime.Compare(current.getExpiryDate(), currentDateTime) > 0))
+                {
+                    panelInactive.Visible = true;
+                }
 
                 if (Session["fileUpload"] == null)
                 {

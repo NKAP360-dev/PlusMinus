@@ -12,6 +12,34 @@ namespace LearnHub.AppCode.dao
 {
     public class Course_elearnDAO
     {
+        public void delete_both(int courseID, string link, string video) // Update.
+        {
+            SqlConnection conn = new SqlConnection();
+
+            try
+            {
+                conn = new SqlConnection();
+                string connstr = ConfigurationManager.ConnectionStrings["DBConnectionString"].ToString();
+                conn.ConnectionString = connstr;
+                conn.Open();
+                SqlCommand comm = new SqlCommand();
+                comm.Connection = conn;
+                comm.CommandText =
+                    "delete from Elearn_courseContent where elearn_courseID = @courseID and server_path = @link and video_link = @vid";
+                comm.Parameters.AddWithValue("@courseID", courseID);
+                comm.Parameters.AddWithValue("@link", link);
+                comm.Parameters.AddWithValue("@vid", video);
+                int rowsAffected = comm.ExecuteNonQuery();
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
         public void delete_Material(int courseID, string link) // Update.
         {
             SqlConnection conn = new SqlConnection();

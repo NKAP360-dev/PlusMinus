@@ -35,11 +35,11 @@ namespace LearnHub
                 var sqlQueryCourseList = "";
                 if (itemIDs.Length > 0)
                 {
-                    sqlQueryCourseList = String.Format("SELECT * FROM [Elearn_course] ec INNER JOIN [Elearn_courseCategory] ecc ON ec.categoryID = ecc.categoryID WHERE ec.status='active' and ec.start_date <= getDate() and ec.elearn_courseID NOT IN ({0})", itemIDs);
+                    sqlQueryCourseList = String.Format("SELECT * FROM [Elearn_course] ec INNER JOIN [Elearn_courseCategory] ecc ON ec.categoryID = ecc.categoryID WHERE ec.status='active' and ec.start_date <= getDate() and ec.expiry_date >= getDate() and ec.elearn_courseID NOT IN ({0})", itemIDs);
                 }
                 else
                 {
-                    sqlQueryCourseList = "SELECT * FROM [Elearn_course] ec INNER JOIN [Elearn_courseCategory] ecc ON ec.categoryID = ecc.categoryID WHERE ec.status='active' and ec.start_date <= getDate()";
+                    sqlQueryCourseList = "SELECT * FROM [Elearn_course] ec INNER JOIN [Elearn_courseCategory] ecc ON ec.categoryID = ecc.categoryID WHERE ec.status='active' and ec.start_date <= getDate() and ec.expiry_date >= getDate()";
                 }
                 SqlDataSource1.SelectCommand = sqlQueryCourseList;
                 gvCourses.DataSource = SqlDataSource1;
@@ -87,11 +87,11 @@ namespace LearnHub
                 var sqlQueryCourseList = "";
                 if (itemIDs.Length > 0)
                 {
-                    sqlQueryCourseList = String.Format("SELECT * FROM [Elearn_course] ec INNER JOIN [Elearn_courseCategory] ecc ON ec.categoryID = ecc.categoryID WHERE ec.status='active' and ec.start_date <= getDate() and ec.elearn_courseID NOT IN ({0})", itemIDs);
+                    sqlQueryCourseList = String.Format("SELECT * FROM [Elearn_course] ec INNER JOIN [Elearn_courseCategory] ecc ON ec.categoryID = ecc.categoryID WHERE ec.status='active' and ec.start_date <= getDate() and ec.expiry_date >= getDate() and ec.elearn_courseID NOT IN ({0})", itemIDs);
                 }
                 else
                 {
-                    sqlQueryCourseList = "SELECT * FROM [Elearn_course] ec INNER JOIN [Elearn_courseCategory] ecc ON ec.categoryID = ecc.categoryID WHERE ec.status='active' and ec.start_date <= getDate()";
+                    sqlQueryCourseList = "SELECT * FROM [Elearn_course] ec INNER JOIN [Elearn_courseCategory] ecc ON ec.categoryID = ecc.categoryID WHERE ec.status='active' and ec.start_date <= getDate() and ec.expiry_date >= getDate()";
                 }
                 SqlDataSource1.SelectCommand = sqlQueryCourseList;
                 gvCourses.DataSource = SqlDataSource1;
@@ -128,11 +128,11 @@ namespace LearnHub
             var sqlQueryCourseList = "";
             if (itemIDs.Length > 0)
             {
-                sqlQueryCourseList = String.Format("SELECT * FROM [Elearn_course] ec INNER JOIN [Elearn_courseCategory] ecc ON ec.categoryID = ecc.categoryID WHERE ec.status='active' and ec.start_date <= getDate() and ec.elearn_courseID NOT IN ({0})", itemIDs);
+                sqlQueryCourseList = String.Format("SELECT * FROM [Elearn_course] ec INNER JOIN [Elearn_courseCategory] ecc ON ec.categoryID = ecc.categoryID WHERE ec.status='active' and ec.start_date <= getDate() and ec.expiry_date >= getDate() and ec.elearn_courseID NOT IN ({0})", itemIDs);
             }
             else
             {
-                sqlQueryCourseList = "SELECT * FROM [Elearn_course] ec INNER JOIN [Elearn_courseCategory] ecc ON ec.categoryID = ecc.categoryID WHERE ec.status='active' and ec.start_date <= getDate()";
+                sqlQueryCourseList = "SELECT * FROM [Elearn_course] ec INNER JOIN [Elearn_courseCategory] ecc ON ec.categoryID = ecc.categoryID WHERE ec.status='active' and ec.start_date <= getDate() and ec.expiry_date >= getDate()";
             }
             SqlDataSource1.SelectCommand = sqlQueryCourseList;
             gvCourses.DataSource = SqlDataSource1;
@@ -171,11 +171,11 @@ namespace LearnHub
             var sqlQueryCourseList = "";
             if (itemIDs.Length > 0)
             {
-                sqlQueryCourseList = String.Format("SELECT * FROM [Elearn_course] ec INNER JOIN [Elearn_courseCategory] ecc ON ec.categoryID = ecc.categoryID WHERE ec.status='active' and ec.start_date <= getDate() and ec.elearn_courseID NOT IN ({0})", itemIDs);
+                sqlQueryCourseList = String.Format("SELECT * FROM [Elearn_course] ec INNER JOIN [Elearn_courseCategory] ecc ON ec.categoryID = ecc.categoryID WHERE ec.status='active' and ec.start_date <= getDate() and ec.expiry_date >= getDate() and ec.elearn_courseID NOT IN ({0})", itemIDs);
             }
             else
             {
-                sqlQueryCourseList = "SELECT * FROM [Elearn_course] ec INNER JOIN [Elearn_courseCategory] ecc ON ec.categoryID = ecc.categoryID WHERE ec.status='active' and ec.start_date <= getDate()";
+                sqlQueryCourseList = "SELECT * FROM [Elearn_course] ec INNER JOIN [Elearn_courseCategory] ecc ON ec.categoryID = ecc.categoryID WHERE ec.status='active' and ec.start_date <= getDate() and ec.expiry_date >= getDate()";
             }
             SqlDataSource1.SelectCommand = sqlQueryCourseList;
             gvCourses.DataSource = SqlDataSource1;

@@ -53,6 +53,7 @@
             <asp:Label ID="lblBreadcrumbCourseName" runat="server" Text="courseName"></asp:Label></li>
     </ul>
     <form class="form-horizontal" runat="server">
+
         <div class="container">
             <h1>
                 <asp:Label ID="lblCourseNameHeader" runat="server" Text="courseName"></asp:Label></h1>
@@ -146,7 +147,15 @@
                                 </h3>
                             </div>
                             <div class="panel-body">
-
+                                <asp:Panel ID="panelInactive" runat="server" Visible="false">
+                                    <div class="alert alert-dismissible alert-warning">
+                                        <h4><b>This course is currently inactive.</b></h4>
+                                        <p>
+                                            <span class="glyphicon glyphicon-info-sign"></span>&nbsp;
+                                                You will not be able to attempt quizzes and download learning material
+                                        </p>
+                                    </div>
+                                </asp:Panel>
                                 <b>Prerequisite</b><br />
                                 <%
                                     ArrayList allPrereq = ceDAO.getPrereqOfCourse(courseID);
@@ -300,53 +309,60 @@
                             User currentUser = (User)Session["currentUser"];
                             if (currentUser != null)
                             {
+                                if (current.getStatus().Equals("inactive") || !(DateTime.Compare(current.getStartDate(), DateTime.Now) < 0 && DateTime.Compare(current.getExpiryDate(), DateTime.Now) > 0))
+                                {
+                                    Response.Write("Course is currently not available.");
+                                }
+                                else { 
                                 Course_elearnDAO cdao = new Course_elearnDAO();
                                 ArrayList list = cdao.get_uploaded_content_by_id(current);%>
                         <%
-                            string strfile = "";
-                            string dir = "Data/" + current.getCourseID();
-                            Boolean delete_path = false;
-                            foreach (Upload u in list)
-                            {
-                                //edit the getUploadID in dao to return video content also
-                                string title = null;
-                                string desc = null;
-                                string link = null;
-                                Boolean show_both = false;
-                                DateTime date = DateTime.Now;
-                                //Response.Write(u.upload_type);
-                                if(u.upload_type.Equals("file") || u.upload_type.Equals("both"))
-                                {
-                                    foreach (string str in Directory.GetFiles(Server.MapPath(dir)))
-                                    {
-                                        //Response.Write(u.getServerPath());
-                                        if (u.getServerPath() != null && u.getServerPath().Equals(str))
-                                        {
-                                            //Response.Write(u.upload_type);
-                                            title = u.getTitle();
-                                            desc = u.getDesc();
-                                            date = u.getDate();
-                                            //Response.Write(title);
-                                            strfile = str;
-                                            delete_path = true;
-                                            if (u.upload_type.Equals("both"))
-                                            {
-                                                link = u.video_link;
-                                                show_both = true;
-                                                delete_path = false;
-                                            }
-                                        }
-                                    }
-                                }
-                                else
-                                {
-                                    title = u.getTitle();
-                                    desc = u.getDesc();
-                                    link = u.video_link;
-                                    delete_path = false;
+    string strfile = "";
+    string dir = "Data/" + current.getCourseID();
+    Boolean delete_path = false;
+    foreach (Upload u in list)
+    {
+        //edit the getUploadID in dao to return video content also
+        string title = null;
+        string desc = null;
+        string link = null;
+        Boolean show_both = false;
+        DateTime date = DateTime.Now;
+        //Response.Write(u.upload_type);
+        if (u.upload_type.Equals("file") || u.upload_type.Equals("both"))
+        {
+            foreach (string str in Directory.GetFiles(Server.MapPath(dir)))
+            {
+                //Response.Write(u.getServerPath());
+                if (u.getServerPath() != null && u.getServerPath().Equals(str))
+                {
+                    //Response.Write(u.upload_type);
+                    title = u.getTitle();
+                    desc = u.getDesc();
+                    date = u.getDate();
+                    //Response.Write(title);
+                    strfile = str;
+                    delete_path = true;
+                    if (u.upload_type.Equals("both"))
+                    {
+                        link = u.video_link;
+                        date = u.getDate();
+                        show_both = true;
+                        delete_path = false;
+                    }
+                }
+            }
+        }
+        else
+        {
+            title = u.getTitle();
+            desc = u.getDesc();
+            date = u.getDate();
+            link = u.video_link;
+            delete_path = false;
 
-                                }
-                                //Response.Write(strfile);
+        }
+        //Response.Write(strfile);
 
                                 %>
                         <div class="panel panel-primary">   
@@ -355,28 +371,29 @@
                                     <%=title %>
                                     <asp:Label ID="lblUploadTitle" runat="server"></asp:Label>
                                     <%  User user = (User)Session["currentUser"];
-                                        Course_elearnDAO ceDAO = new Course_elearnDAO();
-                                        int courseID = Convert.ToInt32(Request.QueryString["id"]);
-                                        User courseCreator = ceDAO.get_course_by_id(courseID).getCourseCreator();
+    Course_elearnDAO ceDAO = new Course_elearnDAO();
+    int courseID = Convert.ToInt32(Request.QueryString["id"]);
+    User courseCreator = ceDAO.get_course_by_id(courseID).getCourseCreator();
 
-                                        if (user == null)
-                                        {
-                                            //Response.Redirect("login.aspx");
-                                        }
-                                        else if (superuser || user.getDepartment().Equals("hr") || currentUser.getUserID() == courseCreator.getUserID())
-                                        {
-                                            if (delete_path)
-                                            {%>
+    if (user == null)
+    {
+        //Response.Redirect("login.aspx");
+    }
+    else if (superuser || user.getDepartment().Equals("hr") || currentUser.getUserID() == courseCreator.getUserID())
+    {
+        if (delete_path)
+        {%>
                                     <a href="deleteMaterial.aspx?id=<%=current.getCourseID()%>&path=<%=strfile%>" onclick="return confirm('Are you sure?')"><span class="label label-danger pull-right"><span class="glyphicon glyphicon-trash"></span></span></a></strong><br />
-                                    <%      }else if (show_both)
-                                        {%>
+                                    <%      }
+    else if (show_both)
+    {%>
                                     <a href="deleteBoth.aspx?id=<%=current.getCourseID()%>&path=<%=strfile%>&video_link=<%=u.video_link%>" onclick="return confirm('Are you sure?')"><span class="label label-danger pull-right"><span class="glyphicon glyphicon-trash"></span></span></a></strong><br />
                                         <%}
-                                        else
-                                        { %>
+    else
+    { %>
                                         <a href="deleteMaterialLink.aspx?id=<%=current.getCourseID()%>&video_link=<%=u.video_link%>" onclick="return confirm('Are you sure?')"><span class="label label-danger pull-right"><span class="glyphicon glyphicon-trash"></span></span></a></strong><br />
                                     <%}
-                                        } %>
+    } %>
                                 </h3>
                             </div>
                             <div class="panel-body">
@@ -387,38 +404,48 @@
                                 <asp:Label ID="lblUploadDescription" runat="server"></asp:Label>
                                 <br />
                                 <br />
-                                <% if (delete_path) {
-                                        string var = dir + "/" + Path.GetFileName(strfile);
-                                        if (Path.GetExtension(var).Equals(".pdf"))
-                                        {
-                                            var = "ViewerJS/#../" + dir + "/" + Path.GetFileName(strfile);
-                                        }%>
+                                <% if (delete_path)
+    {
+        string var = dir + "/" + Path.GetFileName(strfile);
+        if (Path.GetExtension(var).Equals(".pdf"))
+        {
+            var = "ViewerJS/#../" + dir + "/" + Path.GetFileName(strfile);
+        }%>
                                 <a href="<%=var %>"><%=Path.GetFileName(strfile) %></a><br />
                                 <% }
-                                    else if (show_both)
-                                    {
-                                        string var = dir + "/" + Path.GetFileName(strfile);
-                                        //Response.Write(var);
-                                        if (Path.GetExtension(var).Equals(".pdf"))
-                                        {
-                                            var = "ViewerJS/#../" + dir + "/" + Path.GetFileName(strfile);
-                                        }
-                                        string replace = link;
-                                            if (link.Contains("watch?v="))
-                                            {
-                                                replace = link.Replace("watch?v=", "embed/");
-                                            }
+    else if (show_both)
+    {
+        string var = dir + "/" + Path.GetFileName(strfile);
+        //Response.Write(var);
+        if (Path.GetExtension(var).Equals(".pdf"))
+        {
+            var = "ViewerJS/#../" + dir + "/" + Path.GetFileName(strfile);
+        }
+        string replace = link;
+        if (link == null)
+        {
+
+        }
+        else if (link.Contains("watch?v="))
+        {
+            replace = link.Replace("watch?v=", "embed/");
+        }
                                         %>
                                      
                                 
                                      <iframe width="560" height="315" src="<%=replace %>" frameborder="0" allowfullscreen></iframe><br /><br />
                                     <a href="<%=var %>"><%=Path.GetFileName(strfile) %></a><br />
                                     <%
-                                        }else{
+                                        }
+                                        else
+                                        {
                                             string replace = link;
-                                            if (link.Contains("watch?v="))
+                                            if (link != null)
                                             {
-                                                replace = link.Replace("watch?v=", "embed/");
+                                                if (link.Contains("watch?v="))
+                                                {
+                                                    replace = link.Replace("watch?v=", "embed/");
+                                                }
                                             }
                                             %>
                                 <iframe width="560" height="315" src="<%=replace %>" frameborder="0" allowfullscreen></iframe>
@@ -426,6 +453,7 @@
                             </div>
                         </div>
                         <%
+                                    }
                                 }
                             }
                             else
@@ -458,7 +486,11 @@
                             List<Quiz> allQuizzes = quizDAO.getAllQuizByCourseID(courseID);
                             if (currentUser != null)
                             {
-                                if (allQuizzes.Count != 0)
+                                if (current.getStatus().Equals("inactive") || !(DateTime.Compare(current.getStartDate(), DateTime.Now) < 0 && DateTime.Compare(current.getExpiryDate(), DateTime.Now) > 0))
+                                {
+                                    Response.Write("Course is currently not available.");
+                                }
+                                else if (allQuizzes.Count != 0)
                                 {
                                     foreach (Quiz q in allQuizzes)
                                     {
@@ -567,6 +599,7 @@
                                     Response.Write("There are currently no quizzes created!");
                                 }
                             }
+                            
                             else
                             {
                                 Response.Write("Please login to attempt quiz.");
