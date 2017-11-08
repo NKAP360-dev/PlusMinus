@@ -22,7 +22,7 @@
   <li class="active">Account Settings</li>
   </ul>
     <div class="container">
-        <h1>Account Setting</h1>
+        <h1>Account Settings</h1>
         <div class="verticalLine"></div>
     </div>
     <form class="form-horizontal" runat="server">

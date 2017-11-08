@@ -10,7 +10,8 @@ namespace LearnHub.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            //return View();
+            return Redirect("home.aspx");
         }
 
         public ActionResult About()

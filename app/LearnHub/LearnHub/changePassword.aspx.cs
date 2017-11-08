@@ -45,8 +45,10 @@ namespace LearnHub
                         Boolean isit = udao.updatePassword(new_hashedPassword, currentUser);
                         if (isit)
                         {
-                            lblErrorMsg.Visible = false;
-                            lblPasswordSaved.Visible = true;
+                            //lblErrorMsg.Visible = false;
+                            //lblPasswordSaved.Visible = true;
+                            Session.Abandon();
+                            Response.Redirect("login.aspx");
                         }
                         else
                         {

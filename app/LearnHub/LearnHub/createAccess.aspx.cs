@@ -34,7 +34,14 @@ namespace LearnHub
                         List<Department> deps = depdao.getAllDepartment();
                         foreach (Department d in deps)
                         {
-                            lblDept.Items.Add(new ListItem(System.Globalization.CultureInfo.CurrentCulture.TextInfo.ToTitleCase(d.getDeptName().ToLower()), d.getDeptName()));
+                            if (d.getDeptName().ToLower().Equals("hr"))
+                            {
+                                lblDept.Items.Add(new ListItem("Human Resources", d.getDeptName()));
+                            }
+                            else
+                            {
+                                lblDept.Items.Add(new ListItem(System.Globalization.CultureInfo.CurrentCulture.TextInfo.ToTitleCase(d.getDeptName().ToLower()), d.getDeptName()));
+                            }
                         }
                         UserDAO udao = new UserDAO();
 
@@ -73,7 +80,7 @@ namespace LearnHub
             string jobtitle = txtJobTitle.Text;
             string supervisor = null;
             string supid = null;
-            if (ddlSup.SelectedValue != "none")
+            if (!(ddlSup.SelectedValue.Equals("none")))
             {
                 supervisor = ddlSup.SelectedValue;
                 supid = udao.getUserByName(supervisor).getUserID();
@@ -111,6 +118,10 @@ namespace LearnHub
         protected void lblDept_SelectedIndexChanged(object sender, EventArgs e)
         {
             string departmentName = lblDept.SelectedValue;
+            if(departmentName.Equals("Human Resources"))
+            {
+                departmentName = "hr";
+            }
             UserDAO userDAO = new UserDAO();
             List<User> allSupervisorForDept = userDAO.getAllUsersByDept(departmentName);
             ddlSup.Items.Clear();
