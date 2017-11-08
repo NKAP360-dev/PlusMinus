@@ -194,7 +194,8 @@
                         <asp:CheckBoxList ID="cblRoles" runat="server">
                             <asp:ListItem Value="superuser">superuser</asp:ListItem>
                             <asp:ListItem Value="course creator">course creator</asp:ListItem>
-                            <asp:ListItem Value="content creator">content creator</asp:ListItem>
+                            <%--FRONT END displayed as "resource creator", BACKEND still named as content creator--%>
+                            <asp:ListItem Value="content creator">resource creator</asp:ListItem>
                             <asp:ListItem Value="user">user</asp:ListItem>
                         </asp:CheckBoxList>
                         <asp:CustomValidator runat="server" ID="cvmodulelist" ClientValidationFunction="ValidateModuleList" ErrorMessage="Please Select at least One Role" ForeColor="Red" ValidationGroup="ValidateForm" Display="Dynamic" ></asp:CustomValidator>

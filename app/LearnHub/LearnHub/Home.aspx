@@ -153,11 +153,11 @@
         <%-- THIS PART TO BE INTEGRATED 
              each li for no. of banners
             class="active" for first li--%>
-        <ol class="carousel-indicators">
+        <!--<ol class="carousel-indicators">
             <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
             <li data-target="#myCarousel" data-slide-to="1"></li>
             <li data-target="#myCarousel" data-slide-to="2"></li>
-        </ol>
+        </ol>-->
 
         <!-- Wrapper for slides -->
         <%-- THIS PART TO BE INTEGRATED 
@@ -281,8 +281,14 @@
                 <%News_highlightsDAO ndao = new News_highlightsDAO();
                     ArrayList highlights = ndao.getNewsHighlights();
                     string dir = "img/highlights";
-                    foreach (News_highlights highlight in highlights)
+                    int count = highlights.Count;
+                    if (count >= 6)
                     {
+                        count = 6;
+                    }
+                    for (int i = 0; i < count; i++)
+                    {
+                        News_highlights highlight = (News_highlights)highlights[i];
                         string str = "";
                         foreach (string strfile in Directory.GetFiles(Server.MapPath(dir)))
                         {

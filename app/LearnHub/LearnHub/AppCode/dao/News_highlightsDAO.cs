@@ -192,7 +192,7 @@ namespace LearnHub.AppCode.dao
                 conn.Open();
                 SqlCommand comm = new SqlCommand();
                 comm.Connection = conn;
-                comm.CommandText = "select * from [News_highlights] where status = 'Active'";
+                comm.CommandText = "select * from [News_highlights] where status = 'Active' order by date_posted desc";
                 SqlDataReader dr = comm.ExecuteReader();
                 while (dr.Read())
                 {
