@@ -89,7 +89,7 @@
                         <div class="wrapper">
                             <br />
                             <asp:Button ID="btnSave" runat="server" CssClass="btn btn-primary" Text="Save" OnClick="updateInfo_Click" UseSubmitBehavior="false" ValidationGroup="ValidateForm"/><br /><br />
-                            <asp:Label ID="lblSettingSaved" runat="server" CssClass="label label-success" Text="Information has been changed successfully!" Font-Size="Medium" Visible="true"></asp:Label>
+                            <asp:Label ID="lblSettingSaved" runat="server" CssClass="label label-success" Text="Information has been changed successfully!" Font-Size="Medium" Visible="false"></asp:Label>
 
                             </div>
                     </div>

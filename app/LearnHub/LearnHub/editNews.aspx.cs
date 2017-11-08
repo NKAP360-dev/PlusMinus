@@ -15,26 +15,27 @@ namespace LearnHub
         //protected int id_num;
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["currentUser"] == null)
+            User currentUser = (User)Session["currentUser"];
+            if (currentUser == null)
             {
                 Response.Redirect("Login.aspx");
             }
             else
             {
-                User currentUser = (User)Session["currentUser"];
                 Boolean superuser = false;
+                Boolean content_creator = false;
                 foreach (string s in currentUser.getRoles())
                 {
                     if (s.Equals("superuser"))
                     {
                         superuser = true;
                     }
+                    else if (s.Equals("content creator"))
+                    {
+                        content_creator = true;
+                    }
                 }
-                if (!superuser)
-                {
-                    Response.Redirect("errorPage.aspx");
-                }
-                else
+                if (superuser || content_creator)
                 {
                     if (!IsPostBack)
                     {
@@ -51,6 +52,10 @@ namespace LearnHub
                         txtDesc.Text = news.body;
                         descriptionModuleInput.Text = news.news_text; 
                     }
+                }
+                else
+                {
+                    Response.Redirect("errorPage.aspx");
                 }
             }             
         }

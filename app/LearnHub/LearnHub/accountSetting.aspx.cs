@@ -14,13 +14,20 @@ namespace LearnHub
         protected User currentUser;
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
+            currentUser = (User)Session["currentUser"];
+            if (currentUser != null)
             {
-                currentUser = (User)Session["currentUser"];
-                txtContactNo.Text = currentUser.getContact();
-                txtAddress.Text = currentUser.getAddress();
+                if (!IsPostBack)
+                {
+                    currentUser = (User)Session["currentUser"];
+                    txtContactNo.Text = currentUser.getContact();
+                    txtAddress.Text = currentUser.getAddress();
+                }
             }
-            
+            else
+            {
+                Response.Redirect("login.aspx");
+            }
 
         }
         protected void updateInfo_Click(object sender, EventArgs e)
@@ -36,7 +43,7 @@ namespace LearnHub
                 currentUser = (User)Session["currentUser"];
                 User user = udao.updateInfo(txtContactNo.Text, txtAddress.Text, currentUser);
                 Session["currentUser"] = user;
-                Response.Redirect("Home.aspx");
+                lblSettingSaved.Visible = true;
             }
         }
     }

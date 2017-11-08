@@ -547,7 +547,7 @@
                         superuser = true;
                     }
                 }
-                if (currentUser.getDepartment().Equals("hr") || superuser)
+                if (superuser)
                 {
 
         %>

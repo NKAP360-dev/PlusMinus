@@ -13,23 +13,51 @@ namespace LearnHub
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
+            User currentUser = (User)Session["currentUser"];
+            if (currentUser == null)
             {
-                User currentUser = (User)Session["currentUser"];
-                int categoryID = Convert.ToInt32(Request.QueryString["id"]);
-                Course_elearnCategoryDAO cecDAO = new Course_elearnCategoryDAO();
-                CourseCategory currentCategory = cecDAO.getCategoryByID(categoryID);
-                if (currentCategory.status.Equals("active"))
+                Response.Redirect("Login.aspx");
+            }
+            else
+            {
+                Boolean superuser = false;
+                Boolean course_creator = false;
+                foreach (string s in currentUser.getRoles())
                 {
-                    btnDeactivate.Visible = true;
-                    btnActivate.Visible = false;
-                } else
-                {
-                    btnDeactivate.Visible = false;
-                    btnActivate.Visible = true;
+                    if (s.Equals("superuser"))
+                    {
+                        superuser = true;
+                    }
+                    else if (s.Equals("course creator"))
+                    {
+                        course_creator = true;
+                    }
                 }
-                txtCategory.Text = currentCategory.category;
-                lblHiddenID.Text = currentCategory.categoryID.ToString();
+                if (superuser || course_creator)
+                {
+                    if (!IsPostBack)
+                    {
+                        int categoryID = Convert.ToInt32(Request.QueryString["id"]);
+                        Course_elearnCategoryDAO cecDAO = new Course_elearnCategoryDAO();
+                        CourseCategory currentCategory = cecDAO.getCategoryByID(categoryID);
+                        if (currentCategory.status.Equals("active"))
+                        {
+                            btnDeactivate.Visible = true;
+                            btnActivate.Visible = false;
+                        }
+                        else
+                        {
+                            btnDeactivate.Visible = false;
+                            btnActivate.Visible = true;
+                        }
+                        txtCategory.Text = currentCategory.category;
+                        lblHiddenID.Text = currentCategory.categoryID.ToString();
+                    }
+                }
+                else
+                {
+                    Response.Redirect("errorPage.aspx");
+                }
             }
         }
         protected void btnConfirmSubmit_Click(object sender, EventArgs e)

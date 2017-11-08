@@ -13,6 +13,35 @@ namespace LearnHub
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            User currentUser = (User)Session["currentUser"];
+            if (currentUser == null)
+            {
+                Response.Redirect("Login.aspx");
+            }
+            else
+            {
+                Boolean superuser = false;
+                Boolean content_creator = false;
+                foreach (string s in currentUser.getRoles())
+                {
+                    if (s.Equals("superuser"))
+                    {
+                        superuser = true;
+                    }
+                    else if (s.Equals("content creator"))
+                    {
+                        content_creator = true;
+                    }
+                }
+                if (superuser || content_creator)
+                {
+
+                }
+                else
+                {
+                    Response.Redirect("errorPage.aspx");
+                }
+            }
         }
         protected void btnSubmit_Click(object sender, EventArgs e)
         {

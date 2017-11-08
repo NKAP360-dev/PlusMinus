@@ -15,26 +15,49 @@ namespace LearnHub
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
+            User currentUser = (User)Session["currentUser"];
+            if (currentUser != null)
             {
-                DeptDAO depdao = new DeptDAO();
-                List<Department> deps = depdao.getAllDepartment();
-                foreach (Department d in deps)
+                Boolean superuser = false;
+                foreach (string s in currentUser.getRoles())
                 {
-                    lblDept.Items.Add(new ListItem(System.Globalization.CultureInfo.CurrentCulture.TextInfo.ToTitleCase(d.getDeptName().ToLower()), d.getDeptName()));
+                    if (s.Equals("superuser"))
+                    {
+                        superuser = true;
+                    }
                 }
-                UserDAO udao = new UserDAO();
-
-                ArrayList sups = udao.get_supervisors();
-                foreach (User supervisor in sups)
+                if (superuser)
                 {
-                    ddlSup.Items.Add(supervisor.getName());
+                    if (!IsPostBack)
+                    {
+                        DeptDAO depdao = new DeptDAO();
+                        List<Department> deps = depdao.getAllDepartment();
+                        foreach (Department d in deps)
+                        {
+                            lblDept.Items.Add(new ListItem(System.Globalization.CultureInfo.CurrentCulture.TextInfo.ToTitleCase(d.getDeptName().ToLower()), d.getDeptName()));
+                        }
+                        UserDAO udao = new UserDAO();
+
+                        ArrayList sups = udao.get_supervisors();
+                        foreach (User supervisor in sups)
+                        {
+                            ddlSup.Items.Add(supervisor.getName());
+                        }
+                    }
+                    else
+                    {
+                        txtPassword.Attributes["value"] = txtPassword.Text;
+                        txtPassword2.Attributes["value"] = txtPassword2.Text;
+                    }
+                }
+                else
+                {
+                    Response.Redirect("errorPage.aspx");
                 }
             }
             else
             {
-                txtPassword.Attributes["value"] = txtPassword.Text;
-                txtPassword2.Attributes["value"] = txtPassword2.Text;
+                Response.Redirect("login.aspx");
             }
         }
         protected void submit_Click(object sender, EventArgs e)

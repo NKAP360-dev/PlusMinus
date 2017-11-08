@@ -774,7 +774,14 @@ namespace LearnHub.AppCode.dao
                 SqlDataReader dr = comm.ExecuteReader();
                 while (dr.Read())
                 {
-                    toReturn = (string)dr["supervisor"];
+                    if (!dr.IsDBNull(6))
+                    {
+                        toReturn = (string)dr["supervisor"];
+                    }
+                    else
+                    {
+                        toReturn = null;
+                    }
                 }
                 dr.Close();
             }

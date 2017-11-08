@@ -21,54 +21,72 @@ namespace LearnHub
             }
             else
             {
-                if (!IsPostBack)
-                {
-                    UserDAO userDAO = new UserDAO();
-                    User currentSelectedUser = userDAO.getUserByID((string)Request.QueryString["id"]);
-                    Course_elearnDAO ceDAO = new Course_elearnDAO();
-                    List<int> suggestedCourseIDList = ceDAO.getAllSuggestedCoursesByUserID((string)Request.QueryString["id"]);
-                    Session["suggestedCourseIDList"] = suggestedCourseIDList;
-                }
-                var itemIDs = string.Join(",", ((IList<int>)Session["suggestedCourseIDList"]).ToArray());
+                UserDAO userDAO = new UserDAO();
+                User currentSelectedUser = userDAO.getUserByID((string)Request.QueryString["id"]);
+                string supervisorOfUserID = currentSelectedUser.getSupervisor();
+                Boolean superuser = false;
 
-                //to load course list
-                var sqlQueryCourseList = "";
-                if (itemIDs.Length > 0)
+                foreach(string s in currentUser.getRoles())
                 {
-                    sqlQueryCourseList = String.Format("SELECT * FROM [Elearn_course] ec INNER JOIN [Elearn_courseCategory] ecc ON ec.categoryID = ecc.categoryID WHERE ec.status='active' and ec.start_date <= getDate() and ec.expiry_date >= getDate() and ec.elearn_courseID NOT IN ({0})", itemIDs);
+                    if (s.Equals("superuser"))
+                    {
+                        superuser = true;
+                    }
+                }
+
+                if (superuser || currentUser.getUserID().Equals(supervisorOfUserID))
+                {
+                    if (!IsPostBack)
+                    {
+                        Course_elearnDAO ceDAO = new Course_elearnDAO();
+                        List<int> suggestedCourseIDList = ceDAO.getAllSuggestedCoursesByUserID((string)Request.QueryString["id"]);
+                        Session["suggestedCourseIDList"] = suggestedCourseIDList;
+                    }
+                    var itemIDs = string.Join(",", ((IList<int>)Session["suggestedCourseIDList"]).ToArray());
+
+                    //to load course list
+                    var sqlQueryCourseList = "";
+                    if (itemIDs.Length > 0)
+                    {
+                        sqlQueryCourseList = String.Format("SELECT * FROM [Elearn_course] ec INNER JOIN [Elearn_courseCategory] ecc ON ec.categoryID = ecc.categoryID WHERE ec.status='active' and ec.start_date <= getDate() and ec.expiry_date >= getDate() and ec.elearn_courseID NOT IN ({0})", itemIDs);
+                    }
+                    else
+                    {
+                        sqlQueryCourseList = "SELECT * FROM [Elearn_course] ec INNER JOIN [Elearn_courseCategory] ecc ON ec.categoryID = ecc.categoryID WHERE ec.status='active' and ec.start_date <= getDate() and ec.expiry_date >= getDate()";
+                    }
+                    SqlDataSource1.SelectCommand = sqlQueryCourseList;
+                    gvCourses.DataSource = SqlDataSource1;
+                    gvCourses.DataBind();
+
+                    gvCourses.UseAccessibleHeader = true;
+
+                    if (gvCourses.Rows.Count > 0)
+                    {
+                        gvCourses.HeaderRow.TableSection = TableRowSection.TableHeader;
+                    }
+
+                    //to load suggested cart
+
+                    var sqlQuery = "";
+                    if (itemIDs.Length > 0)
+                    {
+                        sqlQuery = String.Format("SELECT * FROM [Elearn_course] WHERE [elearn_courseID] IN ({0})", itemIDs);
+                    }
+                    else
+                    {
+                        sqlQuery = "SELECT * FROM [Elearn_course] WHERE [elearn_courseID] = -1";
+                    }
+
+                    SqlDataSourceCourseCart.SelectCommand = sqlQuery;
+                    gvCourseCart.DataSource = SqlDataSourceCourseCart;
+                    gvCourseCart.DataBind();
+
+                    //btnViewReport.OnClientClick = $"window.open('progressReports.aspx?id={ddlSelectUser.SelectedValue}')";
                 }
                 else
                 {
-                    sqlQueryCourseList = "SELECT * FROM [Elearn_course] ec INNER JOIN [Elearn_courseCategory] ecc ON ec.categoryID = ecc.categoryID WHERE ec.status='active' and ec.start_date <= getDate() and ec.expiry_date >= getDate()";
+                    Response.Redirect("errorPage.aspx");
                 }
-                SqlDataSource1.SelectCommand = sqlQueryCourseList;
-                gvCourses.DataSource = SqlDataSource1;
-                gvCourses.DataBind();
-
-                gvCourses.UseAccessibleHeader = true;
-
-                if (gvCourses.Rows.Count > 0)
-                {
-                    gvCourses.HeaderRow.TableSection = TableRowSection.TableHeader;
-                }
-
-                //to load suggested cart
-
-                var sqlQuery = "";
-                if (itemIDs.Length > 0)
-                {
-                    sqlQuery = String.Format("SELECT * FROM [Elearn_course] WHERE [elearn_courseID] IN ({0})", itemIDs);
-                }
-                else
-                {
-                    sqlQuery = "SELECT * FROM [Elearn_course] WHERE [elearn_courseID] = -1";
-                }
-
-                SqlDataSourceCourseCart.SelectCommand = sqlQuery;
-                gvCourseCart.DataSource = SqlDataSourceCourseCart;
-                gvCourseCart.DataBind();
-
-                //btnViewReport.OnClientClick = $"window.open('progressReports.aspx?id={ddlSelectUser.SelectedValue}')";
             }
         }
 
