@@ -186,6 +186,92 @@
                     type: 'column'
                 }]
              });
+        });
+
+        $(function () {
+            Highcharts.chart('topLearnerByHours', {
+                chart: {
+                    type: 'column'
+                },
+                title: {
+                    text: 'Top 10 Users by Learning Hours'
+                },
+                xAxis: {
+                    categories: <%= topLearnersByHoursName%>,
+                    crosshair: true,
+                    title: {
+                        text: 'Name of User'
+                    }
+                },
+                yAxis: {
+                    min: 0,
+                    title: {
+                        text: 'No. of Learning Hours'
+                    }
+                },
+                tooltip: {
+                    headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                    pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                    '<td style="padding:0"><b>{point.y}</b></td></tr>',
+                    footerFormat: '</table>',
+                    shared: true,
+                    useHTML: true
+                },
+                plotOptions: {
+                    column: {
+                        pointPadding: 0.2,
+                        borderWidth: 0
+                    }
+                },
+                series: [{
+                    name: 'Learning Hours',
+                    data: <%= topLearnersByHours%>,
+                    type: 'column'
+                }]
+             });
+        });
+
+        $(function () {
+            Highcharts.chart('topLeanersByQuiz', {
+                chart: {
+                    type: 'column'
+                },
+                title: {
+                    text: 'Top 10 Users by Passed Quizzes'
+                },
+                xAxis: {
+                    categories: <%= topLearnersByQuizName%>,
+                    crosshair: true,
+                    title: {
+                        text: 'Name of User'
+                    }
+                },
+                yAxis: {
+                    min: 0,
+                    title: {
+                        text: 'No. of Quiz Passed'
+                    }
+                },
+                tooltip: {
+                    headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                    pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                    '<td style="padding:0"><b>{point.y}</b></td></tr>',
+                    footerFormat: '</table>',
+                    shared: true,
+                    useHTML: true
+                },
+                plotOptions: {
+                    column: {
+                        pointPadding: 0.2,
+                        borderWidth: 0
+                    }
+                },
+                series: [{
+                    name: 'No. of Quiz Passed',
+                    data: <%= topLearnersByQuiz%>,
+                    type: 'column'
+                }]
+             });
          });
     </script>
 </asp:Content>
@@ -262,6 +348,15 @@
                 </div>
                  <div class="col-md-6">
                      <div id="auditFunctionChart" class="pull-left" style="min-width: 300px; width: 500px; height: 400px; margin: 0 auto"></div>
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-md-6">
+                    <div id="topLearnerByHours" class="pull-left" style="min-width: 300px; width: 500px; height: 400px; margin: 0 auto"></div>
+                </div>
+                <div class="col-md-6">
+                    <div id="topLeanersByQuiz" class="pull-left" style="min-width: 300px; width: 500px; height: 400px; margin: 0 auto"></div>
                 </div>
             </div>
         </div>

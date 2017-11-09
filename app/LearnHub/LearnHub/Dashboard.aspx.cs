@@ -56,6 +56,10 @@ namespace LearnHub
             renderPopularCourseCategory();
             renderAuditFunction();
             renderAuditFunctionName();
+            renderTopLearnersHours();
+            renderTopLearnersName();
+            renderTopLearnersNameByQuiz();
+            renderTopLearnersQuiz();
         }
 
         public string userPieChartData
@@ -92,7 +96,30 @@ namespace LearnHub
             set;
         }
 
-        
+        public string topLearnersByHoursName
+        {
+            get;
+            set;
+        }
+
+        public string topLearnersByHours
+        {
+            get;
+            set;
+        }
+
+        public string topLearnersByQuizName
+        {
+            get;
+            set;
+        }
+
+        public string topLearnersByQuiz
+        {
+            get;
+            set;
+        }
+
         public void renderUserPieChart()
         {
             DataTable dt = GetUserPieData(); //Assuming that GetData already populating with data as datatable   
@@ -231,6 +258,92 @@ namespace LearnHub
             auditFunctionName = temp;
 
         }
+
+        public void renderTopLearnersName()
+        {
+            DataTable dt = GetTopLearnersName(); //Assuming that GetData already populating with data as datatable   
+            List<int> _data = new List<int>();
+            string temp = "[";
+            int counter = 1;
+            foreach (DataRow row in dt.Rows)
+            {
+                temp = temp + $"'{(string)row["user"]}'";
+                if (counter != dt.Rows.Count)
+                {
+                    temp = temp + "," + " ";
+                }
+
+                counter++;
+            }
+            temp = temp + "]";
+            topLearnersByHoursName = temp;
+        }
+
+        public void renderTopLearnersHours()
+        {
+            DataTable dt = GetTopLearnersHours(); //Assuming that GetData already populating with data as datatable   
+            string temp = "[";
+            int counter = 1;
+            foreach (DataRow row in dt.Rows)
+            {
+
+                Double count = (Double)row["hours"];
+
+                temp = temp + count;
+                if (counter != dt.Rows.Count)
+                {
+                    temp = temp + "," + " ";
+                }
+
+                counter++;
+            }
+            temp = temp + "]";
+            topLearnersByHours = temp;
+        }
+
+        public void renderTopLearnersNameByQuiz()
+        {
+            DataTable dt = GetTopLearnersNameByQuiz(); //Assuming that GetData already populating with data as datatable   
+            List<int> _data = new List<int>();
+            string temp = "[";
+            int counter = 1;
+            foreach (DataRow row in dt.Rows)
+            {
+                temp = temp + $"'{(string)row["user"]}'";
+                if (counter != dt.Rows.Count)
+                {
+                    temp = temp + "," + " ";
+                }
+
+                counter++;
+            }
+            temp = temp + "]";
+            topLearnersByQuizName = temp;
+        }
+
+        public void renderTopLearnersQuiz()
+        {
+            DataTable dt = GetTopLearnersQuiz(); //Assuming that GetData already populating with data as datatable   
+            string temp = "[";
+            int counter = 1;
+            foreach (DataRow row in dt.Rows)
+            {
+
+                int count = (int)row["count"];
+
+                temp = temp + count;
+                if (counter != dt.Rows.Count)
+                {
+                    temp = temp + "," + " ";
+                }
+
+                counter++;
+            }
+            temp = temp + "]";
+            topLearnersByQuiz = temp;
+        }
+
+
         public DataTable GetUserPieData()
         {
             string connectionString = ConfigurationManager.ConnectionStrings["DBConnectionString"].ConnectionString;
@@ -372,6 +485,102 @@ namespace LearnHub
 
             return dt;
         }
+
+        public DataTable GetTopLearnersName()
+        {
+            string connectionString = ConfigurationManager.ConnectionStrings["DBConnectionString"].ConnectionString;
+            DataTable dt = new DataTable();
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                using (SqlCommand command = new SqlCommand("select top 10 u.name AS 'user' from [QuizResult] qr inner join [User] u on qr.UserID = u.userID inner join  [Quiz] q on qr.quizID = q.quizID inner join  [Elearn_course] c on q.elearn_courseID = c.elearn_courseID WHERE qr.grade = 'pass' GROUP BY u.name ORDER BY count(c.hoursAwarded) DESC", connection))
+                {
+                    connection.Open();
+                    using (SqlDataReader dr = command.ExecuteReader())
+                    {
+                        if (dr.HasRows)
+                        {
+                            dt.Load(dr);
+                        }
+                    }
+                    connection.Close();
+                }
+            }
+
+            return dt;
+        }
+
+        public DataTable GetTopLearnersHours()
+        {
+            string connectionString = ConfigurationManager.ConnectionStrings["DBConnectionString"].ConnectionString;
+            DataTable dt = new DataTable();
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                using (SqlCommand command = new SqlCommand(" select top 10 SUM(c.hoursAwarded) AS 'hours' from [QuizResult] qr inner join  [User] u on qr.UserID = u.userID inner join [Quiz] q on qr.quizID = q.quizID inner join [Elearn_course] c on q.elearn_courseID = c.elearn_courseID WHERE qr.grade = 'pass' GROUP BY qr.userID ORDER BY hours DESC", connection))
+                {
+                    connection.Open();
+                    using (SqlDataReader dr = command.ExecuteReader())
+                    {
+                        if (dr.HasRows)
+                        {
+                            dt.Load(dr);
+                        }
+                    }
+                    connection.Close();
+                }
+            }
+
+            return dt;
+        }
+
+        public DataTable GetTopLearnersNameByQuiz()
+        {
+            string connectionString = ConfigurationManager.ConnectionStrings["DBConnectionString"].ConnectionString;
+            DataTable dt = new DataTable();
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                using (SqlCommand command = new SqlCommand("select top 10 u.name AS 'user' from [QuizResult] qr inner join [User] u on qr.userID = u.userID where qr.grade = 'pass' group by u.name order by count(qr.grade) desc", connection))
+                {
+                    connection.Open();
+                    using (SqlDataReader dr = command.ExecuteReader())
+                    {
+                        if (dr.HasRows)
+                        {
+                            dt.Load(dr);
+                        }
+                    }
+                    connection.Close();
+                }
+            }
+
+            return dt;
+        }
+
+        public DataTable GetTopLearnersQuiz()
+        {
+            string connectionString = ConfigurationManager.ConnectionStrings["DBConnectionString"].ConnectionString;
+            DataTable dt = new DataTable();
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                using (SqlCommand command = new SqlCommand("select top 10 count(qr.grade) AS 'count' from [QuizResult] qr inner join [User] u on qr.userID = u.userID where qr.grade = 'pass' group by u.name order by count(qr.grade) desc", connection))
+                {
+                    connection.Open();
+                    using (SqlDataReader dr = command.ExecuteReader())
+                    {
+                        if (dr.HasRows)
+                        {
+                            dt.Load(dr);
+                        }
+                    }
+                    connection.Close();
+                }
+            }
+
+            return dt;
+        }
         public int GetTotalNoOfQuiz() {
             string connectionString = ConfigurationManager.ConnectionStrings["DBConnectionString"].ConnectionString;
             DataTable dt = new DataTable();
@@ -420,5 +629,7 @@ namespace LearnHub
             toReturn = Double.Parse(dt.Rows[0][0].ToString());
             return toReturn;
         }
+
+
     }
 }
