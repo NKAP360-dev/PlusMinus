@@ -91,7 +91,7 @@
             <div class="dropdown" style="float: right;">
                 <button class="dropbtn" onclick="return false;"><span class="glyphicon glyphicon-option-horizontal"></span></button>
                 <div class="dropdown-content" style="right: 0;">
-                    <div class="dropHeader">Content Management</div>
+                    <div class="dropHeader">Resource Management</div>
                     <a href="editAboutUs.aspx"><span class="glyphicon glyphicon-pencil"></span>&nbsp;&nbsp;Edit About Us</a>
                     <a href="manageArticles.aspx"><span class="glyphicon glyphicon-duplicate"></span>&nbsp;&nbsp;Manage Articles</a>
                     <a href="manageUsefulLinks.aspx"><span class="glyphicon glyphicon-globe"></span>&nbsp;&nbsp;Manage Links</a>
