@@ -382,7 +382,7 @@
                                 %>
                  <ul class="nav navbar-nav">
                     <li class="dropdown">
-                        <a href="accountSetting.aspx" class="dropdown-toggle" role="button" aria-expanded="false">Setting</a>
+                        <a href="accountSetting.aspx" class="dropdown-toggle" role="button" aria-expanded="false">Settings</a>
 
                     </li>
                 </ul>
