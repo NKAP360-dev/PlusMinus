@@ -16,7 +16,9 @@
             color: white !important;
             font-family: 'Martel', serif !important;
         }
-
+        h4 {
+            text-align:center;
+        }
         .wrapper {
             margin-top: 100px;
             margin-bottom: 100px;
@@ -90,19 +92,29 @@
     <link href="bootstrap/css/bootstrap.css" rel="stylesheet" />
 </head>
 <body>
-
-
+    <% string changed = null;
+    if (Request.QueryString["changed"] != null)
+    {
+        changed = Request.QueryString["changed"];
+        if (changed.Equals("true"))
+        {    %>
+            <div class="alert alert-dismissible alert-warning">
+                 <button type="button" class="close" data-dismiss="alert">&times;</button>
+                 <h4>Password changed, please re-login.</h4>
+            </div>
+        <%}
+    } %>
     <div class="container">
         <div class="row">
             <div class="col-lg-4"></div>
             <div class="col-lg-4">
                 <div class="wrapper">
                     <form id="form1" runat="server">
-
+                        
                         <h1 class="text-center login-title">LearnHub</h1>
                         <br />
                         <div class="card">
-
+                            
                             <fieldset>
                                 <div class="header"><a href="Home.aspx"><span class="glyphicon glyphicon-home"></span></a>&emsp;<strong>L O G I N</strong></div>
                                 <br />
@@ -148,14 +160,15 @@
                                         <br />
                                         <div class="form-group text-center">
                                             <asp:LinkButton ID="btnLogin" runat="server" CssClass="btn btn-primary" OnClick="btnLogin_Click"><span><strong>Login</strong></span></asp:LinkButton>
-
-
+                                           
                                             <p>
                                                 <br />
                                                 <a href="forgotPassword.aspx">Forgot your password?</a>
                                             </p>
                                             <p>
-                                                <br />
+                                                <!--<br />
+                                                 <asp:Label ID="lblSuccessMsg" CssClass="text-success" runat="server" Text="Order has been saved successfully"></asp:Label>
+                                                <br />-->
                                             </p>
                                             <%--
                                     <asp:RequiredFieldValidator ID="rfv_NoUseError" runat="server" ErrorMessage="Invalid username/password." ControlToValidate="txtUsername" CssClass="text-danger"></asp:RequiredFieldValidator>

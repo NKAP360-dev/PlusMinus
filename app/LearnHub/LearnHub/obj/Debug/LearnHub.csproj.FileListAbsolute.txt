@@ -266,6 +266,5 @@ C:\Users\Eugene Tan\PlusMinus\app\LearnHub\LearnHub\bin\Microsoft.AI.DependencyC
 C:\Users\Eugene Tan\PlusMinus\app\LearnHub\LearnHub\bin\Microsoft.AI.ServerTelemetryChannel.xml
 C:\Users\Eugene Tan\PlusMinus\app\LearnHub\LearnHub\bin\Microsoft.AI.WindowsServer.xml
 C:\Users\Eugene Tan\PlusMinus\app\LearnHub\LearnHub\bin\Microsoft.AI.Web.xml
-C:\Users\Eugene Tan\PlusMinus\app\LearnHub\LearnHub\obj\Debug\LearnHub.csprojResolveAssemblyReference.cache
 C:\Users\Eugene Tan\PlusMinus\app\LearnHub\LearnHub\obj\Debug\LearnHub.dll
 C:\Users\Eugene Tan\PlusMinus\app\LearnHub\LearnHub\obj\Debug\LearnHub.pdb

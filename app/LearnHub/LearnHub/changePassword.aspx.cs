@@ -48,7 +48,7 @@ namespace LearnHub
                             //lblErrorMsg.Visible = false;
                             //lblPasswordSaved.Visible = true;
                             Session.Abandon();
-                            Response.Redirect("login.aspx");
+                            Response.Redirect("login.aspx?changed=true");
                         }
                         else
                         {
