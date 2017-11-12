@@ -728,6 +728,13 @@
     <Compile Include="siteConfig.aspx.designer.cs">
       <DependentUpon>siteConfig.aspx</DependentUpon>
     </Compile>
+    <Compile Include="siteMap.aspx.cs">
+      <DependentUpon>siteMap.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="siteMap.aspx.designer.cs">
+      <DependentUpon>siteMap.aspx</DependentUpon>
+    </Compile>
     <Compile Include="submitTRF.aspx.cs">
       <DependentUpon>submitTRF.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1336,6 +1343,7 @@
     <Content Include="Scripts\footable.bootstrap.min.css" />
     <Content Include="Scripts\footable.min.js" />
     <Content Include="siteConfig.aspx" />
+    <Content Include="siteMap.aspx" />
     <Content Include="submitTRF.aspx" />
     <Content Include="suggestCourses.aspx" />
     <Content Include="TestCipher.aspx" />
