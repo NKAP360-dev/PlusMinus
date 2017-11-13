@@ -409,6 +409,15 @@ namespace LearnHub {
         protected global::System.Web.UI.WebControls.RequiredFieldValidator rfv_FileUpload1;
         
         /// <summary>
+        /// cv_FileUpload1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CustomValidator cv_FileUpload1;
+        
+        /// <summary>
         /// videoOnlyPanel control.
         /// </summary>
         /// <remarks>
@@ -569,6 +578,15 @@ namespace LearnHub {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator rfv_FileUpload2;
+        
+        /// <summary>
+        /// cv_FileUpload2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CustomValidator cv_FileUpload2;
         
         /// <summary>
         /// Button1 control.

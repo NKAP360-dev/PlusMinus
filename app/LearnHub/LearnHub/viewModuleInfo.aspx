@@ -659,6 +659,7 @@
                                     <%--Positioning for buttons--%>
                                     <asp:FileUpload ID="FileUpload1" runat="server" Visible="False" />
                                     <asp:RequiredFieldValidator ID="rfv_FileUpload1" runat="server" ErrorMessage="Please select an item to upload!" ControlToValidate="FileUpload1" ForeColor="Red" Display="Dynamic" ValidationGroup="ValidateForm2"></asp:RequiredFieldValidator>
+                                    <asp:CustomValidator ID="cv_FileUpload1" runat="server" ErrorMessage="This file already exists! Please upload a different file" OnServerValidate="checkUploadNameExists" ForeColor="Red" ValidationGroup="ValidateForm2" Display="Dynamic"></asp:CustomValidator>
                                     <br />
                                 </asp:Panel>
                                 
@@ -725,6 +726,7 @@
                                     </div>
                                 <asp:FileUpload ID="FileUpload2" runat="server" Visible="False" />     
                                    <asp:RequiredFieldValidator ID="rfv_FileUpload2" runat="server" ErrorMessage="Please select an item to upload!" ControlToValidate="FileUpload2" ForeColor="Red" Display="Dynamic" ValidationGroup="ValidateForm2"></asp:RequiredFieldValidator> 
+                                    <asp:CustomValidator ID="cv_FileUpload2" runat="server" ErrorMessage="This file already exists! Please upload a different file" OnServerValidate="checkUploadNameExists" ForeColor="Red" ValidationGroup="ValidateForm2" Display="Dynamic"></asp:CustomValidator>
                                 </asp:Panel>
                                 
                             </ContentTemplate>

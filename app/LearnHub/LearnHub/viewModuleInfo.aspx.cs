@@ -281,6 +281,54 @@ namespace LearnHub
             }
         }
 
+        protected void checkUploadNameExists(object sender, ServerValidateEventArgs args)
+        {
+            String currFileName = "";
+            if(rblUploadType.SelectedValue.Equals("file"))
+            {
+                currFileName = FileUpload1.FileName.ToString();
+            }
+            else if (rblUploadType.SelectedValue.Equals("both"))
+            {
+                currFileName = FileUpload2.FileName.ToString();
+            }
+            Course_elearnDAO cdao = new Course_elearnDAO();
+            ArrayList list = cdao.get_uploaded_content_by_id(current);
+            string strfile = "";
+            string dir = "Data/" + current.getCourseID();
+            Boolean delete_path = false;
+            Boolean toReturn = false;
+            foreach (Upload u in list)
+            {
+                //edit the getUploadID in dao to return video content also
+                string title = null;
+                string desc = null;
+                string link = null;
+                Boolean show_both = false;
+                DateTime date = DateTime.Now;
+                foreach (string str in Directory.GetFiles(Server.MapPath(dir)))
+                {
+                    if (u.getServerPath() != null && u.getServerPath().Equals(str))
+                    {
+                        strfile = str;
+                        String currName = Path.GetFileName(strfile);
+                        if (currFileName.Equals(currName))
+                        {
+                            toReturn = true;
+                        }
+                    }
+                }
+            }
+            if (toReturn)
+            {
+                args.IsValid = false;
+            }
+            else
+            {
+                args.IsValid = true;
+            }
+        }
+
         protected void setAudit(User u, string functionModified, string operation, string id_of_function, string remarks)
         {
             //set audit
@@ -317,6 +365,8 @@ namespace LearnHub
                 FileUpload2.Visible = false;
                 rfv_FileUpload1.Enabled = true;
                 rfv_FileUpload2.Enabled = false;
+                cv_FileUpload1.Enabled = true;
+                cv_FileUpload2.Enabled = false;
             }
             else if (rblUploadType.SelectedValue.Equals("video")) {
                 fileOnlyPanel.Visible = false;
@@ -337,6 +387,8 @@ namespace LearnHub
                 FileUpload2.Visible = false;
                 rfv_FileUpload1.Enabled = false;
                 rfv_FileUpload2.Enabled = false;
+                cv_FileUpload1.Enabled = false;
+                cv_FileUpload2.Enabled = false;
 
             } else if (rblUploadType.SelectedValue.Equals("both")) {
                 fileOnlyPanel.Visible = false;
@@ -357,6 +409,8 @@ namespace LearnHub
                 FileUpload2.Visible = true;
                 rfv_FileUpload1.Enabled = false;
                 rfv_FileUpload2.Enabled = true;
+                cv_FileUpload1.Enabled = false;
+                cv_FileUpload2.Enabled = true;
             }
 
         }
