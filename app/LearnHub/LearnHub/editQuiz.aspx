@@ -158,6 +158,7 @@
                     <div class="col-lg-5">
                         <CKEditor:CKEditorControl ID="txtQuizDesc" runat="server"></CKEditor:CKEditorControl>
                         <asp:CustomValidator ID="cv_txtQuizDesc" runat="server" EnableClientScript="true" ErrorMessage="Please input a Quiz Description" ClientValidationFunction="ValidateQuizDescription" ForeColor="Red" ValidationGroup="ValidateForm" Display="Dynamic"></asp:CustomValidator>
+                        <asp:Label id="lbl_txtQuizDesc" runat="server" ForeColor="Red"></asp:Label>
                     </div>
                 </div>
                 <%-- Preq --%>

@@ -399,22 +399,44 @@ namespace LearnHub
             System.Diagnostics.Debug.WriteLine("checkForm");
             if (!Page.IsValid)
             {
+                if (txtQuizDesc.Text.Equals(""))
+                {
+                    lbl_txtQuizDesc.Text = "Please input a Quiz Description";
+                }
+                else
+                {
+                    lbl_txtQuizDesc.Text = "";
+                }
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "openModal();", true);
                 lblErrorMsgFinal.Text = "You have not filled up all of the required fields";
                 btnConfirmSubmit.Enabled = false;
             }
             else
             {
-                ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "openModal();", true);
-                lblErrorMsgFinal.Text = "";
-                btnConfirmSubmit.Enabled = true;
+                if (txtQuizDesc.Text.Equals(""))
+                {
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "openModal();", true);
+                    lblErrorMsgFinal.Text = "You have not filled up all of the required fields";
+                    btnConfirmSubmit.Enabled = false;
+                    lbl_txtQuizDesc.Text = "Please input a Quiz Description";
+                }
+                else
+                {
+                    lbl_txtQuizDesc.Text = "";
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "openModal();", true);
+                    lblErrorMsgFinal.Text = "";
+                    btnConfirmSubmit.Enabled = true;
+                }
             }
         }
 
         protected void ValidateNumberOfQuestions(object source, ServerValidateEventArgs args)
         {
             System.Diagnostics.Debug.WriteLine("val pass");
-            List<QuizQuestion> allQuestions = (List<QuizQuestion>)Session["allQuestions"];
+            string id_str = Request.QueryString["id"];
+            int id_num = int.Parse(id_str);
+            QuizQuestionDAO quizquestionDAO = new QuizQuestionDAO();
+            List<QuizQuestion> allQuestions = quizquestionDAO.getAllQuizQuestionByQuizID(id_num);
             int noOfQuestions = allQuestions.Count + 1;
             System.Diagnostics.Debug.WriteLine("no:" + noOfQuestions);
             int input = Convert.ToInt32(Convert.ToDouble(txtNumCorrectAns.Text));
