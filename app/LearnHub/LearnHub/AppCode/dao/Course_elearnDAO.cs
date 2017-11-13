@@ -25,7 +25,7 @@ namespace LearnHub.AppCode.dao
                 SqlCommand comm = new SqlCommand();
                 comm.Connection = conn;
                 comm.CommandText =
-                    "delete from Elearn_courseContent where elearn_courseID = @courseID and server_path = @link and video_link = @vid";
+                    "delete from Elearn_courseContent where elearn_courseID = @courseID and server_path = @link and video_link = @vid and upload_type='both'";
                 comm.Parameters.AddWithValue("@courseID", courseID);
                 comm.Parameters.AddWithValue("@link", link);
                 comm.Parameters.AddWithValue("@vid", video);
@@ -53,7 +53,7 @@ namespace LearnHub.AppCode.dao
                 SqlCommand comm = new SqlCommand();
                 comm.Connection = conn;
                 comm.CommandText =
-                    "delete from Elearn_courseContent where elearn_courseID = @courseID and server_path = @link";
+                    "delete from Elearn_courseContent where elearn_courseID = @courseID and server_path = @link and upload_type='file'";
                 comm.Parameters.AddWithValue("@courseID", courseID);
                 comm.Parameters.AddWithValue("@link", link);
                 int rowsAffected = comm.ExecuteNonQuery();
