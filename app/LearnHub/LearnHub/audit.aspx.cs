@@ -65,25 +65,25 @@ namespace LearnHub
                 ArrayList arr = new ArrayList();
                 if (function.Equals("all") && operation.Equals("all"))
                 {
-                    arr = adao.getAllAudit_All(DateTime.ParseExact(fromDate, "MM/dd/yyyy", CultureInfo.InvariantCulture),
-                    DateTime.ParseExact(toDate, "MM/dd/yyyy", CultureInfo.InvariantCulture));
+                    arr = adao.getAllAudit_All(DateTime.ParseExact(date_from, "MM/dd/yyyy HH:mm:ss", CultureInfo.InvariantCulture),
+                    DateTime.ParseExact(date_to, "MM/dd/yyyy HH:mm:ss", CultureInfo.InvariantCulture));
                 }
                 else
                 {
                     if (operation.Equals("all"))
                     {
-                        arr = adao.getAllAudit_function(function, DateTime.ParseExact(fromDate, "MM/dd/yyyy", CultureInfo.InvariantCulture),
-                        DateTime.ParseExact(toDate, "MM/dd/yyyy", CultureInfo.InvariantCulture));
+                        arr = adao.getAllAudit_function(function, DateTime.ParseExact(date_from, "MM/dd/yyyy HH:mm:ss", CultureInfo.InvariantCulture),
+                        DateTime.ParseExact(date_to, "MM/dd/yyyy HH:mm:ss", CultureInfo.InvariantCulture));
                     }
                     else if (function.Equals("all"))
                     {
-                        arr = adao.getAllAudit_operation(operation, DateTime.ParseExact(fromDate, "MM/dd/yyyy", CultureInfo.InvariantCulture),
-                        DateTime.ParseExact(toDate, "MM/dd/yyyy", CultureInfo.InvariantCulture));
+                        arr = adao.getAllAudit_operation(operation, DateTime.ParseExact(date_from, "MM/dd/yyyy HH:mm:ss", CultureInfo.InvariantCulture),
+                        DateTime.ParseExact(date_to, "MM/dd/yyyy HH:mm:ss", CultureInfo.InvariantCulture));
                     }
                     else
                     {
-                        arr = adao.getAllAudit(operation, function, DateTime.ParseExact(fromDate, "MM/dd/yyyy", CultureInfo.InvariantCulture),
-                        DateTime.ParseExact(toDate, "MM/dd/yyyy", CultureInfo.InvariantCulture));
+                        arr = adao.getAllAudit(operation, function, DateTime.ParseExact(date_from, "MM/dd/yyyy HH:mm:ss", CultureInfo.InvariantCulture),
+                        DateTime.ParseExact(date_to, "MM/dd/yyyy HH:mm:ss", CultureInfo.InvariantCulture));
                     }
                 }
 

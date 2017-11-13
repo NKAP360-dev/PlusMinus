@@ -24,8 +24,8 @@ namespace LearnHub.AppCode.dao
                 conn.Open();
                 SqlCommand comm = new SqlCommand();
                 comm.Connection = conn;
-                comm.CommandText = "select * from Audit where operation = @operation and dateModified >= convert(datetime, @dateFrom, 103) and " +
-                    "dateModified <= convert(datetime, @dateTo, 103)"; // all operations are lowercase 
+                comm.CommandText = "select * from Audit where operation = @operation and dateModified >= convert(datetime, @dateFrom, 120) and " +
+                    "dateModified <= convert(datetime, @dateTo, 108)"; // all operations are lowercase 
                 comm.Parameters.AddWithValue("@operation", operation);
                 comm.Parameters.AddWithValue("@dateFrom", dateFrom);
                 comm.Parameters.AddWithValue("@dateTo", dateTo);
@@ -36,7 +36,14 @@ namespace LearnHub.AppCode.dao
                     a.userID = ((string)dr["userID"]);
                     a.functionModified = ((string)dr["functionModified"]);
                     a.operation = ((string)dr["operation"]);
-                    a.id_of_function = (string)dr["id_of_function"];
+                    if (!dr.IsDBNull(4))
+                    {
+                        a.id_of_function = (string)dr["id_of_function"];
+                    }
+                    else
+                    {
+                        a.id_of_function = null;
+                    }
                     a.dateModified = ((DateTime)dr["dateModified"]);
                     a.remarks = ((string)dr["remarks"]);
                     toReturn.Add(a);
@@ -65,8 +72,8 @@ namespace LearnHub.AppCode.dao
                 conn.Open();
                 SqlCommand comm = new SqlCommand();
                 comm.Connection = conn;
-                comm.CommandText = "select * from Audit where functionModified = @function and dateModified >= convert(datetime, @dateFrom, 103) and " +
-                    "dateModified <= convert(datetime, @dateTo, 103)"; // all operations are lowercase 
+                comm.CommandText = "select * from Audit where functionModified = @function and dateModified >= convert(datetime, @dateFrom, 120) and " +
+                    "dateModified <= convert(datetime, @dateTo, 120)"; // all operations are lowercase 
                 comm.Parameters.AddWithValue("@function", function);
                 comm.Parameters.AddWithValue("@dateFrom", dateFrom);
                 comm.Parameters.AddWithValue("@dateTo", dateTo);
@@ -77,7 +84,14 @@ namespace LearnHub.AppCode.dao
                     a.userID = ((string)dr["userID"]);
                     a.functionModified = ((string)dr["functionModified"]);
                     a.operation = ((string)dr["operation"]);
-                    a.id_of_function = (string)dr["id_of_function"];
+                    if (!dr.IsDBNull(4))
+                    {
+                        a.id_of_function = (string)dr["id_of_function"];
+                    }
+                    else
+                    {
+                        a.id_of_function = null;
+                    }
                     a.dateModified = ((DateTime)dr["dateModified"]);
                     a.remarks = ((string)dr["remarks"]);
                     toReturn.Add(a);
@@ -106,8 +120,8 @@ namespace LearnHub.AppCode.dao
                 conn.Open();
                 SqlCommand comm = new SqlCommand();
                 comm.Connection = conn;
-                comm.CommandText = "select * from Audit where dateModified >= convert(datetime, @dateFrom, 103) and " +
-                    "dateModified <= convert(datetime, @dateTo, 103)"; // all operations are lowercase 
+                comm.CommandText = "select * from Audit where dateModified >= convert(datetime, @dateFrom, 120) and " +
+                    "dateModified <= convert(datetime, @dateTo, 120)"; // all operations are lowercase 
                 comm.Parameters.AddWithValue("@dateFrom", dateFrom);
                 comm.Parameters.AddWithValue("@dateTo", dateTo);
                 SqlDataReader dr = comm.ExecuteReader();
@@ -191,8 +205,8 @@ namespace LearnHub.AppCode.dao
                 conn.Open();
                 SqlCommand comm = new SqlCommand();
                 comm.Connection = conn;
-                comm.CommandText = "select * from Audit where operation = @operation and functionModified = @function and dateModified >= convert(datetime, @dateFrom, 103) and " +
-                    "dateModified <= convert(datetime, @dateTo, 103)"; // all operations are lowercase 
+                comm.CommandText = "select * from Audit where operation = @operation and functionModified = @function and dateModified >= convert(datetime, @dateFrom, 120) and " +
+                    "dateModified <= convert(datetime, @dateTo, 120)"; // all operations are lowercase 
                 comm.Parameters.AddWithValue("@operation", operation);
                 comm.Parameters.AddWithValue("@function", function);
                 comm.Parameters.AddWithValue("@dateFrom", dateFrom);
@@ -204,7 +218,14 @@ namespace LearnHub.AppCode.dao
                     a.userID= ((string)dr["userID"]);
                     a.functionModified = ((string)dr["functionModified"]);
                     a.operation = ((string)dr["operation"]);
-                    a.id_of_function = (string)dr["id_of_function"];
+                    if (!dr.IsDBNull(4))
+                    {
+                        a.id_of_function = (string)dr["id_of_function"];
+                    }
+                    else
+                    {
+                        a.id_of_function = null;
+                    }
                     a.dateModified = ((DateTime)dr["dateModified"]);
                     a.remarks = ((string)dr["remarks"]);
                     toReturn.Add(a);
