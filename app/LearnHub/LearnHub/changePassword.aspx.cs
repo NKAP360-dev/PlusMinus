@@ -17,8 +17,15 @@ namespace LearnHub
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            lblErrorMsg.Visible = false;
-            lblPasswordSaved.Visible = false;
+            if (Session["currentUser"] == null)
+            {
+                Response.Redirect("Login.aspx");
+            }
+            else
+            {
+                lblErrorMsg.Visible = false;
+                lblPasswordSaved.Visible = false;
+            }
         }
         protected void submit_new_password(object sender, EventArgs e)
         {

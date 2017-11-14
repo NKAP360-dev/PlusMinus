@@ -45,7 +45,15 @@ namespace LearnHub
                 List<Department> deps = depdao.getAllDepartment();
                 foreach (Department d in deps)
                 {
-                    ddlDept.Items.Add(new ListItem(System.Globalization.CultureInfo.CurrentCulture.TextInfo.ToTitleCase(d.getDeptName().ToLower()), d.getDeptName()));
+                    if (d.getDeptName().ToLower().Equals("hr"))
+                    {
+                        ddlDept.Items.Add(new ListItem("Human Resource", d.getDeptName()));
+                    }
+                    else
+                    {
+                        ddlDept.Items.Add(new ListItem(System.Globalization.CultureInfo.CurrentCulture.TextInfo.ToTitleCase(d.getDeptName().ToLower()), d.getDeptName()));
+                    }
+                    //ddlDept.Items.Add(new ListItem(System.Globalization.CultureInfo.CurrentCulture.TextInfo.ToTitleCase(d.getDeptName().ToLower()), d.getDeptName()));
                 }
             }
         }

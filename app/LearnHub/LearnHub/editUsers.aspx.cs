@@ -60,7 +60,7 @@ namespace LearnHub
                     {
                         if (d.getDeptName().ToLower().Equals("hr"))
                         {
-                            lblDept.Items.Add(new ListItem("Human Resources", d.getDeptName()));
+                            lblDept.Items.Add(new ListItem("Human Resource", d.getDeptName()));
                         }
                         else
                         {

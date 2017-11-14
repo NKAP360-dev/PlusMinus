@@ -184,7 +184,12 @@
                         {%>
                     <tr>
                         <td><%=con.name %></td>
-                        <td><%=System.Globalization.CultureInfo.CurrentCulture.TextInfo.ToTitleCase(con.department.ToLower()) %></td>
+                        <%if (con.department.Equals("hr"))
+                            { %>
+                                <td>Human Resource</td>
+                        <%  }else{ %>
+                                <td><%=System.Globalization.CultureInfo.CurrentCulture.TextInfo.ToTitleCase(con.department.ToLower()) %></td>
+                        <%  } %>
                         <td><%=con.email %></td>
                         <td><%=con.remarks %></td>
                         <td><a href="editContactUs.aspx?id=<%=con.contact_id %>" class="btn btn-sm btn-info"><span class="glyphicon glyphicon-pencil"></span></a>

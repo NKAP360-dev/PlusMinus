@@ -36,7 +36,7 @@ namespace LearnHub
                         {
                             if (d.getDeptName().ToLower().Equals("hr"))
                             {
-                                lblDept.Items.Add(new ListItem("Human Resources", d.getDeptName()));
+                                lblDept.Items.Add(new ListItem("Human Resource", d.getDeptName()));
                             }
                             else
                             {
@@ -118,7 +118,7 @@ namespace LearnHub
         protected void lblDept_SelectedIndexChanged(object sender, EventArgs e)
         {
             string departmentName = lblDept.SelectedValue;
-            if(departmentName.Equals("Human Resources"))
+            if(departmentName.Equals("Human Resource"))
             {
                 departmentName = "hr";
             }
