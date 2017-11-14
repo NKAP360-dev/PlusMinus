@@ -490,6 +490,15 @@ namespace LearnHub {
         protected global::System.Web.UI.WebControls.RequiredFieldValidator rfv_txtVideo;
         
         /// <summary>
+        /// cv_txtVideo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CustomValidator cv_txtVideo;
+        
+        /// <summary>
         /// bothPanel control.
         /// </summary>
         /// <remarks>
@@ -560,6 +569,15 @@ namespace LearnHub {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator rfv_txtVideo2;
+        
+        /// <summary>
+        /// cv_txtVideo2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CustomValidator cv_txtVideo2;
         
         /// <summary>
         /// FileUpload2 control.

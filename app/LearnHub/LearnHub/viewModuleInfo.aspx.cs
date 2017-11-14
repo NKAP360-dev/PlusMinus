@@ -296,15 +296,10 @@ namespace LearnHub
             ArrayList list = cdao.get_uploaded_content_by_id(current);
             string strfile = "";
             string dir = "Data/" + current.getCourseID();
-            Boolean delete_path = false;
             Boolean toReturn = false;
             foreach (Upload u in list)
             {
                 //edit the getUploadID in dao to return video content also
-                string title = null;
-                string desc = null;
-                string link = null;
-                Boolean show_both = false;
                 DateTime date = DateTime.Now;
                 foreach (string str in Directory.GetFiles(Server.MapPath(dir)))
                 {
@@ -329,6 +324,38 @@ namespace LearnHub
             }
         }
 
+
+        protected void checkVideoLinkExists(object sender, ServerValidateEventArgs args)
+        {
+            String currLink = "";
+            if (rblUploadType.SelectedValue.Equals("video"))
+            {
+                currLink = txtVideo.Text;
+            }
+            else if (rblUploadType.SelectedValue.Equals("both"))
+            {
+                currLink = txtVideo2.Text;
+            }
+            Course_elearnDAO cdao = new Course_elearnDAO();
+            ArrayList list = cdao.get_uploaded_content_by_id(current);
+            string dir = "Data/" + current.getCourseID();
+            Boolean toReturn = false;
+            foreach (Upload u in list)
+            {
+                if (currLink.Equals(u.video_link))
+                {
+                    toReturn = true;
+                }
+            }
+            if (toReturn)
+            {
+                args.IsValid = false;
+            }
+            else
+            {
+                args.IsValid = true;
+            }
+        }
         protected void setAudit(User u, string functionModified, string operation, string id_of_function, string remarks)
         {
             //set audit
@@ -367,6 +394,8 @@ namespace LearnHub
                 rfv_FileUpload2.Enabled = false;
                 cv_FileUpload1.Enabled = true;
                 cv_FileUpload2.Enabled = false;
+                cv_txtVideo.Enabled = false;
+                cv_txtVideo2.Enabled = false;
             }
             else if (rblUploadType.SelectedValue.Equals("video")) {
                 fileOnlyPanel.Visible = false;
@@ -389,6 +418,8 @@ namespace LearnHub
                 rfv_FileUpload2.Enabled = false;
                 cv_FileUpload1.Enabled = false;
                 cv_FileUpload2.Enabled = false;
+                cv_txtVideo.Enabled = true;
+                cv_txtVideo2.Enabled = false;
 
             } else if (rblUploadType.SelectedValue.Equals("both")) {
                 fileOnlyPanel.Visible = false;
@@ -411,6 +442,8 @@ namespace LearnHub
                 rfv_FileUpload2.Enabled = true;
                 cv_FileUpload1.Enabled = false;
                 cv_FileUpload2.Enabled = true;
+                cv_txtVideo.Enabled = false;
+                cv_txtVideo2.Enabled = true;
             }
 
         }

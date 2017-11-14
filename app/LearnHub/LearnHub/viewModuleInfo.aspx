@@ -689,6 +689,7 @@
                                             <p>
                                                 <asp:TextBox ID="txtVideo" runat="server" CssClass="form-control" placeholder="Enter YouTube Link"></asp:TextBox>
                                                 <asp:RequiredFieldValidator ID="rfv_txtVideo" runat="server" ErrorMessage="Please select a link to upload!" ControlToValidate="txtVideo" ForeColor="Red" Display="Dynamic" ValidationGroup="ValidateForm2"></asp:RequiredFieldValidator>
+                                                <asp:CustomValidator ID="cv_txtVideo" runat="server" ErrorMessage="This link already exists! Please upload a different link" OnServerValidate="checkVideoLinkExists" ForeColor="Red" ValidationGroup="ValidateForm2" Display="Dynamic"></asp:CustomValidator>
                                             </p>
                                             <br />
                                         </div>
@@ -720,6 +721,7 @@
                                             <p>
                                                 <asp:TextBox ID="txtVideo2" runat="server" CssClass="form-control" placeholder="Enter YouTube Link"></asp:TextBox>
                                                 <asp:RequiredFieldValidator ID="rfv_txtVideo2" runat="server" ErrorMessage="Please select a link to upload!" ControlToValidate="txtVideo2" ForeColor="Red" Display="Dynamic" ValidationGroup="ValidateForm2"></asp:RequiredFieldValidator>
+                                                <asp:CustomValidator ID="cv_txtVideo2" runat="server" ErrorMessage="This link already exists! Please upload a different link" OnServerValidate="checkVideoLinkExists" ForeColor="Red" ValidationGroup="ValidateForm2" Display="Dynamic"></asp:CustomValidator>
                                             </p>
                                             <br />
                                         </div>
