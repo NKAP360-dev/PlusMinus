@@ -266,7 +266,7 @@ namespace LearnHub.AppCode.dao
             }
             return toReturn;
         }
-        public ArrayList getAllQuizResultByQuizID(int quizID)
+        public ArrayList getAllQuizResultByQuizID(int quizID, string userID)
         {
             SqlConnection conn = new SqlConnection();
             ArrayList toReturn = new ArrayList();
@@ -278,8 +278,9 @@ namespace LearnHub.AppCode.dao
                 conn.Open();
                 SqlCommand comm = new SqlCommand();
                 comm.Connection = conn;
-                comm.CommandText = "select * from [QuizResult] where quizID=@quizID";
+                comm.CommandText = "select * from [QuizResult] where quizID=@quizID and userID=@userID";
                 comm.Parameters.AddWithValue("@quizID", quizID);
+                comm.Parameters.AddWithValue("@userID", userID);
                 SqlDataReader dr = comm.ExecuteReader();
                 while (dr.Read())
                 {

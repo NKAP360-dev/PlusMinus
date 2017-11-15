@@ -100,7 +100,7 @@
                                 Response.Write("<tr>");
                                 Response.Write($"<td>{currentQuiz.getTitle()}</td>");
                                 Response.Write($"<td>{currentQuiz.getMainCourse().getCourseName()}</td>");
-                                ArrayList allResultForQuiz = qrDAO.getAllQuizResultByQuizID(currentQuiz.getQuizID());
+                                ArrayList allResultForQuiz = qrDAO.getAllQuizResultByQuizID(currentQuiz.getQuizID(), currentUser.getUserID());
                                 List<QuizQuestion> allQuestions = qqDAO.getAllQuizQuestionByQuizID(currentQuiz.getQuizID());
                                 string displayAnswer = currentQuiz.getDisplayAnswer();
                                 if (allResultForQuiz.Count > 1)
@@ -130,7 +130,7 @@
                                     }
                                     else
                                     {
-                                        Response.Write("<td><span style=\"font-size: 10pt\" class=\"label label-danger\">Pass</span></td>");
+                                        Response.Write("<td><span style=\"font-size: 10pt\" class=\"label label-danger\">Fail</span></td>");
                                     }
                                     
                                     //always show result
@@ -148,7 +148,7 @@
                                     }
                                     else
                                     {
-                                        Response.Write("<td><span style=\"font-size: 10pt\" class=\"label label-danger\">Pass</span></td>");
+                                        Response.Write("<td><span style=\"font-size: 10pt\" class=\"label label-danger\">Fail</span></td>");
                                     }
 
                                     //always show result
