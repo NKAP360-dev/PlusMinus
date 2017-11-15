@@ -1,6 +1,7 @@
 ﻿using LearnHub.AppCode.dao;
 using LearnHub.AppCode.entity;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -22,7 +23,16 @@ namespace LearnHub
             {
                 UserDAO userDAO = new UserDAO();
                 Boolean supervisor = userDAO.checkIfUserIsSupervisor(currentUser.getUserID());
-                if (supervisor)
+                ArrayList roles = currentUser.getRoles();
+                Boolean superuser = false;
+                foreach (string role in roles)
+                {
+                    if (role.Equals("superuser"))
+                    {
+                        superuser = true;
+                    }
+                }
+                if (supervisor || superuser)
                 {
 
                 }
