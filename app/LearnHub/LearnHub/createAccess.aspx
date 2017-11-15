@@ -100,6 +100,7 @@
                     <div class="col-lg-5">
                         <asp:TextBox ID="txtUsername" runat="server" CssClass="form-control" placeholder="Username"></asp:TextBox>
                         <asp:RequiredFieldValidator ID="rfv_txtUsername" runat="server" ErrorMessage="Please input a Username" ControlToValidate="txtUsername" ForeColor="Red" ValidationGroup="ValidateForm" Display="Dynamic"></asp:RequiredFieldValidator>
+                        <asp:CustomValidator ID="cv_txtUsername" runat="server" ErrorMessage="This Username already exists! Please input another Username!" OnServerValidate="ValidateUsername" ControlToValidate ="txtUsername" ForeColor="Red" ValidationGroup="ValidateForm" Display="Dynamic" ></asp:CustomValidator>
                     </div>
                 </div>
                 <div class="form-group required">

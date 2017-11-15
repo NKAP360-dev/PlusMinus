@@ -49,6 +49,15 @@ namespace LearnHub {
         protected global::System.Web.UI.WebControls.RequiredFieldValidator rfv_txtUsername;
         
         /// <summary>
+        /// cv_txtUsername control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CustomValidator cv_txtUsername;
+        
+        /// <summary>
         /// txtPassword control.
         /// </summary>
         /// <remarks>

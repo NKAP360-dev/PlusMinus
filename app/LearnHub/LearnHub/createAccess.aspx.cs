@@ -209,5 +209,23 @@ namespace LearnHub
             txtPassword2.Attributes.Add("value", Password2);
         }
         */
+
+        protected void ValidateUsername(object source, ServerValidateEventArgs args)
+        {
+            System.Diagnostics.Debug.WriteLine("Im in");
+            UserDAO userDAO = new UserDAO();
+            String input = txtUsername.Text;
+            
+            if(userDAO.getUserByID(input) != null)
+            {
+                System.Diagnostics.Debug.WriteLine("false");
+                args.IsValid = false;
+            }
+            else
+            {
+                System.Diagnostics.Debug.WriteLine("true");
+                args.IsValid = true;
+            }
+        }
     }
 }

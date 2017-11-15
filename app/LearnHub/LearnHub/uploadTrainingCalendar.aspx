@@ -35,7 +35,7 @@
                         <div class="modal-footer">
 
                             <asp:Button ID="Button1" class="btn btn-primary" runat="server" Text="Upload" OnClick="btnUpload_Click"/>
-                            <a href='javascript:history.go(-1)' class="btn btn-default">&nbsp; Go Back</a>
+                            <a href='Home.aspx' class="btn btn-default">&nbsp; Go Back</a>
                         </div>
                     </div>
                 </div>
