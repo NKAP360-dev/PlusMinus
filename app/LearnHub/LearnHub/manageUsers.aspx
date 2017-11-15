@@ -110,7 +110,11 @@
                     { %>
                 <tr>
                     <td><%=u.getName() %></td>
-                    <td><%=System.Globalization.CultureInfo.CurrentCulture.TextInfo.ToTitleCase(u.getDepartment().ToLower()) %></td>
+                    <%if(u.getDepartment().Equals("hr")){%>
+                        <td>Human Resource</td>
+                    <%}else{%>
+                        <td><%=System.Globalization.CultureInfo.CurrentCulture.TextInfo.ToTitleCase(u.getDepartment().ToLower()) %></td>
+                    <%}%>
                     <td><%=u.getContact() %></td>
                     <td><%=u.getEmail() %></td>
                     <td><%=u.getStatus() %></td>
