@@ -80,7 +80,7 @@ namespace LearnHub.AppCode.dao
             }
             return toReturn;
         }
-        public int getAttemptForQuiz(int quizQuestionID)
+        public int getAttemptForQuiz(int quizQuestionID, string userID)
         {
             SqlConnection conn = new SqlConnection();
             int toReturn = 0;
@@ -92,8 +92,9 @@ namespace LearnHub.AppCode.dao
                 conn.Open();
                 SqlCommand comm = new SqlCommand();
                 comm.Connection = conn;
-                comm.CommandText = "select attempt from [QuizResultHistory] where quizQuestionID=@quizQuestionID";
+                comm.CommandText = "select TOP 1 attempt from [QuizResultHistory] where quizQuestionID=@quizQuestionID and userID=@userID order by attempt desc";
                 comm.Parameters.AddWithValue("@quizQuestionID", quizQuestionID);
+                comm.Parameters.AddWithValue("@userID", userID);
                 SqlDataReader dr = comm.ExecuteReader();
                 while (dr.Read())
                 {
@@ -123,10 +124,11 @@ namespace LearnHub.AppCode.dao
                 conn.Open();
                 SqlCommand comm = new SqlCommand();
                 comm.Connection = conn;
-                comm.CommandText = "select quizAnswerID from [QuizResultHistory] where attempt=@attempt and quizID=@quizID and quizQuestionID=@quizQuestionID";
+                comm.CommandText = "select quizAnswerID from [QuizResultHistory] where attempt=@attempt and quizID=@quizID and quizQuestionID=@quizQuestionID and userID=@userID";
                 comm.Parameters.AddWithValue("@attempt", attempt);
                 comm.Parameters.AddWithValue("quizID", quizID);
                 comm.Parameters.AddWithValue("quizQuestionID", quizQuestionID);
+                comm.Parameters.AddWithValue("userID", userID);
                 SqlDataReader dr = comm.ExecuteReader();
                 while (dr.Read())
                 {

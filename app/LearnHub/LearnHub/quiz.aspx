@@ -20,7 +20,7 @@
     <form id="form1" runat="server">
         <ul class="breadcrumb">
             <li><a href="home.aspx">Home</a></li>
-            <li><a href="viewAllModule.aspx">Modules</a></li>
+            <li><a href="viewAllModule.aspx">Courses</a></li>
             <% QuizDAO qDAO = new QuizDAO();
                 int quizID = Convert.ToInt32(Request.QueryString["id"]);
                 Quiz q = qDAO.getQuizByID(quizID);

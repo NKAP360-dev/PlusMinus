@@ -202,7 +202,7 @@ namespace LearnHub
                 QuizQuestionDAO qqDAO = new QuizQuestionDAO();
                 QuizQuestion currentQuestion = (QuizQuestion)Session["previousQuestion"];
                 QuizAnswer currentSelectedAnswer = new QuizAnswer(Convert.ToInt32(rblAnswers.SelectedValue), currentQuestion, rblAnswers.SelectedItem.Text);
-                int attempt = qrhDAO.getAttemptForQuiz(currentQuestion.getQuizQuestionID());
+                int attempt = qrhDAO.getAttemptForQuiz(currentQuestion.getQuizQuestionID(), currentUser.getUserID());
                 attempt++;
                 currentAnswer.setAttempt(attempt);
                 currentAnswer.setUserID(currentUser.getUserID());
