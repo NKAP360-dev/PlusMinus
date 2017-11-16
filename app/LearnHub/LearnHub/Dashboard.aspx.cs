@@ -613,7 +613,7 @@ namespace LearnHub
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                using (SqlCommand command = new SqlCommand("select sum(c.hoursAwarded) from [QuizResult] qr inner join [Quiz] q on qr.quizID = q.quizID inner join [Elearn_course] c on q.elearn_courseID = c.elearn_courseID where qr.grade = 'pass'", connection))
+                using (SqlCommand command = new SqlCommand("select ISNULL(sum(c.hoursAwarded),0) from [QuizResult] qr inner join [Quiz] q on qr.quizID = q.quizID inner join [Elearn_course] c on q.elearn_courseID = c.elearn_courseID where qr.grade = 'pass'", connection))
                 {
                     connection.Open();
                     using (SqlDataReader dr = command.ExecuteReader())
@@ -621,11 +621,6 @@ namespace LearnHub
                         if (dr.HasRows)
                         {
                             dt.Load(dr);
-                            toReturn = Double.Parse(dt.Rows[0][0].ToString());
-                        }
-                        else
-                        {
-                            toReturn = 0;
                         }
                     }
                     connection.Close();
