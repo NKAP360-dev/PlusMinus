@@ -309,7 +309,7 @@
                             User currentUser = (User)Session["currentUser"];
                             if (currentUser != null)
                             {
-                                if (current.getStatus().Equals("inactive") || !(DateTime.Compare(current.getStartDate(), DateTime.Now) < 0 && DateTime.Compare(current.getExpiryDate(), DateTime.Now) > 0))
+                                if (current.getStatus().Equals("Inactive") || !(DateTime.Compare(current.getStartDate(), DateTime.Now) < 0 && DateTime.Compare(current.getExpiryDate(), DateTime.Now) > 0))
                                 {
                                     Response.Write("Course is currently not available.");
                                 }
@@ -486,7 +486,7 @@
                             List<Quiz> allQuizzes = quizDAO.getAllQuizByCourseID(courseID);
                             if (currentUser != null)
                             {
-                                if (current.getStatus().Equals("inactive") || !(DateTime.Compare(current.getStartDate(), DateTime.Now) < 0 && DateTime.Compare(current.getExpiryDate(), DateTime.Now) > 0))
+                                if (current.getStatus().Equals("Inactive") || !(DateTime.Compare(current.getStartDate(), DateTime.Now) < 0 && DateTime.Compare(current.getExpiryDate(), DateTime.Now) > 0))
                                 {
                                     Response.Write("Course is currently not available.");
                                 }

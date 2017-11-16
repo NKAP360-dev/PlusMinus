@@ -167,7 +167,7 @@
                         <asp:DropDownList ID="lblDept" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="lblDept_SelectedIndexChanged">
                             <asp:ListItem Value="none">--select--</asp:ListItem>
                         </asp:DropDownList>
-                    </div>
+                        </div>
                 </div>
                 <div class="form-group required">
                     <strong>
