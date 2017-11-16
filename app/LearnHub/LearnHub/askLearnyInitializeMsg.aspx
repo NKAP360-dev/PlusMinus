@@ -152,13 +152,15 @@
             <asp:GridView ID="gvMessages" runat="server" AutoGenerateColumns="False" DataKeyNames="messageID" DataSourceID="SqlDataSourceMessages" GridLines="None" CssClass="table table-striped table-hover">
                 <Columns>
                     
+                    
+
+                    <asp:BoundField DataField="message" HeaderText="Message" SortExpression="message" />
+
                     <asp:TemplateField>
                         <ItemTemplate>
                             <input type="hidden" name="messageID" value='<%# Eval("messageID") %>' />
                         </ItemTemplate>
                     </asp:TemplateField>
-
-                    <asp:BoundField DataField="message" HeaderText="Message" SortExpression="message" />
 
                     <asp:TemplateField>
                         <ItemTemplate>

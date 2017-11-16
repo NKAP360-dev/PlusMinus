@@ -58,7 +58,7 @@ namespace LearnHub
             User currentUser = (User)Session["currentUser"];
             setAudit(currentUser, "learny instructions", "update", null, "updated instruction title: " + txtTitle.Text);
 
-            Response.Redirect("learnyConfiguration.aspx");
+            Response.Redirect("siteConfig.aspx");
         }
         protected void setAudit(User u, string functionModified, string operation, string id_of_function, string remarks)
         {
