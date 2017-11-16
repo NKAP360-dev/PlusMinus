@@ -621,6 +621,11 @@ namespace LearnHub
                         if (dr.HasRows)
                         {
                             dt.Load(dr);
+                            toReturn = Double.Parse(dt.Rows[0][0].ToString());
+                        }
+                        else
+                        {
+                            toReturn = 0;
                         }
                     }
                     connection.Close();
