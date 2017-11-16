@@ -23,12 +23,9 @@ namespace LearnHub
                         superuser = true;
                     }
                 }
-                if (!currentUser.getDepartment().Equals("hr"))
+                if (!superuser)
                 {
-                    if (!superuser)
-                    {
-                        Response.Redirect("errorPage.aspx");
-                    }
+                    Response.Redirect("errorPage.aspx");
                 }
             }
             else

@@ -27,22 +27,9 @@ namespace LearnHub
                         superuser = true;
                     }
                 }
-                if (!currentUser.getDepartment().Equals("hr"))
+                if (!superuser)
                 {
-                    if (!superuser)
-                    {
-                        Response.Redirect("errorPage.aspx");
-                    }
-                    else
-                    {
-                        if (!IsPostBack)
-                        {
-                            ChatBotInstructionDAO cbiDAO = new ChatBotInstructionDAO();
-                            ChatBotInstruction currentInstruction = cbiDAO.getInstruction();
-                            txtTitle.Text = currentInstruction.title;
-                            CKEditor1.Text = currentInstruction.instruction;
-                        }
-                    }
+                    Response.Redirect("errorPage.aspx");
                 }
                 else
                 {

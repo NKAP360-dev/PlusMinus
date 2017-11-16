@@ -27,12 +27,9 @@ namespace LearnHub
                         superuser = true;
                     }
                 }
-                if (!currentUser.getDepartment().Equals("hr"))
+                if (!superuser)
                 {
-                    if (!superuser)
-                    {
-                        Response.Redirect("errorPage.aspx");
-                    }
+                    Response.Redirect("errorPage.aspx");
                 }
                 else
                 {
@@ -64,18 +61,23 @@ namespace LearnHub
         protected void btnSave_Click(object sender, EventArgs e)
         {
             ChatBotInitializeMsgDAO cbimDAO = new ChatBotInitializeMsgDAO();
-            int counter = 0;
-            int[] messageIDs = (from p in Request.Form["messageID"].Split(',')
-                                 select int.Parse(p)).ToArray();
-            foreach (int messageID in messageIDs)
-            {
-                cbimDAO.updateInitializationLevel(messageID, counter);
-                counter++;
-            }
 
-            //set audit
-            User currentUser = (User)Session["currentUser"];
-            setAudit(currentUser, "learny initialization message", "update", null, "Reorder message order");
+            int counter = 0;
+            int checkOrder = cbimDAO.getNextOrderNumber();
+            if (checkOrder != -1)
+            {
+                int[] messageIDs = (from p in Request.Form["messageID"].Split(',')
+                                    select int.Parse(p)).ToArray();
+                foreach (int messageID in messageIDs)
+                {
+                    cbimDAO.updateInitializationLevel(messageID, counter);
+                    counter++;
+                }
+
+                //set audit
+                User currentUser = (User)Session["currentUser"];
+                setAudit(currentUser, "learny initialization message", "update", null, "Reorder message order");
+            }
             Response.Redirect("askLearnyInitializeMsg.aspx");
         }
         protected void setAudit(User u, string functionModified, string operation, string id_of_function, string remarks)
