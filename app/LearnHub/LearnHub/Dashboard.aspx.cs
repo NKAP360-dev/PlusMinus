@@ -588,7 +588,7 @@ namespace LearnHub
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                using (SqlCommand command = new SqlCommand("select count(*) from [QuizResultHistory]", connection))
+                using (SqlCommand command = new SqlCommand("select count(*) from [QuizResult]", connection))
                 {
                     connection.Open();
                     using (SqlDataReader dr = command.ExecuteReader())
