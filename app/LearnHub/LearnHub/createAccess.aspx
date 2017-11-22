@@ -167,6 +167,7 @@
                         <asp:DropDownList ID="lblDept" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="lblDept_SelectedIndexChanged">
                             <asp:ListItem Value="none">--select--</asp:ListItem>
                         </asp:DropDownList>
+                        <asp:RequiredFieldValidator ID="rfv_lblDepth" runat="server" ErrorMessage="Please Select a Department" ControlToValidate="lblDept" InitialValue="none" ForeColor="Red" ValidationGroup="ValidateForm" Display="Dynamic"></asp:RequiredFieldValidator>
                         </div>
                 </div>
                 <div class="form-group required">
